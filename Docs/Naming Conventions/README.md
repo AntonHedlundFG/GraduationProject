@@ -1,6 +1,4 @@
-# Classes
-
-## Quick Reference
+## Classes
 
 - ### UObject
 
