@@ -1,0 +1,4 @@
+class ASEnemyUnit : ACUnit
+{
+    
+}
