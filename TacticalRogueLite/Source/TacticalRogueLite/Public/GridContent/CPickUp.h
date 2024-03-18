@@ -3,11 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "GridContent/CGridContent.h"
-#include "CUnit.generated.h"
+#include "CPickUp.generated.h"
 
 
 UCLASS()
-class TACTICALROGUELITE_API ACUnit : public ACGridContent
+class TACTICALROGUELITE_API ACPickUp : public ACGridContent
 {
 	GENERATED_BODY()
 	
