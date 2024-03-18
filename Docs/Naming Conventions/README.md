@@ -84,8 +84,11 @@ enum EDirections
 # Properties:
 
 ```c#
-class USFieldExample : UObject
+class USFieldExample : AActor
 {
+    // If a class replicates, define it at the top of the class for easy reference.
+    default bReplicates = true;
+
     UPROPERTY(EditAnywhere)
     bool bExampleBool;
 
@@ -102,7 +105,7 @@ class USFieldExample : UObject
     float ExampleFloat2;
 
     UPROPERTY(VisibleAnywhere,  Category = "First Category|Child to Second Category", meta = (ClampMin = 0.0f, ClampMax = 100.0f))
-    float ExampleFloat2;
+    float ExampleFloat3;
 
     UPROPERTY(NotVisible)
     double ExampleDouble;
