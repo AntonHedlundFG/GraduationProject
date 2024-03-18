@@ -18,16 +18,6 @@ class TACTICALROGUELITE_API UCItemAbility : public UObject
 	GENERATED_BODY()
 
 public:
-	/*
-	UFUNCTION(Server, Reliable)
-	void Server_UseObject(EItemSlot Slot, int TileIndex)
-	{
-		//Verify target tile is actually OK
-		UCCommand* NewCommand = UsedItemAsset->GetAbility()->GenerateCommand();
-		NewCommand->ExecuteCommand();
-	}*/
-
-private:
 
 	virtual UCCommand* GenerateCommand() { return nullptr; }
 	
