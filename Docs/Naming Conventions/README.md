@@ -58,26 +58,26 @@ struct FExampleStruct
 - ### C++
 
 ```cpp 
-enum class EExampleEnum : uint8
+enum class EDirections : uint8
 {
-    EE_NONE         	UMETA("Displayname = "None"),
-    EE_EnumOne          UMETA("Displayname = "Enum One"),
-    EE_EnumTwo          UMETA("Displayname = "Enum Two"),
+    ED_NONE         	UMETA("Displayname = "None"),
+    ED_North          UMETA("Displayname = "North"),
+    ED_South          UMETA("Displayname = "South"),
     // ...
-    EE_MAX              UMETA("Displayname = "Max")
+    ED_MAX              UMETA("Displayname = "Max")
 }
 ```
 
 - ### AS
 
 ```c#
-enum EExampleEnum
+enum EDirections
 {
-    EE_NONE,
-    EE_EnumOne,
-    EE_EnumTwo,
+    ED_NONE,
+    ED_North,
+    ED_South,
     // ...
-    EE_MAX
+    ED_MAX
 }
 ```
 
@@ -99,6 +99,9 @@ class USFieldExample : UObject
     float ExampleFloat;
 
     UPROPERTY(VisibleAnywhere,  Category = "First Category|Child to Second Category", meta = (EditCondition = "bExampleFloat"))
+    float ExampleFloat2;
+
+    UPROPERTY(VisibleAnywhere,  Category = "First Category|Child to Second Category", meta = (ClampMin = 0.0f, ClampMax = 100.0f))
     float ExampleFloat2;
 
     UPROPERTY(NotVisible)
