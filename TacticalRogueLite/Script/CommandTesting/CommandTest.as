@@ -19,17 +19,15 @@ class USTestCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
     {
-        Print(f"Executing: {TestInt = }");
     }
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
     {
-        Print(f"Undoing: {TestInt = }");
     }
     UFUNCTION(BlueprintOverride)
     FString ToString()
     {
-        return f"Test Command with value: {TestInt}";
+        return f"Test Command, Value: {TestInt}";
     }
 }
 
