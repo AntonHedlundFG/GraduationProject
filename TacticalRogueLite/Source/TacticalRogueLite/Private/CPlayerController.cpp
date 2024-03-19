@@ -14,7 +14,7 @@ void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const E
 	}
 	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTileIndex))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Ability use failed due to bad input"));
+		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
 		return;
 	}
 }

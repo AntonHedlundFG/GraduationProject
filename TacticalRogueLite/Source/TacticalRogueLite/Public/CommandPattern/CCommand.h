@@ -15,7 +15,13 @@ class TACTICALROGUELITE_API UCCommand : public UObject
 	GENERATED_BODY()
 	
 public:
-	virtual void ExecuteCommand() {}
-	virtual void UndoCommand() {}
+	virtual void ExecuteCommand() { ReceiveExecuteCommand(); }
+	virtual void UndoCommand() { ReceiveUndoCommand(); }
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReceiveExecuteCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReceiveUndoCommand();
 
 };

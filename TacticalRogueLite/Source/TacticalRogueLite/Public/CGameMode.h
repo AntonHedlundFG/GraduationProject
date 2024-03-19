@@ -8,6 +8,8 @@
 #include "CGameMode.generated.h"
 
 class ACUnit;
+class ACGameState;
+class UCCommand;
 
 /**
  * 
@@ -26,6 +28,14 @@ public:
 	* @param TileIndex - Index of the targeted Tile
 	* @returns true if ability use was successful
 	*/
+	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
 	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex);
 
+protected:
+
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<ACGameState> GameStateRef;
+
+	UPROPERTY(BlueprintReadOnly)
+	TArray<UCCommand*> CommandHistory;
 };
