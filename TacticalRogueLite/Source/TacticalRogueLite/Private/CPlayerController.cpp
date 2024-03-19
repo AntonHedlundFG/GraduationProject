@@ -7,7 +7,7 @@
 void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex)
 {
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
-	if (GameMode)
+	if (!GameMode)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
 		return;
@@ -15,6 +15,21 @@ void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const E
 	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTileIndex))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
+		return;
+	}
+}
+
+void ACPlayerController::Server_TryUndo_Implementation()
+{
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	if (!GameMode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
+			return;
+	}
+	if (!GameMode->TryUndo(this))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Undoing failed in GameMode"));
 		return;
 	}
 }

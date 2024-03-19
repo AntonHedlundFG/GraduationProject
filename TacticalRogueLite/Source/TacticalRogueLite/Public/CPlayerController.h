@@ -27,6 +27,9 @@ public:
 	* @param TileIndex - Index of the targeted Tile
 	* @returns true if ability use was successful
 	*/
-	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
+	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities|Commands")
 	void Server_UseObject(ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex);
+
+	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities|Commands")
+	void Server_TryUndo();
 };

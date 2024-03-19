@@ -37,7 +37,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 
 	// TODO: Here we should fetch the actual item from the unit based on the inSlot
 	// we need something like inUnit->GetItemInSlot(inSlot)
-	UCItem* Item = nullptr;
+	UCItem* Item = inUnit->GetItemInSlot(inSlot);
 	if (!Item)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No item in this item slot"));
@@ -57,5 +57,18 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 
 	NewCommand->ExecuteCommand();
 	CommandHistory.Add(NewCommand);
+	return true;
+}
+
+bool ACGameMode::TryUndo(AController* inController)
+{
+	if (CommandHistory.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No commands in history"));
+		return false;
+	}
+	UCCommand* LastCommand = CommandHistory.Last();
+	LastCommand->UndoCommand();
+	CommandHistory.RemoveAtSwap(CommandHistory.Num() - 1);
 	return true;
 }

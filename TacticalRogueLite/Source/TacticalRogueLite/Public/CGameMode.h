@@ -31,6 +31,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
 	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex);
 
+	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
+	bool TryUndo(AController* inController);
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
