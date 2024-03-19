@@ -26,6 +26,11 @@ class USTestCommand : UCCommand
     {
         Print(f"Undoing: {TestInt = }");
     }
+    UFUNCTION(BlueprintOverride)
+    FString ToString()
+    {
+        return f"Test Command with value: {TestInt}";
+    }
 }
 
 class ASTestUnit : ACUnit

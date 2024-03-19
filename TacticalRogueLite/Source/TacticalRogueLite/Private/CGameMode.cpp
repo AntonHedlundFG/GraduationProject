@@ -121,7 +121,10 @@ bool ACGameMode::TryEndTurn(AController* inController)
 
 	//Transfer all commands this turn into the command history
 	for (UCCommand* Command : CommandList)
+	{
 		CommandHistory.Add(Command);
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *Command->ToString());
+	}
 	CommandList.Empty();
 
 	UE_LOG(LogTemp, Warning, TEXT("Turn ended"));

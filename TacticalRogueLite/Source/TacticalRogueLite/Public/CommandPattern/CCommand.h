@@ -22,12 +22,15 @@ public:
 	}
 	virtual void UndoCommand() { ReceiveUndoCommand(); }
 	AController* GetCommandCreator() { return CommandCreator.Get(); }
+	virtual FString ToString() { return ReceiveToString(); }
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ReceiveExecuteCommand();
 	UFUNCTION(BlueprintImplementableEvent)
 	void ReceiveUndoCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+	FString ReceiveToString();
 
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AController> CommandCreator;
