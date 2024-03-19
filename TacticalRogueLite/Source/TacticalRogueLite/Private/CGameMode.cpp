@@ -19,16 +19,19 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 			return false;
 		}
 	}
+
 	if (GameStateRef->TurnOrder.IsEmpty())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("There are no units in the turn order"));
 		return false;
 	}
+
 	if (GameStateRef->TurnOrder[0] != inUnit)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Unit is not first in the turn order"));
 		return false;
 	}
+
 	if (inUnit->GetOwner() != inController)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Unit is not owned by controller"));
@@ -55,8 +58,9 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 	//Maybe the ability should have a function for this?
 	// if (!ItemAbility->IsValidTarget(Grid->GetTileAt(inTileIndex)){} or something
 
-	NewCommand->ExecuteCommand();
+	NewCommand->ExecuteCommand(inController);
 	CommandHistory.Add(NewCommand);
+
 	return true;
 }
 
@@ -67,8 +71,16 @@ bool ACGameMode::TryUndo(AController* inController)
 		UE_LOG(LogTemp, Warning, TEXT("No commands in history"));
 		return false;
 	}
+
 	UCCommand* LastCommand = CommandHistory.Last();
+	if (LastCommand->GetCommandCreator() != inController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Command was not performed by this controller"));
+		return false;
+	}
+
 	LastCommand->UndoCommand();
 	CommandHistory.RemoveAtSwap(CommandHistory.Num() - 1);
+
 	return true;
 }

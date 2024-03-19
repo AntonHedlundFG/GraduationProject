@@ -31,6 +31,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
 	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex);
 
+	// Attempts to undo the latest command if it was created by inController
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
 	bool TryUndo(AController* inController);
 
@@ -39,6 +40,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<ACGameState> GameStateRef;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
 	TArray<UCCommand*> CommandHistory;
 };
