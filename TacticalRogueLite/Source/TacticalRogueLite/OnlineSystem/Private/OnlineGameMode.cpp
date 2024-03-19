@@ -17,7 +17,7 @@ void AOnlineGameMode::PostLogin(APlayerController* NewPlayer)
 
 		if (auto* CastState = Cast<AOnlinePlayerState>(NewPlayer->PlayerState))
 		{
-			if (!NewPlayer->IsLocalPlayerController() && CastState->PlayerIndex <= 0)
+			if (!NewPlayer->IsLocalPlayerController() && CastState->PlayerIndex <= 1)
 			{
 				CastState->PlayerIndex = NextPlayerIndex;
 				NextPlayerIndex++;
@@ -56,7 +56,7 @@ void AOnlineGameMode::PostLogin(APlayerController* NewPlayer)
 	{
 		CastState->UniqueOwnerNetID = UniqueNetIDString;
 
-		if (!NewPlayer->IsLocalPlayerController() && CastState->PlayerIndex <= 0)
+		if (!NewPlayer->IsLocalPlayerController() && CastState->PlayerIndex <= 1)
 		{
 			CastState->PlayerIndex = NextPlayerIndex;
 			NextPlayerIndex++;
@@ -85,7 +85,7 @@ void AOnlineGameMode::HandleSeamlessTravelPlayer(AController*& C)
 	{
 		CastState->UniqueOwnerNetID = UniqueNetIDString;
 
-		if (!C->IsLocalPlayerController() && CastState->PlayerIndex <= 0)
+		if (!C->IsLocalPlayerController() && CastState->PlayerIndex <= 1)
 		{
 			CastState->PlayerIndex = NextPlayerIndex;
 			NextPlayerIndex++;

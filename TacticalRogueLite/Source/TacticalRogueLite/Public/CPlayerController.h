@@ -32,4 +32,7 @@ public:
 
 	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities|Commands")
 	void Server_TryUndo();
+
+	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities")
+	void Server_TryEndTurn();
 };

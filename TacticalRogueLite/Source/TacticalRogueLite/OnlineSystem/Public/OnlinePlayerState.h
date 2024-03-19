@@ -22,5 +22,5 @@ public:
 	FString UniqueOwnerNetID;
 
 	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadOnly)
-	uint8 PlayerIndex = 0;
+	uint8 PlayerIndex = 1;
 };

@@ -1,10 +1,13 @@
 class USTestItem : UCItem
 {
+    UPROPERTY()
+    int TestValue = 2;
+
     UFUNCTION(BlueprintOverride)
     UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, int inTileIndex)
     {
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
-        NewCommand.TestInt = 5;
+        NewCommand.TestInt = TestValue;
         return NewCommand;
     }
 }
@@ -27,10 +30,5 @@ class USTestCommand : UCCommand
 
 class ASTestUnit : ACUnit
 {
-    UFUNCTION(BlueprintOverride)
-    void BeginPlay()
-    {
-        auto CastState = Cast<ACGameState>(World.GameState);
-        CastState.AddUnitToOrder(this);
-    }
+
 }
