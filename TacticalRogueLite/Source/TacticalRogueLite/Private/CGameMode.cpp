@@ -149,6 +149,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	//Move active unit to back of the line
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
+	GameStateRef->OnRep_TurnOrder();
 
 	//Transfer all commands this turn into the command history
 	for (UCCommand* Command : CommandList)
@@ -169,6 +170,7 @@ void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 		if (Unit)
 			GameStateRef->AddUnitToOrder(Unit);
 	}
+	GameStateRef->OnRep_TurnOrder();
 }
 
 void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
