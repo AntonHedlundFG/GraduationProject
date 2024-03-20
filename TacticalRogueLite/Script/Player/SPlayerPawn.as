@@ -21,6 +21,7 @@ class ASPlayerPawn : APawn
 
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     AActor FollowTarget;
+    FVector TargetLocation;
 
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
@@ -28,6 +29,7 @@ class ASPlayerPawn : APawn
         ACGameState State = Cast<ACGameState>(World.GameState);
         if (State == nullptr) return;
         State.OnTurnOrderUpdate.AddUFunction(this, n"OnTurnOrderUpdate");
+        TargetLocation = ActorLocation;
     }
     UFUNCTION(BlueprintOverride)
     void EndPlay(EEndPlayReason EndPlayReason)
@@ -42,8 +44,9 @@ class ASPlayerPawn : APawn
     {
         if (FollowTarget != nullptr)
         {
-            ActorLocation = Math::Lerp(ActorLocation, FollowTarget.ActorLocation, 0.3f);
+            TargetLocation = FollowTarget.ActorLocation;
         }
+        ActorLocation = Math::Lerp(ActorLocation, TargetLocation, 0.3f);
     }
     
     UFUNCTION(BlueprintCallable, Category = "Input|Camera")
@@ -52,7 +55,7 @@ class ASPlayerPawn : APawn
         if (inMovement.IsNearlyZero()) return;
 
         FVector MoveVector = FVector(inMovement.X, inMovement.Y, 0);
-        ActorLocation += MoveVector * CameraMoveSpeed;
+        TargetLocation += MoveVector * CameraMoveSpeed;
         if (FollowTarget != nullptr)
         {
             FollowTarget = nullptr;
@@ -72,5 +75,6 @@ class ASPlayerPawn : APawn
         if (State == nullptr || State.TurnOrder.Num() == 0) return;
 
         FollowTarget = State.TurnOrder[0];
+        TargetLocation = FollowTarget.ActorLocation;
     }
 }
