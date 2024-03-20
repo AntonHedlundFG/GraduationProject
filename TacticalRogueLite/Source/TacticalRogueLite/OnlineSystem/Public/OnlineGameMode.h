@@ -27,6 +27,6 @@ public:
 
 	TArray<AOnlinePlayerState*> InactiveStates;
 
-	uint8 NextPlayerIndex = 1; // Host is always 0
+	uint8 NextPlayerIndex = 2; // Host is always 1
 
 };
