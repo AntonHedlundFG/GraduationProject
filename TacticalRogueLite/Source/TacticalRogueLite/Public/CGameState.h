@@ -7,6 +7,7 @@
 #include "GridContent/CUnit.h"
 #include "CGameState.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 
 /**
  * 
@@ -21,7 +22,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Turn Order")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
 	TArray<ACUnit*> TurnOrder;
+
+	UFUNCTION()
+	void OnRep_TurnOrder() { OnTurnOrderUpdate.Broadcast(); }
+
+	UPROPERTY(BlueprintAssignable, Category = "Turn Order");
+	FOnTurnOrderUpdate OnTurnOrderUpdate;
 
 };
