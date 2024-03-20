@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "CGrid.generated.h"
 
+class ACUnitSpawner;
 class ACGridTile;
 
 UCLASS()
@@ -24,18 +25,30 @@ public:
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> Tiles;
 	UPROPERTY()
-	TArray<FVector> TilesPositions;
+	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
+	UPROPERTY()
+	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	TSubclassOf<ACUnitSpawner> Spawner;
 
 	UFUNCTION()
-	void GenerateGrid();
+	void GenerateGrid(int inRows, int inColumns, int inNodeInterval);
+	UFUNCTION()
+	TArray<ACGridTile*> GetHeroSpawnTiles() const { return HeroSpawnTiles; }
+	UFUNCTION()
+	TArray<ACGridTile*> GetEnemySpawnTiles() const { return EnemySpawnTiles; }
 	UFUNCTION()
 	ACGridTile* GetTileAtPosition(int inX, int inY);
 	
 protected:
 	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaTime) override;
 
 private:
 	FVector FindBottomLeftCorner() const;
+
+	//Temporary Solutions
+	void GenerateSpawnTiles();
+	void CreateSpawner();
 
 };

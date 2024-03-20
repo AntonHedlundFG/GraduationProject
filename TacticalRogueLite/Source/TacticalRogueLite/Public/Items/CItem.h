@@ -28,14 +28,22 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, const int inTileIndex);
-	
-	virtual TArray<ACGridTile*> GetValidTiles(ACUnit* inUnit) 
+
+	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile) 
 	{ 
-		return ReceiveGetValidTiles(inUnit); 
+		return ReceiveGetReachableTiles(inTile); 
 	}
 
 	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTiles(ACUnit* inUnit);
+	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile);
+	
+	virtual TArray<ACGridTile*> GetValidTargetTiles(ACUnit* inUnit) 
+	{ 
+		return ReceiveGetValidTargetTiles(inUnit); 
+	}
+
+	UFUNCTION(BlueprintImplementableEvent)
+	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
 	bool IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile);

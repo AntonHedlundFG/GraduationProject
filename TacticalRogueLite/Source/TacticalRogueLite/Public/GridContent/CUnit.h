@@ -33,12 +33,5 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UCItem> TemporaryItem;
 	// ----------------------------------------------------------------
-	
-	ACGridTile* GetCurrentTile() { return CurrentTile; }
 
-
-protected:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Grid")
-	TObjectPtr<ACGridTile> CurrentTile;
 };

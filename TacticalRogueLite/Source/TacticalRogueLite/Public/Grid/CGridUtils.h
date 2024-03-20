@@ -1,30 +1,14 @@
 ﻿#pragma once
+#include "CGridTile.h"
 
+class UCItem;
+class ACGridTile;
 class CGridUtils
 {
 public:
-	static TArray<FVector2D> StraightDirections()
-	{
-		TArray<FVector2D> Directions;
-		Directions.Add(FVector2D(0,1));
-		Directions.Add(FVector2D(0,-1));
-		Directions.Add(FVector2D(-1,0));
-		Directions.Add(FVector2D(1,0));
-		
-		return Directions;
-	}
-
-	static TArray<FVector2D> DiagonalDirections()
-	{
-		TArray<FVector2D> Directions;
-		Directions.Add(FVector2D(1,1));
-		Directions.Add(FVector2D(1,-1));
-		Directions.Add(FVector2D(-1,1));
-		Directions.Add(FVector2D(-1,-1));
-		
-		return Directions;
-	}
-
+	static TArray<FVector2D> StraightDirections();
+	static TArray<FVector2D> DiagonalDirections();
+	static TArray<ACGridTile*> BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget);
 };
 
 
