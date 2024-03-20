@@ -16,13 +16,14 @@ struct FLevelLoadSettings
 
 public:
 
-	TOptional<uint8> NumberOfPlayers;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	uint8 NumberOfPlayers = 0;
 
 	FString GetOptionsStringAppendage()
 	{
 		FString ReturnString;
-		if (NumberOfPlayers.IsSet())
-			AddOption(ReturnString, NUMBER_OF_PLAYERS, FString::FromInt(FMath::Clamp(NumberOfPlayers.GetValue(), 1, 4)));
+		if (NumberOfPlayers > 0)
+			AddOption(ReturnString, NUMBER_OF_PLAYERS, FString::FromInt(FMath::Clamp(NumberOfPlayers, 1, 4)));
 		return ReturnString;
 	}
 

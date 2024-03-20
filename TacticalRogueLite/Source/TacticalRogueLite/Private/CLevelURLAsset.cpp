@@ -23,7 +23,7 @@ FString UCLevelURLAsset::URLOfLevelByName(const FString& inName, FLevelLoadSetti
 	for (const FLevelInfo& Level : Levels)
 	{
 		if (Level.LevelName.Equals(inName))
-			return URLOfLevel(Level);
+			return URLOfLevel(Level, inSettings);
 	}
 	return FString();
 }
