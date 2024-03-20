@@ -48,11 +48,7 @@ TArray<ACGridTile*> CGridUtils::BFS_Pathfinding(UCItem* inItem, ACGridTile* inSt
 			return Path;
 		}
 		
-		TArray<ACGridTile*> ItemNeighbours = inItem->GetReachableTiles(CurrentTile);
-		//
-		//USE ITEM FUNCTION HERE INSTEAD OF GET NEIGHBOURS WHEN ITEMS ARE WORKING PROPERLY
-		//
-		TArray<ACGridTile*> Neighbours = CurrentTile->GetNeighbours();
+		TArray<ACGridTile*> Neighbours = inItem == nullptr? CurrentTile->GetNeighbours() : inItem->GetReachableTiles(CurrentTile);
 		for (auto neighbour : Neighbours)
 		{
 			if (neighbour != nullptr && !ClosedSet.Contains(neighbour))
