@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "CGridTile.generated.h"
 
+class ACGridContent;
 class ACGrid;
 class UCGridLink;
 
@@ -28,6 +29,10 @@ public:
 	TArray<UCGridLink*> GetDiagonalLinks() const { return DiagonalLinks; }
 	UFUNCTION()
 	TArray<ACGridTile*> GetNeighbours(bool bIncludeDiagonals = false);
+	UFUNCTION()
+	ACGridContent* GetContent() const { return TileContent; }
+	UFUNCTION()
+	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
 
 
 protected:
@@ -37,6 +42,8 @@ protected:
 	TArray<TObjectPtr<UCGridLink>> StraightLinks;
 	UPROPERTY()
 	TArray<TObjectPtr<UCGridLink>> DiagonalLinks;
+	UPROPERTY()
+	TObjectPtr<ACGridContent> TileContent;
 	UPROPERTY()
 	FVector2D GridCoords;
 	
