@@ -28,7 +28,7 @@ public:
 	}
 };
 
-UCLASS()
+UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
 {
 	GENERATED_BODY()
