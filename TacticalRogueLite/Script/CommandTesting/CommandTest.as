@@ -10,6 +10,14 @@ class USTestItem : UCItem
         NewCommand.TestInt = TestValue;
         return NewCommand;
     }
+
+    UFUNCTION(BlueprintOverride)
+    TArray<ACGridTile> GetValidTiles(ACUnit inUnit)
+    {
+        TArray<ACGridTile> Tiles; // = inUnit.GetNeighbours(false);
+        return Tiles;
+    }
+
 }
 
 class USTestCommand : UCCommand
