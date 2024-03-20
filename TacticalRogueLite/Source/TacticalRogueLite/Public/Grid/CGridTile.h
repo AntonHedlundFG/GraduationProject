@@ -21,17 +21,17 @@ public:
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);
 	UFUNCTION()
 	void CreateLinks();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	FVector2D GetGridCoords() const { return GridCoords; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<UCGridLink*> GetStraightLinks() const { return StraightLinks; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<UCGridLink*> GetDiagonalLinks() const { return DiagonalLinks; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetNeighbours(bool bIncludeDiagonals = false);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	ACGridContent* GetContent() const { return TileContent; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
 
 

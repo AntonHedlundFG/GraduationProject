@@ -14,7 +14,7 @@ class USTestItem : UCItem
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTiles(ACUnit inUnit)
     {
-        TArray<ACGridTile> Tiles; // = inUnit.GetNeighbours(false);
+        TArray<ACGridTile> Tiles = inUnit.GetTile().GetNeighbours();
         return Tiles;
     }
 

@@ -15,11 +15,12 @@ class TACTICALROGUELITE_API ACGridContent : public AActor
 public:	
 	ACGridContent();
 
+	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
 	ACGridTile* GetTile() const { return Tile; }
+	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
 	void SetTile(ACGridTile* inTile) { Tile = inTile; }
 
 protected:
-	UPROPERTY()
 	TObjectPtr<ACGridTile> Tile;
 	
 	virtual void BeginPlay() override;
