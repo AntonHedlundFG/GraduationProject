@@ -7,12 +7,34 @@
 #include "Items/CItem.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
+#include "CLevelURLAsset.h"
 
 void ACGameMode::BeginPlay()
 {
+	if (!GameStateRef)
+	{
+		GameStateRef = GetGameState<ACGameState>();
+		if (!GameStateRef)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Wrong Game State class"));
+			return;
+		}
+	}
+
+	TArray<AActor*> OutActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
+	TArray<ACUnit*> AllUnits;
+	for (AActor* Actor : OutActors)
+	{
+		ACUnit* Unit = Cast<ACUnit>(Actor);
+		if (Unit)
+			AllUnits.Add(Unit);
+	}
+
 	//We might want to move this to another place later, 
 	// as all Units might not be spawned yet.
-	InitializeTurnOrder();
+	InitializeTurnOrder(AllUnits);
+	ApplyPlayerCount(AllUnits);
 }
 
 bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex)
@@ -52,6 +74,12 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
+	if (!Item->IsValidTargetTileIndex(inUnit, inTileIndex))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
+		return false;
+	}
+
 	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTileIndex);
 	if (!NewCommand)
 	{
@@ -59,9 +87,6 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
-	//Verify that the target Tile is a reasonable target. 
-	//Maybe the ability should have a function for this?
-	// if (!ItemAbility->IsValidTarget(Grid->GetTileAt(inTileIndex)){} or something
 
 	NewCommand->ExecuteCommand(inController);
 	CommandList.Add(NewCommand);
@@ -136,26 +161,29 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	return true;
 }
 
-void ACGameMode::InitializeTurnOrder()
+void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 {
-	if (!GameStateRef)
-	{
-		GameStateRef = GetGameState<ACGameState>();
-		if (!GameStateRef)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Wrong Game State class"));
-			return;
-		}
-	}
-
-	TArray<AActor*> OutActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
-
 	GameStateRef->TurnOrder.Empty();
-	for (AActor* Actor : OutActors)
+	for (ACUnit* Unit : Units)
 	{
-		ACUnit* Unit = Cast<ACUnit>(Actor);
 		if (Unit)
 			GameStateRef->AddUnitToOrder(Unit);
+	}
+}
+
+void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
+{
+	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, 0);
+	if (!PlayerCount) return;
+	for (ACUnit* Unit : Units)
+	{
+		if (!Unit) continue;
+
+		// Might look tricky, but it's fairly simple. 
+		// If player count is 2, characters with 3/4 become 1/2 instead.
+		while (Unit->ControllingPlayerIndex > PlayerCount)
+		{
+			Unit->ControllingPlayerIndex -= PlayerCount;
+		}
 	}
 }

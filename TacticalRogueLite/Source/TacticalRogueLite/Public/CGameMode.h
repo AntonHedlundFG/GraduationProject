@@ -41,8 +41,14 @@ public:
 	bool TryEndTurn(AController* inController);
 
 	//Resets game state turn order list, and adds all Units in world to the order list.
-	UFUNCTION(BlueprintCallable, Category = "Turn Order")
-	void InitializeTurnOrder();
+	void InitializeTurnOrder(const TArray<ACUnit*>& Units);
+
+	//If fewer than 4 players, this function "downgrades" units, until they are
+	//considered controlled by an actual player.
+	//With 2 players, unit 3/4 become controlled by 1/2.
+	//With 3 players, unit 4 become controlled by 1
+	//With 1 player, all units become controlled by 1.
+	void ApplyPlayerCount(const TArray<ACUnit*>& Units);
 
 protected:
 

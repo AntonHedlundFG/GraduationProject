@@ -21,8 +21,10 @@ public:
 		ReceiveExecuteCommand();
 	}
 	virtual void UndoCommand() { ReceiveUndoCommand(); }
-	AController* GetCommandCreator() { return CommandCreator.Get(); }
 	virtual FString ToString() { return ReceiveToString(); }
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
+	AController* GetCommandCreator() { return CommandCreator.Get(); }
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent)

@@ -6,6 +6,7 @@
 #include "CUnit.generated.h"
 
 class UCItem;
+class ACGridTile;
 enum class EItemSlots : uint8;
 
 UCLASS()
@@ -16,9 +17,7 @@ class TACTICALROGUELITE_API ACUnit : public ACGridContent
 public:
 	ACUnit();
 
-	/* This determines who can control this unit. 0 means AI
-	* 
-	*/
+	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)
 	uint8 ControllingPlayerIndex = 0;
 
@@ -35,4 +34,11 @@ public:
 	TObjectPtr<UCItem> TemporaryItem;
 	// ----------------------------------------------------------------
 	
+	ACGridTile* GetCurrentTile() { return CurrentTile; }
+
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Grid")
+	TObjectPtr<ACGridTile> CurrentTile;
 };
