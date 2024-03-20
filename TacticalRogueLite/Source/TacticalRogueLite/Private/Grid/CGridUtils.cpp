@@ -1,4 +1,6 @@
 ﻿#include "Grid/CGridUtils.h"
+
+#include "GridContent/CUnit.h"
 #include "Items/CItem.h"
 
 TArray<FVector2D> CGridUtils::StraightDirections()
@@ -51,7 +53,8 @@ TArray<ACGridTile*> CGridUtils::BFS_Pathfinding(UCItem* inItem, ACGridTile* inSt
 		TArray<ACGridTile*> Neighbours = inItem == nullptr? CurrentTile->GetNeighbours() : inItem->GetReachableTiles(CurrentTile);
 		for (auto neighbour : Neighbours)
 		{
-			if (neighbour != nullptr && !ClosedSet.Contains(neighbour))
+			if (neighbour == nullptr || ClosedSet.Contains(neighbour)) continue;
+			if(!Cast<ACUnit>(neighbour->GetContent()))
 			{
 				OpenSet.Add(neighbour);
 				ClosedSet.Add(neighbour);
