@@ -74,6 +74,12 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
+	if (!Item->IsValidTargetTileIndex(inUnit, inTileIndex))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
+		return false;
+	}
+
 	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTileIndex);
 	if (!NewCommand)
 	{
@@ -81,9 +87,6 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
-	//Verify that the target Tile is a reasonable target. 
-	//Maybe the ability should have a function for this?
-	// if (!ItemAbility->IsValidTarget(Grid->GetTileAt(inTileIndex)){} or something
 
 	NewCommand->ExecuteCommand(inController);
 	CommandList.Add(NewCommand);
