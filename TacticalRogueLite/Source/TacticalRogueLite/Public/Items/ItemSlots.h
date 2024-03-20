@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum class EItemSlots : uint8
 {
 	EIS_None	UMETA(DisplayName = "None"),
