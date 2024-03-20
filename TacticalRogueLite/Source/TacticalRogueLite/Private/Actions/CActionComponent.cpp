@@ -3,6 +3,7 @@
 #include "Actions/CAction.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
+#include "TacticalRogueLite/TacticalRogueLite.h"
 
 
 UCActionComponent::UCActionComponent()
