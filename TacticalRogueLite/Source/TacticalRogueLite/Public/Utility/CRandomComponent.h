@@ -2,14 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "CRogueLiteRandomComponent.generated.h"
+#include "CRandomComponent.generated.h"
 
 UCLASS()
-class UCRogueLiteRandomComponent : public UActorComponent
+class UCRandomComponent : public UActorComponent
 {
 	GENERATED_BODY()
 public:
-	UCRogueLiteRandomComponent();
+	UCRandomComponent();
 	
 protected:
 	virtual void BeginPlay() override;
@@ -22,10 +22,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int32 GetRandRange(int32 inMin, int32 inMax, bool bKeepState = true);
 
-	// Overloaded method for generating a random value up to a max value, with optional state advancement.
-	int32 GetRandRange(int32 Max, bool bKeepState = true);
+	// Generates a random value within 0 to inMax, optionally without advancing the state
+	int32 GetRandRange(int32 inMax, bool bKeepState = true);
 
-	// Generates a completely random value, optionally without advancing the state.
+	// Generates a random value within 0 and max int32, optionally without advancing the state.
 	int32 GetRandRange(bool bKeepState = true);
 
 	// Rolls back the random stream state by a specified number of ticks.
@@ -47,7 +47,7 @@ public:
 	// Helper method to ensure seed values are within an acceptable range
 	int32 ValidateSeed(int32 Seed);
 
-	// Peek ahead
+	// Peek ahead a specified number of ticks
 	UFUNCTION(BlueprintCallable)
 	int32 PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead = 1) const;
 
@@ -74,9 +74,6 @@ private:
 	UPROPERTY(Replicated)
 	int32 SavedStateSeed;
 
-	// Helper method to generate a debug message, compiled out in non-debug builds.
-	void DebugMessage(const FString& Message) const;
-	
 protected:
 	// Sets up property replication for the component.
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

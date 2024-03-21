@@ -1,20 +1,20 @@
-﻿#include "CRogueLiteRandomComponent.h"
+﻿#include "Utility/CRandomComponent.h"
 
 #include "Net/UnrealNetwork.h"
 
-UCRogueLiteRandomComponent::UCRogueLiteRandomComponent()
+UCRandomComponent::UCRandomComponent()
 {
 	SetIsReplicatedByDefault(true);
 }
 
-void UCRogueLiteRandomComponent::BeginPlay()
+void UCRandomComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Init(0);
 }
 
 
-void UCRogueLiteRandomComponent::Init(int32 inSeed)
+void UCRandomComponent::Init(int32 inSeed)
 {
 	Ticks = 0;
 	TicksSinceSave = 0;
@@ -24,7 +24,7 @@ void UCRogueLiteRandomComponent::Init(int32 inSeed)
 	SaveState();
 }
 
-int32 UCRogueLiteRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
+int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
 {
 	if (inMax < inMin) { Swap(inMax, inMin); } // Correct inverted ranges.
 	const int32 Range = (inMax - inMin) + 1;
@@ -45,30 +45,23 @@ int32 UCRogueLiteRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bK
 		Ticks++;
 		TicksSinceSave++;
 	}
-
-	GEngine->AddOnScreenDebugMessage(
-		-1,
-		5.f,
-		FColor::Red,
-		FString::Printf(TEXT("Value: %d, Ticks: %lld, Ticks since save: %d"), Value, Ticks, TicksSinceSave));
-
 	
 	return Value;
 }
 
-int32 UCRogueLiteRandomComponent::GetRandRange(int32 Max, bool bKeepState)
+int32 UCRandomComponent::GetRandRange(int32 inMax, bool bKeepState)
 {
-	if(Max < 0)
+	if(inMax < 0)
 		return GetRandRange(bKeepState);
-	return GetRandRange(0, Max, bKeepState);
+	return GetRandRange(0, inMax, bKeepState);
 }
 
-int32 UCRogueLiteRandomComponent::GetRandRange(bool bKeepState)
+int32 UCRandomComponent::GetRandRange(bool bKeepState)
 {
 	return GetRandRange( 0,INT32_MAX - 1, bKeepState);
 }
 
-int32 UCRogueLiteRandomComponent::RollBackRandom(int32 inTicks)
+int32 UCRandomComponent::RollBackRandom(int32 inTicks)
 {
 	if (inTicks < 1)
 		return -1;
@@ -87,32 +80,25 @@ int32 UCRogueLiteRandomComponent::RollBackRandom(int32 inTicks)
 		Ticks++;
 		TicksSinceSave++;
 	}
-
-	GEngine->AddOnScreenDebugMessage(
-	-1,
-	5.f,
-	FColor::Red,
-	FString::Printf(TEXT("Value: %d, Ticks: %lld, Ticks since save: %d"), Value, Ticks, TicksSinceSave));
-
 	
 	return Value;
 }
 
-void UCRogueLiteRandomComponent::RollBackToSave()
+void UCRandomComponent::RollBackToSave()
 {
 	RandomStream.Initialize(SavedStateSeed);
 	TicksSinceSave = 0;
 	Ticks = TicksAtSave;
 }
 
-void UCRogueLiteRandomComponent::SaveState()
+void UCRandomComponent::SaveState()
 {
 	SavedStateSeed = RandomStream.GetCurrentSeed();
 	TicksSinceSave = 0;
 	TicksAtSave = Ticks;
 }
 
-void UCRogueLiteRandomComponent::ResetToInitialSeed()
+void UCRandomComponent::ResetToInitialSeed()
 {
 	Ticks = 0;
 	TicksSinceSave = 0;
@@ -120,12 +106,12 @@ void UCRogueLiteRandomComponent::ResetToInitialSeed()
 	SaveState();
 }
 
-int32 UCRogueLiteRandomComponent::ValidateSeed(int32 Seed)
+int32 UCRandomComponent::ValidateSeed(int32 Seed)
 {
 	return FMath::Clamp(Seed, 0, INT32_MAX - 1);
 }
 
-int32 UCRogueLiteRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead) const
+int32 UCRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead) const
 {
 	if (inMax < inMin) { Swap(inMax, inMin); } // Correct inverted ranges.
 	const int32 Range = (inMax - inMin) + 1;
@@ -146,7 +132,7 @@ int32 UCRogueLiteRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTi
 	return Value; 
 }
 
-TArray<int32> UCRogueLiteRandomComponent::PeekAheadArray(const TArray<int32>& inMins, const TArray<int32>& inMaxs) const
+TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, const TArray<int32>& inMaxs) const
 {
 	TArray<int32> Values;
 	if (inMins.Num() != inMaxs.Num() || inMins.Num() <= 0) 
@@ -178,14 +164,13 @@ TArray<int32> UCRogueLiteRandomComponent::PeekAheadArray(const TArray<int32>& in
 	return Values;
 }
 
-
-void UCRogueLiteRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+void UCRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, RandomStream);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, Ticks);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, StartSeed);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, SavedStateSeed);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, TicksSinceSave);
-	DOREPLIFETIME(UCRogueLiteRandomComponent, TicksAtSave);
+	DOREPLIFETIME(UCRandomComponent, RandomStream);
+	DOREPLIFETIME(UCRandomComponent, Ticks);
+	DOREPLIFETIME(UCRandomComponent, StartSeed);
+	DOREPLIFETIME(UCRandomComponent, SavedStateSeed);
+	DOREPLIFETIME(UCRandomComponent, TicksSinceSave);
+	DOREPLIFETIME(UCRandomComponent, TicksAtSave);
 }
