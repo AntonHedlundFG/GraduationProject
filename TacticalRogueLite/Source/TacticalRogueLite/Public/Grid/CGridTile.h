@@ -36,15 +36,15 @@ public:
 
 
 protected:
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TObjectPtr<ACGrid> ParentGrid;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<UCGridLink>> StraightLinks;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<UCGridLink>> DiagonalLinks;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TObjectPtr<ACGridContent> TileContent;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	FVector2D GridCoords;
 	
 	virtual void BeginPlay() override;

@@ -4,6 +4,17 @@
 #include "Grid/CGrid.h"
 #include "Grid/CGridLink.h"
 #include "Grid/CGridUtils.h"
+#include "Net/UnrealNetwork.h"
+
+void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACGridTile, ParentGrid);
+	DOREPLIFETIME(ACGridTile, StraightLinks);
+	DOREPLIFETIME(ACGridTile, DiagonalLinks);
+	DOREPLIFETIME(ACGridTile, TileContent);
+	DOREPLIFETIME(ACGridTile, GridCoords);
+}
 
 ACGridTile::ACGridTile()
 {

@@ -1,6 +1,14 @@
 
 #include "Grid/CGrid.h"
 #include "Grid/CGridTile.h"
+#include "Net/UnrealNetwork.h"
+
+
+void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACGrid, Tiles);
+}
 
 ACGrid::ACGrid()
 {

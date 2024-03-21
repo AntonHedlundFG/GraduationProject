@@ -21,7 +21,7 @@ public:
 	int NodeInterval = 1000;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	FVector2D GridDimensions = FVector2D(10,10);
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Grid Properties")
 	TArray<TObjectPtr<ACGridTile>> Tiles;
 
 	UFUNCTION()
