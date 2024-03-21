@@ -9,6 +9,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Grid\CGridTile.h"
 #include "CLevelURLAsset.h"
+#include "Grid/CGrid.h"
+#include "Grid/CGridSpawner.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -22,6 +24,14 @@ void ACGameMode::BeginPlay()
 		}
 	}
 
+	Spawner = CreateSpawner();
+	GameGrid = Spawner->SpawnGrid(FVector::Zero(),10,10);
+	
+	//This can probably be done better/cleaner
+	Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, GameGrid->GetHeroSpawnTiles());
+	Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, GameGrid->GetEnemySpawnTiles());
+
+	
 	TArray<AActor*> OutActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
 	TArray<ACUnit*> AllUnits;
@@ -31,7 +41,7 @@ void ACGameMode::BeginPlay()
 		if (Unit)
 			AllUnits.Add(Unit);
 	}
-
+	
 	//We might want to move this to another place later, 
 	// as all Units might not be spawned yet.
 	InitializeTurnOrder(AllUnits);
@@ -189,4 +199,10 @@ void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
 			Unit->ControllingPlayerIndex -= PlayerCount;
 		}
 	}
+}
+
+ACGridSpawner* ACGameMode::CreateSpawner()
+{
+	ACGridSpawner* spawner = GetWorld()->SpawnActor<ACGridSpawner>(SpawnerClass, FVector::Zero(), FRotator::ZeroRotator);
+	return spawner;
 }

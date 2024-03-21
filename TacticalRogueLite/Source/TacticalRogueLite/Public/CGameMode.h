@@ -7,6 +7,8 @@
 #include "TacticalRogueLite\OnlineSystem\Public\OnlineGameMode.h"
 #include "CGameMode.generated.h"
 
+class ACGridSpawner;
+class ACGrid;
 class ACUnit;
 class ACGameState;
 class UCCommand;
@@ -51,14 +53,30 @@ public:
 	//With 1 player, all units become controlled by 1.
 	void ApplyPlayerCount(const TArray<ACUnit*>& Units);
 
-protected:
+	UFUNCTION(BlueprintCallable, Category = "Grid|Spawner")
+	ACGrid* GetGameGrid() const { return GameGrid; }
+	UFUNCTION(BlueprintCallable, Category = "Grid|Spawner")
+	ACGridSpawner* GetGridSpawner() const { return Spawner; }
 
+protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<ACGameState> GameStateRef;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Grid|Grid")
+	TObjectPtr<ACGrid> GameGrid;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid|Spawner")
+	TSubclassOf<ACGridSpawner> SpawnerClass;
+	UPROPERTY(BlueprintReadOnly, Category = "Grid|Spawner")
+	TObjectPtr<ACGridSpawner> Spawner;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
 	TArray<UCCommand*> CommandList;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
 	TArray<UCCommand*> CommandHistory;
+
+	UFUNCTION(Category = "Grid|Spawner")
+	ACGridSpawner* CreateSpawner();
+	
 };
