@@ -85,9 +85,18 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 {
+	if (!inTargetTile)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Target Tile nullptr, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Tile Clicked: %s"), *inTargetTile->GetName());
+
 	if (!UnitCurrentlyUsingAbility)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ability initiated"));
+		UE_LOG(LogTemp, Warning, TEXT("No ability initiated, cancelling ability use."));
 		CancelAbilityUse();
 		return;
 	}
