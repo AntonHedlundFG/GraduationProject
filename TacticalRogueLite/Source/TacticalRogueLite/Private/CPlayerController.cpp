@@ -137,6 +137,11 @@ void ACPlayerController::CancelAbilityUse()
 	UnitCurrentlyUsingAbility = nullptr;
 }
 
+void ACPlayerController::EndTurn()
+{
+	Server_TryEndTurn();
+}
+
 ACGameState* ACPlayerController::GetGameState()
 {
 	if (!GameStateRef && GetWorld())

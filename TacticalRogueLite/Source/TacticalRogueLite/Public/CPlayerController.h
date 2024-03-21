@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void CancelAbilityUse();
 
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	void EndTurn();
+
 private:
 
 	ACGameState* GetGameState();
@@ -51,13 +54,13 @@ private:
 	* @param TileIndex - Index of the targeted Tile
 	* @returns true if ability use was successful
 	*/
-	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities|Commands")
+	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
 	void Server_UseObject(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile);
 
-	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities|Commands")
+	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
 	void Server_TryUndo();
 
-	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Abilities")
+	UFUNCTION(Server, Reliable, Category = "Abilities")
 	void Server_TryEndTurn();
 
 #pragma endregion
