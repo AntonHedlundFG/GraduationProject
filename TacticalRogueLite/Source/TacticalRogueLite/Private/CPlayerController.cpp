@@ -24,12 +24,27 @@ void ACPlayerController::Server_TryUndo_Implementation()
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling undo."))
 			return;
 	}
 	if (!GameMode->TryUndo(this))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Undoing failed in GameMode"));
+		return;
+	}
+}
+
+void ACPlayerController::Server_TryEndTurn_Implementation()
+{
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	if (!GameMode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling end turn."))
+			return;
+	}
+	if (!GameMode->TryEndTurn(this))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Endturn failed in GameMode"));
 		return;
 	}
 }

@@ -1,12 +1,23 @@
 class USTestItem : UCItem
 {
+    UPROPERTY()
+    int TestValue = 2;
+
     UFUNCTION(BlueprintOverride)
     UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, int inTileIndex)
     {
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
-        NewCommand.TestInt = 5;
+        NewCommand.TestInt = TestValue;
         return NewCommand;
     }
+
+    UFUNCTION(BlueprintOverride)
+    TArray<ACGridTile> GetValidTargetTiles(ACUnit inUnit)
+    {
+        TArray<ACGridTile> Tiles = inUnit.GetTile().GetNeighbours();
+        return Tiles;
+    }
+
 }
 
 class USTestCommand : UCCommand
@@ -16,21 +27,19 @@ class USTestCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
     {
-        Print(f"Executing: {TestInt = }");
     }
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
     {
-        Print(f"Undoing: {TestInt = }");
+    }
+    UFUNCTION(BlueprintOverride)
+    FString ToString()
+    {
+        return f"Test Command, Value: {TestInt}";
     }
 }
 
 class ASTestUnit : ACUnit
 {
-    UFUNCTION(BlueprintOverride)
-    void BeginPlay()
-    {
-        auto CastState = Cast<ACGameState>(World.GameState);
-        CastState.AddUnitToOrder(this);
-    }
+
 }
