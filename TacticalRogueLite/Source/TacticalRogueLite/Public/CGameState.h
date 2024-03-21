@@ -33,7 +33,7 @@ public:
 	FOnTurnOrderUpdate OnTurnOrderUpdate;
 
 	UPROPERTY(Replicated, BlueprintReadOnly, Category = "Random")
-	class UCRogueLiteRandomComponent* Random;
+	class UCRandomComponent* Random;
 	
 
 };

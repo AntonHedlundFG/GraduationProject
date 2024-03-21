@@ -3,12 +3,12 @@
 
 #include "CGameState.h"
 
-#include "CRogueLiteRandomComponent.h"
+#include "Utility/CRandomComponent.h"
 #include "Net/UnrealNetwork.h"
 
 ACGameState::ACGameState()
 {
-	Random = CreateDefaultSubobject<UCRogueLiteRandomComponent>(TEXT("Random"));
+	Random = CreateDefaultSubobject<UCRandomComponent>(TEXT("Random"));
 }
 
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
