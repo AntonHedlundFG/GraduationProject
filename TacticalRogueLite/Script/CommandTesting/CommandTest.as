@@ -4,7 +4,7 @@ class USTestItem : UCItem
     int TestValue = 2;
 
     UFUNCTION(BlueprintOverride)
-    UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, int inTileIndex)
+    UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, ACGridTile inTargetTile)
     {
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
         NewCommand.TestInt = TestValue;
@@ -14,8 +14,8 @@ class USTestItem : UCItem
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACUnit inUnit)
     {
-        TArray<ACGridTile> Tiles = inUnit.GetTile().GetNeighbours();
-        return Tiles;
+        
+        return TArray<ACGridTile>();
     }
 
 }

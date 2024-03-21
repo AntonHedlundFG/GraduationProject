@@ -2,9 +2,14 @@
 
 
 #include "CPlayerController.h"
+#include "CGameState.h"
+#include "Items\CItem.h"
+#include "Grid\CGridTile.h"
 #include "CGameMode.h"
 
-void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex)
+#pragma region Server RPCs
+
+void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
 {
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
@@ -12,7 +17,7 @@ void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const E
 		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
 		return;
 	}
-	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTileIndex))
+	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
 		return;
@@ -47,4 +52,85 @@ void ACPlayerController::Server_TryEndTurn_Implementation()
 		UE_LOG(LogTemp, Warning, TEXT("Endturn failed in GameMode"));
 		return;
 	}
+}
+
+#pragma endregion
+
+void ACPlayerController::UndoAbility()
+{
+	Server_TryUndo();
+}
+
+void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
+{
+	if (!GetGameState())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
+		return;
+	}
+	if (GetGameState()->TurnOrder.Num() == 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
+		return;
+	}
+	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
+		return;
+	}
+
+	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
+	ItemSlotCurrentlyUsed = inItemSlot;
+}
+
+void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
+{
+	if (!UnitCurrentlyUsingAbility)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ability initiated"));
+		CancelAbilityUse();
+		return;
+	}
+	if (!GetGameState())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+	if (GetGameState()->TurnOrder.Num() == 0 || GetGameState()->TurnOrder[0] != UnitCurrentlyUsingAbility)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+
+	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+
+	UCItem* UsedItem = UnitCurrentlyUsingAbility->GetItemInSlot(ItemSlotCurrentlyUsed);
+	if (!UsedItem || !UsedItem->IsValidTargetTile(UnitCurrentlyUsingAbility, inTargetTile))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+	
+	Server_UseObject(UnitCurrentlyUsingAbility, ItemSlotCurrentlyUsed, inTargetTile);
+}
+
+void ACPlayerController::CancelAbilityUse()
+{
+	ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
+	UnitCurrentlyUsingAbility = nullptr;
+}
+
+ACGameState* ACPlayerController::GetGameState()
+{
+	if (!GameStateRef && GetWorld())
+		GameStateRef = GetWorld()->GetGameState<ACGameState>();
+	return GameStateRef;
 }

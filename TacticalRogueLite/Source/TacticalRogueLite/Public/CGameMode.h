@@ -10,6 +10,7 @@
 class ACUnit;
 class ACGameState;
 class UCCommand;
+class ACGridTile;
 
 /**
  * 
@@ -31,7 +32,7 @@ public:
 	* @returns true if ability use was successful
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
-	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex);
+	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile);
 
 	// Attempts to undo the latest command if it was created by inController
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")

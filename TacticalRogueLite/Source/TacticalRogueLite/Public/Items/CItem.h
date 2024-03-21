@@ -21,13 +21,13 @@ class TACTICALROGUELITE_API UCItem : public UDataAsset
 
 public:
 
-	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, const int inTileIndex)
+	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
 	{
-		return ReceiveGenerateAbilityCommand(inController, inUnit, inTileIndex);
+		return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile);
 	}
 
 	UFUNCTION(BlueprintImplementableEvent)
-	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, const int inTileIndex);
+	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile);
 
 	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile) 
 	{ 
@@ -47,8 +47,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
 	bool IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile);
+
+	/* Removed, we should just be using ACGridTile* instead of int indexes
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
 	bool IsValidTargetTileIndex(ACUnit* inUnit, const int inTargetTileIndex);
-
+	*/
 
 };

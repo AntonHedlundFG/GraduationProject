@@ -7,6 +7,7 @@
 #include "Items/CItem.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
+#include "Grid\CGridTile.h"
 #include "CLevelURLAsset.h"
 
 void ACGameMode::BeginPlay()
@@ -37,7 +38,7 @@ void ACGameMode::BeginPlay()
 	ApplyPlayerCount(AllUnits);
 }
 
-bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex)
+bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
 {
 	if (!GameStateRef)
 	{
@@ -74,13 +75,13 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
-	if (!Item->IsValidTargetTileIndex(inUnit, inTileIndex))
+	if (!Item->IsValidTargetTile(inUnit, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
 		return false;
 	}
 
-	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTileIndex);
+	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTargetTile);
 	if (!NewCommand)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ability command on this item"));
