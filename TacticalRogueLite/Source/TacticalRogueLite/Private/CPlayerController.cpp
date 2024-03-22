@@ -41,13 +41,15 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
 		return;
 	}
+	
+	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
+	
 	if (!UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No item in slot, cancelling ability use."));
 		return;
 	}
 
-	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
 	ItemSlotCurrentlyUsed = inItemSlot;
 
 	HighlightedTiles = UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot)->GetValidTargetTiles(UnitCurrentlyUsingAbility);
