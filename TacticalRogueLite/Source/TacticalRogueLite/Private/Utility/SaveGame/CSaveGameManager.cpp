@@ -1,6 +1,7 @@
 ﻿#include "Utility/SaveGame/CSaveGameManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Kismet/GameplayStatics.h"
+#include "Utility/Logging/CLogger.h"
 #include "Utility/SaveGame/CSavable.h"
 
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
@@ -23,6 +24,7 @@ void UCSaveGameManager::SaveGame()
 	TriggerSaveEvent(); // Trigger Save Event on all Savable Objects
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveSlot, UserIndex); // Save Game
+	LOG_INFO("Game Saved");
 }
 
 UCSaveGame* UCSaveGameManager::LoadGame()
@@ -37,6 +39,7 @@ UCSaveGame* UCSaveGameManager::LoadGame()
 	}
 
 	TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
+	LOG_INFO("Game Loaded");
 	return SaveGameInstance;
 }
 
