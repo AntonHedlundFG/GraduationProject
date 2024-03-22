@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "SaveGame/CSavable.h"
 #include "CRandomComponent.generated.h"
 
 UCLASS()
-class UCRandomComponent : public UActorComponent
+class UCRandomComponent : public UActorComponent, public ICSavable
 {
 	GENERATED_BODY()
 public:
@@ -13,10 +14,15 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
-	
+	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
+
 public:
 	// Initializes the random stream with a specific seed.
-	void Init(int32 inSeed);
+	void InitializeFromStart(int32 inStartSeed);
+
+	// Initializes the random stream with a specific seed and state.
+	void InitializeFromSave(int32 inStartSeed, int32 inCurrentStateSeed, int64 inTicks, int32 inTicksSinceSave,
+	                        int32 inTicksAtSave);
 
 	// Generates a random value within a specified range, optionally without advancing the state.
 	UFUNCTION(BlueprintCallable)
@@ -55,6 +61,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<int32> PeekAheadArray(const TArray<int32>& inMins, const TArray<int32>& inMaxs) const;
 
+	// OnSave implementation
+	virtual void OnSave() override;
+
+	// OnLoad implementation
+	virtual void OnLoad() override;
+
+	// RegisterToSaveManager implementation
+	virtual void RegisterToSaveManager() override;
+
+	// UnregisterFromSaveManager implementation
+	virtual void UnregisterFromSaveManager() override;
+	
 private:
 	UPROPERTY(Replicated)
 	FRandomStream RandomStream;
@@ -72,7 +90,7 @@ private:
 	int32 StartSeed;
 
 	UPROPERTY(Replicated)
-	int32 SavedStateSeed;
+	int32 CurrentStateSeed;
 
 protected:
 	// Sets up property replication for the component.

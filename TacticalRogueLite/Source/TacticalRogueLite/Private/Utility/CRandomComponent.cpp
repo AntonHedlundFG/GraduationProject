@@ -1,6 +1,8 @@
 ﻿#include "Utility/CRandomComponent.h"
 
 #include "Net/UnrealNetwork.h"
+#include "Utility/SaveGame/CSaveGame.h"
+#include "Utility/SaveGame/CSaveGameManager.h"
 
 UCRandomComponent::UCRandomComponent()
 {
@@ -10,17 +12,24 @@ UCRandomComponent::UCRandomComponent()
 void UCRandomComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	Init(0);
+	RegisterToSaveManager();
 }
 
-
-void UCRandomComponent::Init(int32 inSeed)
+void UCRandomComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	Super::EndPlay(EndPlayReason);
+	UnregisterFromSaveManager();
+}
+
+void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
+{
+	StartSeed = ValidateSeed(inStartSeed); 
+	CurrentStateSeed = StartSeed;
 	Ticks = 0;
 	TicksSinceSave = 0;
 	TicksAtSave = 0;
-	StartSeed = ValidateSeed(inSeed); // Validate seed before use
-	RandomStream.Initialize(StartSeed);
+
+	RandomStream.Initialize(CurrentStateSeed);
 	SaveState();
 }
 
@@ -44,6 +53,7 @@ int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
 		Value = inMin + RandomStream.RandHelper(Range);
 		Ticks++;
 		TicksSinceSave++;
+
 	}
 	
 	return Value;
@@ -86,14 +96,14 @@ int32 UCRandomComponent::RollBackRandom(int32 inTicks)
 
 void UCRandomComponent::RollBackToSave()
 {
-	RandomStream.Initialize(SavedStateSeed);
+	RandomStream.Initialize(CurrentStateSeed);
 	TicksSinceSave = 0;
 	Ticks = TicksAtSave;
 }
 
 void UCRandomComponent::SaveState()
 {
-	SavedStateSeed = RandomStream.GetCurrentSeed();
+	CurrentStateSeed = RandomStream.GetCurrentSeed();
 	TicksSinceSave = 0;
 	TicksAtSave = Ticks;
 }
@@ -108,7 +118,7 @@ void UCRandomComponent::ResetToInitialSeed()
 
 int32 UCRandomComponent::ValidateSeed(int32 Seed)
 {
-	return FMath::Clamp(Seed, 0, INT32_MAX - 1);
+	return FMath::Clamp(Seed, INT32_MIN, INT32_MAX);
 }
 
 int32 UCRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead) const
@@ -164,13 +174,52 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 	return Values;
 }
 
+void UCRandomComponent::OnSave()
+{
+	UCSaveGame* SaveGame = UCSaveGameManager::GetInstance()->GetSaveGameInstance();
+	if (SaveGame)
+	{
+		SaveGame->SavedRandomStream = RandomStream;
+		SaveGame->SavedStartSeed = StartSeed;
+		SaveGame->SavedCurrentStateSeed = CurrentStateSeed;
+		SaveGame->SavedTicks = Ticks;
+		SaveGame->SavedTicksSinceSave = TicksSinceSave;
+		SaveGame->SavedTicksAtSave = TicksAtSave;
+	}
+}
+
+void UCRandomComponent::OnLoad()
+{
+	UCSaveGame* SaveGame = UCSaveGameManager::GetInstance()->GetSaveGameInstance();
+	if (SaveGame)
+	{
+		RandomStream = SaveGame->SavedRandomStream;
+		StartSeed = ValidateSeed(SaveGame->SavedStartSeed); 
+		CurrentStateSeed = ValidateSeed(SaveGame->SavedCurrentStateSeed);
+		Ticks = SaveGame->SavedTicks;
+		TicksSinceSave = SaveGame->SavedTicksSinceSave;
+		TicksAtSave = SaveGame->SavedTicksAtSave;
+	}
+}
+
+void UCRandomComponent::RegisterToSaveManager()
+{
+	UCSaveGameManager::GetInstance()->RegisterSavable(this);
+	OnLoad();
+}
+
+void UCRandomComponent::UnregisterFromSaveManager()
+{
+	UCSaveGameManager::GetInstance()->UnRegisterSavable(this);
+}
+
 void UCRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UCRandomComponent, RandomStream);
 	DOREPLIFETIME(UCRandomComponent, Ticks);
 	DOREPLIFETIME(UCRandomComponent, StartSeed);
-	DOREPLIFETIME(UCRandomComponent, SavedStateSeed);
+	DOREPLIFETIME(UCRandomComponent, CurrentStateSeed);
 	DOREPLIFETIME(UCRandomComponent, TicksSinceSave);
 	DOREPLIFETIME(UCRandomComponent, TicksAtSave);
 }
