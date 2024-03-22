@@ -6,6 +6,7 @@
 #include "Items\CItem.h"
 #include "Grid\CGridTile.h"
 #include "CGameMode.h"
+#include "Grid/Tiles/TileHighlightModes.h"
 
 ACGameState* ACPlayerController::GetGameState()
 {
@@ -48,6 +49,7 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(true);
+		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
 	}
 }
 
@@ -107,6 +109,7 @@ void ACPlayerController::CancelAbilityUse()
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(false);
+		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Default);
 	}
 	HighlightedTiles.Empty();
 }
