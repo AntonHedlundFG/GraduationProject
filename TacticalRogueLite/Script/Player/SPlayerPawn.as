@@ -27,6 +27,10 @@ class ASPlayerPawn : APawn
     //The target location we're currently lerping towards.
     FVector TargetLocation;
 
+    //Setting this to false by default to avoid in-editor issues. Enable for builds.
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
+    bool bEdgeOfScreenMouseEnabled = false;
+
     //How many pixels are considered the edge of the screen for movement
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     int EdgeOfScreenRadius = 50;
@@ -90,6 +94,7 @@ class ASPlayerPawn : APawn
 
     void MoveMouseEdgeOfScreen()
     {
+        if (!bEdgeOfScreenMouseEnabled) return;
         if (Controller == nullptr ||!Controller.IsLocalController()) return;
         if (LocalPC != Controller)
             LocalPC = Cast<APlayerController>(Controller);
