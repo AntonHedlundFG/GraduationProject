@@ -29,7 +29,13 @@ class USTestItem : UCItem
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetReachableTiles(ACGridTile inTile)
     {
-        return inTile.GetNeighbours();
+        TArray<ACGridTile> Tiles = inTile.GetNeighbours();
+        for (int i = Tiles.Num() - 1; i >= 0; i--)
+        {
+            if (Tiles[i].GetContent() != nullptr)
+                Tiles.RemoveAtSwap(i);
+        }
+        return Tiles;
     }
 
 }
