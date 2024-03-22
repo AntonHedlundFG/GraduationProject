@@ -58,6 +58,8 @@ private:
 	// then finalize. 
 	ACUnit* UnitCurrentlyUsingAbility = nullptr;
 
+	TArray<ACGridTile*> HighlightedTiles;
+
 #pragma endregion
 
 #pragma region Server RPCs

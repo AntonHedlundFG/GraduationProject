@@ -5,6 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "CGridTile.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlighted);
+
 class ACGridContent;
 class ACGrid;
 
@@ -15,6 +17,10 @@ class TACTICALROGUELITE_API ACGridTile : public AActor
 	
 public:	
 	ACGridTile();
+
+	//Is managed by CPlayerController, with a bool for on/off.
+	UPROPERTY(BlueprintAssignable)
+	FOnHighlightChange OnHighlightChange;
 
 	UFUNCTION()
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);

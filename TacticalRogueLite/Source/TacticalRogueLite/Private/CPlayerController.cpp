@@ -24,6 +24,7 @@ void ACPlayerController::UndoAbility()
 
 void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 {
+	CancelAbilityUse();
 	if (!GetGameState())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
@@ -42,6 +43,12 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 
 	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
 	ItemSlotCurrentlyUsed = inItemSlot;
+
+	HighlightedTiles = UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot)->GetValidTargetTiles(UnitCurrentlyUsingAbility);
+	for (ACGridTile* Tile : HighlightedTiles)
+	{
+		Tile->OnHighlightChange.Broadcast(true);
+	}
 }
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
@@ -97,6 +104,11 @@ void ACPlayerController::CancelAbilityUse()
 {
 	ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
 	UnitCurrentlyUsingAbility = nullptr;
+	for (ACGridTile* Tile : HighlightedTiles)
+	{
+		Tile->OnHighlightChange.Broadcast(false);
+	}
+	HighlightedTiles.Empty();
 }
 
 void ACPlayerController::EndTurn()
