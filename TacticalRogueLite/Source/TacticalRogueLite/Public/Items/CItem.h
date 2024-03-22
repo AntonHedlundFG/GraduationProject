@@ -21,6 +21,9 @@ class TACTICALROGUELITE_API UCItem : public UDataAsset
 
 public:
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Abilities")
+	TObjectPtr<UTexture2D> AbilityIcon;
+
 	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
 	{
 		return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile);

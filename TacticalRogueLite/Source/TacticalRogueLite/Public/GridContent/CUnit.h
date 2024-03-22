@@ -25,6 +25,7 @@ public:
 	bool IsControlledBy(AController* inController);
 
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
+	UFUNCTION(BlueprintCallable)
 	UCItem* GetItemInSlot(EItemSlots inSlot) 
 	{
 		
