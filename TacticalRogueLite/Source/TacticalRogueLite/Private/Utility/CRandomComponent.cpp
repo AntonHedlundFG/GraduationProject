@@ -176,7 +176,7 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 
 void UCRandomComponent::OnSave()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::GetInstance()->GetSaveGameInstance();
+	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
 	if (SaveGame)
 	{
 		SaveGame->SavedRandomStream = RandomStream;
@@ -190,7 +190,7 @@ void UCRandomComponent::OnSave()
 
 void UCRandomComponent::OnLoad()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::GetInstance()->GetSaveGameInstance();
+	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
 	if (SaveGame)
 	{
 		RandomStream = SaveGame->SavedRandomStream;
@@ -204,13 +204,13 @@ void UCRandomComponent::OnLoad()
 
 void UCRandomComponent::RegisterToSaveManager()
 {
-	UCSaveGameManager::GetInstance()->RegisterSavable(this);
+	UCSaveGameManager::Get()->RegisterSavable(this);
 	OnLoad();
 }
 
 void UCRandomComponent::UnregisterFromSaveManager()
 {
-	UCSaveGameManager::GetInstance()->UnRegisterSavable(this);
+	UCSaveGameManager::Get()->UnRegisterSavable(this);
 }
 
 void UCRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

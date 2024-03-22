@@ -6,7 +6,7 @@
 
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
 
-UCSaveGameManager* UCSaveGameManager::GetInstance()
+UCSaveGameManager* UCSaveGameManager::Get()
 {
 	if (Instance == nullptr)
 	{
