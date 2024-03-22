@@ -6,12 +6,11 @@
 #include "GameFramework/Actor.h"
 #include "CGridTile.generated.h"
 
-<<<<<<< Updated upstream
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlighted);
 
-=======
+
 class UCTileHighlightData;
->>>>>>> Stashed changes
 class ACGridContent;
 class ACGrid;
 
@@ -22,21 +21,18 @@ class TACTICALROGUELITE_API ACGridTile : public AActor
 	
 public:	
 	ACGridTile();
-
-<<<<<<< Updated upstream
+	
 	//Is managed by CPlayerController, with a bool for on/off.
 	UPROPERTY(BlueprintAssignable)
 	FOnHighlightChange OnHighlightChange;
 
-	UFUNCTION()
-=======
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Tile Settings")
 	TObjectPtr<UCTileHighlightData> HighlightData;
 	
 	
 
 	UFUNCTION(BlueprintCallable)
->>>>>>> Stashed changes
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);
 	UFUNCTION(BlueprintCallable)
 	void CreateLinks();
