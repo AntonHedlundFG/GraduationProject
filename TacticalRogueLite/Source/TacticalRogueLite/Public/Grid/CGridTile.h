@@ -2,11 +2,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Tiles/TileHighlightModes.h"
 #include "GameFramework/Actor.h"
 #include "CGridTile.generated.h"
 
+<<<<<<< Updated upstream
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlighted);
 
+=======
+class UCTileHighlightData;
+>>>>>>> Stashed changes
 class ACGridContent;
 class ACGrid;
 
@@ -18,15 +23,26 @@ class TACTICALROGUELITE_API ACGridTile : public AActor
 public:	
 	ACGridTile();
 
+<<<<<<< Updated upstream
 	//Is managed by CPlayerController, with a bool for on/off.
 	UPROPERTY(BlueprintAssignable)
 	FOnHighlightChange OnHighlightChange;
 
 	UFUNCTION()
+=======
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Tile Settings")
+	TObjectPtr<UCTileHighlightData> HighlightData;
+	
+	
+
+	UFUNCTION(BlueprintCallable)
+>>>>>>> Stashed changes
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void CreateLinks();
 	UFUNCTION(BlueprintCallable)
+
+#pragma region Get/Set
 	FVector2D GetGridCoords() const { return GridCoords; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetStraightLinks() const { return StraightLinks; }
@@ -38,7 +54,9 @@ public:
 	ACGridContent* GetContent() const { return TileContent; }
 	UFUNCTION(BlueprintCallable)
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
-
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetTileHighlightMode(ETileHighlightModes inHighlightMode);
+#pragma endregion
 
 protected:
 	UPROPERTY(Replicated)
@@ -51,6 +69,8 @@ protected:
 	TObjectPtr<ACGridContent> TileContent;
 	UPROPERTY(Replicated)
 	FVector2D GridCoords;
+
+	ETileHighlightModes CurrentHighlightMode = ETileHighlightModes::ETHM_Default;
 	
 	virtual void BeginPlay() override;
 
