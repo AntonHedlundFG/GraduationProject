@@ -27,6 +27,7 @@ TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> i
 	{
 		if (i >= inUnits.Num()) break;
 		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i]);
+		Unit->ControllingPlayerIndex = i + 1;
 		Units.Add(Unit);
 	}
 	return Units;

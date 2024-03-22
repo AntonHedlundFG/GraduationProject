@@ -48,7 +48,5 @@ protected:
 	FVector2D GridCoords;
 	
 	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaTime) override;
-	
 
 };

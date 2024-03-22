@@ -18,7 +18,7 @@ void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifeti
 
 ACGridTile::ACGridTile()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	bReplicates = true;
 }
 
 void ACGridTile::Initialize(ACGrid* inParentGrid, FVector2D inCoords)
@@ -32,10 +32,7 @@ void ACGridTile::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ACGridTile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
+
 
 void ACGridTile::CreateLinks()
 {
