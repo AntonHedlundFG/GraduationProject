@@ -1,3 +1,54 @@
+class USTestAttackItem : UCItem
+{
+    UFUNCTION(BlueprintOverride)
+    UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, ACGridTile inTargetTile)
+    {
+        USTestAttackCommand NewCommand = Cast<USTestAttackCommand>(NewObject(inController, USTestAttackCommand::StaticClass()));
+        NewCommand.Instigator = inUnit;
+        NewCommand.Target = Cast<ACUnit>(inTargetTile.Content);
+
+        return NewCommand;
+    }
+
+    UFUNCTION(BlueprintOverride)
+    TArray<ACGridTile> GetValidTargetTiles(ACUnit inUnit)
+    {
+        TArray<ACGridTile> Neighbours = inUnit.GetTile().GetNeighbours();
+        TArray<ACGridTile> Attackables;
+        for (ACGridTile Neighbour : Neighbours)
+        {
+            if (Neighbour.Content != nullptr && Neighbour.Content.IsA(ACUnit::StaticClass()))
+            {
+                Attackables.Add(Neighbour);
+            }
+        }
+        return Attackables;
+    }
+
+}
+
+class USTestAttackCommand : UCCommand
+{
+    ACUnit Instigator;
+    ACUnit Target;
+
+    UFUNCTION(BlueprintOverride)
+    void ExecuteCommand()
+    {
+        Print("NO HEALTH IMPLEMENTED");
+    }
+    UFUNCTION(BlueprintOverride)
+    void UndoCommand()
+    {
+        Print("CANT UNDO DAMAGE TO HEALTH WHEN THERE IS NO HEALTH");
+    }
+    UFUNCTION(BlueprintOverride)
+    FString ToString()
+    {
+        return f"{Instigator} is dealing damage to {Target}.";
+    }
+}
+
 class USTestItem : UCItem
 {
     UPROPERTY()
@@ -62,6 +113,7 @@ class USTestCommand : UCCommand
         return f"Moving {TargetUnit = } from {FromTile = } to {TargetTile = }";
     }
 }
+
 
 class ASTestUnit : ACUnit
 {

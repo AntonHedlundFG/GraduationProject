@@ -26,13 +26,12 @@ public:
 
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
 	UFUNCTION(BlueprintCallable)
-	UCItem* GetItemInSlot(EItemSlots inSlot) 
-	{
-		
-		return TemporaryItem.Get();
-	}
+	UCItem* GetItemInSlot(EItemSlots inSlot);
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UCItem> TemporaryItem;
+	TObjectPtr<UCItem> TemporaryItemBoots;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TObjectPtr<UCItem> TemporaryItemWeapon;
 	// ----------------------------------------------------------------
 
 };
