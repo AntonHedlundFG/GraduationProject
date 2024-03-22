@@ -34,7 +34,7 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
 		return;
 	}
-	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
+	if (inItemSlot == EItemSlots::EIS_None || inItemSlot == EItemSlots::EIS_MAX)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
 		return;

@@ -2,7 +2,7 @@
 #include "Grid/CGridTile.h"
 
 #include "Grid/CGrid.h"
-#include "Grid/CGridUtils.h"
+#include "Grid/CGridUtilsLibrary.h"
 #include "Net/UnrealNetwork.h"
 
 void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -38,7 +38,7 @@ void ACGridTile::CreateLinks()
 	const int TopX = ParentGrid->GridDimensions.X;
 	const int TopY = ParentGrid->GridDimensions.Y;
 
-	TArray<FVector2D> StraightDirections = CGridUtils::StraightDirections();
+	TArray<FVector2D> StraightDirections = UCGridUtilsLibrary::StraightDirections();
 	for (auto direction : StraightDirections)
 	{
 		const FVector2D Coords = GridCoords + direction;
@@ -51,7 +51,7 @@ void ACGridTile::CreateLinks()
 		}
 	}
 
-	TArray<FVector2D> DiagonalDirections = CGridUtils::DiagonalDirections();
+	TArray<FVector2D> DiagonalDirections = UCGridUtilsLibrary::DiagonalDirections();
 	for (auto direction : DiagonalDirections)
 	{
 		const FVector2D Coords = GridCoords + direction;

@@ -7,26 +7,41 @@ class USTestItem : UCItem
     UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, ACGridTile inTargetTile)
     {
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
-        NewCommand.TestInt = TestValue;
+        NewCommand.TargetUnit = inUnit;
+        NewCommand.TargetTile = inTargetTile;
+
         return NewCommand;
     }
 
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACUnit inUnit)
     {
-        
-        return TArray<ACGridTile>();
+        TSet<ACGridTile> Tiles = CGridUtils::FloodFill(this, inUnit.GetTile(), TestValue);
+        TArray<ACGridTile> ReturnTiles;
+        for (auto Tile : Tiles)
+        {
+            ReturnTiles.Add(Tile);
+        }
+        return ReturnTiles;
+    }
+
+    UFUNCTION(BlueprintOverride)
+    TArray<ACGridTile> GetReachableTiles(ACGridTile inTile)
+    {
+        return inTile.GetNeighbours();
     }
 
 }
 
 class USTestCommand : UCCommand
 {
-    int TestInt = 0;
+    ACUnit TargetUnit;
+    ACGridTile TargetTile;
 
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
     {
+        TargetUnit.SetTile(TargetTile);
     }
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
@@ -35,7 +50,7 @@ class USTestCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     FString ToString()
     {
-        return f"Test Command, Value: {TestInt}";
+        return f"Test Movement Command, {TargetUnit = }, {TargetTile =}";
     }
 }
 
