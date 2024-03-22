@@ -9,6 +9,7 @@ class USTestItem : UCItem
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
         NewCommand.TargetUnit = inUnit;
         NewCommand.TargetTile = inTargetTile;
+        NewCommand.FromTile = inUnit.GetTile();
 
         return NewCommand;
     }
@@ -37,6 +38,7 @@ class USTestCommand : UCCommand
 {
     ACUnit TargetUnit;
     ACGridTile TargetTile;
+    ACGridTile FromTile;
 
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
@@ -46,11 +48,12 @@ class USTestCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
     {
+        TargetUnit.SetTile(FromTile);
     }
     UFUNCTION(BlueprintOverride)
     FString ToString()
     {
-        return f"Test Movement Command, {TargetUnit = }, {TargetTile =}";
+        return f"Moving {TargetUnit = } from {FromTile = } to {TargetTile = }";
     }
 }
 
