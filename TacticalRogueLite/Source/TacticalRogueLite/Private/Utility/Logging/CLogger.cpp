@@ -31,8 +31,7 @@ void UCLogger::Initialize()
 		if(LogFile)
 		{
 			bIsInitialized = true;
-			Log(TEXT("Logger Initialized"));
-			UE_LOG(LogTemp, Warning, TEXT("Logger Initialized with path: %s"), *Path);
+			LOG_INFO("Logger Initialized");
 		}
 	}
 }
@@ -41,7 +40,7 @@ void UCLogger::ShutDown()
 {
 	if(LogFile)
 	{
-		Log("Shutting Down");
+		LOG_INFO("Logger Shutting Down");
 		LogFile->Close();
 		LogFile = nullptr;
 		bIsInitialized = false;
@@ -55,6 +54,7 @@ void UCLogger::Log(const FString Message)
 		FString LogMessage = FDateTime::Now().ToString() + TEXT(" - ") + Message + LINE_TERMINATOR;
 		LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
 		LogFile->Flush();
+		UE_LOG(LogTemp, Log, TEXT("%s"), *Message);
 	}
 }
 

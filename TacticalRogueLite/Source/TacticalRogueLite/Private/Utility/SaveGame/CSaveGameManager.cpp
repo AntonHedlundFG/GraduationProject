@@ -3,7 +3,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "Utility/SaveGame/CSavable.h"
 
-
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
 
 UCSaveGameManager* UCSaveGameManager::Get()
