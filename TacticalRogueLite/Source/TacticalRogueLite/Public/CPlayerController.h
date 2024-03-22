@@ -19,14 +19,26 @@ class TACTICALROGUELITE_API ACPlayerController : public AOnlinePlayerController
 {
 	GENERATED_BODY()
 	
+private:
+
+	ACGameState* GetGameState();
+	ACGameState* GameStateRef;
+
+#pragma region Ability Input
+
+	// Functions in the Ability Input region are to be used by keybindings and UI buttons
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void UndoAbility();
 
+	// This should be called when the player STARTS using an ability, by using a keybind
+	// or UI button.
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void InitiateAbilityUse(EItemSlots inItemSlot);
 
+	// This should be called when a player targets a tile after having used an ability
+	// through InitiateAbilityUse. This function makes the actual server RPC.
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void FinalizeAbilityUse(ACGridTile* inTargetTile);
 
@@ -38,11 +50,15 @@ public:
 
 private:
 
-	ACGameState* GetGameState();
-	ACGameState* GameStateRef;
-
+	// Stores the currently used itemslot designated in InitiateAbilityUse()
 	EItemSlots ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
+	// Stores the currently active Unit, fetched from the fromt of the turn order
+	// in InitiateAbilityUse().
+	// It's useful to make sure you don't try to initiate an ability, then end turn, 
+	// then finalize. 
 	ACUnit* UnitCurrentlyUsingAbility = nullptr;
+
+#pragma endregion
 
 #pragma region Server RPCs
 
