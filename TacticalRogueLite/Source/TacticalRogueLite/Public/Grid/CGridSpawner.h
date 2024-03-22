@@ -30,8 +30,5 @@ public:
 	ACUnit* SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile);
 	UFUNCTION()
 	ACGrid* SpawnGrid(FVector inGridCenter, int inRows, int inColumns);
-
-protected:
-	virtual void BeginPlay() override;
 	
 };

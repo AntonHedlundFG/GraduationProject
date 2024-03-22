@@ -21,6 +21,7 @@ public:
 	void SetTile(ACGridTile* inTile) { Tile = inTile; }
 
 protected:
+	UPROPERTY(Replicated, BlueprintReadOnly)
 	TObjectPtr<ACGridTile> Tile;
 	
 	virtual void BeginPlay() override;

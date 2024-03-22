@@ -10,14 +10,6 @@ ACGridSpawner::ACGridSpawner()
 	
 }
 
-void ACGridSpawner::BeginPlay()
-{
-	Super::BeginPlay();
-	ACGrid* grid = SpawnGrid(FVector::Zero(),10,10);
-	SpawnUnitsFromArray(HeroUnits, grid->GetHeroSpawnTiles());
-	SpawnUnitsFromArray(EnemyUnits, grid->GetEnemySpawnTiles());
-}
-
 
 
 TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles)
