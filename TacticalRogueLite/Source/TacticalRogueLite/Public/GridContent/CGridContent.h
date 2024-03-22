@@ -17,8 +17,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
 	ACGridTile* GetTile() const { return Tile; }
+
+	//Note that this replaces the Content of the inTile. You have to manually handle this!
 	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
-	void SetTile(ACGridTile* inTile) { Tile = inTile; }
+	void SetTile(ACGridTile* inTile);
 
 protected:
 	UPROPERTY(Replicated, BlueprintReadOnly)

@@ -2,7 +2,6 @@
 #include "Grid/CGridTile.h"
 
 #include "Grid/CGrid.h"
-#include "Grid/CGridLink.h"
 #include "Grid/CGridUtils.h"
 #include "Net/UnrealNetwork.h"
 
@@ -48,9 +47,7 @@ void ACGridTile::CreateLinks()
 
 		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
 		{
-			TObjectPtr<UCGridLink> NeighbourLink = NewObject<UCGridLink>();
-			NeighbourLink->Initialize(this, Neighbour);
-			StraightLinks.Add(NeighbourLink);
+			StraightLinks.Add(Neighbour);
 		}
 	}
 
@@ -63,28 +60,17 @@ void ACGridTile::CreateLinks()
 
 		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
 		{
-			TObjectPtr<UCGridLink> NeighbourLink = NewObject<UCGridLink>();
-			NeighbourLink->Initialize(this, Neighbour);
-			DiagonalLinks.Add(NeighbourLink);
+			DiagonalLinks.Add(Neighbour);
 		}
 	}
 }
 
 TArray<ACGridTile*> ACGridTile::GetNeighbours(bool bIncludeDiagonals)
 {
-	TArray<ACGridTile*> Neighbours;
-	for (const auto link : StraightLinks)
-	{
-		Neighbours.Add(link->TargetTile);
-	}
+	TArray<ACGridTile*> Neighbours = StraightLinks;
 
 	if (bIncludeDiagonals)
-	{
-		for (const auto link : DiagonalLinks)
-		{
-			Neighbours.Add(link->TargetTile);
-		}
-	}
+		Neighbours.Append(DiagonalLinks);
 
 	return Neighbours;
 }

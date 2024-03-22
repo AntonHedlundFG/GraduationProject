@@ -7,7 +7,6 @@
 
 class ACGridContent;
 class ACGrid;
-class UCGridLink;
 
 UCLASS()
 class TACTICALROGUELITE_API ACGridTile : public AActor
@@ -24,9 +23,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetGridCoords() const { return GridCoords; }
 	UFUNCTION(BlueprintCallable)
-	TArray<UCGridLink*> GetStraightLinks() const { return StraightLinks; }
+	TArray<ACGridTile*> GetStraightLinks() const { return StraightLinks; }
 	UFUNCTION(BlueprintCallable)
-	TArray<UCGridLink*> GetDiagonalLinks() const { return DiagonalLinks; }
+	TArray<ACGridTile*> GetDiagonalLinks() const { return DiagonalLinks; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetNeighbours(bool bIncludeDiagonals = false);
 	UFUNCTION(BlueprintCallable)
@@ -39,9 +38,9 @@ protected:
 	UPROPERTY(Replicated)
 	TObjectPtr<ACGrid> ParentGrid;
 	UPROPERTY(Replicated)
-	TArray<TObjectPtr<UCGridLink>> StraightLinks;
+	TArray<TObjectPtr<ACGridTile>> StraightLinks;
 	UPROPERTY(Replicated)
-	TArray<TObjectPtr<UCGridLink>> DiagonalLinks;
+	TArray<TObjectPtr<ACGridTile>> DiagonalLinks;
 	UPROPERTY(Replicated)
 	TObjectPtr<ACGridContent> TileContent;
 	UPROPERTY(Replicated)
