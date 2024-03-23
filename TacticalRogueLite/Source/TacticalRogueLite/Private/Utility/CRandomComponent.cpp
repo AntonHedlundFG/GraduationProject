@@ -205,7 +205,6 @@ void UCRandomComponent::OnLoad()
 void UCRandomComponent::RegisterToSaveManager()
 {
 	UCSaveGameManager::Get()->RegisterSavable(this);
-	OnLoad();
 }
 
 void UCRandomComponent::UnregisterFromSaveManager()
