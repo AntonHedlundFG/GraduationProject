@@ -15,9 +15,15 @@ public:
 	static UCSaveGameManager* Get();
 
 	// Register Savable Object
-	void RegisterSavable(UCRandomComponent* RandomComponent)
+	void RegisterSavable(ICSavable* Savable)
 	{
-		Savables.AddUnique(RandomComponent);
+		Savables.AddUnique(Savable);
+	}
+	
+	// UnRegister Savable Object
+	void UnRegisterSavable(ICSavable* Savable)
+	{
+		Savables.RemoveSingle(Savable);
 	}
 	
 	// Save Game
@@ -32,8 +38,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UCSaveGame* GetSaveGameInstance();
 
-	// UnRegister Savable Object
-	void UnRegisterSavable(UCRandomComponent* RandomComponent) { Savables.RemoveSingle(RandomComponent); }
 
 private:
 	// Trigger Save Event on all Savable Objects
