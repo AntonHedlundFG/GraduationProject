@@ -2,8 +2,7 @@
 #include "Grid/CGridTile.h"
 
 #include "Grid/CGrid.h"
-#include "Grid/CGridLink.h"
-#include "Grid/CGridUtils.h"
+#include "Grid/CGridUtilsLibrary.h"
 #include "Net/UnrealNetwork.h"
 
 void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -18,7 +17,7 @@ void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifeti
 
 ACGridTile::ACGridTile()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	bReplicates = true;
 }
 
 void ACGridTile::Initialize(ACGrid* inParentGrid, FVector2D inCoords)
@@ -32,17 +31,14 @@ void ACGridTile::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ACGridTile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
+
 
 void ACGridTile::CreateLinks()
 {
 	const int TopX = ParentGrid->GridDimensions.X;
 	const int TopY = ParentGrid->GridDimensions.Y;
 
-	TArray<FVector2D> StraightDirections = CGridUtils::StraightDirections();
+	TArray<FVector2D> StraightDirections = UCGridUtilsLibrary::StraightDirections();
 	for (auto direction : StraightDirections)
 	{
 		const FVector2D Coords = GridCoords + direction;
@@ -51,13 +47,11 @@ void ACGridTile::CreateLinks()
 
 		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
 		{
-			TObjectPtr<UCGridLink> NeighbourLink = NewObject<UCGridLink>();
-			NeighbourLink->Initialize(this, Neighbour);
-			StraightLinks.Add(NeighbourLink);
+			StraightLinks.Add(Neighbour);
 		}
 	}
 
-	TArray<FVector2D> DiagonalDirections = CGridUtils::DiagonalDirections();
+	TArray<FVector2D> DiagonalDirections = UCGridUtilsLibrary::DiagonalDirections();
 	for (auto direction : DiagonalDirections)
 	{
 		const FVector2D Coords = GridCoords + direction;
@@ -66,28 +60,17 @@ void ACGridTile::CreateLinks()
 
 		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
 		{
-			TObjectPtr<UCGridLink> NeighbourLink = NewObject<UCGridLink>();
-			NeighbourLink->Initialize(this, Neighbour);
-			DiagonalLinks.Add(NeighbourLink);
+			DiagonalLinks.Add(Neighbour);
 		}
 	}
 }
 
 TArray<ACGridTile*> ACGridTile::GetNeighbours(bool bIncludeDiagonals)
 {
-	TArray<ACGridTile*> Neighbours;
-	for (const auto link : StraightLinks)
-	{
-		Neighbours.Add(link->TargetTile);
-	}
+	TArray<ACGridTile*> Neighbours = StraightLinks;
 
 	if (bIncludeDiagonals)
-	{
-		for (const auto link : DiagonalLinks)
-		{
-			Neighbours.Add(link->TargetTile);
-		}
-	}
+		Neighbours.Append(DiagonalLinks);
 
 	return Neighbours;
 }

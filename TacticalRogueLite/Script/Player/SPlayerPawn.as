@@ -12,6 +12,7 @@ class ASPlayerPawn : APawn
     USpringArmComponent ArmComp;
     default ArmComp.TargetArmLength = 1000;
     default ArmComp.RelativeRotation = FRotator(-75, 0, 0);
+    default ArmComp.bDoCollisionTest = false;
 
     UPROPERTY(DefaultComponent, Attach = ArmComp)
     UCameraComponent Camera;
@@ -26,6 +27,10 @@ class ASPlayerPawn : APawn
     //The target location we're currently lerping towards.
     FVector TargetLocation;
 
+    //Setting this to false by default to avoid in-editor issues. Enable for builds.
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
+    bool bEdgeOfScreenMouseEnabled = false;
+
     //How many pixels are considered the edge of the screen for movement
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     int EdgeOfScreenRadius = 50;
@@ -33,13 +38,31 @@ class ASPlayerPawn : APawn
     //Stored reference to avoid casting in Tick 
     APlayerController LocalPC; 
 
+
+    // -- Mouse scroll wheel dragging movement --
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", meta = (ClampMin = 0.1f, ClampMax = 2.0f))
+    float DragSpeed = 0.3f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", meta = (ClampMin = 0.1f, ClampMax = 5.0f))
+    float MaxDragSpeed = 2.0f;
+
+    bool bIsDragging = false;
+    FVector2D CurrentMouseDrag = FVector2D::ZeroVector;
+
+    // ------------------------------------------
+
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
         ACGameState State = Cast<ACGameState>(World.GameState);
         if (State == nullptr) return;
+
         State.OnTurnOrderUpdate.AddUFunction(this, n"OnTurnOrderUpdate");
+
         TargetLocation = ActorLocation;
+        ActorRotation = FRotator::ZeroRotator;
+        FollowActiveUnit();
     }
     UFUNCTION(BlueprintOverride)
     void EndPlay(EEndPlayReason EndPlayReason)
@@ -52,7 +75,10 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
-        CheckMouseEdgeOfScreen();
+        if (bIsDragging)
+            MoveDragMouse();
+        else
+            MoveMouseEdgeOfScreen();
 
         if (FollowTarget != nullptr)
         {
@@ -61,8 +87,14 @@ class ASPlayerPawn : APawn
         ActorLocation = Math::Lerp(ActorLocation, TargetLocation, 0.3f);
     }
     
-    void CheckMouseEdgeOfScreen()
+    void MoveDragMouse()
     {
+        Move(FVector2D(CurrentMouseDrag.Y, CurrentMouseDrag.X));
+    }
+
+    void MoveMouseEdgeOfScreen()
+    {
+        if (!bEdgeOfScreenMouseEnabled) return;
         if (Controller == nullptr ||!Controller.IsLocalController()) return;
         if (LocalPC != Controller)
             LocalPC = Cast<APlayerController>(Controller);
@@ -119,5 +151,25 @@ class ASPlayerPawn : APawn
         FollowTarget = State.TurnOrder[0];
         if (FollowTarget != nullptr)
             TargetLocation = FollowTarget.ActorLocation;
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void SetCameraDragging(bool inbIsDragging)
+    {
+        if (Controller == nullptr ||!Controller.IsLocalController()) return;
+        if (LocalPC != Controller)
+            LocalPC = Cast<APlayerController>(Controller);
+        if (LocalPC == nullptr) return;
+
+        bIsDragging = inbIsDragging;
+        CurrentMouseDrag = FVector2D::ZeroVector;
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void MouseMovement(FVector2D inMovement)
+    {
+        CurrentMouseDrag += inMovement * DragSpeed;
+        if (CurrentMouseDrag.SizeSquared() >= MaxDragSpeed * MaxDragSpeed)
+            CurrentMouseDrag = CurrentMouseDrag.GetSafeNormal() * MaxDragSpeed;
     }
 }

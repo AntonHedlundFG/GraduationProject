@@ -12,13 +12,12 @@ class UCSaveGameManager : public UObject
 public:
 	// Singleton Accessor
 	UFUNCTION(BlueprintPure, Category = "SaveGameManager", meta = (DisplayName = "Get Save Game Manager"))
-	static UCSaveGameManager* GetInstance();
+	static UCSaveGameManager* Get();
 
 	// Register Savable Object
 	void RegisterSavable(UCRandomComponent* RandomComponent)
 	{
 		Savables.AddUnique(RandomComponent);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Random Component Registered");
 	}
 	
 	// Save Game

@@ -25,11 +25,13 @@ void ACGameMode::BeginPlay()
 	}
 
 	Spawner = CreateSpawner();
-	GameGrid = Spawner->SpawnGrid(FVector::Zero(),10,10);
+
+	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
+	GameStateRef->GameGrid = grid;
 	
 	//This can probably be done better/cleaner
-	Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, GameGrid->GetHeroSpawnTiles());
-	Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, GameGrid->GetEnemySpawnTiles());
+	Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
+	Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
 
 	
 	TArray<AActor*> OutActors;

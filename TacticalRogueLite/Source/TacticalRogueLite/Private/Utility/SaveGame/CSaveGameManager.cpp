@@ -1,12 +1,12 @@
 ﻿#include "Utility/SaveGame/CSaveGameManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Kismet/GameplayStatics.h"
+#include "Utility/Logging/CLogger.h"
 #include "Utility/SaveGame/CSavable.h"
-
 
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
 
-UCSaveGameManager* UCSaveGameManager::GetInstance()
+UCSaveGameManager* UCSaveGameManager::Get()
 {
 	if (Instance == nullptr)
 	{
@@ -24,6 +24,7 @@ void UCSaveGameManager::SaveGame()
 	TriggerSaveEvent(); // Trigger Save Event on all Savable Objects
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveSlot, UserIndex); // Save Game
+	LOG_INFO("Game Saved");
 }
 
 UCSaveGame* UCSaveGameManager::LoadGame()
@@ -38,6 +39,7 @@ UCSaveGame* UCSaveGameManager::LoadGame()
 	}
 
 	TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
+	LOG_INFO("Game Loaded");
 	return SaveGameInstance;
 }
 
@@ -45,11 +47,9 @@ UCSaveGame* UCSaveGameManager::GetSaveGameInstance()
 {
 	if(SaveGameInstance == nullptr) // Load Save Game if we have no active Save Game Instance
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Save Game Instance is Null");
 		return LoadGame();
 	}
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Save Game Instance is Not Null");
 	return SaveGameInstance; // Return the active Save Game Instance
 }
 
@@ -58,7 +58,6 @@ void UCSaveGameManager::TriggerSaveEvent()
 	for (ICSavable* Savable : Savables)
 	{
 		Savable->OnSave();
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Save Event Triggered");
 	}
 }
 
@@ -66,7 +65,6 @@ void UCSaveGameManager::TriggerLoadEvent()
 {
 	for (ICSavable* Savable : Savables)
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Load Event Triggered");
 		Savable->OnLoad();
 	}
 }

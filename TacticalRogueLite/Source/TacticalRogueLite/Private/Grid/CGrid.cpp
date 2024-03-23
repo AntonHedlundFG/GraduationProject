@@ -39,7 +39,7 @@ void ACGrid::GenerateTiles(int inRows, int inColumns)
 			Tiles.Add(Tile);
 		}
 	}
-
+	
 	for (auto tile : Tiles)
 	{
 		tile->CreateLinks();

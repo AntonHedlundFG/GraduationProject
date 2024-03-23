@@ -9,9 +9,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 
-/**
- * 
- */
+class ACGrid;
+
 UCLASS()
 class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 {
@@ -34,6 +33,8 @@ public:
 
 	UPROPERTY(Replicated, BlueprintReadOnly, Category = "Random")
 	class UCRandomComponent* Random;
-	
+
+	UPROPERTY(BlueprintReadOnly, Category = "Grid|Grid")
+	TObjectPtr<ACGrid> GameGrid;
 
 };

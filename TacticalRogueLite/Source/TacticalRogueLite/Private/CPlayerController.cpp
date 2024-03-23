@@ -6,63 +6,26 @@
 #include "Items\CItem.h"
 #include "Grid\CGridTile.h"
 #include "CGameMode.h"
+#include "Grid/Tiles/TileHighlightModes.h"
 
-#pragma region Server RPCs
-
-void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
+ACGameState* ACPlayerController::GetGameState()
 {
-	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
-	if (!GameMode)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
-		return;
-	}
-	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTargetTile))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
-		return;
-	}
+	if (!GameStateRef && GetWorld())
+		GameStateRef = GetWorld()->GetGameState<ACGameState>();
+	return GameStateRef;
 }
 
-void ACPlayerController::Server_TryUndo_Implementation()
-{
-	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
-	if (!GameMode)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling undo."))
-			return;
-	}
-	if (!GameMode->TryUndo(this))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Undoing failed in GameMode"));
-		return;
-	}
-}
-
-void ACPlayerController::Server_TryEndTurn_Implementation()
-{
-	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
-	if (!GameMode)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling end turn."))
-			return;
-	}
-	if (!GameMode->TryEndTurn(this))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Endturn failed in GameMode"));
-		return;
-	}
-}
-
-#pragma endregion
+#pragma region Ability Input
 
 void ACPlayerController::UndoAbility()
 {
+	CancelAbilityUse();
 	Server_TryUndo();
 }
 
 void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 {
+	CancelAbilityUse();
 	if (!GetGameState())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
@@ -73,14 +36,28 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
 		return;
 	}
-	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
+	if (inItemSlot == EItemSlots::EIS_None || inItemSlot == EItemSlots::EIS_MAX)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
 		return;
 	}
-
+	
 	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
+	
+	if (!UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No item in slot, cancelling ability use."));
+		return;
+	}
+
 	ItemSlotCurrentlyUsed = inItemSlot;
+
+	HighlightedTiles = UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot)->GetValidTargetTiles(UnitCurrentlyUsingAbility);
+	for (ACGridTile* Tile : HighlightedTiles)
+	{
+		Tile->OnHighlightChange.Broadcast(true);
+		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
+	}
 }
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
@@ -129,22 +106,75 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 	}
 	
 	Server_UseObject(UnitCurrentlyUsingAbility, ItemSlotCurrentlyUsed, inTargetTile);
+	CancelAbilityUse();
 }
 
 void ACPlayerController::CancelAbilityUse()
 {
 	ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
 	UnitCurrentlyUsingAbility = nullptr;
+	for (ACGridTile* Tile : HighlightedTiles)
+	{
+		Tile->OnHighlightChange.Broadcast(false);
+		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Default);
+	}
+	HighlightedTiles.Empty();
 }
 
 void ACPlayerController::EndTurn()
 {
+	CancelAbilityUse();
 	Server_TryEndTurn();
 }
 
-ACGameState* ACPlayerController::GetGameState()
+#pragma endregion
+
+
+#pragma region Server RPCs
+
+void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
 {
-	if (!GameStateRef && GetWorld())
-		GameStateRef = GetWorld()->GetGameState<ACGameState>();
-	return GameStateRef;
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	if (!GameMode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
+			return;
+	}
+	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTargetTile))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
+		return;
+	}
 }
+
+void ACPlayerController::Server_TryUndo_Implementation()
+{
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	if (!GameMode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling undo."))
+			return;
+	}
+	if (!GameMode->TryUndo(this))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Undoing failed in GameMode"));
+		return;
+	}
+}
+
+void ACPlayerController::Server_TryEndTurn_Implementation()
+{
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	if (!GameMode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling end turn."))
+			return;
+	}
+	if (!GameMode->TryEndTurn(this))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Endturn failed in GameMode"));
+		return;
+	}
+}
+
+#pragma endregion

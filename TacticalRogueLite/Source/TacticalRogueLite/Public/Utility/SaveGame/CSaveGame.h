@@ -12,6 +12,9 @@ class UCSaveGame : public USaveGame
 public:
 	// --- Random Component State --- //
 	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	FRandomStream SavedRandomStream;
+	
+	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
 	int64 SavedTicks;
 
 	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
