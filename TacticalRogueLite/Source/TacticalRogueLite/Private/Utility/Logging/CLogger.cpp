@@ -1,16 +1,7 @@
 ﻿#include "Utility/Logging/CLogger.h"
+#include "Utility/Logging/FLogger.h"
 
 UCLogger* UCLogger::Instance = nullptr;
-
-UCLogger::UCLogger()
-{
-	Initialize();
-}
-
-UCLogger::~UCLogger()
-{
-	ShutDown();
-}
 
 UCLogger* UCLogger::Get()
 {
@@ -22,39 +13,31 @@ UCLogger* UCLogger::Get()
 	return Instance;
 }
 
-void UCLogger::Initialize()
+void UCLogger::Log(ELogCategory Category, const FString& Message)
 {
-	if(!bIsInitialized)
-	{
-		const FString Path = FPaths::ProjectLogDir() + TEXT("TacticalRogueLiteLogs/") + FDateTime::Now().ToString() + TEXT(".log");
-		LogFile = IFileManager::Get().CreateFileWriter(*Path);
-		if(LogFile)
-		{
-			bIsInitialized = true;
-			LOG_INFO("Logger Initialized");
-		}
-	}
-}
+	// Convert the enum to string and prepend to the message
+	const FString LogMessage = FString::Printf(TEXT("%s %s"),*ToString(Category), *Message);
 
-void UCLogger::ShutDown()
-{
-	if(LogFile)
-	{
-		LOG_INFO("Logger Shutting Down");
-		LogFile->Close();
-		LogFile = nullptr;
-		bIsInitialized = false;
-	}
-}
+	// Use FLogger for actual logging
+	FLogger::Get().Log(LogMessage);
 
-void UCLogger::Log(const FString Message)
-{
-	if(LogFile)
+	// Broadcast if Instance exists
+	if (Instance) 
 	{
-		FString LogMessage = FDateTime::Now().ToString() + TEXT(" - ") + Message + LINE_TERMINATOR;
-		LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
-		LogFile->Flush();
-		UE_LOG(LogTemp, Log, TEXT("%s"), *Message);
+		Instance->OnNewLogEntry.Broadcast(Category, Message);
 	}
-}
 
+	// Log to Unreal
+	switch (Category)
+	{
+		case ELogCategory::LC_WARNING:
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *Message);
+			break;
+		case ELogCategory::LC_ERROR:
+			UE_LOG(LogTemp, Error, TEXT("%s"), *Message);
+			break;
+		default:
+			UE_LOG(LogTemp, Log, TEXT("%s"), *Message);
+	}
+	
+}
