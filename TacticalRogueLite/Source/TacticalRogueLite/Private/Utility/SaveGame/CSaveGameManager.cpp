@@ -24,7 +24,7 @@ void UCSaveGameManager::SaveGame()
 	TriggerSaveEvent(); // Trigger Save Event on all Savable Objects
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveSlot, UserIndex); // Save Game
-	LOG_INFO("Game Saved");
+	LOG_INFO("SaveGame Saved");
 }
 
 UCSaveGame* UCSaveGameManager::LoadGame()
@@ -39,7 +39,7 @@ UCSaveGame* UCSaveGameManager::LoadGame()
 	}
 
 	TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
-	LOG_INFO("Game Loaded");
+	LOG_INFO("SaveGame Loaded");
 	return SaveGameInstance;
 }
 
