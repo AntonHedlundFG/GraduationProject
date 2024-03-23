@@ -64,9 +64,12 @@ class UCLogger : public UObject
 	GENERATED_BODY()
 
 public:
+	// Should be called instead of Log() for logging from Blueprints
+	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Log"))
+	static void BlueprintLog(ELogCategory Category = ELogCategory::LC_INFO, const FString& Message = TEXT(""));
+
 	// Log a message with a category
-	UFUNCTION(BlueprintCallable, Category = "Logging")
-	static void Log(ELogCategory Category = ELogCategory::LC_INFO, const FString& Message = TEXT(""));
+	static void Log(ELogCategory Category, const FString& Message);
 
 	// Get the singleton instance of the logger
 	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))

@@ -13,6 +13,12 @@ UCLogger* UCLogger::Get()
 	return Instance;
 }
 
+void UCLogger::BlueprintLog(ELogCategory Category, const FString& Message)
+{
+	const FString LogMessage = FString::Printf(TEXT("[Blueprint] %s"), *Message);
+	Log(Category, LogMessage);
+}
+
 void UCLogger::Log(ELogCategory Category, const FString& Message)
 {
 	// Convert the enum to string and prepend to the message
