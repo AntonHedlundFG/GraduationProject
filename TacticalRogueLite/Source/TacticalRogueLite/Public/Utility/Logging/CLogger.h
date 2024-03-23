@@ -8,11 +8,12 @@
 UENUM(BlueprintType)
 enum class ELogCategory : uint8
 {
-	LC_INFO			UMETA(DisplayName = "Info"),
-	LC_WARNING		UMETA(DisplayName = "Warning"),
-	LC_ERROR		UMETA(DisplayName = "Error"),
-	LC_GAMEPLAY		UMETA(DisplayName = "Gameplay"),
-	LC_NETWORK		UMETA(DisplayName = "Network"),
+	NONE			UMETA(Hidden),
+	LC_Info			UMETA(DisplayName = "Info"),
+	LC_Warning		UMETA(DisplayName = "Warning"),
+	LC_Error		UMETA(DisplayName = "Error"),
+	LC_Gameplay		UMETA(DisplayName = "Gameplay"),
+	LC_Network		UMETA(DisplayName = "Network"),
 	MAX				UMETA(Hidden)
 };
 
@@ -20,11 +21,11 @@ inline FString ToString(ELogCategory LogCategory)
 {
 	switch (LogCategory)
 	{
-		case ELogCategory::LC_INFO: return TEXT("[INFO]");
-		case ELogCategory::LC_WARNING: return TEXT("[WARNING]");
-		case ELogCategory::LC_ERROR: return TEXT("[ERROR]");
-		case ELogCategory::LC_GAMEPLAY: return TEXT("[GAMEPLAY]");
-		case ELogCategory::LC_NETWORK: return TEXT("[NETWORK]");
+		case ELogCategory::LC_Info: return TEXT("[INFO]");
+		case ELogCategory::LC_Warning: return TEXT("[WARNING]");
+		case ELogCategory::LC_Error: return TEXT("[ERROR]");
+		case ELogCategory::LC_Gameplay: return TEXT("[GAMEPLAY]");
+		case ELogCategory::LC_Network: return TEXT("[NETWORK]");
 		default: return TEXT("[UNKNOWN]");
 	}
 }
@@ -37,19 +38,19 @@ inline FString ToString(ELogCategory LogCategory)
 UCLogger::Log(Category, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_INFO(Message, ...) \
-UCLogger::Log(ELogCategory::LC_INFO, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogger::Log(ELogCategory::LC_Info, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_WARNING(Message, ...) \
-UCLogger::Log(ELogCategory::LC_WARNING, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogger::Log(ELogCategory::LC_Warning, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_ERROR(Message, ...) \
-UCLogger::Log(ELogCategory::LC_ERROR, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogger::Log(ELogCategory::LC_Error, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_GAMEPLAY(Message, ...) \
-UCLogger::Log(ELogCategory::LC_GAMEPLAY, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogger::Log(ELogCategory::LC_Gameplay, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_NETWORK(Message, ...) \
-UCLogger::Log(ELogCategory::LC_NETWORK, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogger::Log(ELogCategory::LC_Network, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #pragma endregion
 
@@ -64,9 +65,9 @@ class UCLogger : public UObject
 	GENERATED_BODY()
 
 public:
-	// Should be called instead of Log() for logging from Blueprints
+	// Blueprint-accessible logging function
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Log"))
-	static void BlueprintLog(ELogCategory Category = ELogCategory::LC_INFO, const FString& Message = TEXT(""));
+	static void BlueprintLog(ELogCategory Category = ELogCategory::LC_Info, const FString& Message = TEXT(""));
 
 	// Log a message with a category
 	static void Log(ELogCategory Category, const FString& Message);

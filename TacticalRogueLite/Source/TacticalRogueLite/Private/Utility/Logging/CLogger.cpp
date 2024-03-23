@@ -36,10 +36,10 @@ void UCLogger::Log(ELogCategory Category, const FString& Message)
 	// Log to Unreal
 	switch (Category)
 	{
-		case ELogCategory::LC_WARNING:
+		case ELogCategory::LC_Warning:
 			UE_LOG(LogTemp, Warning, TEXT("%s"), *Message);
 			break;
-		case ELogCategory::LC_ERROR:
+		case ELogCategory::LC_Error:
 			UE_LOG(LogTemp, Error, TEXT("%s"), *Message);
 			break;
 		default:
