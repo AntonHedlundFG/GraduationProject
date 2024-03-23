@@ -14,6 +14,7 @@ class ACUnit;
 class ACGameState;
 class UCCommand;
 class ACGridTile;
+class UCConsequence;
 
 /**
  * 
@@ -25,6 +26,13 @@ class TACTICALROGUELITE_API ACGameMode : public AOnlineGameMode
 	
 public:
 	virtual void BeginPlay() override;
+
+	/* Whenever an ability or event is triggered as a result of a UCCommand occuring
+	* a UCConsequence should be created and sent into this function for execution.
+	* This will make sure it can be undone if a player tries to undo the original UCCommand.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
+	void RegisterAndExecuteConsequence(UCConsequence* inConsequence);
 
 	/** Should be called by a controller (AI or Player) to attempt an ability use.
 	* @param Controller - The source of the ability activation
