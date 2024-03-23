@@ -71,6 +71,14 @@ public:
 	// Log a message with a category
 	static void Log(ELogCategory Category, const FString& Message);
 
+	// Read all log entries from the log file
+	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log"))
+	static TArray<FString> ReadLog();
+
+	// Read all log entries from the selected category from the log file 
+	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log By Category"))
+	static TArray<FString> ReadLogByCategory(ELogCategory Category);
+	
 	// Get the singleton instance of the logger
 	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))
 	static UCLogger* Get();

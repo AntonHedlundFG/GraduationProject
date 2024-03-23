@@ -1,5 +1,7 @@
 ﻿#include "Utility/Logging/FLogger.h"
 
+FString FLogger::LogFilePath;
+
 FLogger& FLogger::Get()
 {
 	static FLogger Instance;
@@ -18,7 +20,7 @@ FLogger::~FLogger()
 
 void FLogger::Log(const FString& Message)
 {
-	// Lock the log and make other threads wait
+	// Ensure exclusive access while operating on the log
 	std::lock_guard Lock(LogMutex);
 	// Log to file
 	if(LogFile)
@@ -29,16 +31,42 @@ void FLogger::Log(const FString& Message)
 	}
 }
 
-void FLogger::Initialize()
+TArray<FString> FLogger::ReadLog()
 {
-	// Create a new log file if it doesn't exist
-	if(!LogFile)
+	TArray<FString> LogEntries;
+	
 	{
-		const FString CompleteLogPath = FPaths::ProjectLogDir() + RelativeLogPath + FDateTime::Now().ToString() + TEXT(".log");
-		LogFile = IFileManager::Get().CreateFileWriter(*CompleteLogPath);
+		// Ensure exclusive access while operating on the log
+		std::lock_guard Lock(LogMutex);
+
+		// Temporarily close the log file to read from it
 		if(LogFile)
 		{
-			Log(FString::Printf(TEXT("%s - %s\n"), *LogInternalMessage, TEXT("Logger Initialized")));
+			LogFile->Flush();
+			LogFile->Close();
+			delete LogFile;
+			LogFile = nullptr;
+		}
+
+		// Read all log entries from the file
+		FFileHelper::LoadFileToStringArray(LogEntries, *GetLogPath());
+	}
+
+	// Reopen the log file for writing
+	LogFile = IFileManager::Get().CreateFileWriter(*GetLogPath(), FILEWRITE_Append);
+
+	return LogEntries;
+}
+
+void FLogger::Initialize()
+{
+	// Open the log file for writing
+	if(!LogFile)
+	{
+		LogFile = IFileManager::Get().CreateFileWriter(*GetLogPath());
+		if(LogFile)
+		{
+			Log(FString::Printf(TEXT("%s - %s\n"), *LogInternalTag, TEXT("Logger Initialized")));
 		}
 	}
 }
@@ -48,7 +76,8 @@ void FLogger::ShutDown()
 	// Close the log file
 	if(LogFile)
 	{
-		Log(FString::Printf(TEXT("%s - %s\n"), *LogInternalMessage, TEXT("Logger Shut Down")));
+		Log(FString::Printf(TEXT("%s - %s\n"), *LogInternalTag, TEXT("Logger Shut Down")));
+		LogFile->Flush();
 		LogFile->Close();
 		delete LogFile;
 		LogFile = nullptr;
