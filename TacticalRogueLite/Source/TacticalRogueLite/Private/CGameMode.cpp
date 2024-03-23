@@ -11,6 +11,7 @@
 #include "CLevelURLAsset.h"
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
+#include "CommandPattern/CConsequence.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -48,6 +49,17 @@ void ACGameMode::BeginPlay()
 	// as all Units might not be spawned yet.
 	InitializeTurnOrder(AllUnits);
 	ApplyPlayerCount(AllUnits);
+}
+
+void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
+{
+	if (CommandList.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Consequence can't be registered with empty CommandLilst"));
+		return;
+	}
+	CommandHistory.Last()->StoreConsequence(inConsequence);
+	inConsequence->ExecuteConsequence();
 }
 
 bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
@@ -101,8 +113,8 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 	}
 
 
-	NewCommand->ExecuteCommand(inController);
 	CommandList.Add(NewCommand);
+	NewCommand->ExecuteCommand(inController);
 
 	FString Log = FString("Executed command: ") + NewCommand->ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
@@ -125,6 +137,7 @@ bool ACGameMode::TryUndo(AController* inController)
 		return false;
 	}
 
+	LastCommand->UndoAllConsequences();
 	LastCommand->UndoCommand();
 
 	CommandList.RemoveAtSwap(CommandList.Num() - 1);
