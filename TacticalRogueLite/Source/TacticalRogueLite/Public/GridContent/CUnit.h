@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
+class ACAttributeComponent;
 class UCItem;
 class ACGridTile;
 enum class EItemSlots : uint8;
@@ -14,6 +15,11 @@ class TACTICALROGUELITE_API ACUnit : public ACGridContent
 {
 	GENERATED_BODY()
 
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<UCAttributeComponent> AttributeComp;
+	
 public:
 	ACUnit();
 

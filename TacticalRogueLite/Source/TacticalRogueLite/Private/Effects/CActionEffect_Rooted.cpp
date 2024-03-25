@@ -27,6 +27,7 @@ void UCActionEffect_Rooted::StartAction_Implementation(AActor* Instigator)
 	if (Attributes)
 	{
 		Attributes->OnHealthChanged.AddDynamic(this, &UCActionEffect_Rooted::OnHealthChanged);
+		
 	}
 }
 
