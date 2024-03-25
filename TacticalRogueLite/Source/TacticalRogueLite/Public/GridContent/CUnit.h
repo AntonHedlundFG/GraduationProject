@@ -5,7 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
-class ACAttributeComponent;
+class UCAttributeComponent;
 class UCItem;
 class ACGridTile;
 enum class EItemSlots : uint8;

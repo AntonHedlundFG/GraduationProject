@@ -16,7 +16,7 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 ACUnit::ACUnit()
 {
 	bReplicates = true;
-
+	//
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 }
 
