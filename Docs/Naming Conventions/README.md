@@ -60,11 +60,11 @@ struct FExampleStruct
 ```cpp 
 enum class EDirections : uint8
 {
-    ED_NONE         	UMETA("Displayname = "None"),
-    ED_North          UMETA("Displayname = "North"),
-    ED_South          UMETA("Displayname = "South"),
+    ED_NONE             UMETA(Hidden), // Can have ("Displayname = "None") instead of (Hidden) if None should be a selectable option
+    ED_North            UMETA(Displayname = "North"),
+    ED_South            UMETA(Displayname = "South"),
     // ...
-    ED_MAX              UMETA("Displayname = "Max")
+    MAX                 UMETA(Hidden)
 }
 ```
 

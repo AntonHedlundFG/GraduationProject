@@ -25,13 +25,13 @@ public:
 	bool IsControlledBy(AController* inController);
 
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
-	UCItem* GetItemInSlot(EItemSlots inSlot) 
-	{
-		
-		return TemporaryItem.Get();
-	}
+	UFUNCTION(BlueprintCallable)
+	UCItem* GetItemInSlot(EItemSlots inSlot);
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UCItem> TemporaryItem;
+	TObjectPtr<UCItem> TemporaryItemBoots;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TObjectPtr<UCItem> TemporaryItemWeapon;
 	// ----------------------------------------------------------------
 
 };

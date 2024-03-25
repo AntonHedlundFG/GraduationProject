@@ -9,6 +9,14 @@
 
 #define NUMBER_OF_PLAYERS FString("PlayerCount")
 
+/* This struct can be expanded to include more settings. 
+* Make sure the settings are implemented just like NumberOfPlayers
+* 1. Declare the UPROPERTY(). 
+* 2. #define a macro for its name, it will make sure there are no spelling errors in FStrings. 
+* 3. Update GetOptionsStringAppendage() to AddOption() the new property. It's good practice to not include un-assigned properties.
+* After these steps are done, when you load a level with these settings, you can fetch the stored properties
+* in the GameMode by using UGameplayStatics::GetIntOption(OptionsString, YOUR_MACRO, 0), and similar functions.
+*/
 USTRUCT(BlueprintType)
 struct FLevelLoadSettings
 {
@@ -19,6 +27,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	uint8 NumberOfPlayers = 0;
 
+	//This string can be attached to the URL of the level you load to attach relevant settings.
 	FString GetOptionsStringAppendage()
 	{
 		FString ReturnString;
@@ -29,7 +38,7 @@ public:
 
 private:
 
-	void AddOption(FString& outOptionList, const FString& inOptionName, const FString& inValue)
+	void AddOption(FString& outOptionList, const FString& inOptionName, const FString& inValue = FString())
 	{
 		outOptionList.Append(FString("?") + inOptionName);
 		if (!inValue.IsEmpty())
@@ -45,16 +54,18 @@ struct FLevelInfo
 
 public:
 
+	//Arbitrary name for level, which can then be found in the CLevelURLAsset by using URLOfLevelByName()
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString LevelName;
 
+	//This should be the path of the level. These read like: "\Game\Levels\TestLevels\SomeLevel"
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString LevelLoadPath;
 
 };
 
-/**
- * 
+/** Store all level references in this asset to make loading levels easier.
+* This way, we don't have to write URL's manually when travelling between levels.
  */
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCLevelURLAsset : public UDataAsset

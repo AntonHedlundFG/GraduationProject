@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public class TacticalRogueLiteEditorTarget : TargetRules
 {
-	public TacticalRogueLiteEditorTarget( TargetInfo Target) : base(Target)
+	public TacticalRogueLiteEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_3;
-		ExtraModuleNames.Add("TacticalRogueLite");
+		ExtraModuleNames.AddRange(new string[]{"TacticalRogueLite","TacticalRogueLiteEditor"});
 	}
 }

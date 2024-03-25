@@ -7,6 +7,7 @@ class USObjectPool : UObject
     UPROPERTY(VisibleAnywhere)
     TArray<AActor> ObjectPool;
 
+    //Initializes the pool with an amount of objects, Calling dequeue will create objects aswell.
     UFUNCTION()
     void Initialize(TSubclassOf<AActor> InObjectClass, int64 StartSize = 0)
     {
@@ -22,7 +23,7 @@ class USObjectPool : UObject
             ObjectPool.Add(CreatePoolableActor());
         }
     }
-
+    //Retrieves an object from the pool, if none are avaliabe it creates a new one.
     UFUNCTION()
     AActor Dequeue(bool bIsActive = true)
     {
@@ -41,11 +42,11 @@ class USObjectPool : UObject
         {
             poolableActor.OnDequeue();
         }
-        obj.SetActorHiddenInGame(bIsActive);
+        obj.SetActorHiddenInGame(!bIsActive);
         obj.SetActorTickEnabled(bIsActive);
         return obj;
     }
-    
+    //Enqueues and object to the pool
     UFUNCTION()
     void Enqueue(AActor Actor,bool bIsActive = false)
     {
@@ -64,11 +65,11 @@ class USObjectPool : UObject
         {
             poolableActor.OnEnQueue();
         }
-        Actor.SetActorHiddenInGame(bIsActive);
+        Actor.SetActorHiddenInGame(!bIsActive);
         Actor.SetActorTickEnabled(bIsActive);
         ObjectPool.Add(Actor);
     }
-
+    //Deletes all objects that are in the pool
     UFUNCTION()
     void ClearPool()
     {
@@ -81,19 +82,25 @@ class USObjectPool : UObject
         }
         ObjectPool.Empty();
     }
-
+    //Returns an object and sets it position and rotation
     UFUNCTION()
-    AActor GetAt(bool bIsActive, FVector Location, FRotator Rotator)
+    AActor DequeueAt(bool bIsActive, FVector Location, FRotator Rotator)
     {
         AActor Actor = Dequeue(bIsActive);
         Actor.SetActorLocation(Location);
         Actor.SetActorRotation(Rotator);
         return Actor;
     }
+    //Creates a new pool object
     UFUNCTION()
     private AActor CreatePoolableActor(bool bIsActive = false)
     {
         AActor Actor = Cast<AActor>(SpawnActor(ObjectClass, FVector::ZeroVector, FRotator::ZeroRotator));
+        ASPoolableActor poolableActor = Cast<ASPoolableActor>(Actor);
+        if(poolableActor != nullptr)
+        {
+            poolableActor.SubscribePool(this);
+        }
         Actor.SetActorHiddenInGame(bIsActive);
         Actor.SetActorTickEnabled(bIsActive);
         return Actor;
@@ -102,6 +109,7 @@ class USObjectPool : UObject
 }
 
 event void FOnPoolEnterExit();
+//A class that has functions that are being called when the object moves in and out of a pool
 class ASPoolableActor : AActor
 {
     USObjectPool pool;
@@ -109,25 +117,36 @@ class ASPoolableActor : AActor
     FOnPoolEnterExit onEnQueue_evnt;
     FOnPoolEnterExit onDequeue_evnt;
 
+    //This is called when the pool object is created
     void SubscribePool(USObjectPool pool)
     {
         this.pool = pool;
     }
+    //This is called when the object is put back into the pool
     void OnEnQueue()
     {
         onEnQueue_evnt.Broadcast();
     }
+    //This is called when the object is removed from the pool
     void OnDequeue()
     {
         onDequeue_evnt.Broadcast();
     }
+    //Call this to enqueue object into the pool without a reference to the pool
+    UFUNCTION(BlueprintCallable)
+    void EnqueueSelf()
+    {
+        Print("" + this.Class);
+        pool.Enqueue(this,false);
+    }
 }
 
+//In order to get access this call UObjectPoolSubsystem::Get();
 class UObjectPoolSubsystem : UWorldSubsystem
 {
     UPROPERTY(VisibleAnywhere)
     private TMap<TSubclassOf<AActor>, USObjectPool> ObjectPools;
-
+    //Creates a pool and initializes it with a number of objects
     UFUNCTION()
     USObjectPool CreatePool(TSubclassOf<AActor> InObjectClass, int64 initialSize)
     {
@@ -140,13 +159,15 @@ class UObjectPoolSubsystem : UWorldSubsystem
         objectPool.Initialize(InObjectClass,initialSize);
         return objectPool;
     }
+    //Clear the pool from all objects, these objects are deleted
     void ClearPool(TSubclassOf<AActor> InObjectClass)
     {
         if(ObjectPools.Contains(InObjectClass))
-        {
+        {   
             ObjectPools[InObjectClass].ClearPool();
         }
     }
+    //Deletes the pool entierly as well as all objects within
     void DeletePool(TSubclassOf<AActor> InObjectClass)
     {
         if(ObjectPools.Contains(InObjectClass))
@@ -156,6 +177,7 @@ class UObjectPoolSubsystem : UWorldSubsystem
             ObjectPools.Remove(InObjectClass);
         }
     }
+    //Gets the pool of passed object, will create a pool if none exists
     UFUNCTION()
     USObjectPool GetPool(TSubclassOf<AActor> InObjectClass)
     {
@@ -165,13 +187,13 @@ class UObjectPoolSubsystem : UWorldSubsystem
         }
         return CreatePool(InObjectClass,0);
     }
-
+    //Retrives an object from a pool, if no pool exists, it creates a pool for that object, Use GetPool and call dequeue from it instead if you're doing multiple calls.
     AActor DequeueActor(TSubclassOf<AActor> InObjectClass,bool bIsActive, FVector Location = FVector::ZeroVector, FRotator Rotation = FRotator::ZeroRotator)
     {
         USObjectPool pool = GetPool(InObjectClass);
-        return pool.GetAt(bIsActive,Location,Rotation);
+        return pool.DequeueAt(bIsActive,Location,Rotation);
     }
-
+    //Enqueuea an object to a pool. Use GetPool and call enqueue from it instead if you're doing multiple calls.
     void EnqueueActor(TSubclassOf<AActor> InObjectClass, AActor Actor, bool bIsActive = false)
     {
         if(!Actor.Class.IsChildOf(InObjectClass))

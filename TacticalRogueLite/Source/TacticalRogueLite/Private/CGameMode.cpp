@@ -7,7 +7,11 @@
 #include "Items/CItem.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
+#include "Grid\CGridTile.h"
 #include "CLevelURLAsset.h"
+#include "Grid/CGrid.h"
+#include "Grid/CGridSpawner.h"
+#include "CommandPattern/CConsequence.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -21,6 +25,16 @@ void ACGameMode::BeginPlay()
 		}
 	}
 
+	Spawner = CreateSpawner();
+
+	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
+	GameStateRef->GameGrid = grid;
+	
+	//This can probably be done better/cleaner
+	Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
+	Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+
+	
 	TArray<AActor*> OutActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
 	TArray<ACUnit*> AllUnits;
@@ -30,14 +44,25 @@ void ACGameMode::BeginPlay()
 		if (Unit)
 			AllUnits.Add(Unit);
 	}
-
+	
 	//We might want to move this to another place later, 
 	// as all Units might not be spawned yet.
 	InitializeTurnOrder(AllUnits);
 	ApplyPlayerCount(AllUnits);
 }
 
-bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, const int inTileIndex)
+void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
+{
+	if (CommandList.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Consequence can't be registered with empty CommandLilst"));
+		return;
+	}
+	CommandHistory.Last()->StoreConsequence(inConsequence);
+	inConsequence->ExecuteConsequence();
+}
+
+bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
 {
 	if (!GameStateRef)
 	{
@@ -74,13 +99,13 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
-	if (!Item->IsValidTargetTileIndex(inUnit, inTileIndex))
+	if (!Item->IsValidTargetTile(inUnit, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
 		return false;
 	}
 
-	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTileIndex);
+	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTargetTile);
 	if (!NewCommand)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ability command on this item"));
@@ -88,8 +113,8 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 	}
 
 
-	NewCommand->ExecuteCommand(inController);
 	CommandList.Add(NewCommand);
+	NewCommand->ExecuteCommand(inController);
 
 	FString Log = FString("Executed command: ") + NewCommand->ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
@@ -112,6 +137,7 @@ bool ACGameMode::TryUndo(AController* inController)
 		return false;
 	}
 
+	LastCommand->UndoAllConsequences();
 	LastCommand->UndoCommand();
 
 	CommandList.RemoveAtSwap(CommandList.Num() - 1);
@@ -188,4 +214,10 @@ void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
 			Unit->ControllingPlayerIndex -= PlayerCount;
 		}
 	}
+}
+
+ACGridSpawner* ACGameMode::CreateSpawner()
+{
+	ACGridSpawner* spawner = GetWorld()->SpawnActor<ACGridSpawner>(SpawnerClass, FVector::Zero(), FRotator::ZeroRotator);
+	return spawner;
 }

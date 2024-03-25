@@ -1,7 +1,14 @@
 
 #include "Grid/CGrid.h"
 #include "Grid/CGridTile.h"
-#include "Grid/CUnitSpawner.h"
+#include "Net/UnrealNetwork.h"
+
+
+void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACGrid, Tiles);
+}
 
 ACGrid::ACGrid()
 {
@@ -11,13 +18,12 @@ void ACGrid::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GenerateGrid(GridDimensions.X, GridDimensions.Y, NodeInterval);
-	GenerateSpawnTiles();
-
-	CreateSpawner();
+	// GenerateTiles(GridDimensions.X, GridDimensions.Y);
+	// GenerateSpawnTiles();
+	// CreateSpawner();
 }
 
-void ACGrid::GenerateGrid(int inRows, int inColumns, int inNodeInterval)
+void ACGrid::GenerateTiles(int inRows, int inColumns)
 {
 	const FVector BottomLeft = FindBottomLeftCorner();
 	
@@ -26,18 +32,20 @@ void ACGrid::GenerateGrid(int inRows, int inColumns, int inNodeInterval)
 		for(int y = 0 ; y < inColumns; y++)
 		{
 			FVector NodePosition = BottomLeft;
-			NodePosition.X += x*inNodeInterval;
-			NodePosition.Y += y*inNodeInterval;
+			NodePosition.X += x*NodeInterval;
+			NodePosition.Y += y*NodeInterval;
 			TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(TileBlueprint, NodePosition, FRotator::ZeroRotator);
 			Tile->Initialize(this, FVector2D(x,y));
 			Tiles.Add(Tile);
 		}
 	}
-
+	
 	for (auto tile : Tiles)
 	{
 		tile->CreateLinks();
 	}
+
+	GenerateSpawnTiles();
 }
 
 ACGridTile* ACGrid::GetTileAtPosition(int inX, int inY)
@@ -101,11 +109,4 @@ void ACGrid::GenerateSpawnTiles()
 			}
 		}
 	}
-}
-
-void ACGrid::CreateSpawner()
-{
-	TObjectPtr<ACUnitSpawner> spawner = GetWorld()->SpawnActor<ACUnitSpawner>(Spawner, GetActorLocation(), FRotator::ZeroRotator);
-	spawner->SpawnUnitsFromArray(spawner->HeroUnits, HeroSpawnTiles);
-	spawner->SpawnUnitsFromArray(spawner->EnemyUnits, EnemySpawnTiles);
 }

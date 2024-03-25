@@ -13,6 +13,11 @@
 				"Engine",
 				"UMG"
 			]
+		},
+		{
+			"Name": "TacticalRogueLiteEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
 		}
 	],
 	"Plugins": [

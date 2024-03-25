@@ -3,24 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "RogueLiteRandom.h"
 #include "GameFramework/GameStateBase.h"
 #include "GridContent/CUnit.h"
 #include "CGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 
-/**
- * 
- */
+class ACGrid;
+
 UCLASS()
 class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 {
 	GENERATED_BODY()
-
-	virtual void BeginPlay() override;
 	
 public:
+	ACGameState();
 
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
@@ -34,16 +31,10 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Turn Order");
 	FOnTurnOrderUpdate OnTurnOrderUpdate;
 
-	// --- Random --- //
-	RogueLiteRandom Random;
+	UPROPERTY(Replicated, BlueprintReadOnly, Category = "Random")
+	class UCRandomComponent* Random;
 
-	UFUNCTION(BlueprintCallable)
-	int32 GetRandom(int32 Min, int32 Max);
-	UFUNCTION(BlueprintCallable)
-	int32 PeekRandom(int32 Min, int32 Max);
-	UFUNCTION(BlueprintCallable)
-	int32 RollBackRandom(int32 Ticks);
-	UFUNCTION(BlueprintCallable)
-	void SaveSeedState();
+	UPROPERTY(BlueprintReadOnly, Category = "Grid|Grid")
+	TObjectPtr<ACGrid> GameGrid;
 
 };
