@@ -22,6 +22,8 @@ protected:
 	
 public:
 	ACUnit();
+	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type Reason) override;
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)
@@ -34,10 +36,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UCItem* GetItemInSlot(EItemSlots inSlot);
 
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UCItem> TemporaryItemBoots;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UCItem> TemporaryItemWeapon;
 	// ----------------------------------------------------------------
 
+
+	
+
+protected:
+
+	UFUNCTION()
+	void OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta);
 };

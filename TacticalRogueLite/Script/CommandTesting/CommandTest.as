@@ -32,31 +32,24 @@ class USTestAttackCommand : UCCommand
     ACUnit Instigator;
     ACUnit Target;
 
+    private UCAttributeComponent Attributes;
+
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
     {
-        ASConsequenceUnit CUnit = Cast<ASConsequenceUnit>(Target);
-        if (CUnit != nullptr)
-        {
-            CUnit.TakeDamage(1);
-        }
-        else
-        {
-            Print("NO HEALTH IMPLEMENTED");
-        }
+        Attributes = UCAttributeComponent::GetAttributes(Target);
+        if (Attributes == nullptr) return;
+
+        Attributes.ApplyHealthChange(Instigator, -50);
+        Print(f"{Attributes.Health}");
+
     }
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
     {
-        ASConsequenceUnit CUnit = Cast<ASConsequenceUnit>(Target);
-        if (CUnit != nullptr)
-        {
-            CUnit.TakeDamage(-1);
-        }
-        else
-        {
-            Print("CANT UNDO DAMAGE TO HEALTH WHEN THERE IS NO HEALTH");
-        }
+        if (Attributes == nullptr) return;
+
+        Attributes.ApplyHealthChange(Instigator, 50);
     }
     UFUNCTION(BlueprintOverride)
     FString ToString()

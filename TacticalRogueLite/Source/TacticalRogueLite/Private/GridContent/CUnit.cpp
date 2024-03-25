@@ -5,6 +5,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Items/ItemSlots.h"
 #include "Attributes/CAttributeComponent.h"
+#include "CommandPattern/CDeathConsequence.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -16,8 +17,20 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 ACUnit::ACUnit()
 {
 	bReplicates = true;
-	//
+	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
+}
+
+void ACUnit::BeginPlay()
+{
+	if (GetNetMode() <= ENetMode::NM_ListenServer)
+		AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
+}
+
+void ACUnit::EndPlay(EEndPlayReason::Type Reason)
+{
+	if (GetNetMode() <= ENetMode::NM_ListenServer)
+		AttributeComp->OnHealthChanged.RemoveDynamic(this, &ACUnit::OnHealthChanged);
 }
 
 bool ACUnit::IsControlledBy(AController* inController)
@@ -38,4 +51,20 @@ UCItem* ACUnit::GetItemInSlot(EItemSlots inSlot)
 	if (inSlot == EItemSlots::EIS_Weapon)
 		return TemporaryItemWeapon;
 	return nullptr;
+}
+
+void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ONHEALTHCHANGED"));
+	float OldHealth = NewHealth - Delta;
+	if (OldHealth > 0 && NewHealth <= 0)
+	{
+		ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+		if (GameMode)
+		{
+			UCDeathConsequence* Death = NewObject<UCDeathConsequence>(this);
+			Death->DyingUnit = this;
+			GameMode->RegisterAndExecuteConsequence(Death);
+		}
+	}
 }
