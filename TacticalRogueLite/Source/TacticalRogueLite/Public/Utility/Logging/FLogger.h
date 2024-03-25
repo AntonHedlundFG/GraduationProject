@@ -7,44 +7,69 @@
 class FLogger
 {
 public:
-	// Public API
+	// --- Public API --- //
+	
+	// Gets the singleton instance of the logger
 	static FLogger& Get();
+	// Adds a log message to the queue for processing
 	void Log(const FString& Message);
+	// Reads all log entries from the current log file
 	TArray<FString> ReadLog();
+	// Rotates the log file by closing the current one and creating a new one
+	static void RotateLogFile();
 
 private:
 	// Constructor/Destructor
 	FLogger();
 	~FLogger();
 
-	// Initialization and Shutdown
+	// --- Initialization and shutdown --- //
+	
+	// Initializes the logger by creating the log file and starting the worker thread
 	static void Initialize();
+	// Shuts down the logger by closing the log file and stopping the worker thread
 	static void ShutDown();
 	
 	// Prevent copying and assignment
 	FLogger(const FLogger&) = delete;
 	FLogger& operator=(const FLogger&) = delete;
 
-	// File management
+	// --- File management --- //
+
+	// Gets the current log file path or generates a new one if it's empty
 	static FString GetLogPath();
+	// Generates a new log file path based on the current date and time
 	static FString GetNewLogFilePath();
-	static void CheckAndRotateLogFile();
+	// Checks if the log file is too large
+	static bool IsLogTooBig();
+	// Logs a message to the log file
 	static void LogToFile(FString& Message);
+	// Ensures the log file is open for writing
 	static void EnsureFileLogOpen();
+	// Closes the log file if it's open
 	static void CheckAndCloseLog();
 
-	// Worker thread for asynchronous logging
+	// --- Threading --- //
+
+	// Starts the worker thread for logging
 	static void StartLogWorkerThread();
+	// Stops the worker thread for logging
 	static void StopLogWorkerThread();
+	// Background worker for processing queued log messages
 	static void LogWorker();
 
-	// Utilities
+	// --- Utilities --- //
+
+	// Sanitizes the message by removing unwanted characters and truncating it if necessary
 	static void SanitizeMessage(FString& Message);
 
+	// --- Members --- //
+	
 	// Static members
 	static FString LogFilePath;
 	static FArchive* LogFile;
 	static std::mutex LogMutex;
+	inline static int16 LogFileIndex;
 
 	// Threading components
 	static std::queue<FString> LogQueue;

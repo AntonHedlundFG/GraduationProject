@@ -14,16 +14,19 @@ bool FLogger::bIsRunning = false; // Initialize to false
 
 #pragma endregion
 
+// Constructor
 FLogger::FLogger()
 {
 	Initialize();
 }
 
+// Destructor
 FLogger::~FLogger()
 {
 	ShutDown();
 }
 
+// Gets the singleton instance of the logger
 FLogger& FLogger::Get()
 {
 	static FLogger Instance;
@@ -55,8 +58,12 @@ TArray<FString> FLogger::ReadLog()
 void FLogger::LogToFile(FString& Message)
 {
 	std::lock_guard Lock(LogMutex);
-	EnsureFileLogOpen(); 
-	CheckAndRotateLogFile(); 
+	EnsureFileLogOpen();
+	
+	if(IsLogTooBig())
+	{
+		RotateLogFile();
+	} 
 	
 	if (LogFile) { // Check might be redundant but it's better to be safe
 		SanitizeMessage(Message);
@@ -81,8 +88,11 @@ void FLogger::LogWorker()
 				break;
 			}
 			
-			Message = LogQueue.front();
-			LogQueue.pop();
+			if (!LogQueue.empty())
+			{
+				Message = LogQueue.front();
+				LogQueue.pop();
+			}
 		}
 		
 		if (!Message.IsEmpty())
@@ -95,19 +105,44 @@ void FLogger::LogWorker()
 // Generates a new log file path based on the current date and time
 FString FLogger::GetNewLogFilePath()
 {
-	return FPaths::ProjectSavedDir() + RelativeLogPath + FDateTime::Now().ToString() + TEXT(".log");
+	return FPaths::ProjectSavedDir() + RelativeLogPath + FDateTime::Now().ToString() + FString::Printf(TEXT("_%d.log"), ++LogFileIndex);
 }
 
-// Checks if the log file is too large and rotates it if necessary
-void FLogger::CheckAndRotateLogFile()
+// Checks if the log file is too large
+bool FLogger::IsLogTooBig()
 {
-	// Check if the log file is too large and rotate it if necessary
-	if (LogFile && LogFile->TotalSize() > GetMaxLogSize()) 
+	if(LogFile)
 	{
-		CheckAndCloseLog();
-		LogFilePath = GetNewLogFilePath();
+		if( LogFile->TotalSize() > GetMaxLogSize())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+// Rotates the log file by closing the current one and creating a new one
+void FLogger::RotateLogFile()
+{
+	FString Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Rotating Log File"));
+	LogToFile(Message);
+	
+	CheckAndCloseLog();
+
+	{
+		std::lock_guard Lock(LogMutex);
+
+		LogFileIndex++;
+		const FString OldLogFilePath = GetLogPath();
+		FString NewLogFilePath = OldLogFilePath.Replace(
+			*FString::Printf(TEXT("_%d.log"), LogFileIndex - 1),
+			*FString::Printf(TEXT("_%d.log"), LogFileIndex));
+		LogFilePath = NewLogFilePath;
+	
 		EnsureFileLogOpen();
 	}
+	
+	Get().Log(FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Log File Rotated")));
 }
 
 // Initializes the logger by creating the log file and starting the worker thread
@@ -193,11 +228,11 @@ void FLogger::CheckAndCloseLog()
 {
 	if(LogFile)
 	{
+		std::lock_guard Lock(LogMutex);
 		LogFile->Flush();
 		LogFile->Close();
 		delete LogFile;
 		LogFile = nullptr;
-		IFileManager::Get().SetTimeStamp(*GetLogPath(), true);
 	}
 }
 
