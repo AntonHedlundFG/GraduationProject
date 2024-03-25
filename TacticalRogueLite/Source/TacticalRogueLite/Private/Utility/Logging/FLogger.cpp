@@ -14,11 +14,25 @@ bool FLogger::bIsRunning = false; // Initialize to false
 
 #pragma endregion
 
+FLogger::FLogger()
+{
+	Initialize();
+}
+
+FLogger::~FLogger()
+{
+	ShutDown();
+}
+
+FLogger& FLogger::Get()
+{
+	static FLogger Instance;
+	return Instance;
+}
+
 // Adds a log message to the queue for processing
 void FLogger::Log(const FString& Message)
 {
-	EnsureInitialized();
-	
 	std::lock_guard Lock(QueueMutex);
 	LogQueue.push(Message);
 	LogCondition.notify_one();
@@ -27,8 +41,6 @@ void FLogger::Log(const FString& Message)
 // Reads all log entries from the current log file
 TArray<FString> FLogger::ReadLog()
 {
-	EnsureInitialized();
-	
 	TArray<FString> LogEntries;
 	std::lock_guard Lock(LogMutex);
 	
@@ -148,12 +160,9 @@ void FLogger::StartLogWorkerThread()
 // Stops the worker thread for logging
 void FLogger::StopLogWorkerThread()
 {
-	{
-		bIsRunning = false;
-		LogCondition.notify_all();
-		std::lock_guard Lock(QueueMutex);
-	}
-	
+	bIsRunning = false;
+	LogCondition.notify_all();
+
 	if(LogThread.joinable())
 	{
 		LogThread.join();

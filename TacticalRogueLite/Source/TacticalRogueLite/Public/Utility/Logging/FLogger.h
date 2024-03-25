@@ -8,24 +8,20 @@ class FLogger
 {
 public:
 	// Public API
-	static void Log(const FString& Message);
-	static TArray<FString> ReadLog();
+	static FLogger& Get();
+	void Log(const FString& Message);
+	TArray<FString> ReadLog();
 
 private:
-	// Ensure the logger is initialized
-	static void EnsureInitialized() {
-		static bool bIsInitialized = []() {
-			Initialize();
-			return true;
-		}();
-	}
+	// Constructor/Destructor
+	FLogger();
+	~FLogger();
+
 	// Initialization and Shutdown
 	static void Initialize();
 	static void ShutDown();
-
-	// Constructors and Assignment Operators (Deleted to prevent instance creation)
-	FLogger() = delete;
-	~FLogger() = delete;
+	
+	// Prevent copying and assignment
 	FLogger(const FLogger&) = delete;
 	FLogger& operator=(const FLogger&) = delete;
 

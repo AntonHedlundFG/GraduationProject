@@ -26,7 +26,7 @@ void UCLogger::Log(ELogCategory Category, const FString& Message)
 	const FString LogMessage = FString::Printf(TEXT("%s %s"),*ToString(Category), *Message);
 
 	// Use FLogger for actual logging
-	FLogger::Log(LogMessage);
+	FLogger::Get().Log(LogMessage);
 
 	// Broadcast if Instance exists
 	if (Instance) 
@@ -51,12 +51,12 @@ void UCLogger::Log(ELogCategory Category, const FString& Message)
 
 TArray<FString> UCLogger::ReadLog()
 {
-	return FLogger::ReadLog();
+	return FLogger::Get().ReadLog();
 }
 
 TArray<FString> UCLogger::ReadLogByCategory(ELogCategory Category)
 {
-	TArray<FString> LogEntries = FLogger::ReadLog();
+	TArray<FString> LogEntries = FLogger::Get().ReadLog();
 	TArray<FString> FilteredEntries;
 
 	for (FString LogEntry : LogEntries)
