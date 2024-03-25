@@ -61,12 +61,11 @@ void FLogger::WriteToLog(FString& Message)
 		RotateLogFile();
 	} 
 	
-	if (LogFile) { // Check might be redundant but it's better to be safe
-		SanitizeMessage(Message);
-		const FString LogMessage = FString::Printf(TEXT("%s - %s\n"), *FDateTime::Now().ToString(), *Message);
-		LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
-		LogFile->Flush();
-	}
+	SanitizeMessage(Message);
+	const FString LogMessage = FString::Printf(TEXT("%s - %s\n"), *FDateTime::Now().ToString(), *Message);
+	LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
+	LogFile->Flush();
+	
 }
 
 // Background worker for processing log messages
