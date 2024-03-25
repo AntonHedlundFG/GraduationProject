@@ -35,12 +35,28 @@ class USTestAttackCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()
     {
-        Print("NO HEALTH IMPLEMENTED");
+        ASConsequenceUnit CUnit = Cast<ASConsequenceUnit>(Target);
+        if (CUnit != nullptr)
+        {
+            CUnit.TakeDamage(1);
+        }
+        else
+        {
+            Print("NO HEALTH IMPLEMENTED");
+        }
     }
     UFUNCTION(BlueprintOverride)
     void UndoCommand()
     {
-        Print("CANT UNDO DAMAGE TO HEALTH WHEN THERE IS NO HEALTH");
+        ASConsequenceUnit CUnit = Cast<ASConsequenceUnit>(Target);
+        if (CUnit != nullptr)
+        {
+            CUnit.TakeDamage(-1);
+        }
+        else
+        {
+            Print("CANT UNDO DAMAGE TO HEALTH WHEN THERE IS NO HEALTH");
+        }
     }
     UFUNCTION(BlueprintOverride)
     FString ToString()
