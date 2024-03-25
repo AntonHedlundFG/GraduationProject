@@ -17,6 +17,7 @@ class ICSavable
 public:
 	virtual void OnSave() = 0;
 	virtual void OnLoad() = 0;
-	virtual void RegisterToSaveManager() = 0;
-	virtual void UnregisterFromSaveManager() = 0;
+	
+	virtual void RegisterToSaveManager();
+	virtual void UnregisterFromSaveManager();
 };
