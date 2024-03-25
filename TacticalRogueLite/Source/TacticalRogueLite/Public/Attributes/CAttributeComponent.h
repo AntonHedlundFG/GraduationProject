@@ -31,10 +31,17 @@ public:
 protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
+<<<<<<< HEAD
 	float Health;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
 	float HealthMax;
+=======
+	int CurrentHealth;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
+	int BaseHealth;
+>>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 
 	/*Resource used to power certain Actions*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")

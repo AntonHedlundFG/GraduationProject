@@ -1,7 +1,13 @@
 
 #include "GridContent/CUnit.h"
+
+#include "CGameMode.h"
 #include "Net/UnrealNetwork.h"
 #include "Items/ItemSlots.h"
+<<<<<<< HEAD
+=======
+#include "Attributes/CAttributeComponent.h"
+>>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -13,6 +19,8 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 ACUnit::ACUnit()
 {
 	bReplicates = true;
+	//
+	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 }
 
 bool ACUnit::IsControlledBy(AController* inController)
