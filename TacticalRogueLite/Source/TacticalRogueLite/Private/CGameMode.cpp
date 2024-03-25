@@ -58,7 +58,7 @@ void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
 		UE_LOG(LogTemp, Warning, TEXT("Consequence can't be registered with empty CommandLilst"));
 		return;
 	}
-	CommandHistory.Last()->StoreConsequence(inConsequence);
+	CommandList.Last()->StoreConsequence(inConsequence);
 	inConsequence->ExecuteConsequence();
 }
 

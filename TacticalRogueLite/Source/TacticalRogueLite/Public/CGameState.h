@@ -22,7 +22,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
 	TArray<ACUnit*> TurnOrder;
 
 	UFUNCTION()
