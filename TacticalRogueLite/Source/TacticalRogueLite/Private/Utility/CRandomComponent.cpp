@@ -1,6 +1,7 @@
 ﻿#include "Utility/CRandomComponent.h"
 
 #include "Net/UnrealNetwork.h"
+#include "Utility/Logging/CLogger.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -31,6 +32,7 @@ void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 
 	RandomStream.Initialize(CurrentStateSeed);
 	SaveState();
+	LOG(ELogCategory::LC_Info, "Initializing Random from Start Seed: %d", StartSeed);
 }
 
 int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
@@ -55,7 +57,7 @@ int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
 		TicksSinceSave++;
 
 	}
-	
+	LOG_INFO("Get Random Value: %d", Value);
 	return Value;
 }
 
@@ -90,7 +92,8 @@ int32 UCRandomComponent::RollBackRandom(int32 inTicks)
 		Ticks++;
 		TicksSinceSave++;
 	}
-	
+
+	LOG_INFO("Rolling back %d ticks", inTicks);
 	return Value;
 }
 
@@ -99,6 +102,7 @@ void UCRandomComponent::RollBackToSave()
 	RandomStream.Initialize(CurrentStateSeed);
 	TicksSinceSave = 0;
 	Ticks = TicksAtSave;
+	LOG_INFO("Rolling back to previous saved state at seed: %d", CurrentStateSeed);
 }
 
 void UCRandomComponent::SaveState()
@@ -106,6 +110,7 @@ void UCRandomComponent::SaveState()
 	CurrentStateSeed = RandomStream.GetCurrentSeed();
 	TicksSinceSave = 0;
 	TicksAtSave = Ticks;
+	LOG_INFO("Saving Random State: %d", CurrentStateSeed);
 }
 
 void UCRandomComponent::ResetToInitialSeed()
@@ -139,6 +144,7 @@ int32 UCRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead)
 
 	const int32 Value = TempStream.RandRange(inMin, inMax); 
 
+	LOG_INFO("Peek Ahead %d Ticks Ahead, Got Value: %d", inTicksAhead, Value);
 	return Value; 
 }
 
@@ -152,6 +158,7 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 	}
 
 	const FRandomStream TempStream = RandomStream; // Make a copy of the current random stream
+	FString ValueString;
 
 	for (int i = 0; i < inMins.Num(); i++)
 	{
@@ -169,8 +176,10 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 			// Generate and add the next random value within the specified range
 			Values.Add(TempStream.RandRange(Min, Max));
 		}
+		ValueString += FString::Printf(TEXT("%d, "), Values[i]);
 	}
 
+	LOG_INFO("Peek Ahead %d Ticks Ahead, Got Value: %ls", inMins.Num(), *ValueString);
 	return Values;
 }
 
