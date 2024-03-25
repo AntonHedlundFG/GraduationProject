@@ -31,19 +31,21 @@ void ACGameMode::BeginPlay()
 	GameStateRef->GameGrid = grid;
 	
 	//This can probably be done better/cleaner
-	Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
-	Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+	TArray<ACUnit*> AllUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
+	TArray<ACUnit*> EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+	AllUnits.Append(EnemyUnits);
 
 	
-	TArray<AActor*> OutActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
-	TArray<ACUnit*> AllUnits;
-	for (AActor* Actor : OutActors)
-	{
-		ACUnit* Unit = Cast<ACUnit>(Actor);
-		if (Unit)
-			AllUnits.Add(Unit);
-	}
+	// TArray<AActor*> OutActors;
+	// UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
+	// TArray<ACUnit*> AllUnits;
+	// for (AActor* Actor : OutActors)
+	// {
+	// 	ACUnit* Unit = Cast<ACUnit>(Actor);
+	// 	if (Unit)
+	// 		AllUnits.Add(Unit);
+	// }
+
 	
 	//We might want to move this to another place later, 
 	// as all Units might not be spawned yet.
