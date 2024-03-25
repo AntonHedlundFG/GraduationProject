@@ -6,11 +6,14 @@
 FString FLogger::LogFilePath;
 FArchive* FLogger::LogFile = nullptr;
 std::mutex FLogger::LogMutex;
+std::mutex FLogger::WorkerMutex;
+bool FLogger::bIsWorkerDone = false;
 std::queue<FString> FLogger::LogQueue;
 std::mutex FLogger::QueueMutex;
+std::condition_variable FLogger::WorkerDoneCondition;
 std::condition_variable FLogger::LogCondition;
 std::thread FLogger::LogThread;
-bool FLogger::bIsRunning = false; // Initialize to false
+bool FLogger::bIsRunning = false; 
 
 #pragma endregion
 
@@ -24,13 +27,6 @@ FLogger::FLogger()
 FLogger::~FLogger()
 {
 	ShutDown();
-}
-
-// Gets the singleton instance of the logger
-FLogger& FLogger::Get()
-{
-	static FLogger Instance;
-	return Instance;
 }
 
 // Adds a log message to the queue for processing
@@ -55,7 +51,7 @@ TArray<FString> FLogger::ReadLog()
 }
 
 // Logs a message to the file
-void FLogger::LogToFile(FString& Message)
+void FLogger::WriteToLog(FString& Message)
 {
 	std::lock_guard Lock(LogMutex);
 	EnsureFileLogOpen();
@@ -80,16 +76,19 @@ void FLogger::LogWorker()
 	while (true)
 	{
 		{
-			std::unique_lock Lock(QueueMutex);
-			LogCondition.wait(Lock, [] { return !bIsRunning || !LogQueue.empty(); });
-          
+			std::unique_lock QueueLock(QueueMutex);
+			LogCondition.wait(QueueLock, [] { return !bIsRunning || !LogQueue.empty(); });
+			
 			if(!bIsRunning && LogQueue.empty())
 			{
+				bIsWorkerDone = true;
+				WorkerDoneCondition.notify_all();
 				break;
 			}
 			
 			if (!LogQueue.empty())
 			{
+				bIsWorkerDone = false;
 				Message = LogQueue.front();
 				LogQueue.pop();
 			}
@@ -97,7 +96,7 @@ void FLogger::LogWorker()
 		
 		if (!Message.IsEmpty())
 		{
-			LogToFile(Message);
+			WriteToLog(Message);
 		}
 	}
 }
@@ -125,7 +124,7 @@ bool FLogger::IsLogTooBig()
 void FLogger::RotateLogFile()
 {
 	FString Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Rotating Log File"));
-	LogToFile(Message);
+	WriteToLog(Message);
 	
 	CheckAndCloseLog();
 
@@ -141,8 +140,9 @@ void FLogger::RotateLogFile()
 	
 		EnsureFileLogOpen();
 	}
-	
-	Get().Log(FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Log File Rotated")));
+
+	Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Log File Rotated"));
+	WriteToLog(Message);
 }
 
 // Initializes the logger by creating the log file and starting the worker thread
@@ -162,7 +162,7 @@ void FLogger::Initialize()
 void FLogger::ShutDown()
 {
 	FString Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Logger Shut Down"));
-	LogToFile(Message);
+	WriteToLog(Message);
 	
 	StopLogWorkerThread();
 	CheckAndCloseLog();
@@ -197,6 +197,12 @@ void FLogger::StopLogWorkerThread()
 {
 	bIsRunning = false;
 	LogCondition.notify_all();
+
+	{
+		std::unique_lock WorkerLock(WorkerMutex);
+		WorkerDoneCondition.wait(WorkerLock, [&]{ return bIsWorkerDone; });
+	}
+
 
 	if(LogThread.joinable())
 	{

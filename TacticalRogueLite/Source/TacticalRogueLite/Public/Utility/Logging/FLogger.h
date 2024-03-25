@@ -9,27 +9,23 @@ class FLogger
 public:
 	// --- Public API --- //
 	
-	// Gets the singleton instance of the logger
-	static FLogger& Get();
 	// Adds a log message to the queue for processing
-	void Log(const FString& Message);
+	static void Log(const FString& Message);
 	// Reads all log entries from the current log file
-	TArray<FString> ReadLog();
+	static TArray<FString> ReadLog();
 	// Rotates the log file by closing the current one and creating a new one
 	static void RotateLogFile();
+	
+	// Initializes the logger by creating the log file and starting the worker thread
+	static void Initialize();
+	// Shuts down the logger by closing the log file and stopping the worker thread
+	static void ShutDown();
 
 private:
 	// Constructor/Destructor
 	FLogger();
 	~FLogger();
 
-	// --- Initialization and shutdown --- //
-	
-	// Initializes the logger by creating the log file and starting the worker thread
-	static void Initialize();
-	// Shuts down the logger by closing the log file and stopping the worker thread
-	static void ShutDown();
-	
 	// Prevent copying and assignment
 	FLogger(const FLogger&) = delete;
 	FLogger& operator=(const FLogger&) = delete;
@@ -43,7 +39,7 @@ private:
 	// Checks if the log file is too large
 	static bool IsLogTooBig();
 	// Logs a message to the log file
-	static void LogToFile(FString& Message);
+	static void WriteToLog(FString& Message);
 	// Ensures the log file is open for writing
 	static void EnsureFileLogOpen();
 	// Closes the log file if it's open
@@ -69,12 +65,14 @@ private:
 	static FString LogFilePath;
 	static FArchive* LogFile;
 	static std::mutex LogMutex;
+	static std::mutex WorkerMutex;
+	static bool bIsWorkerDone;
 	inline static int16 LogFileIndex;
 
 	// Threading components
 	static std::queue<FString> LogQueue;
 	static std::mutex QueueMutex;
-	static std::condition_variable ShutdownCondition;
+	static std::condition_variable WorkerDoneCondition;
 	static std::condition_variable LogCondition;
 	static std::thread LogThread;
 	static bool bIsRunning;

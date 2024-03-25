@@ -13,6 +13,16 @@ UCLogger* UCLogger::Get()
 	return Instance;
 }
 
+void UCLogger::StartUp()
+{
+	FLogger::Initialize();
+}
+
+void UCLogger::ShutDown()
+{
+	FLogger::ShutDown();
+}
+
 
 void UCLogger::BlueprintLog(ELogCategory Category, const FString& Message)
 {
@@ -26,7 +36,7 @@ void UCLogger::Log(ELogCategory Category, const FString& Message)
 	const FString LogMessage = FString::Printf(TEXT("%s %s"),*ToString(Category), *Message);
 
 	// Use FLogger for actual logging
-	FLogger::Get().Log(LogMessage);
+	FLogger::Log(LogMessage);
 
 	// Broadcast if Instance exists
 	if (Instance) 
@@ -51,12 +61,12 @@ void UCLogger::Log(ELogCategory Category, const FString& Message)
 
 TArray<FString> UCLogger::ReadLog()
 {
-	return FLogger::Get().ReadLog();
+	return FLogger::ReadLog();
 }
 
 TArray<FString> UCLogger::ReadLogByCategory(ELogCategory Category)
 {
-	TArray<FString> LogEntries = FLogger::Get().ReadLog();
+	TArray<FString> LogEntries = FLogger::ReadLog();
 	TArray<FString> FilteredEntries;
 
 	for (FString LogEntry : LogEntries)
@@ -73,5 +83,5 @@ TArray<FString> UCLogger::ReadLogByCategory(ELogCategory Category)
 
 void UCLogger::RotateLogFile()
 {
-	FLogger::Get().RotateLogFile();
+	FLogger::RotateLogFile();
 }

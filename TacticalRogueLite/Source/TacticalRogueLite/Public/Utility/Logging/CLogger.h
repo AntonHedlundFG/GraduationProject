@@ -87,6 +87,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))
 	static UCLogger* Get();
 
+	// Start and stop the logger
+	static void StartUp();
+	static void ShutDown();
+
 	// Delegate for broadcasting log events
 	UPROPERTY(BlueprintAssignable, Category = "Logging")
 	FOnNewLogEntry OnNewLogEntry;
@@ -94,3 +98,5 @@ public:
 private:
 	static UCLogger* Instance;
 };
+
+
