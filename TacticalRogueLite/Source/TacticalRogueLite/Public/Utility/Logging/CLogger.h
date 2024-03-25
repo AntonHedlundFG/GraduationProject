@@ -89,6 +89,5 @@ public:
 	FOnNewLogEntry OnNewLogEntry;
 
 private:
-	UCLogger() {}
 	static UCLogger* Instance;
 };
