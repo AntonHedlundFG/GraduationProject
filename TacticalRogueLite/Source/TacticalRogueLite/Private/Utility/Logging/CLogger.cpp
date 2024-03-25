@@ -70,3 +70,8 @@ TArray<FString> UCLogger::ReadLogByCategory(ELogCategory Category)
 	
 	return FilteredEntries;
 }
+
+void UCLogger::RotateLogFile()
+{
+	FLogger::Get().RotateLogFile();
+}

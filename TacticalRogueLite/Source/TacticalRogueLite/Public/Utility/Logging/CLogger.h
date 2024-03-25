@@ -79,6 +79,9 @@ public:
 	// Read all log entries from the selected category from the log file 
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log By Category"))
 	static TArray<FString> ReadLogByCategory(ELogCategory Category);
+
+	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Rotate LogFile"))
+	static void RotateLogFile();
 	
 	// Get the singleton instance of the logger
 	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))
