@@ -28,20 +28,6 @@ public:
 		return ReceiveOnLoad();
 	}
 
-	// Register to Save Manager
-	UFUNCTION(BlueprintCallable)
-	virtual void RegisterToSaveManager() override
-	{
-		UCSaveGameManager::Get()->RegisterSavable(this);
-	}
-
-	// Unregister from Save Manager
-	UFUNCTION(BlueprintCallable)
-	virtual void UnregisterFromSaveManager() override
-	{
-		UCSaveGameManager::Get()->UnRegisterSavable(this);
-	}
-
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

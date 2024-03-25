@@ -211,16 +211,6 @@ void UCRandomComponent::OnLoad()
 	}
 }
 
-void UCRandomComponent::RegisterToSaveManager()
-{
-	UCSaveGameManager::Get()->RegisterSavable(this);
-}
-
-void UCRandomComponent::UnregisterFromSaveManager()
-{
-	UCSaveGameManager::Get()->UnRegisterSavable(this);
-}
-
 void UCRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

@@ -66,12 +66,6 @@ public:
 
 	// OnLoad implementation
 	virtual void OnLoad() override;
-
-	// RegisterToSaveManager implementation
-	virtual void RegisterToSaveManager() override;
-
-	// UnregisterFromSaveManager implementation
-	virtual void UnregisterFromSaveManager() override;
 	
 private:
 	UPROPERTY(Replicated)
