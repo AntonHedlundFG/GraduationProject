@@ -9,8 +9,8 @@ static TAutoConsoleVariable<float> CVarDamageMultiplier(TEXT("game.DamageMultipl
 
 UCAttributeComponent::UCAttributeComponent()
 {
-	HealthMax = 100;
-	Health = HealthMax;
+	BaseHealth = 100;
+	CurrentHealth = BaseHealth;
 
 	Rage = 0;
 	RageMax = 100;
@@ -31,23 +31,23 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 		Delta *= DamageMultiplier;
 	}
 
-	float OldHealth = Health;
-	float NewHealth = FMath::Clamp(Health + Delta, 0.0f, HealthMax);
+	float OldHealth = CurrentHealth;
+	float NewHealth = FMath::Clamp(CurrentHealth + Delta, 0.0f, BaseHealth);
 
 	float ActualDelta = NewHealth - OldHealth;
 
 	//Is Server?
 	if (GetOwner()->HasAuthority())
 	{
-		Health = NewHealth;
+		CurrentHealth = NewHealth;
 
 		if (ActualDelta != 0.0f)
 		{
-			MulticastHealthChanged(InstigatorActor, Health, ActualDelta);
+			MulticastHealthChanged(InstigatorActor, CurrentHealth, ActualDelta);
 		}
 
 		//Died.
-		if (ActualDelta < 0.0f && Health == 0.0f)
+		if (ActualDelta < 0.0f && CurrentHealth == 0.0f)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Died!"));
 		}
@@ -78,7 +78,7 @@ bool UCAttributeComponent::IsActorAlive(AActor* Actor)
 	return false;
 }
 
-
+//Create deathconsequence
 bool UCAttributeComponent::Kill(AActor* InstigatorActor)
 {
 	return ApplyHealthChange(InstigatorActor, -GetHealthMax());
@@ -87,25 +87,25 @@ bool UCAttributeComponent::Kill(AActor* InstigatorActor)
 
 bool UCAttributeComponent::IsAlive() const
 {
-	return Health > 0.0f;
+	return CurrentHealth > 0.0f;
 }
 
 
 bool UCAttributeComponent::IsFullHealth() const
 {
-	return Health == HealthMax;
+	return CurrentHealth == BaseHealth;
 }
 
 
 float UCAttributeComponent::GetHealth() const
 {
-	return Health;
+	return CurrentHealth;
 }
 
 
 float UCAttributeComponent::GetHealthMax() const
 {
-	return HealthMax;
+	return BaseHealth;
 }
 
 
@@ -124,8 +124,8 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(UCAttributeComponent, Health);
-	DOREPLIFETIME(UCAttributeComponent, HealthMax);
+	DOREPLIFETIME(UCAttributeComponent, CurrentHealth);
+	DOREPLIFETIME(UCAttributeComponent, BaseHealth);
 
 	DOREPLIFETIME(UCAttributeComponent, Rage);
 	DOREPLIFETIME(UCAttributeComponent, RageMax);
