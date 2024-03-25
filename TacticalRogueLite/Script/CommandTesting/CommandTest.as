@@ -32,7 +32,7 @@ class USTestAttackCommand : UCCommand
     ACUnit Instigator;
     ACUnit Target;
 
-    private UCAttributeComponent Attributes;
+    UCAttributeComponent Attributes;
 
     UFUNCTION(BlueprintOverride)
     void ExecuteCommand()

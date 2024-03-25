@@ -16,6 +16,7 @@ UCAttributeComponent::UCAttributeComponent()
 	RageMax = 100;
 
 	SetIsReplicatedByDefault(true);
+	bAutoActivate = true;
 }
 
 bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delta)

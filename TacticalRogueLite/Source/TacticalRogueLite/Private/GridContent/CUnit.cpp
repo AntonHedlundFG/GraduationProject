@@ -23,13 +23,17 @@ ACUnit::ACUnit()
 
 void ACUnit::BeginPlay()
 {
-	if (GetNetMode() <= ENetMode::NM_ListenServer)
+	Super::BeginPlay();
+
+	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
 		AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
 }
 
 void ACUnit::EndPlay(EEndPlayReason::Type Reason)
 {
-	if (GetNetMode() <= ENetMode::NM_ListenServer)
+	Super::EndPlay(Reason);
+
+	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
 		AttributeComp->OnHealthChanged.RemoveDynamic(this, &ACUnit::OnHealthChanged);
 }
 
@@ -55,7 +59,6 @@ UCItem* ACUnit::GetItemInSlot(EItemSlots inSlot)
 
 void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ONHEALTHCHANGED"));
 	float OldHealth = NewHealth - Delta;
 	if (OldHealth > 0 && NewHealth <= 0)
 	{
