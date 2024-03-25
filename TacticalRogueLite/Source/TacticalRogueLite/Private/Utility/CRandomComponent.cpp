@@ -1,10 +1,7 @@
 ﻿#include "Utility/CRandomComponent.h"
 
 #include "Net/UnrealNetwork.h"
-<<<<<<< HEAD
-=======
 #include "Utility/Logging/CLogger.h"
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -35,10 +32,7 @@ void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 
 	RandomStream.Initialize(CurrentStateSeed);
 	SaveState();
-<<<<<<< HEAD
-=======
 	LOG(ELogCategory::LC_Info, "Initializing Random from Start Seed: %d", StartSeed);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 }
 
 int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
@@ -63,11 +57,7 @@ int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
 		TicksSinceSave++;
 
 	}
-<<<<<<< HEAD
-	
-=======
 	LOG_INFO("Get Random Value: %d", Value);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 	return Value;
 }
 
@@ -102,12 +92,8 @@ int32 UCRandomComponent::RollBackRandom(int32 inTicks)
 		Ticks++;
 		TicksSinceSave++;
 	}
-<<<<<<< HEAD
-	
-=======
 
 	LOG_INFO("Rolling back %d ticks", inTicks);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 	return Value;
 }
 
@@ -116,10 +102,7 @@ void UCRandomComponent::RollBackToSave()
 	RandomStream.Initialize(CurrentStateSeed);
 	TicksSinceSave = 0;
 	Ticks = TicksAtSave;
-<<<<<<< HEAD
-=======
 	LOG_INFO("Rolling back to previous saved state at seed: %d", CurrentStateSeed);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 }
 
 void UCRandomComponent::SaveState()
@@ -127,10 +110,7 @@ void UCRandomComponent::SaveState()
 	CurrentStateSeed = RandomStream.GetCurrentSeed();
 	TicksSinceSave = 0;
 	TicksAtSave = Ticks;
-<<<<<<< HEAD
-=======
 	LOG_INFO("Saving Random State: %d", CurrentStateSeed);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 }
 
 void UCRandomComponent::ResetToInitialSeed()
@@ -164,10 +144,7 @@ int32 UCRandomComponent::PeekAhead(int32 inMin, int32 inMax, int32 inTicksAhead)
 
 	const int32 Value = TempStream.RandRange(inMin, inMax); 
 
-<<<<<<< HEAD
-=======
 	LOG_INFO("Peek Ahead %d Ticks Ahead, Got Value: %d", inTicksAhead, Value);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 	return Value; 
 }
 
@@ -181,10 +158,7 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 	}
 
 	const FRandomStream TempStream = RandomStream; // Make a copy of the current random stream
-<<<<<<< HEAD
-=======
 	FString ValueString;
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 
 	for (int i = 0; i < inMins.Num(); i++)
 	{
@@ -202,15 +176,10 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 			// Generate and add the next random value within the specified range
 			Values.Add(TempStream.RandRange(Min, Max));
 		}
-<<<<<<< HEAD
-	}
-
-=======
 		ValueString += FString::Printf(TEXT("%d, "), Values[i]);
 	}
 
 	LOG_INFO("Peek Ahead %d Ticks Ahead, Got Value: %ls", inMins.Num(), *ValueString);
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 	return Values;
 }
 
@@ -242,19 +211,6 @@ void UCRandomComponent::OnLoad()
 	}
 }
 
-<<<<<<< HEAD
-void UCRandomComponent::RegisterToSaveManager()
-{
-	UCSaveGameManager::Get()->RegisterSavable(this);
-}
-
-void UCRandomComponent::UnregisterFromSaveManager()
-{
-	UCSaveGameManager::Get()->UnRegisterSavable(this);
-}
-
-=======
->>>>>>> e07acfacf7ef898a0f36b8bf416ec0ed62ca572d
 void UCRandomComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
