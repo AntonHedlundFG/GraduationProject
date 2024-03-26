@@ -134,6 +134,7 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 
 	DOREPLIFETIME(UCAttributeComponent, CurrentHealth);
 	DOREPLIFETIME(UCAttributeComponent, BaseHealth);
+	DOREPLIFETIME(UCAttributeComponent, ActiveGameplayTags);
 
 	DOREPLIFETIME(UCAttributeComponent, Rage);
 	DOREPLIFETIME(UCAttributeComponent, RageMax);
