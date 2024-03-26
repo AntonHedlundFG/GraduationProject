@@ -12,9 +12,11 @@
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
 #include "CommandPattern/CConsequence.h"
+#include "Utility/Logging/CLogManager.h"
 
 void ACGameMode::BeginPlay()
 {
+	Super::BeginPlay();
 	if (!GameStateRef)
 	{
 		GameStateRef = GetGameState<ACGameState>();
