@@ -39,7 +39,7 @@ void UCLogManager::Log(ELogCategory Category, const FString& Message)
 	FLogManager::Log(LogMessage);
 
 	// Broadcast if Instance exists
-	if (Instance) 
+	if (Get()) 
 	{
 		Instance->OnNewLogEntry.Broadcast(Category, Message);
 	}
