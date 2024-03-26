@@ -45,7 +45,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Abilities")
 	TObjectPtr<UTexture2D> AbilityIcon;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Slot")
+	EItemSlots ItemSlot; 
 	
 	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
 	{

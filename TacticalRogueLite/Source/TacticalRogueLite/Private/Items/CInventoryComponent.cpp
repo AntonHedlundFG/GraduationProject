@@ -2,6 +2,7 @@
 
 #include "Items/CInventoryComponent.h"
 
+#include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 
 UCInventoryComponent::UCInventoryComponent()
@@ -57,6 +58,7 @@ UCItem* UCInventoryComponent::GetItemInSlot(EItemSlots inSlot) const
 
 void UCInventoryComponent::EquipItem(UCItem* inItem, EItemSlots inSlot)
 {
+	EItemSlots slot = inItem->ItemSlot;
 	switch (inSlot)
 	{
 	case EItemSlots::EIS_Boots:
