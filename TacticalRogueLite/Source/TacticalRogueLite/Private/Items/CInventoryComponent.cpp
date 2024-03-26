@@ -2,6 +2,7 @@
 
 #include "Items/CInventoryComponent.h"
 
+#include "GridContent/CUnit.h"
 #include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 
@@ -56,23 +57,11 @@ UCItem* UCInventoryComponent::GetItemInSlot(EItemSlots inSlot) const
 	}
 }
 
-TArray<UCItem*> UCInventoryComponent::GetAllItems() const
-{
-	TArray<UCItem*> Items = Charms;
-	TArray<UCItem*> Equipped = GetEquippedItems();
-	for (auto item : Equipped)
-	{
-		if (!Items.Contains(item))
-		{
-			Items.Add(item);
-		}
-	}
-	return Items;
-}
-
 void UCInventoryComponent::EquipItem(UCItem* inItem, EItemSlots inSlot)
 {
 	EItemSlots slot = inSlot == EItemSlots::EIS_None? inItem->ItemSlot : inSlot;
+
+	
 	switch (slot)
 	{
 	case EItemSlots::EIS_Boots:
@@ -94,17 +83,56 @@ void UCInventoryComponent::EquipItem(UCItem* inItem, EItemSlots inSlot)
 		break;
 	}
 	
-	AddCharm(inItem);
+	AddItem(inItem);
 }
 
-void UCInventoryComponent::AddCharm(UCItem* inItem)
+void UCInventoryComponent::UnEquipItem(EItemSlots inSlot)
 {
-	//CHECK HERE IF ITEM IS CHARM / HAS PASSIVE EFFECTS
-	bool isCharm = false;
 	
-	if (isCharm)
+	switch (inSlot)
 	{
-		Charms.Add(inItem);
+	case EItemSlots::EIS_Boots:
+		RemoveItem(Boots);
+		Boots = nullptr;
+		break;
+	case EItemSlots::EIS_Weapon:
+		RemoveItem(Weapon);
+		Weapon = nullptr;
+		break;
+	case EItemSlots::EIS_Body:
+		RemoveItem(Armor);
+		Armor = nullptr;
+		break;
+	case EItemSlots::EIS_Helmet:
+		RemoveItem(Helmet);
+		Helmet = nullptr;
+		break;
+	case EItemSlots::EIS_Ring:
+		RemoveItem(Ring);
+		Ring = nullptr;
+		break;
+	default:
+		break;
+	}
+}
+
+void UCInventoryComponent::AddItem(UCItem* inItem)
+{
+	if(ACUnit* Unit = Cast<ACUnit>(GetOwner()))
+	{
+		inItem->EquipOnUnit(Unit);
+		AllItems.Add(inItem);
+	}
+}
+
+void UCInventoryComponent::RemoveItem(UCItem* inItem)
+{
+	if (!AllItems.Contains(inItem)) return;
+	
+	if(ACUnit* Unit = Cast<ACUnit>(GetOwner()))
+	{
+		inItem->UnequipOnUnit(Unit);
+		AllItems.Remove(inItem);
 	}
 }
 
