@@ -6,12 +6,15 @@
 #include "Items/ItemSlots.h"
 #include "Attributes/CAttributeComponent.h"
 #include "CommandPattern/CDeathConsequence.h"
+#include "Items/CInventoryComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACUnit, ControllingPlayerIndex);
+
+
 }
 
 ACUnit::ACUnit()
@@ -19,6 +22,7 @@ ACUnit::ACUnit()
 	bReplicates = true;
 	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
+	Inventory = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 }
 
 void ACUnit::BeginPlay()
@@ -27,6 +31,9 @@ void ACUnit::BeginPlay()
 
 	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
 		AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
+
+	Inventory->EquipItem(TemporaryItemBoots,EItemSlots::EIS_Boots);
+	Inventory->EquipItem(TemporaryItemWeapon, EItemSlots::EIS_Weapon);
 }
 
 void ACUnit::EndPlay(EEndPlayReason::Type Reason)
@@ -49,12 +56,8 @@ bool ACUnit::IsControlledBy(AController* inController)
 }
 
 UCItem* ACUnit::GetItemInSlot(EItemSlots inSlot)
-{
-	if (inSlot == EItemSlots::EIS_Boots)
-		return TemporaryItemBoots;
-	if (inSlot == EItemSlots::EIS_Weapon)
-		return TemporaryItemWeapon;
-	return nullptr;
+{	
+	return Inventory->GetItemInSlot(inSlot);
 }
 
 void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)
