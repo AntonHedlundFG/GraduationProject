@@ -74,7 +74,7 @@ public:
 			return TArray<ACGridTile*>();
 		}
 			
-		return GetValidTargetTiles(inUnit);
+		return GetValidTargetTilesInternal(inUnit);
 	}
 	
 	
