@@ -32,8 +32,8 @@ void ACUnit::BeginPlay()
 	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
 		AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
 
-	Inventory->EquipItem(TemporaryItemBoots,EItemSlots::EIS_Boots);
-	Inventory->EquipItem(TemporaryItemWeapon, EItemSlots::EIS_Weapon);
+	Inventory->EquipItem(TemporaryItemBoots);
+	Inventory->EquipItem(TemporaryItemWeapon);
 }
 
 void ACUnit::EndPlay(EEndPlayReason::Type Reason)
