@@ -36,9 +36,11 @@ public:
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);
 	UFUNCTION(BlueprintCallable)
 	void CreateLinks();
-	UFUNCTION(BlueprintCallable)
 
 #pragma region Get/Set
+	UFUNCTION(BlueprintCallable)
+	ACGrid* GetParentGrid() const { return ParentGrid; }
+	UFUNCTION(BlueprintCallable)
 	FVector2D GetGridCoords() const { return GridCoords; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetStraightLinks() const { return StraightLinks; }
