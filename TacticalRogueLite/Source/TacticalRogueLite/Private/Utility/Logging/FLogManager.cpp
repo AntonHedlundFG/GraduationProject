@@ -1,36 +1,45 @@
-﻿#include "Utility/Logging/FLogger.h"
+﻿#include "Utility/Logging/FLogManager.h"
 
 #pragma region Static Member Definitions
 
 // Define the static members
-FString FLogger::LogFilePath;
-FArchive* FLogger::LogFile = nullptr;
-std::mutex FLogger::LogMutex;
-std::mutex FLogger::WorkerMutex;
-bool FLogger::bIsWorkerDone = false;
-std::queue<FString> FLogger::LogQueue;
-std::mutex FLogger::QueueMutex;
-std::condition_variable FLogger::WorkerDoneCondition;
-std::condition_variable FLogger::LogCondition;
-std::thread FLogger::LogThread;
-bool FLogger::bIsRunning = false; 
+
+// Log Manager
+FString FLogManager::LogFilePath;
+FArchive* FLogManager::LogFile = nullptr;
+std::mutex FLogManager::LogMutex;
+std::mutex FLogManager::WorkerMutex;
+bool FLogManager::bIsWorkerDone = false;
+TArray<FString> FLogManager::SessionLogFilePaths;
+std::queue<FString> FLogManager::LogQueue;
+std::mutex FLogManager::QueueMutex;
+std::condition_variable FLogManager::WorkerDoneCondition;
+std::condition_variable FLogManager::LogCondition;
+std::thread FLogManager::LogThread;
+bool FLogManager::bIsRunning = false;
+
+// Recent Log Entries
+std::vector<std::pair<int64, FString>> FLogManager::RecentLogEntries;
+std::unordered_map<int64, size_t> FLogManager::RecentLogIndexMap;
+std::mutex FLogManager::RecentLogMutex;
+size_t FLogManager::NextLogIndex = 0;
 
 #pragma endregion
 
 // Constructor
-FLogger::FLogger()
+FLogManager::FLogManager()
 {
 	Initialize();
 }
 
 // Destructor
-FLogger::~FLogger()
+FLogManager::~FLogManager()
 {
 	ShutDown();
 }
 
 // Adds a log message to the queue for processing
-void FLogger::Log(const FString& Message)
+void FLogManager::Log(const FString& Message)
 {
 	std::lock_guard Lock(QueueMutex);
 	LogQueue.push(Message);
@@ -38,38 +47,54 @@ void FLogger::Log(const FString& Message)
 }
 
 // Reads all log entries from the current log file
-TArray<FString> FLogger::ReadLog()
+TArray<FString> FLogManager::ReadLog()
 {
 	TArray<FString> LogEntries;
-	std::lock_guard Lock(LogMutex);
 	
 	CheckAndCloseLog();
-	FFileHelper::LoadFileToStringArray(LogEntries, *GetLogPath());
-	LogFile = IFileManager::Get().CreateFileWriter(*GetLogPath(), FILEWRITE_Append);
+
+	{
+		std::lock_guard Lock(LogMutex);
+		for (FString SessionLogFilePath : SessionLogFilePaths)
+		{
+			TArray<FString> TempLogEntries;
+			if(FFileHelper::LoadFileToStringArray(TempLogEntries, *SessionLogFilePath))
+			{
+				LogEntries.Append(TempLogEntries);
+			}
+		}
+	}
+
+	EnsureFileLogOpen();
 
 	return LogEntries;
 }
 
 // Logs a message to the file
-void FLogger::WriteToLog(FString& Message)
+void FLogManager::WriteToLog(FString& Message)
 {
-	std::lock_guard Lock(LogMutex);
 	EnsureFileLogOpen();
 	
 	if(IsLogTooBig())
 	{
 		RotateLogFile();
-	} 
-	
-	SanitizeMessage(Message);
-	const FString LogMessage = FString::Printf(TEXT("%s - %s\n"), *FDateTime::Now().ToString(), *Message);
-	LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
-	LogFile->Flush();
+	}
+
+	LogItemID++;
+	AddRecentLogEntry(Message);
+
+	{
+		std::lock_guard Lock(LogMutex);
+		SanitizeMessage(Message);
+		const FString LogMessage = FString::Printf(TEXT("[%lld][%s] %s\n"), LogItemID, *FDateTime::Now().ToString(), *Message);
+		LogFile->Serialize(TCHAR_TO_ANSI(*LogMessage), LogMessage.Len());
+		LogFile->Flush();
+	}
 	
 }
 
 // Background worker for processing log messages
-void FLogger::LogWorker()
+void FLogManager::LogWorker()
 {
 	FString Message;
 	while (true)
@@ -101,14 +126,17 @@ void FLogger::LogWorker()
 }
 
 // Generates a new log file path based on the current date and time
-FString FLogger::GetNewLogFilePath()
+FString FLogManager::GetNewLogFilePath()
 {
-	return FPaths::ProjectSavedDir() + RelativeLogPath + FDateTime::Now().ToString() + FString::Printf(TEXT("_%d.log"), ++LogFileIndex);
+	FString FilePath = FPaths::ProjectSavedDir() + RelativeLogPath + FDateTime::Now().ToString() + FString::Printf(TEXT("_%d.log"), ++LogFileIndex);
+	SessionLogFilePaths.Add(FilePath);
+	return FilePath;
 }
 
 // Checks if the log file is too large
-bool FLogger::IsLogTooBig()
+bool FLogManager::IsLogTooBig()
 {
+	std::lock_guard Lock(LogMutex);
 	if(LogFile)
 	{
 		if( LogFile->TotalSize() > GetMaxLogSize())
@@ -120,7 +148,7 @@ bool FLogger::IsLogTooBig()
 }
 
 // Rotates the log file by closing the current one and creating a new one
-void FLogger::RotateLogFile()
+void FLogManager::RotateLogFile()
 {
 	FString Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Rotating Log File"));
 	WriteToLog(Message);
@@ -129,23 +157,17 @@ void FLogger::RotateLogFile()
 
 	{
 		std::lock_guard Lock(LogMutex);
-
-		LogFileIndex++;
-		const FString OldLogFilePath = GetLogPath();
-		FString NewLogFilePath = OldLogFilePath.Replace(
-			*FString::Printf(TEXT("_%d.log"), LogFileIndex - 1),
-			*FString::Printf(TEXT("_%d.log"), LogFileIndex));
-		LogFilePath = NewLogFilePath;
-	
-		EnsureFileLogOpen();
+		LogFilePath = GetNewLogFilePath();
 	}
+
+	EnsureFileLogOpen();
 
 	Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Log File Rotated"));
 	WriteToLog(Message);
 }
 
 // Initializes the logger by creating the log file and starting the worker thread
-void FLogger::Initialize()
+void FLogManager::Initialize()
 {
 	EnsureFileLogOpen();
 
@@ -158,7 +180,7 @@ void FLogger::Initialize()
 }
 
 // Shuts down the logger by closing the log file and stopping the worker thread
-void FLogger::ShutDown()
+void FLogManager::ShutDown()
 {
 	FString Message = FString::Printf(TEXT("%s %s"), *LogInternalTag, TEXT("Logger Shut Down"));
 	WriteToLog(Message);
@@ -168,7 +190,7 @@ void FLogger::ShutDown()
 }
 
 // Sanitizes the message by removing unwanted characters and truncating it if necessary
-void FLogger::SanitizeMessage(FString& Message)
+void FLogManager::SanitizeMessage(FString& Message)
 {
 	Message.ReplaceInline(TEXT("\n"), TEXT("\\n"));
 	Message.ReplaceInline(TEXT("\r"), TEXT("\\r"));
@@ -185,14 +207,14 @@ void FLogger::SanitizeMessage(FString& Message)
 }
 
 // Starts the worker thread for logging
-void FLogger::StartLogWorkerThread()
+void FLogManager::StartLogWorkerThread()
 {
 	bIsRunning = true;
 	LogThread = std::thread(LogWorker);
 }
 
 // Stops the worker thread for logging
-void FLogger::StopLogWorkerThread()
+void FLogManager::StopLogWorkerThread()
 {
 	bIsRunning = false;
 	LogCondition.notify_all();
@@ -210,7 +232,7 @@ void FLogger::StopLogWorkerThread()
 }
 
 // Gets the current log file path or generates a new one if it's empty
-FString FLogger::GetLogPath()
+FString FLogManager::GetLogPath()
 {
 	if(LogFilePath.IsEmpty())
 	{
@@ -220,16 +242,17 @@ FString FLogger::GetLogPath()
 }
 
 // Ensures the log file is open for writing
-void FLogger::EnsureFileLogOpen()
+void FLogManager::EnsureFileLogOpen()
 {
 	if (!LogFile) {
+		std::lock_guard Lock(LogMutex);
 		const EFileWrite WriteFlag = IFileManager::Get().FileExists(*GetLogPath()) ? FILEWRITE_Append : FILEWRITE_None;
 		LogFile = IFileManager::Get().CreateFileWriter(*GetLogPath(), WriteFlag);
 	}
 }
 
 // Closes the log file if it's open
-void FLogger::CheckAndCloseLog()
+void FLogManager::CheckAndCloseLog()
 {
 	if(LogFile)
 	{
@@ -241,3 +264,39 @@ void FLogger::CheckAndCloseLog()
 	}
 }
 
+// Adds a recent log entry to the list of recent log entries
+void FLogManager::AddRecentLogEntry(const FString& Message)
+{
+	std::lock_guard Lock(RecentLogMutex);
+
+	if(RecentLogEntries.size() >= MaxLogEntries)
+	{
+		const auto& oldestEntry = RecentLogEntries[NextLogIndex];
+		RecentLogIndexMap.erase(oldestEntry.first);
+	}
+
+	if(RecentLogEntries.size() < MaxLogEntries)
+	{
+		RecentLogEntries.push_back({LogItemID, Message});
+	}
+	else
+	{
+		RecentLogEntries[NextLogIndex] = {LogItemID, Message};
+	}
+
+	RecentLogIndexMap[LogItemID] = NextLogIndex;
+	NextLogIndex = (NextLogIndex + 1) % MaxLogEntries;
+	
+}
+
+// Get one of the most recent log entries, returns an empty string if the ID is invalid
+FString FLogManager::GetRecentLogEntry(int64 LogID)
+{
+	std::lock_guard Lock(RecentLogMutex);
+	const auto it = RecentLogIndexMap.find(LogID);
+	if(it != RecentLogIndexMap.end())
+	{
+		return RecentLogEntries[it->second].second;
+	}
+	return "";
+}

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "CLogger.generated.h"
+#include "CLogManager.generated.h"
 
 #pragma region ELogCategory Enum
 
@@ -35,22 +35,22 @@ inline FString ToString(ELogCategory LogCategory)
 #pragma region Logging Macros
 
 #define LOG(Category, Message, ...) \
-UCLogger::Log(Category, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(Category, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_INFO(Message, ...) \
-UCLogger::Log(ELogCategory::LC_Info, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(ELogCategory::LC_Info, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_WARNING(Message, ...) \
-UCLogger::Log(ELogCategory::LC_Warning, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(ELogCategory::LC_Warning, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_ERROR(Message, ...) \
-UCLogger::Log(ELogCategory::LC_Error, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(ELogCategory::LC_Error, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_GAMEPLAY(Message, ...) \
-UCLogger::Log(ELogCategory::LC_Gameplay, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(ELogCategory::LC_Gameplay, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_NETWORK(Message, ...) \
-UCLogger::Log(ELogCategory::LC_Network, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::Log(ELogCategory::LC_Network, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #pragma endregion
 
@@ -60,7 +60,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnNewLogEntry, ELogCategory, Categ
 // FLogger wrapper for access through Blueprints and C++
 // *
 UCLASS(BlueprintType)
-class UCLogger : public UObject
+class UCLogManager : public UObject
 {
 	GENERATED_BODY()
 
@@ -74,18 +74,23 @@ public:
 
 	// Read all log entries from the log file
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log"))
-	static TArray<FString> ReadLog();
+	static TArray<FString> GetAllLogEntries();
 
 	// Read all log entries from the selected category from the log file 
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log By Category"))
-	static TArray<FString> ReadLogByCategory(ELogCategory Category);
+	static TArray<FString> GetAllLogEntriesByCategory(ELogCategory Category);
 
+	// Get a log by its ID
+	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Get Recent Log Entry"))
+	static FString GetRecentLogEntry(int64 LogID);
+
+	// Rotate the log file and start writing to a new one
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Rotate LogFile"))
 	static void RotateLogFile();
 	
 	// Get the singleton instance of the logger
 	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))
-	static UCLogger* Get();
+	static UCLogManager* Get();
 
 	// Start and stop the logger
 	static void StartUp();
@@ -96,7 +101,7 @@ public:
 	FOnNewLogEntry OnNewLogEntry;
 
 private:
-	static UCLogger* Instance;
+	static UCLogManager* Instance;
 };
 
 

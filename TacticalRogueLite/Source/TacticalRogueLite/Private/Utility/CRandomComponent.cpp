@@ -1,7 +1,7 @@
 ﻿#include "Utility/CRandomComponent.h"
 
 #include "Net/UnrealNetwork.h"
-#include "Utility/Logging/CLogger.h"
+#include "Utility/Logging/CLogManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 

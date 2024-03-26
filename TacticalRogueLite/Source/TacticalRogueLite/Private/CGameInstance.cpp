@@ -1,15 +1,15 @@
 ﻿#include "CGameInstance.h"
 
-#include "Utility/Logging/CLogger.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCGameInstance::Init()
 {
 	Super::Init();
-	UCLogger::StartUp();
+	UCLogManager::StartUp();
 }
 
 void UCGameInstance::Shutdown()
 {
-	UCLogger::ShutDown();
+	UCLogManager::ShutDown();
 	Super::Shutdown();
 }

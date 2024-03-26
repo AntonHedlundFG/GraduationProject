@@ -1,7 +1,7 @@
 ﻿#include "Utility/SaveGame/CSaveGameManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Kismet/GameplayStatics.h"
-#include "Utility/Logging/CLogger.h"
+#include "Utility/Logging/CLogManager.h"
 
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
 

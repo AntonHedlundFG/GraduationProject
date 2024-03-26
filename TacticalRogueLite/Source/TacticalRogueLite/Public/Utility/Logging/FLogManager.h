@@ -1,10 +1,11 @@
 ﻿#pragma once
 #include <mutex>
+#include <unordered_map>
 
 // *
 // FLogger: A thread-safe, asynchronous logging class
 // *
-class FLogger
+class FLogManager
 {
 public:
 	// --- Public API --- //
@@ -13,6 +14,8 @@ public:
 	static void Log(const FString& Message);
 	// Reads all log entries from the current log file
 	static TArray<FString> ReadLog();
+	// Get one of the most recent log entries, returns an empty string if the ID is invalid
+	static FString GetRecentLogEntry(int64 LogID);
 	// Rotates the log file by closing the current one and creating a new one
 	static void RotateLogFile();
 	
@@ -20,15 +23,16 @@ public:
 	static void Initialize();
 	// Shuts down the logger by closing the log file and stopping the worker thread
 	static void ShutDown();
+	
 
 private:
 	// Constructor/Destructor
-	FLogger();
-	~FLogger();
+	FLogManager();
+	~FLogManager();
 
 	// Prevent copying and assignment
-	FLogger(const FLogger&) = delete;
-	FLogger& operator=(const FLogger&) = delete;
+	FLogManager(const FLogManager&) = delete;
+	FLogManager& operator=(const FLogManager&) = delete;
 
 	// --- File management --- //
 
@@ -67,8 +71,10 @@ private:
 	static std::mutex LogMutex;
 	static std::mutex WorkerMutex;
 	static bool bIsWorkerDone;
+	inline static int64 LogItemID;
 	inline static int16 LogFileIndex;
-
+	static TArray<FString> SessionLogFilePaths;
+	
 	// Threading components
 	static std::queue<FString> LogQueue;
 	static std::mutex QueueMutex;
@@ -80,6 +86,14 @@ private:
 	// Configuration
 	inline static const FString RelativeLogPath = TEXT("TacticalRogueLiteLogs/");
 	inline static const FString LogInternalTag = TEXT("[LOGGER INTERNAL]");
-	static constexpr int16 MaxLogSizeMB = 100; // Maximum log file size in megabytes
+	static constexpr int16 MaxLogSizeMB = 10; // Maximum log file size in megabytes
 	static int64 GetMaxLogSize() { return MaxLogSizeMB * 1024 * 1024; } // Convert MB to bytes
+
+	// --- Recent Log Entries Management --- //
+	static constexpr size_t MaxLogEntries = 300;
+	static std::vector<std::pair<int64, FString>> RecentLogEntries;
+	static std::unordered_map<int64, size_t> RecentLogIndexMap; 
+	static std::mutex RecentLogMutex;
+	static size_t NextLogIndex; 
+	static void AddRecentLogEntry(const FString& Message);
 };
