@@ -23,6 +23,9 @@ void UCDeathConsequence::ExecuteConsequence()
 	Tile = DyingUnit->GetTile();
 	if (Tile)
 		Tile->SetContent(nullptr);
+
+	//Apply a temporary effect, using a TurnTimer which we have yet to implement.
+	//GetWorld()->GetTurnTimer()->CreateTimer(.....) 
 }
 
 void UCDeathConsequence::UndoConsequence()
@@ -36,6 +39,9 @@ void UCDeathConsequence::UndoConsequence()
 
 	if (Tile)
 		Tile->SetContent(DyingUnit);
+
+	//Once we can create TurnTimers, this should cancel it.
+	//GetWorld()->ClearTurnTimer(Handle);
 }
 
 FString UCDeathConsequence::ToString()

@@ -10,7 +10,7 @@ UCInventoryComponent::UCInventoryComponent()
 	
 }
 
-TArray<UCItem*> UCInventoryComponent::GetAllEquipment() const
+TArray<UCItem*> UCInventoryComponent::GetEquippedItems() const
 {
 	TArray<UCItem*> AllEquipped;
 	if (Boots != nullptr)
@@ -56,10 +56,24 @@ UCItem* UCInventoryComponent::GetItemInSlot(EItemSlots inSlot) const
 	}
 }
 
+TArray<UCItem*> UCInventoryComponent::GetAllItems() const
+{
+	TArray<UCItem*> Items = Charms;
+	TArray<UCItem*> Equipped = GetEquippedItems();
+	for (auto item : Equipped)
+	{
+		if (!Items.Contains(item))
+		{
+			Items.Add(item);
+		}
+	}
+	return Items;
+}
+
 void UCInventoryComponent::EquipItem(UCItem* inItem, EItemSlots inSlot)
 {
-	EItemSlots slot = inItem->ItemSlot;
-	switch (inSlot)
+	EItemSlots slot = inSlot == EItemSlots::EIS_None? inItem->ItemSlot : inSlot;
+	switch (slot)
 	{
 	case EItemSlots::EIS_Boots:
 		Boots = inItem;

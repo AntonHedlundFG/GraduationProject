@@ -75,3 +75,5 @@ DerivedDataCache/*
 
 # .Idea files
 .idea/
+TacticalRogueLite/Script/Binds.Cache
+TacticalRogueLite/Script/Binds.Cache.Headers

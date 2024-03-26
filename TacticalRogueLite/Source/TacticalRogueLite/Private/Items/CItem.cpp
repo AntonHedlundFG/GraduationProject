@@ -2,7 +2,8 @@
 
 
 #include "Items/CItem.h"
-
+#include "Attributes/CAttributeComponent.h"
+#include "GridContent/CUnit.h"
 
 bool UCItem::IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile)
 {
@@ -11,10 +12,24 @@ bool UCItem::IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile)
 	return ValidTiles.Contains(inTargetTile);
 }
 
-/*
-bool UCItem::IsValidTargetTileIndex(ACUnit* inUnit, const int inTargetTileIndex)
+TArray<ACGridTile*> UCItem::GetValidTargetTiles(ACUnit* inUnit)
 {
-	ACGridTile* TargetTile = nullptr; //Should be Grid->GetTileOfIndex(inTargetTileIndex)
-	return IsValidTargetTile(inUnit, TargetTile);
+	if (UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.HasAny(BlockedTags))
+	{
+		return TArray<ACGridTile*>();
+	}
+
+	return GetValidTargetTilesInternal(inUnit);
 }
-*/
+
+void UCItem::EquipOnUnit(ACUnit* inUnit)
+{
+	UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.AppendTags(GrantsTags);
+	EquipOnUnitInternal(inUnit);
+}
+
+void UCItem::UnequipOnUnit(ACUnit* inUnit)
+{
+	UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.RemoveTags(GrantsTags);
+	UnequipOnUnitInternal(inUnit);
+}
