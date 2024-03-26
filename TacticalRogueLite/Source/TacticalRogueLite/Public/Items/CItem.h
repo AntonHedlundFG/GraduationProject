@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "GameplayTags.h"
 #include "CItem.generated.h"
 
 class UCCommand;
@@ -19,11 +20,33 @@ class TACTICALROGUELITE_API UCItem : public UDataAsset
 {
 	GENERATED_BODY()
 
+protected:
+	
+	//Tags added to owning actor when item is equipped.
+	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	FGameplayTagContainer GrantsTags;
+
+	//The item can not create an executable command if owningactor has any of these tags applied.
+	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	FGameplayTagContainer BlockedTags;
+
+	//Item "nickname" to start/stop without a reference to the object. EXPERIMENTAL
+	UPROPERTY(EditDefaultsOnly, Category = "Effects")
+	FGameplayTag ActivationTag;
+
+	//Start immediately when added to a attribute component. EXPERIMENTAL- change to more turn based manner
+	UPROPERTY(EditDefaultsOnly, Category = "Effects")
+	bool bAutoStart;
+	
+	UPROPERTY() //Replicated
+	int TurnCounterStarted;
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Abilities")
 	TObjectPtr<UTexture2D> AbilityIcon;
-
+	
+	
 	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
 	{
 		return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile);

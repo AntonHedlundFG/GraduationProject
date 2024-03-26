@@ -57,6 +57,11 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 	return ActualDelta != 0;
 }
 
+void UCAttributeComponent::ApplyTagWithDuration(FGameplayTag InTag, int Duration)
+{
+	
+}
+
 UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 {
 	if (FromActor)
@@ -79,10 +84,10 @@ bool UCAttributeComponent::IsActorAlive(AActor* Actor)
 	return false;
 }
 
-//Create deathconsequence
+//Create deathconsequence.
 bool UCAttributeComponent::Kill(AActor* InstigatorActor)
 {
-	return ApplyHealthChange(InstigatorActor, -GetHealthMax());
+	return ApplyHealthChange(InstigatorActor, -GetBaseHealth());
 }
 
 
@@ -104,7 +109,7 @@ float UCAttributeComponent::GetHealth() const
 }
 
 
-float UCAttributeComponent::GetHealthMax() const
+float UCAttributeComponent::GetBaseHealth() const
 {
 	return BaseHealth;
 }

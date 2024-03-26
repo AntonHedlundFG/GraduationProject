@@ -32,6 +32,7 @@ class USTestAttackCommand : UCCommand
     ACUnit Instigator;
     ACUnit Target;
 
+
     UCAttributeComponent Attributes;
 
     UFUNCTION(BlueprintOverride)
@@ -39,6 +40,7 @@ class USTestAttackCommand : UCCommand
     {
         Attributes = UCAttributeComponent::GetAttributes(Target);
         if (Attributes == nullptr) return;
+
 
         Attributes.ApplyHealthChange(Instigator, -50);
         Print(f"{Attributes.Health}");
@@ -63,9 +65,11 @@ class USTestItem : UCItem
     UPROPERTY()
     int TestValue = 2;
 
+
     UFUNCTION(BlueprintOverride)
     UCCommand GenerateAbilityCommand(AController inController, ACUnit inUnit, ACGridTile inTargetTile)
     {
+        
         USTestCommand NewCommand = Cast<USTestCommand>(NewObject(inController, USTestCommand::StaticClass()));
         NewCommand.TargetUnit = inUnit;
         NewCommand.TargetTile = inTargetTile;

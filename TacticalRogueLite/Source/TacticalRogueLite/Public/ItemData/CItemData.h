@@ -46,6 +46,15 @@ protected:
 
 public:
 
+	
+	//Tags added to owning actor when activated, removed when action stops */
+	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	FGameplayTagContainer GrantsTags;
+
+	/* Action can only start if OwningActor has none of these Tags applied */
+	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	FGameplayTagContainer BlockedTags;
+
 	//Access in blueprints via 'get as texture/material' helpers to allow easy soft-loading which can't be done through base class.
 	UPROPERTY(EditDefaultsOnly, Category = "UI", meta = (AssetBundles = "UI", AllowedClasses = "MaterialInterface, Texture2D"))
 	TSoftObjectPtr<UObject> Icon;

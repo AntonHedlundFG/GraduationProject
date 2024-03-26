@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "GameplayTagContainer.h"
 #include "CAttributeComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewHealth, float, Delta);
@@ -21,6 +22,10 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	static UCAttributeComponent* GetAttributes(AActor* FromActor);
+
+	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
+	FGameplayTagContainer ActiveGameplayTags;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes", meta = (DisplayName = "IsAlive"))
 	static bool IsActorAlive(AActor* Actor);
@@ -67,7 +72,7 @@ public:
 	float GetHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	float GetHealthMax() const;
+	float GetBaseHealth() const;
 
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnAttributeChanged OnHealthChanged;
@@ -78,6 +83,9 @@ public:
 	//Passing in the difference we want applied. Return if the change actually succeeded.
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void ApplyTagWithDuration(FGameplayTag InTag, int Duration);
 
 	// UFUNCTION(BlueprintCallable)
 	// float GetRage() const;
