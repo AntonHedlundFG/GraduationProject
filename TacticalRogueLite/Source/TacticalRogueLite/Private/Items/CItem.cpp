@@ -6,6 +6,7 @@
 
 bool UCItem::IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile)
 {
+	
 	TArray<ACGridTile*> ValidTiles = GetValidTargetTiles(inUnit);
 	return ValidTiles.Contains(inTargetTile);
 }

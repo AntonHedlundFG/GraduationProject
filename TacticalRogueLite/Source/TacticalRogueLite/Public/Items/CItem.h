@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "GameplayTags.h"
+#include "Attributes/CAttributeComponent.h"
+#include "GridContent/CUnit.h"
 #include "CItem.generated.h"
 
 class UCCommand;
@@ -61,15 +63,43 @@ public:
 	}
 
 	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile);
+	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile); 
+
+	TArray<ACGridTile*> GetValidTargetTiles(ACUnit* inUnit) 
+	{
+		if (UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.HasAny(BlockedTags))
+		{
+			return TArray<ACGridTile*>();
+		}
+			
+		return GetValidTargetTiles(inUnit);
+	}
 	
-	virtual TArray<ACGridTile*> GetValidTargetTiles(ACUnit* inUnit) 
-	{ 
+	
+	virtual TArray<ACGridTile*> GetValidTargetTilesInternal(ACUnit* inUnit) //Override in C++. 
+	{
 		return ReceiveGetValidTargetTiles(inUnit); 
 	}
 
 	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit);
+	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit); //Override in AS.
+
+	void EquipOnUnit(ACUnit* inUnit)
+	{
+		//UCAttributeComponent::GetAttribute(inUnit)->AppendTags(GrantsTags);
+		EquipOnUnitInternal(inUnit);
+	}
+
+	virtual void EquipOnUnitInternal(ACUnit* inUnit)
+	{
+		ReceiveEquipOnUnit(inUnit);
+	}
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReceiveEquipOnUnit(ACUnit* inUnit);
+
+
+	
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
 	bool IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile);

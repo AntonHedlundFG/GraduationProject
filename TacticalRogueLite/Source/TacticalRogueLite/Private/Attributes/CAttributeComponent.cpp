@@ -1,7 +1,8 @@
 
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
-
+//variablar onrep istället
+//viktigt att replikera till clienterna- tags osv
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAttributeComponent)
 
@@ -71,6 +72,7 @@ UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 
 	return nullptr;
 }
+
 
 
 bool UCAttributeComponent::IsActorAlive(AActor* Actor)

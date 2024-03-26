@@ -9,6 +9,8 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewHealth, float, Delta);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewRage, float, Delta);
 
+//Säga till visualeffectcomp att något har ändrats(repl relaterat)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActiveGamePlayTagsChanged);
 //Alternative: Share the same signature with generic names.
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAttributeChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewValue, float, Delta);
 
@@ -24,8 +26,20 @@ public:
 	static UCAttributeComponent* GetAttributes(AActor* FromActor);
 
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicatedusing = OnRep_ActiveGameplayTags, Category = "Tags")
 	FGameplayTagContainer ActiveGameplayTags;
+
+	UFUNCTION()
+	void OnRep_ActiveGameplayTags()
+	{
+		OnActiveGamePlayTagsChanged.Broadcast();
+	}
+
+	UPROPERTY(BlueprintAssignable)
+	FOnActiveGamePlayTagsChanged OnActiveGamePlayTagsChanged;
+
+	// min container == activegameplaytags(attr)
+	
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes", meta = (DisplayName = "IsAlive"))
 	static bool IsActorAlive(AActor* Actor);
@@ -34,9 +48,16 @@ public:
 
 
 protected:
+	//movement turns
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentHealth;
+
+	UFUNCTION()
+	void OnRep_CurrentHealth()
+	{
+		//Handle visual stuff based on CurrentHealth
+	}
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
 	int BaseHealth;
