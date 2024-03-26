@@ -8,7 +8,19 @@ public class TacticalRogueLite : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "OnlineSubsystemEOS", "OnlineSubsystem", "OnlineSubsystemUtils", "GameplayTags"});
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore", 
+			"EnhancedInput", 
+			"OnlineSubsystemEOS", 
+			"OnlineSubsystem", 
+			"OnlineSubsystemUtils", 
+			"GameplayTags", 
+			"AIModule"
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
