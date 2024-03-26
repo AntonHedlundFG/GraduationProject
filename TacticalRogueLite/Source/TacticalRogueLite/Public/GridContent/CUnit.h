@@ -6,6 +6,7 @@
 #include "CUnit.generated.h"
 
 class UCAttributeComponent;
+class UCInventoryComponent;
 class UCItem;
 class ACGridTile;
 enum class EItemSlots : uint8;
@@ -36,6 +37,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UCItem* GetItemInSlot(EItemSlots inSlot);
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
+	TObjectPtr<UCInventoryComponent> Inventory;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UCItem> TemporaryItemBoots;
