@@ -118,9 +118,9 @@ class ASPoolableActor : AActor
     FOnPoolEnterExit onDequeue_evnt;
 
     //This is called when the pool object is created
-    void SubscribePool(USObjectPool pool)
+    void SubscribePool(USObjectPool inPool)
     {
-        this.pool = pool;
+        pool = inPool;
     }
     //This is called when the object is put back into the pool
     void OnEnQueue()

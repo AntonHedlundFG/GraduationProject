@@ -5,13 +5,13 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "GameplayTags.h"
-#include "Attributes/CAttributeComponent.h"
-#include "GridContent/CUnit.h"
+#include "ItemSlots.h"
 #include "CItem.generated.h"
 
 class UCCommand;
 class ACUnit;
 class ACGridTile;
+class UCAttributeComponent;
 
 /** If making a C++ extension that is also extended by AngelScript/Blueprints, 
 * make sure you call the Super::GenerateAbilityCommand() function manually. 
@@ -32,83 +32,99 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
 	FGameplayTagContainer BlockedTags;
 
+	/* -- Is there a use case for this? -- 
 	//Item "nickname" to start/stop without a reference to the object. EXPERIMENTAL
 	UPROPERTY(EditDefaultsOnly, Category = "Effects")
 	FGameplayTag ActivationTag;
-
-	//Start immediately when added to a attribute component. EXPERIMENTAL- change to more turn based manner
-	UPROPERTY(EditDefaultsOnly, Category = "Effects")
-	bool bAutoStart;
-	
-	UPROPERTY() //Replicated
-	int TurnCounterStarted;
+	*/
 
 public:
 
+	//Fetched by UI to display on buttons
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Abilities")
 	TObjectPtr<UTexture2D> AbilityIcon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Slot")
 	EItemSlots ItemSlot; 
 	
-	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
-	{
-		return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile);
-	}
-
-	UFUNCTION(BlueprintImplementableEvent)
-	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile);
-
-	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile) 
-	{ 
-		return ReceiveGetReachableTiles(inTile); 
-	}
-
-	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile); 
-
-	TArray<ACGridTile*> GetValidTargetTiles(ACUnit* inUnit) 
-	{
-		if (UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.HasAny(BlockedTags))
-		{
-			return TArray<ACGridTile*>();
-		}
-			
-		return GetValidTargetTilesInternal(inUnit);
-	}
-	
-	
-	virtual TArray<ACGridTile*> GetValidTargetTilesInternal(ACUnit* inUnit) //Override in C++. 
-	{
-		return ReceiveGetValidTargetTiles(inUnit); 
-	}
-
-	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit); //Override in AS.
-
-	void EquipOnUnit(ACUnit* inUnit)
-	{
-		//UCAttributeComponent::GetAttribute(inUnit)->AppendTags(GrantsTags);
-		EquipOnUnitInternal(inUnit);
-	}
-
-	virtual void EquipOnUnitInternal(ACUnit* inUnit)
-	{
-		ReceiveEquipOnUnit(inUnit);
-	}
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void ReceiveEquipOnUnit(ACUnit* inUnit);
-
-
-	
-
+	/// <summary>
+	/// Given a unit and a tile, can this item currently be used with
+	/// that unit as the active unit, and the tile as the target?
+	/// </summary>
+	/// <param name="inUnit"> The active unit </param>
+	/// <param name="inTargetTile"> The desired target tile </param>
+	/// <returns></returns>
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
 	bool IsValidTargetTile(ACUnit* inUnit, ACGridTile* inTargetTile);
 
-	/* Removed, we should just be using ACGridTile* instead of int indexes
-	UFUNCTION(BlueprintCallable, Category = "Abilities|Targeting")
-	bool IsValidTargetTileIndex(ACUnit* inUnit, const int inTargetTileIndex);
-	*/
+	/// <summary>
+	/// Given a unit, create an array of all tiles that are valid targets 
+	/// for activating the item's ability.
+	/// </summary>
+	/// <param name="inUnit"> The active unit </param>
+	/// <returns> An array of valid target tiles </returns>
+	TArray<ACGridTile*> GetValidTargetTiles(ACUnit* inUnit);
+
+	/// <summary>
+	/// Called by the server when a unit equips this item. This applies any
+	/// tags in GrantsTags to the unit, and EquipOnUnitInternal can be overridden
+	/// to apply further custom effects.
+	/// </summary>
+	/// <param name="inUnit"></param>
+	void EquipOnUnit(ACUnit* inUnit);
+
+	/// <summary>
+	/// Called by the server when a unit unequips this item. Removes any tags in 
+	/// GrantsTags from the unit, and UnequipOnUnitInternal can be overridden to 
+	/// remove any further custom effects.
+	/// </summary>
+	/// <param name="inUnit"></param>
+	void UnequipOnUnit(ACUnit* inUnit);
+
+
+
+#pragma region C++ overrides
+
+public:
+
+	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
+	{ return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile); }
+
+	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile)
+	{ return ReceiveGetReachableTiles(inTile); }
+
+
+protected:
+
+	virtual TArray<ACGridTile*> GetValidTargetTilesInternal(ACUnit* inUnit)
+	{ return ReceiveGetValidTargetTiles(inUnit); }
+
+	virtual void EquipOnUnitInternal(ACUnit* inUnit)
+	{ ReceiveEquipOnUnit(inUnit); }
+
+	virtual void UnequipOnUnitInternal(ACUnit* inUnit)
+	{ ReceiveUnequipOnUnit(inUnit); }
+
+#pragma endregion
+
+
+#pragma region AngelScript overridables
+
+protected:
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReceiveEquipOnUnit(ACUnit* inUnit);
+	UFUNCTION(BlueprintImplementableEvent)
+	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile);
+	UFUNCTION(BlueprintImplementableEvent)
+	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit); 
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReceiveUnequipOnUnit(ACUnit* inUnit);
+	UFUNCTION(BlueprintImplementableEvent)
+	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile);
+
+#pragma endregion
+	
+	
 
 };
