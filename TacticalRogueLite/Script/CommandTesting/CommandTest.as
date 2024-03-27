@@ -56,7 +56,8 @@ class USTestAttackCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     FString ToString()
     {
-        return f"{Instigator} is dealing damage to {Target}.";
+        //return f"{Instigator} is dealing damage to {Target}.";
+       return UCCombatLogger::Format(ECombatLogCategory::COMBAT,f"{Instigator} is dealing damage to {Target}.");
     }
 }
 
@@ -123,7 +124,7 @@ class USTestCommand : UCCommand
     UFUNCTION(BlueprintOverride)
     FString ToString()
     {
-        return f"Moving {TargetUnit = } from {FromTile = } to {TargetTile = }";
+        return UCCombatLogger::Format(ECombatLogCategory::DEFAULT,f"Moving {TargetUnit = } from {FromTile = } to {TargetTile = }");
     }
 }
 
