@@ -209,8 +209,11 @@ void FLogManager::SanitizeMessage(FString& Message)
 // Starts the worker thread for logging
 void FLogManager::StartLogWorkerThread()
 {
-	bIsRunning = true;
-	LogThread = std::thread(LogWorker);
+	if(!bIsRunning)
+	{
+		bIsRunning = true;
+		LogThread = std::thread(LogWorker);
+	}
 }
 
 // Stops the worker thread for logging

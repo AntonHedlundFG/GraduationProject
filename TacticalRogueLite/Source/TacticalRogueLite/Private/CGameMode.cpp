@@ -13,9 +13,11 @@
 #include "Grid/CGridSpawner.h"
 #include "CommandPattern/CConsequence.h"
 #include "Utility/Logging/CLogManager.h"
+#include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 
 void ACGameMode::BeginPlay()
 {
+	Super::BeginPlay();
 	if (!GameStateRef)
 	{
 		GameStateRef = GetGameState<ACGameState>();
@@ -56,12 +58,17 @@ void ACGameMode::BeginPlay()
 
 void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
 {
-	if (CommandList.IsEmpty())
+	if (!CommandList.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Consequence can't be registered with empty CommandLilst"));
-		return;
+		CommandList.Last()->StoreConsequence(inConsequence);
 	}
-	CommandList.Last()->StoreConsequence(inConsequence);
+	else if (!CommandHistory.IsEmpty())
+	{
+		//This might happen if a consequence is triggered at the start of a turn when no command has been 
+		//executed yet. If so, we store it in the previous turn's last command to make sure its registered 
+		//somewhere, at least.
+		CommandHistory.Last()->StoreConsequence(inConsequence);
+	}
 	inConsequence->ExecuteConsequence();
 }
 
@@ -119,9 +126,8 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 	CommandList.Add(NewCommand);
 	NewCommand->ExecuteCommand(inController);
 
-	/*FString Log = FString("Executed command: ") + NewCommand->ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);*/
-	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Executed command: ") + NewCommand->ToString());
+	FString Log = FString("Executed command: ") + NewCommand->ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
 
 	return true;
 }
@@ -146,9 +152,8 @@ bool ACGameMode::TryUndo(AController* inController)
 
 	CommandList.RemoveAtSwap(CommandList.Num() - 1);
 
-	/*FString Log = FString("Undid command: ") + LastCommand->ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);*/
-	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Undid command: ") + LastCommand->ToString());
+	FString Log = FString("Undid command: ") + LastCommand->ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
 	return true;
 }
 
@@ -181,6 +186,12 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
 	GameStateRef->OnRep_TurnOrder();
+
+	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
+	if (Subsystem)
+	{
+		Subsystem->NextTurn(CurrentUnit, GameStateRef->TurnOrder[0]);
+	}
 
 	//Transfer all commands this turn into the command history
 	for (UCCommand* Command : CommandList)

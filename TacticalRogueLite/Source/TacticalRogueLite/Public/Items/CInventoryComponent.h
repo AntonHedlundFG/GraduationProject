@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ItemSlots.h"
 #include "Components/ActorComponent.h"
 #include "CInventoryComponent.generated.h"
 
@@ -16,27 +17,26 @@ class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
 
 public:	
 	UCInventoryComponent();
+	
+
+	UFUNCTION(Category = "Items")
+	TArray<UCItem*>GetAllItems() const { return AllItems; }
 	UFUNCTION(Category = "Items|Equipment")
-	TArray<UCItem*> GetAllEquipment() const;
+	TArray<UCItem*> GetEquippedItems() const;
 	UFUNCTION(Category = "Items|Equipment")
 	UCItem* GetItemInSlot(EItemSlots inSlot) const;
-	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItem_Boots() const { return Boots; }
-	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItem_Weapon() const { return Weapon; }
-	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItem_Armor() const { return Armor; }
-	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItem_Helmet() const { return Helmet; }
-	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItem_Ring() const { return Ring; }
 
+	//No need to call Add/Remove Item function when using one of these
 	UFUNCTION(Category = "Items|Equipment")
-	void EquipItem(UCItem* inItem, EItemSlots inSlot);
-	UFUNCTION(Category = "Items|Passives")
-	void AddCharm(UCItem* inItem);
+	void EquipItem(UCItem* inItem, EItemSlots inSlot = EItemSlots::EIS_None);
+    UFUNCTION(Category = "Items|Equipment")
+    void UnEquipItem(EItemSlots inSlot);
 
-	
+	//Use for adding "charms", these will be automatically called in Equip/UnEquip functions respectively
+	UFUNCTION(Category = "Items")
+	void AddItem(UCItem* inItem);
+	UFUNCTION(Category = "Items")
+	void RemoveItem(UCItem* inItem);
 
 
 protected:
@@ -51,6 +51,6 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Ring;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Passives")
-	TArray<UCItem*> Charms;
+	TArray<UCItem*> AllItems;
 	
 };
