@@ -128,7 +128,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 
 	FString Log = FString("Executed command: ") + NewCommand->ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
-
+	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Executed command: ") + NewCommand->ToString());
 	return true;
 }
 
@@ -152,8 +152,9 @@ bool ACGameMode::TryUndo(AController* inController)
 
 	CommandList.RemoveAtSwap(CommandList.Num() - 1);
 
-	FString Log = FString("Undid command: ") + LastCommand->ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
+	/*FString Log = FString("Undid command: ") + LastCommand->ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);*/
+	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Undid command: ") + LastCommand->ToString());
 	return true;
 }
 
