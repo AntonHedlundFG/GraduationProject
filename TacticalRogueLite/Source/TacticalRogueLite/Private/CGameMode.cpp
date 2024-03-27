@@ -36,6 +36,10 @@ void ACGameMode::BeginPlay()
 	//This can probably be done better/cleaner
 	TArray<ACUnit*> AllUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
 	TArray<ACUnit*> EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+	for (ACUnit* EnemyUnit : EnemyUnits)
+	{
+		EnemyUnit->ControllingPlayerIndex = 0;
+	}
 	AllUnits.Append(EnemyUnits);
 
 	
