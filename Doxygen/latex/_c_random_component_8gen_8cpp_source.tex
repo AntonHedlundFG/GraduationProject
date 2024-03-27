@@ -1,0 +1,584 @@
+\doxysection{CRandom\+Component.\+gen.\+cpp}
+\hypertarget{_c_random_component_8gen_8cpp_source}{}\label{_c_random_component_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CRandomComponent.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CRandomComponent.gen.cpp}}
+\mbox{\hyperlink{_c_random_component_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_random_component_8h}{TacticalRogueLite/Public/Utility/CRandomComponent.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a0834531eef3c4585e730b0d00c482942}{EmptyLinkFunctionForGeneratedCodeCRandomComponent}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a19a826e21b2f02ae04495459e0408100}{Z\_Construct\_UScriptStruct\_FRandomStream}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_ae72e852bd69b5cc1bfd735e405f00277}{Z\_Construct\_UClass\_UActorComponent}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_ab64b28b070da39dda404ec5b67431ee8}{Z\_Construct\_UClass\_UCRandomComponent\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a9862b79fcf1e4ecd33da9d6ced2192c4}{Z\_Construct\_UClass\_UCSavable\_NoRegister}}();}
+\DoxyCodeLine{00017\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execPeekAheadArray)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ P\_GET\_TARRAY\_REF(int32,Z\_Param\_Out\_inMins);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ P\_GET\_TARRAY\_REF(int32,Z\_Param\_Out\_inMaxs);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ *(TArray<int32>*)Z\_Param\_\_Result=P\_THIS-\/>PeekAheadArray(Z\_Param\_Out\_inMins,Z\_Param\_Out\_inMaxs);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execPeekAhead)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inMin);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inMax);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inTicksAhead);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ *(int32*)Z\_Param\_\_Result=P\_THIS-\/>PeekAhead(Z\_Param\_inMin,Z\_Param\_inMax,Z\_Param\_inTicksAhead);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execResetToInitialSeed)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ P\_THIS-\/>ResetToInitialSeed();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execSaveState)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ P\_THIS-\/>SaveState();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execRollBackToSave)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ P\_THIS-\/>RollBackToSave();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execRollBackRandom)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inTicks);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ *(int32*)Z\_Param\_\_Result=P\_THIS-\/>RollBackRandom(Z\_Param\_inTicks);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_adeac54ffbfab252d45ae69214569fac0}{DEFINE\_FUNCTION}}(UCRandomComponent::execGetRandRange)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inMin);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_inMax);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ P\_GET\_UBOOL(Z\_Param\_bKeepState);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ *(int32*)Z\_Param\_\_Result=P\_THIS-\/>GetRandRange(Z\_Param\_inMin,Z\_Param\_inMax,Z\_Param\_bKeepState);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ UCRandomComponent::StaticRegisterNativesUCRandomComponent()}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCRandomComponent::StaticClass();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetRandRange"{}},\ \&UCRandomComponent::execGetRandRange,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{GetRandRange}},(int32,\ int32,\ \textcolor{keywordtype}{bool}),ERASE\_ARGUMENT\_PACK(int32))\ \},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}PeekAhead"{}},\ \&UCRandomComponent::execPeekAhead,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a91a8322cc7393fc843ad4a12045981ba}{PeekAhead}},(int32,\ int32,\ int32)\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(int32))\ \},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}PeekAheadArray"{}},\ \&UCRandomComponent::execPeekAheadArray,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a9baa6693ab73015000bdd7077438a381}{PeekAheadArray}},(\textcolor{keyword}{const}\ TArray<int32>\&,\ \textcolor{keyword}{const}\ TArray<int32>\&)\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(TArray<int32>))\ \},}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ResetToInitialSeed"{}},\ \&UCRandomComponent::execResetToInitialSeed,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a97437cc36ed07f20dda8686279b39348}{ResetToInitialSeed}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}RollBackRandom"{}},\ \&UCRandomComponent::execRollBackRandom,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_abd0a2eb6e3196d6dc17f9d5036d1272f}{RollBackRandom}},(int32),ERASE\_ARGUMENT\_PACK(int32))\ \},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}RollBackToSave"{}},\ \&UCRandomComponent::execRollBackToSave,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17}{RollBackToSave}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}SaveState"{}},\ \&UCRandomComponent::execSaveState,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\mbox{\hyperlink{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}{SaveState}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics}}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09_af460a5e5a058717bbd2e3e08ef654fa0}{inMin}};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09_a7b0a478391fd3670e45fb62bd3b6a1ed}{inMax}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09_a53da8ec431fb1332df890a651e332d37}{bKeepState}};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09_abaf1a2b5cd810cccb03ad0d31448fd38}{ReturnValue}};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a1fd80f8020e84f42cb8f80bc9e2c1a53}{NewProp\_inMin}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa327324ce2c412f33adc168886aa0d0c}{NewProp\_inMax}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a12aa93f5070e691772d67696483e9319}{NewProp\_bKeepState\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a7eb2af70271c0228a5ccf8ff0e414f0f}{NewProp\_bKeepState}};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a9d2c429905b2d034b11bfe2a7c3fb164}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a52a69a78e21e6f009a14dc88e2cebbc2}{PropPointers}}[];}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa7f8a45bbb72fdb2385b0428d5ba3333}{FuncParams}};}
+\DoxyCodeLine{00110\ \ \ \ \ \};}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a1fd80f8020e84f42cb8f80bc9e2c1a53}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_inMin}}\ =\ \{\ \textcolor{stringliteral}{"{}inMin"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}},\ inMin),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa327324ce2c412f33adc168886aa0d0c}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_inMax}}\ =\ \{\ \textcolor{stringliteral}{"{}inMax"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}},\ inMax),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a12aa93f5070e691772d67696483e9319}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_bKeepState\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj)}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}}*)Obj)-\/>bKeepState\ =\ 1;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a7eb2af70271c0228a5ccf8ff0e414f0f}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_bKeepState}}\ =\ \{\ \textcolor{stringliteral}{"{}bKeepState"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Bool\ |\ UECodeGen\_Private::EPropertyGenFlags::NativeBool,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}}),\ \&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a12aa93f5070e691772d67696483e9319}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_bKeepState\_SetBit}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a9d2c429905b2d034b11bfe2a7c3fb164}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{CRandomComponent\_eventGetRandRange\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a52a69a78e21e6f009a14dc88e2cebbc2}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a1fd80f8020e84f42cb8f80bc9e2c1a53}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_inMin}},}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa327324ce2c412f33adc168886aa0d0c}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_inMax}},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a7eb2af70271c0228a5ccf8ff0e414f0f}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_bKeepState}},}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a9d2c429905b2d034b11bfe2a7c3fb164}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00124\ \ \ \ \ \};}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Generates\ a\ random\ value\ within\ a\ specified\ range,\ optionally\ without\ advancing\ the\ state.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_bKeepState"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Generates\ a\ random\ value\ within\ a\ specified\ range,\ optionally\ without\ advancing\ the\ state."{}}\ \},}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00135\ \ \ \ \ \};}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa7f8a45bbb72fdb2385b0428d5ba3333}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetRandRange"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a52a69a78e21e6f009a14dc88e2cebbc2}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a52a69a78e21e6f009a14dc88e2cebbc2}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::CRandomComponent\_eventGetRandRange\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_a52a69a78e21e6f009a14dc88e2cebbc2}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_1_1_c_randomfdb197400420230bcd0ccda0405a6b09}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::CRandomComponent\_eventGetRandRange\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00140\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_af2333ae9cba991873435d4417a482c70}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange}}()}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___get_rand_range___statics_aa7f8a45bbb72fdb2385b0428d5ba3333}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange\_Statics::FuncParams}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics}}}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{CRandomComponent\_eventPeekAhead\_Parms}}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83_aca7a57b023c1983046a20c3a754e4144}{inMin}};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83_af61786b55ecd23aac7add5761fe6eeda}{inMax}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83_a745fb643ace8a6519cb86289f963b9e2}{inTicksAhead}};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83_abfbce47fc3c77b2c871bc64d1e6c93d2}{ReturnValue}};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a5ede74c2f46084e05695124709fc968f}{NewProp\_inMin}};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_aeafe4af30f7ae01de0736feb758f9ca3}{NewProp\_inMax}};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9fc678e5e9c8d3cad19b887c781c4173}{NewProp\_inTicksAhead}};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a3c10a11655d0cad4b534cd738082ebb3}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a0e3d775be6bad2e9c127815273a8f0c9}{PropPointers}}[];}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9c204c1d2e3c6fd77b772adc354079ba}{FuncParams}};}
+\DoxyCodeLine{00167\ \ \ \ \ \};}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a5ede74c2f46084e05695124709fc968f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inMin}}\ =\ \{\ \textcolor{stringliteral}{"{}inMin"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{CRandomComponent\_eventPeekAhead\_Parms}},\ inMin),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_aeafe4af30f7ae01de0736feb758f9ca3}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inMax}}\ =\ \{\ \textcolor{stringliteral}{"{}inMax"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{CRandomComponent\_eventPeekAhead\_Parms}},\ inMax),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9fc678e5e9c8d3cad19b887c781c4173}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inTicksAhead}}\ =\ \{\ \textcolor{stringliteral}{"{}inTicksAhead"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{CRandomComponent\_eventPeekAhead\_Parms}},\ inTicksAhead),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a3c10a11655d0cad4b534cd738082ebb3}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{CRandomComponent\_eventPeekAhead\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a0e3d775be6bad2e9c127815273a8f0c9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a5ede74c2f46084e05695124709fc968f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inMin}},}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_aeafe4af30f7ae01de0736feb758f9ca3}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inMax}},}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9fc678e5e9c8d3cad19b887c781c4173}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_inTicksAhead}},}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a3c10a11655d0cad4b534cd738082ebb3}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00177\ \ \ \ \ \};}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Peek\ ahead\ a\ specified\ number\ of\ ticks\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_inTicksAhead"{}},\ \textcolor{stringliteral}{"{}1"{}}\ \},}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Peek\ ahead\ a\ specified\ number\ of\ ticks"{}}\ \},}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00188\ \ \ \ \ \};}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9c204c1d2e3c6fd77b772adc354079ba}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}PeekAhead"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a0e3d775be6bad2e9c127815273a8f0c9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a0e3d775be6bad2e9c127815273a8f0c9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::CRandomComponent\_eventPeekAhead\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a0e3d775be6bad2e9c127815273a8f0c9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_1_1_c_random_com8df6b35d1d80c48f6298ee6704190f83}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::CRandomComponent\_eventPeekAhead\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00193\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_afb40c02b01b21a8427bc1601627cadfb}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead}}()}
+\DoxyCodeLine{00194\ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead___statics_a9c204c1d2e3c6fd77b772adc354079ba}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead\_Statics::FuncParams}});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics}}}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{CRandomComponent\_eventPeekAheadArray\_Parms}}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<int32>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592_ad21c3e463e7f2ca51c71d0a53f62761b}{inMins}};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<int32>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592_ac0cc813c29d62c90e1d0763cff7fba35}{inMaxs}};}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<int32>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592_ab9b6f455f51b318041df2733b5bf3dcd}{ReturnValue}};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aaad867704653bae1721241ee48d255e9}{NewProp\_inMins\_Inner}};}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_inMins\_MetaData[];}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aa4eb78bac903134d06806b9fc4790aff}{NewProp\_inMins}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a5e80f513af014b04a4f1436c4f1b90a6}{NewProp\_inMaxs\_Inner}};}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_inMaxs\_MetaData[];}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f11db81bc55f14fbd1d8618b33f28b9}{NewProp\_inMaxs}};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a926ec61f0d18780bf3dcc9257ad2e81e}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_afadd1d3faccda5dae9abce854b9ade68}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f2b5649021dac2bdf837ce83902d52f}{PropPointers}}[];}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a379289bee36c2b4bc3bfeb076bd1a84d}{FuncParams}};}
+\DoxyCodeLine{00227\ \ \ \ \ \};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aaad867704653bae1721241ee48d255e9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}inMins"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00232\ \ \ \ \ \};}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aa4eb78bac903134d06806b9fc4790aff}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins}}\ =\ \{\ \textcolor{stringliteral}{"{}inMins"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x3010000008000182,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{CRandomComponent\_eventPeekAheadArray\_Parms}},\ inMins),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins\_MetaData),\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins\_MetaData)\ \};}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a5e80f513af014b04a4f1436c4f1b90a6}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}inMaxs"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00239\ \ \ \ \ \};}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f11db81bc55f14fbd1d8618b33f28b9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs}}\ =\ \{\ \textcolor{stringliteral}{"{}inMaxs"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x3010000008000182,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{CRandomComponent\_eventPeekAheadArray\_Parms}},\ inMaxs),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs\_MetaData),\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs\_MetaData)\ \};}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a926ec61f0d18780bf3dcc9257ad2e81e}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_afadd1d3faccda5dae9abce854b9ade68}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{CRandomComponent\_eventPeekAheadArray\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f2b5649021dac2bdf837ce83902d52f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aaad867704653bae1721241ee48d255e9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins\_Inner}},}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_aa4eb78bac903134d06806b9fc4790aff}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMins}},}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a5e80f513af014b04a4f1436c4f1b90a6}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs\_Inner}},}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f11db81bc55f14fbd1d8618b33f28b9}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_inMaxs}},}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a926ec61f0d18780bf3dcc9257ad2e81e}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_afadd1d3faccda5dae9abce854b9ade68}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00251\ \ \ \ \ \};}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Peeks\ ahead\ multiple\ times\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Peeks\ ahead\ multiple\ times"{}}\ \},}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00261\ \ \ \ \ \};}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a379289bee36c2b4bc3bfeb076bd1a84d}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}PeekAheadArray"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f2b5649021dac2bdf837ce83902d52f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f2b5649021dac2bdf837ce83902d52f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::CRandomComponent\_eventPeekAheadArray\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54420401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a7f2b5649021dac2bdf837ce83902d52f}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_1_1_c_randcf8e680fedd9457ed4d011fdd9bd6592}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::CRandomComponent\_eventPeekAheadArray\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00266\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a9bded8549204129b2d28ea4b5fc4659e}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray}}()}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___peek_ahead_array___statics_a379289bee36c2b4bc3bfeb076bd1a84d}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray\_Statics::FuncParams}});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___reset_to_initial_seed___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics}}}
+\DoxyCodeLine{00276\ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___reset_to_initial_seed___statics_a299926d911d2523c60ef2d211e28502b}{FuncParams}};}
+\DoxyCodeLine{00281\ \ \ \ \ \};}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Resets\ the\ random\ stream\ to\ its\ initial\ seed,\ effectively\ restarting\ its\ state.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Resets\ the\ random\ stream\ to\ its\ initial\ seed,\ effectively\ restarting\ its\ state."{}}\ \},}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00291\ \ \ \ \ \};}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___reset_to_initial_seed___statics_a299926d911d2523c60ef2d211e28502b}{Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}ResetToInitialSeed"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00294\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_ad97d2f08a93fd624697ba30db5873735}{Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed}}()}
+\DoxyCodeLine{00295\ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___reset_to_initial_seed___statics_a299926d911d2523c60ef2d211e28502b}{Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed\_Statics::FuncParams}});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics}}}
+\DoxyCodeLine{00304\ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf}{CRandomComponent\_eventRollBackRandom\_Parms}}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf_aa723430a556888afe85459919bcfdfa6}{inTicks}};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf_ac878788f8995eddd8cd314270b0285c3}{ReturnValue}};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a78dd0086dbbb8b55ae8bd5dfcd8016af}{NewProp\_inTicks}};}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a3df5319e6b4baedf2aeff150c0a5ac7d}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_ae4c2347a10de32e2c9f8119b5e330991}{PropPointers}}[];}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a1b723db1e2a442f6ed6d2ec51389a483}{FuncParams}};}
+\DoxyCodeLine{00317\ \ \ \ \ \};}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a78dd0086dbbb8b55ae8bd5dfcd8016af}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::NewProp\_inTicks}}\ =\ \{\ \textcolor{stringliteral}{"{}inTicks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf}{CRandomComponent\_eventRollBackRandom\_Parms}},\ inTicks),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a3df5319e6b4baedf2aeff150c0a5ac7d}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf}{CRandomComponent\_eventRollBackRandom\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_ae4c2347a10de32e2c9f8119b5e330991}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a78dd0086dbbb8b55ae8bd5dfcd8016af}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::NewProp\_inTicks}},}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a3df5319e6b4baedf2aeff150c0a5ac7d}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00323\ \ \ \ \ \};}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Rolls\ back\ the\ random\ stream\ state\ by\ a\ specified\ number\ of\ ticks.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_inTicks"{}},\ \textcolor{stringliteral}{"{}1"{}}\ \},}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Rolls\ back\ the\ random\ stream\ state\ by\ a\ specified\ number\ of\ ticks."{}}\ \},}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00334\ \ \ \ \ \};}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a1b723db1e2a442f6ed6d2ec51389a483}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}RollBackRandom"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_ae4c2347a10de32e2c9f8119b5e330991}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_ae4c2347a10de32e2c9f8119b5e330991}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::CRandomComponent\_eventRollBackRandom\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_ae4c2347a10de32e2c9f8119b5e330991}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_1_1_c_rand9f511e06148bfd37823653738ce069bf}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::CRandomComponent\_eventRollBackRandom\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00339\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a8b75068144e3e201d2ed4e687091e3a9}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom}}()}
+\DoxyCodeLine{00340\ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_random___statics_a1b723db1e2a442f6ed6d2ec51389a483}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom\_Statics::FuncParams}});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_to_save___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics}}}
+\DoxyCodeLine{00349\ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_to_save___statics_a24eb8a80bc80f8ec9424d97a6a5956b0}{FuncParams}};}
+\DoxyCodeLine{00354\ \ \ \ \ \};}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Rolls\ back\ the\ random\ stream\ to\ the\ last\ saved\ state.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Rolls\ back\ the\ random\ stream\ to\ the\ last\ saved\ state."{}}\ \},}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00364\ \ \ \ \ \};}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_to_save___statics_a24eb8a80bc80f8ec9424d97a6a5956b0}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}RollBackToSave"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00367\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a4de8da1c63915dee134dbeea0f72403d}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave}}()}
+\DoxyCodeLine{00368\ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___roll_back_to_save___statics_a24eb8a80bc80f8ec9424d97a6a5956b0}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave\_Statics::FuncParams}});}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___save_state___statics}{Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics}}}
+\DoxyCodeLine{00377\ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___save_state___statics_a6d63d2cf9a6aba50a089c612451cf44e}{FuncParams}};}
+\DoxyCodeLine{00382\ \ \ \ \ \};}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Saves\ the\ current\ state\ of\ the\ random\ stream.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Saves\ the\ current\ state\ of\ the\ random\ stream."{}}\ \},}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00392\ \ \ \ \ \};}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___save_state___statics_a6d63d2cf9a6aba50a089c612451cf44e}{Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}SaveState"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00395\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a8aa622dc5d472f06a4e6168195ccc1b0}{Z\_Construct\_UFunction\_UCRandomComponent\_SaveState}}()}
+\DoxyCodeLine{00396\ \ \ \ \ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_random_component___save_state___statics_a6d63d2cf9a6aba50a089c612451cf44e}{Z\_Construct\_UFunction\_UCRandomComponent\_SaveState\_Statics::FuncParams}});}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00403\ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a610b23da6bc5b700241f0571cdba8666}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}});}
+\DoxyCodeLine{00405\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_ab64b28b070da39dda404ec5b67431ee8}{Z\_Construct\_UClass\_UCRandomComponent\_NoRegister}}()}
+\DoxyCodeLine{00406\ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCRandomComponent::StaticClass();}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics}{Z\_Construct\_UClass\_UCRandomComponent\_Statics}}}
+\DoxyCodeLine{00410\ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a420129595ea521170c71237161322793}{DependentSingletons}}[])();}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ada95f4dc8bb6cef85c397a67226836cb}{FuncInfo}}[];}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_RandomStream\_MetaData[];}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a969c529d0563e54401f936d805728444}{NewProp\_RandomStream}};}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Ticks\_MetaData[];}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FInt64PropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ac71eca4372b93cf498476026adc76b8a}{NewProp\_Ticks}};}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_TicksSinceSave\_MetaData[];}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a2454f1385897a64dcedb2ba4ecf5c5ed}{NewProp\_TicksSinceSave}};}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_TicksAtSave\_MetaData[];}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_aca46fc9b6e4e6dcd0b622f55a6496801}{NewProp\_TicksAtSave}};}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_StartSeed\_MetaData[];}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a47af7850bedc1ec13480141c9b66f6b0}{NewProp\_StartSeed}};}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_CurrentStateSeed\_MetaData[];}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a890d1023bf99e3c255af644620e21725}{NewProp\_CurrentStateSeed}};}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a62b78b0c603bc91ad9e85bb198841b49}{PropPointers}}[];}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FImplementedInterfaceParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a4626ff1c32f70487b4f6b862a1d91ce0}{InterfaceParams}}[];}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_af03eb62f6c8b46ab39c157a584019b22}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a92c084d8240f9dca6257f59c23c9a88f}{ClassParams}};}
+\DoxyCodeLine{00444\ \ \ \ \ \};}
+\DoxyCodeLine{00445\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a420129595ea521170c71237161322793}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_ae72e852bd69b5cc1bfd735e405f00277}{Z\_Construct\_UClass\_UActorComponent}},}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_random_component_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00448\ \ \ \ \ \};}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a420129595ea521170c71237161322793}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ada95f4dc8bb6cef85c397a67226836cb}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_af2333ae9cba991873435d4417a482c70}{Z\_Construct\_UFunction\_UCRandomComponent\_GetRandRange}},\ \textcolor{stringliteral}{"{}GetRandRange"{}}\ \},\ \textcolor{comment}{//\ 446973076}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_afb40c02b01b21a8427bc1601627cadfb}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAhead}},\ \textcolor{stringliteral}{"{}PeekAhead"{}}\ \},\ \textcolor{comment}{//\ 3563447730}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_a9bded8549204129b2d28ea4b5fc4659e}{Z\_Construct\_UFunction\_UCRandomComponent\_PeekAheadArray}},\ \textcolor{stringliteral}{"{}PeekAheadArray"{}}\ \},\ \textcolor{comment}{//\ 439018658}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_ad97d2f08a93fd624697ba30db5873735}{Z\_Construct\_UFunction\_UCRandomComponent\_ResetToInitialSeed}},\ \textcolor{stringliteral}{"{}ResetToInitialSeed"{}}\ \},\ \textcolor{comment}{//\ 959408165}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_a8b75068144e3e201d2ed4e687091e3a9}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackRandom}},\ \textcolor{stringliteral}{"{}RollBackRandom"{}}\ \},\ \textcolor{comment}{//\ 2222709131}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_a4de8da1c63915dee134dbeea0f72403d}{Z\_Construct\_UFunction\_UCRandomComponent\_RollBackToSave}},\ \textcolor{stringliteral}{"{}RollBackToSave"{}}\ \},\ \textcolor{comment}{//\ 1879311825}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_random_component_8gen_8cpp_a8aa622dc5d472f06a4e6168195ccc1b0}{Z\_Construct\_UFunction\_UCRandomComponent\_SaveState}},\ \textcolor{stringliteral}{"{}SaveState"{}}\ \},\ \textcolor{comment}{//\ 3365778130}}
+\DoxyCodeLine{00458\ \ \ \ \ \};}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ada95f4dc8bb6cef85c397a67226836cb}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00464\ \ \ \ \ \};}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_RandomStream\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00469\ \ \ \ \ \};}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a969c529d0563e54401f936d805728444}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_RandomStream}}\ =\ \{\ \textcolor{stringliteral}{"{}RandomStream"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ RandomStream),\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a19a826e21b2f02ae04495459e0408100}{Z\_Construct\_UScriptStruct\_FRandomStream}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_RandomStream\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_RandomStream\_MetaData)\ \};}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_Ticks\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00475\ \ \ \ \ \};}
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FInt64PropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ac71eca4372b93cf498476026adc76b8a}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_Ticks}}\ =\ \{\ \textcolor{stringliteral}{"{}Ticks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Int64,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ Ticks),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_Ticks\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_Ticks\_MetaData)\ \};}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksSinceSave\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00481\ \ \ \ \ \};}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a2454f1385897a64dcedb2ba4ecf5c5ed}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksSinceSave}}\ =\ \{\ \textcolor{stringliteral}{"{}TicksSinceSave"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ TicksSinceSave),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksSinceSave\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksSinceSave\_MetaData)\ \};}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksAtSave\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00487\ \ \ \ \ \};}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_aca46fc9b6e4e6dcd0b622f55a6496801}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksAtSave}}\ =\ \{\ \textcolor{stringliteral}{"{}TicksAtSave"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ TicksAtSave),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksAtSave\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksAtSave\_MetaData)\ \};}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_StartSeed\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00493\ \ \ \ \ \};}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a47af7850bedc1ec13480141c9b66f6b0}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_StartSeed}}\ =\ \{\ \textcolor{stringliteral}{"{}StartSeed"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ StartSeed),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_StartSeed\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_StartSeed\_MetaData)\ \};}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_CurrentStateSeed\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/CRandomComponent.h"{}}\ \},}
+\DoxyCodeLine{00499\ \ \ \ \ \};}
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a890d1023bf99e3c255af644620e21725}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_CurrentStateSeed}}\ =\ \{\ \textcolor{stringliteral}{"{}CurrentStateSeed"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0040000000000020,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ CurrentStateSeed),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_CurrentStateSeed\_MetaData),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_CurrentStateSeed\_MetaData)\ \};}
+\DoxyCodeLine{00502\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a62b78b0c603bc91ad9e85bb198841b49}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a969c529d0563e54401f936d805728444}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_RandomStream}},}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_ac71eca4372b93cf498476026adc76b8a}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_Ticks}},}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a2454f1385897a64dcedb2ba4ecf5c5ed}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksSinceSave}},}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_aca46fc9b6e4e6dcd0b622f55a6496801}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_TicksAtSave}},}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a47af7850bedc1ec13480141c9b66f6b0}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_StartSeed}},}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a890d1023bf99e3c255af644620e21725}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::NewProp\_CurrentStateSeed}},}
+\DoxyCodeLine{00509\ \ \ \ \ \};}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FImplementedInterfaceParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a4626ff1c32f70487b4f6b862a1d91ce0}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::InterfaceParams}}[]\ =\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a9862b79fcf1e4ecd33da9d6ced2192c4}{Z\_Construct\_UClass\_UCSavable\_NoRegister}},\ (int32)VTABLE\_OFFSET(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ \mbox{\hyperlink{class_i_c_savable}{ICSavable}}),\ \textcolor{keyword}{false}\ \},\ \ \textcolor{comment}{//\ 4020505656}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a4626ff1c32f70487b4f6b862a1d91ce0}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::InterfaceParams}})\ <\ 64);}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_af03eb62f6c8b46ab39c157a584019b22}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCRandomComponent>::IsAbstract,}
+\DoxyCodeLine{00516\ \ \ \ \ \};}
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a92c084d8240f9dca6257f59c23c9a88f}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \&UCRandomComponent::StaticClass,}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Engine"{}},}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a62b78b0c603bc91ad9e85bb198841b49}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::PropPointers}},}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ InterfaceParams,}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a62b78b0c603bc91ad9e85bb198841b49}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::PropPointers}}),}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(InterfaceParams),}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ 0x00A000A4u,}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCRandomComponent\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCRandomComponent\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00531\ \ \ \ \ \};}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a62b78b0c603bc91ad9e85bb198841b49}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00533\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}}()}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCRandomComponent.OuterSingleton)}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCRandomComponent.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_random_component___statics_a92c084d8240f9dca6257f59c23c9a88f}{Z\_Construct\_UClass\_UCRandomComponent\_Statics::ClassParams}});}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCRandomComponent.OuterSingleton;}
+\DoxyCodeLine{00540\ \ \ \ \ \}}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a90562cc53abf791604985c39b09fb6eb}{StaticClass<UCRandomComponent>}}()}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCRandomComponent::StaticClass();}
+\DoxyCodeLine{00544\ \ \ \ \ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordtype}{void}\ UCRandomComponent::ValidateGeneratedRepEnums(\textcolor{keyword}{const}\ TArray<struct\ FRepRecord>\&\ ClassReps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00547\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_RandomStream(TEXT(\textcolor{stringliteral}{"{}RandomStream"{}}));}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_Ticks(TEXT(\textcolor{stringliteral}{"{}Ticks"{}}));}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_TicksSinceSave(TEXT(\textcolor{stringliteral}{"{}TicksSinceSave"{}}));}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_TicksAtSave(TEXT(\textcolor{stringliteral}{"{}TicksAtSave"{}}));}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_StartSeed(TEXT(\textcolor{stringliteral}{"{}StartSeed"{}}));}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_CurrentStateSeed(TEXT(\textcolor{stringliteral}{"{}CurrentStateSeed"{}}));}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ bIsValid\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_RandomStream\ ==\ ClassReps[(int32)ENetFields\_Private::RandomStream].Property-\/>GetFName()}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_Ticks\ ==\ ClassReps[(int32)ENetFields\_Private::Ticks].Property-\/>GetFName()}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_TicksSinceSave\ ==\ ClassReps[(int32)ENetFields\_Private::TicksSinceSave].Property-\/>GetFName()}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_TicksAtSave\ ==\ ClassReps[(int32)ENetFields\_Private::TicksAtSave].Property-\/>GetFName()}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_StartSeed\ ==\ ClassReps[(int32)ENetFields\_Private::StartSeed].Property-\/>GetFName()}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_CurrentStateSeed\ ==\ ClassReps[(int32)ENetFields\_Private::CurrentStateSeed].Property-\/>GetFName();}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ checkf(bIsValid,\ TEXT(\textcolor{stringliteral}{"{}UHT\ Generated\ Rep\ Indices\ do\ not\ match\ runtime\ populated\ Rep\ Indices\ for\ properties\ in\ UCRandomComponent"{}}));}
+\DoxyCodeLine{00564\ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a2146627017ad273fa27753995c0bf078}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}});}
+\DoxyCodeLine{00566\ \ \ \ \ UCRandomComponent::\string~UCRandomComponent()\ \{\}}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5654d1dd2f88cf83901a2591f92e1391}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_CRandomComponent\_h\_Statics}}}
+\DoxyCodeLine{00568\ \ \ \ \ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5654d1dd2f88cf83901a2591f92e1391_ad25d95a416ead272013db1ee8c04d330}{ClassInfo}}[];}
+\DoxyCodeLine{00570\ \ \ \ \ \};}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5654d1dd2f88cf83901a2591f92e1391_ad25d95a416ead272013db1ee8c04d330}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_CRandomComponent\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_random_component_8gen_8cpp_a7410abfeb817cb9db1ef9e96e14818eb}{Z\_Construct\_UClass\_UCRandomComponent}},\ UCRandomComponent::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCRandomComponent"{}}),\ \&Z\_Registration\_Info\_UClass\_UCRandomComponent,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}}),\ 870521061U)\ \},}
+\DoxyCodeLine{00573\ \ \ \ \ \};}
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_CRandomComponent\_h\_387847639(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5654d1dd2f88cf83901a2591f92e1391_ad25d95a416ead272013db1ee8c04d330}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_CRandomComponent\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5654d1dd2f88cf83901a2591f92e1391_ad25d95a416ead272013db1ee8c04d330}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_CRandomComponent\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0);}
+\DoxyCodeLine{00578\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

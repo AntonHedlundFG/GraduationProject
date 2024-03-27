@@ -1,0 +1,144 @@
+\doxysection{CInventory\+Component.\+cpp}
+\hypertarget{_c_inventory_component_8cpp_source}{}\label{_c_inventory_component_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Items/CInventoryComponent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Items/CInventoryComponent.cpp}}
+\mbox{\hyperlink{_c_inventory_component_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_inventory_component_8h}{Items/CInventoryComponent.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_8h}{Items/CItem.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_item_slots_8h}{Items/ItemSlots.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ UCInventoryComponent::UCInventoryComponent()}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ }
+\DoxyCodeLine{00012\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ TArray<UCItem*>\ UCInventoryComponent::GetEquippedItems()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00016\ \ \ \ \ TArray<UCItem*>\ AllEquipped;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (Boots\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ AllEquipped.Add(Boots);}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (Weapon\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ AllEquipped.Add(Weapon);}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (Armor\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ AllEquipped.Add(Armor);}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (Helmet\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ AllEquipped.Add(Helmet);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (Ring\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ AllEquipped.Add(Ring);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ AllEquipped;}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \mbox{\hyperlink{class_u_c_item}{UCItem}}*\ UCInventoryComponent::GetItemInSlot(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00042\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{switch}\ (inSlot)}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Boots:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Boots;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Weapon:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Weapon;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Body:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Armor;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Helmet:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Helmet;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Ring:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ring;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{void}\ UCInventoryComponent::EquipItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot)}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ slot\ =\ inSlot\ ==\ EItemSlots::EIS\_None?\ inItem-\/>\mbox{\hyperlink{class_u_c_item_add14b1ceebde4d649693159c4053df6f}{ItemSlot}}\ :\ inSlot;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{switch}\ (slot)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Boots:}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Boots\ =\ inItem;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Weapon:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ Weapon\ =\ inItem;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Body:}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Armor\ =\ inItem;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Helmet:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Helmet\ =\ inItem;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Ring:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ Ring\ =\ inItem;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ AddItem(inItem);}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ UCInventoryComponent::UnEquipItem(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{switch}\ (inSlot)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Boots:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ RemoveItem(Boots);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ Boots\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Weapon:}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ RemoveItem(Weapon);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ Weapon\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Body:}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ RemoveItem(Armor);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ Armor\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Helmet:}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ RemoveItem(Helmet);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Helmet\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{case}\ EItemSlots::EIS\_Ring:}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ RemoveItem(Ring);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ Ring\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ UCInventoryComponent::AddItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit\ =\ Cast<ACUnit>(GetOwner()))}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ inItem-\/>\mbox{\hyperlink{class_u_c_item_a3afad70b811a72b38e94df152d7ebc42}{EquipOnUnit}}(Unit);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ AllItems.Add(inItem);}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ UCInventoryComponent::RemoveItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (!AllItems.Contains(inItem))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00131\ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit\ =\ Cast<ACUnit>(GetOwner()))}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ inItem-\/>\mbox{\hyperlink{class_u_c_item_a08fb54a62055c6c0e74468f82950e32e}{UnequipOnUnit}}(Unit);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ AllItems.Remove(inItem);}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+
+\end{DoxyCode}

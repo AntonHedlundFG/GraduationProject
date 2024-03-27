@@ -1,0 +1,236 @@
+\doxysection{CGame\+Mode.\+cpp}
+\hypertarget{_c_game_mode_8cpp_source}{}\label{_c_game_mode_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/CGameMode.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/CGameMode.cpp}}
+\mbox{\hyperlink{_c_game_mode_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_mode_8h}{CGameMode.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_command_8h}{CommandPattern\(\backslash\)CCommand.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_8h}{Items/CItem.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_state_8h}{CGameState.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Kismet/GameplayStatics.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid\(\backslash\)CGridTile.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_level_u_r_l_asset_8h}{CLevelURLAsset.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_8h}{Grid/CGrid.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_spawner_8h}{Grid/CGridSpawner.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_consequence_8h}{CommandPattern/CConsequence.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{Utility/Logging/CLogManager.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_turn_timer_subsystem_8h}{Utility/TurnTimer/CTurnTimerSubsystem.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_game_mode_a02174fa345597ff7b0d73aea008c0700}{ACGameMode::BeginPlay}}()}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}\ =\ GetGameState<ACGameState>();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Wrong\ Game\ State\ class"{}}));}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}\ =\ \mbox{\hyperlink{class_a_c_game_mode_a133a3882121bbeff70df85e18ccb52f8}{CreateSpawner}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ grid\ =\ \mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}-\/>SpawnGrid(FVector::Zero(),10,10);}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>GameGrid\ =\ grid;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}})}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a27b3bb51c5a8c43bdd9a393aa19dc360}{HeroUnits}}\ =\ \mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}-\/>SpawnUnitsFromArray(\mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}-\/>HeroUnits,\ grid-\/>\mbox{\hyperlink{class_a_c_grid_ad628d1c80ed656bbc6cdac54db400de7}{GetHeroSpawnTiles}}());}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a261325289f592d53cbb4da0b3272fd86}{EnemyUnits}}\ =\ \mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}-\/>SpawnUnitsFromArray(\mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}-\/>EnemyUnits,\ grid-\/>\mbox{\hyperlink{class_a_c_grid_a5a5f2cdb2d6a4e3b1ca686b9c0155215}{GetEnemySpawnTiles}}());}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}{AllUnits}}.Append(\mbox{\hyperlink{class_a_c_game_mode_a27b3bb51c5a8c43bdd9a393aa19dc360}{HeroUnits}});}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}{AllUnits}}.Append(\mbox{\hyperlink{class_a_c_game_mode_a261325289f592d53cbb4da0b3272fd86}{EnemyUnits}});}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_ac8a9638571b183def3310250b17dc7e5}{InitializeTurnOrder}}(\mbox{\hyperlink{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}{AllUnits}});}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_a8ef7d5e36732375fc8c97e3a700d64ae}{ApplyPlayerCount}}(\mbox{\hyperlink{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}{AllUnits}});}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_game_mode_ac6b3af199fccfb550f4f50114b510c8e}{ACGameMode::RegisterAndExecuteConsequence}}(\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}*\ inConsequence)}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.IsEmpty())}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.Last()-\/>StoreConsequence(inConsequence);}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb}{CommandHistory}}.IsEmpty())}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//This\ might\ happen\ if\ a\ consequence\ is\ triggered\ at\ the\ start\ of\ a\ turn\ when\ no\ command\ has\ been\ }}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//executed\ yet.\ If\ so,\ we\ store\ it\ in\ the\ previous\ turn's\ last\ command\ to\ make\ sure\ its\ registered\ }}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//somewhere,\ at\ least.}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb}{CommandHistory}}.Last()-\/>StoreConsequence(inConsequence);}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ inConsequence-\/>\mbox{\hyperlink{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4}{ExecuteConsequence}}();}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_a_c_game_mode_a1ed08597d3bf8710e7d40544268e1e15}{ACGameMode::TryAbilityUse}}(AController*\ inController,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}\ =\ GetGameState<ACGameState>();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Wrong\ Game\ State\ class"{}}));}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder.IsEmpty())}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}There\ are\ no\ units\ in\ the\ turn\ order"{}}));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder[0]\ !=\ inUnit)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Unit\ is\ not\ first\ in\ the\ turn\ order"{}}));}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (!inUnit-\/>\mbox{\hyperlink{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}{IsControlledBy}}(inController))}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Unit\ is\ not\ owned\ by\ controller"{}}));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_u_c_item}{UCItem}}*\ Item\ =\ inUnit-\/>\mbox{\hyperlink{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538}{GetItemInSlot}}(inSlot);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Item)}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}No\ item\ in\ this\ item\ slot"{}}));}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Item-\/>\mbox{\hyperlink{class_u_c_item_ad8d654769ab2049f1e5e1314ce4159ae}{IsValidTargetTile}}(inUnit,\ inTargetTile))}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Target\ tile\ is\ not\ valid\ for\ the\ item"{}}));}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{class_u_c_command}{UCCommand}}*\ NewCommand\ =\ Item-\/>\mbox{\hyperlink{class_u_c_item_a491ad1763ec89c7489393faf4987d9b4}{GenerateAbilityCommand}}(inController,\ inUnit,\ inTargetTile);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (!NewCommand)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}No\ ability\ command\ on\ this\ item"{}}));}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.Add(NewCommand);}
+\DoxyCodeLine{00117\ \ \ \ \ NewCommand-\/>\mbox{\hyperlink{class_u_c_command_a2034fa839958b347bd07118c0ede5a68}{ExecuteCommand}}(inController);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ FString\ Log\ =\ FString(\textcolor{stringliteral}{"{}Executed\ command:\ "{}})\ +\ NewCommand-\/>\mbox{\hyperlink{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}{ToString}}();}
+\DoxyCodeLine{00120\ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}\%s"{}}),\ *Log);}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLogManager::Log}}(ELogCategory::LC\_Gameplay,FString(\textcolor{stringliteral}{"{}Executed\ command:\ "{}})\ +\ NewCommand-\/>\mbox{\hyperlink{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}{ToString}}());}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_a_c_game_mode_a9f3db610edd45c7fe18c71473fcf79ca}{ACGameMode::TryUndo}}(AController*\ inController)}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.IsEmpty())}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}No\ commands\ in\ history"{}}));}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_u_c_command}{UCCommand}}*\ LastCommand\ =\ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.Last();}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (LastCommand-\/>\mbox{\hyperlink{class_u_c_command_aee4d7a8e80277ed4b5071b835b2af168}{GetCommandCreator}}()\ !=\ inController)}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Command\ was\ not\ performed\ by\ this\ controller"{}}));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ LastCommand-\/>\mbox{\hyperlink{class_u_c_command_a35f78b690adfeb16adb8f53aaaada887}{UndoAllConsequences}}();}
+\DoxyCodeLine{00141\ \ \ \ \ LastCommand-\/>\mbox{\hyperlink{class_u_c_command_ac6b39b6dd3e6537ffcd3ecf180802cef}{UndoCommand}}();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.RemoveAtSwap(\mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.Num()\ -\/\ 1);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{/*FString\ Log\ =\ FString("{}Undid\ command:\ "{})\ +\ LastCommand-\/>ToString();}}
+\DoxyCodeLine{00146\ \textcolor{comment}{\ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT("{}\%s"{}),\ *Log);*/}}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLogManager::Log}}(ELogCategory::LC\_Gameplay,FString(\textcolor{stringliteral}{"{}Undid\ command:\ "{}})\ +\ LastCommand-\/>\mbox{\hyperlink{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}{ToString}}());}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_a_c_game_mode_a321c50796790c19e76bef31ee1ac3a94}{ACGameMode::TryEndTurn}}(AController*\ inController)}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}\ =\ GetGameState<ACGameState>();}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}})}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Wrong\ Game\ State\ class"{}}));}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder.IsEmpty())}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}There\ are\ no\ units\ in\ the\ turn\ order"{}}));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ CurrentUnit\ =\ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder[0];}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (!CurrentUnit-\/>\mbox{\hyperlink{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}{IsControlledBy}}(inController))}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Controller\ does\ not\ manage\ current\ unit"{}}));}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//Move\ active\ unit\ to\ back\ of\ the\ line}}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder.RemoveAt(0);}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder.Add(CurrentUnit);}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>OnRep\_TurnOrder();}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{auto}*\ Subsystem\ =\ GetWorld()-\/>GetSubsystem<\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}}>();}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (Subsystem)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ Subsystem-\/>\mbox{\hyperlink{class_u_c_turn_timer_subsystem_ac25c5b5552b6e064c172c4429b6b580e}{NextTurn}}(CurrentUnit,\ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder[0]);}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//Transfer\ all\ commands\ this\ turn\ into\ the\ command\ history}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_command}{UCCommand}}*\ Command\ :\ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}})}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb}{CommandHistory}}.Add(Command);}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{CommandList}}.Empty();}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Turn\ ended"{}}));}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_game_mode_ac8a9638571b183def3310250b17dc7e5}{ACGameMode::InitializeTurnOrder}}(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units)}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>TurnOrder.Empty();}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit\ :\ Units)}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Unit)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>AddUnitToOrder(Unit);}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{GameStateRef}}-\/>OnRep\_TurnOrder();}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_game_mode_a8ef7d5e36732375fc8c97e3a700d64ae}{ACGameMode::ApplyPlayerCount}}(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units)}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{int}\ PlayerCount\ =\ UGameplayStatics::GetIntOption(OptionsString,\ \mbox{\hyperlink{_c_level_u_r_l_asset_8h_a26b673bcfbead68dcbf4872df6970456}{NUMBER\_OF\_PLAYERS}},\ 0);}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{if}\ (!PlayerCount)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit\ :\ Units)}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Unit)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Might\ look\ tricky,\ but\ it's\ fairly\ simple.\ }}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ player\ count\ is\ 2,\ characters\ with\ 3/4\ become\ 1/2\ instead.}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (Unit-\/>ControllingPlayerIndex\ >\ PlayerCount)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ Unit-\/>ControllingPlayerIndex\ -\/=\ PlayerCount;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ \mbox{\hyperlink{class_a_c_game_mode_a133a3882121bbeff70df85e18ccb52f8}{ACGameMode::CreateSpawner}}()}
+\DoxyCodeLine{00227\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ spawner\ =\ GetWorld()-\/>SpawnActor<\mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}>(\mbox{\hyperlink{class_a_c_game_mode_a8a9f26f7446c05e6b64349bb0868e7db}{SpawnerClass}},\ FVector::Zero(),\ FRotator::ZeroRotator);}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ spawner;}
+\DoxyCodeLine{00230\ \}}
+
+\end{DoxyCode}

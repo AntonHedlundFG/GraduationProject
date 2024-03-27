@@ -1,0 +1,601 @@
+\doxysection{CLog\+Manager.\+gen.\+cpp}
+\hypertarget{_c_log_manager_8gen_8cpp_source}{}\label{_c_log_manager_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CLogManager.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CLogManager.gen.cpp}}
+\mbox{\hyperlink{_c_log_manager_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{TacticalRogueLite/Public/Utility/Logging/CLogManager.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_ad49ae4cd5e437a66c025b5e7a6de88a9}{EmptyLinkFunctionForGeneratedCodeCLogManager}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a144970567ce3a3461a8127ea1fc4c409}{Z\_Construct\_UClass\_UCLogManager\_NoRegister}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a961ca9bc52e40ba02829ce73512e6db4}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature}}();}
+\DoxyCodeLine{00017\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ FEnumRegistrationInfo\ Z\_Registration\_Info\_UEnum\_ELogCategory;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ UEnum*\ ELogCategory\_StaticEnum()}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_ELogCategory.OuterSingleton)}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ Z\_Registration\_Info\_UEnum\_ELogCategory.OuterSingleton\ =\ GetStaticEnum(\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}},\ (UObject*)\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}(),\ TEXT(\textcolor{stringliteral}{"{}ELogCategory"{}}));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_ELogCategory.OuterSingleton;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a74e01adcabe4d180342ec37420bbeacd}{StaticEnum<ELogCategory>}}()}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ELogCategory\_StaticEnum();}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics}}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a8779e1b47f4222d5560ac47422c6c010}{Enumerators}}[];}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Enum\_MetaDataParams[];}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a3ba9300b06e0d57e6a4b47c56609c3dc}{EnumParams}};}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a8779e1b47f4222d5560ac47422c6c010}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enumerators}}[]\ =\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::NONE"{}},\ (int64)ELogCategory::NONE\ \},}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Info"{}},\ (int64)ELogCategory::LC\_Info\ \},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Warning"{}},\ (int64)ELogCategory::LC\_Warning\ \},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Error"{}},\ (int64)ELogCategory::LC\_Error\ \},}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Gameplay"{}},\ (int64)ELogCategory::LC\_Gameplay\ \},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Network"{}},\ (int64)ELogCategory::LC\_Network\ \},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ELogCategory::MAX"{}},\ (int64)ELogCategory::MAX\ \},}
+\DoxyCodeLine{00048\ \ \ \ \ \};}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enum\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Error.DisplayName"{}},\ \textcolor{stringliteral}{"{}Error"{}}\ \},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Error.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Error"{}}\ \},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Gameplay.DisplayName"{}},\ \textcolor{stringliteral}{"{}Gameplay"{}}\ \},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Gameplay.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Gameplay"{}}\ \},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Info.DisplayName"{}},\ \textcolor{stringliteral}{"{}Info"{}}\ \},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Info.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Info"{}}\ \},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Network.DisplayName"{}},\ \textcolor{stringliteral}{"{}Network"{}}\ \},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Network.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Network"{}}\ \},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Warning.DisplayName"{}},\ \textcolor{stringliteral}{"{}Warning"{}}\ \},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LC\_Warning.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::LC\_Warning"{}}\ \},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}MAX.Hidden"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}MAX.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::MAX"{}}\ \},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NONE.Hidden"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NONE.Name"{}},\ \textcolor{stringliteral}{"{}ELogCategory::NONE"{}}\ \},}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a3ba9300b06e0d57e6a4b47c56609c3dc}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::EnumParams}}\ =\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ELogCategory"{}},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ELogCategory"{}},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a8779e1b47f4222d5560ac47422c6c010}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enumerators}},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ RF\_Public|RF\_Transient|RF\_MarkAsNative,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a8779e1b47f4222d5560ac47422c6c010}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enumerators}}),}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ EEnumFlags::None,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ (uint8)UEnum::ECppForm::EnumClass,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enum\_MetaDataParams),\ Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::Enum\_MetaDataParams)}
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ \ \ \ \ UEnum*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}}()}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_ELogCategory.InnerSingleton)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUEnum(Z\_Registration\_Info\_UEnum\_ELogCategory.InnerSingleton,\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_log_category___statics_a3ba9300b06e0d57e6a4b47c56609c3dc}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory\_Statics::EnumParams}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_ELogCategory.InnerSingleton;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics}}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a}{\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a_aa254dd93ce3b4e0215156d08b7562647}{Category}};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a_a004c4adfa07901a95276fdd76cf0896f}{Message}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a375066b808cf6ee63f007550da92ea4e}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a4ae30d894129be1e40ddf33f5fa6f4e5}{NewProp\_Category}};}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Message\_MetaData[];}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afdab49ae7d6a68c834d60a0fd774f8f2}{NewProp\_Message}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_af5d0f0d1eb085c2561344ddcfa0bea85}{PropPointers}}[];}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afc598a583d115a6b5b3db4bd9d92af72}{FuncParams}};}
+\DoxyCodeLine{00107\ \ \ \ \ \};}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a375066b808cf6ee63f007550da92ea4e}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a4ae30d894129be1e40ddf33f5fa6f4e5}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a}{\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}},\ Category),\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 3466464535}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Message\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00113\ \ \ \ \ \};}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afdab49ae7d6a68c834d60a0fd774f8f2}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Message}}\ =\ \{\ \textcolor{stringliteral}{"{}Message"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x3010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a}{\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}},\ Message),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Message\_MetaData),\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Message\_MetaData)\ \};}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_af5d0f0d1eb085c2561344ddcfa0bea85}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a375066b808cf6ee63f007550da92ea4e}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_a4ae30d894129be1e40ddf33f5fa6f4e5}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afdab49ae7d6a68c834d60a0fd774f8f2}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::NewProp\_Message}},}
+\DoxyCodeLine{00120\ \ \ \ \ \};}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00124\ \ \ \ \ \};}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afc598a583d115a6b5b3db4bd9d92af72}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}OnNewLogEntry\_\_DelegateSignature"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_af5d0f0d1eb085c2561344ddcfa0bea85}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_af5d0f0d1eb085c2561344ddcfa0bea85}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x00130000,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_af5d0f0d1eb085c2561344ddcfa0bea85}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegatee8e2ecef9f75b89bd24ae35cd9f4272a}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00129\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a961ca9bc52e40ba02829ce73512e6db4}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature}}()}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_new_log_entry_____delegate_signature___statics_afc598a583d115a6b5b3db4bd9d92af72}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature\_Statics::FuncParams}});}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a488841574f59364c9ca491964501b9cd}{FOnNewLogEntry\_DelegateWrapper}}(\textcolor{keyword}{const}\ FMulticastScriptDelegate\&\ OnNewLogEntry,\ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category,\ \textcolor{keyword}{const}\ FString\&\ Message)}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{struct\ }\_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ FString\ Message;}
+\DoxyCodeLine{00144\ \ \ \ \ \};}
+\DoxyCodeLine{00145\ \ \ \ \ \_Script\_TacticalRogueLite\_eventOnNewLogEntry\_Parms\ Parms;}
+\DoxyCodeLine{00146\ \ \ \ \ Parms.Category=Category;}
+\DoxyCodeLine{00147\ \ \ \ \ Parms.Message=Message;}
+\DoxyCodeLine{00148\ \ \ \ \ OnNewLogEntry.ProcessMulticastDelegate<UObject>(\&Parms);}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execGet)}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ *(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}**)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}{UCLogManager::Get}}();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execRotateLogFile)}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d}{UCLogManager::RotateLogFile}}();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execGetRecentLogEntry)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FInt64Property,Z\_Param\_LogID);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ *(FString*)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72}{UCLogManager::GetRecentLogEntry}}(Z\_Param\_LogID);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execGetAllLogEntriesByCategory)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ P\_GET\_ENUM(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}},Z\_Param\_Category);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ *(TArray<FString>*)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097}{UCLogManager::GetAllLogEntriesByCategory}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}(Z\_Param\_Category));}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execGetAllLogEntries)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ *(TArray<FString>*)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04}{UCLogManager::GetAllLogEntries}}();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a1865476892b0addd8c32010eda032699}{DEFINE\_FUNCTION}}(UCLogManager::execBlueprintLog)}
+\DoxyCodeLine{00188\ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ P\_GET\_ENUM(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}},Z\_Param\_Category);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Message);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe}{UCLogManager::BlueprintLog}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}(Z\_Param\_Category),Z\_Param\_Message);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ UCLogManager::StaticRegisterNativesUCLogManager()}
+\DoxyCodeLine{00197\ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCLogManager::StaticClass();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintLog"{}},\ \&UCLogManager::execBlueprintLog,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe}{UCLogManager::BlueprintLog}},(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}},\ \textcolor{keyword}{const}\ FString\&),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Get"{}},\ \&UCLogManager::execGet,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}{UCLogManager::Get}},(),ERASE\_ARGUMENT\_PACK(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*))\ \},}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetAllLogEntries"{}},\ \&UCLogManager::execGetAllLogEntries,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04}{UCLogManager::GetAllLogEntries}},(),ERASE\_ARGUMENT\_PACK(TArray<FString>))\ \},}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetAllLogEntriesByCategory"{}},\ \&UCLogManager::execGetAllLogEntriesByCategory,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097}{UCLogManager::GetAllLogEntriesByCategory}},(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}),ERASE\_ARGUMENT\_PACK(TArray<FString>))\ \},}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetRecentLogEntry"{}},\ \&UCLogManager::execGetRecentLogEntry,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72}{UCLogManager::GetRecentLogEntry}},(int64),ERASE\_ARGUMENT\_PACK(FString))\ \},}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}RotateLogFile"{}},\ \&UCLogManager::execRotateLogFile,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d}{UCLogManager::RotateLogFile}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics}}}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms}{CLogManager\_eventBlueprintLog\_Parms}}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms_a3cd7a7818ca8c5eb0ab6b91e74e3d335}{Category}};}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms_a50f62a1f1824023e82b073eeed0bd0f5}{Message}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a5b786d28362753bdb10f5d9ce3fb1a3e}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a01f78e67cb8cc1dbc5d369070fbf459f}{NewProp\_Category}};}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Message\_MetaData[];}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_ade6d1c0ea2f486cb401ad7889b36a9f4}{NewProp\_Message}};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_aca419503eaaea5cd1d0c8a2cbeb1f887}{PropPointers}}[];}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a9718dd3a9e32e6bc3f70beb8a67eb512}{FuncParams}};}
+\DoxyCodeLine{00227\ \ \ \ \ \};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a5b786d28362753bdb10f5d9ce3fb1a3e}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a01f78e67cb8cc1dbc5d369070fbf459f}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms}{CLogManager\_eventBlueprintLog\_Parms}},\ Category),\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 3466464535}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Message\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00233\ \ \ \ \ \};}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_ade6d1c0ea2f486cb401ad7889b36a9f4}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Message}}\ =\ \{\ \textcolor{stringliteral}{"{}Message"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x3010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms}{CLogManager\_eventBlueprintLog\_Parms}},\ Message),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Message\_MetaData),\ Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Message\_MetaData)\ \};}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_aca419503eaaea5cd1d0c8a2cbeb1f887}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a5b786d28362753bdb10f5d9ce3fb1a3e}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a01f78e67cb8cc1dbc5d369070fbf459f}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_ade6d1c0ea2f486cb401ad7889b36a9f4}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::NewProp\_Message}},}
+\DoxyCodeLine{00240\ \ \ \ \ \};}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Blueprint-\/accessible\ logging\ function\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_Category"{}},\ \textcolor{stringliteral}{"{}LC\_Info"{}}\ \},}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_Message"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Log"{}}\ \},}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Blueprint-\/accessible\ logging\ function"{}}\ \},}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00254\ \ \ \ \ \};}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a9718dd3a9e32e6bc3f70beb8a67eb512}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}BlueprintLog"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_aca419503eaaea5cd1d0c8a2cbeb1f887}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_aca419503eaaea5cd1d0c8a2cbeb1f887}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::CLogManager\_eventBlueprintLog\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_aca419503eaaea5cd1d0c8a2cbeb1f887}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_1_1_c_log_manager__event_blueprint_log___parms}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::CLogManager\_eventBlueprintLog\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00259\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a8545dcc3960c36666668cabaea966f60}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog}}()}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___blueprint_log___statics_a9718dd3a9e32e6bc3f70beb8a67eb512}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog\_Statics::FuncParams}});}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics}}}
+\DoxyCodeLine{00269\ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_1_1_c_log_manager__event_get___parms}{CLogManager\_eventGet\_Parms}}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_1_1_c_log_manager__event_get___parms_a40cba5f7fada2e34ee5f7f755fb3c521}{ReturnValue}};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a9f8e7742ff9a0ebd99f4b2a84fb71c89}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a757ecf5f5dc4a161515989f95fed4e5f}{PropPointers}}[];}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a13bc6323852281047431f9f6324a2f39}{FuncParams}};}
+\DoxyCodeLine{00280\ \ \ \ \ \};}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a9f8e7742ff9a0ebd99f4b2a84fb71c89}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_1_1_c_log_manager__event_get___parms}{CLogManager\_eventGet\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a144970567ce3a3461a8127ea1fc4c409}{Z\_Construct\_UClass\_UCLogManager\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a757ecf5f5dc4a161515989f95fed4e5f}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a9f8e7742ff9a0ebd99f4b2a84fb71c89}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00284\ \ \ \ \ \};}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Get\ the\ singleton\ instance\ of\ the\ logger\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Get\ Logger\ Instance"{}}\ \},}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Get\ the\ singleton\ instance\ of\ the\ logger"{}}\ \},}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00296\ \ \ \ \ \};}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a13bc6323852281047431f9f6324a2f39}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Get"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a757ecf5f5dc4a161515989f95fed4e5f}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a757ecf5f5dc4a161515989f95fed4e5f}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_1_1_c_log_manager__event_get___parms}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::CLogManager\_eventGet\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x14022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a757ecf5f5dc4a161515989f95fed4e5f}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_1_1_c_log_manager__event_get___parms}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::CLogManager\_eventGet\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00301\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a3283a382834086ef222af378291cda14}{Z\_Construct\_UFunction\_UCLogManager\_Get}}()}
+\DoxyCodeLine{00302\ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get___statics_a13bc6323852281047431f9f6324a2f39}{Z\_Construct\_UFunction\_UCLogManager\_Get\_Statics::FuncParams}});}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics}}}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_1_1_c_log_maf69693d6eda0a914248a35ce374edcee}{CLogManager\_eventGetAllLogEntries\_Parms}}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<FString>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_1_1_c_log_maf69693d6eda0a914248a35ce374edcee_a245ba340a876a78fd90b03c8d39aa3e6}{ReturnValue}};}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a30d31a7d7b518157cca71071ac5c7c2c}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a079c57589d5ed8cf690c8b896995d114}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_ab9b8cd8cf169dcb5eab1ed60f9aca144}{PropPointers}}[];}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a48ac717f0fc60401552726833838d4be}{FuncParams}};}
+\DoxyCodeLine{00323\ \ \ \ \ \};}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a30d31a7d7b518157cca71071ac5c7c2c}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a079c57589d5ed8cf690c8b896995d114}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_1_1_c_log_maf69693d6eda0a914248a35ce374edcee}{CLogManager\_eventGetAllLogEntries\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_ab9b8cd8cf169dcb5eab1ed60f9aca144}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a30d31a7d7b518157cca71071ac5c7c2c}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a079c57589d5ed8cf690c8b896995d114}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00329\ \ \ \ \ \};}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Read\ all\ log\ entries\ from\ the\ log\ file\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Read\ Log"{}}\ \},}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Read\ all\ log\ entries\ from\ the\ log\ file"{}}\ \},}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00341\ \ \ \ \ \};}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a48ac717f0fc60401552726833838d4be}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetAllLogEntries"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_ab9b8cd8cf169dcb5eab1ed60f9aca144}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_ab9b8cd8cf169dcb5eab1ed60f9aca144}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_1_1_c_log_maf69693d6eda0a914248a35ce374edcee}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::CLogManager\_eventGetAllLogEntries\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_ab9b8cd8cf169dcb5eab1ed60f9aca144}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_1_1_c_log_maf69693d6eda0a914248a35ce374edcee}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::CLogManager\_eventGetAllLogEntries\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00346\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a9c87e8d5f89dc9f7d560ea8485320f22}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries}}()}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries___statics_a48ac717f0fc60401552726833838d4be}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries\_Statics::FuncParams}});}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics}}}
+\DoxyCodeLine{00356\ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607}{CLogManager\_eventGetAllLogEntriesByCategory\_Parms}}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607_af693b781096c5fb9996f6ea021570608}{Category}};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<FString>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607_a5ddd4899abe41b50bf072d31f97f8e66}{ReturnValue}};}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a95967157d3f19e54e33f008afc8e7e4f}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_aea701205ec278ac4ddb475a7199962c2}{NewProp\_Category}};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_add596902597663e583ca19dfddab3608}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a125a74f9298c3876feb66a4ac01be02a}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_ad452257f7edafbd5d20ec61717833f89}{PropPointers}}[];}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a645d8425b442de429b8b9e6be527bb7f}{FuncParams}};}
+\DoxyCodeLine{00371\ \ \ \ \ \};}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a95967157d3f19e54e33f008afc8e7e4f}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_aea701205ec278ac4ddb475a7199962c2}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607}{CLogManager\_eventGetAllLogEntriesByCategory\_Parms}},\ Category),\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a531dc8822f4bbe2c99a6f509da313f05}{Z\_Construct\_UEnum\_TacticalRogueLite\_ELogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 3466464535}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_add596902597663e583ca19dfddab3608}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a125a74f9298c3876feb66a4ac01be02a}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607}{CLogManager\_eventGetAllLogEntriesByCategory\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_ad452257f7edafbd5d20ec61717833f89}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a95967157d3f19e54e33f008afc8e7e4f}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_aea701205ec278ac4ddb475a7199962c2}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_add596902597663e583ca19dfddab3608}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a125a74f9298c3876feb66a4ac01be02a}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00381\ \ \ \ \ \};}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Read\ all\ log\ entries\ from\ the\ selected\ category\ from\ the\ log\ file\ \(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Read\ Log\ By\ Category"{}}\ \},}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Read\ all\ log\ entries\ from\ the\ selected\ category\ from\ the\ log\ file"{}}\ \},}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00393\ \ \ \ \ \};}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a645d8425b442de429b8b9e6be527bb7f}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetAllLogEntriesByCategory"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_ad452257f7edafbd5d20ec61717833f89}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_ad452257f7edafbd5d20ec61717833f89}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::CLogManager\_eventGetAllLogEntriesByCategory\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_ad452257f7edafbd5d20ec61717833f89}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_100fa634d5b9191ae89c12ead9123607}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::CLogManager\_eventGetAllLogEntriesByCategory\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00398\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a9996282a0a749c690873e7225154422c}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory}}()}
+\DoxyCodeLine{00399\ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_all_log_entries_by_category___statics_a645d8425b442de429b8b9e6be527bb7f}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory\_Statics::FuncParams}});}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics}}}
+\DoxyCodeLine{00408\ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c}{CLogManager\_eventGetRecentLogEntry\_Parms}}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ int64\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c_a632ea619fdcc7c9ac3dd669a3d9e7c80}{LogID}};}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c_aee93e066b3fdae929e05084503454a06}{ReturnValue}};}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FInt64PropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_a35eaf7fbf22570f6815ea9b6a31429aa}{NewProp\_LogID}};}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_ae72a4342611db3e59a6e1a236ccec189}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_aaaee01d98961fb93c00748b234a1251a}{PropPointers}}[];}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_acfa198cafe5e7af0ee3bfd967c4f2fe7}{FuncParams}};}
+\DoxyCodeLine{00421\ \ \ \ \ \};}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FInt64PropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_a35eaf7fbf22570f6815ea9b6a31429aa}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::NewProp\_LogID}}\ =\ \{\ \textcolor{stringliteral}{"{}LogID"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Int64,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c}{CLogManager\_eventGetRecentLogEntry\_Parms}},\ LogID),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_ae72a4342611db3e59a6e1a236ccec189}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c}{CLogManager\_eventGetRecentLogEntry\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_aaaee01d98961fb93c00748b234a1251a}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_a35eaf7fbf22570f6815ea9b6a31429aa}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::NewProp\_LogID}},}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_ae72a4342611db3e59a6e1a236ccec189}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00427\ \ \ \ \ \};}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Get\ a\ log\ by\ its\ ID\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Get\ Recent\ Log\ Entry"{}}\ \},}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Get\ a\ log\ by\ its\ ID"{}}\ \},}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00439\ \ \ \ \ \};}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_acfa198cafe5e7af0ee3bfd967c4f2fe7}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetRecentLogEntry"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_aaaee01d98961fb93c00748b234a1251a}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_aaaee01d98961fb93c00748b234a1251a}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::CLogManager\_eventGetRecentLogEntry\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_aaaee01d98961fb93c00748b234a1251a}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_1_1_c_log_m1d3a239b8c1d0378e424f6427eca489c}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::CLogManager\_eventGetRecentLogEntry\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00444\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a48c6ec3c95296d337156a3cad6c0d427}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry}}()}
+\DoxyCodeLine{00445\ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___get_recent_log_entry___statics_acfa198cafe5e7af0ee3bfd967c4f2fe7}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry\_Statics::FuncParams}});}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___rotate_log_file___statics}{Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics}}}
+\DoxyCodeLine{00454\ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___rotate_log_file___statics_ac08f386d9b3600f54ac39c051e48409b}{FuncParams}};}
+\DoxyCodeLine{00459\ \ \ \ \ \};}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Rotate\ the\ log\ file\ and\ start\ writing\ to\ a\ new\ one\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DisplayName"{}},\ \textcolor{stringliteral}{"{}Rotate\ LogFile"{}}\ \},}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Rotate\ the\ log\ file\ and\ start\ writing\ to\ a\ new\ one"{}}\ \},}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00471\ \ \ \ \ \};}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___rotate_log_file___statics_ac08f386d9b3600f54ac39c051e48409b}{Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}RotateLogFile"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00474\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_ad9259389ba96e26db0acf31bf850edb8}{Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile}}()}
+\DoxyCodeLine{00475\ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_log_manager___rotate_log_file___statics_ac08f386d9b3600f54ac39c051e48409b}{Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile\_Statics::FuncParams}});}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_add8d0ee2a59b78c0ed42dbe96389f201}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}});}
+\DoxyCodeLine{00484\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a144970567ce3a3461a8127ea1fc4c409}{Z\_Construct\_UClass\_UCLogManager\_NoRegister}}()}
+\DoxyCodeLine{00485\ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCLogManager::StaticClass();}
+\DoxyCodeLine{00487\ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics}{Z\_Construct\_UClass\_UCLogManager\_Statics}}}
+\DoxyCodeLine{00489\ \ \ \ \ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abb8eef2ba34139c25af8ff032978062e}{DependentSingletons}}[])();}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_addc84116a95719de0f4cd1d2c2c608a6}{FuncInfo}}[];}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_OnNewLogEntry\_MetaData[];}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_a589ed1ad437072ab5cc58cdb091ca152}{NewProp\_OnNewLogEntry}};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abe1d9e367e49c5f731ec0aa3fec4baf8}{PropPointers}}[];}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_a00aa159110002b7decfd2984f835bb07}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_aaa5e167500d66d423863ec27a281e675}{ClassParams}};}
+\DoxyCodeLine{00502\ \ \ \ \ \};}
+\DoxyCodeLine{00503\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abb8eef2ba34139c25af8ff032978062e}{Z\_Construct\_UClass\_UCLogManager\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}},}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00506\ \ \ \ \ \};}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abb8eef2ba34139c25af8ff032978062e}{Z\_Construct\_UClass\_UCLogManager\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_addc84116a95719de0f4cd1d2c2c608a6}{Z\_Construct\_UClass\_UCLogManager\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a8545dcc3960c36666668cabaea966f60}{Z\_Construct\_UFunction\_UCLogManager\_BlueprintLog}},\ \textcolor{stringliteral}{"{}BlueprintLog"{}}\ \},\ \textcolor{comment}{//\ 2957241105}}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a3283a382834086ef222af378291cda14}{Z\_Construct\_UFunction\_UCLogManager\_Get}},\ \textcolor{stringliteral}{"{}Get"{}}\ \},\ \textcolor{comment}{//\ 3808549262}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a9c87e8d5f89dc9f7d560ea8485320f22}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntries}},\ \textcolor{stringliteral}{"{}GetAllLogEntries"{}}\ \},\ \textcolor{comment}{//\ 4006849600}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a9996282a0a749c690873e7225154422c}{Z\_Construct\_UFunction\_UCLogManager\_GetAllLogEntriesByCategory}},\ \textcolor{stringliteral}{"{}GetAllLogEntriesByCategory"{}}\ \},\ \textcolor{comment}{//\ 1292733215}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_a48c6ec3c95296d337156a3cad6c0d427}{Z\_Construct\_UFunction\_UCLogManager\_GetRecentLogEntry}},\ \textcolor{stringliteral}{"{}GetRecentLogEntry"{}}\ \},\ \textcolor{comment}{//\ 42406388}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_log_manager_8gen_8cpp_ad9259389ba96e26db0acf31bf850edb8}{Z\_Construct\_UFunction\_UCLogManager\_RotateLogFile}},\ \textcolor{stringliteral}{"{}RotateLogFile"{}}\ \},\ \textcolor{comment}{//\ 2324084191}}
+\DoxyCodeLine{00515\ \ \ \ \ \};}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_addc84116a95719de0f4cd1d2c2c608a6}{Z\_Construct\_UClass\_UCLogManager\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCLogManager\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ *\(\backslash\)n//\ FLogger\ wrapper\ for\ access\ through\ Blueprints\ and\ C++\(\backslash\)n//\ *\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}FLogger\ wrapper\ for\ access\ through\ Blueprints\ and\ C++"{}}\ \},}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00528\ \ \ \ \ \};}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCLogManager\_Statics::NewProp\_OnNewLogEntry\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Logging"{}}\ \},}
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ Delegate\ for\ broadcasting\ log\ events\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CLogManager.h"{}}\ \},}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Delegate\ for\ broadcasting\ log\ events"{}}\ \},}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00540\ \ \ \ \ \};}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_a589ed1ad437072ab5cc58cdb091ca152}{Z\_Construct\_UClass\_UCLogManager\_Statics::NewProp\_OnNewLogEntry}}\ =\ \{\ \textcolor{stringliteral}{"{}OnNewLogEntry"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000010080000,\ UECodeGen\_Private::EPropertyGenFlags::InlineMulticastDelegate,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}},\ OnNewLogEntry),\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a961ca9bc52e40ba02829ce73512e6db4}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnNewLogEntry\_\_DelegateSignature}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCLogManager\_Statics::NewProp\_OnNewLogEntry\_MetaData),\ Z\_Construct\_UClass\_UCLogManager\_Statics::NewProp\_OnNewLogEntry\_MetaData)\ \};\ \textcolor{comment}{//\ 3811878118}}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abe1d9e367e49c5f731ec0aa3fec4baf8}{Z\_Construct\_UClass\_UCLogManager\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_a589ed1ad437072ab5cc58cdb091ca152}{Z\_Construct\_UClass\_UCLogManager\_Statics::NewProp\_OnNewLogEntry}},}
+\DoxyCodeLine{00545\ \ \ \ \ \};}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_a00aa159110002b7decfd2984f835bb07}{Z\_Construct\_UClass\_UCLogManager\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCLogManager>::IsAbstract,}
+\DoxyCodeLine{00548\ \ \ \ \ \};}
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_aaa5e167500d66d423863ec27a281e675}{Z\_Construct\_UClass\_UCLogManager\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \&UCLogManager::StaticClass,}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abe1d9e367e49c5f731ec0aa3fec4baf8}{Z\_Construct\_UClass\_UCLogManager\_Statics::PropPointers}},}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abe1d9e367e49c5f731ec0aa3fec4baf8}{Z\_Construct\_UClass\_UCLogManager\_Statics::PropPointers}}),}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ 0x008000A0u,}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCLogManager\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCLogManager\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00563\ \ \ \ \ \};}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_abe1d9e367e49c5f731ec0aa3fec4baf8}{Z\_Construct\_UClass\_UCLogManager\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00565\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}}()}
+\DoxyCodeLine{00566\ \ \ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCLogManager.OuterSingleton)}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCLogManager.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_log_manager___statics_aaa5e167500d66d423863ec27a281e675}{Z\_Construct\_UClass\_UCLogManager\_Statics::ClassParams}});}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCLogManager.OuterSingleton;}
+\DoxyCodeLine{00572\ \ \ \ \ \}}
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_ae6758835378171767ab07e5543c69c13}{StaticClass<UCLogManager>}}()}
+\DoxyCodeLine{00574\ \ \ \ \ \{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCLogManager::StaticClass();}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ \ \ \ \ UCLogManager::UCLogManager(\textcolor{keyword}{const}\ FObjectInitializer\&\ ObjectInitializer)\ :\ Super(ObjectInitializer)\ \{\}}
+\DoxyCodeLine{00578\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_ab6f91df8459b4195ae0268341668bc79}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}});}
+\DoxyCodeLine{00579\ \ \ \ \ UCLogManager::\string~UCLogManager()\ \{\}}
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics}}}
+\DoxyCodeLine{00581\ \ \ \ \ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_acc734201aa68ba5218852935c02804e2}{EnumInfo}}[];}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_ac3e0b9e44b899ffce419399409b63043}{ClassInfo}}[];}
+\DoxyCodeLine{00584\ \ \ \ \ \};}
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_acc734201aa68ba5218852935c02804e2}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::EnumInfo}}[]\ =\ \{}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \{\ ELogCategory\_StaticEnum,\ TEXT(\textcolor{stringliteral}{"{}ELogCategory"{}}),\ \&Z\_Registration\_Info\_UEnum\_ELogCategory,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FEnumReloadVersionInfo,\ 3466464535U)\ \},}
+\DoxyCodeLine{00587\ \ \ \ \ \};}
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_ac3e0b9e44b899ffce419399409b63043}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_log_manager_8gen_8cpp_a563a793e88dd41842e015b722eee91e8}{Z\_Construct\_UClass\_UCLogManager}},\ UCLogManager::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCLogManager"{}}),\ \&Z\_Registration\_Info\_UClass\_UCLogManager,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}),\ 2775141877U)\ \},}
+\DoxyCodeLine{00590\ \ \ \ \ \};}
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_1916586966(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_ac3e0b9e44b899ffce419399409b63043}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_ac3e0b9e44b899ffce419399409b63043}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_acc734201aa68ba5218852935c02804e2}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::EnumInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou6090770ef31338cf0205ed0a9fa3293e_acc734201aa68ba5218852935c02804e2}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CLogManager\_h\_Statics::EnumInfo}}));}
+\DoxyCodeLine{00595\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

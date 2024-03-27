@@ -1,0 +1,81 @@
+\doxysection{CPlayer\+Controller.\+h}
+\hypertarget{_c_player_controller_8h_source}{}\label{_c_player_controller_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/CPlayerController.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/CPlayerController.h}}
+\mbox{\hyperlink{_c_player_controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_item_slots_8h}{Items\(\backslash\)ItemSlots.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_controller_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlinePlayerController.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}CPlayerController.generated.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_game_state}{ACGameState}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ UCLASS()}
+\DoxyCodeLine{00018\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_player_controller}{ACPlayerController}}\ :\ public\ \mbox{\hyperlink{class_a_online_player_controller}{AOnlinePlayerController}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_state}{ACGameState}}*\ GetGameState();}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_state}{ACGameState}}*\ \mbox{\hyperlink{class_a_c_player_controller_acfc9069d4032f44cb70625c752408bfc}{GameStateRef}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ region\ Ability\ Input}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Functions\ in\ the\ Ability\ Input\ region\ are\ to\ be\ used\ by\ keybindings\ and\ UI\ buttons}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities"{}})}
+\DoxyCodeLine{00033\ \ \ \ \ void\ UndoAbility();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ This\ should\ be\ called\ when\ the\ player\ STARTS\ using\ an\ ability,\ by\ using\ a\ keybind}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ or\ UI\ button.}}
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Abilities"{})}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ InitiateAbilityUse(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inItemSlot);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ This\ should\ be\ called\ when\ a\ player\ targets\ a\ tile\ after\ having\ used\ an\ ability}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ through\ InitiateAbilityUse.\ This\ function\ makes\ the\ actual\ server\ RPC.}}
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Abilities"{})}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ FinalizeAbilityUse(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Abilities"{})}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ CancelAbilityUse();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Turn\ Order"{})}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ EndTurn();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ private:}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Stores\ the\ currently\ used\ itemslot\ designated\ in\ InitiateAbilityUse()}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ ItemSlotCurrentlyUsed\ =\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}::EIS\_None;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Stores\ the\ currently\ active\ Unit,\ fetched\ from\ the\ fromt\ of\ the\ turn\ order}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ in\ InitiateAbilityUse().}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ It's\ useful\ to\ make\ sure\ you\ don't\ try\ to\ initiate\ an\ ability,\ then\ end\ turn,\ }}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ then\ finalize.\ }}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ UnitCurrentlyUsingAbility\ =\ \textcolor{keywordtype}{nullptr};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ HighlightedTiles;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#pragma\ region\ Server\ RPCs}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00075\ \ \ \ \ UFUNCTION(Server,\ Reliable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
+\DoxyCodeLine{00076\ \ \ \ \ void\ Server\_UseObject(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ const\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ UFUNCTION(Server,\ Reliable,\ Category\ =\ "{}Abilities|Commands"{})}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ Server\_TryUndo();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ UFUNCTION(Server,\ Reliable,\ Category\ =\ "{}Abilities"{})}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ Server\_TryEndTurn();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,121 @@
+\doxysection{UCLog\+Manager Class Reference}
+\hypertarget{class_u_c_log_manager}{}\label{class_u_c_log_manager}\index{UCLogManager@{UCLogManager}}
+
+
+{\ttfamily \#include $<$CLog\+Manager.\+h$>$}
+
+Inheritance diagram for UCLog\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_log_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe}{Blueprint\+Log}} (\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} Category=ELog\+Category\+::\+LC\+\_\+\+Info, const FString \&Message=TEXT("{}"{}))
+\item 
+static void \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{Log}} (\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} Category, const FString \&Message)
+\item 
+static TArray$<$ FString $>$ \mbox{\hyperlink{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04}{Get\+All\+Log\+Entries}} ()
+\item 
+static TArray$<$ FString $>$ \mbox{\hyperlink{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097}{Get\+All\+Log\+Entries\+By\+Category}} (\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} Category)
+\item 
+static FString \mbox{\hyperlink{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72}{Get\+Recent\+Log\+Entry}} (int64 Log\+ID)
+\item 
+static void \mbox{\hyperlink{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d}{Rotate\+Log\+File}} ()
+\item 
+static \mbox{\hyperlink{class_u_c_log_manager}{UCLog\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}{Get}} ()
+\item 
+static void \mbox{\hyperlink{class_u_c_log_manager_a3d6dc22e709a6438e4ba070cbf2f8c98}{Start\+Up}} ()
+\item 
+static void \mbox{\hyperlink{class_u_c_log_manager_ad4ba5cd66821ba177cd2dbf729b57338}{Shut\+Down}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FOn\+New\+Log\+Entry \mbox{\hyperlink{class_u_c_log_manager_a7073d642b1fd6866da96aa8ce24fae2c}{On\+New\+Log\+Entry}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_u_c_log_manager}{UCLog\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_log_manager_a6b33af3056fad7cef60ad492ca5d5d52}{Instance}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe}\label{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe} 
+\index{UCLogManager@{UCLogManager}!BlueprintLog@{BlueprintLog}}
+\index{BlueprintLog@{BlueprintLog}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{BlueprintLog()}{BlueprintLog()}}
+{\footnotesize\ttfamily void UCLog\+Manager\+::\+Blueprint\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}}]{Category = {\ttfamily ELogCategory\+:\+:LC\+\_\+Info},  }\item[{const FString \&}]{Message = {\ttfamily TEXT("{}"{})} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}\label{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e} 
+\index{UCLogManager@{UCLogManager}!Get@{Get}}
+\index{Get@{Get}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_log_manager}{UCLog\+Manager}} \texorpdfstring{$\ast$}{*} UCLog\+Manager\+::\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04}\label{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04} 
+\index{UCLogManager@{UCLogManager}!GetAllLogEntries@{GetAllLogEntries}}
+\index{GetAllLogEntries@{GetAllLogEntries}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{GetAllLogEntries()}{GetAllLogEntries()}}
+{\footnotesize\ttfamily TArray$<$ FString $>$ UCLog\+Manager\+::\+Get\+All\+Log\+Entries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097}\label{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097} 
+\index{UCLogManager@{UCLogManager}!GetAllLogEntriesByCategory@{GetAllLogEntriesByCategory}}
+\index{GetAllLogEntriesByCategory@{GetAllLogEntriesByCategory}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{GetAllLogEntriesByCategory()}{GetAllLogEntriesByCategory()}}
+{\footnotesize\ttfamily TArray$<$ FString $>$ UCLog\+Manager\+::\+Get\+All\+Log\+Entries\+By\+Category (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}}]{Category }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72}\label{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72} 
+\index{UCLogManager@{UCLogManager}!GetRecentLogEntry@{GetRecentLogEntry}}
+\index{GetRecentLogEntry@{GetRecentLogEntry}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{GetRecentLogEntry()}{GetRecentLogEntry()}}
+{\footnotesize\ttfamily FString UCLog\+Manager\+::\+Get\+Recent\+Log\+Entry (\begin{DoxyParamCaption}\item[{int64}]{Log\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}\label{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc} 
+\index{UCLogManager@{UCLogManager}!Log@{Log}}
+\index{Log@{Log}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{Log()}{Log()}}
+{\footnotesize\ttfamily void UCLog\+Manager\+::\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}}]{Category,  }\item[{const FString \&}]{Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d}\label{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d} 
+\index{UCLogManager@{UCLogManager}!RotateLogFile@{RotateLogFile}}
+\index{RotateLogFile@{RotateLogFile}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{RotateLogFile()}{RotateLogFile()}}
+{\footnotesize\ttfamily void UCLog\+Manager\+::\+Rotate\+Log\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_ad4ba5cd66821ba177cd2dbf729b57338}\label{class_u_c_log_manager_ad4ba5cd66821ba177cd2dbf729b57338} 
+\index{UCLogManager@{UCLogManager}!ShutDown@{ShutDown}}
+\index{ShutDown@{ShutDown}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{ShutDown()}{ShutDown()}}
+{\footnotesize\ttfamily void UCLog\+Manager\+::\+Shut\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_log_manager_a3d6dc22e709a6438e4ba070cbf2f8c98}\label{class_u_c_log_manager_a3d6dc22e709a6438e4ba070cbf2f8c98} 
+\index{UCLogManager@{UCLogManager}!StartUp@{StartUp}}
+\index{StartUp@{StartUp}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{StartUp()}{StartUp()}}
+{\footnotesize\ttfamily void UCLog\+Manager\+::\+Start\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_log_manager_a6b33af3056fad7cef60ad492ca5d5d52}\label{class_u_c_log_manager_a6b33af3056fad7cef60ad492ca5d5d52} 
+\index{UCLogManager@{UCLogManager}!Instance@{Instance}}
+\index{Instance@{Instance}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_log_manager}{UCLog\+Manager}} \texorpdfstring{$\ast$}{*} UCLog\+Manager\+::\+Instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_u_c_log_manager_a7073d642b1fd6866da96aa8ce24fae2c}\label{class_u_c_log_manager_a7073d642b1fd6866da96aa8ce24fae2c} 
+\index{UCLogManager@{UCLogManager}!OnNewLogEntry@{OnNewLogEntry}}
+\index{OnNewLogEntry@{OnNewLogEntry}!UCLogManager@{UCLogManager}}
+\doxysubsubsection{\texorpdfstring{OnNewLogEntry}{OnNewLogEntry}}
+{\footnotesize\ttfamily FOn\+New\+Log\+Entry UCLog\+Manager\+::\+On\+New\+Log\+Entry}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\+Logging/\mbox{\hyperlink{_c_log_manager_8h}{CLog\+Manager.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Utility/\+Logging/\mbox{\hyperlink{_c_log_manager_8cpp}{CLog\+Manager.\+cpp}}\end{DoxyCompactItemize}

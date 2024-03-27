@@ -1,0 +1,107 @@
+\doxysection{CItem.\+h}
+\hypertarget{_c_item_8h_source}{}\label{_c_item_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Items/CItem.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Items/CItem.h}}
+\mbox{\hyperlink{_c_item_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Engine/DataAsset.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}GameplayTags.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_item_slots_8h}{ItemSlots.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}CItem.generated.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_command}{UCCommand}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }UCAttributeComponent;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ UCLASS(Abstract)}
+\DoxyCodeLine{00021\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_item}{UCItem}}\ :\ public\ UDataAsset}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//Tags\ added\ to\ owning\ actor\ when\ item\ is\ equipped.}}
+\DoxyCodeLine{00028\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Tags"{}})}
+\DoxyCodeLine{00029\ \ \ \ \ FGameplayTagContainer\ GrantsTags;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//The\ item\ can\ not\ create\ an\ executable\ command\ if\ owningactor\ has\ any\ of\ these\ tags\ applied.}}
+\DoxyCodeLine{00032\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00033\ \ \ \ \ FGameplayTagContainer\ BlockedTags;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/\ Is\ there\ a\ use\ case\ for\ this?\ -\/-\/\ }}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ //Item\ "{}nickname"{}\ to\ start/stop\ without\ a\ reference\ to\ the\ object.\ EXPERIMENTAL}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Effects"{})}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ FGameplayTag\ ActivationTag;}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ public:}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//Fetched\ by\ UI\ to\ display\ on\ buttons}}
+\DoxyCodeLine{00044\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Abilities"{})}
+\DoxyCodeLine{00045\ \ \ \ \ TObjectPtr<UTexture2D>\ AbilityIcon;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Item\ Slot"{})}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ ItemSlot;\ }
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Abilities|Targeting"{})}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsValidTargetTile(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetValidTargetTiles(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ EquipOnUnit(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ UnequipOnUnit(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#pragma\ region\ C++\ overrides}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_u_c_command}{UCCommand}}*\ \mbox{\hyperlink{class_u_c_item_a491ad1763ec89c7489393faf4987d9b4}{GenerateAbilityCommand}}(AController*\ inController,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile)}
+\DoxyCodeLine{00091\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ReceiveGenerateAbilityCommand(inController,\ inUnit,\ inTargetTile);\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{virtual}\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0}{GetReachableTiles}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile)}
+\DoxyCodeLine{00094\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ReceiveGetReachableTiles(inTile);\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{virtual}\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_u_c_item_aedd1082e607a22100c1ea76ceea15613}{GetValidTargetTilesInternal}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00100\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ReceiveGetValidTargetTiles(inUnit);\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_item_a6de83d25d07f76c2a3084600f0a81597}{EquipOnUnitInternal}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00103\ \ \ \ \ \{\ ReceiveEquipOnUnit(inUnit);\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_item_afdd71b6ae22efc7236c5c775fd560a2a}{UnequipOnUnitInternal}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00106\ \ \ \ \ \{\ ReceiveUnequipOnUnit(inUnit);\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#pragma\ region\ AngelScript\ overridables}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00116\ \ \ \ \ void\ ReceiveEquipOnUnit(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);}
+\DoxyCodeLine{00117\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_u_c_command}{UCCommand}}*\ ReceiveGenerateAbilityCommand(AController*\ inController,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
+\DoxyCodeLine{00119\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00120\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ ReceiveGetValidTargetTiles(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);\ }
+\DoxyCodeLine{00121\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ ReceiveUnequipOnUnit(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit);}
+\DoxyCodeLine{00123\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00124\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ ReceiveGetReachableTiles(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00127\ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \};}
+
+\end{DoxyCode}

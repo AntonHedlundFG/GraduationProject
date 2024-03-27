@@ -1,0 +1,221 @@
+\doxysection{CAction\+Component.\+cpp}
+\hypertarget{_c_action_component_8cpp_source}{}\label{_c_action_component_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Actions/CActionComponent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Actions/CActionComponent.cpp}}
+\mbox{\hyperlink{_c_action_component_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_component_8h}{Actions/CActionComponent.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Logging/StructuredLog.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Engine/ActorChannel.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tactical_rogue_lite_8h}{TacticalRogueLite/TacticalRogueLite.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ UCActionComponent::UCActionComponent()}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ PrimaryComponentTick.bCanEverTick\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ SetIsReplicatedByDefault(\textcolor{keyword}{true});}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ UCActionComponent::BeginPlay()}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Server\ Only}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (GetOwner()-\/>HasAuthority())}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (TSubclassOf<UCAction>\ ActionClass\ :\ DefaultActions)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ AddAction(GetOwner(),\ ActionClass);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ UCActionComponent::EndPlay(\textcolor{keyword}{const}\ EEndPlayReason::Type\ EndPlayReason)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Stop\ all}}
+\DoxyCodeLine{00033\ \ \ \ \ TArray<UCAction*>\ ActionsCopy\ =\ Actions;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ Action\ :\ ActionsCopy)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action-\/>IsRunning())}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Action-\/>StopAction(GetOwner());}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ Super::EndPlay(EndPlayReason);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//Disabled,\ just\ enable\ for\ debugging\ purposes.}}
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ UCActionComponent::TickComponent(\textcolor{keywordtype}{float}\ DeltaTime,\ ELevelTick\ TickType,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FActorComponentTickFunction*\ ThisTickFunction)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//Super::TickComponent(DeltaTime,\ TickType,\ ThisTickFunction);}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//FString\ DebugMsg\ =\ GetNameSafe(GetOwner())\ +\ "{}\ :\ "{}\ +\ ActiveGameplayTags.ToStringSimple();}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//GEngine-\/>AddOnScreenDebugMessage(-\/1,\ 0.0f,\ FColor::White,\ DebugMsg);}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Draw\ All\ Actions}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ \ for\ (USAction*\ Action\ :\ Actions)}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ FColor\ TextColor\ =\ Action-\/>IsRunning()\ ?\ FColor::Blue\ :\ FColor::White;}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ FString\ ActionMsg\ =\ FString::Printf(TEXT("{}[\%s]\ Action:\ \%s"{}),\ *GetNameSafe(GetOwner()),\ *GetNameSafe(Action));}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ LogOnScreen(this,\ ActionMsg,\ TextColor,\ 0.0f);}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ UCActionComponent::AddAction(AActor*\ Instigator,\ TSubclassOf<UCAction>\ ActionClass)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ensure(ActionClass))\textcolor{comment}{//Macro\ that\ is\ non-\/fatal,\ execution\ is\ allowed\ to\ continue\ but\ will\ break\ into\ the\ debugger\ if\ false.}}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Skip\ for\ clients}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetOwner()-\/>HasAuthority())}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//UE\_LOGFMT(LogGame,\ Warning,\ "{}Client\ attempting\ to\ AddAction.\ [Class:\ \{Class\}]"{},\ GetNameSafe(ActionClass));}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_u_c_action}{UCAction}}*\ NewAction\ =\ NewObject<UCAction>(GetOwner(),\ ActionClass);}
+\DoxyCodeLine{00079\ \ \ \ \ check(NewAction);\ \textcolor{comment}{//Macro\ that\ is\ treated\ as\ fatal\ error\ if\ false.}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ NewAction-\/>\mbox{\hyperlink{class_u_c_action_a8f8a7009c33d7cdedadaf24da25a398c}{Initialize}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ Actions.Add(NewAction);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (NewAction-\/>\mbox{\hyperlink{class_u_c_action_ad248caef9b49e4c76a28d916604d932b}{IsAutoStart}}()\ \&\&\ ensure(NewAction-\/>\mbox{\hyperlink{class_u_c_action_a053eca4e165d39f16be0aa0b399b6daf}{CanStart}}(Instigator)))}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ NewAction-\/>\mbox{\hyperlink{class_u_c_action_aea136113a464cf9545170c7a066027c9}{StartAction}}(Instigator);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ UCActionComponent::RemoveAction(\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ ActionToRemove)}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ensure(ActionToRemove\ \&\&\ !ActionToRemove-\/>\mbox{\hyperlink{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}{IsRunning}}()))}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ Actions.Remove(ActionToRemove);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \mbox{\hyperlink{class_u_c_action}{UCAction}}*\ UCActionComponent::GetAction(TSubclassOf<UCAction>\ ActionClass)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ Action\ :\ Actions)}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action-\/>IsA(ActionClass))}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Action;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{bool}\ UCActionComponent::StartActionByName(AActor*\ Instigator,\ FGameplayTag\ ActionName)}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//SCOPE\_CYCLE\_COUNTER(STAT\_StartActionByName);\ //TODO:\ Enable\ stat\ commands/ask\ group\ if\ I\ can\ use\ them.\ }}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Inline\ variant,\ convenient\ when\ only\ used\ once\ in\ code,\ visible\ in\ Viewport\ stats.\ https://www.tomlooman.com/unreal-\/engine-\/profiling-\/stat-\/commands/}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//DECLARE\_SCOPE\_CYCLE\_COUNTER(TEXT("{}StartActionByName"{}),\ StartActionByName,\ STATGROUP\_ROGUELITE);}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ Visible\ in\ Unreal\ Insights}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//SCOPED\_NAMED\_EVENT(StartActionName,\ FColor::Green);}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ Action\ :\ Actions)}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action-\/>GetActivationTag()\ ==\ ActionName)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Action-\/>CanStart(Instigator))}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FString\ FailedMsg\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}Failed\ to\ run:\ \%s"{}}),\ *ActionName.ToString());}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GEngine-\/>AddOnScreenDebugMessage(-\/1,\ 2.0f,\ FColor::Red,\ FailedMsg);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ Client?}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetOwner()-\/>HasAuthority())}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ServerStartAction(Instigator,\ ActionName);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bookmark\ for\ Unreal\ Insights\ https://dev.epicgames.com/documentation/en-\/us/unreal-\/engine/trace-\/in-\/unreal-\/engine-\/5}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ TRACE\_BOOKMARK(TEXT(\textcolor{stringliteral}{"{}StartAction::\%s"{}}),\ *GetNameSafe(Action));}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scoped\ within\ the\ curly\ braces.\ the\ \_FSTRING\ variant\ adds\ additional\ tracing\ overhead\ due\ to\ grabbing\ the\ class\ name\ every\ time}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//SCOPED\_NAMED\_EVENT\_FSTRING(Action-\/>GetClass()-\/>GetName(),\ FColor::White);}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action-\/>StartAction(Instigator);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keywordtype}{bool}\ UCActionComponent::StopActionByName(AActor*\ Instigator,\ FGameplayTag\ ActionName)}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ Action\ :\ Actions)}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action-\/>GetActivationTag()\ ==\ ActionName)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action-\/>IsRunning())}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ Client?}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetOwner()-\/>HasAuthority())}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ServerStopAction(Instigator,\ ActionName);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action-\/>StopAction(Instigator);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keywordtype}{void}\ UCActionComponent::ServerStartAction\_Implementation(AActor*\ Instigator,\ FGameplayTag\ ActionName)}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ StartActionByName(Instigator,\ ActionName);}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keywordtype}{void}\ UCActionComponent::ServerStopAction\_Implementation(AActor*\ Instigator,\ FGameplayTag\ ActionName)}
+\DoxyCodeLine{00191\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ StopActionByName(Instigator,\ ActionName);}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keywordtype}{bool}\ UCActionComponent::ReplicateSubobjects(\textcolor{keyword}{class}\ UActorChannel*\ Channel,\ \textcolor{keyword}{class}\ FOutBunch*\ Bunch,\ FReplicationFlags*\ RepFlags)}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ WroteSomething\ =\ Super::ReplicateSubobjects(Channel,\ Bunch,\ RepFlags);}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ Action\ :\ Actions)}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Action)}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ WroteSomething\ |=\ Channel-\/>ReplicateSubobject(Action,\ *Bunch,\ *RepFlags);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ WroteSomething;}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{keywordtype}{void}\ UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00212\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ DOREPLIFETIME(UCActionComponent,\ Actions);}
+\DoxyCodeLine{00215\ \}}
+
+\end{DoxyCode}

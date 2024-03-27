@@ -1,0 +1,89 @@
+\doxysection{UCConsequence Class Reference}
+\hypertarget{class_u_c_consequence}{}\label{class_u_c_consequence}\index{UCConsequence@{UCConsequence}}
+
+
+{\ttfamily \#include $<$CConsequence.\+h$>$}
+
+Inheritance diagram for UCConsequence\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_c_consequence}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4}{Execute\+Consequence}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_c_consequence_a9b8d4a53846bb52e7743e86d422325cc}{Undo\+Consequence}} ()
+\item 
+virtual FString \mbox{\hyperlink{class_u_c_consequence_a5e540df5ab79dba6f77f12725b54d486}{To\+String}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_consequence_a9d73cdc9e611d2a1b71268fa1ec5061f}{Receive\+Execute\+Consequence}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_consequence_a760e27abbea480858943dc02a23f4545}{Receive\+Undo\+Consequence}} ()
+\item 
+FString \mbox{\hyperlink{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5}{Receive\+To\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_u_c_consequence}{UCConsequence} is an event that trigger as a -\/result-\/ of using a command, rather than a deliberate action from a Controller. It should be created and registered in the CGame\+Mode with Register\+And\+Execute\+Consequence(). Do not execute it manually. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4}\label{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4} 
+\index{UCConsequence@{UCConsequence}!ExecuteConsequence@{ExecuteConsequence}}
+\index{ExecuteConsequence@{ExecuteConsequence}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{ExecuteConsequence()}{ExecuteConsequence()}}
+{\footnotesize\ttfamily virtual void UCConsequence\+::\+Execute\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_death_consequence_a8b12705aa38cfc16f9667c0e2a51f42e}{UCDeath\+Consequence}}.
+
+\Hypertarget{class_u_c_consequence_a9d73cdc9e611d2a1b71268fa1ec5061f}\label{class_u_c_consequence_a9d73cdc9e611d2a1b71268fa1ec5061f} 
+\index{UCConsequence@{UCConsequence}!ReceiveExecuteConsequence@{ReceiveExecuteConsequence}}
+\index{ReceiveExecuteConsequence@{ReceiveExecuteConsequence}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{ReceiveExecuteConsequence()}{ReceiveExecuteConsequence()}}
+{\footnotesize\ttfamily void UCConsequence\+::\+Receive\+Execute\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5}\label{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5} 
+\index{UCConsequence@{UCConsequence}!ReceiveToString@{ReceiveToString}}
+\index{ReceiveToString@{ReceiveToString}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{ReceiveToString()}{ReceiveToString()}}
+{\footnotesize\ttfamily FString UCConsequence\+::\+Receive\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_consequence_a760e27abbea480858943dc02a23f4545}\label{class_u_c_consequence_a760e27abbea480858943dc02a23f4545} 
+\index{UCConsequence@{UCConsequence}!ReceiveUndoConsequence@{ReceiveUndoConsequence}}
+\index{ReceiveUndoConsequence@{ReceiveUndoConsequence}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{ReceiveUndoConsequence()}{ReceiveUndoConsequence()}}
+{\footnotesize\ttfamily void UCConsequence\+::\+Receive\+Undo\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_consequence_a5e540df5ab79dba6f77f12725b54d486}\label{class_u_c_consequence_a5e540df5ab79dba6f77f12725b54d486} 
+\index{UCConsequence@{UCConsequence}!ToString@{ToString}}
+\index{ToString@{ToString}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{ToString()}{ToString()}}
+{\footnotesize\ttfamily virtual FString UCConsequence\+::\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_death_consequence_a995a89143dc8f7577e1efbcccda2e330}{UCDeath\+Consequence}}.
+
+\Hypertarget{class_u_c_consequence_a9b8d4a53846bb52e7743e86d422325cc}\label{class_u_c_consequence_a9b8d4a53846bb52e7743e86d422325cc} 
+\index{UCConsequence@{UCConsequence}!UndoConsequence@{UndoConsequence}}
+\index{UndoConsequence@{UndoConsequence}!UCConsequence@{UCConsequence}}
+\doxysubsubsection{\texorpdfstring{UndoConsequence()}{UndoConsequence()}}
+{\footnotesize\ttfamily virtual void UCConsequence\+::\+Undo\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_death_consequence_ab547929422534c3d2e1f96512def06f9}{UCDeath\+Consequence}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Command\+Pattern/\mbox{\hyperlink{_c_consequence_8h}{CConsequence.\+h}}\end{DoxyCompactItemize}

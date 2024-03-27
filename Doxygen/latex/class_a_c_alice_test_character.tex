@@ -1,0 +1,124 @@
+\doxysection{ACAlice\+Test\+Character Class Reference}
+\hypertarget{class_a_c_alice_test_character}{}\label{class_a_c_alice_test_character}\index{ACAliceTestCharacter@{ACAliceTestCharacter}}
+
+
+{\ttfamily \#include $<$CAlice\+Test\+Character.\+h$>$}
+
+Inheritance diagram for ACAlice\+Test\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_c_alice_test_character}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_alice_test_character_a0a05463bf58ff277eedb018da347f3c5}{ACAlice\+Test\+Character}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_character_a55498248eda9055917dcf018be793993}{Tick}} (float Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_character_a0d78b474c39df003326db9d768ab7b8b}{Setup\+Player\+Input\+Component}} (class UInput\+Component \texorpdfstring{$\ast$}{*}Player\+Input\+Component) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_c_alice_test_character_a43cec1dcd476e3d44b50357e96a1142d}{Primary\+Attack}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_character_a2e4cce17750e846862ae6b8da1852075}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_character_a58997c8d56acacd4e23a2f2e4b7f5242}{Post\+Initialize\+Components}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ UInput\+Mapping\+Context $>$ \mbox{\hyperlink{class_a_c_alice_test_character_a2c13e18ecfe6de2a081310ed187ed2ae}{Alice\+Mapping}}
+\item 
+class UInput\+Action \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_alice_test_character_ab9f1a1a3ad69f427cbc3d60266511c3c}{Attack\+Action}}
+\item 
+TObject\+Ptr$<$ USpring\+Arm\+Component $>$ \mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{Spring\+Arm\+Comp}}
+\item 
+TObject\+Ptr$<$ UCamera\+Component $>$ \mbox{\hyperlink{class_a_c_alice_test_character_ad6e1700b8586c2f0cd9551c7b5ce143f}{Camera\+Comp}}
+\item 
+TObject\+Ptr$<$ UCAction\+Component $>$ \mbox{\hyperlink{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca}{Action\+Comp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_c_alice_test_character_a0a05463bf58ff277eedb018da347f3c5}\label{class_a_c_alice_test_character_a0a05463bf58ff277eedb018da347f3c5} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{ACAliceTestCharacter()}{ACAliceTestCharacter()}}
+{\footnotesize\ttfamily ACAlice\+Test\+Character\+::\+ACAlice\+Test\+Character (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_alice_test_character_a2e4cce17750e846862ae6b8da1852075}\label{class_a_c_alice_test_character_a2e4cce17750e846862ae6b8da1852075} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Character\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_character_a58997c8d56acacd4e23a2f2e4b7f5242}\label{class_a_c_alice_test_character_a58997c8d56acacd4e23a2f2e4b7f5242} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!PostInitializeComponents@{PostInitializeComponents}}
+\index{PostInitializeComponents@{PostInitializeComponents}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{PostInitializeComponents()}{PostInitializeComponents()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Character\+::\+Post\+Initialize\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_character_a43cec1dcd476e3d44b50357e96a1142d}\label{class_a_c_alice_test_character_a43cec1dcd476e3d44b50357e96a1142d} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!PrimaryAttack@{PrimaryAttack}}
+\index{PrimaryAttack@{PrimaryAttack}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{PrimaryAttack()}{PrimaryAttack()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Character\+::\+Primary\+Attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_character_a0d78b474c39df003326db9d768ab7b8b}\label{class_a_c_alice_test_character_a0d78b474c39df003326db9d768ab7b8b} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!SetupPlayerInputComponent@{SetupPlayerInputComponent}}
+\index{SetupPlayerInputComponent@{SetupPlayerInputComponent}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{SetupPlayerInputComponent()}{SetupPlayerInputComponent()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Character\+::\+Setup\+Player\+Input\+Component (\begin{DoxyParamCaption}\item[{class UInput\+Component \texorpdfstring{$\ast$}{*}}]{Player\+Input\+Component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_character_a55498248eda9055917dcf018be793993}\label{class_a_c_alice_test_character_a55498248eda9055917dcf018be793993} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!Tick@{Tick}}
+\index{Tick@{Tick}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Character\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca}\label{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!ActionComp@{ActionComp}}
+\index{ActionComp@{ActionComp}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{ActionComp}{ActionComp}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UCAction\+Component$>$ ACAlice\+Test\+Character\+::\+Action\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_character_a2c13e18ecfe6de2a081310ed187ed2ae}\label{class_a_c_alice_test_character_a2c13e18ecfe6de2a081310ed187ed2ae} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!AliceMapping@{AliceMapping}}
+\index{AliceMapping@{AliceMapping}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{AliceMapping}{AliceMapping}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UInput\+Mapping\+Context$>$ ACAlice\+Test\+Character\+::\+Alice\+Mapping\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_character_ab9f1a1a3ad69f427cbc3d60266511c3c}\label{class_a_c_alice_test_character_ab9f1a1a3ad69f427cbc3d60266511c3c} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!AttackAction@{AttackAction}}
+\index{AttackAction@{AttackAction}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{AttackAction}{AttackAction}}
+{\footnotesize\ttfamily class UInput\+Action\texorpdfstring{$\ast$}{*} ACAlice\+Test\+Character\+::\+Attack\+Action\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_character_ad6e1700b8586c2f0cd9551c7b5ce143f}\label{class_a_c_alice_test_character_ad6e1700b8586c2f0cd9551c7b5ce143f} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!CameraComp@{CameraComp}}
+\index{CameraComp@{CameraComp}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{CameraComp}{CameraComp}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UCamera\+Component$>$ ACAlice\+Test\+Character\+::\+Camera\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}\label{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290} 
+\index{ACAliceTestCharacter@{ACAliceTestCharacter}!SpringArmComp@{SpringArmComp}}
+\index{SpringArmComp@{SpringArmComp}!ACAliceTestCharacter@{ACAliceTestCharacter}}
+\doxysubsubsection{\texorpdfstring{SpringArmComp}{SpringArmComp}}
+{\footnotesize\ttfamily TObject\+Ptr$<$USpring\+Arm\+Component$>$ ACAlice\+Test\+Character\+::\+Spring\+Arm\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Alice\+Test/\mbox{\hyperlink{_c_alice_test_character_8h}{CAlice\+Test\+Character.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Alice\+Test/\mbox{\hyperlink{_c_alice_test_character_8cpp}{CAlice\+Test\+Character.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,455 @@
+\doxysection{CTurn\+Timer\+Subsystem.\+gen.\+cpp}
+\hypertarget{_c_turn_timer_subsystem_8gen_8cpp_source}{}\label{_c_turn_timer_subsystem_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CTurnTimerSubsystem.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CTurnTimerSubsystem.gen.cpp}}
+\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_turn_timer_subsystem_8h}{TacticalRogueLite/Public/Utility/TurnTimer/CTurnTimerSubsystem.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a4d19e334dbdcdb1f7e2abffe50452a7d}{EmptyLinkFunctionForGeneratedCodeCTurnTimerSubsystem}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a2669e982316028acf4d0d7aeb3e0c1a3}{Z\_Construct\_UClass\_UWorldSubsystem}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a4a211a7363d8957fe6e907409b116294}{Z\_Construct\_UClass\_ACUnit\_NoRegister}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa2a6bfb6ca80a8c2f7041dc32114a67f}{Z\_Construct\_UClass\_UCTurnTimerSubsystem}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a782084e9bee903f0137c16c172e47351}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_ae9fb495e1c5d9816d3869b53351812ab}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UFunction*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a532332bd61f6f2d826d5e07f2221c6f1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a66863e6f3e9dff911dc18669b9db43e5}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle}}();}
+\DoxyCodeLine{00019\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics}}}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____del0b680df1b791bcfe329856e6650a3a65}{\_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms}}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____del0b680df1b791bcfe329856e6650a3a65_a8d7515c6bdb9087c55ec70ca6f1be79a}{AffectedUnit}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_a22fa2a77fd3062fcaf25b5e5de6d5e54}{NewProp\_AffectedUnit}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac1bcf9c9059c3d5e5562ff794fa56e6c}{PropPointers}}[];}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac8a7a274f516035bf911ee1d90bd80e1}{FuncParams}};}
+\DoxyCodeLine{00033\ \ \ \ \ \};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_a22fa2a77fd3062fcaf25b5e5de6d5e54}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::NewProp\_AffectedUnit}}\ =\ \{\ \textcolor{stringliteral}{"{}AffectedUnit"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____del0b680df1b791bcfe329856e6650a3a65}{\_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms}},\ AffectedUnit),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a4a211a7363d8957fe6e907409b116294}{Z\_Construct\_UClass\_ACUnit\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac1bcf9c9059c3d5e5562ff794fa56e6c}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_a22fa2a77fd3062fcaf25b5e5de6d5e54}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::NewProp\_AffectedUnit}},}
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00041\ \ \ \ \ \};}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac8a7a274f516035bf911ee1d90bd80e1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}OnTurnTimerExecute\_\_DelegateSignature"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac1bcf9c9059c3d5e5562ff794fa56e6c}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac1bcf9c9059c3d5e5562ff794fa56e6c}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____del0b680df1b791bcfe329856e6650a3a65}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x00130000,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac1bcf9c9059c3d5e5562ff794fa56e6c}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____del0b680df1b791bcfe329856e6650a3a65}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00046\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a532332bd61f6f2d826d5e07f2221c6f1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature}}()}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_turn_timer_execute_____delegate_signature___statics_ac8a7a274f516035bf911ee1d90bd80e1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature\_Statics::FuncParams}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a6fa60421a00e55b5d7a90124598381a6}{FOnTurnTimerExecute\_DelegateWrapper}}(\textcolor{keyword}{const}\ FMulticastScriptDelegate\&\ OnTurnTimerExecute,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ AffectedUnit)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{struct\ }\_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ AffectedUnit;}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ \ \ \ \ \_Script\_TacticalRogueLite\_eventOnTurnTimerExecute\_Parms\ Parms;}
+\DoxyCodeLine{00062\ \ \ \ \ Parms.AffectedUnit=AffectedUnit;}
+\DoxyCodeLine{00063\ \ \ \ \ OnTurnTimerExecute.ProcessMulticastDelegate<UObject>(\&Parms);}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ FEnumRegistrationInfo\ Z\_Registration\_Info\_UEnum\_EProgressTurnMethod;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ UEnum*\ EProgressTurnMethod\_StaticEnum()}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.OuterSingleton)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.OuterSingleton\ =\ GetStaticEnum(\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_ae9fb495e1c5d9816d3869b53351812ab}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod}},\ (UObject*)\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}(),\ TEXT(\textcolor{stringliteral}{"{}EProgressTurnMethod"{}}));}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.OuterSingleton;}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a5926d1cfc00adc9a617fc9df46e8adeb}{StaticEnum<EProgressTurnMethod>}}()}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EProgressTurnMethod\_StaticEnum();}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics}}}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_ab44f2b30ccb15bb3cd27684244fd8fbb}{Enumerators}}[];}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Enum\_MetaDataParams[];}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_aa80612c748dbde0a455b0f1715aa7531}{EnumParams}};}
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_ab44f2b30ccb15bb3cd27684244fd8fbb}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enumerators}}[]\ =\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_None"{}},\ (int64)\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EPTM\_None}}\ \},}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_StartOfTurn"{}},\ (int64)\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73}{EPTM\_StartOfTurn}}\ \},}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_EndOfTurn"{}},\ (int64)\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc}{EPTM\_EndOfTurn}}\ \},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_Max"{}},\ (int64)\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12}{EPTM\_Max}}\ \},}
+\DoxyCodeLine{00091\ \ \ \ \ \};}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enum\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_EndOfTurn.Name"{}},\ \textcolor{stringliteral}{"{}EPTM\_EndOfTurn"{}}\ \},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_Max.Name"{}},\ \textcolor{stringliteral}{"{}EPTM\_Max"{}}\ \},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_None.Name"{}},\ \textcolor{stringliteral}{"{}EPTM\_None"{}}\ \},}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EPTM\_StartOfTurn.Name"{}},\ \textcolor{stringliteral}{"{}EPTM\_StartOfTurn"{}}\ \},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00100\ \ \ \ \ \};}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_aa80612c748dbde0a455b0f1715aa7531}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::EnumParams}}\ =\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ (UObject*(*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EProgressTurnMethod"{}},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EProgressTurnMethod"{}},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_ab44f2b30ccb15bb3cd27684244fd8fbb}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enumerators}},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ RF\_Public|RF\_Transient|RF\_MarkAsNative,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_ab44f2b30ccb15bb3cd27684244fd8fbb}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enumerators}}),}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ EEnumFlags::None,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ (uint8)UEnum::ECppForm::Regular,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enum\_MetaDataParams),\ Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::Enum\_MetaDataParams)}
+\DoxyCodeLine{00113\ \ \ \ \ \};}
+\DoxyCodeLine{00114\ \ \ \ \ UEnum*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_ae9fb495e1c5d9816d3869b53351812ab}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod}}()}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.InnerSingleton)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUEnum(Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.InnerSingleton,\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_progress_turn_method___statics_aa80612c748dbde0a455b0f1715aa7531}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod\_Statics::EnumParams}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_EProgressTurnMethod.InnerSingleton;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{static}\ FStructRegistrationInfo\ Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle;}
+\DoxyCodeLine{00123\ \textcolor{keyword}{class\ }UScriptStruct*\ FTurnTimerHandle::StaticStruct()}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.OuterSingleton)}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.OuterSingleton\ =\ GetStaticStruct(\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a66863e6f3e9dff911dc18669b9db43e5}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle}},\ (UObject*)\mbox{\hyperlink{_c_action_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}(),\ TEXT(\textcolor{stringliteral}{"{}TurnTimerHandle"{}}));}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.OuterSingleton;}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a44b5808b6d1583ffc22ce9ea59f1b477}{StaticStruct<FTurnTimerHandle>}}()}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ FTurnTimerHandle::StaticStruct();}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics}}}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Struct\_MetaDataParams[];}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a00f6b0d2f3796a632453dda708125e6a}{NewStructOps}}();}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_OnTurnTimerExecute\_MetaData[];}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a972e0af80fb7ab754312e0851096e012}{NewProp\_OnTurnTimerExecute}};}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_bIsValid\_MetaData[];}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a6f5383dbec6b7ae8e4ed4f674f2cd985}{NewProp\_bIsValid\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a654e0c1409f70c3f6b617a5a31331a78}{NewProp\_bIsValid}};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a1555dab5d24900f25042cbb4f4758b99}{PropPointers}}[];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_abc2e1f379272e01a550a15d811fd4807}{ReturnStructParams}};}
+\DoxyCodeLine{00152\ \ \ \ \ \};}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::Struct\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00157\ \ \ \ \ \};}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a00f6b0d2f3796a632453dda708125e6a}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewStructOps}}()}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (UScriptStruct::ICppStructOps*)\textcolor{keyword}{new}\ UScriptStruct::TCppStructOps<FTurnTimerHandle>();}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_OnTurnTimerExecute\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Turn\ Timer"{}}\ \},}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00167\ \ \ \ \ \};}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a972e0af80fb7ab754312e0851096e012}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_OnTurnTimerExecute}}\ =\ \{\ \textcolor{stringliteral}{"{}OnTurnTimerExecute"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000010080000,\ UECodeGen\_Private::EPropertyGenFlags::InlineMulticastDelegate,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}},\ OnTurnTimerExecute),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a532332bd61f6f2d826d5e07f2221c6f1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnTurnTimerExecute\_\_DelegateSignature}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_OnTurnTimerExecute\_MetaData),\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_OnTurnTimerExecute\_MetaData)\ \};\ \textcolor{comment}{//\ 3181060299}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Turn\ Timer"{}}\ \},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00174\ \ \ \ \ \};}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a6f5383dbec6b7ae8e4ed4f674f2cd985}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj)}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}*)Obj)-\/>bIsValid\ =\ 1;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a654e0c1409f70c3f6b617a5a31331a78}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid}}\ =\ \{\ \textcolor{stringliteral}{"{}bIsValid"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0020080000000014,\ UECodeGen\_Private::EPropertyGenFlags::Bool\ |\ UECodeGen\_Private::EPropertyGenFlags::NativeBool,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}),\ \&\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a6f5383dbec6b7ae8e4ed4f674f2cd985}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid\_SetBit}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid\_MetaData),\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid\_MetaData)\ \};}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a1555dab5d24900f25042cbb4f4758b99}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a972e0af80fb7ab754312e0851096e012}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_OnTurnTimerExecute}},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a654e0c1409f70c3f6b617a5a31331a78}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewProp\_bIsValid}},}
+\DoxyCodeLine{00184\ \ \ \ \ \};}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructParams\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_abc2e1f379272e01a550a15d811fd4807}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::ReturnStructParams}}\ =\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \&NewStructOps,}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}TurnTimerHandle"{}},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a1555dab5d24900f25042cbb4f4758b99}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::PropPointers}},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a1555dab5d24900f25042cbb4f4758b99}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::PropPointers}}),}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}),}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{alignof}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}),}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ RF\_Public|RF\_Transient|RF\_MarkAsNative,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ EStructFlags(0x00000005),}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::Struct\_MetaDataParams),\ Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::Struct\_MetaDataParams)}
+\DoxyCodeLine{00197\ \ \ \ \ \};}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a1555dab5d24900f25042cbb4f4758b99}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00199\ \ \ \ \ UScriptStruct*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a66863e6f3e9dff911dc18669b9db43e5}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle}}()}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.InnerSingleton)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUScriptStruct(Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.InnerSingleton,\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_abc2e1f379272e01a550a15d811fd4807}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::ReturnStructParams}});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle.InnerSingleton;}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a487c8ba8dc473a23a72265bb4635a9a7}{DEFINE\_FUNCTION}}(UCTurnTimerSubsystem::execClearTimer)}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ P\_GET\_STRUCT\_REF(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}},Z\_Param\_Out\_InOutHandle);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ P\_THIS-\/>ClearTimer(Z\_Param\_Out\_InOutHandle);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a487c8ba8dc473a23a72265bb4635a9a7}{DEFINE\_FUNCTION}}(UCTurnTimerSubsystem::execSetTimer)}
+\DoxyCodeLine{00216\ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ P\_GET\_STRUCT\_REF(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}},Z\_Param\_Out\_InOutHandle);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FIntProperty,Z\_Param\_InNumberOfTurns);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ P\_GET\_OBJECT(\mbox{\hyperlink{class_a_c_unit}{ACUnit}},Z\_Param\_InAffectedUnit);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ P\_GET\_UBOOL(Z\_Param\_InbLoop);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FByteProperty,Z\_Param\_InProgressTurnMethod);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ P\_THIS-\/>SetTimer(Z\_Param\_Out\_InOutHandle,Z\_Param\_InNumberOfTurns,Z\_Param\_InAffectedUnit,Z\_Param\_InbLoop,\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}(Z\_Param\_InProgressTurnMethod));}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordtype}{void}\ UCTurnTimerSubsystem::StaticRegisterNativesUCTurnTimerSubsystem()}
+\DoxyCodeLine{00228\ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCTurnTimerSubsystem::StaticClass();}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ClearTimer"{}},\ \&UCTurnTimerSubsystem::execClearTimer,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}},\mbox{\hyperlink{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb}{ClearTimer}},(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}SetTimer"{}},\ \&UCTurnTimerSubsystem::execSetTimer,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}},\mbox{\hyperlink{class_u_c_turn_timer_subsystem_a5f3aa96eb4e96e7b982562a2a6839936}{SetTimer}},(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&,\ \textcolor{keyword}{const}\ int32,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics}}}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_1_1_c_turn_ec97caf4015924d05133f3464cec2401}{CTurnTimerSubsystem\_eventClearTimer\_Parms}}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_1_1_c_turn_ec97caf4015924d05133f3464cec2401_a81771ee7cdaed121039a8509a1ad7d57}{InOutHandle}};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a37faa74b3d79530e0d1c4ec35c87f2f2}{NewProp\_InOutHandle}};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a4a68655cd02092fa0c68bfbf2aa0f2cd}{PropPointers}}[];}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a6203bf7f6857bd027c7fe8eb41b9dd02}{FuncParams}};}
+\DoxyCodeLine{00248\ \ \ \ \ \};}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a37faa74b3d79530e0d1c4ec35c87f2f2}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::NewProp\_InOutHandle}}\ =\ \{\ \textcolor{stringliteral}{"{}InOutHandle"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x2010008000000180,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_1_1_c_turn_ec97caf4015924d05133f3464cec2401}{CTurnTimerSubsystem\_eventClearTimer\_Parms}},\ InOutHandle),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a66863e6f3e9dff911dc18669b9db43e5}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 2420975265}}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a4a68655cd02092fa0c68bfbf2aa0f2cd}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a37faa74b3d79530e0d1c4ec35c87f2f2}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::NewProp\_InOutHandle}},}
+\DoxyCodeLine{00252\ \ \ \ \ \};}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Turn\ Timer"{}}\ \},}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Invalidates\ the\ handle\ and\ removes\ the\ related\ timer.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Invalidates\ the\ handle\ and\ removes\ the\ related\ timer."{}}\ \},}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00263\ \ \ \ \ \};}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a6203bf7f6857bd027c7fe8eb41b9dd02}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa2a6bfb6ca80a8c2f7041dc32114a67f}{Z\_Construct\_UClass\_UCTurnTimerSubsystem}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}ClearTimer"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a4a68655cd02092fa0c68bfbf2aa0f2cd}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a4a68655cd02092fa0c68bfbf2aa0f2cd}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_1_1_c_turn_ec97caf4015924d05133f3464cec2401}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::CTurnTimerSubsystem\_eventClearTimer\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04420401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a4a68655cd02092fa0c68bfbf2aa0f2cd}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_1_1_c_turn_ec97caf4015924d05133f3464cec2401}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::CTurnTimerSubsystem\_eventClearTimer\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00268\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a3758eb5efbdd7bced419c1a0bc510691}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer}}()}
+\DoxyCodeLine{00269\ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___clear_timer___statics_a6203bf7f6857bd027c7fe8eb41b9dd02}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer\_Statics::FuncParams}});}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics}}}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca_a2ece74a0f269b4f3793dbc314c85f517}{InOutHandle}};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ int32\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca_adeef1236749ee19f2fffe20ac4437532}{InNumberOfTurns}};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca_a14afdc0862326a927f08bce3482d10a2}{InAffectedUnit}};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca_aceca1c59669236629387b432fd6ab668}{InbLoop}};}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ TEnumAsByte<EProgressTurnMethod>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca_a1fb9c08594b255e8e48c4609ad5cd2de}{InProgressTurnMethod}};}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_aeac06c35311b0e51ae0baf06475ba7f4}{NewProp\_InOutHandle}};}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_InNumberOfTurns\_MetaData[];}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a135db6057d0e5f21b123f3916efebfd7}{NewProp\_InNumberOfTurns}};}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5115c934d8fac6ccddaed8a9902ae4dc}{NewProp\_InAffectedUnit}};}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_InbLoop\_MetaData[];}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a47c91fe6c54c65d34f216f983372b6ff}{NewProp\_InbLoop\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5e52ffe0383e8c44d422393a7f4ef74b}{NewProp\_InbLoop}};}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_InProgressTurnMethod\_MetaData[];}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a71fcba8f9169d8886b32aeeda2f4e829}{NewProp\_InProgressTurnMethod}};}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_afd6112c46c4a4832202e6be2792f5119}{PropPointers}}[];}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_acd645fc821b77083ba481e4c728e553b}{FuncParams}};}
+\DoxyCodeLine{00307\ \ \ \ \ \};}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_aeac06c35311b0e51ae0baf06475ba7f4}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InOutHandle}}\ =\ \{\ \textcolor{stringliteral}{"{}InOutHandle"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x2010008000000180,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}},\ InOutHandle),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a66863e6f3e9dff911dc18669b9db43e5}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 2420975265}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InNumberOfTurns\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00312\ \ \ \ \ \};}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a135db6057d0e5f21b123f3916efebfd7}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InNumberOfTurns}}\ =\ \{\ \textcolor{stringliteral}{"{}InNumberOfTurns"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x1010000000000082,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}},\ InNumberOfTurns),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InNumberOfTurns\_MetaData),\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InNumberOfTurns\_MetaData)\ \};}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5115c934d8fac6ccddaed8a9902ae4dc}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InAffectedUnit}}\ =\ \{\ \textcolor{stringliteral}{"{}InAffectedUnit"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}},\ InAffectedUnit),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a4a211a7363d8957fe6e907409b116294}{Z\_Construct\_UClass\_ACUnit\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00319\ \ \ \ \ \};}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a47c91fe6c54c65d34f216f983372b6ff}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj)}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}}*)Obj)-\/>InbLoop\ =\ 1;}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5e52ffe0383e8c44d422393a7f4ef74b}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop}}\ =\ \{\ \textcolor{stringliteral}{"{}InbLoop"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x1010000000000082,\ UECodeGen\_Private::EPropertyGenFlags::Bool\ |\ UECodeGen\_Private::EPropertyGenFlags::NativeBool,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}}),\ \&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a47c91fe6c54c65d34f216f983372b6ff}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop\_SetBit}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop\_MetaData),\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop\_MetaData)\ \};}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InProgressTurnMethod\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NativeConst"{}},\ \textcolor{stringliteral}{"{}"{}}\ \},}
+\DoxyCodeLine{00329\ \ \ \ \ \};}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a71fcba8f9169d8886b32aeeda2f4e829}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InProgressTurnMethod}}\ =\ \{\ \textcolor{stringliteral}{"{}InProgressTurnMethod"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x1010000000000082,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{CTurnTimerSubsystem\_eventSetTimer\_Parms}},\ InProgressTurnMethod),\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_ae9fb495e1c5d9816d3869b53351812ab}{Z\_Construct\_UEnum\_TacticalRogueLite\_EProgressTurnMethod}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InProgressTurnMethod\_MetaData),\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InProgressTurnMethod\_MetaData)\ \};\ \textcolor{comment}{//\ 1709232065}}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_afd6112c46c4a4832202e6be2792f5119}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_aeac06c35311b0e51ae0baf06475ba7f4}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InOutHandle}},}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a135db6057d0e5f21b123f3916efebfd7}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InNumberOfTurns}},}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5115c934d8fac6ccddaed8a9902ae4dc}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InAffectedUnit}},}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a5e52ffe0383e8c44d422393a7f4ef74b}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InbLoop}},}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_a71fcba8f9169d8886b32aeeda2f4e829}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::NewProp\_InProgressTurnMethod}},}
+\DoxyCodeLine{00338\ \ \ \ \ \};}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Turn\ Timer"{}}\ \},}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}///\ <summary>\(\backslash\)n///\ Should\ work\ just\ like\ SetTimer\ in\ the\ usual\ FTimerManager,\ except\(\backslash\)n///\ instead\ of\ using\ floats\ for\ duration,\ we\ use\ integers\ to\ describe\(\backslash\)n///\ number\ of\ turns\ until\ activation.\(\backslash\)n///\ Subscribe\ to\ the\ OnTurnTimerExecute\ delegate\ in\ the\ FTurnTimerHandle\(\backslash\)n///\ to\ handle\ callbacks\ when\ the\ timer\ activates.\(\backslash\)n///\ </summary>\(\backslash\)n///\ <param\ name=\(\backslash\)"{}InOutHandle\(\backslash\)"{}>\ Timer\ Handle,\ can\ be\ used\ to\ ClearTimer()</param>\(\backslash\)n///\ <param\ name=\(\backslash\)"{}InNumberOfTurns\(\backslash\)"{}>How\ many\ turns\ until\ activation</param>\(\backslash\)n///\ <param\ name=\(\backslash\)"{}InAffectedUnit\(\backslash\)"{}>The\ unit\ whose\ turn\ is\ counted</param>\(\backslash\)n///\ <param\ name=\(\backslash\)"{}InbLoop\(\backslash\)"{}>\ Should\ the\ timer\ reset\ and\ start\ again\ on\ activation?\ </param>\(\backslash\)n///\ <param\ name=\(\backslash\)"{}InProgressTurnMethod\(\backslash\)"{}>\ Should\ the\ timer\ activate\ at\ the\ end\ or\ start\ of\ the\ affected\ units\ turn?</param>\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}<summary>\(\backslash\)nShould\ work\ just\ like\ SetTimer\ in\ the\ usual\ FTimerManager,\ except\(\backslash\)ninstead\ of\ using\ floats\ for\ duration,\ we\ use\ integers\ to\ describe\(\backslash\)nnumber\ of\ turns\ until\ activation.\(\backslash\)nSubscribe\ to\ the\ OnTurnTimerExecute\ delegate\ in\ the\ FTurnTimerHandle\(\backslash\)nto\ handle\ callbacks\ when\ the\ timer\ activates.\(\backslash\)n</summary>\(\backslash\)n<param\ name=\(\backslash\)"{}InOutHandle\(\backslash\)"{}>\ Timer\ Handle,\ can\ be\ used\ to\ ClearTimer()</param>\(\backslash\)n<param\ name=\(\backslash\)"{}InNumberOfTurns\(\backslash\)"{}>How\ many\ turns\ until\ activation</param>\(\backslash\)n<param\ name=\(\backslash\)"{}InAffectedUnit\(\backslash\)"{}>The\ unit\ whose\ turn\ is\ counted</param>\(\backslash\)n<param\ name=\(\backslash\)"{}InbLoop\(\backslash\)"{}>\ Should\ the\ timer\ reset\ and\ start\ again\ on\ activation?\ </param>\(\backslash\)n<param\ name=\(\backslash\)"{}InProgressTurnMethod\(\backslash\)"{}>\ Should\ the\ timer\ activate\ at\ the\ end\ or\ start\ of\ the\ affected\ units\ turn?</param>"{}}\ \},}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00349\ \ \ \ \ \};}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_acd645fc821b77083ba481e4c728e553b}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa2a6bfb6ca80a8c2f7041dc32114a67f}{Z\_Construct\_UClass\_UCTurnTimerSubsystem}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}SetTimer"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_afd6112c46c4a4832202e6be2792f5119}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_afd6112c46c4a4832202e6be2792f5119}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::CTurnTimerSubsystem\_eventSetTimer\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04420401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_afd6112c46c4a4832202e6be2792f5119}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_1_1_c_turn_ti21d2839c3f854491af7e1aea9fc782ca}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::CTurnTimerSubsystem\_eventSetTimer\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00354\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a9cadab22aaf48fcffe719a1b44a9fa06}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer}}()}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_turn_timer_subsystem___set_timer___statics_acd645fc821b77083ba481e4c728e553b}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer\_Statics::FuncParams}});}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a5ac3a6f82b2bea987a35cd06d580182a}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}});}
+\DoxyCodeLine{00364\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a782084e9bee903f0137c16c172e47351}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_NoRegister}}()}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCTurnTimerSubsystem::StaticClass();}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics}}}
+\DoxyCodeLine{00369\ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a8bf4054b1c52d50426f9651a1bd8412a}{DependentSingletons}}[])();}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a3f1d7e869e52febb914b6c7032b62e3a}{FuncInfo}}[];}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_ad751aa5d9615935e1d1f6c9e72ce667c}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a64500d36c4f8c7fc7be34c7fc0a0ded9}{ClassParams}};}
+\DoxyCodeLine{00377\ \ \ \ \ \};}
+\DoxyCodeLine{00378\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a8bf4054b1c52d50426f9651a1bd8412a}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a2669e982316028acf4d0d7aeb3e0c1a3}{Z\_Construct\_UClass\_UWorldSubsystem}},}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00381\ \ \ \ \ \};}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a8bf4054b1c52d50426f9651a1bd8412a}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a3f1d7e869e52febb914b6c7032b62e3a}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a3758eb5efbdd7bced419c1a0bc510691}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_ClearTimer}},\ \textcolor{stringliteral}{"{}ClearTimer"{}}\ \},\ \textcolor{comment}{//\ 1745462264}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_a9cadab22aaf48fcffe719a1b44a9fa06}{Z\_Construct\_UFunction\_UCTurnTimerSubsystem\_SetTimer}},\ \textcolor{stringliteral}{"{}SetTimer"{}}\ \},\ \textcolor{comment}{//\ 2142194568}}
+\DoxyCodeLine{00386\ \ \ \ \ \};}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a3f1d7e869e52febb914b6c7032b62e3a}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}/**\(\backslash\)n\ *\ \(\backslash\)n\ */"{}}\ \},}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/TurnTimer/CTurnTimerSubsystem.h"{}}\ \},}
+\DoxyCodeLine{00395\ \ \ \ \ \};}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_ad751aa5d9615935e1d1f6c9e72ce667c}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCTurnTimerSubsystem>::IsAbstract,}
+\DoxyCodeLine{00399\ \ \ \ \ \};}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a64500d36c4f8c7fc7be34c7fc0a0ded9}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \&UCTurnTimerSubsystem::StaticClass,}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ 0x001000A0u,}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00414\ \ \ \ \ \};}
+\DoxyCodeLine{00415\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa2a6bfb6ca80a8c2f7041dc32114a67f}{Z\_Construct\_UClass\_UCTurnTimerSubsystem}}()}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCTurnTimerSubsystem.OuterSingleton)}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCTurnTimerSubsystem.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_turn_timer_subsystem___statics_a64500d36c4f8c7fc7be34c7fc0a0ded9}{Z\_Construct\_UClass\_UCTurnTimerSubsystem\_Statics::ClassParams}});}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCTurnTimerSubsystem.OuterSingleton;}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa70e28c49674e07568e5489206aeb9e8}{StaticClass<UCTurnTimerSubsystem>}}()}
+\DoxyCodeLine{00424\ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCTurnTimerSubsystem::StaticClass();}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ UCTurnTimerSubsystem::UCTurnTimerSubsystem()\ \{\}}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_ac06116effeb2258493c5cd105157a494}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}});}
+\DoxyCodeLine{00429\ \ \ \ \ UCTurnTimerSubsystem::\string~UCTurnTimerSubsystem()\ \{\}}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics}}}
+\DoxyCodeLine{00431\ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a503dce5492d646d11c8ed16e0d2b38a8}{EnumInfo}}[];}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FStructRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a7a44ea5c8a152f17fc54b18001ee4bfc}{ScriptStructInfo}}[];}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a310ec1b5718ca6988ff1f68621f3c758}{ClassInfo}}[];}
+\DoxyCodeLine{00435\ \ \ \ \ \};}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a503dce5492d646d11c8ed16e0d2b38a8}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::EnumInfo}}[]\ =\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{\ EProgressTurnMethod\_StaticEnum,\ TEXT(\textcolor{stringliteral}{"{}EProgressTurnMethod"{}}),\ \&Z\_Registration\_Info\_UEnum\_EProgressTurnMethod,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FEnumReloadVersionInfo,\ 1709232065U)\ \},}
+\DoxyCodeLine{00438\ \ \ \ \ \};}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keyword}{const}\ FStructRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a7a44ea5c8a152f17fc54b18001ee4bfc}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ScriptStructInfo}}[]\ =\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \{\ FTurnTimerHandle::StaticStruct,\ \mbox{\hyperlink{struct_z___construct___u_script_struct___f_turn_timer_handle___statics_a00f6b0d2f3796a632453dda708125e6a}{Z\_Construct\_UScriptStruct\_FTurnTimerHandle\_Statics::NewStructOps}},\ TEXT(\textcolor{stringliteral}{"{}TurnTimerHandle"{}}),\ \&Z\_Registration\_Info\_UScriptStruct\_TurnTimerHandle,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FStructReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}),\ 2420975265U)\ \},}
+\DoxyCodeLine{00441\ \ \ \ \ \};}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a310ec1b5718ca6988ff1f68621f3c758}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_turn_timer_subsystem_8gen_8cpp_aa2a6bfb6ca80a8c2f7041dc32114a67f}{Z\_Construct\_UClass\_UCTurnTimerSubsystem}},\ UCTurnTimerSubsystem::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCTurnTimerSubsystem"{}}),\ \&Z\_Registration\_Info\_UClass\_UCTurnTimerSubsystem,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}}),\ 344424789U)\ \},}
+\DoxyCodeLine{00444\ \ \ \ \ \};}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_3453173663(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a310ec1b5718ca6988ff1f68621f3c758}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a310ec1b5718ca6988ff1f68621f3c758}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a7a44ea5c8a152f17fc54b18001ee4bfc}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ScriptStructInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a7a44ea5c8a152f17fc54b18001ee4bfc}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::ScriptStructInfo}}),}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a503dce5492d646d11c8ed16e0d2b38a8}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::EnumInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___souf664b8940ff39142b6dff9d29c7e2c8e_a503dce5492d646d11c8ed16e0d2b38a8}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_TurnTimer\_CTurnTimerSubsystem\_h\_Statics::EnumInfo}}));}
+\DoxyCodeLine{00449\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

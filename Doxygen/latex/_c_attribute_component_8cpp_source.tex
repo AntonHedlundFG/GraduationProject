@@ -1,0 +1,149 @@
+\doxysection{CAttribute\+Component.\+cpp}
+\hypertarget{_c_attribute_component_8cpp_source}{}\label{_c_attribute_component_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Attributes/CAttributeComponent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Attributes/CAttributeComponent.cpp}}
+\mbox{\hyperlink{_c_attribute_component_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_attribute_component_8h}{Attributes/CAttributeComponent.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//variablar\ onrep\ istället}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//viktigt\ att\ replikera\ till\ clienterna-\/\ tags\ osv}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CAttributeComponent)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{static}\ TAutoConsoleVariable<float>\ CVarDamageMultiplier(TEXT(\textcolor{stringliteral}{"{}game.DamageMultiplier"{}}),\ 1.0f,\ TEXT(\textcolor{stringliteral}{"{}Global\ Damage\ Modifier\ for\ Attribute\ Component."{}}),\ ECVF\_Cheat);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ UCAttributeComponent::UCAttributeComponent()}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ BaseHealth\ =\ 100;}
+\DoxyCodeLine{00014\ \ \ \ \ CurrentHealth\ =\ BaseHealth;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ Rage\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \ \ RageMax\ =\ 100;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ SetIsReplicatedByDefault(\textcolor{keyword}{true});}
+\DoxyCodeLine{00020\ \ \ \ \ bAutoActivate\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{bool}\ UCAttributeComponent::ApplyHealthChange(AActor*\ InstigatorActor,\ \textcolor{keywordtype}{float}\ Delta)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetOwner()-\/>CanBeDamaged()\ \&\&\ Delta\ <\ 0.0f)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (Delta\ <\ 0.0f)}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ DamageMultiplier\ =\ CVarDamageMultiplier.GetValueOnGameThread();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Delta\ *=\ DamageMultiplier;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ OldHealth\ =\ CurrentHealth;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{float}\ NewHealth\ =\ FMath::Clamp(CurrentHealth\ +\ Delta,\ 0.0f,\ BaseHealth);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ ActualDelta\ =\ NewHealth\ -\/\ OldHealth;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//Is\ Server?}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (GetOwner()-\/>HasAuthority())}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ CurrentHealth\ =\ NewHealth;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ActualDelta\ !=\ 0.0f)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ MulticastHealthChanged(InstigatorActor,\ CurrentHealth,\ ActualDelta);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Died.}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ActualDelta\ <\ 0.0f\ \&\&\ CurrentHealth\ ==\ 0.0f)}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Died!"{}}));}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ ActualDelta\ !=\ 0;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ UCAttributeComponent::ApplyTagWithDuration(FGameplayTag\ InTag,\ \textcolor{keywordtype}{int}\ Duration)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ UCAttributeComponent*\ UCAttributeComponent::GetAttributes(AActor*\ FromActor)}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (FromActor)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FromActor-\/>FindComponentByClass<UCAttributeComponent>();}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{bool}\ UCAttributeComponent::IsActorAlive(AActor*\ Actor)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ UCAttributeComponent*\ AttributeComp\ =\ GetAttributes(Actor);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (AttributeComp)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AttributeComp-\/>IsAlive();}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//Create\ deathconsequence.}}
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{bool}\ UCAttributeComponent::Kill(AActor*\ InstigatorActor)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ ApplyHealthChange(InstigatorActor,\ -\/GetBaseHealth());}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{bool}\ UCAttributeComponent::IsAlive()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ CurrentHealth\ >\ 0.0f;}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{bool}\ UCAttributeComponent::IsFullHealth()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ CurrentHealth\ ==\ BaseHealth;}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{float}\ UCAttributeComponent::GetHealth()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ CurrentHealth;}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keywordtype}{float}\ UCAttributeComponent::GetBaseHealth()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ BaseHealth;}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keywordtype}{void}\ UCAttributeComponent::MulticastHealthChanged\_Implementation(AActor*\ InstigatorActor,\ \textcolor{keywordtype}{float}\ NewHealth,\ \textcolor{keywordtype}{float}\ Delta)}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ OnHealthChanged.Broadcast(InstigatorActor,\ \textcolor{keyword}{this},\ NewHealth,\ Delta);}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ UCAttributeComponent::MulticastRageChanged\_Implementation(AActor*\ InstigatorActor,\ \textcolor{keywordtype}{float}\ NewRage,\ \textcolor{keywordtype}{float}\ Delta)}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ OnRageChanged.Broadcast(InstigatorActor,\ \textcolor{keyword}{this},\ NewRage,\ Delta);}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00133\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ DOREPLIFETIME(UCAttributeComponent,\ CurrentHealth);}
+\DoxyCodeLine{00136\ \ \ \ \ DOREPLIFETIME(UCAttributeComponent,\ BaseHealth);}
+\DoxyCodeLine{00137\ \ \ \ \ DOREPLIFETIME(UCAttributeComponent,\ ActiveGameplayTags);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ DOREPLIFETIME(UCAttributeComponent,\ Rage);}
+\DoxyCodeLine{00140\ \ \ \ \ DOREPLIFETIME(UCAttributeComponent,\ RageMax);}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ }
+
+\end{DoxyCode}

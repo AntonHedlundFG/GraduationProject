@@ -1,0 +1,42 @@
+\doxysection{CCombat\+Logger.\+h}
+\hypertarget{_c_combat_logger_8h_source}{}\label{_c_combat_logger_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CCombatLogger.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CCombatLogger.h}}
+\mbox{\hyperlink{_c_combat_logger_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}UObject/NoExportTypes.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CCombatLogger.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ UENUM(BlueprintType)}
+\DoxyCodeLine{00010\ enum\ class\ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ :\ uint8}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ DEFAULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Default"{}}),}
+\DoxyCodeLine{00013\ \ \ \ \ COMBAT\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Combat"{}}),}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ FString\ \mbox{\hyperlink{_c_combat_logger_8h_afdaa9f4369955b53afba2d18dbae51b5}{ToCombatLogStyleBegin}}(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ LogCategory)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{switch}\ (LogCategory)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{case}\ ECombatLogCategory::COMBAT:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}<Combat>"{}});}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00027\ UCLASS()}
+\DoxyCodeLine{00028\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_combat_logger}{UCCombatLogger}}\ :\ public\ UObject}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FString\ StyleEnd\ =\ \textcolor{stringliteral}{"{}</>"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}CombatLogging"{}})}
+\DoxyCodeLine{00034\ \ \ \ \ static\ FString\ Format(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category,FString\ Message);}
+\DoxyCodeLine{00035\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}CombatLogging"{})}
+\DoxyCodeLine{00036\ \ \ \ \ static\ FString\ FormatIT(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category,\ FString\ Instigator,\ FString\ Target,FString\ Message);}
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}CombatLogging"{})}
+\DoxyCodeLine{00038\ \ \ \ \ static\ \textcolor{keywordtype}{void}\ Log(FString\ Message,\ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category);}
+\DoxyCodeLine{00039\ \};}
+
+\end{DoxyCode}

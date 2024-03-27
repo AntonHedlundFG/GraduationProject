@@ -1,0 +1,110 @@
+\doxysection{CAlice\+Test\+Character.\+cpp}
+\hypertarget{_c_alice_test_character_8cpp_source}{}\label{_c_alice_test_character_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/AliceTest/CAliceTestCharacter.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/AliceTest/CAliceTestCharacter.cpp}}
+\mbox{\hyperlink{_c_alice_test_character_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_alice_test_character_8h}{AliceTest/CAliceTestCharacter.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Camera/CameraComponent.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}GameFramework/SpringArmComponent.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameFramework/CharacterMovementComponent.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_component_8h}{Actions/CActionComponent.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shared_game_play_tags_8h}{GamePlayTags/SharedGamePlayTags.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Enhanced\ Input}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}EnhancedInputComponent.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}EnhancedInputSubsystems.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_alice_test_player_controller_8h}{AliceTest/CAliceTestPlayerController.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CAliceTestCharacter)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Sets\ default\ values}}
+\DoxyCodeLine{00017\ \mbox{\hyperlink{class_a_c_alice_test_character_a0a05463bf58ff277eedb018da347f3c5}{ACAliceTestCharacter::ACAliceTestCharacter}}()}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Set\ this\ character\ to\ call\ Tick()\ every\ frame.\ \ You\ can\ turn\ this\ off\ to\ improve\ performance\ if\ you\ don't\ need\ it.}}
+\DoxyCodeLine{00020\ \ \ \ \ PrimaryActorTick.bCanEverTick\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ bReplicates\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{SpringArmComp}}\ =\ CreateDefaultSubobject<USpringArmComponent>(\textcolor{stringliteral}{"{}SpringArmComp"{}});}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{SpringArmComp}}-\/>bUsePawnControlRotation\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{SpringArmComp}}-\/>SetupAttachment(RootComponent);}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{SpringArmComp}}-\/>SetUsingAbsoluteRotation(\textcolor{keyword}{true});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_ad6e1700b8586c2f0cd9551c7b5ce143f}{CameraComp}}\ =\ CreateDefaultSubobject<UCameraComponent>(\textcolor{stringliteral}{"{}CameraComp"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_ad6e1700b8586c2f0cd9551c7b5ce143f}{CameraComp}}-\/>SetupAttachment(\mbox{\hyperlink{class_a_c_alice_test_character_a7c7ca10ef8ebab0089b4bfe8ac25f290}{SpringArmComp}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ GetCharacterMovement()-\/>bOrientRotationToMovement\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00033\ \ \ \ \ bUseControllerRotationYaw\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca}{ActionComp}}\ =\ CreateDefaultSubobject<UCActionComponent>(\textcolor{stringliteral}{"{}ActionComp"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_character_a43cec1dcd476e3d44b50357e96a1142d}{ACAliceTestCharacter::PrimaryAttack}}()}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ GEngine-\/>AddOnScreenDebugMessage(INDEX\_NONE,\ 5.f,\ FColor::Red,\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}ATTACK"{}})));}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca}{ActionComp}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character_a390cc19b36897f833b339b34f6c366ca}{ActionComp}}-\/>StartActionByName(\textcolor{keyword}{this},\ SharedGameplayTags::Action\_DefaultAttack);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ GEngine-\/>AddOnScreenDebugMessage(INDEX\_NONE,\ 5.f,\ FColor::Red,\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}Action\ Comp"{}})));}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Called\ when\ the\ game\ starts\ or\ when\ spawned}}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_character_a2e4cce17750e846862ae6b8da1852075}{ACAliceTestCharacter::BeginPlay}}()}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_character_a58997c8d56acacd4e23a2f2e4b7f5242}{ACAliceTestCharacter::PostInitializeComponents}}()}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ Super::PostInitializeComponents();}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ Called\ every\ frame}}
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_character_a55498248eda9055917dcf018be793993}{ACAliceTestCharacter::Tick}}(\textcolor{keywordtype}{float}\ DeltaTime)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ Super::Tick(DeltaTime);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ Called\ to\ bind\ functionality\ to\ input}}
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_character_a0d78b474c39df003326db9d768ab7b8b}{ACAliceTestCharacter::SetupPlayerInputComponent}}(UInputComponent*\ PlayerInputComponent)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ Super::SetupPlayerInputComponent(PlayerInputComponent);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//PlayerInputComponent-\/>BindAction(}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ APlayerController*\ PC\ =\ GetController<APlayerController>();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ local\ player\ subsystem}}
+\DoxyCodeLine{00082\ \ \ \ \ UEnhancedInputLocalPlayerSubsystem*\ Subsystem\ =\ ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC-\/>GetLocalPlayer());}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Clear\ out\ existing\ mapping,\ and\ add\ our\ mapping}}
+\DoxyCodeLine{00084\ \ \ \ \ Subsystem-\/>ClearAllMappings();}
+\DoxyCodeLine{00085\ \ \ \ \ Subsystem-\/>AddMappingContext(\mbox{\hyperlink{class_a_c_alice_test_character_a2c13e18ecfe6de2a081310ed187ed2ae}{AliceMapping}},\ 0);}
+\DoxyCodeLine{00086\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//const\ ULocalPlayer*\ LP\ =\ PC-\/>GetLocalPlayer();}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//UEnhancedInputLocalPlayerSubsystem*\ Subsystem\ =\ LP-\/>GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//check(Subsystem);}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//Subsystem-\/>ClearAllMappings();}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Add\ mappings,\ runtime\ remove/add(?).}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//Subsystem-\/>AddMappingContext(AliceMapping,\ 0);}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//New\ Enhanced\ Input\ system.}}
+\DoxyCodeLine{00098\ \ \ \ \ UEnhancedInputComponent*\ InputComp\ =\ CastChecked<UEnhancedInputComponent>(PlayerInputComponent);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ InputComp-\/>BindAction(\mbox{\hyperlink{class_a_c_alice_test_character_ab9f1a1a3ad69f427cbc3d60266511c3c}{AttackAction}},\ ETriggerEvent::Triggered,\ \textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_a_c_alice_test_character_a43cec1dcd476e3d44b50357e96a1142d}{ACAliceTestCharacter::PrimaryAttack}});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ }
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+
+\end{DoxyCode}

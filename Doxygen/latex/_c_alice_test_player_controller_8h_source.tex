@@ -1,0 +1,61 @@
+\doxysection{CAlice\+Test\+Player\+Controller.\+h}
+\hypertarget{_c_alice_test_player_controller_8h_source}{}\label{_c_alice_test_player_controller_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/AliceTest/CAliceTestPlayerController.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/AliceTest/CAliceTestPlayerController.h}}
+\mbox{\hyperlink{_c_alice_test_player_controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_player_controller_8h}{CPlayerController.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CAliceTestPlayerController.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{_c_alice_test_player_controller_8h_a75a43f27086fb9f2089fafea76987ed0}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}(FOnPawnChanged,\ APawn*,\ NewPawn);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \mbox{\hyperlink{_c_alice_test_player_controller_8h_a75a43f27086fb9f2089fafea76987ed0}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}(FOnPlayerStateChanged,\ APlayerState*,\ NewPlayerState);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ UCLASS()}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_alice_test_player_controller}{ACAliceTestPlayerController}}\ :\ public\ \mbox{\hyperlink{class_a_c_player_controller}{ACPlayerController}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ \textcolor{stringliteral}{"{}UI"{}})}
+\DoxyCodeLine{00023\ \ \ \ \ TSubclassOf<UUserWidget>\ PauseMenuClass;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00026\ \ \ \ \ TObjectPtr<UUserWidget>\ PauseMenuInstance;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ TogglePauseMenu();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetupInputComponent()\ override;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00034\ \ \ \ \ FOnPawnChanged\ OnPawnChanged;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//Listen\ for\ incoming\ player\ state(for\ clients\ this\ may\ be\ nullptr\ when\ initially\ joining\ a\ game,\ }}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//afterwards\ player\ state\ will\ not\ change\ again\ as\ PlayerControllers\ maintain\ the\ same\ player\ state\ throughout\ the\ level).}}
+\DoxyCodeLine{00038\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00039\ \ \ \ \ FOnPlayerStateChanged\ OnPlayerStateReceived;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetPawn(APawn*\ InPawn)\ override;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*Called\ when\ player\ controller\ is\ ready\ to\ begin\ playing,\ good\ moment\ to\ initialize\ things\ like\ UI\ which\ might\ be\ too\ early\ in\ BeginPlay\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ (esp.\ in\ multiplayer\ clients\ where\ not\ all\ data\ such\ as\ PlayerState\ may\ have\ been\ received\ yet).*/}}
+\DoxyCodeLine{00045\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlayingState()\ override;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ BlueprintBeginPlayingState();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ OnRep\_PlayerState()\ override;}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00052\ private:}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ \};}
+
+\end{DoxyCode}

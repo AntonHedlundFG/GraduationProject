@@ -1,0 +1,56 @@
+\doxysection{UCGrid\+Utils\+Library Class Reference}
+\hypertarget{class_u_c_grid_utils_library}{}\label{class_u_c_grid_utils_library}\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+
+
+{\ttfamily \#include $<$CGrid\+Utils\+Library.\+h$>$}
+
+Inheritance diagram for UCGrid\+Utils\+Library\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_grid_utils_library}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static TArray$<$ FVector2D $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6}{Straight\+Directions}} ()
+\item 
+static TArray$<$ FVector2D $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}{Diagonal\+Directions}} ()
+\item 
+static TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b}{BFS\+\_\+\+Pathfinding}} (\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}in\+Item, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Start, const \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target)
+\item 
+static TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e}{Flood\+Fill}} (\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}in\+Item, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Start, int Depth)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b}\label{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b} 
+\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!BFS\_Pathfinding@{BFS\_Pathfinding}}
+\index{BFS\_Pathfinding@{BFS\_Pathfinding}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+\doxysubsubsection{\texorpdfstring{BFS\_Pathfinding()}{BFS\_Pathfinding()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+BFS\+\_\+\+Pathfinding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}}]{in\+Item,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Start,  }\item[{const \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}\label{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00} 
+\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!DiagonalDirections@{DiagonalDirections}}
+\index{DiagonalDirections@{DiagonalDirections}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+\doxysubsubsection{\texorpdfstring{DiagonalDirections()}{DiagonalDirections()}}
+{\footnotesize\ttfamily TArray$<$ FVector2D $>$ UCGrid\+Utils\+Library\+::\+Diagonal\+Directions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e}\label{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e} 
+\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!FloodFill@{FloodFill}}
+\index{FloodFill@{FloodFill}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+\doxysubsubsection{\texorpdfstring{FloodFill()}{FloodFill()}}
+{\footnotesize\ttfamily TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+Flood\+Fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}}]{in\+Item,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Start,  }\item[{int}]{Depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6}\label{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6} 
+\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!StraightDirections@{StraightDirections}}
+\index{StraightDirections@{StraightDirections}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+\doxysubsubsection{\texorpdfstring{StraightDirections()}{StraightDirections()}}
+{\footnotesize\ttfamily TArray$<$ FVector2D $>$ UCGrid\+Utils\+Library\+::\+Straight\+Directions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Grid/\mbox{\hyperlink{_c_grid_utils_library_8h}{CGrid\+Utils\+Library.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Grid/\mbox{\hyperlink{_c_grid_utils_library_8cpp}{CGrid\+Utils\+Library.\+cpp}}\end{DoxyCompactItemize}

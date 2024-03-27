@@ -1,0 +1,283 @@
+\doxysection{CCommand.\+gen.\+cpp}
+\hypertarget{_c_command_8gen_8cpp_source}{}\label{_c_command_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CCommand.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CCommand.gen.cpp}}
+\mbox{\hyperlink{_c_command_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_command_8h}{TacticalRogueLite/Public/CommandPattern/CCommand.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_command_8gen_8cpp_adbd01a6fd1ab3823ecb4dffd339147ee}{EmptyLinkFunctionForGeneratedCodeCCommand}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a22dcd9c5e37f05bf55ae926205d27c68}{Z\_Construct\_UClass\_AController\_NoRegister}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a7fe97bbcb03be121a3abcc0293a9aad2}{Z\_Construct\_UClass\_UCCommand\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_aabdb2289a498a952a494d53105f0426c}{Z\_Construct\_UClass\_UCConsequence\_NoRegister}}();}
+\DoxyCodeLine{00017\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_c_command_8gen_8cpp_a2f861eefeb9ecd86c0158218383551fc}{DEFINE\_FUNCTION}}(UCCommand::execGetCommandCreator)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ *(AController**)Z\_Param\_\_Result=P\_THIS-\/>GetCommandCreator();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_c_command__event_receive_to_string___parms}{CCommand\_eventReceiveToString\_Parms}}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_c_command__event_receive_to_string___parms_afef6125f92529885fb347938db9673d5}{ReturnValue}};}
+\DoxyCodeLine{00029\ \ \ \ \ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ FName\ NAME\_UCCommand\_ReceiveExecuteCommand\ =\ FName(TEXT(\textcolor{stringliteral}{"{}ReceiveExecuteCommand"{}}));}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_command_a5d5a8fb6063751d5f67a0d91c0709c27}{UCCommand::ReceiveExecuteCommand}}()}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ProcessEvent(FindFunctionChecked(NAME\_UCCommand\_ReceiveExecuteCommand),NULL);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ FName\ NAME\_UCCommand\_ReceiveToString\ =\ FName(TEXT(\textcolor{stringliteral}{"{}ReceiveToString"{}}));}
+\DoxyCodeLine{00036\ \ \ \ \ FString\ \mbox{\hyperlink{class_u_c_command_aea09180c8c34e1e156c80d49de21d7fd}{UCCommand::ReceiveToString}}()}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_c_command__event_receive_to_string___parms}{CCommand\_eventReceiveToString\_Parms}}\ Parms;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ProcessEvent(FindFunctionChecked(NAME\_UCCommand\_ReceiveToString),\&Parms);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Parms.\mbox{\hyperlink{struct_c_command__event_receive_to_string___parms_afef6125f92529885fb347938db9673d5}{ReturnValue}};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ FName\ NAME\_UCCommand\_ReceiveUndoCommand\ =\ FName(TEXT(\textcolor{stringliteral}{"{}ReceiveUndoCommand"{}}));}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_command_a041e73d87109c21a369dc47501456319}{UCCommand::ReceiveUndoCommand}}()}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ ProcessEvent(FindFunctionChecked(NAME\_UCCommand\_ReceiveUndoCommand),NULL);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ UCCommand::StaticRegisterNativesUCCommand()}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCCommand::StaticClass();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetCommandCreator"{}},\ \&UCCommand::execGetCommandCreator,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_command}{UCCommand}},\mbox{\hyperlink{class_u_c_command_aee4d7a8e80277ed4b5071b835b2af168}{GetCommandCreator}},(),ERASE\_ARGUMENT\_PACK(AController*))\ \},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics}}}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_1_1_c_command__ec0f2d04d8f105b92c4e498c260fc54e5}{CCommand\_eventGetCommandCreator\_Parms}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ AController*\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_1_1_c_command__ec0f2d04d8f105b92c4e498c260fc54e5_a25ffc3399bca33629eac994b62752777}{ReturnValue}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a745975357766f585d3e4d1d21daa333c}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a6b00b313043bb870d9745962833874c5}{PropPointers}}[];}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a2bb533633e39b5b80cc698eb103b4c6f}{FuncParams}};}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a745975357766f585d3e4d1d21daa333c}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_1_1_c_command__ec0f2d04d8f105b92c4e498c260fc54e5}{CCommand\_eventGetCommandCreator\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_command_8gen_8cpp_a22dcd9c5e37f05bf55ae926205d27c68}{Z\_Construct\_UClass\_AController\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a6b00b313043bb870d9745962833874c5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a745975357766f585d3e4d1d21daa333c}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Abilities|Commands"{}}\ \},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00076\ \ \ \ \ \};}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a2bb533633e39b5b80cc698eb103b4c6f}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetCommandCreator"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a6b00b313043bb870d9745962833874c5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a6b00b313043bb870d9745962833874c5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_1_1_c_command__ec0f2d04d8f105b92c4e498c260fc54e5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::CCommand\_eventGetCommandCreator\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a6b00b313043bb870d9745962833874c5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_1_1_c_command__ec0f2d04d8f105b92c4e498c260fc54e5}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::CCommand\_eventGetCommandCreator\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00081\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a665bc20e5c8f54e47413f92b4e10c0b7}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator}}()}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___get_command_creator___statics_a2bb533633e39b5b80cc698eb103b4c6f}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator\_Statics::FuncParams}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_execute_command___statics}{Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics}}}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_execute_command___statics_a8f82094defab0947794580daf949a012}{FuncParams}};}
+\DoxyCodeLine{00096\ \ \ \ \ \};}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00100\ \ \ \ \ \};}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_execute_command___statics_a8f82094defab0947794580daf949a012}{Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}ReceiveExecuteCommand"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x08080800,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00103\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a93b2d7258ab769ddd7966b966b0833d7}{Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand}}()}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_execute_command___statics_a8f82094defab0947794580daf949a012}{Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand\_Statics::FuncParams}});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics}}}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_abb6faf7d79f299f01046693d04c25363}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_a71d07abd45de596e52f8e8cec85c7c6d}{PropPointers}}[];}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_ab327069f1e80d0f882222489aad783fc}{FuncParams}};}
+\DoxyCodeLine{00120\ \ \ \ \ \};}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_abb6faf7d79f299f01046693d04c25363}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_c_command__event_receive_to_string___parms}{CCommand\_eventReceiveToString\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_a71d07abd45de596e52f8e8cec85c7c6d}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_abb6faf7d79f299f01046693d04c25363}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00124\ \ \ \ \ \};}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00128\ \ \ \ \ \};}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_ab327069f1e80d0f882222489aad783fc}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}ReceiveToString"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_a71d07abd45de596e52f8e8cec85c7c6d}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_a71d07abd45de596e52f8e8cec85c7c6d}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_c_command__event_receive_to_string___parms}{CCommand\_eventReceiveToString\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x08080800,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_a71d07abd45de596e52f8e8cec85c7c6d}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_c_command__event_receive_to_string___parms}{CCommand\_eventReceiveToString\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00133\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a324d6ab724d27addba2708bb634ea376}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString}}()}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_to_string___statics_ab327069f1e80d0f882222489aad783fc}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString\_Statics::FuncParams}});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_undo_command___statics}{Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics}}}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_undo_command___statics_ad983c6f99391479de282a4209cd9c7a3}{FuncParams}};}
+\DoxyCodeLine{00148\ \ \ \ \ \};}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00152\ \ \ \ \ \};}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_undo_command___statics_ad983c6f99391479de282a4209cd9c7a3}{Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}ReceiveUndoCommand"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x08080800,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00155\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a887165ac8c48ad415b3efbfa3a33c835}{Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand}}()}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_command___receive_undo_command___statics_ad983c6f99391479de282a4209cd9c7a3}{Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand\_Statics::FuncParams}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{_c_command_8gen_8cpp_aba137d627f8b99d59621158c552652bb}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_command}{UCCommand}});}
+\DoxyCodeLine{00165\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a7fe97bbcb03be121a3abcc0293a9aad2}{Z\_Construct\_UClass\_UCCommand\_NoRegister}}()}
+\DoxyCodeLine{00166\ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCCommand::StaticClass();}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics}{Z\_Construct\_UClass\_UCCommand\_Statics}}}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a73eb229d4d65c775a10b66ede466d4eb}{DependentSingletons}}[])();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8e1e907870206937bce7164240c25c48}{FuncInfo}}[];}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_CommandCreator\_MetaData[];}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8ae45dad32aceab6c2df1210044bd936}{NewProp\_CommandCreator}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a883551d9a8a3d858156847f59edb5044}{NewProp\_Consequences\_Inner}};}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Consequences\_MetaData[];}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_aa7ce072f2909eac65150ae49e784da57}{NewProp\_Consequences}};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a6079029ff438b456a5b28d538f124e7a}{PropPointers}}[];}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a0a21b05de09fcc05bd94d3da73dba7d4}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a80913d7a6f5c94c7da1637dde1da2e68}{ClassParams}};}
+\DoxyCodeLine{00188\ \ \ \ \ \};}
+\DoxyCodeLine{00189\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a73eb229d4d65c775a10b66ede466d4eb}{Z\_Construct\_UClass\_UCCommand\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_command_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_command_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00192\ \ \ \ \ \};}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a73eb229d4d65c775a10b66ede466d4eb}{Z\_Construct\_UClass\_UCCommand\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8e1e907870206937bce7164240c25c48}{Z\_Construct\_UClass\_UCCommand\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_command_8gen_8cpp_a665bc20e5c8f54e47413f92b4e10c0b7}{Z\_Construct\_UFunction\_UCCommand\_GetCommandCreator}},\ \textcolor{stringliteral}{"{}GetCommandCreator"{}}\ \},\ \textcolor{comment}{//\ 2894184958}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_command_8gen_8cpp_a93b2d7258ab769ddd7966b966b0833d7}{Z\_Construct\_UFunction\_UCCommand\_ReceiveExecuteCommand}},\ \textcolor{stringliteral}{"{}ReceiveExecuteCommand"{}}\ \},\ \textcolor{comment}{//\ 3890441740}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_command_8gen_8cpp_a324d6ab724d27addba2708bb634ea376}{Z\_Construct\_UFunction\_UCCommand\_ReceiveToString}},\ \textcolor{stringliteral}{"{}ReceiveToString"{}}\ \},\ \textcolor{comment}{//\ 4000334202}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_command_8gen_8cpp_a887165ac8c48ad415b3efbfa3a33c835}{Z\_Construct\_UFunction\_UCCommand\_ReceiveUndoCommand}},\ \textcolor{stringliteral}{"{}ReceiveUndoCommand"{}}\ \},\ \textcolor{comment}{//\ 3644816125}}
+\DoxyCodeLine{00199\ \ \ \ \ \};}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8e1e907870206937bce7164240c25c48}{Z\_Construct\_UClass\_UCCommand\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCCommand\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}/**\ Commands\ should\ not\ be\ created\ and\ executed\ manually.\ Instead,\ you\ should\(\backslash\)n\ *\ override\ the\ GenerateAbilityCommand()\ of\ a\ UCItem\ to\ create\ the\ command,\ which\(\backslash\)n\ *\ will\ then\ be\ executed\ and\ undone\ automatically\ by\ the\ GameMode.\(\backslash\)n\ *\ Note\ that\ things\ that\ trigger\ as\ a\ -\/result-\/\ of\ using\ a\ command,\ rather\ than\ a\ \(\backslash\)n\ *\ deliberate\ action\ from\ a\ Controller,\ should\ be\ created\ as\ a\ UCConsequence\(\backslash\)n\ *\ and\ registered\ in\ the\ CGameMode\ with\ RegisterAndExecuteConsequence()\(\backslash\)n\ */"{}}\ \},}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Commands\ should\ not\ be\ created\ and\ executed\ manually.\ Instead,\ you\ should\(\backslash\)noverride\ the\ GenerateAbilityCommand()\ of\ a\ UCItem\ to\ create\ the\ command,\ which\(\backslash\)nwill\ then\ be\ executed\ and\ undone\ automatically\ by\ the\ GameMode.\(\backslash\)nNote\ that\ things\ that\ trigger\ as\ a\ -\/result-\/\ of\ using\ a\ command,\ rather\ than\ a\(\backslash\)ndeliberate\ action\ from\ a\ Controller,\ should\ be\ created\ as\ a\ UCConsequence\(\backslash\)nand\ registered\ in\ the\ CGameMode\ with\ RegisterAndExecuteConsequence()"{}}\ \},}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00211\ \ \ \ \ \};}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_CommandCreator\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}CCommand"{}}\ \},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00217\ \ \ \ \ \};}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8ae45dad32aceab6c2df1210044bd936}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_CommandCreator}}\ =\ \{\ \textcolor{stringliteral}{"{}CommandCreator"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0024080000000014,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_command}{UCCommand}},\ CommandCreator),\ \mbox{\hyperlink{_c_command_8gen_8cpp_a22dcd9c5e37f05bf55ae926205d27c68}{Z\_Construct\_UClass\_AController\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_CommandCreator\_MetaData),\ Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_CommandCreator\_MetaData)\ \};}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a883551d9a8a3d858156847f59edb5044}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}Consequences"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_command_8gen_8cpp_aabdb2289a498a952a494d53105f0426c}{Z\_Construct\_UClass\_UCConsequence\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/CommandPattern/CCommand.h"{}}\ \},}
+\DoxyCodeLine{00224\ \ \ \ \ \};}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_aa7ce072f2909eac65150ae49e784da57}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences}}\ =\ \{\ \textcolor{stringliteral}{"{}Consequences"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0020080000000000,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_command}{UCCommand}},\ Consequences),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences\_MetaData),\ Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences\_MetaData)\ \};}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a6079029ff438b456a5b28d538f124e7a}{Z\_Construct\_UClass\_UCCommand\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a8ae45dad32aceab6c2df1210044bd936}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_CommandCreator}},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a883551d9a8a3d858156847f59edb5044}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences\_Inner}},}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_aa7ce072f2909eac65150ae49e784da57}{Z\_Construct\_UClass\_UCCommand\_Statics::NewProp\_Consequences}},}
+\DoxyCodeLine{00231\ \ \ \ \ \};}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a0a21b05de09fcc05bd94d3da73dba7d4}{Z\_Construct\_UClass\_UCCommand\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCCommand>::IsAbstract,}
+\DoxyCodeLine{00234\ \ \ \ \ \};}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a80913d7a6f5c94c7da1637dde1da2e68}{Z\_Construct\_UClass\_UCCommand\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \&UCCommand::StaticClass,}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a6079029ff438b456a5b28d538f124e7a}{Z\_Construct\_UClass\_UCCommand\_Statics::PropPointers}},}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a6079029ff438b456a5b28d538f124e7a}{Z\_Construct\_UClass\_UCCommand\_Statics::PropPointers}}),}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ 0x001000A1u,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCCommand\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCCommand\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00249\ \ \ \ \ \};}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a6079029ff438b456a5b28d538f124e7a}{Z\_Construct\_UClass\_UCCommand\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00251\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}}()}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCCommand.OuterSingleton)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCCommand.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_command___statics_a80913d7a6f5c94c7da1637dde1da2e68}{Z\_Construct\_UClass\_UCCommand\_Statics::ClassParams}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCCommand.OuterSingleton;}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_command_8gen_8cpp_a216131d9e3e583b8e0057d49fc119ce9}{StaticClass<UCCommand>}}()}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCCommand::StaticClass();}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ UCCommand::UCCommand(\textcolor{keyword}{const}\ FObjectInitializer\&\ ObjectInitializer)\ :\ Super(ObjectInitializer)\ \{\}}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{_c_command_8gen_8cpp_a53b71630c0ff4cefe5f7516118f992c0}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_command}{UCCommand}});}
+\DoxyCodeLine{00265\ \ \ \ \ UCCommand::\string~UCCommand()\ \{\}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou4496b9f0a7db693d59fe79ea3e3a70b7}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_CommandPattern\_CCommand\_h\_Statics}}}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou4496b9f0a7db693d59fe79ea3e3a70b7_ac4b21132490961bd600acb4cae643171}{ClassInfo}}[];}
+\DoxyCodeLine{00269\ \ \ \ \ \};}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou4496b9f0a7db693d59fe79ea3e3a70b7_ac4b21132490961bd600acb4cae643171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_CommandPattern\_CCommand\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_command_8gen_8cpp_a4f85c524fda99ad82aa2108abc30a13e}{Z\_Construct\_UClass\_UCCommand}},\ UCCommand::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCCommand"{}}),\ \&Z\_Registration\_Info\_UClass\_UCCommand,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_command}{UCCommand}}),\ 2382088643U)\ \},}
+\DoxyCodeLine{00272\ \ \ \ \ \};}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_CommandPattern\_CCommand\_h\_529583906(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou4496b9f0a7db693d59fe79ea3e3a70b7_ac4b21132490961bd600acb4cae643171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_CommandPattern\_CCommand\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou4496b9f0a7db693d59fe79ea3e3a70b7_ac4b21132490961bd600acb4cae643171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_CommandPattern\_CCommand\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0);}
+\DoxyCodeLine{00277\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

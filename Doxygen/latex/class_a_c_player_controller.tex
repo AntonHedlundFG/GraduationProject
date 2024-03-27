@@ -1,0 +1,156 @@
+\doxysection{ACPlayer\+Controller Class Reference}
+\hypertarget{class_a_c_player_controller}{}\label{class_a_c_player_controller}\index{ACPlayerController@{ACPlayerController}}
+
+
+{\ttfamily \#include $<$CPlayer\+Controller.\+h$>$}
+
+Inheritance diagram for ACPlayer\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_a_c_player_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a0c9aed74a1603a7d69560888a273773b}{Undo\+Ability}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4}{Initiate\+Ability\+Use}} (\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Item\+Slot)
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a0b4d8b138d5e8bc2a58bca40c971c2b2}{Finalize\+Ability\+Use}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_afa77114edabea7f57009d8b926957143}{Cancel\+Ability\+Use}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a876ab4acf9a181018ff6b1ca81e477e2}{End\+Turn}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_online_player_controller}{AOnline\+Player\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_online_player_controller_a902bc3f4f66f8e77e33de2628827ab06}{On\+Net\+Cleanup}} (UNet\+Connection \texorpdfstring{$\ast$}{*}Connection) override
+\item 
+void \mbox{\hyperlink{class_a_online_player_controller_affcda06eadef36b45d4ebf6092f2ee4c}{Server\+\_\+\+Manual\+Disconnect}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_ad911dc6b5daff759e74624a92b437bd1}{Get\+Game\+State}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57}{Server\+\_\+\+Use\+Object}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Slot, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a13cb60efaf3fb9f194793ce3cab8d88f}{Server\+\_\+\+Try\+Undo}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a69b}{Server\+\_\+\+Try\+End\+Turn}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_acfc9069d4032f44cb70625c752408bfc}{Game\+State\+Ref}}
+\item 
+\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} \mbox{\hyperlink{class_a_c_player_controller_a5c84d29711db79264cc510623e3f509a}{Item\+Slot\+Currently\+Used}} = EItem\+Slots\+::\+EIS\+\_\+\+None
+\item 
+\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a}{Unit\+Currently\+Using\+Ability}} = nullptr
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_player_controller_a0e2dfafb37be340c795d581f1e2e16a7}{Highlighted\+Tiles}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_player_controller_afa77114edabea7f57009d8b926957143}\label{class_a_c_player_controller_afa77114edabea7f57009d8b926957143} 
+\index{ACPlayerController@{ACPlayerController}!CancelAbilityUse@{CancelAbilityUse}}
+\index{CancelAbilityUse@{CancelAbilityUse}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{CancelAbilityUse()}{CancelAbilityUse()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Cancel\+Ability\+Use (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_player_controller_a876ab4acf9a181018ff6b1ca81e477e2}\label{class_a_c_player_controller_a876ab4acf9a181018ff6b1ca81e477e2} 
+\index{ACPlayerController@{ACPlayerController}!EndTurn@{EndTurn}}
+\index{EndTurn@{EndTurn}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{EndTurn()}{EndTurn()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+End\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_player_controller_a0b4d8b138d5e8bc2a58bca40c971c2b2}\label{class_a_c_player_controller_a0b4d8b138d5e8bc2a58bca40c971c2b2} 
+\index{ACPlayerController@{ACPlayerController}!FinalizeAbilityUse@{FinalizeAbilityUse}}
+\index{FinalizeAbilityUse@{FinalizeAbilityUse}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{FinalizeAbilityUse()}{FinalizeAbilityUse()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Finalize\+Ability\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_player_controller_ad911dc6b5daff759e74624a92b437bd1}\label{class_a_c_player_controller_ad911dc6b5daff759e74624a92b437bd1} 
+\index{ACPlayerController@{ACPlayerController}!GetGameState@{GetGameState}}
+\index{GetGameState@{GetGameState}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{GetGameState()}{GetGameState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} ACPlayer\+Controller\+::\+Get\+Game\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4}\label{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4} 
+\index{ACPlayerController@{ACPlayerController}!InitiateAbilityUse@{InitiateAbilityUse}}
+\index{InitiateAbilityUse@{InitiateAbilityUse}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{InitiateAbilityUse()}{InitiateAbilityUse()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Initiate\+Ability\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Item\+Slot }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a69b}\label{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a69b} 
+\index{ACPlayerController@{ACPlayerController}!Server\_TryEndTurn@{Server\_TryEndTurn}}
+\index{Server\_TryEndTurn@{Server\_TryEndTurn}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{Server\_TryEndTurn()}{Server\_TryEndTurn()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Try\+End\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_a13cb60efaf3fb9f194793ce3cab8d88f}\label{class_a_c_player_controller_a13cb60efaf3fb9f194793ce3cab8d88f} 
+\index{ACPlayerController@{ACPlayerController}!Server\_TryUndo@{Server\_TryUndo}}
+\index{Server\_TryUndo@{Server\_TryUndo}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{Server\_TryUndo()}{Server\_TryUndo()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Try\+Undo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57}\label{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57} 
+\index{ACPlayerController@{ACPlayerController}!Server\_UseObject@{Server\_UseObject}}
+\index{Server\_UseObject@{Server\_UseObject}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{Server\_UseObject()}{Server\_UseObject()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Use\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Slot,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+This function is called by client to notify server of object use. on the server, it is forwarded to the Game\+Mode to handle activitiy. 
+\begin{DoxyParams}{Parameters}
+{\em Unit} & -\/ The intended using unit. Should be obvious due to unit ordering, but it might be good to verify. \\
+\hline
+{\em Slot} & -\/ Item slot to activate \\
+\hline
+{\em Tile\+Index} & -\/ Index of the targeted Tile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if ability use was successful 
+\end{DoxyReturn}
+\Hypertarget{class_a_c_player_controller_a0c9aed74a1603a7d69560888a273773b}\label{class_a_c_player_controller_a0c9aed74a1603a7d69560888a273773b} 
+\index{ACPlayerController@{ACPlayerController}!UndoAbility@{UndoAbility}}
+\index{UndoAbility@{UndoAbility}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{UndoAbility()}{UndoAbility()}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Undo\+Ability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_player_controller_acfc9069d4032f44cb70625c752408bfc}\label{class_a_c_player_controller_acfc9069d4032f44cb70625c752408bfc} 
+\index{ACPlayerController@{ACPlayerController}!GameStateRef@{GameStateRef}}
+\index{GameStateRef@{GameStateRef}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{GameStateRef}{GameStateRef}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}}\texorpdfstring{$\ast$}{*} ACPlayer\+Controller\+::\+Game\+State\+Ref\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_a0e2dfafb37be340c795d581f1e2e16a7}\label{class_a_c_player_controller_a0e2dfafb37be340c795d581f1e2e16a7} 
+\index{ACPlayerController@{ACPlayerController}!HighlightedTiles@{HighlightedTiles}}
+\index{HighlightedTiles@{HighlightedTiles}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{HighlightedTiles}{HighlightedTiles}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}}\texorpdfstring{$\ast$}{*}$>$ ACPlayer\+Controller\+::\+Highlighted\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_a5c84d29711db79264cc510623e3f509a}\label{class_a_c_player_controller_a5c84d29711db79264cc510623e3f509a} 
+\index{ACPlayerController@{ACPlayerController}!ItemSlotCurrentlyUsed@{ItemSlotCurrentlyUsed}}
+\index{ItemSlotCurrentlyUsed@{ItemSlotCurrentlyUsed}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{ItemSlotCurrentlyUsed}{ItemSlotCurrentlyUsed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} ACPlayer\+Controller\+::\+Item\+Slot\+Currently\+Used = EItem\+Slots\+::\+EIS\+\_\+\+None\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a}\label{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a} 
+\index{ACPlayerController@{ACPlayerController}!UnitCurrentlyUsingAbility@{UnitCurrentlyUsingAbility}}
+\index{UnitCurrentlyUsingAbility@{UnitCurrentlyUsingAbility}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{UnitCurrentlyUsingAbility}{UnitCurrentlyUsingAbility}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*} ACPlayer\+Controller\+::\+Unit\+Currently\+Using\+Ability = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\mbox{\hyperlink{_c_player_controller_8h}{CPlayer\+Controller.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_c_player_controller_8cpp}{CPlayer\+Controller.\+cpp}}\end{DoxyCompactItemize}

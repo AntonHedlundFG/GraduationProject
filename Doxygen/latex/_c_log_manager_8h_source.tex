@@ -1,0 +1,113 @@
+\doxysection{CLog\+Manager.\+h}
+\hypertarget{_c_log_manager_8h_source}{}\label{_c_log_manager_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h}}
+\mbox{\hyperlink{_c_log_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CLogManager.generated.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ region\ ELogCategory\ Enum}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ UENUM(BlueprintType)}
+\DoxyCodeLine{00009\ enum\ class\ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ :\ uint8}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ NONE\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(Hidden),}
+\DoxyCodeLine{00012\ \ \ \ \ LC\_Info\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Info"{}}),}
+\DoxyCodeLine{00013\ \ \ \ \ LC\_Warning\ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Warning"{}}),}
+\DoxyCodeLine{00014\ \ \ \ \ LC\_Error\ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Error"{}}),}
+\DoxyCodeLine{00015\ \ \ \ \ LC\_Gameplay\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Gameplay"{}}),}
+\DoxyCodeLine{00016\ \ \ \ \ LC\_Network\ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Network"{}}),}
+\DoxyCodeLine{00017\ \ \ \ \ MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(Hidden)}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{inline}\ FString\ \mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ LogCategory)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{switch}\ (LogCategory)}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Info:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[INFO]"{}});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Warning:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[WARNING]"{}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Error:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[ERROR]"{}});}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Gameplay:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[GAMEPLAY]"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Network:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[NETWORK]"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ TEXT(\textcolor{stringliteral}{"{}[UNKNOWN]"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#pragma\ region\ Logging\ Macros}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LOG(Category,\ Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{UCLogManager::Log(Category,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOG\_INFO(Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{UCLogManager::Log(ELogCategory::LC\_Info,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ LOG\_WARNING(Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{UCLogManager::Log(ELogCategory::LC\_Warning,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOG\_ERROR(Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{UCLogManager::Log(ELogCategory::LC\_Error,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ LOG\_GAMEPLAY(Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{UCLogManager::Log(ELogCategory::LC\_Gameplay,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ LOG\_NETWORK(Message,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{UCLogManager::Log(ELogCategory::LC\_Network,\ FString::Printf(TEXT(Message),\ \#\#\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \mbox{\hyperlink{_c_log_manager_8h_a77e2717eafe85d9c43300b999c58947b}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams}}(FOnNewLogEntry,\ \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}},\ Category,\ \textcolor{keyword}{const}\ FString\&,\ Message);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ FLogger\ wrapper\ for\ access\ through\ Blueprints\ and\ C++}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00062\ UCLASS(BlueprintType)}
+\DoxyCodeLine{00063\ class\ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}\ :\ public\ UObject}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Blueprint-\/accessible\ logging\ function}}
+\DoxyCodeLine{00069\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Log"{}}))}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ BlueprintLog(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category\ =\ ELogCategory::LC\_Info,\ \textcolor{keyword}{const}\ FString\&\ Message\ =\ TEXT(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Log\ a\ message\ with\ a\ category}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Log(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category,\ \textcolor{keyword}{const}\ FString\&\ Message);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Read\ all\ log\ entries\ from\ the\ log\ file}}
+\DoxyCodeLine{00076\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Read\ Log"{}}))}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FString>\ GetAllLogEntries();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Read\ all\ log\ entries\ from\ the\ selected\ category\ from\ the\ log\ file\ }}
+\DoxyCodeLine{00080\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Read\ Log\ By\ Category"{}}))}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FString>\ GetAllLogEntriesByCategory(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Get\ a\ log\ by\ its\ ID}}
+\DoxyCodeLine{00084\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Get\ Recent\ Log\ Entry"{}}))}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ FString\ GetRecentLogEntry(int64\ LogID);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Rotate\ the\ log\ file\ and\ start\ writing\ to\ a\ new\ one}}
+\DoxyCodeLine{00088\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Rotate\ LogFile"{}}))}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ RotateLogFile();}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ singleton\ instance\ of\ the\ logger}}
+\DoxyCodeLine{00092\ \ \ \ \ UFUNCTION(BlueprintPure,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Get\ Logger\ Instance"{}}))}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*\ Get();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Start\ and\ stop\ the\ logger}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ StartUp();}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ ShutDown();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ Delegate\ for\ broadcasting\ log\ events}}
+\DoxyCodeLine{00100\ \ \ \ \ UPROPERTY(BlueprintAssignable,\ Category\ =\ \textcolor{stringliteral}{"{}Logging"{}})}
+\DoxyCodeLine{00101\ \ \ \ \ FOnNewLogEntry\ OnNewLogEntry;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ private:}
+\DoxyCodeLine{00104\ \ \ \ \ static\ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*\ Instance;}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+
+\end{DoxyCode}

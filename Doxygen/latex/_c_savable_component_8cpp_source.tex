@@ -1,0 +1,19 @@
+\doxysection{CSavable\+Component.\+cpp}
+\hypertarget{_c_savable_component_8cpp_source}{}\label{_c_savable_component_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/SaveGame/CSavableComponent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/SaveGame/CSavableComponent.cpp}}
+\mbox{\hyperlink{_c_savable_component_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_savable_component_8h}{Utility/SaveGame/CSavableComponent.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_savable_component_af9344723b61607ff66a2538e835a1f04}{UCSavableComponent::BeginPlay}}()}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00006\ \ \ \ \ \mbox{\hyperlink{class_i_c_savable_a5665543846451a4ed15d5caa6bb576ff}{RegisterToSaveManager}}();}
+\DoxyCodeLine{00007\ \}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_savable_component_a6eabd86f31c6e88eb68700f952e992d9}{UCSavableComponent::EndPlay}}(\textcolor{keyword}{const}\ EEndPlayReason::Type\ EndPlayReason)}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ Super::EndPlay(EndPlayReason);}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_i_c_savable_ab66765c8700da14a8e8812356adb05a5}{UnregisterFromSaveManager}}();}
+\DoxyCodeLine{00013\ \}}
+
+\end{DoxyCode}

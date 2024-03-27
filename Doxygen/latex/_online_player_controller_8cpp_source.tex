@@ -1,0 +1,43 @@
+\doxysection{Online\+Player\+Controller.\+cpp}
+\hypertarget{_online_player_controller_8cpp_source}{}\label{_online_player_controller_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlinePlayerController.cpp@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlinePlayerController.cpp}}
+\mbox{\hyperlink{_online_player_controller_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_controller_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlinePlayerController.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_game_mode_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlineGameMode.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_epic_online_subsystem_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)EpicOnlineSubsystem.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Kismet/KismetSystemLibrary.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_player_controller_a902bc3f4f66f8e77e33de2628827ab06}{AOnlinePlayerController::OnNetCleanup}}(UNetConnection*\ Connection)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{auto}\ Subsystem\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_epic_online_subsystem}{UEpicOnlineSubsystem}}>();}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (GetLocalRole()\ ==\ ROLE\_Authority)}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsValid(Subsystem)\ \&\&\ Subsystem-\/>IsPlayerLoggedIn())}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ Subsystem-\/>\mbox{\hyperlink{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576}{PlayerDisconnected}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsLocalController())}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Subsystem-\/>DestroySession();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ Super::OnNetCleanup(Connection);}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ AOnlinePlayerController::Server\_ManualDisconnect\_Implementation()}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{auto}\ Subsystem\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_epic_online_subsystem}{UEpicOnlineSubsystem}}>();}
+\DoxyCodeLine{00031\ \ \ \ \ Subsystem-\/>\mbox{\hyperlink{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225}{UnregisterPlayer}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{bool}\ AOnlinePlayerController::Server\_ManualDisconnect\_Validate()}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \}}
+
+\end{DoxyCode}

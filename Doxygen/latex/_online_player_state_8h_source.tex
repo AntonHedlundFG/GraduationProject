@@ -1,0 +1,29 @@
+\doxysection{Online\+Player\+State.\+h}
+\hypertarget{_online_player_state_8h_source}{}\label{_online_player_state_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h}}
+\mbox{\hyperlink{_online_player_state_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameFramework/PlayerState.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}OnlinePlayerState.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ UCLASS()}
+\DoxyCodeLine{00013\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}}\ :\ public\ APlayerState}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00016\ \ \ \ \ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ CopyProperties(APlayerState*\ PlayerState)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00022\ \ \ \ \ FString\ UniqueOwnerNetID;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ UPROPERTY(Replicated,\ VisibleAnywhere,\ BlueprintReadOnly)}
+\DoxyCodeLine{00025\ \ \ \ \ uint8\ PlayerIndex\ =\ 1;}
+\DoxyCodeLine{00026\ \};}
+
+\end{DoxyCode}

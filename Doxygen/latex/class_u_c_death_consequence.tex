@@ -1,0 +1,119 @@
+\doxysection{UCDeath\+Consequence Class Reference}
+\hypertarget{class_u_c_death_consequence}{}\label{class_u_c_death_consequence}\index{UCDeathConsequence@{UCDeathConsequence}}
+
+
+{\ttfamily \#include $<$CDeath\+Consequence.\+h$>$}
+
+Inheritance diagram for UCDeath\+Consequence\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_c_death_consequence}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_death_consequence_a8b12705aa38cfc16f9667c0e2a51f42e}{Execute\+Consequence}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_death_consequence_ab547929422534c3d2e1f96512def06f9}{Undo\+Consequence}} () override
+\item 
+virtual FString \mbox{\hyperlink{class_u_c_death_consequence_a995a89143dc8f7577e1efbcccda2e330}{To\+String}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ class \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{Dying\+Unit}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_u_c_death_consequence_a5bbdbb90d4db8a8f2950a696d7663cae}{Queue\+Index}}
+\item 
+FVector \mbox{\hyperlink{class_u_c_death_consequence_a0bd8a4358b48680ce27d9651b0e5fb7d}{Death\+Location}}
+\item 
+TObject\+Ptr$<$ class \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} $>$ \mbox{\hyperlink{class_u_c_death_consequence_a615825f0b23c319fbcaa7401fc71b34b}{Game\+State}}
+\item 
+TObject\+Ptr$<$ class \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} $>$ \mbox{\hyperlink{class_u_c_death_consequence_a5b6123bc1898e812c8e29b1eeca7b0b3}{Tile}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_consequence_a9d73cdc9e611d2a1b71268fa1ec5061f}{Receive\+Execute\+Consequence}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_consequence_a760e27abbea480858943dc02a23f4545}{Receive\+Undo\+Consequence}} ()
+\item 
+FString \mbox{\hyperlink{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5}{Receive\+To\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_death_consequence_a8b12705aa38cfc16f9667c0e2a51f42e}\label{class_u_c_death_consequence_a8b12705aa38cfc16f9667c0e2a51f42e} 
+\index{UCDeathConsequence@{UCDeathConsequence}!ExecuteConsequence@{ExecuteConsequence}}
+\index{ExecuteConsequence@{ExecuteConsequence}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{ExecuteConsequence()}{ExecuteConsequence()}}
+{\footnotesize\ttfamily void UCDeath\+Consequence\+::\+Execute\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4}{UCConsequence}}.
+
+\Hypertarget{class_u_c_death_consequence_a995a89143dc8f7577e1efbcccda2e330}\label{class_u_c_death_consequence_a995a89143dc8f7577e1efbcccda2e330} 
+\index{UCDeathConsequence@{UCDeathConsequence}!ToString@{ToString}}
+\index{ToString@{ToString}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{ToString()}{ToString()}}
+{\footnotesize\ttfamily FString UCDeath\+Consequence\+::\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_consequence_a5e540df5ab79dba6f77f12725b54d486}{UCConsequence}}.
+
+\Hypertarget{class_u_c_death_consequence_ab547929422534c3d2e1f96512def06f9}\label{class_u_c_death_consequence_ab547929422534c3d2e1f96512def06f9} 
+\index{UCDeathConsequence@{UCDeathConsequence}!UndoConsequence@{UndoConsequence}}
+\index{UndoConsequence@{UndoConsequence}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{UndoConsequence()}{UndoConsequence()}}
+{\footnotesize\ttfamily void UCDeath\+Consequence\+::\+Undo\+Consequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_consequence_a9b8d4a53846bb52e7743e86d422325cc}{UCConsequence}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_death_consequence_a0bd8a4358b48680ce27d9651b0e5fb7d}\label{class_u_c_death_consequence_a0bd8a4358b48680ce27d9651b0e5fb7d} 
+\index{UCDeathConsequence@{UCDeathConsequence}!DeathLocation@{DeathLocation}}
+\index{DeathLocation@{DeathLocation}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{DeathLocation}{DeathLocation}}
+{\footnotesize\ttfamily FVector UCDeath\+Consequence\+::\+Death\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}\label{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923} 
+\index{UCDeathConsequence@{UCDeathConsequence}!DyingUnit@{DyingUnit}}
+\index{DyingUnit@{DyingUnit}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{DyingUnit}{DyingUnit}}
+{\footnotesize\ttfamily TObject\+Ptr$<$class \mbox{\hyperlink{class_a_c_unit}{ACUnit}}$>$ UCDeath\+Consequence\+::\+Dying\+Unit}
+
+\Hypertarget{class_u_c_death_consequence_a615825f0b23c319fbcaa7401fc71b34b}\label{class_u_c_death_consequence_a615825f0b23c319fbcaa7401fc71b34b} 
+\index{UCDeathConsequence@{UCDeathConsequence}!GameState@{GameState}}
+\index{GameState@{GameState}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
+{\footnotesize\ttfamily TObject\+Ptr$<$class \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}}$>$ UCDeath\+Consequence\+::\+Game\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_death_consequence_a5bbdbb90d4db8a8f2950a696d7663cae}\label{class_u_c_death_consequence_a5bbdbb90d4db8a8f2950a696d7663cae} 
+\index{UCDeathConsequence@{UCDeathConsequence}!QueueIndex@{QueueIndex}}
+\index{QueueIndex@{QueueIndex}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{QueueIndex}{QueueIndex}}
+{\footnotesize\ttfamily int UCDeath\+Consequence\+::\+Queue\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_death_consequence_a5b6123bc1898e812c8e29b1eeca7b0b3}\label{class_u_c_death_consequence_a5b6123bc1898e812c8e29b1eeca7b0b3} 
+\index{UCDeathConsequence@{UCDeathConsequence}!Tile@{Tile}}
+\index{Tile@{Tile}!UCDeathConsequence@{UCDeathConsequence}}
+\doxysubsubsection{\texorpdfstring{Tile}{Tile}}
+{\footnotesize\ttfamily TObject\+Ptr$<$class \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}}$>$ UCDeath\+Consequence\+::\+Tile\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Command\+Pattern/\mbox{\hyperlink{_c_death_consequence_8h}{CDeath\+Consequence.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Command\+Pattern/\mbox{\hyperlink{_c_death_consequence_8cpp}{CDeath\+Consequence.\+cpp}}\end{DoxyCompactItemize}

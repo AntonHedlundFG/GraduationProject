@@ -1,0 +1,123 @@
+\doxysection{CAction.\+cpp}
+\hypertarget{_c_action_8cpp_source}{}\label{_c_action_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Actions/CAction.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Actions/CAction.cpp}}
+\mbox{\hyperlink{_c_action_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_component_8h}{Actions/CActionComponent.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//TODO:\ include\ project\ h.file}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//"{}Inline\ the\ generated\ cpp\ file\ into\ module\ cpp\ file\ to\ improve\ compile\ time\ because\ less\ header\ parsing\ is\ required."{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CAction)}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_a8f8a7009c33d7cdedadaf24da25a398c}{UCAction::Initialize}}(UCActionComponent*\ NewActionComp)}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a57d880d0373784a7b28b607b3ac9cbab}{ActionComp}}\ =\ NewActionComp;}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ UCActionComponent*\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{UCAction::GetOwningComponent}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_action_a57d880d0373784a7b28b607b3ac9cbab}{ActionComp}};}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{bool}\ UCAction::CanStart\_Implementation(AActor*\ Instigator)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}{IsRunning}}())}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ UCActionComponent*\ Comp\ =\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}();}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (Comp-\/>ActiveGameplayTags.HasAny(\mbox{\hyperlink{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0}{BlockedTags}}))}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ UCAction::StartAction\_Implementation(AActor*\ Instigator)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//UE\_LOGFMT(LogGame,\ Log,\ "{}Started:\ \{ActionName\}"{},\ GetName());}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ UCActionComponent*\ Comp\ =\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}();\ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ Comp-\/>ActiveGameplayTags.AppendTags(\mbox{\hyperlink{class_u_c_action_ac1a77196f4b1e501c74af9a4c16683fa}{GrantsTags}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a05f28f2caefa27a0a9c4788d6c328174}{bIsRunning}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a9deebc57eded10aefe4edf22ad5281cb}{Instigator}}\ =\ Instigator;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}()-\/>GetOwnerRole()\ ==\ ROLE\_Authority)}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}{TimeStarted}}\ =\ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>TimeSeconds;\ }
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//GetOwningComponent()-\/>OnActionStarted.Broadcast(GetOwningComponent(),\ this);}}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ UCAction::StopAction\_Implementation(AActor*\ Instigator)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//UE\_LOGFMT(LogGame,\ Log,\ "{}Stopped:\ \{name\}"{},\ GetName());}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//ensureAlways(bIsRunning);}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ UCActionComponent*\ Comp\ =\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}();}
+\DoxyCodeLine{00066\ \ \ \ \ Comp-\/>ActiveGameplayTags.RemoveTags(\mbox{\hyperlink{class_u_c_action_ac1a77196f4b1e501c74af9a4c16683fa}{GrantsTags}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a05f28f2caefa27a0a9c4788d6c328174}{bIsRunning}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a9deebc57eded10aefe4edf22ad5281cb}{Instigator}}\ =\ Instigator;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//GetOwningComponent()-\/>OnActionStopped.Broadcast(GetOwningComponent(),\ this);}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ UWorld*\ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{UCAction::GetWorld}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//Outer\ is\ set\ when\ creating\ action\ via\ NewObject<T>.}}
+\DoxyCodeLine{00077\ \ \ \ \ AActor*\ Actor\ =\ Cast<AActor>(GetOuter());}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (Actor)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Actor-\/>GetWorld();}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_a9dee6cc873801809dad30c96ac038c22}{UCAction::OnRep\_RepData}}()}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a05f28f2caefa27a0a9c4788d6c328174}{bIsRunning}})}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_aea136113a464cf9545170c7a066027c9}{StartAction}}(\mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a9deebc57eded10aefe4edf22ad5281cb}{Instigator}});}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a13d48a1a91e8b8f4f0f359ba0c680179}{StopAction}}(\mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a9deebc57eded10aefe4edf22ad5281cb}{Instigator}});}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}{UCAction::IsRunning}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}}.\mbox{\hyperlink{struct_f_action_rep_data_a05f28f2caefa27a0a9c4788d6c328174}{bIsRunning}};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ UCAction::GetLifetimeReplicatedProps(TArray<class\ FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_action}{UCAction}},\ \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{RepData}});}
+\DoxyCodeLine{00109\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_action}{UCAction}},\ \mbox{\hyperlink{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}{TimeStarted}});}
+\DoxyCodeLine{00110\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_action}{UCAction}},\ \mbox{\hyperlink{class_u_c_action_a57d880d0373784a7b28b607b3ac9cbab}{ActionComp}});}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+
+\end{DoxyCode}

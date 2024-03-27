@@ -1,0 +1,86 @@
+\doxysection{CTurn\+Timer\+Subsystem.\+h}
+\hypertarget{_c_turn_timer_subsystem_8h_source}{}\label{_c_turn_timer_subsystem_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/TurnTimer/CTurnTimerSubsystem.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/TurnTimer/CTurnTimerSubsystem.h}}
+\mbox{\hyperlink{_c_turn_timer_subsystem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Subsystems/WorldSubsystem.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CTurnTimerSubsystem.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a6b74c9338238a6920d3755639c7b7355}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}(FOnTurnTimerExecute,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*,\ AffectedUnit);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ UENUM(BlueprintType)}
+\DoxyCodeLine{00014\ enum\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}\ :\ uint8}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EPTM\_None}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73}{EPTM\_StartOfTurn}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc}{EPTM\_EndOfTurn}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12}{EPTM\_Max}}}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ USTRUCT(BlueprintType)}
+\DoxyCodeLine{00023\ struct\ \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ friend\ class\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ public:}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ UPROPERTY(BlueprintAssignable,\ Category\ =\ "{}Turn\ Timer"{})}
+\DoxyCodeLine{00032\ \ \ \ \ FOnTurnTimerExecute\ OnTurnTimerExecute;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsValid()\ \{\ \textcolor{keywordflow}{return}\ bIsValid;\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ uint32\ TimerID\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ uint8\ NumberOfTurns\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ uint8\ TurnsRemaining\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ bLooping\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}\ ProgressTurnMethod\ =\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EProgressTurnMethod::EPTM\_None}};}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ \mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{AffectedUnit}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Turn\ Timer"{}})}
+\DoxyCodeLine{00047\ \ \ \ \ bool\ bIsValid\ =\ false;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ UCLASS()}
+\DoxyCodeLine{00054\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurnTimerSubsystem}}\ :\ public\ UWorldSubsystem}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ friend\ class\ \mbox{\hyperlink{class_a_c_game_mode}{ACGameMode}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ public:}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00074\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Turn\ Timer"{})}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ SetTimer(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&\ InOutHandle,\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ \textcolor{keywordtype}{int}\ InNumberOfTurns,\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ InAffectedUnit,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ \textcolor{keywordtype}{bool}\ InbLoop,\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}\ InProgressTurnMethod);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//Invalidates\ the\ handle\ and\ removes\ the\ related\ timer.}}
+\DoxyCodeLine{00082\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Turn\ Timer"{})}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ ClearTimer(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&\ InOutHandle);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ protected:}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ This\ is\ called\ by\ the\ GameMode\ to\ move\ the\ timer\ forward.\ }}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Do\ not\ call\ this\ manually}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ NextTurn(const\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ PreviousUnit,\ const\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ NextUnit);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ TMap<uint32,\ \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}*>\ ActiveTurnTimers;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ uint32\ LastTimerID\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ \};}
+
+\end{DoxyCode}

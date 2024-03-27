@@ -1,0 +1,41 @@
+\doxysection{CItem.\+cpp}
+\hypertarget{_c_item_8cpp_source}{}\label{_c_item_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Items/CItem.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Items/CItem.cpp}}
+\mbox{\hyperlink{_c_item_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_8h}{Items/CItem.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_attribute_component_8h}{Attributes/CAttributeComponent.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_c_item_ad8d654769ab2049f1e5e1314ce4159ae}{UCItem::IsValidTargetTile}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile)}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ }
+\DoxyCodeLine{00011\ \ \ \ \ TArray<ACGridTile*>\ ValidTiles\ =\ \mbox{\hyperlink{class_u_c_item_aa71ec2a9b3898973467470550d714a8a}{GetValidTargetTiles}}(inUnit);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{return}\ ValidTiles.Contains(inTargetTile);}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_u_c_item_aa71ec2a9b3898973467470550d714a8a}{UCItem::GetValidTargetTiles}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (UCAttributeComponent::GetAttributes(inUnit)-\/>ActiveGameplayTags.HasAny(\mbox{\hyperlink{class_u_c_item_ae2d993ae7cc503d4f79d28ea0b6f06b9}{BlockedTags}}))}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TArray<ACGridTile*>();}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_item_aedd1082e607a22100c1ea76ceea15613}{GetValidTargetTilesInternal}}(inUnit);}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_item_a3afad70b811a72b38e94df152d7ebc42}{UCItem::EquipOnUnit}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ UCAttributeComponent::GetAttributes(inUnit)-\/>ActiveGameplayTags.AppendTags(\mbox{\hyperlink{class_u_c_item_a365e9c7f0690feab09046619d34363c2}{GrantsTags}});}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_u_c_item_a6de83d25d07f76c2a3084600f0a81597}{EquipOnUnitInternal}}(inUnit);}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_item_a08fb54a62055c6c0e74468f82950e32e}{UCItem::UnequipOnUnit}}(\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ UCAttributeComponent::GetAttributes(inUnit)-\/>ActiveGameplayTags.RemoveTags(\mbox{\hyperlink{class_u_c_item_a365e9c7f0690feab09046619d34363c2}{GrantsTags}});}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_u_c_item_afdd71b6ae22efc7236c5c775fd560a2a}{UnequipOnUnitInternal}}(inUnit);}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,40 @@
+\doxysection{CGrid\+Spawner.\+h}
+\hypertarget{_c_grid_spawner_8h_source}{}\label{_c_grid_spawner_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGridSpawner.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGridSpawner.h}}
+\mbox{\hyperlink{_c_grid_spawner_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Actor.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CGridSpawner.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid}{ACGrid}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ UCLASS()}
+\DoxyCodeLine{00013\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}\ :\ public\ AActor}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00016\ \ \ \ \ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ \textcolor{stringliteral}{"{}Spawner\ Settings|Units"{}})}
+\DoxyCodeLine{00021\ \ \ \ \ TArray<TSubclassOf<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}>>\ HeroUnits;}
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Spawner\ Settings|Units"{})}
+\DoxyCodeLine{00023\ \ \ \ \ TArray<TSubclassOf<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}>>\ EnemyUnits;}
+\DoxyCodeLine{00024\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Spawner\ Settings|Grid"{})}
+\DoxyCodeLine{00025\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_a_c_grid}{ACGrid}}>\ Grid;}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00028\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ SpawnUnitsFromArray(TArray<TSubclassOf<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}>>\ inUnits,\ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ inSpawnTiles);}
+\DoxyCodeLine{00029\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ SpawnUnit(TSubclassOf<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}>\ inUnitType,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inSpawnTile);}
+\DoxyCodeLine{00031\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ SpawnGrid(FVector\ inGridCenter,\ \textcolor{keywordtype}{int}\ inRows,\ \textcolor{keywordtype}{int}\ inColumns);}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \};}
+
+\end{DoxyCode}

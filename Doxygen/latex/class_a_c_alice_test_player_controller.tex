@@ -1,0 +1,131 @@
+\doxysection{ACAlice\+Test\+Player\+Controller Class Reference}
+\hypertarget{class_a_c_alice_test_player_controller}{}\label{class_a_c_alice_test_player_controller}\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+
+
+{\ttfamily \#include $<$CAlice\+Test\+Player\+Controller.\+h$>$}
+
+Inheritance diagram for ACAlice\+Test\+Player\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_a_c_alice_test_player_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_c_alice_test_player_controller_a5782ab5d2f5353e502244ed49b4eb3f4}{Toggle\+Pause\+Menu}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_player_controller_adf549bbf766005bcd920d315cc404638}{Setup\+Input\+Component}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_player_controller_a1f13fffdc2639deb054a42718291b04a}{Set\+Pawn}} (APawn \texorpdfstring{$\ast$}{*}In\+Pawn) override
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_player_controller_a73a041973ef1cf2c737ee0910858bd2e}{Begin\+Playing\+State}} () override
+\item 
+void \mbox{\hyperlink{class_a_c_alice_test_player_controller_aff5b0a2955d7865ec0f44c4d7faf527b}{Blueprint\+Begin\+Playing\+State}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_c_alice_test_player_controller_a35cba0db294a3bee9964994ae5f2a5c3}{On\+Rep\+\_\+\+Player\+State}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TSubclass\+Of$<$ UUser\+Widget $>$ \mbox{\hyperlink{class_a_c_alice_test_player_controller_aab8a1f2090bab7c7ad35d02050d749f5}{Pause\+Menu\+Class}}
+\item 
+TObject\+Ptr$<$ UUser\+Widget $>$ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{Pause\+Menu\+Instance}}
+\item 
+FOn\+Pawn\+Changed \mbox{\hyperlink{class_a_c_alice_test_player_controller_a80f2d350cd46ac0b7491e3c004099793}{On\+Pawn\+Changed}}
+\item 
+FOn\+Player\+State\+Changed \mbox{\hyperlink{class_a_c_alice_test_player_controller_a7831dc60c328543901af5bea7014366b}{On\+Player\+State\+Received}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_c_player_controller}{ACPlayer\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a0c9aed74a1603a7d69560888a273773b}{Undo\+Ability}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4}{Initiate\+Ability\+Use}} (\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Item\+Slot)
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a0b4d8b138d5e8bc2a58bca40c971c2b2}{Finalize\+Ability\+Use}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_afa77114edabea7f57009d8b926957143}{Cancel\+Ability\+Use}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_player_controller_a876ab4acf9a181018ff6b1ca81e477e2}{End\+Turn}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_online_player_controller}{AOnline\+Player\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_online_player_controller_a902bc3f4f66f8e77e33de2628827ab06}{On\+Net\+Cleanup}} (UNet\+Connection \texorpdfstring{$\ast$}{*}Connection) override
+\item 
+void \mbox{\hyperlink{class_a_online_player_controller_affcda06eadef36b45d4ebf6092f2ee4c}{Server\+\_\+\+Manual\+Disconnect}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_alice_test_player_controller_a73a041973ef1cf2c737ee0910858bd2e}\label{class_a_c_alice_test_player_controller_a73a041973ef1cf2c737ee0910858bd2e} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!BeginPlayingState@{BeginPlayingState}}
+\index{BeginPlayingState@{BeginPlayingState}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{BeginPlayingState()}{BeginPlayingState()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+Begin\+Playing\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_aff5b0a2955d7865ec0f44c4d7faf527b}\label{class_a_c_alice_test_player_controller_aff5b0a2955d7865ec0f44c4d7faf527b} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!BlueprintBeginPlayingState@{BlueprintBeginPlayingState}}
+\index{BlueprintBeginPlayingState@{BlueprintBeginPlayingState}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{BlueprintBeginPlayingState()}{BlueprintBeginPlayingState()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+Blueprint\+Begin\+Playing\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_a35cba0db294a3bee9964994ae5f2a5c3}\label{class_a_c_alice_test_player_controller_a35cba0db294a3bee9964994ae5f2a5c3} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!OnRep\_PlayerState@{OnRep\_PlayerState}}
+\index{OnRep\_PlayerState@{OnRep\_PlayerState}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnRep\_PlayerState()}{OnRep\_PlayerState()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+On\+Rep\+\_\+\+Player\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_a1f13fffdc2639deb054a42718291b04a}\label{class_a_c_alice_test_player_controller_a1f13fffdc2639deb054a42718291b04a} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!SetPawn@{SetPawn}}
+\index{SetPawn@{SetPawn}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetPawn()}{SetPawn()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+Set\+Pawn (\begin{DoxyParamCaption}\item[{APawn \texorpdfstring{$\ast$}{*}}]{In\+Pawn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_adf549bbf766005bcd920d315cc404638}\label{class_a_c_alice_test_player_controller_adf549bbf766005bcd920d315cc404638} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!SetupInputComponent@{SetupInputComponent}}
+\index{SetupInputComponent@{SetupInputComponent}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetupInputComponent()}{SetupInputComponent()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+Setup\+Input\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_a5782ab5d2f5353e502244ed49b4eb3f4}\label{class_a_c_alice_test_player_controller_a5782ab5d2f5353e502244ed49b4eb3f4} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!TogglePauseMenu@{TogglePauseMenu}}
+\index{TogglePauseMenu@{TogglePauseMenu}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{TogglePauseMenu()}{TogglePauseMenu()}}
+{\footnotesize\ttfamily void ACAlice\+Test\+Player\+Controller\+::\+Toggle\+Pause\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_alice_test_player_controller_a80f2d350cd46ac0b7491e3c004099793}\label{class_a_c_alice_test_player_controller_a80f2d350cd46ac0b7491e3c004099793} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!OnPawnChanged@{OnPawnChanged}}
+\index{OnPawnChanged@{OnPawnChanged}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnPawnChanged}{OnPawnChanged}}
+{\footnotesize\ttfamily FOn\+Pawn\+Changed ACAlice\+Test\+Player\+Controller\+::\+On\+Pawn\+Changed\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_a7831dc60c328543901af5bea7014366b}\label{class_a_c_alice_test_player_controller_a7831dc60c328543901af5bea7014366b} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!OnPlayerStateReceived@{OnPlayerStateReceived}}
+\index{OnPlayerStateReceived@{OnPlayerStateReceived}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnPlayerStateReceived}{OnPlayerStateReceived}}
+{\footnotesize\ttfamily FOn\+Player\+State\+Changed ACAlice\+Test\+Player\+Controller\+::\+On\+Player\+State\+Received\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_aab8a1f2090bab7c7ad35d02050d749f5}\label{class_a_c_alice_test_player_controller_aab8a1f2090bab7c7ad35d02050d749f5} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!PauseMenuClass@{PauseMenuClass}}
+\index{PauseMenuClass@{PauseMenuClass}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{PauseMenuClass}{PauseMenuClass}}
+{\footnotesize\ttfamily TSubclass\+Of$<$UUser\+Widget$>$ ACAlice\+Test\+Player\+Controller\+::\+Pause\+Menu\+Class\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}\label{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1} 
+\index{ACAliceTestPlayerController@{ACAliceTestPlayerController}!PauseMenuInstance@{PauseMenuInstance}}
+\index{PauseMenuInstance@{PauseMenuInstance}!ACAliceTestPlayerController@{ACAliceTestPlayerController}}
+\doxysubsubsection{\texorpdfstring{PauseMenuInstance}{PauseMenuInstance}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UUser\+Widget$>$ ACAlice\+Test\+Player\+Controller\+::\+Pause\+Menu\+Instance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Alice\+Test/\mbox{\hyperlink{_c_alice_test_player_controller_8h}{CAlice\+Test\+Player\+Controller.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Alice\+Test/\mbox{\hyperlink{_c_alice_test_player_controller_8cpp}{CAlice\+Test\+Player\+Controller.\+cpp}}\end{DoxyCompactItemize}

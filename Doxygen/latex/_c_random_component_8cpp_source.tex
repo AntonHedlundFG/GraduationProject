@@ -1,0 +1,229 @@
+\doxysection{CRandom\+Component.\+cpp}
+\hypertarget{_c_random_component_8cpp_source}{}\label{_c_random_component_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/CRandomComponent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/CRandomComponent.cpp}}
+\mbox{\hyperlink{_c_random_component_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_random_component_8h}{Utility/CRandomComponent.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{Utility/Logging/CLogManager.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_save_game_8h}{Utility/SaveGame/CSaveGame.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_save_game_manager_8h}{Utility/SaveGame/CSaveGameManager.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \mbox{\hyperlink{class_u_c_random_component_aff580d94f90c594c952974c21a8ddab2}{UCRandomComponent::UCRandomComponent}}()}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ SetIsReplicatedByDefault(\textcolor{keyword}{true});}
+\DoxyCodeLine{00011\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_abe6b6f2defbf27e6e693a65d6d384ea6}{UCRandomComponent::BeginPlay}}()}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_i_c_savable_a5665543846451a4ed15d5caa6bb576ff}{RegisterToSaveManager}}();}
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_ae2dd677f5637dbb7e26a65cf981ac153}{UCRandomComponent::EndPlay}}(\textcolor{keyword}{const}\ EEndPlayReason::Type\ EndPlayReason)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ Super::EndPlay(EndPlayReason);}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_i_c_savable_ab66765c8700da14a8e8812356adb05a5}{UnregisterFromSaveManager}}();}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_a254d091760ed1dc7aff3caff8fa48f5b}{UCRandomComponent::InitializeFromStart}}(int32\ inStartSeed)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ StartSeed\ =\ \mbox{\hyperlink{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}{ValidateSeed}}(inStartSeed);\ }
+\DoxyCodeLine{00028\ \ \ \ \ CurrentStateSeed\ =\ StartSeed;}
+\DoxyCodeLine{00029\ \ \ \ \ Ticks\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ TicksSinceSave\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ TicksAtSave\ =\ 0;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ RandomStream.Initialize(CurrentStateSeed);}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}{SaveState}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_a8aeb429ac02ba8350c16db35d1bec3f0}{LOG}}(ELogCategory::LC\_Info,\ \textcolor{stringliteral}{"{}Initializing\ Random\ from\ Start\ Seed:\ \%d"{}},\ StartSeed);}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ int32\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{UCRandomComponent::GetRandRange}}(int32\ inMin,\ int32\ inMax,\ \textcolor{keywordtype}{bool}\ bKeepState)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (inMax\ <\ inMin)\ \{\ Swap(inMax,\ inMin);\ \}\ \textcolor{comment}{//\ Correct\ inverted\ ranges.}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ int32\ Range\ =\ (inMax\ -\/\ inMin)\ +\ 1;}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (Range\ <=\ 0)\ \{\ \textcolor{keywordflow}{return}\ inMin;\ \}\ \textcolor{comment}{//\ If\ the\ range\ is\ invalid,\ return\ the\ min}}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ int32\ Value;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}(bKeepState)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Temporarily\ create\ a\ copy\ to\ get\ value\ without\ advancing\ the\ stream}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FRandomStream\ TempStream\ =\ RandomStream;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Value\ =\ inMin\ +\ TempStream.RandHelper(Range);}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ value\ and\ advance\ the\ stream}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Value\ =\ inMin\ +\ RandomStream.RandHelper(Range);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Ticks++;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ TicksSinceSave++;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Get\ Random\ Value:\ \%d"{}},\ Value);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ Value;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ int32\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{UCRandomComponent::GetRandRange}}(int32\ inMax,\ \textcolor{keywordtype}{bool}\ bKeepState)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}(inMax\ <\ 0)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{GetRandRange}}(bKeepState);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{GetRandRange}}(0,\ inMax,\ bKeepState);}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ int32\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{UCRandomComponent::GetRandRange}}(\textcolor{keywordtype}{bool}\ bKeepState)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{GetRandRange}}(\ 0,INT32\_MAX\ -\/\ 1,\ bKeepState);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ int32\ \mbox{\hyperlink{class_u_c_random_component_abd0a2eb6e3196d6dc17f9d5036d1272f}{UCRandomComponent::RollBackRandom}}(int32\ inTicks)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (inTicks\ <\ 1)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00080\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ int32\ TargetTicks\ =\ TicksSinceSave\ -\/\ inTicks;}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}(TargetTicks\ <\ 0)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17}{RollBackToSave}}();}
+\DoxyCodeLine{00087\ \ \ \ \ int32\ Value\ =\ -\/1;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ TargetTicks;\ i++)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ need\ the\ actual\ value,\ just\ need\ to\ advance\ the\ stream}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Value\ =\ RandomStream.RandHelper(1);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ Ticks++;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ TicksSinceSave++;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Rolling\ back\ \%d\ ticks"{}},\ inTicks);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ Value;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17}{UCRandomComponent::RollBackToSave}}()}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ RandomStream.Initialize(CurrentStateSeed);}
+\DoxyCodeLine{00103\ \ \ \ \ TicksSinceSave\ =\ 0;}
+\DoxyCodeLine{00104\ \ \ \ \ Ticks\ =\ TicksAtSave;}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Rolling\ back\ to\ previous\ saved\ state\ at\ seed:\ \%d"{}},\ CurrentStateSeed);}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}{UCRandomComponent::SaveState}}()}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ CurrentStateSeed\ =\ RandomStream.GetCurrentSeed();}
+\DoxyCodeLine{00111\ \ \ \ \ TicksSinceSave\ =\ 0;}
+\DoxyCodeLine{00112\ \ \ \ \ TicksAtSave\ =\ Ticks;}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Saving\ Random\ State:\ \%d"{}},\ CurrentStateSeed);}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_a97437cc36ed07f20dda8686279b39348}{UCRandomComponent::ResetToInitialSeed}}()}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ Ticks\ =\ 0;}
+\DoxyCodeLine{00119\ \ \ \ \ TicksSinceSave\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ RandomStream.Initialize(StartSeed);}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}{SaveState}}();}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ int32\ \mbox{\hyperlink{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}{UCRandomComponent::ValidateSeed}}(int32\ Seed)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ FMath::Clamp(Seed,\ INT32\_MIN,\ INT32\_MAX);}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ int32\ \mbox{\hyperlink{class_u_c_random_component_a91a8322cc7393fc843ad4a12045981ba}{UCRandomComponent::PeekAhead}}(int32\ inMin,\ int32\ inMax,\ int32\ inTicksAhead)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (inMax\ <\ inMin)\ \{\ Swap(inMax,\ inMin);\ \}\ \textcolor{comment}{//\ Correct\ inverted\ ranges.}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ int32\ Range\ =\ (inMax\ -\/\ inMin)\ +\ 1;}
+\DoxyCodeLine{00133\ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (Range\ <=\ 0)\ \{\ \textcolor{keywordflow}{return}\ inMin;\ \}\ \textcolor{comment}{//\ If\ the\ range\ is\ invalid,\ return\ the\ min}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ Make\ a\ copy\ of\ the\ current\ random\ stream}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ FRandomStream\ TempStream\ =\ RandomStream;\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ Advance\ the\ copy\ stream\ by\ the\ specified\ number\ of\ ticks}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ inTicksAhead\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ TempStream.RandHelper(1);\ }
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ int32\ Value\ =\ TempStream.RandRange(inMin,\ inMax);\ }
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Peek\ Ahead\ \%d\ Ticks\ Ahead,\ Got\ Value:\ \%d"{}},\ inTicksAhead,\ Value);}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ Value;\ }
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ TArray<int32>\ \mbox{\hyperlink{class_u_c_random_component_a9baa6693ab73015000bdd7077438a381}{UCRandomComponent::PeekAheadArray}}(\textcolor{keyword}{const}\ TArray<int32>\&\ inMins,\ \textcolor{keyword}{const}\ TArray<int32>\&\ inMaxs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00153\ \ \ \ \ TArray<int32>\ Values;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (inMins.Num()\ !=\ inMaxs.Num()\ ||\ inMins.Num()\ <=\ 0)\ }
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ valid\ input}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Values;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ FRandomStream\ TempStream\ =\ RandomStream;\ \textcolor{comment}{//\ Make\ a\ copy\ of\ the\ current\ random\ stream}}
+\DoxyCodeLine{00161\ \ \ \ \ FString\ ValueString;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ inMins.Num();\ i++)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ int32\ Min\ =\ FMath::Min(inMins[i],\ inMaxs[i]);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int32\ Max\ =\ FMath::Max(inMins[i],\ inMaxs[i]);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int32\ Range\ =\ (Max\ -\/\ Min)\ +\ 1;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Range\ <=\ 0)\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ range\ is\ invalid,\ use\ the\ Min\ value}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ Values.Add(Min);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ and\ add\ the\ next\ random\ value\ within\ the\ specified\ range}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ Values.Add(TempStream.RandRange(Min,\ Max));}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ ValueString\ +=\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%d,\ "{}}),\ Values[i]);}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Peek\ Ahead\ \%d\ Ticks\ Ahead,\ Got\ Value:\ \%ls"{}},\ inMins.Num(),\ *ValueString);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ Values;}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_ab350e89aeed155c7f1ac2f4ed26746cf}{UCRandomComponent::OnSave}}()}
+\DoxyCodeLine{00187\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}*\ SaveGame\ =\ \mbox{\hyperlink{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}{UCSaveGameManager::Get}}()-\/>\mbox{\hyperlink{class_u_c_save_game_manager_a03b0216b560c8b2e9b2eda9310fe9015}{GetSaveGameInstance}}();}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (SaveGame)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a3da2b58b17f758228ccc8ba1af44a4f2}{SavedRandomStream}}\ =\ RandomStream;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_abedd18038d8dd7b8275d6f2ddaddca47}{SavedStartSeed}}\ =\ StartSeed;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a6d1f075fe91807335e9d3dfdb4fd8e8a}{SavedCurrentStateSeed}}\ =\ CurrentStateSeed;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_ab2d5dbbdc2b22d2b93768dd6c31ec317}{SavedTicks}}\ =\ Ticks;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_acfa307d2696b7ec3f10b9f455c24d66e}{SavedTicksSinceSave}}\ =\ TicksSinceSave;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a4f697a13d34f6b26b94bf451f7a031aa}{SavedTicksAtSave}}\ =\ TicksAtSave;}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_a36ba5e1f30c739b6a02184321c22e130}{UCRandomComponent::OnLoad}}()}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}*\ SaveGame\ =\ \mbox{\hyperlink{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}{UCSaveGameManager::Get}}()-\/>\mbox{\hyperlink{class_u_c_save_game_manager_a03b0216b560c8b2e9b2eda9310fe9015}{GetSaveGameInstance}}();}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (SaveGame)}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ RandomStream\ =\ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a3da2b58b17f758228ccc8ba1af44a4f2}{SavedRandomStream}};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ StartSeed\ =\ \mbox{\hyperlink{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}{ValidateSeed}}(SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_abedd18038d8dd7b8275d6f2ddaddca47}{SavedStartSeed}});\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ CurrentStateSeed\ =\ \mbox{\hyperlink{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}{ValidateSeed}}(SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a6d1f075fe91807335e9d3dfdb4fd8e8a}{SavedCurrentStateSeed}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ Ticks\ =\ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_ab2d5dbbdc2b22d2b93768dd6c31ec317}{SavedTicks}};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ TicksSinceSave\ =\ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_acfa307d2696b7ec3f10b9f455c24d66e}{SavedTicksSinceSave}};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ TicksAtSave\ =\ SaveGame-\/>\mbox{\hyperlink{class_u_c_save_game_a4f697a13d34f6b26b94bf451f7a031aa}{SavedTicksAtSave}};}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_abe62e6eee4f6cb9815ed9af8cc3bbb41}{UCRandomComponent::GetLifetimeReplicatedProps}}(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00216\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00217\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ RandomStream);}
+\DoxyCodeLine{00218\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ Ticks);}
+\DoxyCodeLine{00219\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ StartSeed);}
+\DoxyCodeLine{00220\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ CurrentStateSeed);}
+\DoxyCodeLine{00221\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ TicksSinceSave);}
+\DoxyCodeLine{00222\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}},\ TicksAtSave);}
+\DoxyCodeLine{00223\ \}}
+
+\end{DoxyCode}

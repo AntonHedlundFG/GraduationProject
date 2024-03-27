@@ -1,0 +1,199 @@
+\doxysection{ACGrid\+Tile Class Reference}
+\hypertarget{class_a_c_grid_tile}{}\label{class_a_c_grid_tile}\index{ACGridTile@{ACGridTile}}
+
+
+{\ttfamily \#include $<$CGrid\+Tile.\+h$>$}
+
+Inheritance diagram for ACGrid\+Tile\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_c_grid_tile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_tile_ab5cf21f262fe3926ebb5ee4c992635b8}{ACGrid\+Tile}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}{Initialize}} (\mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*}in\+Parent\+Grid, FVector2D in\+Coords)
+\item 
+void \mbox{\hyperlink{class_a_c_grid_tile_ac9ec1bca8f10c0ae1435d2e7e577e3c6}{Create\+Links}} ()
+\item 
+\mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_grid_tile_a2540ab826e60022425b658af63382f4e}{Get\+Parent\+Grid}} () const
+\item 
+FVector2D \mbox{\hyperlink{class_a_c_grid_tile_a1d226264c44523c663e25cb34fb34c18}{Get\+Grid\+Coords}} () const
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_grid_tile_ac1f3f52c8b0a455bdd5303add7f09821}{Get\+Straight\+Links}} () const
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_grid_tile_a4487e6a06c1314a251f2dc5fa09f04c3}{Get\+Diagonal\+Links}} () const
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1}{Get\+Neighbours}} (bool b\+Include\+Diagonals=false)
+\item 
+\mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_grid_tile_a1c12bb5fc03878701f5869cd5cdcaaa6}{Get\+Content}} () const
+\item 
+void \mbox{\hyperlink{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d}{Set\+Content}} (\mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}} \texorpdfstring{$\ast$}{*}in\+Content)
+\item 
+void \mbox{\hyperlink{class_a_c_grid_tile_a2f19a54db330a3402cae6ad0d5b96131}{Set\+Tile\+Highlight\+Mode}} (\mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETile\+Highlight\+Modes}} in\+Highlight\+Mode)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FOn\+Highlight\+Change \mbox{\hyperlink{class_a_c_grid_tile_ab913b2ec2178cd73c38ed6f108e63bbc}{On\+Highlight\+Change}}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_u_c_tile_highlight_data}{UCTile\+Highlight\+Data}} $>$ \mbox{\hyperlink{class_a_c_grid_tile_a08ad55c979d62271dceda2581fdcdb82}{Highlight\+Data}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}{Begin\+Play}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid}{ACGrid}} $>$ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{Parent\+Grid}}
+\item 
+TArray$<$ TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} $>$ $>$ \mbox{\hyperlink{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456}{Straight\+Links}}
+\item 
+TArray$<$ TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} $>$ $>$ \mbox{\hyperlink{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa}{Diagonal\+Links}}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}} $>$ \mbox{\hyperlink{class_a_c_grid_tile_a5d9838171f5e3e6cdb82997fc81c33ac}{Tile\+Content}}
+\item 
+FVector2D \mbox{\hyperlink{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}{Grid\+Coords}}
+\item 
+\mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETile\+Highlight\+Modes}} \mbox{\hyperlink{class_a_c_grid_tile_a9251281507497858f9641dae73fd6018}{Current\+Highlight\+Mode}} = ETile\+Highlight\+Modes\+::\+ETHM\+\_\+\+Default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_c_grid_tile_ab5cf21f262fe3926ebb5ee4c992635b8}\label{class_a_c_grid_tile_ab5cf21f262fe3926ebb5ee4c992635b8} 
+\index{ACGridTile@{ACGridTile}!ACGridTile@{ACGridTile}}
+\index{ACGridTile@{ACGridTile}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{ACGridTile()}{ACGridTile()}}
+{\footnotesize\ttfamily ACGrid\+Tile\+::\+ACGrid\+Tile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}\label{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759} 
+\index{ACGridTile@{ACGridTile}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACGrid\+Tile\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_grid_tile_ac9ec1bca8f10c0ae1435d2e7e577e3c6}\label{class_a_c_grid_tile_ac9ec1bca8f10c0ae1435d2e7e577e3c6} 
+\index{ACGridTile@{ACGridTile}!CreateLinks@{CreateLinks}}
+\index{CreateLinks@{CreateLinks}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{CreateLinks()}{CreateLinks()}}
+{\footnotesize\ttfamily void ACGrid\+Tile\+::\+Create\+Links (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_grid_tile_a1c12bb5fc03878701f5869cd5cdcaaa6}\label{class_a_c_grid_tile_a1c12bb5fc03878701f5869cd5cdcaaa6} 
+\index{ACGridTile@{ACGridTile}!GetContent@{GetContent}}
+\index{GetContent@{GetContent}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetContent()}{GetContent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}} \texorpdfstring{$\ast$}{*} ACGrid\+Tile\+::\+Get\+Content (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_a4487e6a06c1314a251f2dc5fa09f04c3}\label{class_a_c_grid_tile_a4487e6a06c1314a251f2dc5fa09f04c3} 
+\index{ACGridTile@{ACGridTile}!GetDiagonalLinks@{GetDiagonalLinks}}
+\index{GetDiagonalLinks@{GetDiagonalLinks}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetDiagonalLinks()}{GetDiagonalLinks()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ ACGrid\+Tile\+::\+Get\+Diagonal\+Links (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_a1d226264c44523c663e25cb34fb34c18}\label{class_a_c_grid_tile_a1d226264c44523c663e25cb34fb34c18} 
+\index{ACGridTile@{ACGridTile}!GetGridCoords@{GetGridCoords}}
+\index{GetGridCoords@{GetGridCoords}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetGridCoords()}{GetGridCoords()}}
+{\footnotesize\ttfamily FVector2D ACGrid\+Tile\+::\+Get\+Grid\+Coords (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1}\label{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1} 
+\index{ACGridTile@{ACGridTile}!GetNeighbours@{GetNeighbours}}
+\index{GetNeighbours@{GetNeighbours}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetNeighbours()}{GetNeighbours()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ ACGrid\+Tile\+::\+Get\+Neighbours (\begin{DoxyParamCaption}\item[{bool}]{b\+Include\+Diagonals = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_grid_tile_a2540ab826e60022425b658af63382f4e}\label{class_a_c_grid_tile_a2540ab826e60022425b658af63382f4e} 
+\index{ACGridTile@{ACGridTile}!GetParentGrid@{GetParentGrid}}
+\index{GetParentGrid@{GetParentGrid}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetParentGrid()}{GetParentGrid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} ACGrid\+Tile\+::\+Get\+Parent\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_ac1f3f52c8b0a455bdd5303add7f09821}\label{class_a_c_grid_tile_ac1f3f52c8b0a455bdd5303add7f09821} 
+\index{ACGridTile@{ACGridTile}!GetStraightLinks@{GetStraightLinks}}
+\index{GetStraightLinks@{GetStraightLinks}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GetStraightLinks()}{GetStraightLinks()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ ACGrid\+Tile\+::\+Get\+Straight\+Links (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}\label{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d} 
+\index{ACGridTile@{ACGridTile}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void ACGrid\+Tile\+::\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*}}]{in\+Parent\+Grid,  }\item[{FVector2D}]{in\+Coords }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d}\label{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d} 
+\index{ACGridTile@{ACGridTile}!SetContent@{SetContent}}
+\index{SetContent@{SetContent}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{SetContent()}{SetContent()}}
+{\footnotesize\ttfamily void ACGrid\+Tile\+::\+Set\+Content (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}} \texorpdfstring{$\ast$}{*}}]{in\+Content }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_grid_tile_a2f19a54db330a3402cae6ad0d5b96131}\label{class_a_c_grid_tile_a2f19a54db330a3402cae6ad0d5b96131} 
+\index{ACGridTile@{ACGridTile}!SetTileHighlightMode@{SetTileHighlightMode}}
+\index{SetTileHighlightMode@{SetTileHighlightMode}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{SetTileHighlightMode()}{SetTileHighlightMode()}}
+{\footnotesize\ttfamily void ACGrid\+Tile\+::\+Set\+Tile\+Highlight\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETile\+Highlight\+Modes}}}]{in\+Highlight\+Mode }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_grid_tile_a9251281507497858f9641dae73fd6018}\label{class_a_c_grid_tile_a9251281507497858f9641dae73fd6018} 
+\index{ACGridTile@{ACGridTile}!CurrentHighlightMode@{CurrentHighlightMode}}
+\index{CurrentHighlightMode@{CurrentHighlightMode}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{CurrentHighlightMode}{CurrentHighlightMode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETile\+Highlight\+Modes}} ACGrid\+Tile\+::\+Current\+Highlight\+Mode = ETile\+Highlight\+Modes\+::\+ETHM\+\_\+\+Default\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa}\label{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa} 
+\index{ACGridTile@{ACGridTile}!DiagonalLinks@{DiagonalLinks}}
+\index{DiagonalLinks@{DiagonalLinks}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{DiagonalLinks}{DiagonalLinks}}
+{\footnotesize\ttfamily TArray$<$TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}}$>$ $>$ ACGrid\+Tile\+::\+Diagonal\+Links\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}\label{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c} 
+\index{ACGridTile@{ACGridTile}!GridCoords@{GridCoords}}
+\index{GridCoords@{GridCoords}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{GridCoords}{GridCoords}}
+{\footnotesize\ttfamily FVector2D ACGrid\+Tile\+::\+Grid\+Coords\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_grid_tile_a08ad55c979d62271dceda2581fdcdb82}\label{class_a_c_grid_tile_a08ad55c979d62271dceda2581fdcdb82} 
+\index{ACGridTile@{ACGridTile}!HighlightData@{HighlightData}}
+\index{HighlightData@{HighlightData}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{HighlightData}{HighlightData}}
+{\footnotesize\ttfamily TObject\+Ptr$<$\mbox{\hyperlink{class_u_c_tile_highlight_data}{UCTile\+Highlight\+Data}}$>$ ACGrid\+Tile\+::\+Highlight\+Data}
+
+\Hypertarget{class_a_c_grid_tile_ab913b2ec2178cd73c38ed6f108e63bbc}\label{class_a_c_grid_tile_ab913b2ec2178cd73c38ed6f108e63bbc} 
+\index{ACGridTile@{ACGridTile}!OnHighlightChange@{OnHighlightChange}}
+\index{OnHighlightChange@{OnHighlightChange}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{OnHighlightChange}{OnHighlightChange}}
+{\footnotesize\ttfamily FOn\+Highlight\+Change ACGrid\+Tile\+::\+On\+Highlight\+Change}
+
+\Hypertarget{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}\label{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0} 
+\index{ACGridTile@{ACGridTile}!ParentGrid@{ParentGrid}}
+\index{ParentGrid@{ParentGrid}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{ParentGrid}{ParentGrid}}
+{\footnotesize\ttfamily TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_grid}{ACGrid}}$>$ ACGrid\+Tile\+::\+Parent\+Grid\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456}\label{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456} 
+\index{ACGridTile@{ACGridTile}!StraightLinks@{StraightLinks}}
+\index{StraightLinks@{StraightLinks}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{StraightLinks}{StraightLinks}}
+{\footnotesize\ttfamily TArray$<$TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}}$>$ $>$ ACGrid\+Tile\+::\+Straight\+Links\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_grid_tile_a5d9838171f5e3e6cdb82997fc81c33ac}\label{class_a_c_grid_tile_a5d9838171f5e3e6cdb82997fc81c33ac} 
+\index{ACGridTile@{ACGridTile}!TileContent@{TileContent}}
+\index{TileContent@{TileContent}!ACGridTile@{ACGridTile}}
+\doxysubsubsection{\texorpdfstring{TileContent}{TileContent}}
+{\footnotesize\ttfamily TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}$>$ ACGrid\+Tile\+::\+Tile\+Content\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Grid/\mbox{\hyperlink{_c_grid_tile_8h}{CGrid\+Tile.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Grid/\mbox{\hyperlink{_c_grid_tile_8cpp}{CGrid\+Tile.\+cpp}}\end{DoxyCompactItemize}

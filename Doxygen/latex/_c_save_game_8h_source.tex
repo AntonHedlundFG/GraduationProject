@@ -1,0 +1,38 @@
+\doxysection{CSave\+Game.\+h}
+\hypertarget{_c_save_game_8h_source}{}\label{_c_save_game_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSaveGame.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSaveGame.h}}
+\mbox{\hyperlink{_c_save_game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}GameFramework/SaveGame.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CSaveGame.generated.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ UCLASS()}
+\DoxyCodeLine{00008\ class\ \mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}\ :\ public\ USaveGame}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00011\ \ \ \ \ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Random\ Component\ State\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00014\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ \textcolor{stringliteral}{"{}RandomComponentState"{}})}
+\DoxyCodeLine{00015\ \ \ \ \ FRandomStream\ SavedRandomStream;}
+\DoxyCodeLine{00016\ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ "{}RandomComponentState"{})}
+\DoxyCodeLine{00018\ \ \ \ \ int64\ SavedTicks;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ "{}RandomComponentState"{})}
+\DoxyCodeLine{00021\ \ \ \ \ int32\ SavedTicksSinceSave;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ "{}RandomComponentState"{})}
+\DoxyCodeLine{00024\ \ \ \ \ int32\ SavedTicksAtSave;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ "{}RandomComponentState"{})}
+\DoxyCodeLine{00027\ \ \ \ \ int32\ SavedStartSeed;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ Category\ =\ "{}RandomComponentState"{})}
+\DoxyCodeLine{00030\ \ \ \ \ int32\ SavedCurrentStateSeed;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

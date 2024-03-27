@@ -1,0 +1,138 @@
+\doxysection{Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\+Logging/\+CLog\+Manager.h File Reference}
+\hypertarget{_c_log_manager_8h}{}\label{_c_log_manager_8h}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h}}
+{\ttfamily \#include "{}Core\+Minimal.\+h"{}}\newline
+{\ttfamily \#include "{}CLog\+Manager.\+generated.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_u_c_log_manager}{UCLog\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_a8aeb429ac02ba8350c16db35d1bec3f0}{LOG}}(Category,  Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(Category, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\+\_\+\+INFO}}(Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Info, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_a67bbc13a977529ccbe3ad8ec1d04a16a}{LOG\+\_\+\+WARNING}}(Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Warning, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_a8f116df807d218597139c9904092785b}{LOG\+\_\+\+ERROR}}(Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Error, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_a349dbe14890d3cc77f362d6355e52c7e}{LOG\+\_\+\+GAMEPLAY}}(Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Gameplay, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{_c_log_manager_8h_a73f401f4ba9b8b4a42101201b9374c50}{LOG\+\_\+\+NETWORK}}(Message, ...)~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Network, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} \+: uint8 \{ \newline
+\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Hidden)
+, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Info"{})
+, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Warning"{})
+, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Error"{})
+, \newline
+\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Gameplay"{})
+, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Network"{})
+, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Hidden)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+FString \mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{To\+String}} (\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} Log\+Category)
+\item 
+\mbox{\hyperlink{_c_log_manager_8h_a77e2717eafe85d9c43300b999c58947b}{DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+Two\+Params}} (FOn\+New\+Log\+Entry, \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}, Category, const FString \&, Message)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_c_log_manager_8h_a8aeb429ac02ba8350c16db35d1bec3f0}\label{_c_log_manager_8h_a8aeb429ac02ba8350c16db35d1bec3f0} 
+\index{CLogManager.h@{CLogManager.h}!LOG@{LOG}}
+\index{LOG@{LOG}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG}{LOG}}
+{\footnotesize\ttfamily \#define LOG(\begin{DoxyParamCaption}\item[{}]{Category,  }\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(Category, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\Hypertarget{_c_log_manager_8h_a8f116df807d218597139c9904092785b}\label{_c_log_manager_8h_a8f116df807d218597139c9904092785b} 
+\index{CLogManager.h@{CLogManager.h}!LOG\_ERROR@{LOG\_ERROR}}
+\index{LOG\_ERROR@{LOG\_ERROR}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_ERROR}{LOG\_ERROR}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Error, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\Hypertarget{_c_log_manager_8h_a349dbe14890d3cc77f362d6355e52c7e}\label{_c_log_manager_8h_a349dbe14890d3cc77f362d6355e52c7e} 
+\index{CLogManager.h@{CLogManager.h}!LOG\_GAMEPLAY@{LOG\_GAMEPLAY}}
+\index{LOG\_GAMEPLAY@{LOG\_GAMEPLAY}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_GAMEPLAY}{LOG\_GAMEPLAY}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+GAMEPLAY(\begin{DoxyParamCaption}\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Gameplay, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\Hypertarget{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}\label{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8} 
+\index{CLogManager.h@{CLogManager.h}!LOG\_INFO@{LOG\_INFO}}
+\index{LOG\_INFO@{LOG\_INFO}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_INFO}{LOG\_INFO}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Info, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\Hypertarget{_c_log_manager_8h_a73f401f4ba9b8b4a42101201b9374c50}\label{_c_log_manager_8h_a73f401f4ba9b8b4a42101201b9374c50} 
+\index{CLogManager.h@{CLogManager.h}!LOG\_NETWORK@{LOG\_NETWORK}}
+\index{LOG\_NETWORK@{LOG\_NETWORK}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NETWORK}{LOG\_NETWORK}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+NETWORK(\begin{DoxyParamCaption}\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Network, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\Hypertarget{_c_log_manager_8h_a67bbc13a977529ccbe3ad8ec1d04a16a}\label{_c_log_manager_8h_a67bbc13a977529ccbe3ad8ec1d04a16a} 
+\index{CLogManager.h@{CLogManager.h}!LOG\_WARNING@{LOG\_WARNING}}
+\index{LOG\_WARNING@{LOG\_WARNING}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_WARNING}{LOG\_WARNING}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{Message,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLog\+Manager\+::\+Log}}(ELog\+Category\+::\+LC\+\_\+\+Warning, FString\+::\+Printf(TEXT(Message), \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de} 
+\index{CLogManager.h@{CLogManager.h}!ELogCategory@{ELogCategory}}
+\index{ELogCategory@{ELogCategory}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{ELogCategory}{ELogCategory}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}} \+: uint8\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!CLogManager.h@{CLogManager.h}}\index{CLogManager.h@{CLogManager.h}!UMETA@{UMETA}}}\Hypertarget{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598deaa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_log_manager_8h_a77e2717eafe85d9c43300b999c58947b}\label{_c_log_manager_8h_a77e2717eafe85d9c43300b999c58947b} 
+\index{CLogManager.h@{CLogManager.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams}}
+\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams()}}
+{\footnotesize\ttfamily DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+Two\+Params (\begin{DoxyParamCaption}\item[{FOn\+New\+Log\+Entry}]{,  }\item[{\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}}]{,  }\item[{Category}]{,  }\item[{const FString \&}]{,  }\item[{Message}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}\label{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770} 
+\index{CLogManager.h@{CLogManager.h}!ToString@{ToString}}
+\index{ToString@{ToString}!CLogManager.h@{CLogManager.h}}
+\doxysubsubsection{\texorpdfstring{ToString()}{ToString()}}
+{\footnotesize\ttfamily FString To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELog\+Category}}}]{Log\+Category }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

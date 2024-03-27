@@ -1,0 +1,640 @@
+\doxysection{Epic\+Online\+Subsystem.\+cpp}
+\hypertarget{_epic_online_subsystem_8cpp_source}{}\label{_epic_online_subsystem_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/EpicOnlineSubsystem.cpp@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/EpicOnlineSubsystem.cpp}}
+\mbox{\hyperlink{_epic_online_subsystem_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_epic_online_subsystem_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)EpicOnlineSubsystem.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}OnlineSubsystem.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}OnlineSubsystemTypes.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}OnlineSubsystemUtils.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Interfaces/OnlineIdentityInterface.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Kismet/GameplayStatics.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_game_mode_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlineGameMode.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Interfaces/OnlineExternalUIInterface.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_controller_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlinePlayerController.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Kismet/KismetSystemLibrary.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Engine/EngineBaseTypes.h"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a9bed74abc60b3fbcc213396b9314f02e}{UEpicOnlineSubsystem::Initialize}}(FSubsystemCollectionBase\&\ Collection)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00022\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Hooks\ up\ callback\ function\ for\ accepting\ game\ invites\ via\ the\ social\ overlay}}
+\DoxyCodeLine{00026\ \ \ \ \ Session-\/>OnSessionUserInviteAcceptedDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnSessionUserInviteAccepted);}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a5105ae850c444623ae7b42b421deb825}{UEpicOnlineSubsystem::Deinitialize}}()}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00033\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ Session-\/>ClearOnSessionUserInviteAcceptedDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ FString\ \mbox{\hyperlink{class_u_epic_online_subsystem_acb0115485874b9bf2e86fb7330074c8d}{UEpicOnlineSubsystem::GetSelfUsername}}()}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ FString();}
+\DoxyCodeLine{00043\ \ \ \ \ IOnlineIdentityPtr\ Identity\ =\ Subsystem-\/>GetIdentityInterface();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Identity)\ \textcolor{keywordflow}{return}\ FString();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_epic_online_subsystem_a28cdef4e25c3eeaf829512953366bfec}{IsPlayerLoggedIn}}())}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Identity-\/>GetPlayerNickname(0);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ FString(\textcolor{stringliteral}{"{}Unnamed\ Player"{}});}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a88d637e4b5f6e107720e1d88afab904e}{UEpicOnlineSubsystem::AttemptLoginWithAccountPortal}}()}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5}{AttemptLogin}}(FString(),\ FString(),\ FString(\textcolor{stringliteral}{"{}accountportal"{}}));}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_acc7ea7129d4bcf84adc54b6ea3d5d422}{UEpicOnlineSubsystem::AttemptDeveloperLogin}}(\textcolor{keyword}{const}\ FString\&\ Token,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ Port)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5}{AttemptLogin}}(FString(\textcolor{stringliteral}{"{}127.0.0.1:"{}})\ +\ FString::FromInt(Port),\ Token,\ FString(\textcolor{stringliteral}{"{}developer"{}}));}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5}{UEpicOnlineSubsystem::AttemptLogin}}(\textcolor{keyword}{const}\ FString\&\ ID,\ \textcolor{keyword}{const}\ FString\&\ Token,\ \textcolor{keyword}{const}\ FString\&\ LoginType)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00068\ \ \ \ \ IOnlineIdentityPtr\ Identity\ =\ Subsystem-\/>GetIdentityInterface();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Identity)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_epic_online_subsystem_a9a9a2cf30685cff08daa1ad777fad69b}{IsWaitingForLoginAttempt}}())}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}There\ is\ already\ a\ Login\ attempt\ in\ progress."{}}));}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ FOnlineAccountCredentials\ Credentials;}
+\DoxyCodeLine{00078\ \ \ \ \ Credentials.Id\ =\ ID;}
+\DoxyCodeLine{00079\ \ \ \ \ Credentials.Token\ =\ Token;}
+\DoxyCodeLine{00080\ \ \ \ \ Credentials.Type\ =\ LoginType;}
+\DoxyCodeLine{00081\ \ \ \ \ Identity-\/>OnLoginCompleteDelegates-\/>AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnLoginAttemptCompleted);}
+\DoxyCodeLine{00082\ \ \ \ \ bIsAttemptingLogin\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00083\ \ \ \ \ Identity-\/>Login(0,\ Credentials);}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a28cdef4e25c3eeaf829512953366bfec}{UEpicOnlineSubsystem::IsPlayerLoggedIn}}()}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ \ \ \ \ IOnlineIdentityPtr\ Identity\ =\ Subsystem-\/>GetIdentityInterface();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Identity)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ Identity-\/>GetLoginStatus(0)\ ==\ ELoginStatus::LoggedIn;}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnLoginAttemptCompleted(int32\ LocalUserNum,\ \textcolor{keywordtype}{bool}\ bWasSuccessful,\ \textcolor{keyword}{const}\ FUniqueNetId\&\ UserId,\ \textcolor{keyword}{const}\ FString\&\ Error)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (bWasSuccessful)}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}{FindReconnectableGames}}();}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Login\ Error:\ \%s"{}}),\ *Error);}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ bIsAttemptingLogin\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00110\ \ \ \ \ IOnlineIdentityPtr\ Identity\ =\ Subsystem-\/>GetIdentityInterface();}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Identity)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112\ \ \ \ \ Identity-\/>ClearOnLoginCompleteDelegates(LocalUserNum,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}{UEpicOnlineSubsystem::FindReconnectableGames}}(\textcolor{keywordtype}{bool}\ bResetNextReconnectSlot)}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (bResetNextReconnectSlot)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ NextReconnectSlot\ =\ 0;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ If\ we've\ searched\ through\ all\ slots,\ stop\ searching\ and\ reset\ counter.}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{if}\ (NextReconnectSlot\ >=\ \mbox{\hyperlink{_epic_online_subsystem_8h_aeb5bde15adca6fca3036de914ba7caab}{MAX\_RECONNECT\_SLOTS}})}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ NextReconnectSlot\ =\ 0;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ FindReconnectableGame(NextReconnectSlot);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a0e851664854130ff2122083300f57ce4}{UEpicOnlineSubsystem::ReconnectIfAble}}()}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReconnectSessionSearch.IsValid()}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ ||\ ReconnectSessionSearch-\/>SearchResults.Num()\ ==\ 0}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ ||\ JoinSessionHandle.IsValid())}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00142\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ JoinSessionHandle\ =\ Session-\/>OnJoinSessionCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnJoinSessionCompleted);}
+\DoxyCodeLine{00146\ \ \ \ \ Session-\/>JoinSession(0,\ \mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ ReconnectSessionSearch-\/>SearchResults[0]);}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::FindReconnectableGame(\textcolor{keywordtype}{int}\ ReconnectSlotIndex)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00153\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163}{OnReconnectSessionSearchUpdate}}.Broadcast(\textcolor{keyword}{false});}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{auto}\ PC\ =\ UGameplayStatics::GetPlayerController(\textcolor{keyword}{this},\ 0);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{auto}\ NetID\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(PC);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (!NetID.IsValid())}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Could\ not\ search\ for\ reconnectable\ games,\ NetID\ is\ invalid."{}}));}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ ReconnectSessionSearch\ =\ MakeShareable(\textcolor{keyword}{new}\ FOnlineSessionSearch());}
+\DoxyCodeLine{00166\ \ \ \ \ ReconnectSessionSearch-\/>MaxSearchResults\ =\ 1;}
+\DoxyCodeLine{00167\ \ \ \ \ ReconnectSessionSearch-\/>QuerySettings.SearchParams.Empty();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ ReconnectSessionSearch-\/>QuerySettings.Set(GetReconnectKeyName(ReconnectSlotIndex),\ NetID-\/>ToString(),\ EOnlineComparisonOp::Equals);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ FindReconnectSessionsHandle\ =\ Session-\/>OnFindSessionsCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnFindReconnectableGamesCompleted);}
+\DoxyCodeLine{00172\ \ \ \ \ Session-\/>FindSessions(0,\ ReconnectSessionSearch.ToSharedRef());}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnFindReconnectableGamesCompleted(\textcolor{keywordtype}{bool}\ bWasSuccessful)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ Session-\/>ClearOnFindSessionsCompleteDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00183\ \ \ \ \ FindReconnectSessionsHandle.Reset();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{if}\ (bWasSuccessful)}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Succeeded\ in\ searching\ for\ reconnect\ sessions\ with\ slot\ \%d"{}}),\ NextReconnectSlot);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ bFoundSession\ =\ !ReconnectSessionSearch-\/>SearchResults.IsEmpty();}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163}{OnReconnectSessionSearchUpdate}}.Broadcast(bFoundSession);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!bFoundSession)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ NextReconnectSlot++;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}{FindReconnectableGames}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00197\ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163}{OnReconnectSessionSearchUpdate}}.Broadcast(\textcolor{keyword}{false});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Failed\ in\ searching\ for\ reconnect\ sessions\ with\ slot\ \%d"{}}),\ NextReconnectSlot);}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::AddPlayerToReconnectableList(APlayerController*\ Player)}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{auto}\ NetID\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(Player);}
+\DoxyCodeLine{00206\ \ \ \ \ DisconnectedPlayers.AddUnique(NetID-\/>ToString());}
+\DoxyCodeLine{00207\ \ \ \ \ UpdateReconnectablePlayerList();}
+\DoxyCodeLine{00208\ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::RemovePlayerFromReconnectableList(APlayerController*\ Player)}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{auto}\ NetID\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(Player);}
+\DoxyCodeLine{00213\ \ \ \ \ DisconnectedPlayers.Remove(NetID-\/>ToString());}
+\DoxyCodeLine{00214\ \ \ \ \ UpdateReconnectablePlayerList();}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::UpdateReconnectablePlayerList()}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00221\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ FOnlineSessionSettings\ Settings\ =\ *Session-\/>GetSessionSettings(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}});}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{_epic_online_subsystem_8h_aeb5bde15adca6fca3036de914ba7caab}{MAX\_RECONNECT\_SLOTS}};\ i++)}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ DisconnectedPlayers.Num())}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ Settings.Set(GetReconnectKeyName(i),\ DisconnectedPlayers[i],\ EOnlineDataAdvertisementType::ViaOnlineService);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ Settings.Set(GetReconnectKeyName(i),\ FString(\textcolor{stringliteral}{"{}EMPTY"{}}),\ EOnlineDataAdvertisementType::ViaOnlineService);}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ Session-\/>UpdateSession(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ Settings);}
+\DoxyCodeLine{00234\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ FName\ UEpicOnlineSubsystem::GetReconnectKeyName(\textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{00237\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ FString\ Str\ =\ FString(\textcolor{stringliteral}{"{}DisconnectID"{}})\ +\ FString::FromInt(index);}
+\DoxyCodeLine{00239\ \ \ \ \ FName\ Name\ =\ FName(Str);}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{return}\ Name;}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a854d751ae8b6b867c7a5423fcd7651f2}{UEpicOnlineSubsystem::HostSession}}(\textcolor{keyword}{const}\ int32\&\ NumberOfPublicConnections,\ \textcolor{keyword}{const}\ FString\&\ SessionTitle,\ \textcolor{keyword}{const}\ FString\&\ LevelURL)}
+\DoxyCodeLine{00244\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00247\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{if}\ (HostSessionHandle.IsValid())}
+\DoxyCodeLine{00251\ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}There\ is\ already\ a\ hosting\ attempt\ in\ progress."{}}));}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ FOnlineSessionSettings\ SessionSettings;}
+\DoxyCodeLine{00257\ \ \ \ \ SessionSettings.NumPublicConnections\ =\ NumberOfPublicConnections;}
+\DoxyCodeLine{00258\ \ \ \ \ SessionSettings.bAllowInvites\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00259\ \ \ \ \ SessionSettings.bShouldAdvertise\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00260\ \ \ \ \ SessionSettings.bAllowJoinInProgress\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00261\ \ \ \ \ SessionSettings.bAllowJoinViaPresence\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00262\ \ \ \ \ SessionSettings.bAllowInvites\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00263\ \ \ \ \ SessionSettings.bUsesPresence\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00264\ \ \ \ \ SessionSettings.Set(\mbox{\hyperlink{_epic_online_subsystem_8h_a74c711f30167cf9c0b1e3b517c7dc8a7}{SESSION\_TITLE}},\ SessionTitle,\ EOnlineDataAdvertisementType::ViaOnlineService);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ CachedLevelURL\ =\ LevelURL;}
+\DoxyCodeLine{00267\ \ \ \ \ HostSessionHandle\ =\ Session-\/>OnCreateSessionCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnHostSessionCompleted);}
+\DoxyCodeLine{00268\ \ \ \ \ Session-\/>CreateSession(0,\ \mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ SessionSettings);}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a4c9df3b5d9202add38ef0847940519c8}{UEpicOnlineSubsystem::DestroySession}}()}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsValid(\textcolor{keyword}{this}))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00274\ \ \ \ \ UWorld*\ World\ =\ GetWorld();}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}\ (!World)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00276\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(World);}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00278\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ Session-\/>OnDestroySessionCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnDestroySessionCompleted);}
+\DoxyCodeLine{00282\ \ \ \ \ Session-\/>DestroySession(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}});}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517}{UEpicOnlineSubsystem::FindSessions}}(\textcolor{keywordtype}{int}\ MaxSearchResults)}
+\DoxyCodeLine{00286\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (FindSessionsHandle.IsValid())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00291\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}{SessionSearchResults}}.\mbox{\hyperlink{struct_f_session_search_results_a68474046ae78609a847ccf418e2dfad9}{Sessions}}.Empty();}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae}{OnSessionSearchUpdate}}.Broadcast();}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ SessionSearch\ =\ MakeShareable(\textcolor{keyword}{new}\ FOnlineSessionSearch());}
+\DoxyCodeLine{00298\ \ \ \ \ SessionSearch-\/>MaxSearchResults\ =\ MaxSearchResults;}
+\DoxyCodeLine{00299\ \ \ \ \ SessionSearch-\/>QuerySettings.SearchParams.Empty();}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ FindSessionsHandle\ =\ Session-\/>OnFindSessionsCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnFindSessionCompleted);}
+\DoxyCodeLine{00302\ \ \ \ \ Session-\/>FindSessions(0,\ SessionSearch.ToSharedRef());}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_ace21acf51df6e678b5c7062bd385e553}{UEpicOnlineSubsystem::JoinSession}}(\textcolor{keywordtype}{int}\ Index)}
+\DoxyCodeLine{00306\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{if}\ (Index\ <\ 0\ ||\ JoinSessionHandle.IsValid())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00308\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00310\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}{SessionSearchResults}}.\mbox{\hyperlink{struct_f_session_search_results_a68474046ae78609a847ccf418e2dfad9}{Sessions}}.Empty();}
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae}{OnSessionSearchUpdate}}.Broadcast();}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordflow}{if}\ (SessionSearch-\/>SearchResults.Num()\ >\ Index)}
+\DoxyCodeLine{00315\ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ JoinSessionHandle\ =\ Session-\/>OnJoinSessionCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnJoinSessionCompleted);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ Session-\/>JoinSession(0,\ \mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ SessionSearch-\/>SearchResults[Index]);}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a4fb7f2eb607dbc3005b44cc0168fe3df}{UEpicOnlineSubsystem::IsInOrJoiningSession}}()}
+\DoxyCodeLine{00322\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00325\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ EOnlineSessionState::Type\ type\ =\ Session-\/>GetSessionState(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}});}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{return}\ type\ !=\ EOnlineSessionState::Type::NoSession;}
+\DoxyCodeLine{00330\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4}{UEpicOnlineSubsystem::RegisterPlayer}}(APlayerController*\ NewPlayer)}
+\DoxyCodeLine{00333\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsValid(NewPlayer))}
+\DoxyCodeLine{00335\ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Newly\ joined\ player\ has\ invalid\ PlayerController\ reference"{}}));}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ FUniqueNetIdRepl\ UniqueNetIdRepl\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(NewPlayer);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ TSharedPtr<const\ FUniqueNetId>\ UniqueNetId\ =\ UniqueNetIdRepl.GetUniqueNetId();}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordflow}{if}\ (UniqueNetId\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00344\ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Newly\ joined\ player\ has\ invalid\ Unique\ Net\ ID."{}}));}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00351\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{if}\ (Session-\/>RegisterPlayer(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ *UniqueNetId,\ \textcolor{keyword}{false}))}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Successfully\ registered\ new\ player"{}}));}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00359\ \ \ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Failed\ to\ register\ new\ player"{}}));}
+\DoxyCodeLine{00361\ \ \ \ \ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225}{UEpicOnlineSubsystem::UnregisterPlayer}}(APlayerController*\ LeavingPlayer)}
+\DoxyCodeLine{00366\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsValid(LeavingPlayer))}
+\DoxyCodeLine{00368\ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Leaving\ player\ has\ invalid\ controller."{}}));}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ FUniqueNetIdRepl\ UniqueNetIdRepl\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(LeavingPlayer);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ TSharedPtr<const\ FUniqueNetId>\ UniqueNetId\ =\ UniqueNetIdRepl.GetUniqueNetId();}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{if}\ (UniqueNetId\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00377\ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Leaving\ player\ has\ invalid\ NetID."{}}));}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00384\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{if}\ (Session-\/>UnregisterPlayer(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ *UniqueNetId))}
+\DoxyCodeLine{00388\ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Successfully\ unregistered\ leaving\ player"{}}));}
+\DoxyCodeLine{00390\ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00392\ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Leaving\ player\ could\ not\ be\ unregistered"{}}));}
+\DoxyCodeLine{00394\ \ \ \ \ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ RemovePlayerFromReconnectableList(LeavingPlayer);}
+\DoxyCodeLine{00397\ \}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnHostSessionCompleted(FName\ SessionName,\ \textcolor{keywordtype}{bool}\ bWasSuccessful)}
+\DoxyCodeLine{00400\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{if}\ (bWasSuccessful\ \&\&\ !CachedLevelURL.IsEmpty())}
+\DoxyCodeLine{00402\ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ GetWorld()-\/>ServerTravel(CachedLevelURL,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ CachedLevelURL.Empty();}
+\DoxyCodeLine{00406\ \ \ \ \ HostSessionHandle.Reset();}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00410\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00412\ \ \ \ \ Session-\/>ClearOnCreateSessionCompleteDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00413\ \ \ \ \ }
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keyword}{auto}\ PC\ =\ GetGameInstance()-\/>GetFirstLocalPlayerController();}
+\DoxyCodeLine{00415\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4}{RegisterPlayer}}(PC);}
+\DoxyCodeLine{00416\ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnDestroySessionCompleted(FName\ SessionName,\ \textcolor{keywordtype}{bool}\ bWasSuccessful)}
+\DoxyCodeLine{00419\ \{}
+\DoxyCodeLine{00420\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00422\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00424\ \ \ \ \ Session-\/>ClearOnDestroySessionCompleteDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00425\ \}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnFindSessionCompleted(\textcolor{keywordtype}{bool}\ bWasSuccessful)}
+\DoxyCodeLine{00428\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00431\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ Session-\/>ClearOnFindSessionsCompleteDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00435\ \ \ \ \ FindSessionsHandle.Reset();}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{if}\ (!bWasSuccessful)}
+\DoxyCodeLine{00438\ \ \ \ \ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Failed\ to\ find\ sessions"{}}));}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}{SessionSearchResults}}.\mbox{\hyperlink{struct_f_session_search_results_a68474046ae78609a847ccf418e2dfad9}{Sessions}}.Empty();}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ SessionSearch-\/>SearchResults.Num();\ i++)}
+\DoxyCodeLine{00446\ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_f_session_details}{FSessionDetails}}\ Details;}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ FString\ GetName;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ SessionSearch-\/>SearchResults[i].Session.SessionSettings.Get<FString>(\mbox{\hyperlink{_epic_online_subsystem_8h_a74c711f30167cf9c0b1e3b517c7dc8a7}{SESSION\_TITLE}},\ GetName);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ Details.\mbox{\hyperlink{struct_f_session_details_a3236f051dc602f2e7d37a69a78690ac8}{SessionName}}\ =\ GetName;}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ Details.\mbox{\hyperlink{struct_f_session_details_a3223c7fa4d3cc9f4845b219ece673a67}{MaxConnections}}\ =\ SessionSearch-\/>SearchResults[i].Session.SessionSettings.NumPublicConnections\ +\ SessionSearch-\/>SearchResults[i].Session.SessionSettings.NumPrivateConnections;}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ Details.\mbox{\hyperlink{struct_f_session_details_a7ed523d28a3b4d491f59a442e6007808}{OpenConnections}}\ =\ SessionSearch-\/>SearchResults[i].Session.NumOpenPublicConnections\ +\ SessionSearch-\/>SearchResults[i].Session.NumOpenPrivateConnections;}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}{SessionSearchResults}}.\mbox{\hyperlink{struct_f_session_search_results_a68474046ae78609a847ccf418e2dfad9}{Sessions}}.Add(Details);}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae}{OnSessionSearchUpdate}}.Broadcast();}
+\DoxyCodeLine{00458\ \ \ \ \ }
+\DoxyCodeLine{00459\ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnJoinSessionCompleted(FName\ SessionName,\ EOnJoinSessionCompleteResult::Type\ Result)}
+\DoxyCodeLine{00462\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordflow}{if}\ (Result\ ==\ EOnJoinSessionCompleteResult::Success)}
+\DoxyCodeLine{00464\ \ \ \ \ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (APlayerController*\ PlayerController\ =\ UGameplayStatics::GetPlayerController(GetWorld(),\ 0))}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ Session-\/>ClearOnJoinSessionCompleteDelegates(\textcolor{keyword}{this});}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ JoinSessionHandle.Reset();}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ JoinAddress;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ Session-\/>GetResolvedConnectString(SessionName,\ JoinAddress);}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!JoinAddress.IsEmpty())}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PlayerController-\/>ClientTravel(JoinAddress,\ ETravelType::TRAVEL\_Absolute);}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keywordflow}{if}\ (Result\ ==\ EOnJoinSessionCompleteResult::SessionIsFull)}
+\DoxyCodeLine{00484\ \ \ \ \ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Session\ is\ full."{}}));}
+\DoxyCodeLine{00486\ \ \ \ \ \}}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00488\ \ \ \ \ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Couldn't\ join\ session,\ unknown\ reason."{}}));}
+\DoxyCodeLine{00490\ \ \ \ \ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{//If\ we\ fail\ to\ join\ a\ session,\ we\ automatically\ search\ for\ new\ ones.}}
+\DoxyCodeLine{00493\ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517}{FindSessions}}();}
+\DoxyCodeLine{00494\ \}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::OnSessionUserInviteAccepted(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ bWasSuccessful,\ \textcolor{keyword}{const}\ int32\ ControllerId,\ FUniqueNetIdPtr\ UserId,\ \textcolor{keyword}{const}\ FOnlineSessionSearchResult\&\ InviteResult)}
+\DoxyCodeLine{00497\ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{if}\ (!bWasSuccessful)}
+\DoxyCodeLine{00499\ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Accept\ attempt\ failed."{}}));}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00502\ \ \ \ \ \}}
+\DoxyCodeLine{00503\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_epic_online_subsystem_a4fb7f2eb607dbc3005b44cc0168fe3df}{IsInOrJoiningSession}}())}
+\DoxyCodeLine{00504\ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Already\ in\ or\ joining\ session,\ can't\ accept\ invite."{}}));}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00511\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ JoinSessionHandle\ =\ Session-\/>OnJoinSessionCompleteDelegates.AddUObject(\textcolor{keyword}{this},\ \&UEpicOnlineSubsystem::OnJoinSessionCompleted);}
+\DoxyCodeLine{00515\ \ \ \ \ Session-\/>JoinSession(0,\ \mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ InviteResult);}
+\DoxyCodeLine{00516\ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576}{UEpicOnlineSubsystem::PlayerDisconnected}}(APlayerController*\ Player)}
+\DoxyCodeLine{00519\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode}{AOnlineGameMode}}*\ Mode\ =\ GetWorld()-\/>GetAuthGameMode<\mbox{\hyperlink{class_a_online_game_mode}{AOnlineGameMode}}>();}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \textcolor{comment}{//We\ don't\ want\ to\ unregister\ a\ player\ if\ the\ game\ mode\ allows\ for\ reconnection\ during\ play}}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{if}\ ((Mode\ \&\&\ Mode-\/>\mbox{\hyperlink{class_a_online_game_mode_a77f34d0a8a9b62cd8f648b1639f32837}{bPlayersCanReconnectDuringMatch}}))\textcolor{comment}{//\ \&\&\ IsSessionInProgress())}}
+\DoxyCodeLine{00524\ \ \ \ \ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_epic_online_subsystem_a0a608fae9322e96e31024216bfa2ca7c}{IsPlayerInSession}}(Player))}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ AddPlayerToReconnectableList(Player);}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \ \ \ \ \}}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00536\ \ \ \ \ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225}{UnregisterPlayer}}(Player);}
+\DoxyCodeLine{00538\ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{PlayerConnectedResult}}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a87ec7ab608853e81e62913ebc2eb0621}{UEpicOnlineSubsystem::PlayerConnected}}(APlayerController*\ Player)}
+\DoxyCodeLine{00542\ \{}
+\DoxyCodeLine{00543\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ PlayerConnectedResult::Error;}
+\DoxyCodeLine{00545\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return}\ PlayerConnectedResult::Error;}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ FUniqueNetIdRepl\ ID\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(Player);}
+\DoxyCodeLine{00550\ \ \ \ \ RemovePlayerFromReconnectableList(Player);}
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordflow}{if}\ (Session-\/>IsPlayerInSession(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ *ID.GetUniqueNetId()))}
+\DoxyCodeLine{00552\ \ \ \ \ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PlayerConnectedResult::AlreadyConnected;}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00556\ \ \ \ \ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4}{RegisterPlayer}}(Player);}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PlayerConnectedResult::Success;}
+\DoxyCodeLine{00559\ \ \ \ \ \}}
+\DoxyCodeLine{00560\ \}}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a0a608fae9322e96e31024216bfa2ca7c}{UEpicOnlineSubsystem::IsPlayerInSession}}(APlayerController*\ Player)}
+\DoxyCodeLine{00563\ \{}
+\DoxyCodeLine{00564\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00566\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \ \ FUniqueNetIdRepl\ UniqueNetIdRepl\ =\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{GetUniqueNetIdOf}}(Player);}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordflow}{return}\ Session-\/>IsPlayerInSession(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}},\ *UniqueNetIdRepl.GetUniqueNetId());}
+\DoxyCodeLine{00572\ \}}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_epic_online_subsystem_abf864316d1271a8cd44c80e2cfb77bfc}{UEpicOnlineSubsystem::IsSessionInProgress}}()}
+\DoxyCodeLine{00575\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00578\ \ \ \ \ IOnlineSessionPtr\ Session\ =\ Subsystem-\/>GetSessionInterface();}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Session)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \ \ \ \ EOnlineSessionState::Type\ State\ =\ Session-\/>GetSessionState(\mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\_NAME}});}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keywordflow}{return}\ State\ ==\ EOnlineSessionState::Type::InProgress;}
+\DoxyCodeLine{00584\ \}}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_epic_online_subsystem_a8aeb3243602c697b1b55de8197f96fe4}{UEpicOnlineSubsystem::ShowFriendsOverlay}}()}
+\DoxyCodeLine{00587\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ IOnlineSubsystem*\ Subsystem\ =\ Online::GetSubsystem(GetWorld());}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00590\ \ \ \ \ IOnlineExternalUIPtr\ ExternalUI\ =\ Subsystem-\/>GetExternalUIInterface();}
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ExternalUI.IsValid())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \ \ \ \ ExternalUI-\/>ShowFriendsUI(0);}
+\DoxyCodeLine{00594\ \}}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ FUniqueNetIdRepl\ \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{UEpicOnlineSubsystem::GetUniqueNetIdOf}}(APlayerController*\ Player)}
+\DoxyCodeLine{00597\ \{}
+\DoxyCodeLine{00598\ \ \ \ \ FUniqueNetIdRepl\ UniqueNetIdRepl;}
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keywordflow}{if}\ (Player-\/>IsLocalPlayerController())}
+\DoxyCodeLine{00600\ \ \ \ \ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ ULocalPlayer*\ LocalPlayer\ =\ Player-\/>GetLocalPlayer();}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsValid(LocalPlayer))}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ UniqueNetIdRepl\ =\ LocalPlayer-\/>GetPreferredUniqueNetId();}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ UNetConnection*\ RemoteNetConnection\ =\ Cast<UNetConnection>(Player-\/>Player);}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsValid(RemoteNetConnection))}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Leaving\ player\ has\ neither\ valid\ local\ player\ nor\ remote"{}}));}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FUniqueNetIdRepl();}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ UniqueNetIdRepl\ =\ RemoteNetConnection-\/>PlayerId;}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00616\ \ \ \ \ \}}
+\DoxyCodeLine{00617\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00618\ \ \ \ \ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ UNetConnection*\ RemoteNetConnection\ =\ Cast<UNetConnection>(Player-\/>Player);}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsValid(RemoteNetConnection))}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}Leaving\ player\ has\ no\ valid\ remote\ connection."{}}));}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FUniqueNetIdRepl();}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ UniqueNetIdRepl\ =\ RemoteNetConnection-\/>PlayerId;}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{keywordflow}{return}\ UniqueNetIdRepl;}
+\DoxyCodeLine{00628\ \}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \textcolor{keywordtype}{void}\ UEpicOnlineSubsystem::ServerTravel(\textcolor{keyword}{const}\ FString\&\ LevelURL)}
+\DoxyCodeLine{00631\ \{}
+\DoxyCodeLine{00632\ \ \ \ \ UE\_LOG(LogTemp,\ Log,\ TEXT(\textcolor{stringliteral}{"{}ServerTravel,\ URL:\ \%s"{}}),\ *LevelURL);}
+\DoxyCodeLine{00633\ \ \ \ \ GetWorld()-\/>ServerTravel(LevelURL);}
+\DoxyCodeLine{00634\ \}}
+
+\end{DoxyCode}

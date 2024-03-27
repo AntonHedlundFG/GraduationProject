@@ -1,0 +1,74 @@
+\doxysection{CAction\+Effect\+\_\+\+Rooted.\+cpp}
+\hypertarget{_c_action_effect___rooted_8cpp_source}{}\label{_c_action_effect___rooted_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Effects/CActionEffect\_Rooted.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Effects/CActionEffect\_Rooted.cpp}}
+\mbox{\hyperlink{_c_action_effect___rooted_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_effect___rooted_8h}{Effects/CActionEffect\_Rooted.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_attribute_component_8h}{Attributes/CAttributeComponent.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_component_8h}{Actions/CActionComponent.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ "{}CGameplayFunctionLibrary.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CActionEffect\_Rooted)}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \mbox{\hyperlink{class_u_c_action_effect___rooted_a942801fc2cc43b5a06d2b391ec8ca42d}{UCActionEffect\_Rooted::UCActionEffect\_Rooted}}()}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect___rooted_aec934f4ebbe52a3a1b5cb4a6ed3f0af8}{ReflectFraction}}\ =\ 0.2f;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}}\ =\ 0.0f;}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980}{Period}}\ =\ 0.0f;}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_effect___rooted_a8c41cccb2be6dea0fda9cc10c85ef0fd}{UCActionEffect\_Rooted::StartAction\_Implementation}}(AActor*\ Instigator)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ Super::StartAction\_Implementation(Instigator);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Start\ listening}}
+\DoxyCodeLine{00026\ \ \ \ \ UCAttributeComponent*\ Attributes\ =\ UCAttributeComponent::GetAttributes(\mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}()-\/>GetOwner());}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (Attributes)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ Attributes-\/>OnHealthChanged.AddDynamic(\textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_u_c_action_effect___rooted_ad82db7e69b81d4e7a14984febba04bee}{UCActionEffect\_Rooted::OnHealthChanged}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_effect___rooted_a4ed41a5c4c724c59fb1e3a1dbad6fb41}{UCActionEffect\_Rooted::StopAction\_Implementation}}(AActor*\ Instigator)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ Super::StopAction\_Implementation(Instigator);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Stop\ listening}}
+\DoxyCodeLine{00040\ \ \ \ \ UCAttributeComponent*\ Attributes\ =\ UCAttributeComponent::GetAttributes(\mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}()-\/>GetOwner());}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (Attributes)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Attributes-\/>OnHealthChanged.RemoveDynamic(\textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_u_c_action_effect___rooted_ad82db7e69b81d4e7a14984febba04bee}{UCActionEffect\_Rooted::OnHealthChanged}});}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_effect___rooted_ad82db7e69b81d4e7a14984febba04bee}{UCActionEffect\_Rooted::OnHealthChanged}}(AActor*\ InstigatorActor,\ UCAttributeComponent*\ OwningComp,\ \textcolor{keywordtype}{float}\ NewHealth,\ \textcolor{keywordtype}{float}\ Delta)}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ AActor*\ OwningActor\ =\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}()-\/>GetOwner();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Damage\ Only}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (Delta\ <\ 0.0f\ \&\&\ OwningActor\ !=\ InstigatorActor)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Round\ to\ nearest\ to\ avoid\ 'ugly'\ damage\ numbers\ and\ tiny\ reflections}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ int32\ ReflectedAmount\ =\ FMath::RoundToInt(Delta\ *\ \mbox{\hyperlink{class_u_c_action_effect___rooted_aec934f4ebbe52a3a1b5cb4a6ed3f0af8}{ReflectFraction}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ReflectedAmount\ ==\ 0)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flip\ to\ positive,\ so\ we\ don't\ end\ up\ healing\ ourselves\ when\ passed\ into\ damage}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ ReflectedAmount\ =\ FMath::Abs(ReflectedAmount);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ damage\ sender...}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//USGameplayFunctionLibrary::ApplyDamage(OwningActor,\ InstigatorActor,\ ReflectedAmount);}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}

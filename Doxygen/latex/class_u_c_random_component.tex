@@ -1,0 +1,243 @@
+\doxysection{UCRandom\+Component Class Reference}
+\hypertarget{class_u_c_random_component}{}\label{class_u_c_random_component}\index{UCRandomComponent@{UCRandomComponent}}
+
+
+{\ttfamily \#include $<$CRandom\+Component.\+h$>$}
+
+Inheritance diagram for UCRandom\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_random_component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_c_random_component_aff580d94f90c594c952974c21a8ddab2}{UCRandom\+Component}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_random_component_a254d091760ed1dc7aff3caff8fa48f5b}{Initialize\+From\+Start}} (int32 in\+Start\+Seed)
+\item 
+void \mbox{\hyperlink{class_u_c_random_component_ad4875c49e8639816a57ce1b10d424995}{Initialize\+From\+Save}} (int32 in\+Start\+Seed, int32 in\+Current\+State\+Seed, int64 in\+Ticks, int32 in\+Ticks\+Since\+Save, int32 in\+Ticks\+At\+Save)
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}{Get\+Rand\+Range}} (int32 in\+Min, int32 in\+Max, bool b\+Keep\+State=true)
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a401070ddae416e7bfe3b2f711f532021}{Get\+Rand\+Range}} (int32 in\+Max, bool b\+Keep\+State=true)
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a13ea930128c587fbf9941f7e65da952f}{Get\+Rand\+Range}} (bool b\+Keep\+State=true)
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_abd0a2eb6e3196d6dc17f9d5036d1272f}{Roll\+Back\+Random}} (int32 in\+Ticks=1)
+\item 
+void \mbox{\hyperlink{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17}{Roll\+Back\+To\+Save}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}{Save\+State}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_random_component_a97437cc36ed07f20dda8686279b39348}{Reset\+To\+Initial\+Seed}} ()
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}{Validate\+Seed}} (int32 Seed)
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a91a8322cc7393fc843ad4a12045981ba}{Peek\+Ahead}} (int32 in\+Min, int32 in\+Max, int32 in\+Ticks\+Ahead=1) const
+\item 
+TArray$<$ int32 $>$ \mbox{\hyperlink{class_u_c_random_component_a9baa6693ab73015000bdd7077438a381}{Peek\+Ahead\+Array}} (const TArray$<$ int32 $>$ \&in\+Mins, const TArray$<$ int32 $>$ \&in\+Maxs) const
+\item 
+virtual void \mbox{\hyperlink{class_u_c_random_component_ab350e89aeed155c7f1ac2f4ed26746cf}{On\+Save}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_random_component_a36ba5e1f30c739b6a02184321c22e130}{On\+Load}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_c_savable}{ICSavable}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_c_savable_a5665543846451a4ed15d5caa6bb576ff}{Register\+To\+Save\+Manager}} ()
+\item 
+virtual void \mbox{\hyperlink{class_i_c_savable_ab66765c8700da14a8e8812356adb05a5}{Unregister\+From\+Save\+Manager}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_random_component_abe6b6f2defbf27e6e693a65d6d384ea6}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_random_component_ae2dd677f5637dbb7e26a65cf981ac153}{End\+Play}} (EEnd\+Play\+Reason\+::\+Type End\+Play\+Reason) override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_random_component_abe62e6eee4f6cb9815ed9af8cc3bbb41}{Get\+Lifetime\+Replicated\+Props}} (TArray$<$ FLifetime\+Property $>$ \&Out\+Lifetime\+Props) const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FRandom\+Stream \mbox{\hyperlink{class_u_c_random_component_aecae044cc1dd1d613b77a71e7a9b8c8c}{Random\+Stream}}
+\item 
+int64 \mbox{\hyperlink{class_u_c_random_component_ad2d08b60e7b3031085bbfc1a1c3fc217}{Ticks}}
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a5ea8535609ca5e3f28781d19c14fd3f0}{Ticks\+Since\+Save}}
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a1d0a8632121f84fff3bc52cbcd903ca4}{Ticks\+At\+Save}}
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a58dc37efa569805fa62dd77b743d1983}{Start\+Seed}}
+\item 
+int32 \mbox{\hyperlink{class_u_c_random_component_a3f178fc1aafff54bcdd43d8c125ed72e}{Current\+State\+Seed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_u_c_random_component_aff580d94f90c594c952974c21a8ddab2}\label{class_u_c_random_component_aff580d94f90c594c952974c21a8ddab2} 
+\index{UCRandomComponent@{UCRandomComponent}!UCRandomComponent@{UCRandomComponent}}
+\index{UCRandomComponent@{UCRandomComponent}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{UCRandomComponent()}{UCRandomComponent()}}
+{\footnotesize\ttfamily UCRandom\+Component\+::\+UCRandom\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_random_component_abe6b6f2defbf27e6e693a65d6d384ea6}\label{class_u_c_random_component_abe6b6f2defbf27e6e693a65d6d384ea6} 
+\index{UCRandomComponent@{UCRandomComponent}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_random_component_ae2dd677f5637dbb7e26a65cf981ac153}\label{class_u_c_random_component_ae2dd677f5637dbb7e26a65cf981ac153} 
+\index{UCRandomComponent@{UCRandomComponent}!EndPlay@{EndPlay}}
+\index{EndPlay@{EndPlay}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{EndPlay()}{EndPlay()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+End\+Play (\begin{DoxyParamCaption}\item[{EEnd\+Play\+Reason\+::\+Type}]{End\+Play\+Reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_random_component_abe62e6eee4f6cb9815ed9af8cc3bbb41}\label{class_u_c_random_component_abe62e6eee4f6cb9815ed9af8cc3bbb41} 
+\index{UCRandomComponent@{UCRandomComponent}!GetLifetimeReplicatedProps@{GetLifetimeReplicatedProps}}
+\index{GetLifetimeReplicatedProps@{GetLifetimeReplicatedProps}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{GetLifetimeReplicatedProps()}{GetLifetimeReplicatedProps()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Get\+Lifetime\+Replicated\+Props (\begin{DoxyParamCaption}\item[{TArray$<$ FLifetime\+Property $>$ \&}]{Out\+Lifetime\+Props }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_random_component_a13ea930128c587fbf9941f7e65da952f}\label{class_u_c_random_component_a13ea930128c587fbf9941f7e65da952f} 
+\index{UCRandomComponent@{UCRandomComponent}!GetRandRange@{GetRandRange}}
+\index{GetRandRange@{GetRandRange}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{GetRandRange()}{GetRandRange()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Get\+Rand\+Range (\begin{DoxyParamCaption}\item[{bool}]{b\+Keep\+State = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a401070ddae416e7bfe3b2f711f532021}\label{class_u_c_random_component_a401070ddae416e7bfe3b2f711f532021} 
+\index{UCRandomComponent@{UCRandomComponent}!GetRandRange@{GetRandRange}}
+\index{GetRandRange@{GetRandRange}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{GetRandRange()}{GetRandRange()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Get\+Rand\+Range (\begin{DoxyParamCaption}\item[{int32}]{in\+Max,  }\item[{bool}]{b\+Keep\+State = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb}\label{class_u_c_random_component_a2982b6153302c0120e3a4bc0f522baeb} 
+\index{UCRandomComponent@{UCRandomComponent}!GetRandRange@{GetRandRange}}
+\index{GetRandRange@{GetRandRange}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{GetRandRange()}{GetRandRange()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Get\+Rand\+Range (\begin{DoxyParamCaption}\item[{int32}]{in\+Min,  }\item[{int32}]{in\+Max,  }\item[{bool}]{b\+Keep\+State = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_ad4875c49e8639816a57ce1b10d424995}\label{class_u_c_random_component_ad4875c49e8639816a57ce1b10d424995} 
+\index{UCRandomComponent@{UCRandomComponent}!InitializeFromSave@{InitializeFromSave}}
+\index{InitializeFromSave@{InitializeFromSave}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{InitializeFromSave()}{InitializeFromSave()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Initialize\+From\+Save (\begin{DoxyParamCaption}\item[{int32}]{in\+Start\+Seed,  }\item[{int32}]{in\+Current\+State\+Seed,  }\item[{int64}]{in\+Ticks,  }\item[{int32}]{in\+Ticks\+Since\+Save,  }\item[{int32}]{in\+Ticks\+At\+Save }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a254d091760ed1dc7aff3caff8fa48f5b}\label{class_u_c_random_component_a254d091760ed1dc7aff3caff8fa48f5b} 
+\index{UCRandomComponent@{UCRandomComponent}!InitializeFromStart@{InitializeFromStart}}
+\index{InitializeFromStart@{InitializeFromStart}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{InitializeFromStart()}{InitializeFromStart()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Initialize\+From\+Start (\begin{DoxyParamCaption}\item[{int32}]{in\+Start\+Seed }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a36ba5e1f30c739b6a02184321c22e130}\label{class_u_c_random_component_a36ba5e1f30c739b6a02184321c22e130} 
+\index{UCRandomComponent@{UCRandomComponent}!OnLoad@{OnLoad}}
+\index{OnLoad@{OnLoad}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{OnLoad()}{OnLoad()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+On\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_c_savable_a07fc6f659d450553c6ac6a173cacfc04}{ICSavable}}.
+
+\Hypertarget{class_u_c_random_component_ab350e89aeed155c7f1ac2f4ed26746cf}\label{class_u_c_random_component_ab350e89aeed155c7f1ac2f4ed26746cf} 
+\index{UCRandomComponent@{UCRandomComponent}!OnSave@{OnSave}}
+\index{OnSave@{OnSave}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{OnSave()}{OnSave()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+On\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_c_savable_ad5d4404fbd237ed517f25bf45634741d}{ICSavable}}.
+
+\Hypertarget{class_u_c_random_component_a91a8322cc7393fc843ad4a12045981ba}\label{class_u_c_random_component_a91a8322cc7393fc843ad4a12045981ba} 
+\index{UCRandomComponent@{UCRandomComponent}!PeekAhead@{PeekAhead}}
+\index{PeekAhead@{PeekAhead}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{PeekAhead()}{PeekAhead()}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Peek\+Ahead (\begin{DoxyParamCaption}\item[{int32}]{in\+Min,  }\item[{int32}]{in\+Max,  }\item[{int32}]{in\+Ticks\+Ahead = {\ttfamily 1} }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_u_c_random_component_a9baa6693ab73015000bdd7077438a381}\label{class_u_c_random_component_a9baa6693ab73015000bdd7077438a381} 
+\index{UCRandomComponent@{UCRandomComponent}!PeekAheadArray@{PeekAheadArray}}
+\index{PeekAheadArray@{PeekAheadArray}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{PeekAheadArray()}{PeekAheadArray()}}
+{\footnotesize\ttfamily TArray$<$ int32 $>$ UCRandom\+Component\+::\+Peek\+Ahead\+Array (\begin{DoxyParamCaption}\item[{const TArray$<$ int32 $>$ \&}]{in\+Mins,  }\item[{const TArray$<$ int32 $>$ \&}]{in\+Maxs }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_u_c_random_component_a97437cc36ed07f20dda8686279b39348}\label{class_u_c_random_component_a97437cc36ed07f20dda8686279b39348} 
+\index{UCRandomComponent@{UCRandomComponent}!ResetToInitialSeed@{ResetToInitialSeed}}
+\index{ResetToInitialSeed@{ResetToInitialSeed}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{ResetToInitialSeed()}{ResetToInitialSeed()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Reset\+To\+Initial\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_abd0a2eb6e3196d6dc17f9d5036d1272f}\label{class_u_c_random_component_abd0a2eb6e3196d6dc17f9d5036d1272f} 
+\index{UCRandomComponent@{UCRandomComponent}!RollBackRandom@{RollBackRandom}}
+\index{RollBackRandom@{RollBackRandom}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{RollBackRandom()}{RollBackRandom()}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Roll\+Back\+Random (\begin{DoxyParamCaption}\item[{int32}]{in\+Ticks = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17}\label{class_u_c_random_component_a2bd1871d11b36a8d3e79cffb3ee29a17} 
+\index{UCRandomComponent@{UCRandomComponent}!RollBackToSave@{RollBackToSave}}
+\index{RollBackToSave@{RollBackToSave}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{RollBackToSave()}{RollBackToSave()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Roll\+Back\+To\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e}\label{class_u_c_random_component_a11a0cd831ba116c95dd61593bb1c1f4e} 
+\index{UCRandomComponent@{UCRandomComponent}!SaveState@{SaveState}}
+\index{SaveState@{SaveState}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{SaveState()}{SaveState()}}
+{\footnotesize\ttfamily void UCRandom\+Component\+::\+Save\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3}\label{class_u_c_random_component_a0a728fe408a80b10014b42c2b22b37b3} 
+\index{UCRandomComponent@{UCRandomComponent}!ValidateSeed@{ValidateSeed}}
+\index{ValidateSeed@{ValidateSeed}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{ValidateSeed()}{ValidateSeed()}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Validate\+Seed (\begin{DoxyParamCaption}\item[{int32}]{Seed }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_random_component_a3f178fc1aafff54bcdd43d8c125ed72e}\label{class_u_c_random_component_a3f178fc1aafff54bcdd43d8c125ed72e} 
+\index{UCRandomComponent@{UCRandomComponent}!CurrentStateSeed@{CurrentStateSeed}}
+\index{CurrentStateSeed@{CurrentStateSeed}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{CurrentStateSeed}{CurrentStateSeed}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Current\+State\+Seed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_random_component_aecae044cc1dd1d613b77a71e7a9b8c8c}\label{class_u_c_random_component_aecae044cc1dd1d613b77a71e7a9b8c8c} 
+\index{UCRandomComponent@{UCRandomComponent}!RandomStream@{RandomStream}}
+\index{RandomStream@{RandomStream}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{RandomStream}{RandomStream}}
+{\footnotesize\ttfamily FRandom\+Stream UCRandom\+Component\+::\+Random\+Stream\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_random_component_a58dc37efa569805fa62dd77b743d1983}\label{class_u_c_random_component_a58dc37efa569805fa62dd77b743d1983} 
+\index{UCRandomComponent@{UCRandomComponent}!StartSeed@{StartSeed}}
+\index{StartSeed@{StartSeed}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{StartSeed}{StartSeed}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Start\+Seed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_random_component_ad2d08b60e7b3031085bbfc1a1c3fc217}\label{class_u_c_random_component_ad2d08b60e7b3031085bbfc1a1c3fc217} 
+\index{UCRandomComponent@{UCRandomComponent}!Ticks@{Ticks}}
+\index{Ticks@{Ticks}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{Ticks}{Ticks}}
+{\footnotesize\ttfamily int64 UCRandom\+Component\+::\+Ticks\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_random_component_a1d0a8632121f84fff3bc52cbcd903ca4}\label{class_u_c_random_component_a1d0a8632121f84fff3bc52cbcd903ca4} 
+\index{UCRandomComponent@{UCRandomComponent}!TicksAtSave@{TicksAtSave}}
+\index{TicksAtSave@{TicksAtSave}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{TicksAtSave}{TicksAtSave}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Ticks\+At\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_random_component_a5ea8535609ca5e3f28781d19c14fd3f0}\label{class_u_c_random_component_a5ea8535609ca5e3f28781d19c14fd3f0} 
+\index{UCRandomComponent@{UCRandomComponent}!TicksSinceSave@{TicksSinceSave}}
+\index{TicksSinceSave@{TicksSinceSave}!UCRandomComponent@{UCRandomComponent}}
+\doxysubsubsection{\texorpdfstring{TicksSinceSave}{TicksSinceSave}}
+{\footnotesize\ttfamily int32 UCRandom\+Component\+::\+Ticks\+Since\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\mbox{\hyperlink{_c_random_component_8h}{CRandom\+Component.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Utility/\mbox{\hyperlink{_c_random_component_8cpp}{CRandom\+Component.\+cpp}}\end{DoxyCompactItemize}

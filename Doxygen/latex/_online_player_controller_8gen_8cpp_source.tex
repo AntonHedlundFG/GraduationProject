@@ -1,0 +1,156 @@
+\doxysection{Online\+Player\+Controller.\+gen.\+cpp}
+\hypertarget{_online_player_controller_8gen_8cpp_source}{}\label{_online_player_controller_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/OnlinePlayerController.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/OnlinePlayerController.gen.cpp}}
+\mbox{\hyperlink{_online_player_controller_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_controller_8h}{TacticalRogueLite/OnlineSystem/Public/OnlinePlayerController.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}UObject/CoreNet.h"{}}}
+\DoxyCodeLine{00010\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a1fa8e5135feb96e5b1d817bbf489de4f}{EmptyLinkFunctionForGeneratedCodeOnlinePlayerController}}()\ \{\}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_af1a617f3268a311f135a04031e157d13}{Z\_Construct\_UClass\_APlayerController}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_af3ad9cae58d71f91752d627e1f51303f}{Z\_Construct\_UClass\_AOnlinePlayerController}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a676553b9158fb06a761f540c9a92b54f}{Z\_Construct\_UClass\_AOnlinePlayerController\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a2015860d1bde0104972617ab4290bdd0}{DEFINE\_FUNCTION}}(AOnlinePlayerController::execServer\_ManualDisconnect)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!P\_THIS-\/>Server\_ManualDisconnect\_Validate())}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ RPC\_ValidateFailed(TEXT(\textcolor{stringliteral}{"{}Server\_ManualDisconnect\_Validate"{}}));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ P\_THIS-\/>Server\_ManualDisconnect\_Implementation();}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ FName\ NAME\_AOnlinePlayerController\_Server\_ManualDisconnect\ =\ FName(TEXT(\textcolor{stringliteral}{"{}Server\_ManualDisconnect"{}}));}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_player_controller_affcda06eadef36b45d4ebf6092f2ee4c}{AOnlinePlayerController::Server\_ManualDisconnect}}()}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ProcessEvent(FindFunctionChecked(NAME\_AOnlinePlayerController\_Server\_ManualDisconnect),NULL);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ AOnlinePlayerController::StaticRegisterNativesAOnlinePlayerController()}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ AOnlinePlayerController::StaticClass();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Server\_ManualDisconnect"{}},\ \&AOnlinePlayerController::execServer\_ManualDisconnect,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_online_player_controller}{AOnlinePlayerController}},\mbox{\hyperlink{class_a_online_player_controller_affcda06eadef36b45d4ebf6092f2ee4c}{Server\_ManualDisconnect}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_online_player_controller___server___manual_disconnect___statics}{Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics}}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_online_player_controller___server___manual_disconnect___statics_ad41bcf08322d7c80b4732b85e2d97d99}{FuncParams}};}
+\DoxyCodeLine{00049\ \ \ \ \ \};}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Online\ Services"{}}\ \},}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//\ This\ is\ used\ on\ manual\ deliberate\ disconnects,\ and\ prevents\ the\ ability\ to\ reconnect.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}OnlineSystem/Public/OnlinePlayerController.h"{}}\ \},}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}This\ is\ used\ on\ manual\ deliberate\ disconnects,\ and\ prevents\ the\ ability\ to\ reconnect."{}}\ \},}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_online_player_controller___server___manual_disconnect___statics_ad41bcf08322d7c80b4732b85e2d97d99}{Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_online_player_controller_8gen_8cpp_af3ad9cae58d71f91752d627e1f51303f}{Z\_Construct\_UClass\_AOnlinePlayerController}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Server\_ManualDisconnect"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x84220CC0,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00063\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_aa0ca70153f0ce77a04d50e5e5a9b1893}{Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect}}()}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_online_player_controller___server___manual_disconnect___statics_ad41bcf08322d7c80b4732b85e2d97d99}{Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect\_Statics::FuncParams}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a7d38429b8c5d96599768474051b4b84b}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_a_online_player_controller}{AOnlinePlayerController}});}
+\DoxyCodeLine{00073\ \ \ \ \ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_a676553b9158fb06a761f540c9a92b54f}{Z\_Construct\_UClass\_AOnlinePlayerController\_NoRegister}}()}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AOnlinePlayerController::StaticClass();}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics}}}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a4991d2367e3fcf8f36de910fc995a967}{DependentSingletons}}[])();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a261b91b2b0ff974dcb850ac53e6c8055}{FuncInfo}}[];}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a17f9c026f4bfb4a28866f6257e703321}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a1c076501cd586e3b6d66573467c815e7}{ClassParams}};}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a4991d2367e3fcf8f36de910fc995a967}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_online_player_controller_8gen_8cpp_af1a617f3268a311f135a04031e157d13}{Z\_Construct\_UClass\_APlayerController}},}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_online_player_controller_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00090\ \ \ \ \ \};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a4991d2367e3fcf8f36de910fc995a967}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a261b91b2b0ff974dcb850ac53e6c8055}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_online_player_controller_8gen_8cpp_aa0ca70153f0ce77a04d50e5e5a9b1893}{Z\_Construct\_UFunction\_AOnlinePlayerController\_Server\_ManualDisconnect}},\ \textcolor{stringliteral}{"{}Server\_ManualDisconnect"{}}\ \},\ \textcolor{comment}{//\ 2777802552}}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a261b91b2b0ff974dcb850ac53e6c8055}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}/**\(\backslash\)n\ *\ \(\backslash\)n\ */"{}}\ \},}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}HideCategories"{}},\ \textcolor{stringliteral}{"{}Collision\ Rendering\ Transformation"{}}\ \},}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}OnlineSystem/Public/OnlinePlayerController.h"{}}\ \},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}OnlineSystem/Public/OnlinePlayerController.h"{}}\ \},}
+\DoxyCodeLine{00104\ \ \ \ \ \};}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a17f9c026f4bfb4a28866f6257e703321}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<AOnlinePlayerController>::IsAbstract,}
+\DoxyCodeLine{00108\ \ \ \ \ \};}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a1c076501cd586e3b6d66573467c815e7}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \&AOnlinePlayerController::StaticClass,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Game"{}},}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ 0x009002A4u,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00123\ \ \ \ \ \};}
+\DoxyCodeLine{00124\ \ \ \ \ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_af3ad9cae58d71f91752d627e1f51303f}{Z\_Construct\_UClass\_AOnlinePlayerController}}()}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_AOnlinePlayerController.OuterSingleton)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_AOnlinePlayerController.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___a_online_player_controller___statics_a1c076501cd586e3b6d66573467c815e7}{Z\_Construct\_UClass\_AOnlinePlayerController\_Statics::ClassParams}});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_AOnlinePlayerController.OuterSingleton;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_af9198d51114cc16cc59b2e44eec80935}{StaticClass<AOnlinePlayerController>}}()}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AOnlinePlayerController::StaticClass();}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ AOnlinePlayerController::AOnlinePlayerController(\textcolor{keyword}{const}\ FObjectInitializer\&\ ObjectInitializer)\ :\ Super(ObjectInitializer)\ \{\}}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_ac75b9c7a8d10bdf394aa16532f05fcc9}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_a_online_player_controller}{AOnlinePlayerController}});}
+\DoxyCodeLine{00138\ \ \ \ \ AOnlinePlayerController::\string~AOnlinePlayerController()\ \{\}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou0388a25ead7cb40e807a41db8dfc431b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_OnlineSystem\_Public\_OnlinePlayerController\_h\_Statics}}}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou0388a25ead7cb40e807a41db8dfc431b_afe8a611035669ce02ef49e55e9a9863b}{ClassInfo}}[];}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou0388a25ead7cb40e807a41db8dfc431b_afe8a611035669ce02ef49e55e9a9863b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_OnlineSystem\_Public\_OnlinePlayerController\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_online_player_controller_8gen_8cpp_af3ad9cae58d71f91752d627e1f51303f}{Z\_Construct\_UClass\_AOnlinePlayerController}},\ AOnlinePlayerController::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}AOnlinePlayerController"{}}),\ \&Z\_Registration\_Info\_UClass\_AOnlinePlayerController,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_a_online_player_controller}{AOnlinePlayerController}}),\ 2505949094U)\ \},}
+\DoxyCodeLine{00145\ \ \ \ \ \};}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_OnlineSystem\_Public\_OnlinePlayerController\_h\_358029542(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou0388a25ead7cb40e807a41db8dfc431b_afe8a611035669ce02ef49e55e9a9863b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_OnlineSystem\_Public\_OnlinePlayerController\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou0388a25ead7cb40e807a41db8dfc431b_afe8a611035669ce02ef49e55e9a9863b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_OnlineSystem\_Public\_OnlinePlayerController\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0);}
+\DoxyCodeLine{00150\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

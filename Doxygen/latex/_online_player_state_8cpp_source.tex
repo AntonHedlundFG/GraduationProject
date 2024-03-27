@@ -1,0 +1,27 @@
+\doxysection{Online\+Player\+State.\+cpp}
+\hypertarget{_online_player_state_8cpp_source}{}\label{_online_player_state_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlinePlayerState.cpp@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlinePlayerState.cpp}}
+\mbox{\hyperlink{_online_player_state_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_state_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlinePlayerState.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ AOnlinePlayerState::GetLifetimeReplicatedProps(TArray<\ FLifetimeProperty\ >\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00010\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00011\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}},\ \mbox{\hyperlink{class_a_online_player_state_aa74308782b31ba9ae35e43fd9168c006}{PlayerIndex}});}
+\DoxyCodeLine{00012\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_player_state_a3271d714245ec2b493a5b68bde8fac14}{AOnlinePlayerState::CopyProperties}}(APlayerState*\ PlayerState)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}}*\ CastState\ =\ Cast<AOnlinePlayerState>(PlayerState))}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ CastState-\/>UniqueOwnerNetID\ =\ \mbox{\hyperlink{class_a_online_player_state_a8f1e8160f401b6802952e4bea02c5a9a}{UniqueOwnerNetID}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ CastState-\/>PlayerIndex\ =\ \mbox{\hyperlink{class_a_online_player_state_aa74308782b31ba9ae35e43fd9168c006}{PlayerIndex}};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \}}
+
+\end{DoxyCode}

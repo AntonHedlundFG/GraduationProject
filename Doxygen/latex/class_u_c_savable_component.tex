@@ -1,0 +1,90 @@
+\doxysection{UCSavable\+Component Class Reference}
+\hypertarget{class_u_c_savable_component}{}\label{class_u_c_savable_component}\index{UCSavableComponent@{UCSavableComponent}}
+
+
+{\ttfamily \#include $<$CSavable\+Component.\+h$>$}
+
+Inheritance diagram for UCSavable\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_savable_component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_savable_component_a863be810f0a2e56aa816079b73755492}{Receive\+On\+Save}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_c_savable_component_ad0554f40c915bbc289f3093c931b80c1}{On\+Save}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_savable_component_a4abd59b161272a54e1f7bf15e0908cb5}{Receive\+On\+Load}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_c_savable_component_abcb5cce626e32a1a4bb9c705bcef4599}{On\+Load}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_c_savable}{ICSavable}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_c_savable_a5665543846451a4ed15d5caa6bb576ff}{Register\+To\+Save\+Manager}} ()
+\item 
+virtual void \mbox{\hyperlink{class_i_c_savable_ab66765c8700da14a8e8812356adb05a5}{Unregister\+From\+Save\+Manager}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_savable_component_af9344723b61607ff66a2538e835a1f04}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_savable_component_a6eabd86f31c6e88eb68700f952e992d9}{End\+Play}} (const EEnd\+Play\+Reason\+::\+Type End\+Play\+Reason) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_savable_component_af9344723b61607ff66a2538e835a1f04}\label{class_u_c_savable_component_af9344723b61607ff66a2538e835a1f04} 
+\index{UCSavableComponent@{UCSavableComponent}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void UCSavable\+Component\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_savable_component_a6eabd86f31c6e88eb68700f952e992d9}\label{class_u_c_savable_component_a6eabd86f31c6e88eb68700f952e992d9} 
+\index{UCSavableComponent@{UCSavableComponent}!EndPlay@{EndPlay}}
+\index{EndPlay@{EndPlay}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{EndPlay()}{EndPlay()}}
+{\footnotesize\ttfamily void UCSavable\+Component\+::\+End\+Play (\begin{DoxyParamCaption}\item[{const EEnd\+Play\+Reason\+::\+Type}]{End\+Play\+Reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_savable_component_abcb5cce626e32a1a4bb9c705bcef4599}\label{class_u_c_savable_component_abcb5cce626e32a1a4bb9c705bcef4599} 
+\index{UCSavableComponent@{UCSavableComponent}!OnLoad@{OnLoad}}
+\index{OnLoad@{OnLoad}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{OnLoad()}{OnLoad()}}
+{\footnotesize\ttfamily virtual void UCSavable\+Component\+::\+On\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_c_savable_a07fc6f659d450553c6ac6a173cacfc04}{ICSavable}}.
+
+\Hypertarget{class_u_c_savable_component_ad0554f40c915bbc289f3093c931b80c1}\label{class_u_c_savable_component_ad0554f40c915bbc289f3093c931b80c1} 
+\index{UCSavableComponent@{UCSavableComponent}!OnSave@{OnSave}}
+\index{OnSave@{OnSave}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{OnSave()}{OnSave()}}
+{\footnotesize\ttfamily virtual void UCSavable\+Component\+::\+On\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_c_savable_ad5d4404fbd237ed517f25bf45634741d}{ICSavable}}.
+
+\Hypertarget{class_u_c_savable_component_a4abd59b161272a54e1f7bf15e0908cb5}\label{class_u_c_savable_component_a4abd59b161272a54e1f7bf15e0908cb5} 
+\index{UCSavableComponent@{UCSavableComponent}!ReceiveOnLoad@{ReceiveOnLoad}}
+\index{ReceiveOnLoad@{ReceiveOnLoad}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{ReceiveOnLoad()}{ReceiveOnLoad()}}
+{\footnotesize\ttfamily void UCSavable\+Component\+::\+Receive\+On\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_savable_component_a863be810f0a2e56aa816079b73755492}\label{class_u_c_savable_component_a863be810f0a2e56aa816079b73755492} 
+\index{UCSavableComponent@{UCSavableComponent}!ReceiveOnSave@{ReceiveOnSave}}
+\index{ReceiveOnSave@{ReceiveOnSave}!UCSavableComponent@{UCSavableComponent}}
+\doxysubsubsection{\texorpdfstring{ReceiveOnSave()}{ReceiveOnSave()}}
+{\footnotesize\ttfamily void UCSavable\+Component\+::\+Receive\+On\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\+Save\+Game/\mbox{\hyperlink{_c_savable_component_8h}{CSavable\+Component.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Utility/\+Save\+Game/\mbox{\hyperlink{_c_savable_component_8cpp}{CSavable\+Component.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,163 @@
+\doxysection{UCAction\+Effect Class Reference}
+\hypertarget{class_u_c_action_effect}{}\label{class_u_c_action_effect}\index{UCActionEffect@{UCActionEffect}}
+
+
+{\ttfamily \#include $<$CAction\+Effect.\+h$>$}
+
+Inheritance diagram for UCAction\+Effect\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_u_c_action_effect}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_c_action_effect_adc70d14d5474de18d145088bd1770240}{UCAction\+Effect}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_c_action_effect_a19dd00dc0237bfe5e8097922f1ca64f2}{Start\+Action\+\_\+\+Implementation}} (AActor \texorpdfstring{$\ast$}{*}Instigator) override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_action_effect_a41fd3d0bafc6f01e623c8f5a8e3e6823}{Stop\+Action\+\_\+\+Implementation}} (AActor \texorpdfstring{$\ast$}{*}Instigator) override
+\item 
+float \mbox{\hyperlink{class_u_c_action_effect_a4697ae099c5f538de14cbeb35bee2c0d}{Get\+Time\+Remaining}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_aabe8ee009046ddfc2bbd88ac6cae5fa9}{Get\+Activation\+Tag}} () const
+\item 
+bool \mbox{\hyperlink{class_u_c_action_ad248caef9b49e4c76a28d916604d932b}{Is\+Auto\+Start}} () const
+\item 
+void \mbox{\hyperlink{class_u_c_action_a8f8a7009c33d7cdedadaf24da25a398c}{Initialize}} (UCAction\+Component \texorpdfstring{$\ast$}{*}New\+Action\+Comp)
+\item 
+bool \mbox{\hyperlink{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}{Is\+Running}} () const
+\item 
+bool \mbox{\hyperlink{class_u_c_action_a053eca4e165d39f16be0aa0b399b6daf}{Can\+Start}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_aea136113a464cf9545170c7a066027c9}{Start\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_a13d48a1a91e8b8f4f0f359ba0c680179}{Stop\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+virtual UWorld \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{Get\+World}} () const override
+\item 
+virtual bool \mbox{\hyperlink{class_u_c_action_a2173f8d9b2decb6673611971ca598244}{Is\+Supported\+For\+Networking}} () const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_action_effect_a4d73dd3b873245814eab1548f8ba65fd}{Execute\+Effect}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+UCAction\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{Get\+Owning\+Component}} () const
+\item 
+void \mbox{\hyperlink{class_u_c_action_a9dee6cc873801809dad30c96ac038c22}{On\+Rep\+\_\+\+Rep\+Data}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}}
+\item 
+float \mbox{\hyperlink{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980}{Period}}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac}{Period\+Handle}}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_action_effect_aec8fe33fa355bc96db435771a2aa6c56}{Duration\+Handle}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+TSoft\+Object\+Ptr$<$ UTexture2D $>$ \mbox{\hyperlink{class_u_c_action_a0866b8cdfbc25eef204e113d266d56ee}{Icon}}
+\item 
+TObject\+Ptr$<$ UCAction\+Component $>$ \mbox{\hyperlink{class_u_c_action_a57d880d0373784a7b28b607b3ac9cbab}{Action\+Comp}}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_ac1a77196f4b1e501c74af9a4c16683fa}{Grants\+Tags}}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0}{Blocked\+Tags}}
+\item 
+\mbox{\hyperlink{struct_f_action_rep_data}{FAction\+Rep\+Data}} \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{Rep\+Data}}
+\item 
+float \mbox{\hyperlink{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}{Time\+Started}}
+\item 
+bool \mbox{\hyperlink{class_u_c_action_a1d8ab79305504d38d364b14e5515f914}{b\+Auto\+Start}}
+\item 
+FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d6108c}{Activation\+Tag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_u_c_action_effect_adc70d14d5474de18d145088bd1770240}\label{class_u_c_action_effect_adc70d14d5474de18d145088bd1770240} 
+\index{UCActionEffect@{UCActionEffect}!UCActionEffect@{UCActionEffect}}
+\index{UCActionEffect@{UCActionEffect}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{UCActionEffect()}{UCActionEffect()}}
+{\footnotesize\ttfamily UCAction\+Effect\+::\+UCAction\+Effect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_action_effect_a4d73dd3b873245814eab1548f8ba65fd}\label{class_u_c_action_effect_a4d73dd3b873245814eab1548f8ba65fd} 
+\index{UCActionEffect@{UCActionEffect}!ExecuteEffect@{ExecuteEffect}}
+\index{ExecuteEffect@{ExecuteEffect}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{ExecuteEffect()}{ExecuteEffect()}}
+{\footnotesize\ttfamily void UCAction\+Effect\+::\+Execute\+Effect (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_action_effect_a4697ae099c5f538de14cbeb35bee2c0d}\label{class_u_c_action_effect_a4697ae099c5f538de14cbeb35bee2c0d} 
+\index{UCActionEffect@{UCActionEffect}!GetTimeRemaining@{GetTimeRemaining}}
+\index{GetTimeRemaining@{GetTimeRemaining}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{GetTimeRemaining()}{GetTimeRemaining()}}
+{\footnotesize\ttfamily float UCAction\+Effect\+::\+Get\+Time\+Remaining (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_u_c_action_effect_a19dd00dc0237bfe5e8097922f1ca64f2}\label{class_u_c_action_effect_a19dd00dc0237bfe5e8097922f1ca64f2} 
+\index{UCActionEffect@{UCActionEffect}!StartAction\_Implementation@{StartAction\_Implementation}}
+\index{StartAction\_Implementation@{StartAction\_Implementation}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{StartAction\_Implementation()}{StartAction\_Implementation()}}
+{\footnotesize\ttfamily void UCAction\+Effect\+::\+Start\+Action\+\_\+\+Implementation (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_action_effect___rooted_a8c41cccb2be6dea0fda9cc10c85ef0fd}{UCAction\+Effect\+\_\+\+Rooted}}.
+
+\Hypertarget{class_u_c_action_effect_a41fd3d0bafc6f01e623c8f5a8e3e6823}\label{class_u_c_action_effect_a41fd3d0bafc6f01e623c8f5a8e3e6823} 
+\index{UCActionEffect@{UCActionEffect}!StopAction\_Implementation@{StopAction\_Implementation}}
+\index{StopAction\_Implementation@{StopAction\_Implementation}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{StopAction\_Implementation()}{StopAction\_Implementation()}}
+{\footnotesize\ttfamily void UCAction\+Effect\+::\+Stop\+Action\+\_\+\+Implementation (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_action_effect___rooted_a4ed41a5c4c724c59fb1e3a1dbad6fb41}{UCAction\+Effect\+\_\+\+Rooted}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}\label{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593} 
+\index{UCActionEffect@{UCActionEffect}!Duration@{Duration}}
+\index{Duration@{Duration}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{Duration}{Duration}}
+{\footnotesize\ttfamily float UCAction\+Effect\+::\+Duration\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_action_effect_aec8fe33fa355bc96db435771a2aa6c56}\label{class_u_c_action_effect_aec8fe33fa355bc96db435771a2aa6c56} 
+\index{UCActionEffect@{UCActionEffect}!DurationHandle@{DurationHandle}}
+\index{DurationHandle@{DurationHandle}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{DurationHandle}{DurationHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCAction\+Effect\+::\+Duration\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980}\label{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980} 
+\index{UCActionEffect@{UCActionEffect}!Period@{Period}}
+\index{Period@{Period}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{Period}{Period}}
+{\footnotesize\ttfamily float UCAction\+Effect\+::\+Period\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac}\label{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac} 
+\index{UCActionEffect@{UCActionEffect}!PeriodHandle@{PeriodHandle}}
+\index{PeriodHandle@{PeriodHandle}!UCActionEffect@{UCActionEffect}}
+\doxysubsubsection{\texorpdfstring{PeriodHandle}{PeriodHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCAction\+Effect\+::\+Period\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Effects/\mbox{\hyperlink{_c_action_effect_8h}{CAction\+Effect.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Effects/\mbox{\hyperlink{_c_action_effect_8cpp}{CAction\+Effect.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,102 @@
+\doxysection{CLog\+Manager.\+cpp}
+\hypertarget{_c_log_manager_8cpp_source}{}\label{_c_log_manager_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/CLogManager.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/CLogManager.cpp}}
+\mbox{\hyperlink{_c_log_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{Utility/Logging/CLogManager.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_log_manager_8h}{Utility/Logging/FLogManager.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*\ UCLogManager::Instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \mbox{\hyperlink{class_u_c_log_manager}{UCLogManager}}*\ \mbox{\hyperlink{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}{UCLogManager::Get}}()}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{if}\ (Instance\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00009\ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ Instance\ =\ NewObject<UCLogManager>();}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ Instance-\/>AddToRoot();\ \textcolor{comment}{//\ Prevent\ Garbage\ Collection}}
+\DoxyCodeLine{00012\ \ \ \ \ \}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_log_manager_a3d6dc22e709a6438e4ba070cbf2f8c98}{UCLogManager::StartUp}}()}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_ac3e798abbaf50dda3b1d893cfc81e9c9}{FLogManager::Initialize}}();}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_log_manager_ad4ba5cd66821ba177cd2dbf729b57338}{UCLogManager::ShutDown}}()}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a0842189e7c8d5126b58a162b2697306f}{FLogManager::ShutDown}}();}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_log_manager_a3741dc3797fa1d12a1c9d6e01e69bdfe}{UCLogManager::BlueprintLog}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category,\ \textcolor{keyword}{const}\ FString\&\ Message)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ FString\ LogMessage\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}[Blueprint]\ \%s"{}}),\ *Message);}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{Log}}(Category,\ LogMessage);}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLogManager::Log}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category,\ \textcolor{keyword}{const}\ FString\&\ Message)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ enum\ to\ string\ and\ prepend\ to\ the\ message}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ FString\ LogMessage\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%s\ \%s"{}}),\ *\mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}(Category),\ *Message);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Use\ FLogger\ for\ actual\ logging}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a8ab8561d96215d968da33019641682ab}{FLogManager::Log}}(LogMessage);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Broadcast\ if\ Instance\ exists}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_log_manager_af97c2cd34d5bfb61946cb90fbeecb13e}{Get}}())\ }
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Instance-\/>\mbox{\hyperlink{class_u_c_log_manager_a7073d642b1fd6866da96aa8ce24fae2c}{OnNewLogEntry}}.Broadcast(Category,\ Message);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Log\ to\ Unreal}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{switch}\ (Category)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Warning:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Warning,\ TEXT(\textcolor{stringliteral}{"{}\%s"{}}),\ *Message);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ELogCategory::LC\_Error:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ Error,\ TEXT(\textcolor{stringliteral}{"{}\%s"{}}),\ *Message);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ UE\_LOG(LogTemp,\ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{Log}},\ TEXT(\textcolor{stringliteral}{"{}\%s"{}}),\ *Message);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ TArray<FString>\ \mbox{\hyperlink{class_u_c_log_manager_a1439877422252ba3d47913ef01a87e04}{UCLogManager::GetAllLogEntries}}()}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Reading\ log\ entries"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_log_manager_a9489f0a9277575045cb19ee07e7b168f}{FLogManager::ReadLog}}();}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ TArray<FString>\ \mbox{\hyperlink{class_u_c_log_manager_ae1dfb269ff4a5d5b2219059181670097}{UCLogManager::GetAllLogEntriesByCategory}}(\mbox{\hyperlink{_c_log_manager_8h_a60e5d0b3d2f98e2ed949d1dadcc598de}{ELogCategory}}\ Category)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ TArray<FString>\ LogEntries\ =\ \mbox{\hyperlink{class_f_log_manager_a9489f0a9277575045cb19ee07e7b168f}{FLogManager::ReadLog}}();}
+\DoxyCodeLine{00071\ \ \ \ \ TArray<FString>\ FilteredEntries;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{for}\ (FString\ LogEntry\ :\ LogEntries)}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ FString\ CategoryString\ =\ \mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}(Category);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LogEntry.Contains(CategoryString))}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ FilteredEntries.Add(LogEntry);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Read\ \%d\ log\ entries\ for\ category\ \%s"{}},\ FilteredEntries.Num(),\ *\mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}(Category));}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ FilteredEntries;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ FString\ \mbox{\hyperlink{class_u_c_log_manager_a263c3ee7015e458e2de2efe77c6a2b72}{UCLogManager::GetRecentLogEntry}}(int64\ LogID)}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{_c_log_manager_8h_aade28bd5d45bff9a904feefa805039d8}{LOG\_INFO}}(\textcolor{stringliteral}{"{}Getting\ recent\ log\ entry\ with\ ID:\ \%lld"{}},\ LogID);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_log_manager_a223ee84a9c2a59ceb7152caa761d9a3a}{FLogManager::GetRecentLogEntry}}(LogID);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_log_manager_ae8b2fb435cb52e69f74fa462264aa47d}{UCLogManager::RotateLogFile}}()}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a3ec43f774763082d39bec25b76160ef5}{FLogManager::RotateLogFile}}();}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

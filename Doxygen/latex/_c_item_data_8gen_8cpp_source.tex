@@ -1,0 +1,475 @@
+\doxysection{CItem\+Data.\+gen.\+cpp}
+\hypertarget{_c_item_data_8gen_8cpp_source}{}\label{_c_item_data_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CItemData.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CItemData.gen.cpp}}
+\mbox{\hyperlink{_c_item_data_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_data_8h}{TacticalRogueLite/Public/ItemData/CItemData.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}GameplayTagContainer.h"{}}}
+\DoxyCodeLine{00010\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a3877891a0582a679bebd210ad5911e13}{EmptyLinkFunctionForGeneratedCodeCItemData}}()\ \{\}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_aab8aae1679daf2e7a45b7dee9df245c3}{Z\_Construct\_UClass\_UObject\_NoRegister}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a628ee0911fcd3264a6197036de3510c8}{Z\_Construct\_UScriptStruct\_FPrimaryAssetType}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_ae43a41c9935cf73a5ed6bd3a074c197b}{Z\_Construct\_UClass\_AActor\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a0b5aad0e28f7459aee5fe792594835da}{Z\_Construct\_UClass\_UMaterialInterface\_NoRegister}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_acf5c4956a22fa980fe924d495419c5de}{Z\_Construct\_UClass\_UPrimaryDataAsset}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_aaff460c6690fa140ee1af14b78ebb8f5}{Z\_Construct\_UClass\_UTexture2D\_NoRegister}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a26ef0cf0bdb1490ac995e82f24f3843d}{GAMEPLAYTAGS\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a91532acfef32884f6b2e2a150779dd8c}{Z\_Construct\_UScriptStruct\_FGameplayTagContainer}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_afbdfa9627c59d86340901fd060ce8a8a}{Z\_Construct\_UClass\_UCAction\_NoRegister}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a2aa5e0497fc56b7f7308d15de6008865}{Z\_Construct\_UClass\_UCItemData}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a0cc2d3968c816627765a894dd570975d}{Z\_Construct\_UClass\_UCItemData\_NoRegister}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a45e7e30046413b9949d7647a289b9842}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality}}();}
+\DoxyCodeLine{00024\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ FEnumRegistrationInfo\ Z\_Registration\_Info\_UEnum\_EItemQuality;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ UEnum*\ EItemQuality\_StaticEnum()}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_EItemQuality.OuterSingleton)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ Z\_Registration\_Info\_UEnum\_EItemQuality.OuterSingleton\ =\ GetStaticEnum(\mbox{\hyperlink{_c_item_data_8gen_8cpp_a45e7e30046413b9949d7647a289b9842}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality}},\ (UObject*)\mbox{\hyperlink{_c_item_data_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}(),\ TEXT(\textcolor{stringliteral}{"{}EItemQuality"{}}));}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_EItemQuality.OuterSingleton;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a54b9b5af631049d0cba8de87ed977f14}{StaticEnum<EItemQuality>}}()}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EItemQuality\_StaticEnum();}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics}}}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_a63fc56b3e94f460bfd4a554146df8b6c}{Enumerators}}[];}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Enum\_MetaDataParams[];}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_aab734049fd299a49e6e16e2cc336c669}{EnumParams}};}
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_a63fc56b3e94f460bfd4a554146df8b6c}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enumerators}}[]\ =\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EItemQuality::Common"{}},\ (int64)\mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbad13bc5b68b2bd9e18f29777db17cc563}{EItemQuality::Common}}\ \},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EItemQuality::UnCommon"{}},\ (int64)\mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbadaad892556b29a624647710be1110d49}{EItemQuality::UnCommon}}\ \},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EItemQuality::Rare"{}},\ (int64)\mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbaa2cc588f2ab07ad61b05400f593eeb0a}{EItemQuality::Rare}}\ \},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EItemQuality::Epic"{}},\ (int64)\mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbae3f530e977d74053c6d70eb84886e756}{EItemQuality::Epic}}\ \},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}EItemQuality::Legendary"{}},\ (int64)\mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cba9461cd71b44420aa1d0e6487f1b7bb60}{EItemQuality::Legendary}}\ \},}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enum\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Common.Name"{}},\ \textcolor{stringliteral}{"{}EItemQuality::Common"{}}\ \},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Epic.Name"{}},\ \textcolor{stringliteral}{"{}EItemQuality::Epic"{}}\ \},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Legendary.Name"{}},\ \textcolor{stringliteral}{"{}EItemQuality::Legendary"{}}\ \},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Rare.Name"{}},\ \textcolor{stringliteral}{"{}EItemQuality::Rare"{}}\ \},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}UnCommon.Name"{}},\ \textcolor{stringliteral}{"{}EItemQuality::UnCommon"{}}\ \},}
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_aab734049fd299a49e6e16e2cc336c669}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::EnumParams}}\ =\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ (UObject*(*)())\mbox{\hyperlink{_c_item_data_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EItemQuality"{}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EItemQuality"{}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_a63fc56b3e94f460bfd4a554146df8b6c}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enumerators}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ RF\_Public|RF\_Transient|RF\_MarkAsNative,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_a63fc56b3e94f460bfd4a554146df8b6c}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enumerators}}),}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ EEnumFlags::None,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ (uint8)UEnum::ECppForm::EnumClass,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enum\_MetaDataParams),\ Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::Enum\_MetaDataParams)}
+\DoxyCodeLine{00075\ \ \ \ \ \};}
+\DoxyCodeLine{00076\ \ \ \ \ UEnum*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a45e7e30046413b9949d7647a289b9842}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality}}()}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_EItemQuality.InnerSingleton)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUEnum(Z\_Registration\_Info\_UEnum\_EItemQuality.InnerSingleton,\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_item_quality___statics_aab734049fd299a49e6e16e2cc336c669}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality\_Statics::EnumParams}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_EItemQuality.InnerSingleton;}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8gen_8cpp_ab18608241d087505b6be9687a89fef7e}{DEFINE\_FUNCTION}}(UCItemData::execGetIconAsTexture)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ *(TSoftObjectPtr<UTexture2D>*)Z\_Param\_\_Result=P\_THIS-\/>GetIconAsTexture();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8gen_8cpp_ab18608241d087505b6be9687a89fef7e}{DEFINE\_FUNCTION}}(UCItemData::execGetIconAsMaterial)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ *(TSoftObjectPtr<UMaterialInterface>*)Z\_Param\_\_Result=P\_THIS-\/>GetIconAsMaterial();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ UCItemData::StaticRegisterNativesUCItemData()}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCItemData::StaticClass();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetIconAsMaterial"{}},\ \&UCItemData::execGetIconAsMaterial,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\mbox{\hyperlink{class_u_c_item_data_a14d8228cba87f0449aac5b03dda24f44}{GetIconAsMaterial}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(TSoftObjectPtr<UMaterialInterface>))\ \},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetIconAsTexture"{}},\ \&UCItemData::execGetIconAsTexture,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\mbox{\hyperlink{class_u_c_item_data_a5ebd8853d69874ae85a5e7d103ca3a7c}{GetIconAsTexture}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(TSoftObjectPtr<UTexture2D>))\ \},}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics}}}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_1_1_c_item_dade308e41cc1b7c939612a5b7c7e0b7d2}{CItemData\_eventGetIconAsMaterial\_Parms}}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ TSoftObjectPtr<UMaterialInterface>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_1_1_c_item_dade308e41cc1b7c939612a5b7c7e0b7d2_a5f11c321466d6b590ec5a8f638a856a4}{ReturnValue}};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a1fa97fbcfc01c7ad0f3f7b735f72eff9}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a64a55665aec501f23e390a41e9bae7c9}{PropPointers}}[];}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a126d31cfbc6d4170eb4a4ed0df16e3e0}{FuncParams}};}
+\DoxyCodeLine{00119\ \ \ \ \ \};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a1fa97fbcfc01c7ad0f3f7b735f72eff9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000000580,\ UECodeGen\_Private::EPropertyGenFlags::SoftObject,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_1_1_c_item_dade308e41cc1b7c939612a5b7c7e0b7d2}{CItemData\_eventGetIconAsMaterial\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a0b5aad0e28f7459aee5fe792594835da}{Z\_Construct\_UClass\_UMaterialInterface\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a64a55665aec501f23e390a41e9bae7c9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a1fa97fbcfc01c7ad0f3f7b735f72eff9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00123\ \ \ \ \ \};}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ UObject\ base).\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ UObject\ base)."{}}\ \},}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00134\ \ \ \ \ \};}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a126d31cfbc6d4170eb4a4ed0df16e3e0}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_item_data_8gen_8cpp_a2aa5e0497fc56b7f7308d15de6008865}{Z\_Construct\_UClass\_UCItemData}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetIconAsMaterial"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a64a55665aec501f23e390a41e9bae7c9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a64a55665aec501f23e390a41e9bae7c9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_1_1_c_item_dade308e41cc1b7c939612a5b7c7e0b7d2}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::CItemData\_eventGetIconAsMaterial\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a64a55665aec501f23e390a41e9bae7c9}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_1_1_c_item_dade308e41cc1b7c939612a5b7c7e0b7d2}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::CItemData\_eventGetIconAsMaterial\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00139\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a84f9eec468a5f4a906c85de69d852d30}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial}}()}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_material___statics_a126d31cfbc6d4170eb4a4ed0df16e3e0}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial\_Statics::FuncParams}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics}}}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_1_1_c_item_dat51087f47968d8d54462d4e281e5afb79}{CItemData\_eventGetIconAsTexture\_Parms}}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ TSoftObjectPtr<UTexture2D>\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_1_1_c_item_dat51087f47968d8d54462d4e281e5afb79_a9491cfbe329710e7f25d656040cc9396}{ReturnValue}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_af4b7d81e7c3394d539880f13548ea0c8}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a50c7863acd311f3818a7bffbdac1efd3}{PropPointers}}[];}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a4589c01930b61f564b5e5f158d251319}{FuncParams}};}
+\DoxyCodeLine{00160\ \ \ \ \ \};}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_af4b7d81e7c3394d539880f13548ea0c8}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000000580,\ UECodeGen\_Private::EPropertyGenFlags::SoftObject,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_1_1_c_item_dat51087f47968d8d54462d4e281e5afb79}{CItemData\_eventGetIconAsTexture\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_aaff460c6690fa140ee1af14b78ebb8f5}{Z\_Construct\_UClass\_UTexture2D\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a50c7863acd311f3818a7bffbdac1efd3}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_af4b7d81e7c3394d539880f13548ea0c8}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00164\ \ \ \ \ \};}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ Uobject\ base)\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ Uobject\ base)"{}}\ \},}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00175\ \ \ \ \ \};}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a4589c01930b61f564b5e5f158d251319}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_item_data_8gen_8cpp_a2aa5e0497fc56b7f7308d15de6008865}{Z\_Construct\_UClass\_UCItemData}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetIconAsTexture"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a50c7863acd311f3818a7bffbdac1efd3}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a50c7863acd311f3818a7bffbdac1efd3}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_1_1_c_item_dat51087f47968d8d54462d4e281e5afb79}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::CItemData\_eventGetIconAsTexture\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a50c7863acd311f3818a7bffbdac1efd3}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_1_1_c_item_dat51087f47968d8d54462d4e281e5afb79}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::CItemData\_eventGetIconAsTexture\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00180\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a2654826c103b89b5d33fb5b2cc591917}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture}}()}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_item_data___get_icon_as_texture___statics_a4589c01930b61f564b5e5f158d251319}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture\_Statics::FuncParams}});}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8gen_8cpp_aee1af78adb8c4c4a34a907d37714b04f}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}});}
+\DoxyCodeLine{00190\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a0cc2d3968c816627765a894dd570975d}{Z\_Construct\_UClass\_UCItemData\_NoRegister}}()}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCItemData::StaticClass();}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics}{Z\_Construct\_UClass\_UCItemData\_Statics}}}
+\DoxyCodeLine{00195\ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a176908b4160b7af75f23b9c0a2c588e0}{DependentSingletons}}[])();}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9e757594e15033064719958c560f8130}{FuncInfo}}[];}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ItenName\_MetaData[];}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FTextPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0f2bc4d51a3d162e8ed46e98ebf1b858}{NewProp\_ItenName}};}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ItemDescription\_MetaData[];}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FTextPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a570513c50142964b13000e749881c7a1}{NewProp\_ItemDescription}};}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_GrantsTags\_MetaData[];}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a4abb9a18aea69289978be0e251e1b128}{NewProp\_GrantsTags}};}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_BlockedTags\_MetaData[];}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a737a249838031e0c08d738a2d7123d5a}{NewProp\_BlockedTags}};}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Icon\_MetaData[];}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9931157670c9e318612af0f377c7dfc8}{NewProp\_Icon}};}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ItemType\_MetaData[];}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae680fbdd6e59ef173d546c1e118188bb}{NewProp\_ItemType}};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a87acfcbc19b9ba85d7795d62ced3ea8b}{NewProp\_Quality\_Underlying}};}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_Quality\_MetaData[];}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9391fffc2eb63d742078d7c5c119fd66}{NewProp\_Quality}};}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_StackLimit\_MetaData[];}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a11bed2d637265a402ca2c20b5a3a671e}{NewProp\_StackLimit}};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftClassPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a5c3aabea63660c94e35cf2f0fdb62bde}{NewProp\_ActionClasses\_Inner}};}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ActionClasses\_MetaData[];}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a249dedacf072d20f4ec110b8a3c38768}{NewProp\_ActionClasses}};}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ActorClass\_MetaData[];}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftClassPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_af19b0f465e401bfc50398d463c7a50a8}{NewProp\_ActorClass}};}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_OwnedTag\_MetaData[];}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9d00a554c19a0cebc36c4248afa179e7}{NewProp\_OwnedTag}};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0c491e3477c3c8d013696fc66881bb8f}{PropPointers}}[];}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a5248f5723c10a23cfa9b0edab2a6f66a}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae647f2493e9ad2e59b566a25ee4001f5}{ClassParams}};}
+\DoxyCodeLine{00250\ \ \ \ \ \};}
+\DoxyCodeLine{00251\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a176908b4160b7af75f23b9c0a2c588e0}{Z\_Construct\_UClass\_UCItemData\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_item_data_8gen_8cpp_acf5c4956a22fa980fe924d495419c5de}{Z\_Construct\_UClass\_UPrimaryDataAsset}},}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_item_data_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00254\ \ \ \ \ \};}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a176908b4160b7af75f23b9c0a2c588e0}{Z\_Construct\_UClass\_UCItemData\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9e757594e15033064719958c560f8130}{Z\_Construct\_UClass\_UCItemData\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_item_data_8gen_8cpp_a84f9eec468a5f4a906c85de69d852d30}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsMaterial}},\ \textcolor{stringliteral}{"{}GetIconAsMaterial"{}}\ \},\ \textcolor{comment}{//\ 2423760976}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_item_data_8gen_8cpp_a2654826c103b89b5d33fb5b2cc591917}{Z\_Construct\_UFunction\_UCItemData\_GetIconAsTexture}},\ \textcolor{stringliteral}{"{}GetIconAsTexture"{}}\ \},\ \textcolor{comment}{//\ 4273837961}}
+\DoxyCodeLine{00259\ \ \ \ \ \};}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9e757594e15033064719958c560f8130}{Z\_Construct\_UClass\_UCItemData\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Base\ class\ for\ anything\ considered\ an\ item\ in\ the\ game.\ Can\ be\ things\ like\ weapons,\ schematics,\ upgrades.\ Only\ contains\ the\ data\ for\ these\ items.\(\backslash\)n//PrimaryDataAsset\ adds\ the\ support\ to\ use\ AssetManager,\ which\ is\ a\ system\ that\ lets\ us\ more\ easly\ asynchronously\ load\ parts\ of\ assets.\(\backslash\)n//https://www.tomlooman.com/unreal-\/engine-\/asset-\/manager-\/async-\/loading/\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Base\ class\ for\ anything\ considered\ an\ item\ in\ the\ game.\ Can\ be\ things\ like\ weapons,\ schematics,\ upgrades.\ Only\ contains\ the\ data\ for\ these\ items.\(\backslash\)nPrimaryDataAsset\ adds\ the\ support\ to\ use\ AssetManager,\ which\ is\ a\ system\ that\ lets\ us\ more\ easly\ asynchronously\ load\ parts\ of\ assets.\(\backslash\)nhttps:www.tomlooman.com/unreal-\/engine-\/asset-\/manager-\/async-\/loading/"{}}\ \},}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00272\ \ \ \ \ \};}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItenName\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00278\ \ \ \ \ \};}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FTextPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0f2bc4d51a3d162e8ed46e98ebf1b858}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItenName}}\ =\ \{\ \textcolor{stringliteral}{"{}ItenName"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0020080000010001,\ UECodeGen\_Private::EPropertyGenFlags::Text,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ ItenName),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItenName\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItenName\_MetaData)\ \};}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemDescription\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00285\ \ \ \ \ \};}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FTextPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a570513c50142964b13000e749881c7a1}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemDescription}}\ =\ \{\ \textcolor{stringliteral}{"{}ItemDescription"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0020080000010001,\ UECodeGen\_Private::EPropertyGenFlags::Text,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ ItemDescription),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemDescription\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemDescription\_MetaData)\ \};}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_GrantsTags\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Tags"{}}\ \},}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Tags\ added\ to\ owning\ actor\ when\ activated,\ removed\ when\ action\ stops\ */\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Tags\ added\ to\ owning\ actor\ when\ activated,\ removed\ when\ action\ stops\ */"{}}\ \},}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00298\ \ \ \ \ \};}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a4abb9a18aea69289978be0e251e1b128}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_GrantsTags}}\ =\ \{\ \textcolor{stringliteral}{"{}GrantsTags"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000010001,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ GrantsTags),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a91532acfef32884f6b2e2a150779dd8c}{Z\_Construct\_UScriptStruct\_FGameplayTagContainer}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_GrantsTags\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_GrantsTags\_MetaData)\ \};\ \textcolor{comment}{//\ 405371792}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_BlockedTags\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Tags"{}}\ \},}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}/*\ Action\ can\ only\ start\ if\ OwningActor\ has\ none\ of\ these\ Tags\ applied\ */"{}}\ \},}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Action\ can\ only\ start\ if\ OwningActor\ has\ none\ of\ these\ Tags\ applied"{}}\ \},}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00311\ \ \ \ \ \};}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a737a249838031e0c08d738a2d7123d5a}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_BlockedTags}}\ =\ \{\ \textcolor{stringliteral}{"{}BlockedTags"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000010001,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ BlockedTags),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a91532acfef32884f6b2e2a150779dd8c}{Z\_Construct\_UScriptStruct\_FGameplayTagContainer}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_BlockedTags\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_BlockedTags\_MetaData)\ \};\ \textcolor{comment}{//\ 405371792}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Icon\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}AllowedClasses"{}},\ \textcolor{stringliteral}{"{}MaterialInterface,\ Texture2D"{}}\ \},}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}AssetBundles"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}UI"{}}\ \},}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Access\ in\ blueprints\ via\ 'get\ as\ texture/material'\ helpers\ to\ allow\ easy\ soft-\/loading\ which\ can't\ be\ done\ through\ base\ class.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Access\ in\ blueprints\ via\ 'get\ as\ texture/material'\ helpers\ to\ allow\ easy\ soft-\/loading\ which\ can't\ be\ done\ through\ base\ class."{}}\ \},}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00326\ \ \ \ \ \};}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9931157670c9e318612af0f377c7dfc8}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Icon}}\ =\ \{\ \textcolor{stringliteral}{"{}Icon"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000010001,\ UECodeGen\_Private::EPropertyGenFlags::SoftObject,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ Icon),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_aab8aae1679daf2e7a45b7dee9df245c3}{Z\_Construct\_UClass\_UObject\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Icon\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Icon\_MetaData)\ \};}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemType\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Item"{}}\ \},}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Weapon,\ augment\ etc.\ Used\ by\ the\ asset\ manager\ and\ game\ code\ may\ use\ it\ to\ understand\ the\ available\ 'features'\ of\ the\ item.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Weapon,\ augment\ etc.\ Used\ by\ the\ asset\ manager\ and\ game\ code\ may\ use\ it\ to\ understand\ the\ available\ 'features'\ of\ the\ item."{}}\ \},}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00339\ \ \ \ \ \};}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae680fbdd6e59ef173d546c1e118188bb}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemType}}\ =\ \{\ \textcolor{stringliteral}{"{}ItemType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000020015,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ ItemType),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a628ee0911fcd3264a6197036de3510c8}{Z\_Construct\_UScriptStruct\_FPrimaryAssetType}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemType\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemType\_MetaData)\ \};}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a87acfcbc19b9ba85d7795d62ced3ea8b}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Item"{}}\ \},}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00347\ \ \ \ \ \};}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9391fffc2eb63d742078d7c5c119fd66}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality}}\ =\ \{\ \textcolor{stringliteral}{"{}Quality"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000010015,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ Quality),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a45e7e30046413b9949d7647a289b9842}{Z\_Construct\_UEnum\_TacticalRogueLite\_EItemQuality}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality\_MetaData)\ \};\ \textcolor{comment}{//\ 1124461778}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_StackLimit\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Item"{}}\ \},}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Maximum\ allowed\ in\ the\ stack.\ 0\ =\ unlimited.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Maximum\ allowed\ in\ the\ stack.\ 0\ =\ unlimited."{}}\ \},}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00360\ \ \ \ \ \};}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FIntPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a11bed2d637265a402ca2c20b5a3a671e}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_StackLimit}}\ =\ \{\ \textcolor{stringliteral}{"{}StackLimit"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000010015,\ UECodeGen\_Private::EPropertyGenFlags::Int,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ StackLimit),\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_StackLimit\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_StackLimit\_MetaData)\ \};}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftClassPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a5c3aabea63660c94e35cf2f0fdb62bde}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ActionClasses"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0004000000000000,\ UECodeGen\_Private::EPropertyGenFlags::SoftClass,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_afbdfa9627c59d86340901fd060ce8a8a}{Z\_Construct\_UClass\_UCAction\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}AssetBundles"{}},\ \textcolor{stringliteral}{"{}Actions"{}}\ \},}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Classes"{}}\ \},}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Optional\ Action/Abilites\ assigned\ to\ Item.\ Can\ be\ used\ to\ grant\ abilities\ while\ the\ item\ is\ active/equipped\ or\ to\ run\ item\ specific\ functions.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Optional\ Action/Abilites\ assigned\ to\ Item.\ Can\ be\ used\ to\ grant\ abilities\ while\ the\ item\ is\ active/equipped\ or\ to\ run\ item\ specific\ functions."{}}\ \},}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00375\ \ \ \ \ \};}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a249dedacf072d20f4ec110b8a3c38768}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses}}\ =\ \{\ \textcolor{stringliteral}{"{}ActionClasses"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000010015,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ ActionClasses),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses\_MetaData)\ \};}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActorClass\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}AssetBundles"{}},\ \textcolor{stringliteral}{"{}Actor"{}}\ \},}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Classes"{}}\ \},}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Optional\ world\ representation\ of\ this\ object\ if\ dropped\ or\ equipped\ by\ a\ unit.\ \(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Optional\ world\ representation\ of\ this\ object\ if\ dropped\ or\ equipped\ by\ a\ unit."{}}\ \},}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00389\ \ \ \ \ \};}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FSoftClassPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_af19b0f465e401bfc50398d463c7a50a8}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActorClass}}\ =\ \{\ \textcolor{stringliteral}{"{}ActorClass"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000010015,\ UECodeGen\_Private::EPropertyGenFlags::SoftClass,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ ActorClass),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_ae43a41c9935cf73a5ed6bd3a074c197b}{Z\_Construct\_UClass\_AActor\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActorClass\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActorClass\_MetaData)\ \};}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_OwnedTag\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Tags"{}}\ \},}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//GamePlayTags\ to\ decorate\ the\ item.\ Can\ be\ used\ to\ setup\ categories,\ types,\ filters\ or\ one-\/off\ tags\ for\ very\ specific\ items.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/ItemData/CItemData.h"{}}\ \},}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}GamePlayTags\ to\ decorate\ the\ item.\ Can\ be\ used\ to\ setup\ categories,\ types,\ filters\ or\ one-\/off\ tags\ for\ very\ specific\ items."{}}\ \},}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00402\ \ \ \ \ \};}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9d00a554c19a0cebc36c4248afa179e7}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_OwnedTag}}\ =\ \{\ \textcolor{stringliteral}{"{}OwnedTag"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010010000010015,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}},\ OwnedTag),\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a91532acfef32884f6b2e2a150779dd8c}{Z\_Construct\_UScriptStruct\_FGameplayTagContainer}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_OwnedTag\_MetaData),\ Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_OwnedTag\_MetaData)\ \};\ \textcolor{comment}{//\ 405371792}}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0c491e3477c3c8d013696fc66881bb8f}{Z\_Construct\_UClass\_UCItemData\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0f2bc4d51a3d162e8ed46e98ebf1b858}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItenName}},}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a570513c50142964b13000e749881c7a1}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemDescription}},}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a4abb9a18aea69289978be0e251e1b128}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_GrantsTags}},}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a737a249838031e0c08d738a2d7123d5a}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_BlockedTags}},}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9931157670c9e318612af0f377c7dfc8}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Icon}},}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae680fbdd6e59ef173d546c1e118188bb}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ItemType}},}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a87acfcbc19b9ba85d7795d62ced3ea8b}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality\_Underlying}},}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9391fffc2eb63d742078d7c5c119fd66}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_Quality}},}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a11bed2d637265a402ca2c20b5a3a671e}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_StackLimit}},}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a5c3aabea63660c94e35cf2f0fdb62bde}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses\_Inner}},}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a249dedacf072d20f4ec110b8a3c38768}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActionClasses}},}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_af19b0f465e401bfc50398d463c7a50a8}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_ActorClass}},}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a9d00a554c19a0cebc36c4248afa179e7}{Z\_Construct\_UClass\_UCItemData\_Statics::NewProp\_OwnedTag}},}
+\DoxyCodeLine{00419\ \ \ \ \ \};}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a5248f5723c10a23cfa9b0edab2a6f66a}{Z\_Construct\_UClass\_UCItemData\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCItemData>::IsAbstract,}
+\DoxyCodeLine{00422\ \ \ \ \ \};}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae647f2493e9ad2e59b566a25ee4001f5}{Z\_Construct\_UClass\_UCItemData\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \&UCItemData::StaticClass,}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0c491e3477c3c8d013696fc66881bb8f}{Z\_Construct\_UClass\_UCItemData\_Statics::PropPointers}},}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0c491e3477c3c8d013696fc66881bb8f}{Z\_Construct\_UClass\_UCItemData\_Statics::PropPointers}}),}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ 0x001000A0u,}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCItemData\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCItemData\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00437\ \ \ \ \ \};}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_a0c491e3477c3c8d013696fc66881bb8f}{Z\_Construct\_UClass\_UCItemData\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00439\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a2aa5e0497fc56b7f7308d15de6008865}{Z\_Construct\_UClass\_UCItemData}}()}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCItemData.OuterSingleton)}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCItemData.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_item_data___statics_ae647f2493e9ad2e59b566a25ee4001f5}{Z\_Construct\_UClass\_UCItemData\_Statics::ClassParams}});}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCItemData.OuterSingleton;}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a1ce8a0d6263437f372ea202269b03c7e}{StaticClass<UCItemData>}}()}
+\DoxyCodeLine{00448\ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCItemData::StaticClass();}
+\DoxyCodeLine{00450\ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \ \ UCItemData::UCItemData(\textcolor{keyword}{const}\ FObjectInitializer\&\ ObjectInitializer)\ :\ Super(ObjectInitializer)\ \{\}}
+\DoxyCodeLine{00452\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a002b2adfc218d13d3ec4c94d6ba1d869}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}});}
+\DoxyCodeLine{00453\ \ \ \ \ UCItemData::\string~UCItemData()\ \{\}}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics}}}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_a1924a3f9e7ab3880514f29971d78a982}{EnumInfo}}[];}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_ada83c4daa7b5119fe3b66589bd6e40ec}{ClassInfo}}[];}
+\DoxyCodeLine{00458\ \ \ \ \ \};}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_a1924a3f9e7ab3880514f29971d78a982}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::EnumInfo}}[]\ =\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \{\ EItemQuality\_StaticEnum,\ TEXT(\textcolor{stringliteral}{"{}EItemQuality"{}}),\ \&Z\_Registration\_Info\_UEnum\_EItemQuality,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FEnumReloadVersionInfo,\ 1124461778U)\ \},}
+\DoxyCodeLine{00461\ \ \ \ \ \};}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_ada83c4daa7b5119fe3b66589bd6e40ec}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_item_data_8gen_8cpp_a2aa5e0497fc56b7f7308d15de6008865}{Z\_Construct\_UClass\_UCItemData}},\ UCItemData::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCItemData"{}}),\ \&Z\_Registration\_Info\_UClass\_UCItemData,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}),\ 1423384445U)\ \},}
+\DoxyCodeLine{00464\ \ \ \ \ \};}
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_1303096108(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_ada83c4daa7b5119fe3b66589bd6e40ec}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_ada83c4daa7b5119fe3b66589bd6e40ec}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_a1924a3f9e7ab3880514f29971d78a982}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::EnumInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___sou5442a001c8e222e8df03fd540ff74a44_a1924a3f9e7ab3880514f29971d78a982}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_ItemData\_CItemData\_h\_Statics::EnumInfo}}));}
+\DoxyCodeLine{00469\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

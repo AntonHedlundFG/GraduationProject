@@ -1,0 +1,65 @@
+\doxysection{CAlice\+Test\+Character.\+h}
+\hypertarget{_c_alice_test_character_8h_source}{}\label{_c_alice_test_character_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/AliceTest/CAliceTestCharacter.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/AliceTest/CAliceTestCharacter.h}}
+\mbox{\hyperlink{_c_alice_test_character_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Character.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}InputAction.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}CAliceTestCharacter.generated.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }UInputMappingContext;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }UCameraComponent;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }USpringArmComponent;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }UCActionComponent;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ UCLASS()}
+\DoxyCodeLine{00016\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_alice_test_character}{ACAliceTestCharacter}}\ :\ public\ ACharacter}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_character}{ACAliceTestCharacter}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category=\textcolor{stringliteral}{"{}Input"{}})}
+\DoxyCodeLine{00025\ \ \ \ \ TObjectPtr<UInputMappingContext>\ AliceMapping;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category="{}Input"{})}
+\DoxyCodeLine{00028\ \ \ \ \ class\ UInputAction*\ AttackAction;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ UPROPERTY(VisibleAnywhere)}
+\DoxyCodeLine{00031\ \ \ \ \ TObjectPtr<USpringArmComponent>\ SpringArmComp;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ UPROPERTY(VisibleAnywhere)}
+\DoxyCodeLine{00036\ \ \ \ \ TObjectPtr<UCameraComponent>\ CameraComp;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Components"{})}
+\DoxyCodeLine{00039\ \ \ \ \ TObjectPtr<UCActionComponent>\ ActionComp;}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//Enhanced\ Input.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//Three\ parameter\ options\ available\ (FInputActionInstance,\ FInputActionValue,\ or\ none).}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ PrimaryAttack();}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Called\ when\ the\ game\ starts\ or\ when\ spawned}}
+\DoxyCodeLine{00047\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ PostInitializeComponents()\ override;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ public:\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Called\ every\ frame}}
+\DoxyCodeLine{00053\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ Tick(\textcolor{keywordtype}{float}\ DeltaTime)\ override;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Called\ to\ bind\ functionality\ to\ input}}
+\DoxyCodeLine{00056\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetupPlayerInputComponent(class\ UInputComponent*\ PlayerInputComponent)\ override;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \};}
+
+\end{DoxyCode}

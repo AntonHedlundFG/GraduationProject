@@ -1,0 +1,26 @@
+\doxysection{CGame\+State.\+cpp}
+\hypertarget{_c_game_state_8cpp_source}{}\label{_c_game_state_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/CGameState.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/CGameState.cpp}}
+\mbox{\hyperlink{_c_game_state_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_state_8h}{CGameState.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_random_component_8h}{Utility/CRandomComponent.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{class_a_c_game_state_a639a4c978002ddeb074d9d0782205e6a}{ACGameState::ACGameState}}()}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_state_abab5639e62ab474eacbd2b56a8542db6}{Random}}\ =\ CreateDefaultSubobject<UCRandomComponent>(TEXT(\textcolor{stringliteral}{"{}Random"{}}));}
+\DoxyCodeLine{00012\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00016\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00017\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_game_state}{ACGameState}},\ \mbox{\hyperlink{class_a_c_game_state_aaef3d835663345186a830619b7ed8c37}{TurnOrder}});}
+\DoxyCodeLine{00018\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_game_state}{ACGameState}},\ \mbox{\hyperlink{class_a_c_game_state_abab5639e62ab474eacbd2b56a8542db6}{Random}});}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+
+\end{DoxyCode}

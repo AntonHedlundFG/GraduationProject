@@ -1,0 +1,48 @@
+\doxysection{CGrid\+Content.\+cpp}
+\hypertarget{_c_grid_content_8cpp_source}{}\label{_c_grid_content_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/GridContent/CGridContent.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/GridContent/CGridContent.cpp}}
+\mbox{\hyperlink{_c_grid_content_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_content_8h}{GridContent/CGridContent.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ ACGridContent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00008\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00009\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}},\ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}});}
+\DoxyCodeLine{00010\ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \mbox{\hyperlink{class_a_c_grid_content_a62dbadb52eba92aec406dfafcc8db732}{ACGridContent::ACGridContent}}()}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ PrimaryActorTick.bCanEverTick\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00015\ \ \ \ \ bReplicates\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_content_a2a954f696a7d5e3634db0ae93ad58a38}{ACGridContent::SetTile}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}})}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}}-\/>SetContent(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}}\ =\ inTile;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}}-\/>\mbox{\hyperlink{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d}{SetContent}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00028\ \ \ \ \ SetActorLocation(inTile-\/>GetActorLocation()\ +\ FVector(0,0,100));}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_content_a9e98b4533e2c2c1351da62dbf921b253}{ACGridContent::BeginPlay}}()}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_content_a66266cd92e4d4fdd1a58530b6fbfb3c0}{ACGridContent::Tick}}(\textcolor{keywordtype}{float}\ DeltaTime)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ Super::Tick(DeltaTime);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+
+\end{DoxyCode}

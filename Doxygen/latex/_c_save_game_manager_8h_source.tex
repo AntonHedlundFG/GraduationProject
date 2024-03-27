@@ -1,0 +1,71 @@
+\doxysection{CSave\+Game\+Manager.\+h}
+\hypertarget{_c_save_game_manager_8h_source}{}\label{_c_save_game_manager_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSaveGameManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSaveGameManager.h}}
+\mbox{\hyperlink{_c_save_game_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_random_component_8h}{Utility/CRandomComponent.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CSaveGameManager.generated.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ UCLASS(BlueprintType)}
+\DoxyCodeLine{00008\ class\ \mbox{\hyperlink{class_u_c_save_game_manager}{UCSaveGameManager}}\ :\ public\ UObject}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00011\ \ \ \ \ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ Singleton\ Accessor}}
+\DoxyCodeLine{00014\ \ \ \ \ UFUNCTION(BlueprintPure,\ Category\ =\ \textcolor{stringliteral}{"{}SaveGameManager"{}},\ meta\ =\ (DisplayName\ =\ \textcolor{stringliteral}{"{}Get\ Save\ Game\ Manager"{}}))}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_u_c_save_game_manager}{UCSaveGameManager}}*\ Get();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Register\ Savable\ Object}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_save_game_manager_a24a11ea8a4147b35beaeb54fa0fd3461}{RegisterSavable}}(\mbox{\hyperlink{class_i_c_savable}{ICSavable}}*\ Savable)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Savables.AddUnique(Savable);}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ UnRegister\ Savable\ Object}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_save_game_manager_aeab042099954e0b624541e221580871b}{UnRegisterSavable}}(\mbox{\hyperlink{class_i_c_savable}{ICSavable}}*\ Savable)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ Savables.RemoveSingle(Savable);}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Save\ Game}}
+\DoxyCodeLine{00030\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ SaveGame();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Load\ Game}}
+\DoxyCodeLine{00034\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}*\ LoadGame();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Get\ Save\ Game\ Instance}}
+\DoxyCodeLine{00038\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}*\ GetSaveGameInstance();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Trigger\ Save\ Event\ on\ all\ Savable\ Objects}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ TriggerSaveEvent();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Trigger\ Load\ Event\ on\ all\ Savable\ Objects}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ TriggerLoadEvent();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Registered\ Savable\ Objects}}
+\DoxyCodeLine{00050\ \ \ \ \ TArray<ICSavable*>\ \mbox{\hyperlink{class_u_c_save_game_manager_ab6e5e4f8e4b2a594d13b30c47a385f49}{Savables}};}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Singleton\ Instance}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_u_c_save_game_manager}{UCSaveGameManager}}*\ \mbox{\hyperlink{class_u_c_save_game_manager_ab6c9b906df9bf1488236131cf2a64a64}{Instance}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Save\ Game\ Instance}}
+\DoxyCodeLine{00056\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game}{UCSaveGame}}*\ SaveGameInstance;}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Save\ Slot\ Name}}
+\DoxyCodeLine{00060\ \ \ \ \ FString\ SaveSlot\ =\ "{}SaveSlot"{};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ User\ Index}}
+\DoxyCodeLine{00063\ \ \ \ \ int32\ UserIndex\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \};}
+
+\end{DoxyCode}

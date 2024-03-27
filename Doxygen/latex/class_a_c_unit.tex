@@ -1,0 +1,134 @@
+\doxysection{ACUnit Class Reference}
+\hypertarget{class_a_c_unit}{}\label{class_a_c_unit}\index{ACUnit@{ACUnit}}
+
+
+{\ttfamily \#include $<$CUnit.\+h$>$}
+
+Inheritance diagram for ACUnit\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_c_unit}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_unit_ace2f38350b55ba497a5b7b301c759dbf}{ACUnit}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_c_unit_a10d13088923c88ea274774e688e59e21}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_c_unit_acc664600c473c532db3b3e00f97ad34a}{End\+Play}} (EEnd\+Play\+Reason\+::\+Type Reason) override
+\item 
+bool \mbox{\hyperlink{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}{Is\+Controlled\+By}} (AController \texorpdfstring{$\ast$}{*}in\+Controller)
+\item 
+\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538}{Get\+Item\+In\+Slot}} (\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Slot)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_content_a62dbadb52eba92aec406dfafcc8db732}{ACGrid\+Content}} ()
+\item 
+\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_grid_content_a8c3ac85209cfd0f13d80d482e4c34286}{Get\+Tile}} () const
+\item 
+void \mbox{\hyperlink{class_a_c_grid_content_a2a954f696a7d5e3634db0ae93ad58a38}{Set\+Tile}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Tile)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8 \mbox{\hyperlink{class_a_c_unit_a251cef1106ee0a760ab99f7e3ec3620f}{Controlling\+Player\+Index}} = 0
+\item 
+TObject\+Ptr$<$ UCInventory\+Component $>$ \mbox{\hyperlink{class_a_c_unit_aadcdb77e46c8d5c5a0616a10c16b8cea}{Inventory}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_c_unit_aef5908601630b1d991488485b885b5cb}{On\+Health\+Changed}} (AActor \texorpdfstring{$\ast$}{*}Instigator\+Actor, UCAttribute\+Component \texorpdfstring{$\ast$}{*}Owning\+Comp, float New\+Health, float Delta)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_c_grid_content_a66266cd92e4d4fdd1a58530b6fbfb3c0}{Tick}} (float Delta\+Time) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ UCAttribute\+Component $>$ \mbox{\hyperlink{class_a_c_unit_a620608185341a40f082454e8dc99b6e9}{Attribute\+Comp}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} $>$ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_c_unit_ace2f38350b55ba497a5b7b301c759dbf}\label{class_a_c_unit_ace2f38350b55ba497a5b7b301c759dbf} 
+\index{ACUnit@{ACUnit}!ACUnit@{ACUnit}}
+\index{ACUnit@{ACUnit}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{ACUnit()}{ACUnit()}}
+{\footnotesize\ttfamily ACUnit\+::\+ACUnit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_unit_a10d13088923c88ea274774e688e59e21}\label{class_a_c_unit_a10d13088923c88ea274774e688e59e21} 
+\index{ACUnit@{ACUnit}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACUnit\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_c_grid_content_a9e98b4533e2c2c1351da62dbf921b253}{ACGrid\+Content}}.
+
+\Hypertarget{class_a_c_unit_acc664600c473c532db3b3e00f97ad34a}\label{class_a_c_unit_acc664600c473c532db3b3e00f97ad34a} 
+\index{ACUnit@{ACUnit}!EndPlay@{EndPlay}}
+\index{EndPlay@{EndPlay}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{EndPlay()}{EndPlay()}}
+{\footnotesize\ttfamily void ACUnit\+::\+End\+Play (\begin{DoxyParamCaption}\item[{EEnd\+Play\+Reason\+::\+Type}]{Reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538}\label{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538} 
+\index{ACUnit@{ACUnit}!GetItemInSlot@{GetItemInSlot}}
+\index{GetItemInSlot@{GetItemInSlot}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{GetItemInSlot()}{GetItemInSlot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*} ACUnit\+::\+Get\+Item\+In\+Slot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Slot }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}\label{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202} 
+\index{ACUnit@{ACUnit}!IsControlledBy@{IsControlledBy}}
+\index{IsControlledBy@{IsControlledBy}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{IsControlledBy()}{IsControlledBy()}}
+{\footnotesize\ttfamily bool ACUnit\+::\+Is\+Controlled\+By (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_unit_aef5908601630b1d991488485b885b5cb}\label{class_a_c_unit_aef5908601630b1d991488485b885b5cb} 
+\index{ACUnit@{ACUnit}!OnHealthChanged@{OnHealthChanged}}
+\index{OnHealthChanged@{OnHealthChanged}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{OnHealthChanged()}{OnHealthChanged()}}
+{\footnotesize\ttfamily void ACUnit\+::\+On\+Health\+Changed (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator\+Actor,  }\item[{UCAttribute\+Component \texorpdfstring{$\ast$}{*}}]{Owning\+Comp,  }\item[{float}]{New\+Health,  }\item[{float}]{Delta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_unit_a620608185341a40f082454e8dc99b6e9}\label{class_a_c_unit_a620608185341a40f082454e8dc99b6e9} 
+\index{ACUnit@{ACUnit}!AttributeComp@{AttributeComp}}
+\index{AttributeComp@{AttributeComp}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{AttributeComp}{AttributeComp}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UCAttribute\+Component$>$ ACUnit\+::\+Attribute\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_unit_a251cef1106ee0a760ab99f7e3ec3620f}\label{class_a_c_unit_a251cef1106ee0a760ab99f7e3ec3620f} 
+\index{ACUnit@{ACUnit}!ControllingPlayerIndex@{ControllingPlayerIndex}}
+\index{ControllingPlayerIndex@{ControllingPlayerIndex}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{ControllingPlayerIndex}{ControllingPlayerIndex}}
+{\footnotesize\ttfamily uint8 ACUnit\+::\+Controlling\+Player\+Index = 0}
+
+\Hypertarget{class_a_c_unit_aadcdb77e46c8d5c5a0616a10c16b8cea}\label{class_a_c_unit_aadcdb77e46c8d5c5a0616a10c16b8cea} 
+\index{ACUnit@{ACUnit}!Inventory@{Inventory}}
+\index{Inventory@{Inventory}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{Inventory}{Inventory}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UCInventory\+Component$>$ ACUnit\+::\+Inventory}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Grid\+Content/\mbox{\hyperlink{_c_unit_8h}{CUnit.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Grid\+Content/\mbox{\hyperlink{_c_unit_8cpp}{CUnit.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,78 @@
+\doxysection{CAction\+Component.\+h}
+\hypertarget{_c_action_component_8h_source}{}\label{_c_action_component_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CActionComponent.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CActionComponent.h}}
+\mbox{\hyperlink{_c_action_component_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Components/ActorComponent.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameplayTagContainer.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CActionComponent.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_action}{UCAction}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \mbox{\hyperlink{_c_action_component_8h_ae32960478724986c8c2d49d79e650021}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_TwoParams}}(FOnActionStateChanged,\ UCActionComponent*,\ OwningComp,\ \mbox{\hyperlink{class_u_c_action}{UCAction}}*,\ Action);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ UCLASS(\ ClassGroup=(Custom),\ meta=(BlueprintSpawnableComponent)\ )}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }TACTICALROGUELITE\_API\ UCActionComponent\ :\ \textcolor{keyword}{public}\ UActorComponent}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ public:}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//Array\ of\ gameplaytags.\ Contains\ useful\ utility\ function\ on\ it\ like\ "{}HasTag"{},\ "{}HasAnyOfTheseTags"{}.}}
+\DoxyCodeLine{00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00021\ \ \ \ \ FGameplayTagContainer\ ActiveGameplayTags;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ AddAction(AActor*\ Instigator,\ TSubclassOf<\mbox{\hyperlink{class_u_c_action}{UCAction}}>\ ActionClass);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveAction(\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ ActionToRemove);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//Returns\ first\ occurrence\ of\ action\ matching\ the\ class\ provided.}}
+\DoxyCodeLine{00030\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_u_c_action}{UCAction}}*\ GetAction(TSubclassOf<\mbox{\hyperlink{class_u_c_action}{UCAction}}>\ ActionClass)\ const;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ StartActionByName(AActor*\ Instigator,\ FGameplayTag\ ActionName);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ StopActionByName(AActor*\ Instigator,\ FGameplayTag\ ActionName);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ UCActionComponent();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ protected:}
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION(Server,\ Reliable)}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ ServerStartAction(AActor*\ Instigator,\ FGameplayTag\ ActionName);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ UFUNCTION(Server,\ Reliable)}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ ServerStopAction(AActor*\ Instigator,\ FGameplayTag\ ActionName);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//Granted\ abilities\ on\ game\ start.}}
+\DoxyCodeLine{00049\ \ \ \ \ UPROPERTY(EditAnywhere,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00050\ \ \ \ \ TArray<TSubclassOf<\mbox{\hyperlink{class_u_c_action}{UCAction}}>>\ DefaultActions;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Replicated)}
+\DoxyCodeLine{00053\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_u_c_action}{UCAction}}>>\ Actions;}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ EndPlay(const\ EEndPlayReason::Type\ EndPlayReason)\ override;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ public:}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00062\ \ \ \ \ FOnActionStateChanged\ OnActionStarted;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00065\ \ \ \ \ FOnActionStateChanged\ OnActionStopped;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ ReplicateSubobjects(class\ UActorChannel*\ Channel,\ class\ FOutBunch*\ Bunch,\ FReplicationFlags*\ RepFlags)\ override;}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ TickComponent(\textcolor{keywordtype}{float}\ DeltaTime,\ ELevelTick\ TickType,\ FActorComponentTickFunction*\ ThisTickFunction)\ override;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \};}
+
+\end{DoxyCode}

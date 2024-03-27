@@ -1,0 +1,29 @@
+\doxysection{CCombat\+Logger.\+cpp}
+\hypertarget{_c_combat_logger_8cpp_source}{}\label{_c_combat_logger_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/CCombatLogger.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/CCombatLogger.cpp}}
+\mbox{\hyperlink{_c_combat_logger_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_combat_logger_8h}{Utility/Logging/CCombatLogger.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{Utility/Logging/CLogManager.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ FString\ \mbox{\hyperlink{class_u_c_combat_logger_a9e105a9a9a9568c21f7e8a04cac5bf96}{UCCombatLogger::Format}}(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category,\ FString\ Message)}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ FString\ StyleBegin\ =\ \mbox{\hyperlink{_c_combat_logger_8h_afdaa9f4369955b53afba2d18dbae51b5}{ToCombatLogStyleBegin}}(Category);}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{return}\ StyleBegin\ +\ Message\ +\ ((Category\ !=\ ECombatLogCategory::DEFAULT)?\mbox{\hyperlink{class_u_c_combat_logger_ac7286903f083b4fe9f6c568f24d3d449}{StyleEnd}}:\ \textcolor{stringliteral}{"{}"{}});\ }
+\DoxyCodeLine{00011\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ FString\ \mbox{\hyperlink{class_u_c_combat_logger_aaf7d9ff4188ef8985eae40d30291cafd}{UCCombatLogger::FormatIT}}(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category,\ FString\ Instigator,\ FString\ Target,\ FString\ Message)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ FString\ StyleBegin\ =\ \mbox{\hyperlink{_c_combat_logger_8h_afdaa9f4369955b53afba2d18dbae51b5}{ToCombatLogStyleBegin}}(Category);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ \ StyleBegin\ +\ Instigator\ +\ Message\ +\ Target\ +\ ((Category\ !=\ ECombatLogCategory::DEFAULT)?\mbox{\hyperlink{class_u_c_combat_logger_ac7286903f083b4fe9f6c568f24d3d449}{StyleEnd}}:\ \textcolor{stringliteral}{"{}"{}});\ }
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_combat_logger_abf5025efe4fd5f8e68ed9aa4b221b55a}{UCCombatLogger::Log}}(FString\ Message,\ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ Category\ =\ ECombatLogCategory::DEFAULT)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ FString\ formattedText\ =\ \mbox{\hyperlink{class_u_c_combat_logger_a9e105a9a9a9568c21f7e8a04cac5bf96}{Format}}(Category,Message);}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_u_c_log_manager_ae7a9feeb6bc8d44da5cad7a2f6fe99fc}{UCLogManager::Log}}(ELogCategory::LC\_Gameplay,formattedText);}
+\DoxyCodeLine{00023\ \}}
+
+\end{DoxyCode}

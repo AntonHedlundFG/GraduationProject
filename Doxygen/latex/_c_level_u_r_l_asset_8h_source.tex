@@ -1,0 +1,93 @@
+\doxysection{CLevel\+URLAsset.\+h}
+\hypertarget{_c_level_u_r_l_asset_8h_source}{}\label{_c_level_u_r_l_asset_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/CLevelURLAsset.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/CLevelURLAsset.h}}
+\mbox{\hyperlink{_c_level_u_r_l_asset_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Engine/DataAsset.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Misc/Optional.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}CLevelURLAsset.generated.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ NUMBER\_OF\_PLAYERS\ FString("{}PlayerCount"{})}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*\ This\ struct\ can\ be\ expanded\ to\ include\ more\ settings.\ }}
+\DoxyCodeLine{00013\ \textcolor{comment}{*\ Make\ sure\ the\ settings\ are\ implemented\ just\ like\ NumberOfPlayers}}
+\DoxyCodeLine{00014\ \textcolor{comment}{*\ 1.\ Declare\ the\ UPROPERTY().\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{*\ 2.\ \#define\ a\ macro\ for\ its\ name,\ it\ will\ make\ sure\ there\ are\ no\ spelling\ errors\ in\ FStrings.\ }}
+\DoxyCodeLine{00016\ \textcolor{comment}{*\ 3.\ Update\ GetOptionsStringAppendage()\ to\ AddOption()\ the\ new\ property.\ It's\ good\ practice\ to\ not\ include\ un-\/assigned\ properties.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{*\ After\ these\ steps\ are\ done,\ when\ you\ load\ a\ level\ with\ these\ settings,\ you\ can\ fetch\ the\ stored\ properties}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*\ in\ the\ GameMode\ by\ using\ UGameplayStatics::GetIntOption(OptionsString,\ YOUR\_MACRO,\ 0),\ and\ similar\ functions.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ USTRUCT(BlueprintType)}
+\DoxyCodeLine{00021\ struct\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\ NumberOfPlayers\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//This\ string\ can\ be\ attached\ to\ the\ URL\ of\ the\ level\ you\ load\ to\ attach\ relevant\ settings.}}
+\DoxyCodeLine{00031\ \ \ \ \ FString\ GetOptionsStringAppendage()}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ FString\ ReturnString;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NumberOfPlayers\ >\ 0)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ AddOption(ReturnString,\ \mbox{\hyperlink{_c_level_u_r_l_asset_8h_a26b673bcfbead68dcbf4872df6970456}{NUMBER\_OF\_PLAYERS}},\ FString::FromInt(FMath::Clamp(NumberOfPlayers,\ 1,\ 4)));}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnString;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_f_level_load_settings_a9042e58f4da63af0f80d36dad2cb006f}{AddOption}}(FString\&\ outOptionList,\ \textcolor{keyword}{const}\ FString\&\ inOptionName,\ \textcolor{keyword}{const}\ FString\&\ inValue\ =\ FString())}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ outOptionList.Append(FString(\textcolor{stringliteral}{"{}?"{}})\ +\ inOptionName);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inValue.IsEmpty())}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ outOptionList.Append(FString(\textcolor{stringliteral}{"{}="{}})\ +\ inValue);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ USTRUCT(BlueprintType)}
+\DoxyCodeLine{00051\ struct\ \mbox{\hyperlink{struct_f_level_info}{FLevelInfo}}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//Arbitrary\ name\ for\ level,\ which\ can\ then\ be\ found\ in\ the\ CLevelURLAsset\ by\ using\ URLOfLevelByName()}}
+\DoxyCodeLine{00058\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{00059\ \ \ \ \ FString\ LevelName;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//This\ should\ be\ the\ path\ of\ the\ level.\ These\ read\ like:\ "{}\(\backslash\)Game\(\backslash\)Levels\(\backslash\)TestLevels\(\backslash\)SomeLevel"{}}}
+\DoxyCodeLine{00062\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadOnly)}
+\DoxyCodeLine{00063\ \ \ \ \ FString\ LevelLoadPath;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ UCLASS(Blueprintable)}
+\DoxyCodeLine{00071\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset}{UCLevelURLAsset}}\ :\ public\ UDataAsset}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00078\ \ \ \ \ FString\ URLOfLevel(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_f_level_info}{FLevelInfo}}\&\ inLevelRef,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings\ =\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}());}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00081\ \ \ \ \ FString\ URLOfLevelByIndex(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ inLevelIndex,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings\ =\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}());}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00084\ \ \ \ \ FString\ URLOfLevelByName(\textcolor{keyword}{const}\ FString\&\ inName,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings\ =\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}());}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadonly,\ Category\ =\ \textcolor{stringliteral}{"{}Level\ Loading"{}})}
+\DoxyCodeLine{00087\ \ \ \ \ TArray<\mbox{\hyperlink{struct_f_level_info}{FLevelInfo}}>\ Levels;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ }
+\DoxyCodeLine{00090\ \};}
+
+\end{DoxyCode}

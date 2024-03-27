@@ -1,0 +1,35 @@
+\doxysection{CDeath\+Consequence.\+h}
+\hypertarget{_c_death_consequence_8h_source}{}\label{_c_death_consequence_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CDeathConsequence.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CDeathConsequence.h}}
+\mbox{\hyperlink{_c_death_consequence_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_consequence_8h}{CommandPattern/CConsequence.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CDeathConsequence.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ UCLASS()}
+\DoxyCodeLine{00013\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_death_consequence}{UCDeathConsequence}}\ :\ public\ \mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00016\ \ \ \ \ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ TObjectPtr<class\ ACUnit>\ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ ExecuteConsequence()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UndoConsequence()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ FString\ \mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_u_c_death_consequence_a5bbdbb90d4db8a8f2950a696d7663cae}{QueueIndex}};}
+\DoxyCodeLine{00028\ \ \ \ \ FVector\ \mbox{\hyperlink{class_u_c_death_consequence_a0bd8a4358b48680ce27d9651b0e5fb7d}{DeathLocation}};}
+\DoxyCodeLine{00029\ \ \ \ \ TObjectPtr<class\ ACGameState>\ \mbox{\hyperlink{class_u_c_death_consequence_a615825f0b23c319fbcaa7401fc71b34b}{GameState}};}
+\DoxyCodeLine{00030\ \ \ \ \ TObjectPtr<class\ ACGridTile>\ \mbox{\hyperlink{class_u_c_death_consequence_a5b6123bc1898e812c8e29b1eeca7b0b3}{Tile}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

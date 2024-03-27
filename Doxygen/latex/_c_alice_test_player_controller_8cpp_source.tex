@@ -1,0 +1,78 @@
+\doxysection{CAlice\+Test\+Player\+Controller.\+cpp}
+\hypertarget{_c_alice_test_player_controller_8cpp_source}{}\label{_c_alice_test_player_controller_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/AliceTest/CAliceTestPlayerController.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/AliceTest/CAliceTestPlayerController.cpp}}
+\mbox{\hyperlink{_c_alice_test_player_controller_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_alice_test_player_controller_8h}{AliceTest/CAliceTestPlayerController.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Kismet/GameplayStatics.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CAliceTestPlayerController)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a5782ab5d2f5353e502244ed49b4eb3f4}{ACAliceTestPlayerController::TogglePauseMenu}}()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}\ \&\&\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}-\/>IsInViewport())}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}-\/>RemoveFromParent();}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ bShowMouseCursor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ SetInputMode(FInputModeGameOnly());}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single-\/player\ only}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetWorld()-\/>IsNetMode(NM\_Standalone))}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ UGameplayStatics::SetGamePaused(\textcolor{keyword}{this},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}\ =\ CreateWidget<UUserWidget>(\textcolor{keyword}{this},\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_aab8a1f2090bab7c7ad35d02050d749f5}{PauseMenuClass}});}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}})}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a66d819c7d0300dbd08923cbcd60c7bf1}{PauseMenuInstance}}-\/>AddToViewport(100);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ bShowMouseCursor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ SetInputMode(FInputModeUIOnly());}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single-\/player\ only}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetWorld()-\/>IsNetMode(NM\_Standalone))}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ UGameplayStatics::SetGamePaused(\textcolor{keyword}{this},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_adf549bbf766005bcd920d315cc404638}{ACAliceTestPlayerController::SetupInputComponent}}()}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ Super::SetupInputComponent();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//TODO:\ replace\ with\ Enhanced\ Input.}}
+\DoxyCodeLine{00050\ \ \ \ \ InputComponent-\/>BindAction(\textcolor{stringliteral}{"{}PauseMenu"{}},\ IE\_Pressed,\ \textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_a_c_alice_test_player_controller_a5782ab5d2f5353e502244ed49b4eb3f4}{ACAliceTestPlayerController::TogglePauseMenu}});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a1f13fffdc2639deb054a42718291b04a}{ACAliceTestPlayerController::SetPawn}}(APawn*\ InPawn)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ Super::SetPawn(InPawn);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a80f2d350cd46ac0b7491e3c004099793}{OnPawnChanged}}.Broadcast(InPawn);}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a73a041973ef1cf2c737ee0910858bd2e}{ACAliceTestPlayerController::BeginPlayingState}}()}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_aff5b0a2955d7865ec0f44c4d7faf527b}{BlueprintBeginPlayingState}}();}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a35cba0db294a3bee9964994ae5f2a5c3}{ACAliceTestPlayerController::OnRep\_PlayerState}}()}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ Super::OnRep\_PlayerState();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_a_c_alice_test_player_controller_a7831dc60c328543901af5bea7014366b}{OnPlayerStateReceived}}.Broadcast(PlayerState);}
+\DoxyCodeLine{00072\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,72 @@
+\doxysection{CAction\+Effect.\+cpp}
+\hypertarget{_c_action_effect_8cpp_source}{}\label{_c_action_effect_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Effects/CActionEffect.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Effects/CActionEffect.cpp}}
+\mbox{\hyperlink{_c_action_effect_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//TODO:\ Time\ not\ relevant\ in\ this\ project.\ Turn\ into\ 'turns'.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//TODO:\ Impl\ gameplaycues\ to\ handle\ visuals.}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_effect_8h}{Effects/CActionEffect.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_component_8h}{Actions/CActionComponent.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameFramework/GameStateBase.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ UE\_INLINE\_GENERATED\_CPP\_BY\_NAME(CActionEffect)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \mbox{\hyperlink{class_u_c_action_effect_adc70d14d5474de18d145088bd1770240}{UCActionEffect::UCActionEffect}}()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_a1d8ab79305504d38d364b14e5515f914}{bAutoStart}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_effect_a19dd00dc0237bfe5e8097922f1ca64f2}{UCActionEffect::StartAction\_Implementation}}(AActor*\ Instigator)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ Super::StartAction\_Implementation(Instigator);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}}\ >\ 0.0f)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ FTimerDelegate\ Delegate;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ Delegate.BindUFunction(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}StopAction"{}},\ Instigator);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetTimerManager().SetTimer(\mbox{\hyperlink{class_u_c_action_effect_aec8fe33fa355bc96db435771a2aa6c56}{DurationHandle}},\ Delegate,\ \mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980}{Period}}\ >\ 0.0f)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ FTimerDelegate\ Delegate;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ Delegate.BindUFunction(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}ExecuteEffect"{}},\ Instigator);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetTimerManager().SetTimer(\mbox{\hyperlink{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac}{PeriodHandle}},\ Delegate,\ \mbox{\hyperlink{class_u_c_action_effect_a5d26f459f25f2b996b1e1cafb0e23980}{Period}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_action_effect_a41fd3d0bafc6f01e623c8f5a8e3e6823}{UCActionEffect::StopAction\_Implementation}}(AActor*\ Instigator)}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetTimerManager().GetTimerRemaining(\mbox{\hyperlink{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac}{PeriodHandle}})\ <\ KINDA\_SMALL\_NUMBER)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect_a4d73dd3b873245814eab1548f8ba65fd}{ExecuteEffect}}(Instigator);}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ Super::StopAction\_Implementation(Instigator);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetTimerManager().ClearTimer(\mbox{\hyperlink{class_u_c_action_effect_ab62e34695028a888b1885b65b000f1ac}{PeriodHandle}});}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetTimerManager().ClearTimer(\mbox{\hyperlink{class_u_c_action_effect_aec8fe33fa355bc96db435771a2aa6c56}{DurationHandle}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ UCActionComponent*\ Comp\ =\ \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{GetOwningComponent}}();}
+\DoxyCodeLine{00049\ \ \ \ \ Comp-\/>RemoveAction(\textcolor{keyword}{this});}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_u_c_action_effect_a4697ae099c5f538de14cbeb35bee2c0d}{UCActionEffect::GetTimeRemaining}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//Possibly\ nullptr\ early\ on\ if\ joining\ as\ a\ client\ in\ multiplayer(server\ spawns\ GameState\ and\ replicates\ the\ actor\ instance\ to\ clients).}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (AGameStateBase*\ GS\ =\ \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{GetWorld}}()-\/>GetGameState<AGameStateBase>())}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ EndTime\ =\ \mbox{\hyperlink{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}{TimeStarted}}\ +\ \mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EndTime\ -\/\ GS-\/>GetServerWorldTimeSeconds();}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_action_effect_a9e2685eb2cebebdd165795fea7bc3593}{Duration}};}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ UCActionEffect::ExecuteEffect\_Implementation(AActor*\ Instigator)\ \{\}}
+
+\end{DoxyCode}
