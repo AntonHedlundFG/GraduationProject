@@ -39,11 +39,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
 	TObjectPtr<UCInventoryComponent> Inventory;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UCItem> TemporaryItemBoots;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UCItem> TemporaryItemWeapon;
+	
 	// ----------------------------------------------------------------
 
 
