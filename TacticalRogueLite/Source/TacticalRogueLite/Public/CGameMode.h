@@ -70,12 +70,18 @@ public:
 protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<ACGameState> GameStateRef;
-	
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid|Spawner")
 	TSubclassOf<ACGridSpawner> SpawnerClass;
 	UPROPERTY(BlueprintReadOnly, Category = "Grid|Spawner")
 	TObjectPtr<ACGridSpawner> Spawner;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
+	TArray<ACUnit*> AllUnits;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
+	TArray<ACUnit*> HeroUnits;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
+	TArray<ACUnit*> EnemyUnits;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
 	TArray<UCCommand*> CommandList;
