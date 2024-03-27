@@ -15,3 +15,24 @@ enum class EItemSlots : uint8
 	EIS_Ring	UMETA(DisplayName = "Ring"),
 	EIS_MAX		UMETA(Hidden)
 };
+
+inline FString ToString(EItemSlots Slot)
+{
+	switch(Slot)
+	{
+	case EItemSlots::EIS_None:
+		return "None";
+	case EItemSlots::EIS_Boots:
+		return "Boots";
+	case EItemSlots::EIS_Weapon:
+		return "Weapon";
+	case EItemSlots::EIS_Body:
+		return "Body Armor";
+	case EItemSlots::EIS_Helmet:
+		return "Helmet";
+	case EItemSlots::EIS_Ring:
+		return "Ring";
+	default:
+		return "Invalid";
+	}
+}
