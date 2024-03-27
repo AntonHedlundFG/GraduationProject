@@ -13,6 +13,7 @@
 #include "Grid/CGridSpawner.h"
 #include "CommandPattern/CConsequence.h"
 #include "Utility/Logging/CLogManager.h"
+#include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -57,12 +58,17 @@ void ACGameMode::BeginPlay()
 
 void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
 {
-	if (CommandList.IsEmpty())
+	if (!CommandList.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Consequence can't be registered with empty CommandLilst"));
-		return;
+		CommandList.Last()->StoreConsequence(inConsequence);
 	}
-	CommandList.Last()->StoreConsequence(inConsequence);
+	else if (!CommandHistory.IsEmpty())
+	{
+		//This might happen if a consequence is triggered at the start of a turn when no command has been 
+		//executed yet. If so, we store it in the previous turn's last command to make sure its registered 
+		//somewhere, at least.
+		CommandHistory.Last()->StoreConsequence(inConsequence);
+	}
 	inConsequence->ExecuteConsequence();
 }
 
@@ -180,6 +186,12 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
 	GameStateRef->OnRep_TurnOrder();
+
+	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
+	if (Subsystem)
+	{
+		Subsystem->NextTurn(CurrentUnit, GameStateRef->TurnOrder[0]);
+	}
 
 	//Transfer all commands this turn into the command history
 	for (UCCommand* Command : CommandList)

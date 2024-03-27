@@ -63,6 +63,8 @@ public:
 	/// Should work just like SetTimer in the usual FTimerManager, except
 	/// instead of using floats for duration, we use integers to describe
 	/// number of turns until activation.
+	/// Subscribe to the OnTurnTimerExecute delegate in the FTurnTimerHandle
+	/// to handle callbacks when the timer activates.
 	/// </summary>
 	/// <param name="InOutHandle"> Timer Handle, can be used to ClearTimer()</param>
 	/// <param name="InNumberOfTurns">How many turns until activation</param>
@@ -82,7 +84,8 @@ public:
 
 protected:
 
-	//This is called by the GameMode to move the timer forward.
+	// This is called by the GameMode to move the timer forward. 
+	// Do not call this manually
 	void NextTurn(const ACUnit* PreviousUnit, const ACUnit* NextUnit);
 
 	TMap<uint32, FTurnTimerHandle*> ActiveTurnTimers;
