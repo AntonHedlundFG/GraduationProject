@@ -50,7 +50,7 @@ protected:
 	TObjectPtr<UCItem> Helmet;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Ring;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Passives")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
 	TArray<UCItem*> AllItems;
 	
 };

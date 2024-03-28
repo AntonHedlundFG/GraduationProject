@@ -1,0 +1,311 @@
+\doxysection{FLog\+Manager.\+cpp}
+\hypertarget{_f_log_manager_8cpp_source}{}\label{_f_log_manager_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/FLogManager.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/Logging/FLogManager.cpp}}
+\mbox{\hyperlink{_f_log_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_log_manager_8h}{Utility/Logging/FLogManager.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ region\ Static\ Member\ Definitions}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Define\ the\ static\ members}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Log\ Manager}}
+\DoxyCodeLine{00008\ FString\ FLogManager::LogFilePath;}
+\DoxyCodeLine{00009\ FArchive*\ FLogManager::LogFile\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00010\ std::mutex\ FLogManager::LogMutex;}
+\DoxyCodeLine{00011\ std::mutex\ FLogManager::WorkerMutex;}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{bool}\ FLogManager::bIsWorkerDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00013\ TArray<FString>\ FLogManager::SessionLogFilePaths;}
+\DoxyCodeLine{00014\ std::queue<FString>\ FLogManager::LogQueue;}
+\DoxyCodeLine{00015\ std::mutex\ FLogManager::QueueMutex;}
+\DoxyCodeLine{00016\ std::condition\_variable\ FLogManager::WorkerDoneCondition;}
+\DoxyCodeLine{00017\ std::condition\_variable\ FLogManager::LogCondition;}
+\DoxyCodeLine{00018\ std::thread\ FLogManager::LogThread;}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{bool}\ FLogManager::bIsRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Recent\ Log\ Entries}}
+\DoxyCodeLine{00022\ std::vector<std::pair<int64,\ FString>>\ FLogManager::RecentLogEntries;}
+\DoxyCodeLine{00023\ std::unordered\_map<int64,\ size\_t>\ FLogManager::RecentLogIndexMap;}
+\DoxyCodeLine{00024\ std::mutex\ FLogManager::RecentLogMutex;}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{size\_t}\ FLogManager::NextLogIndex\ =\ 0;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00030\ FLogManager::FLogManager()}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_ac3e798abbaf50dda3b1d893cfc81e9c9}{Initialize}}();}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00036\ FLogManager::\string~FLogManager()}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a0842189e7c8d5126b58a162b2697306f}{ShutDown}}();}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Adds\ a\ log\ message\ to\ the\ queue\ for\ processing}}
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a8ab8561d96215d968da33019641682ab}{FLogManager::Log}}(\textcolor{keyword}{const}\ FString\&\ Message)}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ std::lock\_guard\ Lock(QueueMutex);}
+\DoxyCodeLine{00045\ \ \ \ \ LogQueue.push(Message);}
+\DoxyCodeLine{00046\ \ \ \ \ LogCondition.notify\_one();}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Reads\ all\ log\ entries\ from\ the\ current\ log\ file}}
+\DoxyCodeLine{00050\ TArray<FString>\ \mbox{\hyperlink{class_f_log_manager_a9489f0a9277575045cb19ee07e7b168f}{FLogManager::ReadLog}}()}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ TArray<FString>\ LogEntries;}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ CheckAndCloseLog();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (FString\ SessionLogFilePath\ :\ SessionLogFilePaths)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<FString>\ TempLogEntries;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(FFileHelper::LoadFileToStringArray(TempLogEntries,\ *SessionLogFilePath))}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogEntries.Append(TempLogEntries);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ EnsureFileLogOpen();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ LogEntries;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Logs\ a\ message\ to\ the\ file}}
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{void}\ FLogManager::WriteToLog(FString\&\ Message)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ EnsureFileLogOpen();}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}(IsLogTooBig())}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a3ec43f774763082d39bec25b76160ef5}{RotateLogFile}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ LogItemID++;}
+\DoxyCodeLine{00084\ \ \ \ \ AddRecentLogEntry(Message);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ SanitizeMessage(Message);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FString\ LogMessage\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}[\%lld][\%s]\ \%s\(\backslash\)n"{}}),\ LogItemID,\ *FDateTime::Now().\mbox{\hyperlink{_c_log_manager_8h_a21a167b0077759e7e2f9ef46152bf770}{ToString}}(),\ *Message);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ LogFile-\/>Serialize(TCHAR\_TO\_ANSI(*LogMessage),\ LogMessage.Len());}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ LogFile-\/>Flush();}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Background\ worker\ for\ processing\ log\ messages}}
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{void}\ FLogManager::LogWorker()}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ FString\ Message;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ std::unique\_lock\ QueueLock(QueueMutex);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ LogCondition.wait(QueueLock,\ []\ \{\ \textcolor{keywordflow}{return}\ !bIsRunning\ ||\ !LogQueue.empty();\ \});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!bIsRunning\ \&\&\ LogQueue.empty())}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bIsWorkerDone\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WorkerDoneCondition.notify\_all();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!LogQueue.empty())}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bIsWorkerDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ LogQueue.front();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogQueue.pop();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Message.IsEmpty())}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ WriteToLog(Message);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ Generates\ a\ new\ log\ file\ path\ based\ on\ the\ current\ date\ and\ time}}
+\DoxyCodeLine{00129\ FString\ FLogManager::GetNewLogFilePath()}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ FString\ FilePath\ =\ FPaths::ProjectSavedDir()\ +\ RelativeLogPath\ +\ FDateTime::Now().ToString()\ +\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\_\%d.log"{}}),\ ++LogFileIndex);}
+\DoxyCodeLine{00132\ \ \ \ \ SessionLogFilePaths.Add(FilePath);}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ FilePath;}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ Checks\ if\ the\ log\ file\ is\ too\ large}}
+\DoxyCodeLine{00137\ \textcolor{keywordtype}{bool}\ FLogManager::IsLogTooBig()}
+\DoxyCodeLine{00138\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}(LogFile)}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ LogFile-\/>TotalSize()\ >\ GetMaxLogSize())}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ Rotates\ the\ log\ file\ by\ closing\ the\ current\ one\ and\ creating\ a\ new\ one}}
+\DoxyCodeLine{00151\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a3ec43f774763082d39bec25b76160ef5}{FLogManager::RotateLogFile}}()}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ FString\ Message\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%s\ \%s"{}}),\ *LogInternalTag,\ TEXT(\textcolor{stringliteral}{"{}Rotating\ Log\ File"{}}));}
+\DoxyCodeLine{00154\ \ \ \ \ WriteToLog(Message);}
+\DoxyCodeLine{00155\ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ CheckAndCloseLog();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ LogFilePath\ =\ GetNewLogFilePath();}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ EnsureFileLogOpen();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ Message\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%s\ \%s"{}}),\ *LogInternalTag,\ TEXT(\textcolor{stringliteral}{"{}Log\ File\ Rotated"{}}));}
+\DoxyCodeLine{00166\ \ \ \ \ WriteToLog(Message);}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ Initializes\ the\ logger\ by\ creating\ the\ log\ file\ and\ starting\ the\ worker\ thread}}
+\DoxyCodeLine{00170\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_ac3e798abbaf50dda3b1d893cfc81e9c9}{FLogManager::Initialize}}()}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ EnsureFileLogOpen();}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{const}\ FString\ Message\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%s\ \%s"{}}),\ *LogInternalTag,\ TEXT(\textcolor{stringliteral}{"{}Logger\ Initialized"{}}));}
+\DoxyCodeLine{00175\ \ \ \ \ std::lock\_guard\ Lock(QueueMutex);}
+\DoxyCodeLine{00176\ \ \ \ \ LogQueue.push(Message);}
+\DoxyCodeLine{00177\ \ \ \ \ LogCondition.notify\_one();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ StartLogWorkerThread();}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ Shuts\ down\ the\ logger\ by\ closing\ the\ log\ file\ and\ stopping\ the\ worker\ thread}}
+\DoxyCodeLine{00183\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a0842189e7c8d5126b58a162b2697306f}{FLogManager::ShutDown}}()}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ FString\ Message\ =\ FString::Printf(TEXT(\textcolor{stringliteral}{"{}\%s\ \%s"{}}),\ *LogInternalTag,\ TEXT(\textcolor{stringliteral}{"{}Logger\ Shut\ Down"{}}));}
+\DoxyCodeLine{00186\ \ \ \ \ WriteToLog(Message);}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ StopLogWorkerThread();}
+\DoxyCodeLine{00189\ \ \ \ \ CheckAndCloseLog();}
+\DoxyCodeLine{00190\ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ Sanitizes\ the\ message\ by\ removing\ unwanted\ characters\ and\ truncating\ it\ if\ necessary}}
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{void}\ FLogManager::SanitizeMessage(FString\&\ Message)}
+\DoxyCodeLine{00194\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ Message.ReplaceInline(TEXT(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}),\ TEXT(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n"{}}));}
+\DoxyCodeLine{00196\ \ \ \ \ Message.ReplaceInline(TEXT(\textcolor{stringliteral}{"{}\(\backslash\)r"{}}),\ TEXT(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)r"{}}));}
+\DoxyCodeLine{00197\ \ \ \ \ Message.ReplaceInline(TEXT(\textcolor{stringliteral}{"{}\(\backslash\)t"{}}),\ TEXT(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)t"{}}));}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{if}\ (Message.IsEmpty())}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ Message\ =\ TEXT(\textcolor{stringliteral}{"{}Empty\ Log\ Message\ Received\ -\/>\ Should\ not\ be\ possible!?"{}});}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{if}\ (Message.Len()\ >\ 1024)}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ Message\ =\ Message.Left(1024);}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ Starts\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00210\ \textcolor{keywordtype}{void}\ FLogManager::StartLogWorkerThread()}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{if}(!bIsRunning)}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ bIsRunning\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ LogThread\ =\ std::thread(LogWorker);}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ Stops\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00220\ \textcolor{keywordtype}{void}\ FLogManager::StopLogWorkerThread()}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ bIsRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00223\ \ \ \ \ LogCondition.notify\_all();}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ std::unique\_lock\ WorkerLock(WorkerMutex);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ WorkerDoneCondition.wait(WorkerLock,\ [\&]\{\ \textcolor{keywordflow}{return}\ bIsWorkerDone;\ \});}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{if}(LogThread.joinable())}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ LogThread.join();}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{comment}{//\ Gets\ the\ current\ log\ file\ path\ or\ generates\ a\ new\ one\ if\ it's\ empty}}
+\DoxyCodeLine{00238\ FString\ FLogManager::GetLogPath()}
+\DoxyCodeLine{00239\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{if}(LogFilePath.IsEmpty())}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ LogFilePath\ =\ GetNewLogFilePath();}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ LogFilePath;}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{//\ Ensures\ the\ log\ file\ is\ open\ for\ writing}}
+\DoxyCodeLine{00248\ \textcolor{keywordtype}{void}\ FLogManager::EnsureFileLogOpen()}
+\DoxyCodeLine{00249\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{if}\ (!LogFile)\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ EFileWrite\ WriteFlag\ =\ IFileManager::Get().FileExists(*GetLogPath())\ ?\ FILEWRITE\_Append\ :\ FILEWRITE\_None;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ LogFile\ =\ IFileManager::Get().CreateFileWriter(*GetLogPath(),\ WriteFlag);}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ Closes\ the\ log\ file\ if\ it's\ open}}
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{void}\ FLogManager::CheckAndCloseLog()}
+\DoxyCodeLine{00259\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{if}(LogFile)}
+\DoxyCodeLine{00261\ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ std::lock\_guard\ Lock(LogMutex);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ LogFile-\/>Flush();}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ LogFile-\/>Close();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ LogFile;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ LogFile\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{comment}{//\ Adds\ a\ recent\ log\ entry\ to\ the\ list\ of\ recent\ log\ entries}}
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ FLogManager::AddRecentLogEntry(\textcolor{keyword}{const}\ FString\&\ Message)}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ std::lock\_guard\ Lock(RecentLogMutex);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}(RecentLogEntries.size()\ >=\ MaxLogEntries)}
+\DoxyCodeLine{00276\ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ oldestEntry\ =\ RecentLogEntries[NextLogIndex];}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ RecentLogIndexMap.erase(oldestEntry.first);}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordflow}{if}(RecentLogEntries.size()\ <\ MaxLogEntries)}
+\DoxyCodeLine{00282\ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ RecentLogEntries.push\_back(\{LogItemID,\ Message\});}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ RecentLogEntries[NextLogIndex]\ =\ \{LogItemID,\ Message\};}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ RecentLogIndexMap[LogItemID]\ =\ NextLogIndex;}
+\DoxyCodeLine{00291\ \ \ \ \ NextLogIndex\ =\ (NextLogIndex\ +\ 1)\ \%\ MaxLogEntries;}
+\DoxyCodeLine{00292\ \ \ \ \ }
+\DoxyCodeLine{00293\ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{comment}{//\ Get\ one\ of\ the\ most\ recent\ log\ entries,\ returns\ an\ empty\ string\ if\ the\ ID\ is\ invalid}}
+\DoxyCodeLine{00296\ FString\ \mbox{\hyperlink{class_f_log_manager_a223ee84a9c2a59ceb7152caa761d9a3a}{FLogManager::GetRecentLogEntry}}(int64\ LogID)}
+\DoxyCodeLine{00297\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ std::lock\_guard\ Lock(RecentLogMutex);}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ it\ =\ RecentLogIndexMap.find(LogID);}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{if}(it\ !=\ RecentLogIndexMap.end())}
+\DoxyCodeLine{00301\ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RecentLogEntries[it-\/>second].second;}
+\DoxyCodeLine{00303\ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00305\ \}}
+
+\end{DoxyCode}

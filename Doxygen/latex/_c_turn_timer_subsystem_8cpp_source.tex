@@ -1,0 +1,55 @@
+\doxysection{CTurn\+Timer\+Subsystem.\+cpp}
+\hypertarget{_c_turn_timer_subsystem_8cpp_source}{}\label{_c_turn_timer_subsystem_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/TurnTimer/CTurnTimerSubsystem.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/TurnTimer/CTurnTimerSubsystem.cpp}}
+\mbox{\hyperlink{_c_turn_timer_subsystem_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_turn_timer_subsystem_8h}{Utility/TurnTimer/CTurnTimerSubsystem.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a5f3aa96eb4e96e7b982562a2a6839936}{UCTurnTimerSubsystem::SetTimer}}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&\ InOutHandle,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ InNumberOfTurns,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ InAffectedUnit,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ InbLoop,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}\ InProgressTurnMethod)}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_a4265fa1f7b26da4415c242a8263f8fde}{bLooping}}\ =\ InbLoop;}
+\DoxyCodeLine{00009\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_a2cccd42c47dac6f4b962492efaa3e609}{NumberOfTurns}}\ =\ InNumberOfTurns;}
+\DoxyCodeLine{00010\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}{TurnsRemaining}}\ =\ InNumberOfTurns;}
+\DoxyCodeLine{00011\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe}{TimerID}}\ =\ ++\mbox{\hyperlink{class_u_c_turn_timer_subsystem_acd9380bd38c406425c299d67ad79ae5a}{LastTimerID}};}
+\DoxyCodeLine{00012\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341}{ProgressTurnMethod}}\ =\ InProgressTurnMethod;}
+\DoxyCodeLine{00013\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{AffectedUnit}}\ =\ InAffectedUnit;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}{ActiveTurnTimers}}.Add(InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe}{TimerID}},\ \&InOutHandle);}
+\DoxyCodeLine{00016\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe}{bIsValid}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb}{UCTurnTimerSubsystem::ClearTimer}}(\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}\&\ InOutHandle)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}{ActiveTurnTimers}}.Remove(InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe}{TimerID}});}
+\DoxyCodeLine{00022\ \ \ \ \ InOutHandle.\mbox{\hyperlink{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe}{bIsValid}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_ac25c5b5552b6e064c172c4429b6b580e}{UCTurnTimerSubsystem::NextTurn}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ PreviousUnit,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ NextUnit)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ TimerPair\ :\ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}{ActiveTurnTimers}})}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurnTimerHandle}}*\ Handle\ =\ TimerPair.Value;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{AffectedUnit}}\ ==\ PreviousUnit\ \&\&\ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341}{ProgressTurnMethod}}\ ==\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc}{EPTM\_EndOfTurn}})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ !(Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{AffectedUnit}}\ ==\ NextUnit\ \&\&\ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341}{ProgressTurnMethod}}\ ==\ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73}{EPTM\_StartOfTurn}}))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}{TurnsRemaining}}-\/-\/;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}{TurnsRemaining}}\ >\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a7791c66dc1f0a6fb86994746ad977b0a}{OnTurnTimerExecute}}.Broadcast(Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{AffectedUnit}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a4265fa1f7b26da4415c242a8263f8fde}{bLooping}})}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Reset\ timer,\ and\ keep\ running}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}{TurnsRemaining}}\ =\ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_a2cccd42c47dac6f4b962492efaa3e609}{NumberOfTurns}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Remove\ timer\ and\ invalidate\ handle}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}{ActiveTurnTimers}}.Remove(TimerPair.Key);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ Handle-\/>\mbox{\hyperlink{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe}{bIsValid}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}

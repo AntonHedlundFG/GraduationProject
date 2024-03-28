@@ -1,0 +1,343 @@
+\doxysection{CCombat\+Logger.\+gen.\+cpp}
+\hypertarget{_c_combat_logger_8gen_8cpp_source}{}\label{_c_combat_logger_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CCombatLogger.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CCombatLogger.gen.cpp}}
+\mbox{\hyperlink{_c_combat_logger_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_combat_logger_8h}{TacticalRogueLite/Public/Utility/Logging/CCombatLogger.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a5a8c6bb323721e65ed3e245a94393034}{EmptyLinkFunctionForGeneratedCodeCCombatLogger}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_aeacf21e97d1b6ac85ca62938ca1ef7ac}{Z\_Construct\_UClass\_UCCombatLogger\_NoRegister}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}}();}
+\DoxyCodeLine{00016\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ FEnumRegistrationInfo\ Z\_Registration\_Info\_UEnum\_ECombatLogCategory;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ UEnum*\ ECombatLogCategory\_StaticEnum()}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_ECombatLogCategory.OuterSingleton)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ Z\_Registration\_Info\_UEnum\_ECombatLogCategory.OuterSingleton\ =\ GetStaticEnum(\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}},\ (UObject*)\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}(),\ TEXT(\textcolor{stringliteral}{"{}ECombatLogCategory"{}}));}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_ECombatLogCategory.OuterSingleton;}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_ace8363371c9dfccf1cde2bbc0e4649ed}{StaticEnum<ECombatLogCategory>}}()}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ECombatLogCategory\_StaticEnum();}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics}}}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_ab5c180906fe0ceb60b12160075142be4}{Enumerators}}[];}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Enum\_MetaDataParams[];}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_aceba57edfb4d15f9a4230adc4a469213}{EnumParams}};}
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumeratorParam\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_ab5c180906fe0ceb60b12160075142be4}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enumerators}}[]\ =\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ECombatLogCategory::DEFAULT"{}},\ (int64)ECombatLogCategory::DEFAULT\ \},}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ECombatLogCategory::COMBAT"{}},\ (int64)ECombatLogCategory::COMBAT\ \},}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enum\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}BlueprintType"{}},\ \textcolor{stringliteral}{"{}true"{}}\ \},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMBAT.DisplayName"{}},\ \textcolor{stringliteral}{"{}Combat"{}}\ \},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMBAT.Name"{}},\ \textcolor{stringliteral}{"{}ECombatLogCategory::COMBAT"{}}\ \},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DEFAULT.DisplayName"{}},\ \textcolor{stringliteral}{"{}Default"{}}\ \},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DEFAULT.Name"{}},\ \textcolor{stringliteral}{"{}ECombatLogCategory::DEFAULT"{}}\ \},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumParams\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_aceba57edfb4d15f9a4230adc4a469213}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::EnumParams}}\ =\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ (UObject*(*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ECombatLogCategory"{}},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ECombatLogCategory"{}},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_ab5c180906fe0ceb60b12160075142be4}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enumerators}},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ RF\_Public|RF\_Transient|RF\_MarkAsNative,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_ab5c180906fe0ceb60b12160075142be4}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enumerators}}),}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ EEnumFlags::None,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ (uint8)UEnum::ECppForm::EnumClass,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enum\_MetaDataParams),\ Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::Enum\_MetaDataParams)}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ \ \ \ \ UEnum*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}}()}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UEnum\_ECombatLogCategory.InnerSingleton)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUEnum(Z\_Registration\_Info\_UEnum\_ECombatLogCategory.InnerSingleton,\ \mbox{\hyperlink{struct_z___construct___u_enum___tactical_rogue_lite___e_combat_log_category___statics_aceba57edfb4d15f9a4230adc4a469213}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory\_Statics::EnumParams}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UEnum\_ECombatLogCategory.InnerSingleton;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a4fbed744b0dbd584866243e1ea900e90}{DEFINE\_FUNCTION}}(UCCombatLogger::execLog)}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Message);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ P\_GET\_ENUM(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}},Z\_Param\_Category);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_c_combat_logger_abf5025efe4fd5f8e68ed9aa4b221b55a}{UCCombatLogger::Log}}(Z\_Param\_Message,\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}(Z\_Param\_Category));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a4fbed744b0dbd584866243e1ea900e90}{DEFINE\_FUNCTION}}(UCCombatLogger::execFormatIT)}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ P\_GET\_ENUM(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}},Z\_Param\_Category);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Instigator);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Target);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Message);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ *(FString*)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_combat_logger_aaf7d9ff4188ef8985eae40d30291cafd}{UCCombatLogger::FormatIT}}(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}(Z\_Param\_Category),Z\_Param\_Instigator,Z\_Param\_Target,Z\_Param\_Message);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a4fbed744b0dbd584866243e1ea900e90}{DEFINE\_FUNCTION}}(UCCombatLogger::execFormat)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ P\_GET\_ENUM(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}},Z\_Param\_Category);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ P\_GET\_PROPERTY(FStrProperty,Z\_Param\_Message);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ *(FString*)Z\_Param\_\_Result=\mbox{\hyperlink{class_u_c_combat_logger_a9e105a9a9a9568c21f7e8a04cac5bf96}{UCCombatLogger::Format}}(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}(Z\_Param\_Category),Z\_Param\_Message);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ UCCombatLogger::StaticRegisterNativesUCCombatLogger()}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ UCCombatLogger::StaticClass();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Format"{}},\ \&UCCombatLogger::execFormat,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_combat_logger_a9e105a9a9a9568c21f7e8a04cac5bf96}{UCCombatLogger::Format}},(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}},\ FString),ERASE\_ARGUMENT\_PACK(FString))\ \},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}FormatIT"{}},\ \&UCCombatLogger::execFormatIT,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_combat_logger_aaf7d9ff4188ef8985eae40d30291cafd}{UCCombatLogger::FormatIT}},(\mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}},\ FString,\ FString,\ FString),ERASE\_ARGUMENT\_PACK(FString))\ \},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Log"{}},\ \&UCCombatLogger::execLog,\ ERASE\_FUNCTION\_PTR(\&\mbox{\hyperlink{class_u_c_combat_logger_abf5025efe4fd5f8e68ed9aa4b221b55a}{UCCombatLogger::Log}},(FString,\ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics}}}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{CCombatLogger\_eventFormat\_Parms}}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms_a3a110dba104050ea381496ac62dabab8}{Category}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms_a520eaa7fb5dbb45c4cbe81a7a127db23}{Message}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms_a79d65ba39cc797ba83ccddeacc6aaf4a}{ReturnValue}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_af9bc2c121b3c309072c3695dba29be1b}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a70c17f4aa59bb9ae28c097bc399df49b}{NewProp\_Category}};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a4f3a52eb76344f544ecdab267f0e5b0c}{NewProp\_Message}};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a008573b9efce17c7db468af9281c64f5}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a15cdc69062c6ebea821157d2697367dd}{PropPointers}}[];}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a66b787321cf8e2041f096f3765429660}{FuncParams}};}
+\DoxyCodeLine{00129\ \ \ \ \ \};}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_af9bc2c121b3c309072c3695dba29be1b}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a70c17f4aa59bb9ae28c097bc399df49b}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{CCombatLogger\_eventFormat\_Parms}},\ Category),\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 879755211}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a4f3a52eb76344f544ecdab267f0e5b0c}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Message}}\ =\ \{\ \textcolor{stringliteral}{"{}Message"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{CCombatLogger\_eventFormat\_Parms}},\ Message),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a008573b9efce17c7db468af9281c64f5}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{CCombatLogger\_eventFormat\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a15cdc69062c6ebea821157d2697367dd}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_af9bc2c121b3c309072c3695dba29be1b}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a70c17f4aa59bb9ae28c097bc399df49b}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a4f3a52eb76344f544ecdab267f0e5b0c}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_Message}},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a008573b9efce17c7db468af9281c64f5}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00139\ \ \ \ \ \};}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}CombatLogging"{}}\ \},}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00144\ \ \ \ \ \};}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a66b787321cf8e2041f096f3765429660}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Format"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a15cdc69062c6ebea821157d2697367dd}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a15cdc69062c6ebea821157d2697367dd}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::CCombatLogger\_eventFormat\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a15cdc69062c6ebea821157d2697367dd}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_1_1_c_combat_logger__event_format___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::CCombatLogger\_eventFormat\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00149\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a1ed33e7775f36ca7dc6fdd5bb28fb24d}{Z\_Construct\_UFunction\_UCCombatLogger\_Format}}()}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format___statics_a66b787321cf8e2041f096f3765429660}{Z\_Construct\_UFunction\_UCCombatLogger\_Format\_Statics::FuncParams}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics}}}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms_a463419a3432b8ea3ed81e6fbf2df9eb3}{Category}};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms_ac482aa21d90b4251514bde57534f7578}{Instigator}};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms_a6694c119d73ef0678104fae0aa90a316}{Target}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms_a6a5ab02b580640dfae497934f02f3783}{Message}};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms_af09ef6fdbfed908021ab31a0fe45798f}{ReturnValue}};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a4d4ee006ffcb506706e05603f307126f}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ad2bd308e488f08be6a5d2cd95a752155}{NewProp\_Category}};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_aee97b789d78656238c581e2044942df3}{NewProp\_Instigator}};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a8c154ad7dc870ea728329f5d52fd64e0}{NewProp\_Target}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a9b6beeaca892c39efe9f908d66f25f23}{NewProp\_Message}};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a39e363036bbfefeb309559fb056c697f}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a63c687f8cc207aa80b9d321ef5fa6265}{PropPointers}}[];}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ace93d53b2f344f115059ec1a31c6bdc9}{FuncParams}};}
+\DoxyCodeLine{00179\ \ \ \ \ \};}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a4d4ee006ffcb506706e05603f307126f}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ad2bd308e488f08be6a5d2cd95a752155}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}},\ Category),\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 879755211}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_aee97b789d78656238c581e2044942df3}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Instigator}}\ =\ \{\ \textcolor{stringliteral}{"{}Instigator"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}},\ Instigator),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a8c154ad7dc870ea728329f5d52fd64e0}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Target}}\ =\ \{\ \textcolor{stringliteral}{"{}Target"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}},\ Target),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a9b6beeaca892c39efe9f908d66f25f23}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Message}}\ =\ \{\ \textcolor{stringliteral}{"{}Message"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}},\ Message),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a39e363036bbfefeb309559fb056c697f}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{CCombatLogger\_eventFormatIT\_Parms}},\ ReturnValue),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a63c687f8cc207aa80b9d321ef5fa6265}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a4d4ee006ffcb506706e05603f307126f}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ad2bd308e488f08be6a5d2cd95a752155}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_aee97b789d78656238c581e2044942df3}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Instigator}},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a8c154ad7dc870ea728329f5d52fd64e0}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Target}},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a9b6beeaca892c39efe9f908d66f25f23}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_Message}},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a39e363036bbfefeb309559fb056c697f}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00193\ \ \ \ \ \};}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}CombatLogging"{}}\ \},}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00198\ \ \ \ \ \};}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ace93d53b2f344f115059ec1a31c6bdc9}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}FormatIT"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a63c687f8cc207aa80b9d321ef5fa6265}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a63c687f8cc207aa80b9d321ef5fa6265}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::CCombatLogger\_eventFormatIT\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_a63c687f8cc207aa80b9d321ef5fa6265}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_1_1_c_combat_logger__event_format_i_t___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::CCombatLogger\_eventFormatIT\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00203\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_aeddd4429eefa25eaa8a34981c0422d22}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT}}()}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___format_i_t___statics_ace93d53b2f344f115059ec1a31c6bdc9}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT\_Statics::FuncParams}});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics}}}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms}{CCombatLogger\_eventLog\_Parms}}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ FString\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms_a3ab74a4331820afe5b2c3e14494a1378}{Message}};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8h_a668cdca3a94a97294b53f51ebe408ac3}{ECombatLogCategory}}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms_a13566b3321c99dd6b48af49281d4c9bc}{Category}};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a97d8a5afa408af5650aa49d12318e2c6}{NewProp\_Message}};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a53d15b1f22f0505adc250bcb251e7a79}{NewProp\_Category\_Underlying}};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_af07e1c01b8a6c9a1b7f242e39eafa366}{NewProp\_Category}};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_aca5dbd92a485c74b0f2802e26c15a76d}{PropPointers}}[];}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a9b023ad4c49cefec36c6eaae62253366}{FuncParams}};}
+\DoxyCodeLine{00227\ \ \ \ \ \};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a97d8a5afa408af5650aa49d12318e2c6}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Message}}\ =\ \{\ \textcolor{stringliteral}{"{}Message"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Str,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms}{CCombatLogger\_eventLog\_Parms}},\ Message),\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a53d15b1f22f0505adc250bcb251e7a79}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Category\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_af07e1c01b8a6c9a1b7f242e39eafa366}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Category}}\ =\ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms}{CCombatLogger\_eventLog\_Parms}},\ Category),\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a56d1d184b83bf585267ab60592916007}{Z\_Construct\_UEnum\_TacticalRogueLite\_ECombatLogCategory}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 879755211}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_aca5dbd92a485c74b0f2802e26c15a76d}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a97d8a5afa408af5650aa49d12318e2c6}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Message}},}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a53d15b1f22f0505adc250bcb251e7a79}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Category\_Underlying}},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_af07e1c01b8a6c9a1b7f242e39eafa366}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::NewProp\_Category}},}
+\DoxyCodeLine{00235\ \ \ \ \ \};}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}CombatLogging"{}}\ \},}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00240\ \ \ \ \ \};}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a9b023ad4c49cefec36c6eaae62253366}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Log"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_aca5dbd92a485c74b0f2802e26c15a76d}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_aca5dbd92a485c74b0f2802e26c15a76d}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::CCombatLogger\_eventLog\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04022401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_aca5dbd92a485c74b0f2802e26c15a76d}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_1_1_c_combat_logger__event_log___parms}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::CCombatLogger\_eventLog\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00245\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a818e77d6a14880dc5c5723ddf3b8b561}{Z\_Construct\_UFunction\_UCCombatLogger\_Log}}()}
+\DoxyCodeLine{00246\ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___u_c_combat_logger___log___statics_a9b023ad4c49cefec36c6eaae62253366}{Z\_Construct\_UFunction\_UCCombatLogger\_Log\_Statics::FuncParams}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a182a2fb526c720d13ee05d7782137552}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_u_c_combat_logger}{UCCombatLogger}});}
+\DoxyCodeLine{00255\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_aeacf21e97d1b6ac85ca62938ca1ef7ac}{Z\_Construct\_UClass\_UCCombatLogger\_NoRegister}}()}
+\DoxyCodeLine{00256\ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCCombatLogger::StaticClass();}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics}{Z\_Construct\_UClass\_UCCombatLogger\_Statics}}}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_aee562d722b825d6ba730f0502381ba5f}{DependentSingletons}}[])();}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a3ba777641d52c1c1cf7706233edc5771}{FuncInfo}}[];}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a2255e811b734354181106a9f2fde54d6}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a9305f059176d6d966da44b294b3bf872}{ClassParams}};}
+\DoxyCodeLine{00268\ \ \ \ \ \};}
+\DoxyCodeLine{00269\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_aee562d722b825d6ba730f0502381ba5f}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_ae91b1a893a2062bcf117272fe1350f1b}{Z\_Construct\_UClass\_UObject}},}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00272\ \ \ \ \ \};}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_aee562d722b825d6ba730f0502381ba5f}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a3ba777641d52c1c1cf7706233edc5771}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a1ed33e7775f36ca7dc6fdd5bb28fb24d}{Z\_Construct\_UFunction\_UCCombatLogger\_Format}},\ \textcolor{stringliteral}{"{}Format"{}}\ \},\ \textcolor{comment}{//\ 2998416296}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_aeddd4429eefa25eaa8a34981c0422d22}{Z\_Construct\_UFunction\_UCCombatLogger\_FormatIT}},\ \textcolor{stringliteral}{"{}FormatIT"{}}\ \},\ \textcolor{comment}{//\ 679013128}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a818e77d6a14880dc5c5723ddf3b8b561}{Z\_Construct\_UFunction\_UCCombatLogger\_Log}},\ \textcolor{stringliteral}{"{}Log"{}}\ \},\ \textcolor{comment}{//\ 885763719}}
+\DoxyCodeLine{00278\ \ \ \ \ \};}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a3ba777641d52c1c1cf7706233edc5771}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_UCCombatLogger\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}/**\(\backslash\)n\ *\ \(\backslash\)n\ */"{}}\ \},}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Utility/Logging/CCombatLogger.h"{}}\ \},}
+\DoxyCodeLine{00287\ \ \ \ \ \};}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a2255e811b734354181106a9f2fde54d6}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<UCCombatLogger>::IsAbstract,}
+\DoxyCodeLine{00291\ \ \ \ \ \};}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a9305f059176d6d966da44b294b3bf872}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \&UCCombatLogger::StaticClass,}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ 0x001000A0u,}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_UCCombatLogger\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_UCCombatLogger\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00306\ \ \ \ \ \};}
+\DoxyCodeLine{00307\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}}()}
+\DoxyCodeLine{00308\ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_UCCombatLogger.OuterSingleton)}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_UCCombatLogger.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___u_c_combat_logger___statics_a9305f059176d6d966da44b294b3bf872}{Z\_Construct\_UClass\_UCCombatLogger\_Statics::ClassParams}});}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_UCCombatLogger.OuterSingleton;}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0333f64cd1a0d9d2ff7de32f646a629f}{StaticClass<UCCombatLogger>}}()}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UCCombatLogger::StaticClass();}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ UCCombatLogger::UCCombatLogger(\textcolor{keyword}{const}\ FObjectInitializer\&\ ObjectInitializer)\ :\ Super(ObjectInitializer)\ \{\}}
+\DoxyCodeLine{00320\ \ \ \ \ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a7fa64995c55db7a51607ca8ac739d14d}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_u_c_combat_logger}{UCCombatLogger}});}
+\DoxyCodeLine{00321\ \ \ \ \ UCCombatLogger::\string~UCCombatLogger()\ \{\}}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics}}}
+\DoxyCodeLine{00323\ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a63567052b5e5eebd256a768bcc93721b}{EnumInfo}}[];}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a236a88a731fc8bc8809f15234ee81171}{ClassInfo}}[];}
+\DoxyCodeLine{00326\ \ \ \ \ \};}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{const}\ FEnumRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a63567052b5e5eebd256a768bcc93721b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::EnumInfo}}[]\ =\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{\ ECombatLogCategory\_StaticEnum,\ TEXT(\textcolor{stringliteral}{"{}ECombatLogCategory"{}}),\ \&Z\_Registration\_Info\_UEnum\_ECombatLogCategory,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FEnumReloadVersionInfo,\ 879755211U)\ \},}
+\DoxyCodeLine{00329\ \ \ \ \ \};}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a236a88a731fc8bc8809f15234ee81171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_combat_logger_8gen_8cpp_a0af99ee08c3b85d1865a421fe53bf5ac}{Z\_Construct\_UClass\_UCCombatLogger}},\ UCCombatLogger::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}UCCombatLogger"{}}),\ \&Z\_Registration\_Info\_UClass\_UCCombatLogger,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_u_c_combat_logger}{UCCombatLogger}}),\ 1145006567U)\ \},}
+\DoxyCodeLine{00332\ \ \ \ \ \};}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_116881771(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a236a88a731fc8bc8809f15234ee81171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a236a88a731fc8bc8809f15234ee81171}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a63567052b5e5eebd256a768bcc93721b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::EnumInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soue7c4f3840af2ec885c096aa67a7d8a01_a63567052b5e5eebd256a768bcc93721b}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Utility\_Logging\_CCombatLogger\_h\_Statics::EnumInfo}}));}
+\DoxyCodeLine{00337\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

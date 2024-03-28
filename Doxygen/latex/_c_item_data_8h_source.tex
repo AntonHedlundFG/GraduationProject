@@ -1,0 +1,118 @@
+\doxysection{CItem\+Data.\+h}
+\hypertarget{_c_item_data_8h_source}{}\label{_c_item_data_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/ItemData/CItemData.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/ItemData/CItemData.h}}
+\mbox{\hyperlink{_c_item_data_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//I\ use\ softobjectptr\ because\ it\ enables\ us\ to\ load\ parts\ of\ the\ asset\ using\ the\ assetmanager.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//https://dev.epicgames.com/documentation/en-\/us/unreal-\/engine/asset-\/management-\/in-\/unreal-\/engine}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Engine/DataAsset.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}CItemData.generated.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ UENUM()}
+\DoxyCodeLine{00012\ enum\ class\ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cb}{EItemQuality}}\ :\ uint8}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbad13bc5b68b2bd9e18f29777db17cc563}{Common}},}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbadaad892556b29a624647710be1110d49}{UnCommon}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbaa2cc588f2ab07ad61b05400f593eeb0a}{Rare}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cbae3f530e977d74053c6d70eb84886e756}{Epic}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cba9461cd71b44420aa1d0e6487f1b7bb60}{Legendary}},}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//Base\ class\ for\ anything\ considered\ an\ item\ in\ the\ game.\ Can\ be\ things\ like\ weapons,\ schematics,\ upgrades.\ Only\ contains\ the\ data\ for\ these\ items.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//PrimaryDataAsset\ adds\ the\ support\ to\ use\ AssetManager,\ which\ is\ a\ system\ that\ lets\ us\ more\ easly\ asynchronously\ load\ parts\ of\ assets.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//https://www.tomlooman.com/unreal-\/engine-\/asset-\/manager-\/async-\/loading/}}
+\DoxyCodeLine{00024\ UCLASS(BlueprintType)}
+\DoxyCodeLine{00025\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_item_data}{UCItemData}}\ :\ public\ UPrimaryDataAsset}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ //Get\ item\ name.}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ UFUNCTION(BlueprintCallable,\ BlueprintNativeEvent,\ Category\ =\ "{}UI"{})}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ FText\ GetTitle()\ const;}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ //Get\ item\ name,\ overriden\ in\ Blueprint\ to.}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ UFUNCTION(BlueprintCallable,\ BlueprintNativeEvent,\ Category\ =\ "{}UI"{})}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ FText\ GetDescription()\ const;}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ \textcolor{stringliteral}{"{}UI"{}})}
+\DoxyCodeLine{00042\ \ \ \ \ FText\ ItenName;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}UI"{})}
+\DoxyCodeLine{00045\ \ \ \ \ FText\ ItemDescription;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ public:}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//Tags\ added\ to\ owning\ actor\ when\ activated,\ removed\ when\ action\ stops\ */}}
+\DoxyCodeLine{00051\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00052\ \ \ \ \ FGameplayTagContainer\ GrantsTags;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{/*\ Action\ can\ only\ start\ if\ OwningActor\ has\ none\ of\ these\ Tags\ applied\ */}}
+\DoxyCodeLine{00055\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00056\ \ \ \ \ FGameplayTagContainer\ BlockedTags;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//Access\ in\ blueprints\ via\ 'get\ as\ texture/material'\ helpers\ to\ allow\ easy\ soft-\/loading\ which\ can't\ be\ done\ through\ base\ class.}}
+\DoxyCodeLine{00059\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}UI"{},\ meta\ =\ (AssetBundles\ =\ "{}UI"{},\ AllowedClasses\ =\ "{}MaterialInterface,\ Texture2D"{}))}
+\DoxyCodeLine{00060\ \ \ \ \ TSoftObjectPtr<UObject>\ Icon;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//Weapon,\ augment\ etc.\ Used\ by\ the\ asset\ manager\ and\ game\ code\ may\ use\ it\ to\ understand\ the\ available\ 'features'\ of\ the\ item.}}
+\DoxyCodeLine{00063\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Item"{})}
+\DoxyCodeLine{00064\ \ \ \ \ FPrimaryAssetType\ ItemType;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Item"{})}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{_c_item_data_8h_a718706dc01c2f868b68588e12e1ef6cb}{EItemQuality}}\ Quality;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//Maximum\ allowed\ in\ the\ stack.\ 0\ =\ unlimited.}}
+\DoxyCodeLine{00070\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Item"{})}
+\DoxyCodeLine{00071\ \ \ \ \ int32\ StackLimit;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//Optional\ Action/Abilites\ assigned\ to\ Item.\ Can\ be\ used\ to\ grant\ abilities\ while\ the\ item\ is\ active/equipped\ or\ to\ run\ item\ specific\ functions.}}
+\DoxyCodeLine{00074\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Classes"{},\ meta\ =\ (AssetBundles\ =\ "{}Actions"{}))}
+\DoxyCodeLine{00075\ \ \ \ \ TArray<TSoftClassPtr<\mbox{\hyperlink{class_u_c_action}{UCAction}}>>\ ActionClasses;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//Optional\ world\ representation\ of\ this\ object\ if\ dropped\ or\ equipped\ by\ a\ unit.\ }}
+\DoxyCodeLine{00078\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Classes"{},\ meta\ =\ (AssetBundles\ =\ "{}Actor"{}))}
+\DoxyCodeLine{00079\ \ \ \ \ TSoftClassPtr<AActor>\ ActorClass;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//GamePlayTags\ to\ decorate\ the\ item.\ Can\ be\ used\ to\ setup\ categories,\ types,\ filters\ or\ one-\/off\ tags\ for\ very\ specific\ items.}}
+\DoxyCodeLine{00082\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ AssetRegistrySearchable,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00083\ \ \ \ \ FGameplayTagContainer\ OwnedTag;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//UCItemData();}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ FPrimaryAssetId\ GetPrimaryAssetId()\ const\ override;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ public:}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//Utility\ to\ find\ any\ ItemData\ class\ through\ its\ OwnedTags\ without\ having\ to\ load\ every\ asset(using\ Asset\ Registry).}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}AssetRegistry"{})}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ static\ FPrimaryAssetId\ GetItemDataByTag(FGameplayTagContainer\ InTags);}}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ UObject\ base).}}
+\DoxyCodeLine{00097\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}UI"{})}
+\DoxyCodeLine{00098\ \ \ \ \ TSoftObjectPtr<UMaterialInterface>\ GetIconAsMaterial()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TSoftObjectPtr<UMaterialInterface>(Icon.ToSoftObjectPath());}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//Utility\ to\ 'cast'\ to\ expected\ type(helpful\ for\ Blueprint\ that\ may\ expect\ explicit\ type\ rather\ than\ Uobject\ base)}}
+\DoxyCodeLine{00104\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}UI"{}})}
+\DoxyCodeLine{00105\ \ \ \ \ TSoftObjectPtr<UTexture2D>\ GetIconAsTexture()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TSoftObjectPtr<UTexture2D>(Icon.ToSoftObjectPath());}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//Add\ additional\ tooltip\ information\ in\ content\ browser.}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//void\ GetAssetRegistryTags(TArray<FAssetRegistryTag>\&\ OutTags)\ const\ override;}}
+\DoxyCodeLine{00112\ \};}
+
+\end{DoxyCode}

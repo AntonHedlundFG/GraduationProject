@@ -1,0 +1,42 @@
+\doxysection{CSavable\+Component.\+h}
+\hypertarget{_c_savable_component_8h_source}{}\label{_c_savable_component_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSavableComponent.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/SaveGame/CSavableComponent.h}}
+\mbox{\hyperlink{_c_savable_component_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_savable_8h}{CSavable.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_save_game_manager_8h}{CSaveGameManager.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Components/ActorComponent.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CSavableComponent.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ UCLASS(Abstract)}
+\DoxyCodeLine{00010\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_savable_component}{UCSavableComponent}}\ :\ public\ UActorComponent,\ public\ \mbox{\hyperlink{class_i_c_savable}{ICSavable}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00013\ \ \ \ \ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ For\ Implentation\ in\ AS\ and\ BP}}
+\DoxyCodeLine{00016\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00017\ \ \ \ \ void\ ReceiveOnSave();}
+\DoxyCodeLine{00018\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ OnSave()}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReceiveOnSave();}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ For\ Implentation\ in\ AS\ and\ BP}}
+\DoxyCodeLine{00024\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00025\ \ \ \ \ void\ ReceiveOnLoad();}
+\DoxyCodeLine{00026\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ OnLoad()}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReceiveOnLoad();}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BeginPlay()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ EndPlay(\textcolor{keyword}{const}\ EEndPlayReason::Type\ EndPlayReason)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \};}
+
+\end{DoxyCode}

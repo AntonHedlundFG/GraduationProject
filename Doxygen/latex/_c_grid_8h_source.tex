@@ -1,0 +1,56 @@
+\doxysection{CGrid.\+h}
+\hypertarget{_c_grid_8h_source}{}\label{_c_grid_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGrid.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGrid.h}}
+\mbox{\hyperlink{_c_grid_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Actor.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CGrid.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ UCLASS()}
+\DoxyCodeLine{00011\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}\ :\ public\ AActor}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ \textcolor{stringliteral}{"{}Grid\ Settings"{}})}
+\DoxyCodeLine{00019\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>\ TileBlueprint;}
+\DoxyCodeLine{00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Grid\ Settings"{})}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ NodeInterval\ =\ 1000;}
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Grid\ Settings"{})}
+\DoxyCodeLine{00023\ \ \ \ \ FVector2D\ GridDimensions\ =\ FVector2D(10,10);}
+\DoxyCodeLine{00024\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Replicated,\ Category\ =\ "{}Grid\ Properties"{})}
+\DoxyCodeLine{00025\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>>\ Tiles;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ GenerateTiles(\textcolor{keywordtype}{int}\ inRows,\ \textcolor{keywordtype}{int}\ inColumns);}
+\DoxyCodeLine{00029\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00030\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetHeroSpawnTiles()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ HeroSpawnTiles;\ \}}
+\DoxyCodeLine{00031\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00032\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetEnemySpawnTiles()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ EnemySpawnTiles;\ \}}
+\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ GetTileAtPosition(\textcolor{keywordtype}{int}\ inX,\ \textcolor{keywordtype}{int}\ inY);}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ protected:}
+\DoxyCodeLine{00037\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}{BeginPlay}}()\ override;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ private:}
+\DoxyCodeLine{00040\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00041\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>>\ HeroSpawnTiles;}
+\DoxyCodeLine{00042\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00043\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>>\ EnemySpawnTiles;}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ FVector\ FindBottomLeftCorner()\ const;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//Temporary\ Solution}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ GenerateSpawnTiles();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \};}
+
+\end{DoxyCode}

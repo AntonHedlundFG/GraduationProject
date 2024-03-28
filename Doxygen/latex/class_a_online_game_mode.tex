@@ -1,0 +1,78 @@
+\doxysection{AOnline\+Game\+Mode Class Reference}
+\hypertarget{class_a_online_game_mode}{}\label{class_a_online_game_mode}\index{AOnlineGameMode@{AOnlineGameMode}}
+
+
+{\ttfamily \#include $<$Online\+Game\+Mode.\+h$>$}
+
+Inheritance diagram for AOnline\+Game\+Mode\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_online_game_mode}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a9b38b6fbe1cd57a60537752184681d25}{Post\+Login}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}New\+Player) override
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a216a6365e69acdc2b4a8c5f79a1ce27d}{Handle\+Seamless\+Travel\+Player}} (AController \texorpdfstring{$\ast$}{*}\&C) override
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a42dc9ae173b40c2d8cf5489e4f2b13ca}{Logout}} (AController \texorpdfstring{$\ast$}{*}Exiting) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_a_online_game_mode_a77f34d0a8a9b62cd8f648b1639f32837}{b\+Players\+Can\+Reconnect\+During\+Match}} = true
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_online_player_state}{AOnline\+Player\+State}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}{Inactive\+States}}
+\item 
+uint8 \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{Next\+Player\+Index}} = 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_online_game_mode_a216a6365e69acdc2b4a8c5f79a1ce27d}\label{class_a_online_game_mode_a216a6365e69acdc2b4a8c5f79a1ce27d} 
+\index{AOnlineGameMode@{AOnlineGameMode}!HandleSeamlessTravelPlayer@{HandleSeamlessTravelPlayer}}
+\index{HandleSeamlessTravelPlayer@{HandleSeamlessTravelPlayer}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{HandleSeamlessTravelPlayer()}{HandleSeamlessTravelPlayer()}}
+{\footnotesize\ttfamily void AOnline\+Game\+Mode\+::\+Handle\+Seamless\+Travel\+Player (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}\&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_online_game_mode_a42dc9ae173b40c2d8cf5489e4f2b13ca}\label{class_a_online_game_mode_a42dc9ae173b40c2d8cf5489e4f2b13ca} 
+\index{AOnlineGameMode@{AOnlineGameMode}!Logout@{Logout}}
+\index{Logout@{Logout}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{Logout()}{Logout()}}
+{\footnotesize\ttfamily void AOnline\+Game\+Mode\+::\+Logout (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{Exiting }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_online_game_mode_a9b38b6fbe1cd57a60537752184681d25}\label{class_a_online_game_mode_a9b38b6fbe1cd57a60537752184681d25} 
+\index{AOnlineGameMode@{AOnlineGameMode}!PostLogin@{PostLogin}}
+\index{PostLogin@{PostLogin}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{PostLogin()}{PostLogin()}}
+{\footnotesize\ttfamily void AOnline\+Game\+Mode\+::\+Post\+Login (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{New\+Player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_online_game_mode_a77f34d0a8a9b62cd8f648b1639f32837}\label{class_a_online_game_mode_a77f34d0a8a9b62cd8f648b1639f32837} 
+\index{AOnlineGameMode@{AOnlineGameMode}!bPlayersCanReconnectDuringMatch@{bPlayersCanReconnectDuringMatch}}
+\index{bPlayersCanReconnectDuringMatch@{bPlayersCanReconnectDuringMatch}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{bPlayersCanReconnectDuringMatch}{bPlayersCanReconnectDuringMatch}}
+{\footnotesize\ttfamily bool AOnline\+Game\+Mode\+::b\+Players\+Can\+Reconnect\+During\+Match = true}
+
+\Hypertarget{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}\label{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559} 
+\index{AOnlineGameMode@{AOnlineGameMode}!InactiveStates@{InactiveStates}}
+\index{InactiveStates@{InactiveStates}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{InactiveStates}{InactiveStates}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_a_online_player_state}{AOnline\+Player\+State}}\texorpdfstring{$\ast$}{*}$>$ AOnline\+Game\+Mode\+::\+Inactive\+States}
+
+\Hypertarget{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}\label{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455} 
+\index{AOnlineGameMode@{AOnlineGameMode}!NextPlayerIndex@{NextPlayerIndex}}
+\index{NextPlayerIndex@{NextPlayerIndex}!AOnlineGameMode@{AOnlineGameMode}}
+\doxysubsubsection{\texorpdfstring{NextPlayerIndex}{NextPlayerIndex}}
+{\footnotesize\ttfamily uint8 AOnline\+Game\+Mode\+::\+Next\+Player\+Index = 2}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Online\+System/\+Public/\mbox{\hyperlink{_online_game_mode_8h}{Online\+Game\+Mode.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Online\+System/\+Private/\mbox{\hyperlink{_online_game_mode_8cpp}{Online\+Game\+Mode.\+cpp}}\end{DoxyCompactItemize}

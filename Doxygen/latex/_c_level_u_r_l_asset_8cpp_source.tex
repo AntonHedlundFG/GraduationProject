@@ -1,0 +1,35 @@
+\doxysection{CLevel\+URLAsset.\+cpp}
+\hypertarget{_c_level_u_r_l_asset_8cpp_source}{}\label{_c_level_u_r_l_asset_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/CLevelURLAsset.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/CLevelURLAsset.cpp}}
+\mbox{\hyperlink{_c_level_u_r_l_asset_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_level_u_r_l_asset_8h}{CLevelURLAsset.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ FString\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140}{UCLevelURLAsset::URLOfLevel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_f_level_info}{FLevelInfo}}\&\ inLevelRef,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings)}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ FString\ LoadPath\ =\ inLevelRef.\mbox{\hyperlink{struct_f_level_info_ad6a578b24f83c296edb7374cd6abf951}{LevelLoadPath}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{return}\ LoadPath}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ .Append(FString(\textcolor{stringliteral}{"{}?listen?port=7779"{}}))}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ .Append(inSettings.\mbox{\hyperlink{struct_f_level_load_settings_accddb4a4110ac734a97577e2914b1616}{GetOptionsStringAppendage}}());}
+\DoxyCodeLine{00012\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ FString\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a072e729b79f2c9d7189127cab7e51c39}{UCLevelURLAsset::URLOfLevelByIndex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ inLevelIndex,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (inLevelIndex\ <\ 0\ ||\ inLevelIndex\ >=\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b}{Levels}}.Num())}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FString();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140}{URLOfLevel}}(\mbox{\hyperlink{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b}{Levels}}[inLevelIndex],\ inSettings);}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ FString\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_aa90d5990ecb233bda46984127411c5e8}{UCLevelURLAsset::URLOfLevelByName}}(\textcolor{keyword}{const}\ FString\&\ inName,\ \mbox{\hyperlink{struct_f_level_load_settings}{FLevelLoadSettings}}\ inSettings)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_f_level_info}{FLevelInfo}}\&\ Level\ :\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b}{Levels}})}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Level.LevelName.Equals(inName))}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140}{URLOfLevel}}(Level,\ inSettings);}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ FString();}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}

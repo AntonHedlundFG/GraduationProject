@@ -1,0 +1,58 @@
+\doxysection{CUnit.\+h}
+\hypertarget{_c_unit_8h_source}{}\label{_c_unit_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/GridContent/CUnit.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/GridContent/CUnit.h}}
+\mbox{\hyperlink{_c_unit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_content_8h}{GridContent/CGridContent.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CUnit.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }UCAttributeComponent;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }UCInventoryComponent;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_item}{UCItem}};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ :\ uint8;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ UCLASS()}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}\ :\ public\ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Components"{}})}
+\DoxyCodeLine{00022\ \ \ \ \ TObjectPtr<UCAttributeComponent>\ AttributeComp;}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ public:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}();}
+\DoxyCodeLine{00026\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}{BeginPlay}}()\ override;}
+\DoxyCodeLine{00027\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ EndPlay(EEndPlayReason::Type\ Reason)\ override;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ This\ determines\ who\ can\ control\ this\ unit.\ 0\ means\ AI}}
+\DoxyCodeLine{00030\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadOnly,\ Replicated)}
+\DoxyCodeLine{00031\ \ \ \ \ uint8\ ControllingPlayerIndex\ =\ 0;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsControlledBy(AController*\ inController);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ -\/-\/\ TEMPORARY\ SOLUTION,\ SHOULD\ BE\ REPLACED\ BY\ INVENTORY\ SYSTEM\ -\/-\/}}
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_u_c_item}{UCItem}}*\ GetItemInSlot(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items"{})}
+\DoxyCodeLine{00041\ \ \ \ \ TObjectPtr<UCInventoryComponent>\ Inventory;}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ protected:}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ OnHealthChanged(AActor*\ InstigatorActor,\ UCAttributeComponent*\ OwningComp,\ \textcolor{keywordtype}{float}\ NewHealth,\ \textcolor{keywordtype}{float}\ Delta);}
+\DoxyCodeLine{00052\ \};}
+
+\end{DoxyCode}

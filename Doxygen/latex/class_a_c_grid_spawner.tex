@@ -1,0 +1,89 @@
+\doxysection{ACGrid\+Spawner Class Reference}
+\hypertarget{class_a_c_grid_spawner}{}\label{class_a_c_grid_spawner}\index{ACGridSpawner@{ACGridSpawner}}
+
+
+{\ttfamily \#include $<$CGrid\+Spawner.\+h$>$}
+
+Inheritance diagram for ACGrid\+Spawner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_c_grid_spawner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_spawner_ac9cc81a3075d7e03c212e4265645be7b}{ACGrid\+Spawner}} ()
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_grid_spawner_a0857be1c719241a80676ffa7cb7a1923}{Spawn\+Units\+From\+Array}} (TArray$<$ TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ $>$ in\+Units, TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ in\+Spawn\+Tiles)
+\item 
+\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_grid_spawner_a70cfed64ce683743fa8d3295a311bdce}{Spawn\+Unit}} (TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ in\+Unit\+Type, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Spawn\+Tile)
+\item 
+\mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_grid_spawner_a6ad6eec392ba94528468a1f5603e32bd}{Spawn\+Grid}} (FVector in\+Grid\+Center, int in\+Rows, int in\+Columns)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TArray$<$ TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ $>$ \mbox{\hyperlink{class_a_c_grid_spawner_af31ea79b9ed7e604236d3f7a99a2b3de}{Hero\+Units}}
+\item 
+TArray$<$ TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ $>$ \mbox{\hyperlink{class_a_c_grid_spawner_a47b1a0df614d0d941aed5830978d0666}{Enemy\+Units}}
+\item 
+TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_grid}{ACGrid}} $>$ \mbox{\hyperlink{class_a_c_grid_spawner_acf90982b47daf3b63d0be324661b0b31}{Grid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_c_grid_spawner_ac9cc81a3075d7e03c212e4265645be7b}\label{class_a_c_grid_spawner_ac9cc81a3075d7e03c212e4265645be7b} 
+\index{ACGridSpawner@{ACGridSpawner}!ACGridSpawner@{ACGridSpawner}}
+\index{ACGridSpawner@{ACGridSpawner}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{ACGridSpawner()}{ACGridSpawner()}}
+{\footnotesize\ttfamily ACGrid\+Spawner\+::\+ACGrid\+Spawner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_grid_spawner_a6ad6eec392ba94528468a1f5603e32bd}\label{class_a_c_grid_spawner_a6ad6eec392ba94528468a1f5603e32bd} 
+\index{ACGridSpawner@{ACGridSpawner}!SpawnGrid@{SpawnGrid}}
+\index{SpawnGrid@{SpawnGrid}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{SpawnGrid()}{SpawnGrid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} ACGrid\+Spawner\+::\+Spawn\+Grid (\begin{DoxyParamCaption}\item[{FVector}]{in\+Grid\+Center,  }\item[{int}]{in\+Rows,  }\item[{int}]{in\+Columns }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_grid_spawner_a70cfed64ce683743fa8d3295a311bdce}\label{class_a_c_grid_spawner_a70cfed64ce683743fa8d3295a311bdce} 
+\index{ACGridSpawner@{ACGridSpawner}!SpawnUnit@{SpawnUnit}}
+\index{SpawnUnit@{SpawnUnit}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{SpawnUnit()}{SpawnUnit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} ACGrid\+Spawner\+::\+Spawn\+Unit (\begin{DoxyParamCaption}\item[{TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$}]{in\+Unit\+Type,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Spawn\+Tile }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_grid_spawner_a0857be1c719241a80676ffa7cb7a1923}\label{class_a_c_grid_spawner_a0857be1c719241a80676ffa7cb7a1923} 
+\index{ACGridSpawner@{ACGridSpawner}!SpawnUnitsFromArray@{SpawnUnitsFromArray}}
+\index{SpawnUnitsFromArray@{SpawnUnitsFromArray}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{SpawnUnitsFromArray()}{SpawnUnitsFromArray()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ ACGrid\+Spawner\+::\+Spawn\+Units\+From\+Array (\begin{DoxyParamCaption}\item[{TArray$<$ TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} $>$ $>$}]{in\+Units,  }\item[{TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$}]{in\+Spawn\+Tiles }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_grid_spawner_a47b1a0df614d0d941aed5830978d0666}\label{class_a_c_grid_spawner_a47b1a0df614d0d941aed5830978d0666} 
+\index{ACGridSpawner@{ACGridSpawner}!EnemyUnits@{EnemyUnits}}
+\index{EnemyUnits@{EnemyUnits}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{EnemyUnits}{EnemyUnits}}
+{\footnotesize\ttfamily TArray$<$TSubclass\+Of$<$\mbox{\hyperlink{class_a_c_unit}{ACUnit}}$>$ $>$ ACGrid\+Spawner\+::\+Enemy\+Units}
+
+\Hypertarget{class_a_c_grid_spawner_acf90982b47daf3b63d0be324661b0b31}\label{class_a_c_grid_spawner_acf90982b47daf3b63d0be324661b0b31} 
+\index{ACGridSpawner@{ACGridSpawner}!Grid@{Grid}}
+\index{Grid@{Grid}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{Grid}{Grid}}
+{\footnotesize\ttfamily TSubclass\+Of$<$\mbox{\hyperlink{class_a_c_grid}{ACGrid}}$>$ ACGrid\+Spawner\+::\+Grid}
+
+\Hypertarget{class_a_c_grid_spawner_af31ea79b9ed7e604236d3f7a99a2b3de}\label{class_a_c_grid_spawner_af31ea79b9ed7e604236d3f7a99a2b3de} 
+\index{ACGridSpawner@{ACGridSpawner}!HeroUnits@{HeroUnits}}
+\index{HeroUnits@{HeroUnits}!ACGridSpawner@{ACGridSpawner}}
+\doxysubsubsection{\texorpdfstring{HeroUnits}{HeroUnits}}
+{\footnotesize\ttfamily TArray$<$TSubclass\+Of$<$\mbox{\hyperlink{class_a_c_unit}{ACUnit}}$>$ $>$ ACGrid\+Spawner\+::\+Hero\+Units}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Grid/\mbox{\hyperlink{_c_grid_spawner_8h}{CGrid\+Spawner.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Grid/\mbox{\hyperlink{_c_grid_spawner_8cpp}{CGrid\+Spawner.\+cpp}}\end{DoxyCompactItemize}

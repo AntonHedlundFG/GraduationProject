@@ -1,0 +1,227 @@
+\doxysection{UCItem Class Reference}
+\hypertarget{class_u_c_item}{}\label{class_u_c_item}\index{UCItem@{UCItem}}
+
+
+{\ttfamily \#include $<$CItem.\+h$>$}
+
+Inheritance diagram for UCItem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_item}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_item_ad8d654769ab2049f1e5e1314ce4159ae}{Is\+Valid\+Target\+Tile}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\begin{DoxyCompactList}\small\item\em Given a unit and a tile, can this item currently be used with that unit as the active unit, and the tile as the target? \end{DoxyCompactList}\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_item_aa71ec2a9b3898973467470550d714a8a}{Get\+Valid\+Target\+Tiles}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\begin{DoxyCompactList}\small\item\em Given a unit, create an array of all tiles that are valid targets for activating the item\textquotesingle{}s ability. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_c_item_a3afad70b811a72b38e94df152d7ebc42}{Equip\+On\+Unit}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\begin{DoxyCompactList}\small\item\em Called by the server when a unit equips this item. This applies any tags in Grants\+Tags to the unit, and Equip\+On\+Unit\+Internal can be overridden to apply further custom effects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_c_item_a08fb54a62055c6c0e74468f82950e32e}{Unequip\+On\+Unit}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\begin{DoxyCompactList}\small\item\em Called by the server when a unit unequips this item. Removes any tags in Grants\+Tags from the unit, and Unequip\+On\+Unit\+Internal can be overridden to remove any further custom effects. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_item_a491ad1763ec89c7489393faf4987d9b4}{Generate\+Ability\+Command}} (AController \texorpdfstring{$\ast$}{*}in\+Controller, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+virtual TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0}{Get\+Reachable\+Tiles}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Tile)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ UTexture2D $>$ \mbox{\hyperlink{class_u_c_item_a77dfe7dffe260c43b90905106609fe03}{Ability\+Icon}}
+\item 
+\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} \mbox{\hyperlink{class_u_c_item_add14b1ceebde4d649693159c4053df6f}{Item\+Slot}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_item_aedd1082e607a22100c1ea76ceea15613}{Get\+Valid\+Target\+Tiles\+Internal}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+virtual void \mbox{\hyperlink{class_u_c_item_a6de83d25d07f76c2a3084600f0a81597}{Equip\+On\+Unit\+Internal}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+virtual void \mbox{\hyperlink{class_u_c_item_afdd71b6ae22efc7236c5c775fd560a2a}{Unequip\+On\+Unit\+Internal}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+void \mbox{\hyperlink{class_u_c_item_a4f5348ed19c3015e842d39d9bcc2c4a5}{Receive\+Equip\+On\+Unit}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+\mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_item_a9d0f45b5837757e53682ddfb652b0476}{Receive\+Generate\+Ability\+Command}} (AController \texorpdfstring{$\ast$}{*}in\+Controller, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_item_a529394948674c51fac678e73fc458b58}{Receive\+Get\+Valid\+Target\+Tiles}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+void \mbox{\hyperlink{class_u_c_item_a33c0f29c3357d85b6a1621b616e6e2c1}{Receive\+Unequip\+On\+Unit}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_item_a2184b886adc45eb73dc3cb0475bdaa6f}{Receive\+Get\+Reachable\+Tiles}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Tile)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_item_a365e9c7f0690feab09046619d34363c2}{Grants\+Tags}}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_item_ae2d993ae7cc503d4f79d28ea0b6f06b9}{Blocked\+Tags}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+If making a C++ extension that is also extended by Angel\+Script/\+Blueprints, make sure you call the Super\+::\+Generate\+Ability\+Command() function manually. If the implementation is entirely C++, do not make a Super\+:\+: call. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_item_a3afad70b811a72b38e94df152d7ebc42}\label{class_u_c_item_a3afad70b811a72b38e94df152d7ebc42} 
+\index{UCItem@{UCItem}!EquipOnUnit@{EquipOnUnit}}
+\index{EquipOnUnit@{EquipOnUnit}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{EquipOnUnit()}{EquipOnUnit()}}
+{\footnotesize\ttfamily void UCItem\+::\+Equip\+On\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})}
+
+
+
+Called by the server when a unit equips this item. This applies any tags in Grants\+Tags to the unit, and Equip\+On\+Unit\+Internal can be overridden to apply further custom effects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Unit} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_c_item_a6de83d25d07f76c2a3084600f0a81597}\label{class_u_c_item_a6de83d25d07f76c2a3084600f0a81597} 
+\index{UCItem@{UCItem}!EquipOnUnitInternal@{EquipOnUnitInternal}}
+\index{EquipOnUnitInternal@{EquipOnUnitInternal}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{EquipOnUnitInternal()}{EquipOnUnitInternal()}}
+{\footnotesize\ttfamily virtual void UCItem\+::\+Equip\+On\+Unit\+Internal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_item_a491ad1763ec89c7489393faf4987d9b4}\label{class_u_c_item_a491ad1763ec89c7489393faf4987d9b4} 
+\index{UCItem@{UCItem}!GenerateAbilityCommand@{GenerateAbilityCommand}}
+\index{GenerateAbilityCommand@{GenerateAbilityCommand}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{GenerateAbilityCommand()}{GenerateAbilityCommand()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} UCItem\+::\+Generate\+Ability\+Command (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0}\label{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0} 
+\index{UCItem@{UCItem}!GetReachableTiles@{GetReachableTiles}}
+\index{GetReachableTiles@{GetReachableTiles}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{GetReachableTiles()}{GetReachableTiles()}}
+{\footnotesize\ttfamily virtual TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCItem\+::\+Get\+Reachable\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_item_aa71ec2a9b3898973467470550d714a8a}\label{class_u_c_item_aa71ec2a9b3898973467470550d714a8a} 
+\index{UCItem@{UCItem}!GetValidTargetTiles@{GetValidTargetTiles}}
+\index{GetValidTargetTiles@{GetValidTargetTiles}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{GetValidTargetTiles()}{GetValidTargetTiles()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCItem\+::\+Get\+Valid\+Target\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})}
+
+
+
+Given a unit, create an array of all tiles that are valid targets for activating the item\textquotesingle{}s ability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Unit} & The active unit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of valid target tiles 
+\end{DoxyReturn}
+\Hypertarget{class_u_c_item_aedd1082e607a22100c1ea76ceea15613}\label{class_u_c_item_aedd1082e607a22100c1ea76ceea15613} 
+\index{UCItem@{UCItem}!GetValidTargetTilesInternal@{GetValidTargetTilesInternal}}
+\index{GetValidTargetTilesInternal@{GetValidTargetTilesInternal}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{GetValidTargetTilesInternal()}{GetValidTargetTilesInternal()}}
+{\footnotesize\ttfamily virtual TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCItem\+::\+Get\+Valid\+Target\+Tiles\+Internal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_item_ad8d654769ab2049f1e5e1314ce4159ae}\label{class_u_c_item_ad8d654769ab2049f1e5e1314ce4159ae} 
+\index{UCItem@{UCItem}!IsValidTargetTile@{IsValidTargetTile}}
+\index{IsValidTargetTile@{IsValidTargetTile}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{IsValidTargetTile()}{IsValidTargetTile()}}
+{\footnotesize\ttfamily bool UCItem\+::\+Is\+Valid\+Target\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})}
+
+
+
+Given a unit and a tile, can this item currently be used with that unit as the active unit, and the tile as the target? 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Unit} & The active unit \\
+\hline
+{\em in\+Target\+Tile} & The desired target tile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_u_c_item_a4f5348ed19c3015e842d39d9bcc2c4a5}\label{class_u_c_item_a4f5348ed19c3015e842d39d9bcc2c4a5} 
+\index{UCItem@{UCItem}!ReceiveEquipOnUnit@{ReceiveEquipOnUnit}}
+\index{ReceiveEquipOnUnit@{ReceiveEquipOnUnit}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ReceiveEquipOnUnit()}{ReceiveEquipOnUnit()}}
+{\footnotesize\ttfamily void UCItem\+::\+Receive\+Equip\+On\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a9d0f45b5837757e53682ddfb652b0476}\label{class_u_c_item_a9d0f45b5837757e53682ddfb652b0476} 
+\index{UCItem@{UCItem}!ReceiveGenerateAbilityCommand@{ReceiveGenerateAbilityCommand}}
+\index{ReceiveGenerateAbilityCommand@{ReceiveGenerateAbilityCommand}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ReceiveGenerateAbilityCommand()}{ReceiveGenerateAbilityCommand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} UCItem\+::\+Receive\+Generate\+Ability\+Command (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a2184b886adc45eb73dc3cb0475bdaa6f}\label{class_u_c_item_a2184b886adc45eb73dc3cb0475bdaa6f} 
+\index{UCItem@{UCItem}!ReceiveGetReachableTiles@{ReceiveGetReachableTiles}}
+\index{ReceiveGetReachableTiles@{ReceiveGetReachableTiles}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ReceiveGetReachableTiles()}{ReceiveGetReachableTiles()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCItem\+::\+Receive\+Get\+Reachable\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a529394948674c51fac678e73fc458b58}\label{class_u_c_item_a529394948674c51fac678e73fc458b58} 
+\index{UCItem@{UCItem}!ReceiveGetValidTargetTiles@{ReceiveGetValidTargetTiles}}
+\index{ReceiveGetValidTargetTiles@{ReceiveGetValidTargetTiles}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ReceiveGetValidTargetTiles()}{ReceiveGetValidTargetTiles()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCItem\+::\+Receive\+Get\+Valid\+Target\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a33c0f29c3357d85b6a1621b616e6e2c1}\label{class_u_c_item_a33c0f29c3357d85b6a1621b616e6e2c1} 
+\index{UCItem@{UCItem}!ReceiveUnequipOnUnit@{ReceiveUnequipOnUnit}}
+\index{ReceiveUnequipOnUnit@{ReceiveUnequipOnUnit}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ReceiveUnequipOnUnit()}{ReceiveUnequipOnUnit()}}
+{\footnotesize\ttfamily void UCItem\+::\+Receive\+Unequip\+On\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a08fb54a62055c6c0e74468f82950e32e}\label{class_u_c_item_a08fb54a62055c6c0e74468f82950e32e} 
+\index{UCItem@{UCItem}!UnequipOnUnit@{UnequipOnUnit}}
+\index{UnequipOnUnit@{UnequipOnUnit}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{UnequipOnUnit()}{UnequipOnUnit()}}
+{\footnotesize\ttfamily void UCItem\+::\+Unequip\+On\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})}
+
+
+
+Called by the server when a unit unequips this item. Removes any tags in Grants\+Tags from the unit, and Unequip\+On\+Unit\+Internal can be overridden to remove any further custom effects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Unit} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_c_item_afdd71b6ae22efc7236c5c775fd560a2a}\label{class_u_c_item_afdd71b6ae22efc7236c5c775fd560a2a} 
+\index{UCItem@{UCItem}!UnequipOnUnitInternal@{UnequipOnUnitInternal}}
+\index{UnequipOnUnitInternal@{UnequipOnUnitInternal}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{UnequipOnUnitInternal()}{UnequipOnUnitInternal()}}
+{\footnotesize\ttfamily virtual void UCItem\+::\+Unequip\+On\+Unit\+Internal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_item_a77dfe7dffe260c43b90905106609fe03}\label{class_u_c_item_a77dfe7dffe260c43b90905106609fe03} 
+\index{UCItem@{UCItem}!AbilityIcon@{AbilityIcon}}
+\index{AbilityIcon@{AbilityIcon}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{AbilityIcon}{AbilityIcon}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UTexture2D$>$ UCItem\+::\+Ability\+Icon}
+
+\Hypertarget{class_u_c_item_ae2d993ae7cc503d4f79d28ea0b6f06b9}\label{class_u_c_item_ae2d993ae7cc503d4f79d28ea0b6f06b9} 
+\index{UCItem@{UCItem}!BlockedTags@{BlockedTags}}
+\index{BlockedTags@{BlockedTags}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{BlockedTags}{BlockedTags}}
+{\footnotesize\ttfamily FGameplay\+Tag\+Container UCItem\+::\+Blocked\+Tags\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_a365e9c7f0690feab09046619d34363c2}\label{class_u_c_item_a365e9c7f0690feab09046619d34363c2} 
+\index{UCItem@{UCItem}!GrantsTags@{GrantsTags}}
+\index{GrantsTags@{GrantsTags}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{GrantsTags}{GrantsTags}}
+{\footnotesize\ttfamily FGameplay\+Tag\+Container UCItem\+::\+Grants\+Tags\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_item_add14b1ceebde4d649693159c4053df6f}\label{class_u_c_item_add14b1ceebde4d649693159c4053df6f} 
+\index{UCItem@{UCItem}!ItemSlot@{ItemSlot}}
+\index{ItemSlot@{ItemSlot}!UCItem@{UCItem}}
+\doxysubsubsection{\texorpdfstring{ItemSlot}{ItemSlot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} UCItem\+::\+Item\+Slot}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Items/\mbox{\hyperlink{_c_item_8h}{CItem.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Items/\mbox{\hyperlink{_c_item_8cpp}{CItem.\+cpp}}\end{DoxyCompactItemize}

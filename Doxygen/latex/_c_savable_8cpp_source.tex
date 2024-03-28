@@ -1,0 +1,20 @@
+\doxysection{CSavable.\+cpp}
+\hypertarget{_c_savable_8cpp_source}{}\label{_c_savable_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/SaveGame/CSavable.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Utility/SaveGame/CSavable.cpp}}
+\mbox{\hyperlink{_c_savable_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_savable_8h}{Utility/SaveGame/CSavable.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_save_game_manager_8h}{Utility/SaveGame/CSaveGameManager.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_c_savable_a5665543846451a4ed15d5caa6bb576ff}{ICSavable::RegisterToSaveManager}}()}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}{UCSaveGameManager::Get}}()-\/>\mbox{\hyperlink{class_u_c_save_game_manager_a24a11ea8a4147b35beaeb54fa0fd3461}{RegisterSavable}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00008\ \}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_c_savable_ab66765c8700da14a8e8812356adb05a5}{ICSavable::UnregisterFromSaveManager}}()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}{UCSaveGameManager::Get}}()-\/>\mbox{\hyperlink{class_u_c_save_game_manager_aeab042099954e0b624541e221580871b}{UnRegisterSavable}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+
+\end{DoxyCode}

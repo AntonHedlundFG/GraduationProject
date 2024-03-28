@@ -1,0 +1,57 @@
+\doxysection{CDeath\+Consequence.\+cpp}
+\hypertarget{_c_death_consequence_8cpp_source}{}\label{_c_death_consequence_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/CommandPattern/CDeathConsequence.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/CommandPattern/CDeathConsequence.cpp}}
+\mbox{\hyperlink{_c_death_consequence_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_death_consequence_8h}{CommandPattern/CDeathConsequence.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_state_8h}{CGameState.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_death_consequence_a8b12705aa38cfc16f9667c0e2a51f42e}{UCDeathConsequence::ExecuteConsequence}}()}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ GameState\ =\ GetWorld()-\/>GetGameState<\mbox{\hyperlink{class_a_c_game_state}{ACGameState}}>();}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GameState)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ DeathLocation\ =\ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}}-\/>GetActorLocation();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}}-\/>SetActorLocation(FVector(10000,\ 10000,\ 10000));}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ QueueIndex\ =\ GameState-\/>TurnOrder.Find(\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}});}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (QueueIndex\ >=\ 0)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ GameState-\/>TurnOrder.RemoveAt(QueueIndex);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ Tile\ =\ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}}-\/>GetTile();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (Tile)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ Tile-\/>SetContent(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//Apply\ a\ temporary\ effect,\ using\ a\ TurnTimer\ which\ we\ have\ yet\ to\ implement.}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//GetWorld()-\/>GetTurnTimer()-\/>CreateTimer(.....)\ }}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_death_consequence_ab547929422534c3d2e1f96512def06f9}{UCDeathConsequence::UndoConsequence}}()}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GameState\ ||\ !\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}}-\/>SetActorLocation(DeathLocation);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (QueueIndex\ >=\ 0)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ GameState-\/>TurnOrder.Insert(\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}},\ QueueIndex);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (Tile)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Tile-\/>SetContent(\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}});}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//Once\ we\ can\ create\ TurnTimers,\ this\ should\ cancel\ it.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//GetWorld()-\/>ClearTurnTimer(Handle);}}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ FString\ \mbox{\hyperlink{class_u_c_death_consequence_a995a89143dc8f7577e1efbcccda2e330}{UCDeathConsequence::ToString}}()}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}})\ \textcolor{keywordflow}{return}\ FString(\textcolor{stringliteral}{"{}Unknown\ Unit\ died."{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_death_consequence_a979561598bf7b7f4301510497f710923}{DyingUnit}}-\/>GetName()\ +\ FString(\textcolor{stringliteral}{"{}\ died."{}});}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,111 @@
+\doxysection{Online\+Game\+Mode.\+cpp}
+\hypertarget{_online_game_mode_8cpp_source}{}\label{_online_game_mode_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlineGameMode.cpp@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Private/OnlineGameMode.cpp}}
+\mbox{\hyperlink{_online_game_mode_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_game_mode_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlineGameMode.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_epic_online_subsystem_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)EpicOnlineSubsystem.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_online_player_state_8h}{TacticalRogueLite\(\backslash\)OnlineSystem\(\backslash\)Public\(\backslash\)OnlinePlayerState.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}GameFramework/PlayerState.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_game_mode_a9b38b6fbe1cd57a60537752184681d25}{AOnlineGameMode::PostLogin}}(APlayerController*\ NewPlayer)}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{auto}\ Subsystem\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_epic_online_subsystem}{UEpicOnlineSubsystem}}>();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//Bypass\ online\ functionality,\ usually\ in\ PIE\ mode}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem\ ||\ !Subsystem-\/>IsPlayerLoggedIn())}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ Super::PostLogin(NewPlayer);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}*\ CastState\ =\ Cast<AOnlinePlayerState>(NewPlayer-\/>PlayerState))}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!NewPlayer-\/>IsLocalPlayerController()\ \&\&\ CastState-\/>PlayerIndex\ <=\ 1)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CastState-\/>PlayerIndex\ =\ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}}++;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ Subsystem-\/>PlayerConnected(NewPlayer);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//If\ we\ have\ no\ unique\ net\ ID\ we\ are\ currently\ not\ using\ online\ functionality,\ probably\ PIE.}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ FUniqueNetIdRepl\ UniqueNetID\ =\ Subsystem-\/>GetUniqueNetIdOf(NewPlayer);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ FString\ UniqueNetIDString\ =\ UniqueNetID-\/>ToString();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//This\ is\ where\ a\ pawn\ gets\ spawned\ if\ the\ player\ doesn't\ already\ have\ one}}
+\DoxyCodeLine{00038\ \ \ \ \ Super::PostLogin(NewPlayer);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ -\/-\/\ HANDLE\ INACTIVE\ PLAYER\ STATES\ BELOW\ -\/-\/}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Search\ for\ inactive\ states\ belonging\ to\ the\ connecting\ players\ unique\ player\ ID.}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}}*\ InactiveState\ :\ \mbox{\hyperlink{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}{InactiveStates}})}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (InactiveState-\/>UniqueOwnerNetID\ ==\ UniqueNetIDString)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}{InactiveStates}}.RemoveSingleSwap(InactiveState);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ InactiveState-\/>DispatchCopyProperties(NewPlayer-\/>PlayerState);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ InactiveState-\/>Destroy();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//Update\ the\ playerstate\ with\ the\ unique\ player\ ID,\ for\ reconnecting.}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}*\ CastState\ =\ Cast<AOnlinePlayerState>(NewPlayer-\/>PlayerState))}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ CastState-\/>UniqueOwnerNetID\ =\ UniqueNetIDString;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!NewPlayer-\/>IsLocalPlayerController()\ \&\&\ CastState-\/>PlayerIndex\ <=\ 1)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ CastState-\/>PlayerIndex\ =\ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}}++;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_game_mode_a216a6365e69acdc2b4a8c5f79a1ce27d}{AOnlineGameMode::HandleSeamlessTravelPlayer}}(AController*\&\ C)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ Super::HandleSeamlessTravelPlayer(C);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ -\/-\/\ REGISTER\ PAWNS\ FOR\ REPOSSESSING\ WHEN\ SEAMLESSLY\ TRAVELLING\ -\/-\/}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{auto}\ Subsystem\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_epic_online_subsystem}{UEpicOnlineSubsystem}}>();}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Subsystem\ ||\ !Subsystem-\/>IsPlayerLoggedIn())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ APlayerController*\ PC\ =\ Cast<APlayerController>(C);}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (!PC\ ||\ !PC-\/>GetPawn())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ FUniqueNetIdRepl\ UniqueNetID\ =\ Subsystem-\/>GetUniqueNetIdOf(PC);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ FString\ UniqueNetIDString\ =\ UniqueNetID-\/>ToString();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//Update\ the\ playerstate\ with\ the\ unique\ player\ ID,\ for\ reconnecting.}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}*\ CastState\ =\ Cast<AOnlinePlayerState>(C-\/>PlayerState))}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ CastState-\/>UniqueOwnerNetID\ =\ UniqueNetIDString;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!C-\/>IsLocalPlayerController()\ \&\&\ CastState-\/>PlayerIndex\ <=\ 1)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ CastState-\/>PlayerIndex\ =\ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{NextPlayerIndex}}++;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_online_game_mode_a42dc9ae173b40c2d8cf5489e4f2b13ca}{AOnlineGameMode::Logout}}(AController*\ Exiting)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}*\ CastState\ =\ Cast<AOnlinePlayerState>(Exiting-\/>PlayerState))}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}}*\ NewPS\ =\ GetWorld()-\/>SpawnActor<\mbox{\hyperlink{class_a_online_player_state}{AOnlinePlayerState}}>(AOnlinePlayerState::StaticClass());}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ CastState-\/>DispatchCopyProperties(NewPS);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}{InactiveStates}}.Add(NewPS);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ Super::Logout(Exiting);}
+\DoxyCodeLine{00105\ \}}
+
+\end{DoxyCode}

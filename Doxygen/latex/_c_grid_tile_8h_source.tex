@@ -1,0 +1,81 @@
+\doxysection{CGrid\+Tile.\+h}
+\hypertarget{_c_grid_tile_8h_source}{}\label{_c_grid_tile_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGridTile.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Grid/CGridTile.h}}
+\mbox{\hyperlink{_c_grid_tile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tile_highlight_modes_8h}{Tiles/TileHighlightModes.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Actor.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CGridTile.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \mbox{\hyperlink{_c_grid_tile_8h_aadeb733741c9b62247d408c94640e786}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}(FOnHighlightChange,\ \textcolor{keywordtype}{bool},\ bIsHighlighted);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_tile_highlight_data}{UCTileHighlightData}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid}{ACGrid}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ UCLASS()}
+\DoxyCodeLine{00018\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}\ :\ public\ AActor}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}();}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//Is\ managed\ by\ CPlayerController,\ with\ a\ bool\ for\ on/off.}}
+\DoxyCodeLine{00026\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00027\ \ \ \ \ FOnHighlightChange\ OnHighlightChange;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Tile\ Settings"{})}
+\DoxyCodeLine{00031\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_tile_highlight_data}{UCTileHighlightData}}>\ HighlightData;}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ Initialize(\mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ inParentGrid,\ FVector2D\ inCoords);}
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ CreateLinks();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#pragma\ region\ Get/Set}}
+\DoxyCodeLine{00041\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ GetParentGrid()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ ParentGrid;\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00044\ \ \ \ \ FVector2D\ GetGridCoords()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ GridCoords;\ \}}
+\DoxyCodeLine{00045\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00046\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetStraightLinks()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ StraightLinks;\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00048\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetDiagonalLinks()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ DiagonalLinks;\ \}}
+\DoxyCodeLine{00049\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00050\ \ \ \ \ TArray<ACGridTile*>\ GetNeighbours(\textcolor{keywordtype}{bool}\ bIncludeDiagonals\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00051\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*\ GetContent()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ TileContent;\ \}}
+\DoxyCodeLine{00053\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00054\ \ \ \ \ void\ SetContent(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*\ inContent)\ \{\ TileContent\ =\ inContent;\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00056\ \ \ \ \ void\ SetTileHighlightMode(\mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETileHighlightModes}}\ inHighlightMode);}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00060\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00061\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_grid}{ACGrid}}>\ ParentGrid;}
+\DoxyCodeLine{00062\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00063\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>>\ StraightLinks;}
+\DoxyCodeLine{00064\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00065\ \ \ \ \ TArray<TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>>\ DiagonalLinks;}
+\DoxyCodeLine{00066\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00067\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}>\ TileContent;}
+\DoxyCodeLine{00068\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00069\ \ \ \ \ FVector2D\ GridCoords;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETileHighlightModes}}\ CurrentHighlightMode\ =\ \mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETileHighlightModes}}::ETHM\_Default;}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_a10f64f76692bc263be3d6d466e6e0bf7}{BeginPlay}}()\ override;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \};}
+
+\end{DoxyCode}

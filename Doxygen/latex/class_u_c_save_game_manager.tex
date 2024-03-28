@@ -1,0 +1,143 @@
+\doxysection{UCSave\+Game\+Manager Class Reference}
+\hypertarget{class_u_c_save_game_manager}{}\label{class_u_c_save_game_manager}\index{UCSaveGameManager@{UCSaveGameManager}}
+
+
+{\ttfamily \#include $<$CSave\+Game\+Manager.\+h$>$}
+
+Inheritance diagram for UCSave\+Game\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_save_game_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_save_game_manager_a24a11ea8a4147b35beaeb54fa0fd3461}{Register\+Savable}} (\mbox{\hyperlink{class_i_c_savable}{ICSavable}} \texorpdfstring{$\ast$}{*}Savable)
+\item 
+void \mbox{\hyperlink{class_u_c_save_game_manager_aeab042099954e0b624541e221580871b}{Un\+Register\+Savable}} (\mbox{\hyperlink{class_i_c_savable}{ICSavable}} \texorpdfstring{$\ast$}{*}Savable)
+\item 
+void \mbox{\hyperlink{class_u_c_save_game_manager_ac536f992f257708cd1857cde42851174}{Save\+Game}} ()
+\item 
+class \mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_save_game_manager_a127bba1e492c086dc2b9067a19d8696f}{Load\+Game}} ()
+\item 
+\mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_save_game_manager_a03b0216b560c8b2e9b2eda9310fe9015}{Get\+Save\+Game\+Instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_u_c_save_game_manager}{UCSave\+Game\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}{Get}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_save_game_manager_a362b1a7574ad46828436764f16cbd2a7}{Trigger\+Save\+Event}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_save_game_manager_aebc0f025f40ae7b87ba16210aa8193fb}{Trigger\+Load\+Event}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TArray$<$ \mbox{\hyperlink{class_i_c_savable}{ICSavable}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_save_game_manager_ab6e5e4f8e4b2a594d13b30c47a385f49}{Savables}}
+\item 
+\mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_save_game_manager_a28ead1e1f3d1121aac74e415353c8a8d}{Save\+Game\+Instance}}
+\item 
+FString \mbox{\hyperlink{class_u_c_save_game_manager_ae3a2b5ef9192720a4425bd80156359d5}{Save\+Slot}} = "{}Save\+Slot"{}
+\item 
+int32 \mbox{\hyperlink{class_u_c_save_game_manager_a1694c6a9b3099793886e971a00bb9cd6}{User\+Index}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_u_c_save_game_manager}{UCSave\+Game\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_save_game_manager_ab6c9b906df9bf1488236131cf2a64a64}{Instance}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4}\label{class_u_c_save_game_manager_a309d4ec86d9b6732a75bf09dc2951dc4} 
+\index{UCSaveGameManager@{UCSaveGameManager}!Get@{Get}}
+\index{Get@{Get}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_save_game_manager}{UCSave\+Game\+Manager}} \texorpdfstring{$\ast$}{*} UCSave\+Game\+Manager\+::\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_save_game_manager_a03b0216b560c8b2e9b2eda9310fe9015}\label{class_u_c_save_game_manager_a03b0216b560c8b2e9b2eda9310fe9015} 
+\index{UCSaveGameManager@{UCSaveGameManager}!GetSaveGameInstance@{GetSaveGameInstance}}
+\index{GetSaveGameInstance@{GetSaveGameInstance}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{GetSaveGameInstance()}{GetSaveGameInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}} \texorpdfstring{$\ast$}{*} UCSave\+Game\+Manager\+::\+Get\+Save\+Game\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_save_game_manager_a127bba1e492c086dc2b9067a19d8696f}\label{class_u_c_save_game_manager_a127bba1e492c086dc2b9067a19d8696f} 
+\index{UCSaveGameManager@{UCSaveGameManager}!LoadGame@{LoadGame}}
+\index{LoadGame@{LoadGame}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{LoadGame()}{LoadGame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}} \texorpdfstring{$\ast$}{*} UCSave\+Game\+Manager\+::\+Load\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_save_game_manager_a24a11ea8a4147b35beaeb54fa0fd3461}\label{class_u_c_save_game_manager_a24a11ea8a4147b35beaeb54fa0fd3461} 
+\index{UCSaveGameManager@{UCSaveGameManager}!RegisterSavable@{RegisterSavable}}
+\index{RegisterSavable@{RegisterSavable}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{RegisterSavable()}{RegisterSavable()}}
+{\footnotesize\ttfamily void UCSave\+Game\+Manager\+::\+Register\+Savable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_c_savable}{ICSavable}} \texorpdfstring{$\ast$}{*}}]{Savable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_u_c_save_game_manager_ac536f992f257708cd1857cde42851174}\label{class_u_c_save_game_manager_ac536f992f257708cd1857cde42851174} 
+\index{UCSaveGameManager@{UCSaveGameManager}!SaveGame@{SaveGame}}
+\index{SaveGame@{SaveGame}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{SaveGame()}{SaveGame()}}
+{\footnotesize\ttfamily void UCSave\+Game\+Manager\+::\+Save\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_save_game_manager_aebc0f025f40ae7b87ba16210aa8193fb}\label{class_u_c_save_game_manager_aebc0f025f40ae7b87ba16210aa8193fb} 
+\index{UCSaveGameManager@{UCSaveGameManager}!TriggerLoadEvent@{TriggerLoadEvent}}
+\index{TriggerLoadEvent@{TriggerLoadEvent}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{TriggerLoadEvent()}{TriggerLoadEvent()}}
+{\footnotesize\ttfamily void UCSave\+Game\+Manager\+::\+Trigger\+Load\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_a362b1a7574ad46828436764f16cbd2a7}\label{class_u_c_save_game_manager_a362b1a7574ad46828436764f16cbd2a7} 
+\index{UCSaveGameManager@{UCSaveGameManager}!TriggerSaveEvent@{TriggerSaveEvent}}
+\index{TriggerSaveEvent@{TriggerSaveEvent}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{TriggerSaveEvent()}{TriggerSaveEvent()}}
+{\footnotesize\ttfamily void UCSave\+Game\+Manager\+::\+Trigger\+Save\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_aeab042099954e0b624541e221580871b}\label{class_u_c_save_game_manager_aeab042099954e0b624541e221580871b} 
+\index{UCSaveGameManager@{UCSaveGameManager}!UnRegisterSavable@{UnRegisterSavable}}
+\index{UnRegisterSavable@{UnRegisterSavable}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{UnRegisterSavable()}{UnRegisterSavable()}}
+{\footnotesize\ttfamily void UCSave\+Game\+Manager\+::\+Un\+Register\+Savable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_c_savable}{ICSavable}} \texorpdfstring{$\ast$}{*}}]{Savable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_save_game_manager_ab6c9b906df9bf1488236131cf2a64a64}\label{class_u_c_save_game_manager_ab6c9b906df9bf1488236131cf2a64a64} 
+\index{UCSaveGameManager@{UCSaveGameManager}!Instance@{Instance}}
+\index{Instance@{Instance}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_save_game_manager}{UCSave\+Game\+Manager}} \texorpdfstring{$\ast$}{*} UCSave\+Game\+Manager\+::\+Instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_ab6e5e4f8e4b2a594d13b30c47a385f49}\label{class_u_c_save_game_manager_ab6e5e4f8e4b2a594d13b30c47a385f49} 
+\index{UCSaveGameManager@{UCSaveGameManager}!Savables@{Savables}}
+\index{Savables@{Savables}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{Savables}{Savables}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_i_c_savable}{ICSavable}}\texorpdfstring{$\ast$}{*}$>$ UCSave\+Game\+Manager\+::\+Savables\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_a28ead1e1f3d1121aac74e415353c8a8d}\label{class_u_c_save_game_manager_a28ead1e1f3d1121aac74e415353c8a8d} 
+\index{UCSaveGameManager@{UCSaveGameManager}!SaveGameInstance@{SaveGameInstance}}
+\index{SaveGameInstance@{SaveGameInstance}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{SaveGameInstance}{SaveGameInstance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_save_game}{UCSave\+Game}}\texorpdfstring{$\ast$}{*} UCSave\+Game\+Manager\+::\+Save\+Game\+Instance\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_ae3a2b5ef9192720a4425bd80156359d5}\label{class_u_c_save_game_manager_ae3a2b5ef9192720a4425bd80156359d5} 
+\index{UCSaveGameManager@{UCSaveGameManager}!SaveSlot@{SaveSlot}}
+\index{SaveSlot@{SaveSlot}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{SaveSlot}{SaveSlot}}
+{\footnotesize\ttfamily FString UCSave\+Game\+Manager\+::\+Save\+Slot = "{}Save\+Slot"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_save_game_manager_a1694c6a9b3099793886e971a00bb9cd6}\label{class_u_c_save_game_manager_a1694c6a9b3099793886e971a00bb9cd6} 
+\index{UCSaveGameManager@{UCSaveGameManager}!UserIndex@{UserIndex}}
+\index{UserIndex@{UserIndex}!UCSaveGameManager@{UCSaveGameManager}}
+\doxysubsubsection{\texorpdfstring{UserIndex}{UserIndex}}
+{\footnotesize\ttfamily int32 UCSave\+Game\+Manager\+::\+User\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\+Save\+Game/\mbox{\hyperlink{_c_save_game_manager_8h}{CSave\+Game\+Manager.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Utility/\+Save\+Game/\mbox{\hyperlink{_c_save_game_manager_8cpp}{CSave\+Game\+Manager.\+cpp}}\end{DoxyCompactItemize}

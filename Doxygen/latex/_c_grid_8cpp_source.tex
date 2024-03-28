@@ -1,0 +1,118 @@
+\doxysection{CGrid.\+cpp}
+\hypertarget{_c_grid_8cpp_source}{}\label{_c_grid_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGrid.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGrid.cpp}}
+\mbox{\hyperlink{_c_grid_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_8h}{Grid/CGrid.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00009\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00010\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid}{ACGrid}},\ \mbox{\hyperlink{class_a_c_grid_a5a93aab4b8ef43051821a220f94dde10}{Tiles}});}
+\DoxyCodeLine{00011\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \mbox{\hyperlink{class_a_c_grid_a066f8c4ab23b66820f9100afb844365b}{ACGrid::ACGrid}}()}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_a10f64f76692bc263be3d6d466e6e0bf7}{ACGrid::BeginPlay}}()}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ GenerateTiles(GridDimensions.X,\ GridDimensions.Y);}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ GenerateSpawnTiles();}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ CreateSpawner();}}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_a24c9ff1819619fc17ce370eab0fc055b}{ACGrid::GenerateTiles}}(\textcolor{keywordtype}{int}\ inRows,\ \textcolor{keywordtype}{int}\ inColumns)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ FVector\ BottomLeft\ =\ FindBottomLeftCorner();}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ x\ =\ 0\ ;\ x\ <\ inRows;\ x++)}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ y\ =\ 0\ ;\ y\ <\ inColumns;\ y++)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ FVector\ NodePosition\ =\ BottomLeft;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ NodePosition.X\ +=\ x*\mbox{\hyperlink{class_a_c_grid_a3b4117833bdacce18d8d141c1ebce98a}{NodeInterval}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ NodePosition.Y\ +=\ y*\mbox{\hyperlink{class_a_c_grid_a3b4117833bdacce18d8d141c1ebce98a}{NodeInterval}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ TObjectPtr<ACGridTile>\ Tile\ =\ GetWorld()-\/>SpawnActor<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>(\mbox{\hyperlink{class_a_c_grid_aa10dac64d99a9b770ea57059fb0fa4fd}{TileBlueprint}},\ NodePosition,\ FRotator::ZeroRotator);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Tile-\/>\mbox{\hyperlink{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}{Initialize}}(\textcolor{keyword}{this},\ FVector2D(x,y));}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_a5a93aab4b8ef43051821a220f94dde10}{Tiles}}.Add(Tile);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ tile\ :\ \mbox{\hyperlink{class_a_c_grid_a5a93aab4b8ef43051821a220f94dde10}{Tiles}})}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ tile-\/>CreateLinks();}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ GenerateSpawnTiles();}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ \mbox{\hyperlink{class_a_c_grid_ac8751fe4e76230ee84fa1460ed39805b}{ACGrid::GetTileAtPosition}}(\textcolor{keywordtype}{int}\ inX,\ \textcolor{keywordtype}{int}\ inY)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ FVector2D\ PositionVector\ =\ FVector2D(inX,\ inY);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ tile\ :\ \mbox{\hyperlink{class_a_c_grid_a5a93aab4b8ef43051821a220f94dde10}{Tiles}})}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tile-\/>GetGridCoords()\ ==\ PositionVector)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tile;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ FVector\ ACGrid::FindBottomLeftCorner()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ FVector\ Corner\ =\ GetActorLocation();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ Corner.X\ -\/=\ \mbox{\hyperlink{class_a_c_grid_a8d76e033ff5998f962e7e938414c6eb3}{GridDimensions}}.X\ /\ 2\ *\ \mbox{\hyperlink{class_a_c_grid_a3b4117833bdacce18d8d141c1ebce98a}{NodeInterval}};}
+\DoxyCodeLine{00070\ \ \ \ \ Corner.Y\ -\/=\ \mbox{\hyperlink{class_a_c_grid_a8d76e033ff5998f962e7e938414c6eb3}{GridDimensions}}.Y\ /\ 2\ *\ \mbox{\hyperlink{class_a_c_grid_a3b4117833bdacce18d8d141c1ebce98a}{NodeInterval}};}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ Corner;}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//SUPER\ UGLY,\ DON'T\ LOOK!!\ WILL\ CHANGE\ LATER!}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ ACGrid::GenerateSpawnTiles()}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ TArray<FVector2D>\ HeroSpawns;}
+\DoxyCodeLine{00082\ \ \ \ \ HeroSpawns.Add(FVector2D(0,1));}
+\DoxyCodeLine{00083\ \ \ \ \ HeroSpawns.Add(FVector2D(0,3));}
+\DoxyCodeLine{00084\ \ \ \ \ HeroSpawns.Add(FVector2D(0,6));}
+\DoxyCodeLine{00085\ \ \ \ \ HeroSpawns.Add(FVector2D(0,8));}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ TArray<FVector2D>\ EnemySpawns;}
+\DoxyCodeLine{00088\ \ \ \ \ EnemySpawns.Add(FVector2D(9,1));}
+\DoxyCodeLine{00089\ \ \ \ \ EnemySpawns.Add(FVector2D(9,3));}
+\DoxyCodeLine{00090\ \ \ \ \ EnemySpawns.Add(FVector2D(9,6));}
+\DoxyCodeLine{00091\ \ \ \ \ EnemySpawns.Add(FVector2D(9,8));}
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ tile\ :\ \mbox{\hyperlink{class_a_c_grid_a5a93aab4b8ef43051821a220f94dde10}{Tiles}})}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ coords\ :\ HeroSpawns)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tile-\/>GetGridCoords()\ ==\ coords)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HeroSpawnTiles.Add(tile);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ coords\ :\ EnemySpawns)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tile-\/>GetGridCoords()\ ==\ coords)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnemySpawnTiles.Add(tile);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \}}
+
+\end{DoxyCode}

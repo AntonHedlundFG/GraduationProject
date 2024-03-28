@@ -1,0 +1,452 @@
+\doxysection{UEpic\+Online\+Subsystem Class Reference}
+\hypertarget{class_u_epic_online_subsystem}{}\label{class_u_epic_online_subsystem}\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+
+
+{\ttfamily \#include $<$Epic\+Online\+Subsystem.\+h$>$}
+
+Inheritance diagram for UEpic\+Online\+Subsystem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_epic_online_subsystem}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_epic_online_subsystem_a9bed74abc60b3fbcc213396b9314f02e}{Initialize}} (FSubsystem\+Collection\+Base \&Collection) override
+\item 
+virtual void \mbox{\hyperlink{class_u_epic_online_subsystem_a5105ae850c444623ae7b42b421deb825}{Deinitialize}} () override
+\item 
+FString \mbox{\hyperlink{class_u_epic_online_subsystem_acb0115485874b9bf2e86fb7330074c8d}{Get\+Self\+Username}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a88d637e4b5f6e107720e1d88afab904e}{Attempt\+Login\+With\+Account\+Portal}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_acc7ea7129d4bcf84adc54b6ea3d5d422}{Attempt\+Developer\+Login}} (const FString \&Token, const int Port=8081)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5}{Attempt\+Login}} (const FString \&ID, const FString \&Token, const FString \&Login\+Type)
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_a9a9a2cf30685cff08daa1ad777fad69b}{Is\+Waiting\+For\+Login\+Attempt}} ()
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_a28cdef4e25c3eeaf829512953366bfec}{Is\+Player\+Logged\+In}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}{Find\+Reconnectable\+Games}} (bool b\+Reset\+Next\+Reconnect\+Slot=true)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a0e851664854130ff2122083300f57ce4}{Reconnect\+If\+Able}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a854d751ae8b6b867c7a5423fcd7651f2}{Host\+Session}} (const int32 \&Number\+Of\+Public\+Connections, const FString \&Session\+Title, const FString \&Level\+URL)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a4c9df3b5d9202add38ef0847940519c8}{Destroy\+Session}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517}{Find\+Sessions}} (int Max\+Search\+Results=50)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_ace21acf51df6e678b5c7062bd385e553}{Join\+Session}} (int Index)
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_a4fb7f2eb607dbc3005b44cc0168fe3df}{Is\+In\+Or\+Joining\+Session}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4}{Register\+Player}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}New\+Player)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225}{Unregister\+Player}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Leaving\+Player)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576}{Player\+Disconnected}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\item 
+\mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{Player\+Connected\+Result}} \mbox{\hyperlink{class_u_epic_online_subsystem_a87ec7ab608853e81e62913ebc2eb0621}{Player\+Connected}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_a0a608fae9322e96e31024216bfa2ca7c}{Is\+Player\+In\+Session}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_abf864316d1271a8cd44c80e2cfb77bfc}{Is\+Session\+In\+Progress}} ()
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a8aeb3243602c697b1b55de8197f96fe4}{Show\+Friends\+Overlay}} ()
+\item 
+FUnique\+Net\+Id\+Repl \mbox{\hyperlink{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}{Get\+Unique\+Net\+Id\+Of}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FOn\+Reconnect\+Session\+Search\+Update \mbox{\hyperlink{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163}{On\+Reconnect\+Session\+Search\+Update}}
+\item 
+\mbox{\hyperlink{struct_f_session_search_results}{FSession\+Search\+Results}} \mbox{\hyperlink{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}{Session\+Search\+Results}}
+\item 
+FOn\+Session\+Search\+Update \mbox{\hyperlink{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae}{On\+Session\+Search\+Update}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a88a5d4b7d01ab9f38b04455e0eb49c3d}{On\+Login\+Attempt\+Completed}} (int32 Local\+User\+Num, bool b\+Was\+Successful, const FUnique\+Net\+Id \&User\+Id, const FString \&Error)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a56663d360adf8a050e95a33231620f1d}{Find\+Reconnectable\+Game}} (int Reconnect\+Slot\+Index)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_ab48d001a572728821ddacf33e37a18fa}{On\+Find\+Reconnectable\+Games\+Completed}} (bool b\+Was\+Successful)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_ad6bbcfb58640bd3bf34c0086610b87a2}{Add\+Player\+To\+Reconnectable\+List}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a4843dd8290063735d22fc3970fecfcba}{Remove\+Player\+From\+Reconnectable\+List}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}Player)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_ae79714a0f1f1b748fa1b6a560d6c8636}{Update\+Reconnectable\+Player\+List}} ()
+\item 
+FName \mbox{\hyperlink{class_u_epic_online_subsystem_a18e95d990bfa1177c2a655a796ad9807}{Get\+Reconnect\+Key\+Name}} (int index)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a2d57aae9ce51e623ee4363fdc87c6848}{On\+Host\+Session\+Completed}} (FName Session\+Name, bool b\+Was\+Successful)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_ac895c2f1eaca042917a9198b5844c32f}{On\+Destroy\+Session\+Completed}} (FName Session\+Name, bool b\+Was\+Successful)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a293afd2e80d619c2d53e13c21bcf868c}{On\+Find\+Session\+Completed}} (bool b\+Was\+Successful)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a305d1421e3c6806bd58febd25db46ea0}{On\+Join\+Session\+Completed}} (FName Session\+Name, EOn\+Join\+Session\+Complete\+Result\+::\+Type Result)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_a429d150c4df302d37b6ca6b9ef85e812}{On\+Session\+User\+Invite\+Accepted}} (const bool b\+Was\+Successful, const int32 Controller\+Id, FUnique\+Net\+Id\+Ptr User\+Id, const FOnline\+Session\+Search\+Result \&Invite\+Result)
+\item 
+void \mbox{\hyperlink{class_u_epic_online_subsystem_af81e78778d40272debc707d4484e0180}{Server\+Travel}} (const FString \&Level\+URL)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_epic_online_subsystem_ab117468bec5806947ae5fb818833f720}{b\+Is\+Attempting\+Login}} = false
+\item 
+int \mbox{\hyperlink{class_u_epic_online_subsystem_af2b08dfe1d5025b3de059a45b118912a}{Next\+Reconnect\+Slot}} = 0
+\item 
+FDelegate\+Handle \mbox{\hyperlink{class_u_epic_online_subsystem_a7888e42e5d9522062187e3fdfced2185}{Find\+Reconnect\+Sessions\+Handle}}
+\item 
+TShared\+Ptr$<$ FOnline\+Session\+Search $>$ \mbox{\hyperlink{class_u_epic_online_subsystem_a9e99c2e12a826e208b18e92d2ab303e9}{Reconnect\+Session\+Search}}
+\item 
+TArray$<$ FString $>$ \mbox{\hyperlink{class_u_epic_online_subsystem_aa0bd09bb1f4b90b8b134e8f892104fc5}{Disconnected\+Players}}
+\item 
+FDelegate\+Handle \mbox{\hyperlink{class_u_epic_online_subsystem_a913e346e27114c0915a27582d798232a}{Host\+Session\+Handle}}
+\item 
+FString \mbox{\hyperlink{class_u_epic_online_subsystem_a5e1c0c5c45f0d4bcb57fe35b10484907}{Cached\+Level\+URL}}
+\item 
+FDelegate\+Handle \mbox{\hyperlink{class_u_epic_online_subsystem_a0b1ee3ba2ad495277a60636f2066d0fe}{Find\+Sessions\+Handle}}
+\item 
+TShared\+Ptr$<$ FOnline\+Session\+Search $>$ \mbox{\hyperlink{class_u_epic_online_subsystem_ae5f94b5541793092708e078fda891d0c}{Session\+Search}}
+\item 
+FDelegate\+Handle \mbox{\hyperlink{class_u_epic_online_subsystem_a3cb1188fbd4c19275cb0671c29c9b5bf}{Join\+Session\+Handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_epic_online_subsystem_ad6bbcfb58640bd3bf34c0086610b87a2}\label{class_u_epic_online_subsystem_ad6bbcfb58640bd3bf34c0086610b87a2} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!AddPlayerToReconnectableList@{AddPlayerToReconnectableList}}
+\index{AddPlayerToReconnectableList@{AddPlayerToReconnectableList}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{AddPlayerToReconnectableList()}{AddPlayerToReconnectableList()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Add\+Player\+To\+Reconnectable\+List (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_acc7ea7129d4bcf84adc54b6ea3d5d422}\label{class_u_epic_online_subsystem_acc7ea7129d4bcf84adc54b6ea3d5d422} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!AttemptDeveloperLogin@{AttemptDeveloperLogin}}
+\index{AttemptDeveloperLogin@{AttemptDeveloperLogin}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{AttemptDeveloperLogin()}{AttemptDeveloperLogin()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Attempt\+Developer\+Login (\begin{DoxyParamCaption}\item[{const FString \&}]{Token,  }\item[{const int}]{Port = {\ttfamily 8081} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5}\label{class_u_epic_online_subsystem_a72631980c1463128c6b311dbcbac5ce5} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!AttemptLogin@{AttemptLogin}}
+\index{AttemptLogin@{AttemptLogin}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{AttemptLogin()}{AttemptLogin()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Attempt\+Login (\begin{DoxyParamCaption}\item[{const FString \&}]{ID,  }\item[{const FString \&}]{Token,  }\item[{const FString \&}]{Login\+Type }\end{DoxyParamCaption})}
+
+Generic login function where Login\+Type is specified manually. Use Attempt\+Login\+With\+Account\+Portal or Attempt\+Developer\+Login instead when applicable. See \href{https://docs.unrealengine.com/5.2/en-US/online-subsystem-eos-plugin-in-unreal-engine/}{\texttt{ https\+://docs.\+unrealengine.\+com/5.\+2/en-\/\+US/online-\/subsystem-\/eos-\/plugin-\/in-\/unreal-\/engine/}} for Login\+Types \Hypertarget{class_u_epic_online_subsystem_a88d637e4b5f6e107720e1d88afab904e}\label{class_u_epic_online_subsystem_a88d637e4b5f6e107720e1d88afab904e} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!AttemptLoginWithAccountPortal@{AttemptLoginWithAccountPortal}}
+\index{AttemptLoginWithAccountPortal@{AttemptLoginWithAccountPortal}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{AttemptLoginWithAccountPortal()}{AttemptLoginWithAccountPortal()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Attempt\+Login\+With\+Account\+Portal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a5105ae850c444623ae7b42b421deb825}\label{class_u_epic_online_subsystem_a5105ae850c444623ae7b42b421deb825} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!Deinitialize@{Deinitialize}}
+\index{Deinitialize@{Deinitialize}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{Deinitialize()}{Deinitialize()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Deinitialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a4c9df3b5d9202add38ef0847940519c8}\label{class_u_epic_online_subsystem_a4c9df3b5d9202add38ef0847940519c8} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!DestroySession@{DestroySession}}
+\index{DestroySession@{DestroySession}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{DestroySession()}{DestroySession()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Destroy\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a56663d360adf8a050e95a33231620f1d}\label{class_u_epic_online_subsystem_a56663d360adf8a050e95a33231620f1d} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!FindReconnectableGame@{FindReconnectableGame}}
+\index{FindReconnectableGame@{FindReconnectableGame}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{FindReconnectableGame()}{FindReconnectableGame()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Find\+Reconnectable\+Game (\begin{DoxyParamCaption}\item[{int}]{Reconnect\+Slot\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}\label{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!FindReconnectableGames@{FindReconnectableGames}}
+\index{FindReconnectableGames@{FindReconnectableGames}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{FindReconnectableGames()}{FindReconnectableGames()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Find\+Reconnectable\+Games (\begin{DoxyParamCaption}\item[{bool}]{b\+Reset\+Next\+Reconnect\+Slot = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Call this to begin a search for sessions which you were disconnected from and can reconnect to. 
+\begin{DoxyParams}{Parameters}
+{\em b\+Reset\+Next\+Reconnect\+Slot} & -\/ You probably want this to be true (default). It determines whether the search starts over from index 0 or continues where it was last. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517}\label{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!FindSessions@{FindSessions}}
+\index{FindSessions@{FindSessions}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{FindSessions()}{FindSessions()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Find\+Sessions (\begin{DoxyParamCaption}\item[{int}]{Max\+Search\+Results = {\ttfamily 50} }\end{DoxyParamCaption})}
+
+Generic search for any hosted games. 
+\begin{DoxyParams}{Parameters}
+{\em Max\+Search\+Results} & -\/ optional \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_epic_online_subsystem_a18e95d990bfa1177c2a655a796ad9807}\label{class_u_epic_online_subsystem_a18e95d990bfa1177c2a655a796ad9807} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!GetReconnectKeyName@{GetReconnectKeyName}}
+\index{GetReconnectKeyName@{GetReconnectKeyName}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{GetReconnectKeyName()}{GetReconnectKeyName()}}
+{\footnotesize\ttfamily FName UEpic\+Online\+Subsystem\+::\+Get\+Reconnect\+Key\+Name (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_acb0115485874b9bf2e86fb7330074c8d}\label{class_u_epic_online_subsystem_acb0115485874b9bf2e86fb7330074c8d} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!GetSelfUsername@{GetSelfUsername}}
+\index{GetSelfUsername@{GetSelfUsername}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{GetSelfUsername()}{GetSelfUsername()}}
+{\footnotesize\ttfamily FString UEpic\+Online\+Subsystem\+::\+Get\+Self\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4}\label{class_u_epic_online_subsystem_ab9588ae1739325d3d8e796291bd728d4} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!GetUniqueNetIdOf@{GetUniqueNetIdOf}}
+\index{GetUniqueNetIdOf@{GetUniqueNetIdOf}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{GetUniqueNetIdOf()}{GetUniqueNetIdOf()}}
+{\footnotesize\ttfamily FUnique\+Net\+Id\+Repl UEpic\+Online\+Subsystem\+::\+Get\+Unique\+Net\+Id\+Of (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a854d751ae8b6b867c7a5423fcd7651f2}\label{class_u_epic_online_subsystem_a854d751ae8b6b867c7a5423fcd7651f2} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!HostSession@{HostSession}}
+\index{HostSession@{HostSession}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{HostSession()}{HostSession()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Host\+Session (\begin{DoxyParamCaption}\item[{const int32 \&}]{Number\+Of\+Public\+Connections,  }\item[{const FString \&}]{Session\+Title,  }\item[{const FString \&}]{Level\+URL }\end{DoxyParamCaption})}
+
+Starts a new session and publishes it to the Epic Online Services to be findable by other players. 
+\begin{DoxyParams}{Parameters}
+{\em Number\+Of\+Public\+Connections} & -\/ Max number of players, including host. \\
+\hline
+{\em Session\+Title} & -\/ The publicly visible custom game name \\
+\hline
+{\em Level\+URL} & -\/ The Unreal asset path for the level to load, including parameters for example, /\+Game/\+Levels/\+Lobby/\+Lobby?listen?port=7779 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_epic_online_subsystem_a9bed74abc60b3fbcc213396b9314f02e}\label{class_u_epic_online_subsystem_a9bed74abc60b3fbcc213396b9314f02e} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Initialize (\begin{DoxyParamCaption}\item[{FSubsystem\+Collection\+Base \&}]{Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a4fb7f2eb607dbc3005b44cc0168fe3df}\label{class_u_epic_online_subsystem_a4fb7f2eb607dbc3005b44cc0168fe3df} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!IsInOrJoiningSession@{IsInOrJoiningSession}}
+\index{IsInOrJoiningSession@{IsInOrJoiningSession}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsInOrJoiningSession()}{IsInOrJoiningSession()}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::\+Is\+In\+Or\+Joining\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a0a608fae9322e96e31024216bfa2ca7c}\label{class_u_epic_online_subsystem_a0a608fae9322e96e31024216bfa2ca7c} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!IsPlayerInSession@{IsPlayerInSession}}
+\index{IsPlayerInSession@{IsPlayerInSession}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsPlayerInSession()}{IsPlayerInSession()}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::\+Is\+Player\+In\+Session (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a28cdef4e25c3eeaf829512953366bfec}\label{class_u_epic_online_subsystem_a28cdef4e25c3eeaf829512953366bfec} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!IsPlayerLoggedIn@{IsPlayerLoggedIn}}
+\index{IsPlayerLoggedIn@{IsPlayerLoggedIn}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsPlayerLoggedIn()}{IsPlayerLoggedIn()}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::\+Is\+Player\+Logged\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_abf864316d1271a8cd44c80e2cfb77bfc}\label{class_u_epic_online_subsystem_abf864316d1271a8cd44c80e2cfb77bfc} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!IsSessionInProgress@{IsSessionInProgress}}
+\index{IsSessionInProgress@{IsSessionInProgress}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsSessionInProgress()}{IsSessionInProgress()}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::\+Is\+Session\+In\+Progress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a9a9a2cf30685cff08daa1ad777fad69b}\label{class_u_epic_online_subsystem_a9a9a2cf30685cff08daa1ad777fad69b} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!IsWaitingForLoginAttempt@{IsWaitingForLoginAttempt}}
+\index{IsWaitingForLoginAttempt@{IsWaitingForLoginAttempt}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsWaitingForLoginAttempt()}{IsWaitingForLoginAttempt()}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::\+Is\+Waiting\+For\+Login\+Attempt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_u_epic_online_subsystem_ace21acf51df6e678b5c7062bd385e553}\label{class_u_epic_online_subsystem_ace21acf51df6e678b5c7062bd385e553} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!JoinSession@{JoinSession}}
+\index{JoinSession@{JoinSession}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{JoinSession()}{JoinSession()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Join\+Session (\begin{DoxyParamCaption}\item[{int}]{Index }\end{DoxyParamCaption})}
+
+Joins a session found by \doxylink{class_u_epic_online_subsystem_a24a50daaa1fc49d1415163fc9b1ad517}{Find\+Sessions()} 
+\begin{DoxyParams}{Parameters}
+{\em Index} & -\/ The index in Session\+Search\+Results of the game you want to join. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_u_epic_online_subsystem_ac895c2f1eaca042917a9198b5844c32f}\label{class_u_epic_online_subsystem_ac895c2f1eaca042917a9198b5844c32f} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnDestroySessionCompleted@{OnDestroySessionCompleted}}
+\index{OnDestroySessionCompleted@{OnDestroySessionCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnDestroySessionCompleted()}{OnDestroySessionCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Destroy\+Session\+Completed (\begin{DoxyParamCaption}\item[{FName}]{Session\+Name,  }\item[{bool}]{b\+Was\+Successful }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_ab48d001a572728821ddacf33e37a18fa}\label{class_u_epic_online_subsystem_ab48d001a572728821ddacf33e37a18fa} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnFindReconnectableGamesCompleted@{OnFindReconnectableGamesCompleted}}
+\index{OnFindReconnectableGamesCompleted@{OnFindReconnectableGamesCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnFindReconnectableGamesCompleted()}{OnFindReconnectableGamesCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Find\+Reconnectable\+Games\+Completed (\begin{DoxyParamCaption}\item[{bool}]{b\+Was\+Successful }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a293afd2e80d619c2d53e13c21bcf868c}\label{class_u_epic_online_subsystem_a293afd2e80d619c2d53e13c21bcf868c} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnFindSessionCompleted@{OnFindSessionCompleted}}
+\index{OnFindSessionCompleted@{OnFindSessionCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnFindSessionCompleted()}{OnFindSessionCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Find\+Session\+Completed (\begin{DoxyParamCaption}\item[{bool}]{b\+Was\+Successful }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a2d57aae9ce51e623ee4363fdc87c6848}\label{class_u_epic_online_subsystem_a2d57aae9ce51e623ee4363fdc87c6848} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnHostSessionCompleted@{OnHostSessionCompleted}}
+\index{OnHostSessionCompleted@{OnHostSessionCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnHostSessionCompleted()}{OnHostSessionCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Host\+Session\+Completed (\begin{DoxyParamCaption}\item[{FName}]{Session\+Name,  }\item[{bool}]{b\+Was\+Successful }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a305d1421e3c6806bd58febd25db46ea0}\label{class_u_epic_online_subsystem_a305d1421e3c6806bd58febd25db46ea0} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnJoinSessionCompleted@{OnJoinSessionCompleted}}
+\index{OnJoinSessionCompleted@{OnJoinSessionCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnJoinSessionCompleted()}{OnJoinSessionCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Join\+Session\+Completed (\begin{DoxyParamCaption}\item[{FName}]{Session\+Name,  }\item[{EOn\+Join\+Session\+Complete\+Result\+::\+Type}]{Result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a88a5d4b7d01ab9f38b04455e0eb49c3d}\label{class_u_epic_online_subsystem_a88a5d4b7d01ab9f38b04455e0eb49c3d} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnLoginAttemptCompleted@{OnLoginAttemptCompleted}}
+\index{OnLoginAttemptCompleted@{OnLoginAttemptCompleted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnLoginAttemptCompleted()}{OnLoginAttemptCompleted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Login\+Attempt\+Completed (\begin{DoxyParamCaption}\item[{int32}]{Local\+User\+Num,  }\item[{bool}]{b\+Was\+Successful,  }\item[{const FUnique\+Net\+Id \&}]{User\+Id,  }\item[{const FString \&}]{Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a429d150c4df302d37b6ca6b9ef85e812}\label{class_u_epic_online_subsystem_a429d150c4df302d37b6ca6b9ef85e812} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnSessionUserInviteAccepted@{OnSessionUserInviteAccepted}}
+\index{OnSessionUserInviteAccepted@{OnSessionUserInviteAccepted}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnSessionUserInviteAccepted()}{OnSessionUserInviteAccepted()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+On\+Session\+User\+Invite\+Accepted (\begin{DoxyParamCaption}\item[{const bool}]{b\+Was\+Successful,  }\item[{const int32}]{Controller\+Id,  }\item[{FUnique\+Net\+Id\+Ptr}]{User\+Id,  }\item[{const FOnline\+Session\+Search\+Result \&}]{Invite\+Result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a87ec7ab608853e81e62913ebc2eb0621}\label{class_u_epic_online_subsystem_a87ec7ab608853e81e62913ebc2eb0621} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!PlayerConnected@{PlayerConnected}}
+\index{PlayerConnected@{PlayerConnected}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{PlayerConnected()}{PlayerConnected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{Player\+Connected\+Result}} UEpic\+Online\+Subsystem\+::\+Player\+Connected (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576}\label{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!PlayerDisconnected@{PlayerDisconnected}}
+\index{PlayerDisconnected@{PlayerDisconnected}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{PlayerDisconnected()}{PlayerDisconnected()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Player\+Disconnected (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a0e851664854130ff2122083300f57ce4}\label{class_u_epic_online_subsystem_a0e851664854130ff2122083300f57ce4} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!ReconnectIfAble@{ReconnectIfAble}}
+\index{ReconnectIfAble@{ReconnectIfAble}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{ReconnectIfAble()}{ReconnectIfAble()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Reconnect\+If\+Able (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This requires \doxylink{class_u_epic_online_subsystem_aa817fa315af198bb70eadf909a55e54a}{Find\+Reconnectable\+Games()} to be called. To know if a reconnectable game is found, subscribe to On\+Reconnect\+Session\+Search\+Update \Hypertarget{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4}\label{class_u_epic_online_subsystem_a793962bea325c329579b5383465948c4} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!RegisterPlayer@{RegisterPlayer}}
+\index{RegisterPlayer@{RegisterPlayer}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{RegisterPlayer()}{RegisterPlayer()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Register\+Player (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{New\+Player }\end{DoxyParamCaption})}
+
+Registers a player into the current session. (Serverside) You should most likely not use this, instead call \doxylink{class_u_epic_online_subsystem_a87ec7ab608853e81e62913ebc2eb0621}{Player\+Connected()}, which also handles for example reconnecting functionality. \Hypertarget{class_u_epic_online_subsystem_a4843dd8290063735d22fc3970fecfcba}\label{class_u_epic_online_subsystem_a4843dd8290063735d22fc3970fecfcba} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!RemovePlayerFromReconnectableList@{RemovePlayerFromReconnectableList}}
+\index{RemovePlayerFromReconnectableList@{RemovePlayerFromReconnectableList}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{RemovePlayerFromReconnectableList()}{RemovePlayerFromReconnectableList()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Remove\+Player\+From\+Reconnectable\+List (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_af81e78778d40272debc707d4484e0180}\label{class_u_epic_online_subsystem_af81e78778d40272debc707d4484e0180} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!ServerTravel@{ServerTravel}}
+\index{ServerTravel@{ServerTravel}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{ServerTravel()}{ServerTravel()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Server\+Travel (\begin{DoxyParamCaption}\item[{const FString \&}]{Level\+URL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a8aeb3243602c697b1b55de8197f96fe4}\label{class_u_epic_online_subsystem_a8aeb3243602c697b1b55de8197f96fe4} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!ShowFriendsOverlay@{ShowFriendsOverlay}}
+\index{ShowFriendsOverlay@{ShowFriendsOverlay}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{ShowFriendsOverlay()}{ShowFriendsOverlay()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Show\+Friends\+Overlay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225}\label{class_u_epic_online_subsystem_a0ae119be683cdc9581939a3ff139c225} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!UnregisterPlayer@{UnregisterPlayer}}
+\index{UnregisterPlayer@{UnregisterPlayer}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{UnregisterPlayer()}{UnregisterPlayer()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Unregister\+Player (\begin{DoxyParamCaption}\item[{APlayer\+Controller \texorpdfstring{$\ast$}{*}}]{Leaving\+Player }\end{DoxyParamCaption})}
+
+Unregisters a player from the current session. (Serverside) You should most likely not use this, instead call \doxylink{class_u_epic_online_subsystem_a7b9df0eda008551819698c8db89c9576}{Player\+Disconnected()}, which also handles for example reconnecting functionality. \Hypertarget{class_u_epic_online_subsystem_ae79714a0f1f1b748fa1b6a560d6c8636}\label{class_u_epic_online_subsystem_ae79714a0f1f1b748fa1b6a560d6c8636} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!UpdateReconnectablePlayerList@{UpdateReconnectablePlayerList}}
+\index{UpdateReconnectablePlayerList@{UpdateReconnectablePlayerList}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{UpdateReconnectablePlayerList()}{UpdateReconnectablePlayerList()}}
+{\footnotesize\ttfamily void UEpic\+Online\+Subsystem\+::\+Update\+Reconnectable\+Player\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_epic_online_subsystem_ab117468bec5806947ae5fb818833f720}\label{class_u_epic_online_subsystem_ab117468bec5806947ae5fb818833f720} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!bIsAttemptingLogin@{bIsAttemptingLogin}}
+\index{bIsAttemptingLogin@{bIsAttemptingLogin}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{bIsAttemptingLogin}{bIsAttemptingLogin}}
+{\footnotesize\ttfamily bool UEpic\+Online\+Subsystem\+::b\+Is\+Attempting\+Login = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a5e1c0c5c45f0d4bcb57fe35b10484907}\label{class_u_epic_online_subsystem_a5e1c0c5c45f0d4bcb57fe35b10484907} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!CachedLevelURL@{CachedLevelURL}}
+\index{CachedLevelURL@{CachedLevelURL}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{CachedLevelURL}{CachedLevelURL}}
+{\footnotesize\ttfamily FString UEpic\+Online\+Subsystem\+::\+Cached\+Level\+URL\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_aa0bd09bb1f4b90b8b134e8f892104fc5}\label{class_u_epic_online_subsystem_aa0bd09bb1f4b90b8b134e8f892104fc5} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!DisconnectedPlayers@{DisconnectedPlayers}}
+\index{DisconnectedPlayers@{DisconnectedPlayers}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{DisconnectedPlayers}{DisconnectedPlayers}}
+{\footnotesize\ttfamily TArray$<$FString$>$ UEpic\+Online\+Subsystem\+::\+Disconnected\+Players\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a7888e42e5d9522062187e3fdfced2185}\label{class_u_epic_online_subsystem_a7888e42e5d9522062187e3fdfced2185} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!FindReconnectSessionsHandle@{FindReconnectSessionsHandle}}
+\index{FindReconnectSessionsHandle@{FindReconnectSessionsHandle}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{FindReconnectSessionsHandle}{FindReconnectSessionsHandle}}
+{\footnotesize\ttfamily FDelegate\+Handle UEpic\+Online\+Subsystem\+::\+Find\+Reconnect\+Sessions\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a0b1ee3ba2ad495277a60636f2066d0fe}\label{class_u_epic_online_subsystem_a0b1ee3ba2ad495277a60636f2066d0fe} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!FindSessionsHandle@{FindSessionsHandle}}
+\index{FindSessionsHandle@{FindSessionsHandle}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{FindSessionsHandle}{FindSessionsHandle}}
+{\footnotesize\ttfamily FDelegate\+Handle UEpic\+Online\+Subsystem\+::\+Find\+Sessions\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a913e346e27114c0915a27582d798232a}\label{class_u_epic_online_subsystem_a913e346e27114c0915a27582d798232a} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!HostSessionHandle@{HostSessionHandle}}
+\index{HostSessionHandle@{HostSessionHandle}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{HostSessionHandle}{HostSessionHandle}}
+{\footnotesize\ttfamily FDelegate\+Handle UEpic\+Online\+Subsystem\+::\+Host\+Session\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a3cb1188fbd4c19275cb0671c29c9b5bf}\label{class_u_epic_online_subsystem_a3cb1188fbd4c19275cb0671c29c9b5bf} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!JoinSessionHandle@{JoinSessionHandle}}
+\index{JoinSessionHandle@{JoinSessionHandle}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{JoinSessionHandle}{JoinSessionHandle}}
+{\footnotesize\ttfamily FDelegate\+Handle UEpic\+Online\+Subsystem\+::\+Join\+Session\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_af2b08dfe1d5025b3de059a45b118912a}\label{class_u_epic_online_subsystem_af2b08dfe1d5025b3de059a45b118912a} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!NextReconnectSlot@{NextReconnectSlot}}
+\index{NextReconnectSlot@{NextReconnectSlot}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{NextReconnectSlot}{NextReconnectSlot}}
+{\footnotesize\ttfamily int UEpic\+Online\+Subsystem\+::\+Next\+Reconnect\+Slot = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163}\label{class_u_epic_online_subsystem_ae417c889d37a4330d66d40559b397163} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnReconnectSessionSearchUpdate@{OnReconnectSessionSearchUpdate}}
+\index{OnReconnectSessionSearchUpdate@{OnReconnectSessionSearchUpdate}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnReconnectSessionSearchUpdate}{OnReconnectSessionSearchUpdate}}
+{\footnotesize\ttfamily FOn\+Reconnect\+Session\+Search\+Update UEpic\+Online\+Subsystem\+::\+On\+Reconnect\+Session\+Search\+Update}
+
+\Hypertarget{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae}\label{class_u_epic_online_subsystem_a85a757f830c890ce3c5a56ae670607ae} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!OnSessionSearchUpdate@{OnSessionSearchUpdate}}
+\index{OnSessionSearchUpdate@{OnSessionSearchUpdate}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{OnSessionSearchUpdate}{OnSessionSearchUpdate}}
+{\footnotesize\ttfamily FOn\+Session\+Search\+Update UEpic\+Online\+Subsystem\+::\+On\+Session\+Search\+Update}
+
+\Hypertarget{class_u_epic_online_subsystem_a9e99c2e12a826e208b18e92d2ab303e9}\label{class_u_epic_online_subsystem_a9e99c2e12a826e208b18e92d2ab303e9} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!ReconnectSessionSearch@{ReconnectSessionSearch}}
+\index{ReconnectSessionSearch@{ReconnectSessionSearch}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{ReconnectSessionSearch}{ReconnectSessionSearch}}
+{\footnotesize\ttfamily TShared\+Ptr$<$FOnline\+Session\+Search$>$ UEpic\+Online\+Subsystem\+::\+Reconnect\+Session\+Search\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_ae5f94b5541793092708e078fda891d0c}\label{class_u_epic_online_subsystem_ae5f94b5541793092708e078fda891d0c} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!SessionSearch@{SessionSearch}}
+\index{SessionSearch@{SessionSearch}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{SessionSearch}{SessionSearch}}
+{\footnotesize\ttfamily TShared\+Ptr$<$FOnline\+Session\+Search$>$ UEpic\+Online\+Subsystem\+::\+Session\+Search\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70}\label{class_u_epic_online_subsystem_a6dcc1b27d5f3accf5937e1be77b84e70} 
+\index{UEpicOnlineSubsystem@{UEpicOnlineSubsystem}!SessionSearchResults@{SessionSearchResults}}
+\index{SessionSearchResults@{SessionSearchResults}!UEpicOnlineSubsystem@{UEpicOnlineSubsystem}}
+\doxysubsubsection{\texorpdfstring{SessionSearchResults}{SessionSearchResults}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_f_session_search_results}{FSession\+Search\+Results}} UEpic\+Online\+Subsystem\+::\+Session\+Search\+Results}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Online\+System/\+Public/\mbox{\hyperlink{_epic_online_subsystem_8h}{Epic\+Online\+Subsystem.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Online\+System/\+Private/\mbox{\hyperlink{_epic_online_subsystem_8cpp}{Epic\+Online\+Subsystem.\+cpp}}\end{DoxyCompactItemize}

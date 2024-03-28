@@ -1,0 +1,99 @@
+\doxysection{Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Online\+System/\+Public/\+Epic\+Online\+Subsystem.h File Reference}
+\hypertarget{_epic_online_subsystem_8h}{}\label{_epic_online_subsystem_8h}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h}}
+{\ttfamily \#include "{}Core\+Minimal.\+h"{}}\newline
+{\ttfamily \#include "{}Subsystems/\+Game\+Instance\+Subsystem.\+h"{}}\newline
+{\ttfamily \#include "{}Online\+Session\+Settings.\+h"{}}\newline
+{\ttfamily \#include "{}Interfaces/\+Online\+Session\+Interface.\+h"{}}\newline
+{\ttfamily \#include "{}Epic\+Online\+Subsystem.\+generated.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_f_session_details}{FSession\+Details}}
+\item 
+struct \mbox{\hyperlink{struct_f_session_search_results}{FSession\+Search\+Results}}
+\item 
+class \mbox{\hyperlink{class_u_epic_online_subsystem}{UEpic\+Online\+Subsystem}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}{SESSION\+\_\+\+NAME}}~FName(TEXT("{}Session\+Name"{}))
+\item 
+\#define \mbox{\hyperlink{_epic_online_subsystem_8h_a74c711f30167cf9c0b1e3b517c7dc8a7}{SESSION\+\_\+\+TITLE}}~FName(TEXT("{}Session\+Title"{}))
+\item 
+\#define \mbox{\hyperlink{_epic_online_subsystem_8h_aeb5bde15adca6fca3036de914ba7caab}{MAX\+\_\+\+RECONNECT\+\_\+\+SLOTS}}~3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{Player\+Connected\+Result}} \+: uint8 \{ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Error"{})
+, \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Success"{})
+, \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}} =(Display\+Name = "{}\+Already Connected"{})
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_epic_online_subsystem_8h_ab513f15618f3febe3a86258dd8afa016}{DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE}} (FOn\+Session\+Search\+Update)
+\item 
+\mbox{\hyperlink{_epic_online_subsystem_8h_aa05dfcfaa4911499b1ea4fe0eb0b2cdb}{DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+One\+Param}} (FOn\+Reconnect\+Session\+Search\+Update, bool, Can\+Reconnect)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_epic_online_subsystem_8h_aeb5bde15adca6fca3036de914ba7caab}\label{_epic_online_subsystem_8h_aeb5bde15adca6fca3036de914ba7caab} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!MAX\_RECONNECT\_SLOTS@{MAX\_RECONNECT\_SLOTS}}
+\index{MAX\_RECONNECT\_SLOTS@{MAX\_RECONNECT\_SLOTS}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_RECONNECT\_SLOTS}{MAX\_RECONNECT\_SLOTS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+RECONNECT\+\_\+\+SLOTS~3}
+
+Determines how many player ID reconnect slots are published in the advertised Session. If more players than this are disconnected simultaneously, not all will be able to reconnect. Set this value to something appropriate to your game. \Hypertarget{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69}\label{_epic_online_subsystem_8h_a79189e4ab42150887d6cf9768d78ef69} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!SESSION\_NAME@{SESSION\_NAME}}
+\index{SESSION\_NAME@{SESSION\_NAME}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{SESSION\_NAME}{SESSION\_NAME}}
+{\footnotesize\ttfamily \#define SESSION\+\_\+\+NAME~FName(TEXT("{}Session\+Name"{}))}
+
+\Hypertarget{_epic_online_subsystem_8h_a74c711f30167cf9c0b1e3b517c7dc8a7}\label{_epic_online_subsystem_8h_a74c711f30167cf9c0b1e3b517c7dc8a7} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!SESSION\_TITLE@{SESSION\_TITLE}}
+\index{SESSION\_TITLE@{SESSION\_TITLE}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{SESSION\_TITLE}{SESSION\_TITLE}}
+{\footnotesize\ttfamily \#define SESSION\+\_\+\+TITLE~FName(TEXT("{}Session\+Title"{}))}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}\label{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!PlayerConnectedResult@{PlayerConnectedResult}}
+\index{PlayerConnectedResult@{PlayerConnectedResult}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{PlayerConnectedResult}{PlayerConnectedResult}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{Player\+Connected\+Result}} \+: uint8\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!UMETA@{UMETA}}}\Hypertarget{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!UMETA@{UMETA}}}\Hypertarget{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UMETA@{UMETA}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!UMETA@{UMETA}}}\Hypertarget{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}\label{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635} 
+UMETA&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_epic_online_subsystem_8h_ab513f15618f3febe3a86258dd8afa016}\label{_epic_online_subsystem_8h_ab513f15618f3febe3a86258dd8afa016} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}}
+\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}}
+{\footnotesize\ttfamily DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE (\begin{DoxyParamCaption}\item[{FOn\+Session\+Search\+Update}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{_epic_online_subsystem_8h_aa05dfcfaa4911499b1ea4fe0eb0b2cdb}\label{_epic_online_subsystem_8h_aa05dfcfaa4911499b1ea4fe0eb0b2cdb} 
+\index{EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}
+\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}!EpicOnlineSubsystem.h@{EpicOnlineSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam()}}
+{\footnotesize\ttfamily DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+One\+Param (\begin{DoxyParamCaption}\item[{FOn\+Reconnect\+Session\+Search\+Update}]{,  }\item[{bool}]{,  }\item[{Can\+Reconnect}]{ }\end{DoxyParamCaption})}
+

@@ -1,0 +1,267 @@
+\doxysection{Epic\+Online\+Subsystem.\+h}
+\hypertarget{_epic_online_subsystem_8h_source}{}\label{_epic_online_subsystem_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h@{TacticalRogueLite/Source/TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h}}
+\mbox{\hyperlink{_epic_online_subsystem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Subsystems/GameInstanceSubsystem.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}OnlineSessionSettings.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Interfaces/OnlineSessionInterface.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}EpicOnlineSubsystem.generated.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SESSION\_NAME\ FName(TEXT("{}SessionName"{}))\ }\textcolor{comment}{//\ Used\ to\ track\ multiple\ sessions.}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SESSION\_TITLE\ FName(TEXT("{}SessionTitle"{}))\ }\textcolor{comment}{//\ The\ advertised\ session\ name}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MAX\_RECONNECT\_SLOTS\ 3}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{_epic_online_subsystem_8h_ab513f15618f3febe3a86258dd8afa016}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}}(FOnSessionSearchUpdate);}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{_epic_online_subsystem_8h_aa05dfcfaa4911499b1ea4fe0eb0b2cdb}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}(FOnReconnectSessionSearchUpdate,\ \textcolor{keywordtype}{bool},\ CanReconnect);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ UENUM(BlueprintType)}
+\DoxyCodeLine{00026\ enum\ class\ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{PlayerConnectedResult}}\ :\ uint8}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ Error\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Error"{}}),}
+\DoxyCodeLine{00029\ \ \ \ \ Success\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Success"{}}),}
+\DoxyCodeLine{00030\ \ \ \ \ AlreadyConnected\ \ \ \ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48aa3f80d8f0f1b4ffa8c475f5d60ea5635}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Already\ Connected"{}})}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }FUniqueNetIdRepl;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ USTRUCT(BlueprintType,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00041\ struct\ \mbox{\hyperlink{struct_f_session_details}{FSessionDetails}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00047\ \ \ \ \ FString\ SessionName\ =\ FString();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ OpenConnections\ =\ 0;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ MaxConnections\ =\ 0;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ USTRUCT(BlueprintType,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00065\ struct\ \mbox{\hyperlink{struct_f_session_search_results}{FSessionSearchResults}}\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00070\ \ \ \ \ TArray<\mbox{\hyperlink{struct_f_session_details}{FSessionDetails}}>\ Sessions;}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ UCLASS()}
+\DoxyCodeLine{00078\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_epic_online_subsystem}{UEpicOnlineSubsystem}}\ :\ public\ UGameInstanceSubsystem}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Initialize(FSubsystemCollectionBase\&\ Collection)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Deinitialize()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#pragma\ region\ Logging\_In}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00091\ \ \ \ \ FString\ GetSelfUsername();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Opens\ the\ browser\ where\ user\ can\ log\ in\ with\ Epic\ account.}}
+\DoxyCodeLine{00094\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ AttemptLoginWithAccountPortal();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{/*\ Tries\ to\ login\ using\ the\ EOS\ Dev\ Auth\ tool.Only\ for\ internal\ use.}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ *\ @param\ Token\ -\/\ Developer\ Login\ Token\ as\ defined\ in\ the\ DevAuth\ tool}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00100\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ AttemptDeveloperLogin(\textcolor{keyword}{const}\ FString\&\ Token,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ Port\ =\ 8081);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ AttemptLogin(\textcolor{keyword}{const}\ FString\&\ ID,\ \textcolor{keyword}{const}\ FString\&\ Token,\ \textcolor{keyword}{const}\ FString\&\ LoginType);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ UFUNCTION(BlueprintCallable,\ BlueprintPure,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00112\ \ \ \ \ bool\ IsWaitingForLoginAttempt()\ \{\ \textcolor{keywordflow}{return}\ bIsAttemptingLogin;\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ UFUNCTION(BlueprintCallable,\ BlueprintPure,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00115\ \ \ \ \ bool\ IsPlayerLoggedIn();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ private:}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ function\ used\ by\ AttemptLogin()\ }}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ OnLoginAttemptCompleted(int32\ LocalUserNum,\ \textcolor{keywordtype}{bool}\ bWasSuccessful,\ const\ FUniqueNetId\&\ UserId,\ const\ FString\&\ Error);}
+\DoxyCodeLine{00121\ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{bool}\ bIsAttemptingLogin\ =\ false;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#pragma\ region\ Reconnecting}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00137\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00138\ \ \ \ \ void\ FindReconnectableGames(\textcolor{keywordtype}{bool}\ bResetNextReconnectSlot\ =\ true);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{/*\ Event\ broadcasts\ when\ a\ reconnectable\ session\ search\ finishes.}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ \ \ *\ @return\ bool:\ true\ if\ a\ session\ was\ found,\ false\ otherwise.}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00143\ \ \ \ \ UPROPERTY(BlueprintAssignable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00144\ \ \ \ \ FOnReconnectSessionSearchUpdate\ OnReconnectSessionSearchUpdate;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00150\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ ReconnectIfAble();}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00153\ private:}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ for\ FindReconnectableGames().\ Do\ not\ call\ manually.}}
+\DoxyCodeLine{00156\ \ \ \ \ UFUNCTION(Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ FindReconnectableGame(\textcolor{keywordtype}{int}\ ReconnectSlotIndex);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ A\ counter\ for\ FindReconnectableGames().\ Do\ not\ interfere\ with\ this\ manually.}}
+\DoxyCodeLine{00160\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ NextReconnectSlot\ =\ 0;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ function\ used\ by\ FindReconnectableGames()\ }}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ OnFindReconnectableGamesCompleted(\textcolor{keywordtype}{bool}\ bWasSuccessful);}
+\DoxyCodeLine{00165\ \ \ \ \ FDelegateHandle\ FindReconnectSessionsHandle;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ Cached\ search\ results\ from\ async\ search,\ handled\ in\ OnFindReconnectableGamesCompleted}}
+\DoxyCodeLine{00168\ \ \ \ \ TSharedPtr<FOnlineSessionSearch>\ ReconnectSessionSearch;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ AddPlayerToReconnectableList(APlayerController*\ Player);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{void}\ RemovePlayerFromReconnectableList(APlayerController*\ Player);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ A\ list\ of\ ToString()\ representations\ for\ disconnected\ players\ that\ should}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ be\ able\ to\ reconnect.\ Handled\ by\ UpdateReconnectablePlayerList().}}
+\DoxyCodeLine{00178\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00179\ \ \ \ \ TArray<FString>\ DisconnectedPlayers;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ Do\ not\ call\ this\ manually.\ Use\ AddPlayerToReconnectableList}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ and\ RemovePlayerFromReconnectableList.}}
+\DoxyCodeLine{00183\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateReconnectablePlayerList();}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ Macro-\/style\ function\ which\ gives\ the\ name\ used\ as\ a\ key\ in\ the\ }}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ advertised\ Session\ for\ disconnected\ players\ that\ can\ reconnect.}}
+\DoxyCodeLine{00188\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00189\ \ \ \ \ FName\ GetReconnectKeyName(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#pragma\ region\ Session\ Host,\ Search,\ Join}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00203\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00204\ \ \ \ \ void\ HostSession(const\ int32\&\ NumberOfPublicConnections,\ const\ FString\&\ SessionTitle,\ const\ FString\&\ LevelURL);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ Should\ be\ called\ whenever\ a\ server\ wants\ to\ stop\ a\ hosted\ session,\ or\ when\ a\ client\ disconnects}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ from\ a\ session.}}
+\DoxyCodeLine{00208\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ DestroySession();}
+\DoxyCodeLine{00210\ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ FindSessions(\textcolor{keywordtype}{int}\ MaxSearchResults\ =\ 50);}
+\DoxyCodeLine{00216\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ List\ of\ search\ results\ given\ by\ FindSessions()}}
+\DoxyCodeLine{00218\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{struct_f_session_search_results}{FSessionSearchResults}}\ SessionSearchResults;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ Event\ broadcasts\ whenever\ SessionSearchResults\ is\ updated,\ used\ for\ updating\ UI.}}
+\DoxyCodeLine{00222\ \ \ \ \ UPROPERTY(BlueprintAssignable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00223\ \ \ \ \ FOnSessionSearchUpdate\ OnSessionSearchUpdate;}
+\DoxyCodeLine{00224\ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{void}\ JoinSession(\textcolor{keywordtype}{int}\ Index);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ True\ if\ user\ is\ in\ a\ session,\ or\ in\ the\ process\ of\ trying\ to\ joine\ one.}}
+\DoxyCodeLine{00232\ \ \ \ \ UFUNCTION(BlueprintCallable,\ BlueprintPure,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsInOrJoiningSession();}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00239\ \ \ \ \ UFUNCTION(Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ RegisterPlayer(APlayerController*\ NewPlayer);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00246\ \ \ \ \ UFUNCTION(Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ UnregisterPlayer(APlayerController*\ LeavingPlayer);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ private:}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ for\ HostSession()}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ OnHostSessionCompleted(FName\ SessionName,\ \textcolor{keywordtype}{bool}\ bWasSuccessful);}
+\DoxyCodeLine{00253\ \ \ \ \ FDelegateHandle\ HostSessionHandle;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ Stores\ the\ Level\ URL\ from\ HostSession()\ to\ be\ handled\ by\ async\ callback.}}
+\DoxyCodeLine{00256\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00257\ \ \ \ \ FString\ CachedLevelURL;}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ for\ DestroySession()}}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{void}\ OnDestroySessionCompleted(FName\ SessionName,\ \textcolor{keywordtype}{bool}\ bWasSuccessful);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ for\ FindSession()}}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ OnFindSessionCompleted(\textcolor{keywordtype}{bool}\ bWasSuccessful);}
+\DoxyCodeLine{00264\ \ \ \ \ FDelegateHandle\ FindSessionsHandle;}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ Cached\ search\ results\ from\ async\ search,\ handled\ in\ OnFindSessionCompleted}}
+\DoxyCodeLine{00267\ \ \ \ \ TSharedPtr<FOnlineSessionSearch>\ SessionSearch;}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ for\ JoinSession()}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{void}\ OnJoinSessionCompleted(FName\ SessionName,\ EOnJoinSessionCompleteResult::Type\ Result);}
+\DoxyCodeLine{00271\ \ \ \ \ FDelegateHandle\ JoinSessionHandle;}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ Async\ callback\ for\ accepting\ invites\ via\ the\ social\ overlay}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ OnSessionUserInviteAccepted(const\ \textcolor{keywordtype}{bool}\ bWasSuccessful,\ const\ int32\ ControllerId,\ FUniqueNetIdPtr\ UserId,\ const\ FOnlineSessionSearchResult\&\ InviteResult);}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#pragma\ region\ Session\ Management}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{comment}{//\ Call\ this\ from\ server\ to\ handle\ player\ disconnects.}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{comment}{//\ Probably\ best\ to\ do\ serverside\ on\ the\ PlayerController's\ OnNetCleanup.}}
+\DoxyCodeLine{00284\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00285\ \ \ \ \ void\ PlayerDisconnected(APlayerController*\ Player);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Call\ this\ from\ server\ to\ handle\ player\ connects.}}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{comment}{//\ Probably\ best\ to\ do\ serverside\ on\ the\ GameMode's\ PostLogin.}}
+\DoxyCodeLine{00289\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{_epic_online_subsystem_8h_ac6d50af112cdcfe0aaf2f9c93ddb0b48}{PlayerConnectedResult}}\ PlayerConnected(APlayerController*\ Player);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//\ Uses\ the\ PlayerController's\ unique\ net\ ID\ to\ see\ if\ it\ is\ registered\ in\ the\ current\ session.}}
+\DoxyCodeLine{00293\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsPlayerInSession(APlayerController*\ Player);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ UFUNCTION(BlueprintPure,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsSessionInProgress();}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00302\ \ \ \ \ }
+\DoxyCodeLine{00303\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Online\ Services"{}})}
+\DoxyCodeLine{00304\ \ \ \ \ void\ ShowFriendsOverlay();}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ get\ UniqueNetId\ from\ both\ Local\ and\ Remote\ PlayerControllers.}}
+\DoxyCodeLine{00307\ \ \ \ \ UFUNCTION(Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00308\ \ \ \ \ FUniqueNetIdRepl\ GetUniqueNetIdOf(APlayerController*\ Player);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ private:}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Online\ Services"{})}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{void}\ ServerTravel(const\ FString\&\ LevelURL);}
+\DoxyCodeLine{00314\ \ \ \ \ }
+\DoxyCodeLine{00315\ \ \ \ \ }
+\DoxyCodeLine{00316\ \};}
+
+\end{DoxyCode}

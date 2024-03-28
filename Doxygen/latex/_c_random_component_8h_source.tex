@@ -1,0 +1,100 @@
+\doxysection{CRandom\+Component.\+h}
+\hypertarget{_c_random_component_8h_source}{}\label{_c_random_component_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/CRandomComponent.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/CRandomComponent.h}}
+\mbox{\hyperlink{_c_random_component_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Components/ActorComponent.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_savable_8h}{SaveGame/CSavable.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CRandomComponent.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ UCLASS()}
+\DoxyCodeLine{00009\ class\ \mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}}\ :\ public\ UActorComponent,\ public\ \mbox{\hyperlink{class_i_c_savable}{ICSavable}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_u_c_random_component}{UCRandomComponent}}();}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BeginPlay()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ EndPlay(EEndPlayReason::Type\ EndPlayReason)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Initializes\ the\ random\ stream\ with\ a\ specific\ seed.}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ InitializeFromStart(int32\ inStartSeed);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Initializes\ the\ random\ stream\ with\ a\ specific\ seed\ and\ state.}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_random_component_ad4875c49e8639816a57ce1b10d424995}{InitializeFromSave}}(int32\ inStartSeed,\ int32\ inCurrentStateSeed,\ int64\ inTicks,\ int32\ inTicksSinceSave,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\ inTicksAtSave);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Generates\ a\ random\ value\ within\ a\ specified\ range,\ optionally\ without\ advancing\ the\ state.}}
+\DoxyCodeLine{00028\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00029\ \ \ \ \ int32\ GetRandRange(int32\ inMin,\ int32\ inMax,\ \textcolor{keywordtype}{bool}\ bKeepState\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Generates\ a\ random\ value\ within\ 0\ to\ inMax,\ optionally\ without\ advancing\ the\ state}}
+\DoxyCodeLine{00032\ \ \ \ \ int32\ GetRandRange(int32\ inMax,\ \textcolor{keywordtype}{bool}\ bKeepState\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Generates\ a\ random\ value\ within\ 0\ and\ max\ int32,\ optionally\ without\ advancing\ the\ state.}}
+\DoxyCodeLine{00035\ \ \ \ \ int32\ GetRandRange(\textcolor{keywordtype}{bool}\ bKeepState\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Rolls\ back\ the\ random\ stream\ state\ by\ a\ specified\ number\ of\ ticks.}}
+\DoxyCodeLine{00038\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00039\ \ \ \ \ int32\ RollBackRandom(int32\ inTicks\ =\ 1);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Rolls\ back\ the\ random\ stream\ to\ the\ last\ saved\ state.}}
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ RollBackToSave();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Saves\ the\ current\ state\ of\ the\ random\ stream.}}
+\DoxyCodeLine{00046\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ SaveState();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Resets\ the\ random\ stream\ to\ its\ initial\ seed,\ effectively\ restarting\ its\ state.}}
+\DoxyCodeLine{00050\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ ResetToInitialSeed();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Helper\ method\ to\ ensure\ seed\ values\ are\ within\ an\ acceptable\ range}}
+\DoxyCodeLine{00054\ \ \ \ \ int32\ ValidateSeed(int32\ Seed);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Peek\ ahead\ a\ specified\ number\ of\ ticks}}
+\DoxyCodeLine{00057\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00058\ \ \ \ \ int32\ PeekAhead(int32\ inMin,\ int32\ inMax,\ int32\ inTicksAhead\ =\ 1)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Peeks\ ahead\ multiple\ times}}
+\DoxyCodeLine{00061\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00062\ \ \ \ \ TArray<int32>\ PeekAheadArray(\textcolor{keyword}{const}\ TArray<int32>\&\ inMins,\ \textcolor{keyword}{const}\ TArray<int32>\&\ inMaxs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ OnSave\ implementation}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ OnSave()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ OnLoad\ implementation}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ OnLoad()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00072\ \ \ \ \ FRandomStream\ RandomStream;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00075\ \ \ \ \ int64\ Ticks;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00078\ \ \ \ \ int32\ TicksSinceSave;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00081\ \ \ \ \ int32\ TicksAtSave;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00084\ \ \ \ \ int32\ StartSeed;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00087\ \ \ \ \ int32\ CurrentStateSeed;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ protected:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Sets\ up\ property\ replication\ for\ the\ component.}}
+\DoxyCodeLine{00091\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\ const\ override;}
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+
+\end{DoxyCode}

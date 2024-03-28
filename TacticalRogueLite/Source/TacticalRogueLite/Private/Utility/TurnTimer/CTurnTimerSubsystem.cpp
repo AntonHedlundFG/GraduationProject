@@ -3,47 +3,52 @@
 
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 
-void UCTurnTimerSubsystem::SetTimer(FTurnTimerHandle& InOutHandle, const int InNumberOfTurns, ACUnit* InAffectedUnit, const bool InbLoop, const EProgressTurnMethod InProgressTurnMethod)
+FTurnTimerHandle UCTurnTimerSubsystem::SetTimer(const int InNumberOfTurns, ACUnit* InAffectedUnit, const bool InbLoop, const EProgressTurnMethod InProgressTurnMethod, FOnTurnTimerExecute InDelegate)
 {
-	InOutHandle.bLooping = InbLoop;
-	InOutHandle.NumberOfTurns = InNumberOfTurns;
-	InOutHandle.TurnsRemaining = InNumberOfTurns;
-	InOutHandle.TimerID = ++LastTimerID;
-	InOutHandle.ProgressTurnMethod = InProgressTurnMethod;
-	InOutHandle.AffectedUnit = InAffectedUnit;
+	ActiveTurnTimers.Add(++LastTimerID, FTurnTimer());
+	FTurnTimer& NewTimer = ActiveTurnTimers[LastTimerID];
+	NewTimer.NumberOfTurns = InNumberOfTurns;
+	NewTimer.TurnsRemaining = InNumberOfTurns;
+	NewTimer.bLooping = InbLoop;
+	NewTimer.ProgressTurnMethod = InProgressTurnMethod;
+	NewTimer.AffectedUnit = InAffectedUnit;
+	NewTimer.BoundDelegate = InDelegate;
 
-	ActiveTurnTimers.Add(InOutHandle.TimerID, &InOutHandle);
-	InOutHandle.bIsValid = true;
+	return FTurnTimerHandle(LastTimerID);
 }
 
-void UCTurnTimerSubsystem::ClearTimer(FTurnTimerHandle& InOutHandle)
+void UCTurnTimerSubsystem::ClearTimer(FTurnTimerHandle InHandle)
 {
-	ActiveTurnTimers.Remove(InOutHandle.TimerID);
-	InOutHandle.bIsValid = false;
+	if (IsTimerActive(InHandle))
+		ActiveTurnTimers.Remove(InHandle.TimerID);
+}
+
+bool UCTurnTimerSubsystem::IsTimerActive(FTurnTimerHandle InHandle)
+{
+	return ActiveTurnTimers.Contains(InHandle.TimerID);
 }
 
 void UCTurnTimerSubsystem::NextTurn(const ACUnit* PreviousUnit, const ACUnit* NextUnit)
 {
 	for (auto TimerPair : ActiveTurnTimers)
 	{
-		FTurnTimerHandle* Handle = TimerPair.Value;
-		if (!(Handle->AffectedUnit == PreviousUnit && Handle->ProgressTurnMethod == EPTM_EndOfTurn)
-			&& !(Handle->AffectedUnit == NextUnit && Handle->ProgressTurnMethod == EPTM_StartOfTurn)) continue;
+		FTurnTimer& Handle = TimerPair.Value;
+		if (!(Handle.AffectedUnit == PreviousUnit && Handle.ProgressTurnMethod == EPTM_EndOfTurn)
+			&& !(Handle.AffectedUnit == NextUnit && Handle.ProgressTurnMethod == EPTM_StartOfTurn)) continue;
 
-		Handle->TurnsRemaining--;
-		if (Handle->TurnsRemaining > 0) continue;
+		Handle.TurnsRemaining--;
+		if (Handle.TurnsRemaining > 0) continue;
 
-		Handle->OnTurnTimerExecute.Broadcast(Handle->AffectedUnit);
-		if (Handle->bLooping)
+		Handle.BoundDelegate.ExecuteIfBound(Handle.AffectedUnit);
+		if (Handle.bLooping)
 		{
 			//Reset timer, and keep running
-			Handle->TurnsRemaining = Handle->NumberOfTurns;
+			Handle.TurnsRemaining = Handle.NumberOfTurns;
 		}
 		else
 		{
 			//Remove timer and invalidate handle
 			ActiveTurnTimers.Remove(TimerPair.Key);
-			Handle->bIsValid = false;
 		}
 	}
 }

@@ -1,0 +1,716 @@
+\doxysection{CGrid\+Tile.\+gen.\+cpp}
+\hypertarget{_c_grid_tile_8gen_8cpp_source}{}\label{_c_grid_tile_8gen_8cpp_source}\index{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CGridTile.gen.cpp@{TacticalRogueLite/Intermediate/Build/Win64/UnrealEditor/Inc/TacticalRogueLite/UHT/CGridTile.gen.cpp}}
+\mbox{\hyperlink{_c_grid_tile_8gen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Epic\ Games,\ Inc.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*===========================================================================}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ Generated\ code\ exported\ from\ UnrealHeaderTool.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ DO\ NOT\ modify\ this\ manually!\ Edit\ the\ corresponding\ .h\ files\ instead!}}
+\DoxyCodeLine{00005\ \textcolor{comment}{===========================================================================*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}UObject/GeneratedCppIncludes.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{TacticalRogueLite/Public/Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00009\ PRAGMA\_DISABLE\_DEPRECATION\_WARNINGS}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_aba92aca99c9b6367b6c303808d860993}{EmptyLinkFunctionForGeneratedCodeCGridTile}}()\ \{\}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Cross\ Module\ References}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_core_u_object_8_cpp20_8h_a19569ebcbb364f899f979906b8afbd67}{COREUOBJECT\_API}}\ UScriptStruct*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0b729d91c63af553018577104abe5fda}{Z\_Construct\_UScriptStruct\_FVector2D}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_shared_definitions_8_engine_8_cpp20_8h_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a28284f32736b2ddbbb77ac37c91f84b1}{Z\_Construct\_UClass\_AActor}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a91b5e04d6d704d2256b318f63f4306c9}{Z\_Construct\_UClass\_ACGrid\_NoRegister}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a30ddfe391bd68ea0f47e1393ccf68688}{Z\_Construct\_UClass\_ACGridContent\_NoRegister}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_afbdd934bbfc8639a4585881738ec6c5e}{Z\_Construct\_UClass\_UCTileHighlightData\_NoRegister}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UEnum*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8151d91953d1eee0719b27a79ae74e9a}{Z\_Construct\_UEnum\_TacticalRogueLite\_ETileHighlightModes}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a41b999bbe43f6c6f75e98dce3805489f}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature}}();}
+\DoxyCodeLine{00021\ \ \ \ \ UPackage*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}}();}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ End\ Cross\ Module\ References}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics}}}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f}{\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f_a6aa34cdb9a691d212c15eb95f1584387}{bIsHighlighted}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a8ebd1a608178849fe094cb1513b381ab}{NewProp\_bIsHighlighted\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a3a872d1f129ada2e617242690f2d2d3e}{NewProp\_bIsHighlighted}};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a121b84ecde536ad41bb6704c5fa21fd1}{PropPointers}}[];}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_ac04aa380415d2092f70c538dd0f0f293}{FuncParams}};}
+\DoxyCodeLine{00036\ \ \ \ \ \};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a8ebd1a608178849fe094cb1513b381ab}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::NewProp\_bIsHighlighted\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f}{\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}}*)Obj)-\/>bIsHighlighted\ =\ 1;}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a3a872d1f129ada2e617242690f2d2d3e}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::NewProp\_bIsHighlighted}}\ =\ \{\ \textcolor{stringliteral}{"{}bIsHighlighted"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Bool\ |\ UECodeGen\_Private::EPropertyGenFlags::NativeBool,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f}{\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}}),\ \&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a8ebd1a608178849fe094cb1513b381ab}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::NewProp\_bIsHighlighted\_SetBit}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a121b84ecde536ad41bb6704c5fa21fd1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a3a872d1f129ada2e617242690f2d2d3e}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::NewProp\_bIsHighlighted}},}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00048\ \ \ \ \ \};}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_ac04aa380415d2092f70c538dd0f0f293}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}OnHighlightChange\_\_DelegateSignature"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a121b84ecde536ad41bb6704c5fa21fd1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a121b84ecde536ad41bb6704c5fa21fd1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x00130000,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_a121b84ecde536ad41bb6704c5fa21fd1}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____deleg3bf22df7052bc1e43783441ef47e440f}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00053\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a41b999bbe43f6c6f75e98dce3805489f}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature}}()}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_delegate_function___tactical_rogue_lite___on_highlight_change_____delegate_signature___statics_ac04aa380415d2092f70c538dd0f0f293}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature\_Statics::FuncParams}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ac477c889eaf0ed4e1dfeda568496a428}{FOnHighlightChange\_DelegateWrapper}}(\textcolor{keyword}{const}\ FMulticastScriptDelegate\&\ OnHighlightChange,\ \textcolor{keywordtype}{bool}\ bIsHighlighted)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{struct\ }\_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ bIsHighlighted;}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \ \ \ \ \_Script\_TacticalRogueLite\_eventOnHighlightChange\_Parms\ Parms;}
+\DoxyCodeLine{00069\ \ \ \ \ Parms.bIsHighlighted=bIsHighlighted\ ?\ true\ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00070\ \ \ \ \ OnHighlightChange.ProcessMulticastDelegate<UObject>(\&Parms);}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execSetContent)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ P\_GET\_OBJECT(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}},Z\_Param\_inContent);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ P\_THIS-\/>SetContent(Z\_Param\_inContent);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetContent)}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ *(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}**)Z\_Param\_\_Result=P\_THIS-\/>GetContent();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetNeighbours)}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ P\_GET\_UBOOL(Z\_Param\_bIncludeDiagonals);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ *(TArray<ACGridTile*>*)Z\_Param\_\_Result=P\_THIS-\/>GetNeighbours(Z\_Param\_bIncludeDiagonals);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetDiagonalLinks)}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ *(TArray<ACGridTile*>*)Z\_Param\_\_Result=P\_THIS-\/>GetDiagonalLinks();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetStraightLinks)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ *(TArray<ACGridTile*>*)Z\_Param\_\_Result=P\_THIS-\/>GetStraightLinks();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetGridCoords)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ *(FVector2D*)Z\_Param\_\_Result=P\_THIS-\/>GetGridCoords();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execGetParentGrid)}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ *(\mbox{\hyperlink{class_a_c_grid}{ACGrid}}**)Z\_Param\_\_Result=P\_THIS-\/>GetParentGrid();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execCreateLinks)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ P\_THIS-\/>CreateLinks();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8caef96134914aff8239ac3dbff12c06}{DEFINE\_FUNCTION}}(ACGridTile::execInitialize)}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ P\_GET\_OBJECT(\mbox{\hyperlink{class_a_c_grid}{ACGrid}},Z\_Param\_inParentGrid);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ P\_GET\_STRUCT(FVector2D,Z\_Param\_inCoords);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ P\_FINISH;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ P\_NATIVE\_BEGIN;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ P\_THIS-\/>Initialize(Z\_Param\_inParentGrid,Z\_Param\_inCoords);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ P\_NATIVE\_END;}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms}{CGridTile\_eventSetTileHighlightMode\_Parms}}}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETileHighlightModes}}\ \mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms_a0127d17873281251c536dd853125efcc}{inHighlightMode}};}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static}\ FName\ NAME\_ACGridTile\_SetTileHighlightMode\ =\ FName(TEXT(\textcolor{stringliteral}{"{}SetTileHighlightMode"{}}));}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_a2f19a54db330a3402cae6ad0d5b96131}{ACGridTile::SetTileHighlightMode}}(\mbox{\hyperlink{_tile_highlight_modes_8h_a18b6f5785aa28722e4d4ba7c26a583c3}{ETileHighlightModes}}\ inHighlightMode)}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms}{CGridTile\_eventSetTileHighlightMode\_Parms}}\ Parms;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ Parms.\mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms_a0127d17873281251c536dd853125efcc}{inHighlightMode}}=inHighlightMode;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ ProcessEvent(FindFunctionChecked(NAME\_ACGridTile\_SetTileHighlightMode),\&Parms);}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ ACGridTile::StaticRegisterNativesACGridTile()}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ UClass*\ Class\ =\ ACGridTile::StaticClass();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FNameNativePtrPair\ Funcs[]\ =\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CreateLinks"{}},\ \&ACGridTile::execCreateLinks,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_ac9ec1bca8f10c0ae1435d2e7e577e3c6}{CreateLinks}},(),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetContent"{}},\ \&ACGridTile::execGetContent,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_a1c12bb5fc03878701f5869cd5cdcaaa6}{GetContent}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*))\ \},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetDiagonalLinks"{}},\ \&ACGridTile::execGetDiagonalLinks,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_a4487e6a06c1314a251f2dc5fa09f04c3}{GetDiagonalLinks}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(TArray<ACGridTile*>))\ \},}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetGridCoords"{}},\ \&ACGridTile::execGetGridCoords,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_a1d226264c44523c663e25cb34fb34c18}{GetGridCoords}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(FVector2D))\ \},}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetNeighbours"{}},\ \&ACGridTile::execGetNeighbours,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1}{GetNeighbours}},(\textcolor{keywordtype}{bool}),ERASE\_ARGUMENT\_PACK(TArray<ACGridTile*>))\ \},}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetParentGrid"{}},\ \&ACGridTile::execGetParentGrid,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_a2540ab826e60022425b658af63382f4e}{GetParentGrid}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(\mbox{\hyperlink{class_a_c_grid}{ACGrid}}*))\ \},}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}GetStraightLinks"{}},\ \&ACGridTile::execGetStraightLinks,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_ac1f3f52c8b0a455bdd5303add7f09821}{GetStraightLinks}},()\textcolor{keyword}{const},ERASE\_ARGUMENT\_PACK(TArray<ACGridTile*>))\ \},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Initialize"{}},\ \&ACGridTile::execInitialize,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}{Initialize}},(\mbox{\hyperlink{class_a_c_grid}{ACGrid}}*,\ FVector2D),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}SetContent"{}},\ \&ACGridTile::execSetContent,\ ERASE\_METHOD\_PTR(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\mbox{\hyperlink{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d}{SetContent}},(\mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*),ERASE\_ARGUMENT\_PACK(\textcolor{keywordtype}{void}))\ \},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ FNativeFunctionRegistrar::RegisterFunctions(Class,\ Funcs,\ UE\_ARRAY\_COUNT(Funcs));}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___create_links___statics}{Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics}}}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___create_links___statics_a543eec1c0ad07a262f1fab3004f40792}{FuncParams}};}
+\DoxyCodeLine{00172\ \ \ \ \ \};}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00176\ \ \ \ \ \};}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___create_links___statics_a543eec1c0ad07a262f1fab3004f40792}{Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}CreateLinks"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00179\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a9c9888a41e60a707830e3f78ee55c049}{Z\_Construct\_UFunction\_ACGridTile\_CreateLinks}}()}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___create_links___statics_a543eec1c0ad07a262f1fab3004f40792}{Z\_Construct\_UFunction\_ACGridTile\_CreateLinks\_Statics::FuncParams}});}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics}}}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_1_1_c_grid_tile__event_get_content___parms}{CGridTile\_eventGetContent\_Parms}}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_1_1_c_grid_tile__event_get_content___parms_a8ad93cc8de90ca3031baf3619f304406}{ReturnValue}};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a9fd31ed7b5ebceb30132989c4658baf0}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a622f39931685441f52705bbaa15a0656}{PropPointers}}[];}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a0e0f306ed3b5bd971a966bee2c1ba9c3}{FuncParams}};}
+\DoxyCodeLine{00200\ \ \ \ \ \};}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a9fd31ed7b5ebceb30132989c4658baf0}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_1_1_c_grid_tile__event_get_content___parms}{CGridTile\_eventGetContent\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a30ddfe391bd68ea0f47e1393ccf68688}{Z\_Construct\_UClass\_ACGridContent\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a622f39931685441f52705bbaa15a0656}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a9fd31ed7b5ebceb30132989c4658baf0}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00204\ \ \ \ \ \};}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00208\ \ \ \ \ \};}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a0e0f306ed3b5bd971a966bee2c1ba9c3}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetContent"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a622f39931685441f52705bbaa15a0656}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a622f39931685441f52705bbaa15a0656}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_1_1_c_grid_tile__event_get_content___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::CGridTile\_eventGetContent\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a622f39931685441f52705bbaa15a0656}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_1_1_c_grid_tile__event_get_content___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::CGridTile\_eventGetContent\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00213\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0d96f2be34796333bf57053f3ece9e5b}{Z\_Construct\_UFunction\_ACGridTile\_GetContent}}()}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_content___statics_a0e0f306ed3b5bd971a966bee2c1ba9c3}{Z\_Construct\_UFunction\_ACGridTile\_GetContent\_Statics::FuncParams}});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics}}}
+\DoxyCodeLine{00223\ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_1_1_c_grid_tilebb7532d3edd38ea0c78b863c3756adfc}{CGridTile\_eventGetDiagonalLinks\_Parms}}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_1_1_c_grid_tilebb7532d3edd38ea0c78b863c3756adfc_a60560be698845a092a52d6fb7b46feb9}{ReturnValue}};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a7e720be335c2f5bd4bfac88ed0d5e080}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a332600b9b74f9a062624e32330f31615}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a9eea322af54ee321118d286af0bbefdc}{PropPointers}}[];}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a4e58ccf05fdfea5711cb8df466a75c48}{FuncParams}};}
+\DoxyCodeLine{00235\ \ \ \ \ \};}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a7e720be335c2f5bd4bfac88ed0d5e080}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a332600b9b74f9a062624e32330f31615}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_1_1_c_grid_tilebb7532d3edd38ea0c78b863c3756adfc}{CGridTile\_eventGetDiagonalLinks\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a9eea322af54ee321118d286af0bbefdc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a7e720be335c2f5bd4bfac88ed0d5e080}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a332600b9b74f9a062624e32330f31615}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00241\ \ \ \ \ \};}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00245\ \ \ \ \ \};}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a4e58ccf05fdfea5711cb8df466a75c48}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetDiagonalLinks"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a9eea322af54ee321118d286af0bbefdc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a9eea322af54ee321118d286af0bbefdc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_1_1_c_grid_tilebb7532d3edd38ea0c78b863c3756adfc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::CGridTile\_eventGetDiagonalLinks\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a9eea322af54ee321118d286af0bbefdc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_1_1_c_grid_tilebb7532d3edd38ea0c78b863c3756adfc}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::CGridTile\_eventGetDiagonalLinks\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00250\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ae1ab1a225912959b15099fa8425b3651}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks}}()}
+\DoxyCodeLine{00251\ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_diagonal_links___statics_a4e58ccf05fdfea5711cb8df466a75c48}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks\_Statics::FuncParams}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics}}}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_1_1_c_grid_tile__event_get_grid_coords___parms}{CGridTile\_eventGetGridCoords\_Parms}}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ FVector2D\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_1_1_c_grid_tile__event_get_grid_coords___parms_a22853a8dc61e97118cf4357a381202f7}{ReturnValue}};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a7e075a9088b339681672331f151f5593}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a2c7c56559d01f6f642af1914c651cca4}{PropPointers}}[];}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_aa3988b9077477114d23077fd8601f040}{FuncParams}};}
+\DoxyCodeLine{00271\ \ \ \ \ \};}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a7e075a9088b339681672331f151f5593}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_1_1_c_grid_tile__event_get_grid_coords___parms}{CGridTile\_eventGetGridCoords\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0b729d91c63af553018577104abe5fda}{Z\_Construct\_UScriptStruct\_FVector2D}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a2c7c56559d01f6f642af1914c651cca4}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a7e075a9088b339681672331f151f5593}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00275\ \ \ \ \ \};}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00279\ \ \ \ \ \};}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_aa3988b9077477114d23077fd8601f040}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetGridCoords"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a2c7c56559d01f6f642af1914c651cca4}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a2c7c56559d01f6f642af1914c651cca4}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_1_1_c_grid_tile__event_get_grid_coords___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::CGridTile\_eventGetGridCoords\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54820401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_a2c7c56559d01f6f642af1914c651cca4}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_1_1_c_grid_tile__event_get_grid_coords___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::CGridTile\_eventGetGridCoords\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00284\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_acc5fa8c060933aef36e8c16eca66aeb8}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords}}()}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_grid_coords___statics_aa3988b9077477114d23077fd8601f040}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords\_Statics::FuncParams}});}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics}}}
+\DoxyCodeLine{00294\ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{CGridTile\_eventGetNeighbours\_Parms}}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms_a7dbadbe1893fbef2daa794fa7ff065d5}{bIncludeDiagonals}};}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms_a7535b314e34c4d8e8a5964f4517ac521}{ReturnValue}};}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac412ac274df0b4178ec7797e45cf9b51}{NewProp\_bIncludeDiagonals\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a8dfc39a9ff8448c018a9f43fe7dc9b9f}{NewProp\_bIncludeDiagonals}};}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a884d40716f6a6c3323172cb6576b0a05}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a609139afd8cef676dc11ea1a03c91edd}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac6568e384109d3d466ce1829ce93367c}{PropPointers}}[];}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a39440424afa6602aedb9e0d502c21d97}{FuncParams}};}
+\DoxyCodeLine{00309\ \ \ \ \ \};}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac412ac274df0b4178ec7797e45cf9b51}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_bIncludeDiagonals\_SetBit}}(\textcolor{keywordtype}{void}*\ Obj)}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{CGridTile\_eventGetNeighbours\_Parms}}*)Obj)-\/>bIncludeDiagonals\ =\ 1;}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBoolPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a8dfc39a9ff8448c018a9f43fe7dc9b9f}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_bIncludeDiagonals}}\ =\ \{\ \textcolor{stringliteral}{"{}bIncludeDiagonals"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Bool\ |\ UECodeGen\_Private::EPropertyGenFlags::NativeBool,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{CGridTile\_eventGetNeighbours\_Parms}}),\ \&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac412ac274df0b4178ec7797e45cf9b51}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_bIncludeDiagonals\_SetBit}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a884d40716f6a6c3323172cb6576b0a05}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a609139afd8cef676dc11ea1a03c91edd}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{CGridTile\_eventGetNeighbours\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac6568e384109d3d466ce1829ce93367c}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a8dfc39a9ff8448c018a9f43fe7dc9b9f}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_bIncludeDiagonals}},}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a884d40716f6a6c3323172cb6576b0a05}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a609139afd8cef676dc11ea1a03c91edd}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00321\ \ \ \ \ \};}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CPP\_Default\_bIncludeDiagonals"{}},\ \textcolor{stringliteral}{"{}false"{}}\ \},}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00326\ \ \ \ \ \};}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a39440424afa6602aedb9e0d502c21d97}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetNeighbours"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac6568e384109d3d466ce1829ce93367c}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac6568e384109d3d466ce1829ce93367c}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::CGridTile\_eventGetNeighbours\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_ac6568e384109d3d466ce1829ce93367c}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_1_1_c_grid_tile__event_get_neighbours___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::CGridTile\_eventGetNeighbours\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00331\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8dc5a054609dc40d28f578959a8213e3}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours}}()}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_neighbours___statics_a39440424afa6602aedb9e0d502c21d97}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours\_Statics::FuncParams}});}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics}}}
+\DoxyCodeLine{00341\ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_1_1_c_grid_tile__event_get_parent_grid___parms}{CGridTile\_eventGetParentGrid\_Parms}}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_1_1_c_grid_tile__event_get_parent_grid___parms_aa62b143a97b300d9e45a47316affbd5f}{ReturnValue}};}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a73441fe6fa2d61fd744434ef36e0b3b2}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a4f3a615e2801a470fbc9423dbf8583f2}{PropPointers}}[];}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_af7778762d8072e267a3bbbfa17fca95a}{FuncParams}};}
+\DoxyCodeLine{00352\ \ \ \ \ \};}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a73441fe6fa2d61fd744434ef36e0b3b2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_1_1_c_grid_tile__event_get_parent_grid___parms}{CGridTile\_eventGetParentGrid\_Parms}},\ ReturnValue),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a91b5e04d6d704d2256b318f63f4306c9}{Z\_Construct\_UClass\_ACGrid\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a4f3a615e2801a470fbc9423dbf8583f2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a73441fe6fa2d61fd744434ef36e0b3b2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00356\ \ \ \ \ \};}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00360\ \ \ \ \ \};}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_af7778762d8072e267a3bbbfa17fca95a}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetParentGrid"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a4f3a615e2801a470fbc9423dbf8583f2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a4f3a615e2801a470fbc9423dbf8583f2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_1_1_c_grid_tile__event_get_parent_grid___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::CGridTile\_eventGetParentGrid\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_a4f3a615e2801a470fbc9423dbf8583f2}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_1_1_c_grid_tile__event_get_parent_grid___parms}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::CGridTile\_eventGetParentGrid\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00365\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7b7d4b29d35d2d402edc1a738778539e}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid}}()}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_parent_grid___statics_af7778762d8072e267a3bbbfa17fca95a}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid\_Statics::FuncParams}});}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics}}}
+\DoxyCodeLine{00375\ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_1_1_c_grid_tile8172a35f7461827b2fec27e3e0ee203d}{CGridTile\_eventGetStraightLinks\_Parms}}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_1_1_c_grid_tile8172a35f7461827b2fec27e3e0ee203d_accfb1badcacceddc7ebee1d36b059b1b}{ReturnValue}};}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a94d550f21f4aca2369ee94e2422ee17a}{NewProp\_ReturnValue\_Inner}};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3f8e77fb8c624573fd082b17f90f3ce5}{NewProp\_ReturnValue}};}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a7b2ec327e203a4da3a2014670925cf3d}{PropPointers}}[];}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3ae4f04ea1eeaa9c67061ae53526ff4c}{FuncParams}};}
+\DoxyCodeLine{00387\ \ \ \ \ \};}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a94d550f21f4aca2369ee94e2422ee17a}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::NewProp\_ReturnValue\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3f8e77fb8c624573fd082b17f90f3ce5}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::NewProp\_ReturnValue}}\ =\ \{\ \textcolor{stringliteral}{"{}ReturnValue"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000580,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_1_1_c_grid_tile8172a35f7461827b2fec27e3e0ee203d}{CGridTile\_eventGetStraightLinks\_Parms}},\ ReturnValue),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a7b2ec327e203a4da3a2014670925cf3d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a94d550f21f4aca2369ee94e2422ee17a}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::NewProp\_ReturnValue\_Inner}},}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3f8e77fb8c624573fd082b17f90f3ce5}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::NewProp\_ReturnValue}},}
+\DoxyCodeLine{00393\ \ \ \ \ \};}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00397\ \ \ \ \ \};}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3ae4f04ea1eeaa9c67061ae53526ff4c}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}GetStraightLinks"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a7b2ec327e203a4da3a2014670925cf3d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a7b2ec327e203a4da3a2014670925cf3d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_1_1_c_grid_tile8172a35f7461827b2fec27e3e0ee203d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::CGridTile\_eventGetStraightLinks\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x54020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a7b2ec327e203a4da3a2014670925cf3d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_1_1_c_grid_tile8172a35f7461827b2fec27e3e0ee203d}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::CGridTile\_eventGetStraightLinks\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00402\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ace8818ee47dec5b8612cf18cf2473def}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks}}()}
+\DoxyCodeLine{00403\ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___get_straight_links___statics_a3ae4f04ea1eeaa9c67061ae53526ff4c}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks\_Statics::FuncParams}});}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00410\ \ \ \ \ \}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics}}}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms}{CGridTile\_eventInitialize\_Parms}}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms_af9da85f03240b55577fa69bd686574ce}{inParentGrid}};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ FVector2D\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms_a0f34408d81032a9a152cc781a304e033}{inCoords}};}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_ab689be219212ea522e23a8c4df6a7659}{NewProp\_inParentGrid}};}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a8b9b7c62ec9b0ef94d7dd91c51bb528f}{NewProp\_inCoords}};}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a7719e22dd2bc138aae55a0bf2a4fb1ac}{PropPointers}}[];}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a2693bd8471bba50e9116b97d79c4e24d}{FuncParams}};}
+\DoxyCodeLine{00425\ \ \ \ \ \};}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_ab689be219212ea522e23a8c4df6a7659}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::NewProp\_inParentGrid}}\ =\ \{\ \textcolor{stringliteral}{"{}inParentGrid"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms}{CGridTile\_eventInitialize\_Parms}},\ inParentGrid),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a91b5e04d6d704d2256b318f63f4306c9}{Z\_Construct\_UClass\_ACGrid\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a8b9b7c62ec9b0ef94d7dd91c51bb528f}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::NewProp\_inCoords}}\ =\ \{\ \textcolor{stringliteral}{"{}inCoords"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms}{CGridTile\_eventInitialize\_Parms}},\ inCoords),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0b729d91c63af553018577104abe5fda}{Z\_Construct\_UScriptStruct\_FVector2D}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a7719e22dd2bc138aae55a0bf2a4fb1ac}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_ab689be219212ea522e23a8c4df6a7659}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::NewProp\_inParentGrid}},}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a8b9b7c62ec9b0ef94d7dd91c51bb528f}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::NewProp\_inCoords}},}
+\DoxyCodeLine{00431\ \ \ \ \ \};}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00435\ \ \ \ \ \};}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a2693bd8471bba50e9116b97d79c4e24d}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Initialize"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a7719e22dd2bc138aae55a0bf2a4fb1ac}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a7719e22dd2bc138aae55a0bf2a4fb1ac}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::CGridTile\_eventInitialize\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04820401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a7719e22dd2bc138aae55a0bf2a4fb1ac}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_1_1_c_grid_tile__event_initialize___parms}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::CGridTile\_eventInitialize\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00440\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a9177ace0daae201349e8f1f60d3f7577}{Z\_Construct\_UFunction\_ACGridTile\_Initialize}}()}
+\DoxyCodeLine{00441\ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___initialize___statics_a2693bd8471bba50e9116b97d79c4e24d}{Z\_Construct\_UFunction\_ACGridTile\_Initialize\_Statics::FuncParams}});}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00448\ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics}}}
+\DoxyCodeLine{00450\ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_1_1_c_grid_tile__event_set_content___parms}{CGridTile\_eventSetContent\_Parms}}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}*\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_1_1_c_grid_tile__event_set_content___parms_a7e8bd70719223225af983a17d08d2b4f}{inContent}};}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a88d0dd5090561e0d13ae77d2f4c7d2e9}{NewProp\_inContent}};}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_aac4e1dc414c83fbe3fe92ec559e04151}{PropPointers}}[];}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a462718d1dc50c149a3d779b567628091}{FuncParams}};}
+\DoxyCodeLine{00461\ \ \ \ \ \};}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a88d0dd5090561e0d13ae77d2f4c7d2e9}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::NewProp\_inContent}}\ =\ \{\ \textcolor{stringliteral}{"{}inContent"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Object,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_1_1_c_grid_tile__event_set_content___parms}{CGridTile\_eventSetContent\_Parms}},\ inContent),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a30ddfe391bd68ea0f47e1393ccf68688}{Z\_Construct\_UClass\_ACGridContent\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_aac4e1dc414c83fbe3fe92ec559e04151}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a88d0dd5090561e0d13ae77d2f4c7d2e9}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::NewProp\_inContent}},}
+\DoxyCodeLine{00465\ \ \ \ \ \};}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00469\ \ \ \ \ \};}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a462718d1dc50c149a3d779b567628091}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}SetContent"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_aac4e1dc414c83fbe3fe92ec559e04151}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_aac4e1dc414c83fbe3fe92ec559e04151}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_1_1_c_grid_tile__event_set_content___parms}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::CGridTile\_eventSetContent\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x04020401,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_aac4e1dc414c83fbe3fe92ec559e04151}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_1_1_c_grid_tile__event_set_content___parms}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::CGridTile\_eventSetContent\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00474\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ae24476cdb0d8a4eceb233591a8fad0a6}{Z\_Construct\_UFunction\_ACGridTile\_SetContent}}()}
+\DoxyCodeLine{00475\ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_content___statics_a462718d1dc50c149a3d779b567628091}{Z\_Construct\_UFunction\_ACGridTile\_SetContent\_Statics::FuncParams}});}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics}}}
+\DoxyCodeLine{00484\ \ \ \ \ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_ab066e3cc225c104f0e3edd8b56b1b3f1}{NewProp\_inHighlightMode\_Underlying}};}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aa99be8a6bf885969798817e727317afa}{NewProp\_inHighlightMode}};}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aeaab7b9bca96bafa018288a52acc3257}{PropPointers}}[];}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Function\_MetaDataParams[];}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_adbdaf0dcabbc040234ced76ca9f7f740}{FuncParams}};}
+\DoxyCodeLine{00492\ \ \ \ \ \};}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FBytePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_ab066e3cc225c104f0e3edd8b56b1b3f1}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::NewProp\_inHighlightMode\_Underlying}}\ =\ \{\ \textcolor{stringliteral}{"{}UnderlyingType"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0000000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Byte,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \textcolor{keyword}{nullptr},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FEnumPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aa99be8a6bf885969798817e727317afa}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::NewProp\_inHighlightMode}}\ =\ \{\ \textcolor{stringliteral}{"{}inHighlightMode"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000000000080,\ UECodeGen\_Private::EPropertyGenFlags::Enum,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms}{CGridTile\_eventSetTileHighlightMode\_Parms}},\ inHighlightMode),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8151d91953d1eee0719b27a79ae74e9a}{Z\_Construct\_UEnum\_TacticalRogueLite\_ETileHighlightModes}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};\ \textcolor{comment}{//\ 1971521365}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aeaab7b9bca96bafa018288a52acc3257}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_ab066e3cc225c104f0e3edd8b56b1b3f1}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::NewProp\_inHighlightMode\_Underlying}},}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aa99be8a6bf885969798817e727317afa}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::NewProp\_inHighlightMode}},}
+\DoxyCodeLine{00498\ \ \ \ \ \};}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::Function\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00502\ \ \ \ \ \};}
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FFunctionParams\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_adbdaf0dcabbc040234ced76ca9f7f740}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::FuncParams}}\ =\ \{\ (UObject*(*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}SetTileHighlightMode"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aeaab7b9bca96bafa018288a52acc3257}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::PropPointers}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aeaab7b9bca96bafa018288a52acc3257}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::PropPointers}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms}{CGridTile\_eventSetTileHighlightMode\_Parms}}),\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ (EFunctionFlags)0x08020800,\ 0,\ 0,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::Function\_MetaDataParams),\ Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::Function\_MetaDataParams)\ \};}
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_aeaab7b9bca96bafa018288a52acc3257}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_c_grid_tile__event_set_tile_highlight_mode___parms}{CGridTile\_eventSetTileHighlightMode\_Parms}})\ <\ MAX\_uint16);}
+\DoxyCodeLine{00507\ \ \ \ \ UFunction*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a43fc5046102ce55bf5a3f1f9b7439498}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode}}()}
+\DoxyCodeLine{00508\ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UFunction*\ ReturnFunction\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ReturnFunction)}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUFunction(\&ReturnFunction,\ \mbox{\hyperlink{struct_z___construct___u_function___a_c_grid_tile___set_tile_highlight_mode___statics_adbdaf0dcabbc040234ced76ca9f7f740}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode\_Statics::FuncParams}});}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReturnFunction;}
+\DoxyCodeLine{00515\ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a1922dceaed0ceef0e6cc1272ecae1215}{IMPLEMENT\_CLASS\_NO\_AUTO\_REGISTRATION}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}});}
+\DoxyCodeLine{00517\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}}()}
+\DoxyCodeLine{00518\ \ \ \ \ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ACGridTile::StaticClass();}
+\DoxyCodeLine{00520\ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics}{Z\_Construct\_UClass\_ACGridTile\_Statics}}}
+\DoxyCodeLine{00522\ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a59fb06ba3de3482cd9a8d24db74cf0f2}{DependentSingletons}}[])();}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_af9e1968d59df3b97c8b43f0cbeda2188}{FuncInfo}}[];}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Class\_MetaDataParams[];}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_OnHighlightChange\_MetaData[];}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa1a7e1b71c815bbae06b6f59623ca802}{NewProp\_OnHighlightChange}};}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_HighlightData\_MetaData[];}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa775544f865d25d2f7c04af328dc2b8b}{NewProp\_HighlightData}};}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_ParentGrid\_MetaData[];}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aff7d5838a7e3deaa0345c7122ee421c2}{NewProp\_ParentGrid}};}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6bb0e7568792b6d3d145b98c94721bcd}{NewProp\_StraightLinks\_Inner}};}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_StraightLinks\_MetaData[];}
+\DoxyCodeLine{00543\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a23dae1a4d71a5c702624f471035b875a}{NewProp\_StraightLinks}};}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_acc407f3da4f364217518b6e290ed241d}{NewProp\_DiagonalLinks\_Inner}};}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_DiagonalLinks\_MetaData[];}
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6100c62f7ba8d4abd5549a4043025761}{NewProp\_DiagonalLinks}};}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_TileContent\_MetaData[];}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_ab789b23858ad0f7798df0041020f04f7}{NewProp\_TileContent}};}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ NewProp\_GridCoords\_MetaData[];}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a552a85a5bc4e50b27b8d5bdec762994b}{NewProp\_GridCoords}};}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a8c2294106b4bd5fe967086b64f311e50}{PropPointers}}[];}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a5368c46ee6b6f8308792b5298acd43f0}{StaticCppClassTypeInfo}};}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a71e97a46dfa63f1e0386c388ef051b7e}{ClassParams}};}
+\DoxyCodeLine{00561\ \ \ \ \ \};}
+\DoxyCodeLine{00562\ \ \ \ \ UObject*\ (*\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a59fb06ba3de3482cd9a8d24db74cf0f2}{Z\_Construct\_UClass\_ACGridTile\_Statics::DependentSingletons}}[])()\ =\ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a28284f32736b2ddbbb77ac37c91f84b1}{Z\_Construct\_UClass\_AActor}},}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ (UObject*\ (*)())\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a382127cddef898704547fc71ea965179}{Z\_Construct\_UPackage\_\_Script\_TacticalRogueLite}},}
+\DoxyCodeLine{00565\ \ \ \ \ \};}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a59fb06ba3de3482cd9a8d24db74cf0f2}{Z\_Construct\_UClass\_ACGridTile\_Statics::DependentSingletons}})\ <\ 16);}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keyword}{const}\ FClassFunctionLinkInfo\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_af9e1968d59df3b97c8b43f0cbeda2188}{Z\_Construct\_UClass\_ACGridTile\_Statics::FuncInfo}}[]\ =\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a9c9888a41e60a707830e3f78ee55c049}{Z\_Construct\_UFunction\_ACGridTile\_CreateLinks}},\ \textcolor{stringliteral}{"{}CreateLinks"{}}\ \},\ \textcolor{comment}{//\ 2739649185}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0d96f2be34796333bf57053f3ece9e5b}{Z\_Construct\_UFunction\_ACGridTile\_GetContent}},\ \textcolor{stringliteral}{"{}GetContent"{}}\ \},\ \textcolor{comment}{//\ 2553980793}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ae1ab1a225912959b15099fa8425b3651}{Z\_Construct\_UFunction\_ACGridTile\_GetDiagonalLinks}},\ \textcolor{stringliteral}{"{}GetDiagonalLinks"{}}\ \},\ \textcolor{comment}{//\ 2079277044}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_acc5fa8c060933aef36e8c16eca66aeb8}{Z\_Construct\_UFunction\_ACGridTile\_GetGridCoords}},\ \textcolor{stringliteral}{"{}GetGridCoords"{}}\ \},\ \textcolor{comment}{//\ 3858053412}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a8dc5a054609dc40d28f578959a8213e3}{Z\_Construct\_UFunction\_ACGridTile\_GetNeighbours}},\ \textcolor{stringliteral}{"{}GetNeighbours"{}}\ \},\ \textcolor{comment}{//\ 432046340}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7b7d4b29d35d2d402edc1a738778539e}{Z\_Construct\_UFunction\_ACGridTile\_GetParentGrid}},\ \textcolor{stringliteral}{"{}GetParentGrid"{}}\ \},\ \textcolor{comment}{//\ 3981954516}}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ace8818ee47dec5b8612cf18cf2473def}{Z\_Construct\_UFunction\_ACGridTile\_GetStraightLinks}},\ \textcolor{stringliteral}{"{}GetStraightLinks"{}}\ \},\ \textcolor{comment}{//\ 3077583218}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a9177ace0daae201349e8f1f60d3f7577}{Z\_Construct\_UFunction\_ACGridTile\_Initialize}},\ \textcolor{stringliteral}{"{}Initialize"{}}\ \},\ \textcolor{comment}{//\ 1713983844}}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_ae24476cdb0d8a4eceb233591a8fad0a6}{Z\_Construct\_UFunction\_ACGridTile\_SetContent}},\ \textcolor{stringliteral}{"{}SetContent"{}}\ \},\ \textcolor{comment}{//\ 2429204587}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \{\ \&\mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a43fc5046102ce55bf5a3f1f9b7439498}{Z\_Construct\_UFunction\_ACGridTile\_SetTileHighlightMode}},\ \textcolor{stringliteral}{"{}SetTileHighlightMode"{}}\ \},\ \textcolor{comment}{//\ 253093036}}
+\DoxyCodeLine{00578\ \ \ \ \ \};}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_af9e1968d59df3b97c8b43f0cbeda2188}{Z\_Construct\_UClass\_ACGridTile\_Statics::FuncInfo}})\ <\ 2048);}
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::Class\_MetaDataParams[]\ =\ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}IncludePath"{}},\ \textcolor{stringliteral}{"{}Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00584\ \ \ \ \ \};}
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00587\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_OnHighlightChange\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00588\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Comment"{}},\ \textcolor{stringliteral}{"{}//Is\ managed\ by\ CPlayerController,\ with\ a\ bool\ for\ on/off.\(\backslash\)n"{}}\ \},}
+\DoxyCodeLine{00590\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{\#if\ !UE\_BUILD\_SHIPPING}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ToolTip"{}},\ \textcolor{stringliteral}{"{}Is\ managed\ by\ CPlayerController,\ with\ a\ bool\ for\ on/off."{}}\ \},}
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00595\ \ \ \ \ \};}
+\DoxyCodeLine{00596\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMulticastDelegatePropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa1a7e1b71c815bbae06b6f59623ca802}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_OnHighlightChange}}\ =\ \{\ \textcolor{stringliteral}{"{}OnHighlightChange"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0010000010080000,\ UECodeGen\_Private::EPropertyGenFlags::InlineMulticastDelegate,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ OnHighlightChange),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a41b999bbe43f6c6f75e98dce3805489f}{Z\_Construct\_UDelegateFunction\_TacticalRogueLite\_OnHighlightChange\_\_DelegateSignature}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_OnHighlightChange\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_OnHighlightChange\_MetaData)\ \};\ \textcolor{comment}{//\ 4142865945}}
+\DoxyCodeLine{00598\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_HighlightData\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}Category"{}},\ \textcolor{stringliteral}{"{}Tile\ Settings"{}}\ \},}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00602\ \ \ \ \ \};}
+\DoxyCodeLine{00603\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa775544f865d25d2f7c04af328dc2b8b}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_HighlightData}}\ =\ \{\ \textcolor{stringliteral}{"{}HighlightData"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0014000000000005,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ HighlightData),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_afbdd934bbfc8639a4585881738ec6c5e}{Z\_Construct\_UClass\_UCTileHighlightData\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_HighlightData\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_HighlightData\_MetaData)\ \};}
+\DoxyCodeLine{00605\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_ParentGrid\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00608\ \ \ \ \ \};}
+\DoxyCodeLine{00609\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aff7d5838a7e3deaa0345c7122ee421c2}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_ParentGrid}}\ =\ \{\ \textcolor{stringliteral}{"{}ParentGrid"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0024080000000020,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ ParentGrid),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a91b5e04d6d704d2256b318f63f4306c9}{Z\_Construct\_UClass\_ACGrid\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_ParentGrid\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_ParentGrid\_MetaData)\ \};}
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6bb0e7568792b6d3d145b98c94721bcd}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}StraightLinks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0004000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00612\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00615\ \ \ \ \ \};}
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00617\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a23dae1a4d71a5c702624f471035b875a}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks}}\ =\ \{\ \textcolor{stringliteral}{"{}StraightLinks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0024080000000020,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ StraightLinks),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks\_MetaData)\ \};}
+\DoxyCodeLine{00618\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_acc407f3da4f364217518b6e290ed241d}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks\_Inner}}\ =\ \{\ \textcolor{stringliteral}{"{}DiagonalLinks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0004000000000000,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ 0,\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a725d7ff9a14edc719386033894d21199}{Z\_Construct\_UClass\_ACGridTile\_NoRegister}},\ METADATA\_PARAMS(0,\ \textcolor{keyword}{nullptr})\ \};}
+\DoxyCodeLine{00619\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00622\ \ \ \ \ \};}
+\DoxyCodeLine{00623\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FArrayPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6100c62f7ba8d4abd5549a4043025761}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks}}\ =\ \{\ \textcolor{stringliteral}{"{}DiagonalLinks"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0024080000000020,\ UECodeGen\_Private::EPropertyGenFlags::Array,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ DiagonalLinks),\ EArrayPropertyFlags::None,\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks\_MetaData)\ \};}
+\DoxyCodeLine{00625\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00626\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_TileContent\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00628\ \ \ \ \ \};}
+\DoxyCodeLine{00629\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00630\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FObjectPtrPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_ab789b23858ad0f7798df0041020f04f7}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_TileContent}}\ =\ \{\ \textcolor{stringliteral}{"{}TileContent"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0024080000000020,\ UECodeGen\_Private::EPropertyGenFlags::Object\ |\ UECodeGen\_Private::EPropertyGenFlags::ObjectPtr,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ TileContent),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a30ddfe391bd68ea0f47e1393ccf68688}{Z\_Construct\_UClass\_ACGridContent\_NoRegister}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_TileContent\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_TileContent\_MetaData)\ \};}
+\DoxyCodeLine{00631\ \textcolor{preprocessor}{\#if\ WITH\_METADATA}}
+\DoxyCodeLine{00632\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FMetaDataPairParam\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_GridCoords\_MetaData[]\ =\ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}ModuleRelativePath"{}},\ \textcolor{stringliteral}{"{}Public/Grid/CGridTile.h"{}}\ \},}
+\DoxyCodeLine{00634\ \ \ \ \ \};}
+\DoxyCodeLine{00635\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FStructPropertyParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a552a85a5bc4e50b27b8d5bdec762994b}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_GridCoords}}\ =\ \{\ \textcolor{stringliteral}{"{}GridCoords"{}},\ \textcolor{keyword}{nullptr},\ (EPropertyFlags)0x0020080000000020,\ UECodeGen\_Private::EPropertyGenFlags::Struct,\ RF\_Public|RF\_Transient|RF\_MarkAsNative,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ 1,\ STRUCT\_OFFSET(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ GridCoords),\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a0b729d91c63af553018577104abe5fda}{Z\_Construct\_UScriptStruct\_FVector2D}},\ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_GridCoords\_MetaData),\ Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_GridCoords\_MetaData)\ \};}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a8c2294106b4bd5fe967086b64f311e50}{Z\_Construct\_UClass\_ACGridTile\_Statics::PropPointers}}[]\ =\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa1a7e1b71c815bbae06b6f59623ca802}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_OnHighlightChange}},}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aa775544f865d25d2f7c04af328dc2b8b}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_HighlightData}},}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_aff7d5838a7e3deaa0345c7122ee421c2}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_ParentGrid}},}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6bb0e7568792b6d3d145b98c94721bcd}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks\_Inner}},}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a23dae1a4d71a5c702624f471035b875a}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_StraightLinks}},}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_acc407f3da4f364217518b6e290ed241d}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks\_Inner}},}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a6100c62f7ba8d4abd5549a4043025761}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_DiagonalLinks}},}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_ab789b23858ad0f7798df0041020f04f7}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_TileContent}},}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ UECodeGen\_Private::FPropertyParamsBase*)\&\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a552a85a5bc4e50b27b8d5bdec762994b}{Z\_Construct\_UClass\_ACGridTile\_Statics::NewProp\_GridCoords}},}
+\DoxyCodeLine{00647\ \ \ \ \ \};}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keyword}{const}\ FCppClassTypeInfoStatic\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a5368c46ee6b6f8308792b5298acd43f0}{Z\_Construct\_UClass\_ACGridTile\_Statics::StaticCppClassTypeInfo}}\ =\ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ TCppClassTypeTraits<ACGridTile>::IsAbstract,}
+\DoxyCodeLine{00650\ \ \ \ \ \};}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keyword}{const}\ UECodeGen\_Private::FClassParams\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a71e97a46dfa63f1e0386c388ef051b7e}{Z\_Construct\_UClass\_ACGridTile\_Statics::ClassParams}}\ =\ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \&ACGridTile::StaticClass,}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Engine"{}},}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \&StaticCppClassTypeInfo,}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ DependentSingletons,}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ FuncInfo,}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a8c2294106b4bd5fe967086b64f311e50}{Z\_Construct\_UClass\_ACGridTile\_Statics::PropPointers}},}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(DependentSingletons),}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(FuncInfo),}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a8c2294106b4bd5fe967086b64f311e50}{Z\_Construct\_UClass\_ACGridTile\_Statics::PropPointers}}),}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ 0x009000A4u,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ METADATA\_PARAMS(UE\_ARRAY\_COUNT(Z\_Construct\_UClass\_ACGridTile\_Statics::Class\_MetaDataParams),\ Z\_Construct\_UClass\_ACGridTile\_Statics::Class\_MetaDataParams)}
+\DoxyCodeLine{00665\ \ \ \ \ \};}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keyword}{static\_assert}(UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a8c2294106b4bd5fe967086b64f311e50}{Z\_Construct\_UClass\_ACGridTile\_Statics::PropPointers}})\ <\ 2048);}
+\DoxyCodeLine{00667\ \ \ \ \ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}}()}
+\DoxyCodeLine{00668\ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Z\_Registration\_Info\_UClass\_ACGridTile.OuterSingleton)}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ UECodeGen\_Private::ConstructUClass(Z\_Registration\_Info\_UClass\_ACGridTile.OuterSingleton,\ \mbox{\hyperlink{struct_z___construct___u_class___a_c_grid_tile___statics_a71e97a46dfa63f1e0386c388ef051b7e}{Z\_Construct\_UClass\_ACGridTile\_Statics::ClassParams}});}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z\_Registration\_Info\_UClass\_ACGridTile.OuterSingleton;}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{keyword}{template}<>\ \mbox{\hyperlink{_definitions_8_tactical_rogue_lite_8h_ab3d4cd9bc6cfc092772bd0eb26aede43}{TACTICALROGUELITE\_API}}\ UClass*\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a11fab07658d65bed606b00161069c296}{StaticClass<ACGridTile>}}()}
+\DoxyCodeLine{00676\ \ \ \ \ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ACGridTile::StaticClass();}
+\DoxyCodeLine{00678\ \ \ \ \ \}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ \ \ \textcolor{keywordtype}{void}\ ACGridTile::ValidateGeneratedRepEnums(\textcolor{keyword}{const}\ TArray<struct\ FRepRecord>\&\ ClassReps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00681\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_ParentGrid(TEXT(\textcolor{stringliteral}{"{}ParentGrid"{}}));}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_StraightLinks(TEXT(\textcolor{stringliteral}{"{}StraightLinks"{}}));}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_DiagonalLinks(TEXT(\textcolor{stringliteral}{"{}DiagonalLinks"{}}));}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_TileContent(TEXT(\textcolor{stringliteral}{"{}TileContent"{}}));}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FName\ Name\_GridCoords(TEXT(\textcolor{stringliteral}{"{}GridCoords"{}}));}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ bIsValid\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_ParentGrid\ ==\ ClassReps[(int32)ENetFields\_Private::ParentGrid].Property-\/>GetFName()}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_StraightLinks\ ==\ ClassReps[(int32)ENetFields\_Private::StraightLinks].Property-\/>GetFName()}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_DiagonalLinks\ ==\ ClassReps[(int32)ENetFields\_Private::DiagonalLinks].Property-\/>GetFName()}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_TileContent\ ==\ ClassReps[(int32)ENetFields\_Private::TileContent].Property-\/>GetFName()}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ Name\_GridCoords\ ==\ ClassReps[(int32)ENetFields\_Private::GridCoords].Property-\/>GetFName();}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ checkf(bIsValid,\ TEXT(\textcolor{stringliteral}{"{}UHT\ Generated\ Rep\ Indices\ do\ not\ match\ runtime\ populated\ Rep\ Indices\ for\ properties\ in\ ACGridTile"{}}));}
+\DoxyCodeLine{00696\ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a97225685c48cd23ac1d7d042d1b2815b}{DEFINE\_VTABLE\_PTR\_HELPER\_CTOR}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}});}
+\DoxyCodeLine{00698\ \ \ \ \ ACGridTile::\string~ACGridTile()\ \{\}}
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soub7aab737aa1b65c8ebf237bb04ea56e0}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Grid\_CGridTile\_h\_Statics}}}
+\DoxyCodeLine{00700\ \ \ \ \ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soub7aab737aa1b65c8ebf237bb04ea56e0_a26e253203e8982c50a62050a1646a2d6}{ClassInfo}}[];}
+\DoxyCodeLine{00702\ \ \ \ \ \};}
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keyword}{const}\ FClassRegisterCompiledInInfo\ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soub7aab737aa1b65c8ebf237bb04ea56e0_a26e253203e8982c50a62050a1646a2d6}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Grid\_CGridTile\_h\_Statics::ClassInfo}}[]\ =\ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{_c_grid_tile_8gen_8cpp_a7bc45abdce6ef55de29cbb691086f902}{Z\_Construct\_UClass\_ACGridTile}},\ ACGridTile::StaticClass,\ TEXT(\textcolor{stringliteral}{"{}ACGridTile"{}}),\ \&Z\_Registration\_Info\_UClass\_ACGridTile,\ CONSTRUCT\_RELOAD\_VERSION\_INFO(FClassReloadVersionInfo,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}),\ 3221911748U)\ \},}
+\DoxyCodeLine{00705\ \ \ \ \ \};}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keyword}{static}\ FRegisterCompiledInInfo\ Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Grid\_CGridTile\_h\_4148265611(TEXT(\textcolor{stringliteral}{"{}/Script/TacticalRogueLite"{}}),}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soub7aab737aa1b65c8ebf237bb04ea56e0_a26e253203e8982c50a62050a1646a2d6}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Grid\_CGridTile\_h\_Statics::ClassInfo}},\ UE\_ARRAY\_COUNT(\mbox{\hyperlink{struct_z___compiled_in_defer_file___f_i_d___per_force___grad_project___tactical_rogue_lite___soub7aab737aa1b65c8ebf237bb04ea56e0_a26e253203e8982c50a62050a1646a2d6}{Z\_CompiledInDeferFile\_FID\_PerForce\_GradProject\_TacticalRogueLite\_Source\_TacticalRogueLite\_Public\_Grid\_CGridTile\_h\_Statics::ClassInfo}}),}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0,}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ 0);}
+\DoxyCodeLine{00710\ PRAGMA\_ENABLE\_DEPRECATION\_WARNINGS}
+
+\end{DoxyCode}

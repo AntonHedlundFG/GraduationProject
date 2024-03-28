@@ -1,0 +1,51 @@
+\doxysection{CCommand.\+h}
+\hypertarget{_c_command_8h_source}{}\label{_c_command_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CCommand.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CCommand.h}}
+\mbox{\hyperlink{_c_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}UObject/NoExportTypes.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CCommand.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ UCLASS(Abstract)}
+\DoxyCodeLine{00019\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_command}{UCCommand}}\ :\ public\ UObject}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_command_a2034fa839958b347bd07118c0ede5a68}{ExecuteCommand}}(AController*\ inController)\ }
+\DoxyCodeLine{00025\ \ \ \ \ \{\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ CommandCreator\ =\ inController;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ReceiveExecuteCommand();}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_command_ac6b39b6dd3e6537ffcd3ecf180802cef}{UndoCommand}}()\ \{\ ReceiveUndoCommand();\ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ FString\ \mbox{\hyperlink{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}{ToString}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5}{ReceiveToString}}();\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
+\DoxyCodeLine{00033\ \ \ \ \ AController*\ GetCommandCreator()\ \{\ \textcolor{keywordflow}{return}\ CommandCreator.Get();\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ StoreConsequence(\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}*\ inConsequence);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ UndoAllConsequences();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00039\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00040\ \ \ \ \ void\ ReceiveExecuteCommand();}
+\DoxyCodeLine{00041\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ ReceiveUndoCommand();}
+\DoxyCodeLine{00043\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00044\ \ \ \ \ FString\ \mbox{\hyperlink{class_u_c_consequence_a5f1e32e027d221c1cc0e10f9d3c248f5}{ReceiveToString}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00047\ \ \ \ \ TObjectPtr<AController>\ CommandCreator;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00050\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}*>\ Consequences;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \};}
+
+\end{DoxyCode}

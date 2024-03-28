@@ -1,0 +1,36 @@
+\doxysection{CConsequence.\+h}
+\hypertarget{_c_consequence_8h_source}{}\label{_c_consequence_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CConsequence.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/CommandPattern/CConsequence.h}}
+\mbox{\hyperlink{_c_consequence_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}UObject/NoExportTypes.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CConsequence.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00014\ UCLASS(Abstract)}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}\ :\ public\ UObject}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_consequence_a6cf2e63c0d4c9ff9819c3eeae6ec4fd4}{ExecuteConsequence}}()}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ ReceiveExecuteConsequence();}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_c_consequence_a9b8d4a53846bb52e7743e86d422325cc}{UndoConsequence}}()\ \{\ ReceiveUndoConsequence();\ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ FString\ \mbox{\hyperlink{class_u_c_consequence_a5e540df5ab79dba6f77f12725b54d486}{ToString}}()\ \{\ \textcolor{keywordflow}{return}\ ReceiveToString();\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00028\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00029\ \ \ \ \ void\ ReceiveExecuteConsequence();}
+\DoxyCodeLine{00030\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ ReceiveUndoConsequence();}
+\DoxyCodeLine{00032\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00033\ \ \ \ \ FString\ ReceiveToString();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \};}
+
+\end{DoxyCode}

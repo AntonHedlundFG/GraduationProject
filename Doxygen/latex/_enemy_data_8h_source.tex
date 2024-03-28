@@ -1,0 +1,38 @@
+\doxysection{Enemy\+Data.\+h}
+\hypertarget{_enemy_data_8h_source}{}\label{_enemy_data_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/ItemData/EnemyData.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/ItemData/EnemyData.h}}
+\mbox{\hyperlink{_enemy_data_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Engine/DataAsset.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}EnemyData.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_action}{UCAction}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ UCLASS()}
+\DoxyCodeLine{00012\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_enemy_data}{UEnemyData}}\ :\ public\ UPrimaryDataAsset}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Spawn\ Info"{}})}
+\DoxyCodeLine{00019\ \ \ \ \ TSubclassOf<AActor>\ EnemyClass;}
+\DoxyCodeLine{00020\ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//Actions/buffs\ to\ grant\ this\ enemy.}}
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Spawn\ Info"{})}
+\DoxyCodeLine{00023\ \ \ \ \ TArray<TSubclassOf<\mbox{\hyperlink{class_u_c_action}{UCAction}}>>\ Actions;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}UI"{})}
+\DoxyCodeLine{00026\ \ \ \ \ UTexture2D*\ \mbox{\hyperlink{class_u_c_action_a0866b8cdfbc25eef204e113d266d56ee}{Icon}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ FPrimaryAssetId\ GetPrimaryAssetId()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FPrimaryAssetId(\textcolor{stringliteral}{"{}Enemies"{}},\ GetFName());}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

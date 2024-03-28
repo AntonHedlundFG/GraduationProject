@@ -1,0 +1,65 @@
+\doxysection{UCLevel\+URLAsset Class Reference}
+\hypertarget{class_u_c_level_u_r_l_asset}{}\label{class_u_c_level_u_r_l_asset}\index{UCLevelURLAsset@{UCLevelURLAsset}}
+
+
+{\ttfamily \#include $<$CLevel\+URLAsset.\+h$>$}
+
+Inheritance diagram for UCLevel\+URLAsset\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_level_u_r_l_asset}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+FString \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140}{URLOf\+Level}} (const \mbox{\hyperlink{struct_f_level_info}{FLevel\+Info}} \&in\+Level\+Ref, \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}} in\+Settings=\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}())
+\item 
+FString \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a072e729b79f2c9d7189127cab7e51c39}{URLOf\+Level\+By\+Index}} (const int in\+Level\+Index, \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}} in\+Settings=\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}())
+\item 
+FString \mbox{\hyperlink{class_u_c_level_u_r_l_asset_aa90d5990ecb233bda46984127411c5e8}{URLOf\+Level\+By\+Name}} (const FString \&in\+Name, \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}} in\+Settings=\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}())
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TArray$<$ \mbox{\hyperlink{struct_f_level_info}{FLevel\+Info}} $>$ \mbox{\hyperlink{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b}{Levels}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Store all level references in this asset to make loading levels easier. This way, we don\textquotesingle{}t have to write URL\textquotesingle{}s manually when travelling between levels. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140}\label{class_u_c_level_u_r_l_asset_a204a4c8f4eaaaf659f6cdc6e0e97d140} 
+\index{UCLevelURLAsset@{UCLevelURLAsset}!URLOfLevel@{URLOfLevel}}
+\index{URLOfLevel@{URLOfLevel}!UCLevelURLAsset@{UCLevelURLAsset}}
+\doxysubsubsection{\texorpdfstring{URLOfLevel()}{URLOfLevel()}}
+{\footnotesize\ttfamily FString UCLevel\+URLAsset\+::\+URLOf\+Level (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_level_info}{FLevel\+Info}} \&}]{in\+Level\+Ref,  }\item[{\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}}]{in\+Settings = {\ttfamily \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}()} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_level_u_r_l_asset_a072e729b79f2c9d7189127cab7e51c39}\label{class_u_c_level_u_r_l_asset_a072e729b79f2c9d7189127cab7e51c39} 
+\index{UCLevelURLAsset@{UCLevelURLAsset}!URLOfLevelByIndex@{URLOfLevelByIndex}}
+\index{URLOfLevelByIndex@{URLOfLevelByIndex}!UCLevelURLAsset@{UCLevelURLAsset}}
+\doxysubsubsection{\texorpdfstring{URLOfLevelByIndex()}{URLOfLevelByIndex()}}
+{\footnotesize\ttfamily FString UCLevel\+URLAsset\+::\+URLOf\+Level\+By\+Index (\begin{DoxyParamCaption}\item[{const int}]{in\+Level\+Index,  }\item[{\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}}]{in\+Settings = {\ttfamily \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}()} }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_level_u_r_l_asset_aa90d5990ecb233bda46984127411c5e8}\label{class_u_c_level_u_r_l_asset_aa90d5990ecb233bda46984127411c5e8} 
+\index{UCLevelURLAsset@{UCLevelURLAsset}!URLOfLevelByName@{URLOfLevelByName}}
+\index{URLOfLevelByName@{URLOfLevelByName}!UCLevelURLAsset@{UCLevelURLAsset}}
+\doxysubsubsection{\texorpdfstring{URLOfLevelByName()}{URLOfLevelByName()}}
+{\footnotesize\ttfamily FString UCLevel\+URLAsset\+::\+URLOf\+Level\+By\+Name (\begin{DoxyParamCaption}\item[{const FString \&}]{in\+Name,  }\item[{\mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}}]{in\+Settings = {\ttfamily \mbox{\hyperlink{struct_f_level_load_settings}{FLevel\+Load\+Settings}}()} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b}\label{class_u_c_level_u_r_l_asset_a7a4b9925bb3b4fce4b8f7a8d45d1934b} 
+\index{UCLevelURLAsset@{UCLevelURLAsset}!Levels@{Levels}}
+\index{Levels@{Levels}!UCLevelURLAsset@{UCLevelURLAsset}}
+\doxysubsubsection{\texorpdfstring{Levels}{Levels}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{struct_f_level_info}{FLevel\+Info}}$>$ UCLevel\+URLAsset\+::\+Levels}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\mbox{\hyperlink{_c_level_u_r_l_asset_8h}{CLevel\+URLAsset.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_c_level_u_r_l_asset_8cpp}{CLevel\+URLAsset.\+cpp}}\end{DoxyCompactItemize}

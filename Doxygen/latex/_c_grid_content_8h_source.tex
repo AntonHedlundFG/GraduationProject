@@ -1,0 +1,39 @@
+\doxysection{CGrid\+Content.\+h}
+\hypertarget{_c_grid_content_8h_source}{}\label{_c_grid_content_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/GridContent/CGridContent.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/GridContent/CGridContent.h}}
+\mbox{\hyperlink{_c_grid_content_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Actor.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CGridContent.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ UCLASS()}
+\DoxyCodeLine{00011\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}\ :\ public\ AActor}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_content}{ACGridContent}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Tiles"{}})}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ GetTile()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Tile;\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//Note\ that\ this\ replaces\ the\ Content\ of\ the\ inTile.\ You\ have\ to\ manually\ handle\ this!}}
+\DoxyCodeLine{00022\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Tiles"{}})}
+\DoxyCodeLine{00023\ \ \ \ \ void\ SetTile(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ protected:}
+\DoxyCodeLine{00026\ \ \ \ \ UPROPERTY(Replicated,\ BlueprintReadOnly)}
+\DoxyCodeLine{00027\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}>\ Tile;}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}{BeginPlay}}()\ override;}
+\DoxyCodeLine{00030\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ Tick(\textcolor{keywordtype}{float}\ DeltaTime)\ override;}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \};}
+
+\end{DoxyCode}

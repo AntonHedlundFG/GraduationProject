@@ -1,0 +1,124 @@
+\doxysection{UCCommand Class Reference}
+\hypertarget{class_u_c_command}{}\label{class_u_c_command}\index{UCCommand@{UCCommand}}
+
+
+{\ttfamily \#include $<$CCommand.\+h$>$}
+
+Inheritance diagram for UCCommand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_command_a2034fa839958b347bd07118c0ede5a68}{Execute\+Command}} (AController \texorpdfstring{$\ast$}{*}in\+Controller)
+\item 
+virtual void \mbox{\hyperlink{class_u_c_command_ac6b39b6dd3e6537ffcd3ecf180802cef}{Undo\+Command}} ()
+\item 
+virtual FString \mbox{\hyperlink{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}{To\+String}} ()
+\item 
+AController \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_command_aee4d7a8e80277ed4b5071b835b2af168}{Get\+Command\+Creator}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_command_aac52278405cb8427205565d59bed6ea8}{Store\+Consequence}} (\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}} \texorpdfstring{$\ast$}{*}in\+Consequence)
+\item 
+void \mbox{\hyperlink{class_u_c_command_a35f78b690adfeb16adb8f53aaaada887}{Undo\+All\+Consequences}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_command_a5d5a8fb6063751d5f67a0d91c0709c27}{Receive\+Execute\+Command}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_command_a041e73d87109c21a369dc47501456319}{Receive\+Undo\+Command}} ()
+\item 
+FString \mbox{\hyperlink{class_u_c_command_aea09180c8c34e1e156c80d49de21d7fd}{Receive\+To\+String}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ AController $>$ \mbox{\hyperlink{class_u_c_command_af1456ff6ecc7e75875a96124d06f71ad}{Command\+Creator}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_u_c_consequence}{UCConsequence}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_command_a70026ee06fac21b69e5e34361ec73062}{Consequences}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Commands should not be created and executed manually. Instead, you should override the Generate\+Ability\+Command() of a \doxylink{class_u_c_item}{UCItem} to create the command, which will then be executed and undone automatically by the Game\+Mode. Note that things that trigger as a -\/result-\/ of using a command, rather than a deliberate action from a Controller, should be created as a \doxylink{class_u_c_consequence}{UCConsequence} and registered in the CGame\+Mode with Register\+And\+Execute\+Consequence() 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_command_a2034fa839958b347bd07118c0ede5a68}\label{class_u_c_command_a2034fa839958b347bd07118c0ede5a68} 
+\index{UCCommand@{UCCommand}!ExecuteCommand@{ExecuteCommand}}
+\index{ExecuteCommand@{ExecuteCommand}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{ExecuteCommand()}{ExecuteCommand()}}
+{\footnotesize\ttfamily virtual void UCCommand\+::\+Execute\+Command (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_command_aee4d7a8e80277ed4b5071b835b2af168}\label{class_u_c_command_aee4d7a8e80277ed4b5071b835b2af168} 
+\index{UCCommand@{UCCommand}!GetCommandCreator@{GetCommandCreator}}
+\index{GetCommandCreator@{GetCommandCreator}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{GetCommandCreator()}{GetCommandCreator()}}
+{\footnotesize\ttfamily AController \texorpdfstring{$\ast$}{*} UCCommand\+::\+Get\+Command\+Creator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_u_c_command_a5d5a8fb6063751d5f67a0d91c0709c27}\label{class_u_c_command_a5d5a8fb6063751d5f67a0d91c0709c27} 
+\index{UCCommand@{UCCommand}!ReceiveExecuteCommand@{ReceiveExecuteCommand}}
+\index{ReceiveExecuteCommand@{ReceiveExecuteCommand}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{ReceiveExecuteCommand()}{ReceiveExecuteCommand()}}
+{\footnotesize\ttfamily void UCCommand\+::\+Receive\+Execute\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_command_aea09180c8c34e1e156c80d49de21d7fd}\label{class_u_c_command_aea09180c8c34e1e156c80d49de21d7fd} 
+\index{UCCommand@{UCCommand}!ReceiveToString@{ReceiveToString}}
+\index{ReceiveToString@{ReceiveToString}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{ReceiveToString()}{ReceiveToString()}}
+{\footnotesize\ttfamily FString UCCommand\+::\+Receive\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_command_a041e73d87109c21a369dc47501456319}\label{class_u_c_command_a041e73d87109c21a369dc47501456319} 
+\index{UCCommand@{UCCommand}!ReceiveUndoCommand@{ReceiveUndoCommand}}
+\index{ReceiveUndoCommand@{ReceiveUndoCommand}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{ReceiveUndoCommand()}{ReceiveUndoCommand()}}
+{\footnotesize\ttfamily void UCCommand\+::\+Receive\+Undo\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_command_aac52278405cb8427205565d59bed6ea8}\label{class_u_c_command_aac52278405cb8427205565d59bed6ea8} 
+\index{UCCommand@{UCCommand}!StoreConsequence@{StoreConsequence}}
+\index{StoreConsequence@{StoreConsequence}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{StoreConsequence()}{StoreConsequence()}}
+{\footnotesize\ttfamily void UCCommand\+::\+Store\+Consequence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}} \texorpdfstring{$\ast$}{*}}]{in\+Consequence }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e}\label{class_u_c_command_a6eb2f8d7da11147dc6b3da4963676d4e} 
+\index{UCCommand@{UCCommand}!ToString@{ToString}}
+\index{ToString@{ToString}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{ToString()}{ToString()}}
+{\footnotesize\ttfamily virtual FString UCCommand\+::\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_command_a35f78b690adfeb16adb8f53aaaada887}\label{class_u_c_command_a35f78b690adfeb16adb8f53aaaada887} 
+\index{UCCommand@{UCCommand}!UndoAllConsequences@{UndoAllConsequences}}
+\index{UndoAllConsequences@{UndoAllConsequences}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{UndoAllConsequences()}{UndoAllConsequences()}}
+{\footnotesize\ttfamily void UCCommand\+::\+Undo\+All\+Consequences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_command_ac6b39b6dd3e6537ffcd3ecf180802cef}\label{class_u_c_command_ac6b39b6dd3e6537ffcd3ecf180802cef} 
+\index{UCCommand@{UCCommand}!UndoCommand@{UndoCommand}}
+\index{UndoCommand@{UndoCommand}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{UndoCommand()}{UndoCommand()}}
+{\footnotesize\ttfamily virtual void UCCommand\+::\+Undo\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_command_af1456ff6ecc7e75875a96124d06f71ad}\label{class_u_c_command_af1456ff6ecc7e75875a96124d06f71ad} 
+\index{UCCommand@{UCCommand}!CommandCreator@{CommandCreator}}
+\index{CommandCreator@{CommandCreator}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{CommandCreator}{CommandCreator}}
+{\footnotesize\ttfamily TObject\+Ptr$<$AController$>$ UCCommand\+::\+Command\+Creator\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_command_a70026ee06fac21b69e5e34361ec73062}\label{class_u_c_command_a70026ee06fac21b69e5e34361ec73062} 
+\index{UCCommand@{UCCommand}!Consequences@{Consequences}}
+\index{Consequences@{Consequences}!UCCommand@{UCCommand}}
+\doxysubsubsection{\texorpdfstring{Consequences}{Consequences}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}\texorpdfstring{$\ast$}{*}$>$ UCCommand\+::\+Consequences\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Command\+Pattern/\mbox{\hyperlink{_c_command_8h}{CCommand.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Command\+Pattern/\mbox{\hyperlink{_c_command_8cpp}{CCommand.\+cpp}}\end{DoxyCompactItemize}

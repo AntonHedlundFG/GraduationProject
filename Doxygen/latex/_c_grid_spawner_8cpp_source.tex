@@ -1,0 +1,53 @@
+\doxysection{CGrid\+Spawner.\+cpp}
+\hypertarget{_c_grid_spawner_8cpp_source}{}\label{_c_grid_spawner_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridSpawner.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridSpawner.cpp}}
+\mbox{\hyperlink{_c_grid_spawner_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_spawner_8h}{Grid/CGridSpawner.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_8h}{Grid/CGrid.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \mbox{\hyperlink{class_a_c_grid_spawner_ac9cc81a3075d7e03c212e4265645be7b}{ACGridSpawner::ACGridSpawner}}()}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ }
+\DoxyCodeLine{00011\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ TArray<ACUnit*>\ \mbox{\hyperlink{class_a_c_grid_spawner_a0857be1c719241a80676ffa7cb7a1923}{ACGridSpawner::SpawnUnitsFromArray}}(TArray<TSubclassOf<ACUnit>>\ inUnits,\ TArray<ACGridTile*>\ inSpawnTiles)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ TArray<ACUnit*>\ Units;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0\ ;\ i\ <\ inSpawnTiles.Num()\ ;\ i\ ++)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ inUnits.Num())\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit\ =\ \mbox{\hyperlink{class_a_c_grid_spawner_a70cfed64ce683743fa8d3295a311bdce}{SpawnUnit}}(inUnits[i],\ inSpawnTiles[i]);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ Unit-\/>\mbox{\hyperlink{class_a_c_unit_a251cef1106ee0a760ab99f7e3ec3620f}{ControllingPlayerIndex}}\ =\ i\ +\ 1;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Units.Add(Unit);}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ Units;}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ \mbox{\hyperlink{class_a_c_grid_spawner_a70cfed64ce683743fa8d3295a311bdce}{ACGridSpawner::SpawnUnit}}(TSubclassOf<ACUnit>\ inUnitType,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inSpawnTile)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ FVector\ SpawnPosition\ =\ inSpawnTile-\/>GetActorLocation();}
+\DoxyCodeLine{00031\ \ \ \ \ SpawnPosition.Z\ +=\ 100;}
+\DoxyCodeLine{00032\ \ \ \ \ TObjectPtr<ACUnit>\ Unit\ =\ GetWorld()-\/>SpawnActor<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}>(inUnitType,\ SpawnPosition\ ,\ FRotator::ZeroRotator);}
+\DoxyCodeLine{00033\ \ \ \ \ inSpawnTile-\/>\mbox{\hyperlink{class_a_c_grid_tile_afd229a0f2367a9c2335636ae1e3c7c1d}{SetContent}}(Unit);}
+\DoxyCodeLine{00034\ \ \ \ \ Unit-\/>SetTile(inSpawnTile);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ Unit;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ \mbox{\hyperlink{class_a_c_grid_spawner_a6ad6eec392ba94528468a1f5603e32bd}{ACGridSpawner::SpawnGrid}}(FVector\ inGridCenter,\ \textcolor{keywordtype}{int}\ inRows,\ \textcolor{keywordtype}{int}\ inColumns)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ SpawnedGrid\ =\ GetWorld()-\/>SpawnActor<\mbox{\hyperlink{class_a_c_grid}{ACGrid}}>(\mbox{\hyperlink{class_a_c_grid_spawner_acf90982b47daf3b63d0be324661b0b31}{Grid}},\ inGridCenter,\ FRotator::ZeroRotator);}
+\DoxyCodeLine{00041\ \ \ \ \ SpawnedGrid-\/>\mbox{\hyperlink{class_a_c_grid_a24c9ff1819619fc17ce370eab0fc055b}{GenerateTiles}}(inRows,\ inColumns);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ SpawnedGrid;}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+
+\end{DoxyCode}

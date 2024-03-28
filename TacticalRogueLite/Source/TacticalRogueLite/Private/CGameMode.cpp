@@ -32,30 +32,19 @@ void ACGameMode::BeginPlay()
 
 	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
 	GameStateRef->GameGrid = grid;
-	
-	//This can probably be done better/cleaner
-	TArray<ACUnit*> AllUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
-	TArray<ACUnit*> EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
-	for (ACUnit* EnemyUnit : EnemyUnits)
+
+	if (Spawner)
 	{
-		EnemyUnit->ControllingPlayerIndex = 0;
+		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
+		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+		for (ACUnit* EnemyUnit : EnemyUnits)
+		{
+			EnemyUnit->ControllingPlayerIndex = 0;
+		}
 	}
+	AllUnits.Append(HeroUnits);
 	AllUnits.Append(EnemyUnits);
-
 	
-	// TArray<AActor*> OutActors;
-	// UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACUnit::StaticClass(), OutActors);
-	// TArray<ACUnit*> AllUnits;
-	// for (AActor* Actor : OutActors)
-	// {
-	// 	ACUnit* Unit = Cast<ACUnit>(Actor);
-	// 	if (Unit)
-	// 		AllUnits.Add(Unit);
-	// }
-
-	
-	//We might want to move this to another place later, 
-	// as all Units might not be spawned yet.
 	InitializeTurnOrder(AllUnits);
 	ApplyPlayerCount(AllUnits);
 }

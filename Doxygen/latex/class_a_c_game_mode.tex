@@ -1,0 +1,210 @@
+\doxysection{ACGame\+Mode Class Reference}
+\hypertarget{class_a_c_game_mode}{}\label{class_a_c_game_mode}\index{ACGameMode@{ACGameMode}}
+
+
+{\ttfamily \#include $<$CGame\+Mode.\+h$>$}
+
+Inheritance diagram for ACGame\+Mode\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_c_game_mode}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_c_game_mode_a02174fa345597ff7b0d73aea008c0700}{Begin\+Play}} () override
+\item 
+void \mbox{\hyperlink{class_a_c_game_mode_ac6b3af199fccfb550f4f50114b510c8e}{Register\+And\+Execute\+Consequence}} (\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}} \texorpdfstring{$\ast$}{*}in\+Consequence)
+\item 
+bool \mbox{\hyperlink{class_a_c_game_mode_a1ed08597d3bf8710e7d40544268e1e15}{Try\+Ability\+Use}} (AController \texorpdfstring{$\ast$}{*}in\+Controller, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Slot, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+\item 
+bool \mbox{\hyperlink{class_a_c_game_mode_a9f3db610edd45c7fe18c71473fcf79ca}{Try\+Undo}} (AController \texorpdfstring{$\ast$}{*}in\+Controller)
+\item 
+bool \mbox{\hyperlink{class_a_c_game_mode_a321c50796790c19e76bef31ee1ac3a94}{Try\+End\+Turn}} (AController \texorpdfstring{$\ast$}{*}in\+Controller)
+\item 
+void \mbox{\hyperlink{class_a_c_game_mode_ac8a9638571b183def3310250b17dc7e5}{Initialize\+Turn\+Order}} (const TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \&Units)
+\item 
+void \mbox{\hyperlink{class_a_c_game_mode_a8ef7d5e36732375fc8c97e3a700d64ae}{Apply\+Player\+Count}} (const TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \&Units)
+\item 
+\mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_game_mode_aa57ccee8427ff1230048599d633faf8b}{Get\+Game\+Grid}} () const
+\item 
+\mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_game_mode_a4250486b430fee57969c38b0a8671aca}{Get\+Grid\+Spawner}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_online_game_mode}{AOnline\+Game\+Mode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a9b38b6fbe1cd57a60537752184681d25}{Post\+Login}} (APlayer\+Controller \texorpdfstring{$\ast$}{*}New\+Player) override
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a216a6365e69acdc2b4a8c5f79a1ce27d}{Handle\+Seamless\+Travel\+Player}} (AController \texorpdfstring{$\ast$}{*}\&C) override
+\item 
+virtual void \mbox{\hyperlink{class_a_online_game_mode_a42dc9ae173b40c2d8cf5489e4f2b13ca}{Logout}} (AController \texorpdfstring{$\ast$}{*}Exiting) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_game_mode_a133a3882121bbeff70df85e18ccb52f8}{Create\+Spawner}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} $>$ \mbox{\hyperlink{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}{Game\+State\+Ref}}
+\item 
+TSubclass\+Of$<$ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} $>$ \mbox{\hyperlink{class_a_c_game_mode_a8a9f26f7446c05e6b64349bb0868e7db}{Spawner\+Class}}
+\item 
+TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} $>$ \mbox{\hyperlink{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}{Spawner}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}{All\+Units}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_game_mode_a27b3bb51c5a8c43bdd9a393aa19dc360}{Hero\+Units}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_game_mode_a261325289f592d53cbb4da0b3272fd86}{Enemy\+Units}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}{Command\+List}}
+\item 
+TArray$<$ \mbox{\hyperlink{class_u_c_command}{UCCommand}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb}{Command\+History}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_a_online_game_mode}{AOnline\+Game\+Mode}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_a_online_game_mode_a77f34d0a8a9b62cd8f648b1639f32837}{b\+Players\+Can\+Reconnect\+During\+Match}} = true
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_online_player_state}{AOnline\+Player\+State}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_online_game_mode_a79d28baadc6fec8a11e00239d8fa7559}{Inactive\+States}}
+\item 
+uint8 \mbox{\hyperlink{class_a_online_game_mode_a6875548371dee137eb991c0c04d2b455}{Next\+Player\+Index}} = 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_game_mode_a8ef7d5e36732375fc8c97e3a700d64ae}\label{class_a_c_game_mode_a8ef7d5e36732375fc8c97e3a700d64ae} 
+\index{ACGameMode@{ACGameMode}!ApplyPlayerCount@{ApplyPlayerCount}}
+\index{ApplyPlayerCount@{ApplyPlayerCount}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{ApplyPlayerCount()}{ApplyPlayerCount()}}
+{\footnotesize\ttfamily void ACGame\+Mode\+::\+Apply\+Player\+Count (\begin{DoxyParamCaption}\item[{const TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \&}]{Units }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_game_mode_a02174fa345597ff7b0d73aea008c0700}\label{class_a_c_game_mode_a02174fa345597ff7b0d73aea008c0700} 
+\index{ACGameMode@{ACGameMode}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACGame\+Mode\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_game_mode_a133a3882121bbeff70df85e18ccb52f8}\label{class_a_c_game_mode_a133a3882121bbeff70df85e18ccb52f8} 
+\index{ACGameMode@{ACGameMode}!CreateSpawner@{CreateSpawner}}
+\index{CreateSpawner@{CreateSpawner}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{CreateSpawner()}{CreateSpawner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} \texorpdfstring{$\ast$}{*} ACGame\+Mode\+::\+Create\+Spawner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_aa57ccee8427ff1230048599d633faf8b}\label{class_a_c_game_mode_aa57ccee8427ff1230048599d633faf8b} 
+\index{ACGameMode@{ACGameMode}!GetGameGrid@{GetGameGrid}}
+\index{GetGameGrid@{GetGameGrid}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{GetGameGrid()}{GetGameGrid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid}{ACGrid}} \texorpdfstring{$\ast$}{*} ACGame\+Mode\+::\+Get\+Game\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_game_mode_a4250486b430fee57969c38b0a8671aca}\label{class_a_c_game_mode_a4250486b430fee57969c38b0a8671aca} 
+\index{ACGameMode@{ACGameMode}!GetGridSpawner@{GetGridSpawner}}
+\index{GetGridSpawner@{GetGridSpawner}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{GetGridSpawner()}{GetGridSpawner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}} \texorpdfstring{$\ast$}{*} ACGame\+Mode\+::\+Get\+Grid\+Spawner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_a_c_game_mode_ac8a9638571b183def3310250b17dc7e5}\label{class_a_c_game_mode_ac8a9638571b183def3310250b17dc7e5} 
+\index{ACGameMode@{ACGameMode}!InitializeTurnOrder@{InitializeTurnOrder}}
+\index{InitializeTurnOrder@{InitializeTurnOrder}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{InitializeTurnOrder()}{InitializeTurnOrder()}}
+{\footnotesize\ttfamily void ACGame\+Mode\+::\+Initialize\+Turn\+Order (\begin{DoxyParamCaption}\item[{const TArray$<$ \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} $>$ \&}]{Units }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_game_mode_ac6b3af199fccfb550f4f50114b510c8e}\label{class_a_c_game_mode_ac6b3af199fccfb550f4f50114b510c8e} 
+\index{ACGameMode@{ACGameMode}!RegisterAndExecuteConsequence@{RegisterAndExecuteConsequence}}
+\index{RegisterAndExecuteConsequence@{RegisterAndExecuteConsequence}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{RegisterAndExecuteConsequence()}{RegisterAndExecuteConsequence()}}
+{\footnotesize\ttfamily void ACGame\+Mode\+::\+Register\+And\+Execute\+Consequence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}} \texorpdfstring{$\ast$}{*}}]{in\+Consequence }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_game_mode_a1ed08597d3bf8710e7d40544268e1e15}\label{class_a_c_game_mode_a1ed08597d3bf8710e7d40544268e1e15} 
+\index{ACGameMode@{ACGameMode}!TryAbilityUse@{TryAbilityUse}}
+\index{TryAbilityUse@{TryAbilityUse}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{TryAbilityUse()}{TryAbilityUse()}}
+{\footnotesize\ttfamily bool ACGame\+Mode\+::\+Try\+Ability\+Use (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Slot,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})}
+
+Should be called by a controller (AI or Player) to attempt an ability use. 
+\begin{DoxyParams}{Parameters}
+{\em Controller} & -\/ The source of the ability activation \\
+\hline
+{\em Unit} & -\/ The intended using unit. Should be obvious due to unit ordering, but it might be good to verify. \\
+\hline
+{\em Slot} & -\/ Item slot to activate \\
+\hline
+{\em Tile\+Index} & -\/ Index of the targeted Tile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if ability use was successful 
+\end{DoxyReturn}
+\Hypertarget{class_a_c_game_mode_a321c50796790c19e76bef31ee1ac3a94}\label{class_a_c_game_mode_a321c50796790c19e76bef31ee1ac3a94} 
+\index{ACGameMode@{ACGameMode}!TryEndTurn@{TryEndTurn}}
+\index{TryEndTurn@{TryEndTurn}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{TryEndTurn()}{TryEndTurn()}}
+{\footnotesize\ttfamily bool ACGame\+Mode\+::\+Try\+End\+Turn (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_game_mode_a9f3db610edd45c7fe18c71473fcf79ca}\label{class_a_c_game_mode_a9f3db610edd45c7fe18c71473fcf79ca} 
+\index{ACGameMode@{ACGameMode}!TryUndo@{TryUndo}}
+\index{TryUndo@{TryUndo}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{TryUndo()}{TryUndo()}}
+{\footnotesize\ttfamily bool ACGame\+Mode\+::\+Try\+Undo (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738}\label{class_a_c_game_mode_a44cbaee2d948325aaee11522283cb738} 
+\index{ACGameMode@{ACGameMode}!AllUnits@{AllUnits}}
+\index{AllUnits@{AllUnits}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{AllUnits}{AllUnits}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*}$>$ ACGame\+Mode\+::\+All\+Units\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb}\label{class_a_c_game_mode_afdc11598a3df8070bf20de28d02bcabb} 
+\index{ACGameMode@{ACGameMode}!CommandHistory@{CommandHistory}}
+\index{CommandHistory@{CommandHistory}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{CommandHistory}{CommandHistory}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_u_c_command}{UCCommand}}\texorpdfstring{$\ast$}{*}$>$ ACGame\+Mode\+::\+Command\+History\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758}\label{class_a_c_game_mode_ae65478b80cff4f3a69fa1d1f44f57758} 
+\index{ACGameMode@{ACGameMode}!CommandList@{CommandList}}
+\index{CommandList@{CommandList}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{CommandList}{CommandList}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_u_c_command}{UCCommand}}\texorpdfstring{$\ast$}{*}$>$ ACGame\+Mode\+::\+Command\+List\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_a261325289f592d53cbb4da0b3272fd86}\label{class_a_c_game_mode_a261325289f592d53cbb4da0b3272fd86} 
+\index{ACGameMode@{ACGameMode}!EnemyUnits@{EnemyUnits}}
+\index{EnemyUnits@{EnemyUnits}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{EnemyUnits}{EnemyUnits}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*}$>$ ACGame\+Mode\+::\+Enemy\+Units\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c}\label{class_a_c_game_mode_aae0ae2f378915e41e607eaa9b0dfeb6c} 
+\index{ACGameMode@{ACGameMode}!GameStateRef@{GameStateRef}}
+\index{GameStateRef@{GameStateRef}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{GameStateRef}{GameStateRef}}
+{\footnotesize\ttfamily TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}}$>$ ACGame\+Mode\+::\+Game\+State\+Ref\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_a27b3bb51c5a8c43bdd9a393aa19dc360}\label{class_a_c_game_mode_a27b3bb51c5a8c43bdd9a393aa19dc360} 
+\index{ACGameMode@{ACGameMode}!HeroUnits@{HeroUnits}}
+\index{HeroUnits@{HeroUnits}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{HeroUnits}{HeroUnits}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*}$>$ ACGame\+Mode\+::\+Hero\+Units\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90}\label{class_a_c_game_mode_a2913d5c7a36a454cf05ab83a214cdf90} 
+\index{ACGameMode@{ACGameMode}!Spawner@{Spawner}}
+\index{Spawner@{Spawner}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{Spawner}{Spawner}}
+{\footnotesize\ttfamily TObject\+Ptr$<$\mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}}$>$ ACGame\+Mode\+::\+Spawner\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_a_c_game_mode_a8a9f26f7446c05e6b64349bb0868e7db}\label{class_a_c_game_mode_a8a9f26f7446c05e6b64349bb0868e7db} 
+\index{ACGameMode@{ACGameMode}!SpawnerClass@{SpawnerClass}}
+\index{SpawnerClass@{SpawnerClass}!ACGameMode@{ACGameMode}}
+\doxysubsubsection{\texorpdfstring{SpawnerClass}{SpawnerClass}}
+{\footnotesize\ttfamily TSubclass\+Of$<$\mbox{\hyperlink{class_a_c_grid_spawner}{ACGrid\+Spawner}}$>$ ACGame\+Mode\+::\+Spawner\+Class\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\mbox{\hyperlink{_c_game_mode_8h}{CGame\+Mode.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_c_game_mode_8cpp}{CGame\+Mode.\+cpp}}\end{DoxyCompactItemize}

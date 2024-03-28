@@ -1,0 +1,399 @@
+\doxysection{Shared\+Definitions.\+Engine.\+RTTI.\+Cpp20.\+h}
+\hypertarget{_shared_definitions_8_engine_8_r_t_t_i_8_cpp20_8h_source}{}\label{_shared_definitions_8_engine_8_r_t_t_i_8_cpp20_8h_source}\index{TacticalRogueLite/Intermediate/Build/Win64/x64/TacticalRogueLiteEditor/Development/Engine/SharedDefinitions.Engine.RTTI.Cpp20.h@{TacticalRogueLite/Intermediate/Build/Win64/x64/TacticalRogueLiteEditor/Development/Engine/SharedDefinitions.Engine.RTTI.Cpp20.h}}
+\mbox{\hyperlink{_shared_definitions_8_engine_8_r_t_t_i_8_cpp20_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Generated\ by\ UnrealBuildTool\ (UEBuildModuleCPP.cs)}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ IS\_PROGRAM\ 0}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ UE\_EDITOR\ 1}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ USE\_SHADER\_COMPILER\_WORKER\_TRACE\ 0}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ENABLE\_PGO\_PROFILE\ 0}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ USE\_VORBIS\_FOR\_STREAMING\ 1}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ USE\_XMA2\_FOR\_STREAMING\ 1}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ WITH\_DEV\_AUTOMATION\_TESTS\ 1}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ WITH\_PERF\_AUTOMATION\_TESTS\ 1}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ WITH\_LOW\_LEVEL\_TESTS\ 0}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ EXPLICIT\_TESTS\_TARGET\ 0}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ WITH\_TESTS\ 1}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ UNICODE\ 1}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ \_UNICODE\ 1}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_\_UNREAL\_\_\ 1}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ IS\_MONOLITHIC\ 0}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ WITH\_ENGINE\ 1}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ WITH\_UNREAL\_DEVELOPER\_TOOLS\ 1}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ WITH\_UNREAL\_TARGET\_DEVELOPER\_TOOLS\ 1}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ WITH\_APPLICATION\_CORE\ 1}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ WITH\_COREUOBJECT\ 1}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ WITH\_VERSE\ 1}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ UE\_USE\_VERSE\_PATHS\ 1}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ USE\_STATS\_WITHOUT\_ENGINE\ 0}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ WITH\_PLUGIN\_SUPPORT\ 0}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ WITH\_ACCESSIBILITY\ 1}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ WITH\_PERFCOUNTERS\ 1}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ WITH\_FIXED\_TIME\_STEP\_SUPPORT\ 1}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ USE\_LOGGING\_IN\_SHIPPING\ 0}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ ALLOW\_PROFILEGPU\_IN\_TEST\ 0}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ALLOW\_PROFILEGPU\_IN\_SHIPPING\ 0}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ WITH\_LOGGING\_TO\_MEMORY\ 0}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ USE\_CACHE\_FREED\_OS\_ALLOCS\ 1}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ USE\_CHECKS\_IN\_SHIPPING\ 0}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ USE\_UTF8\_TCHARS\ 0}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ USE\_ESTIMATED\_UTCNOW\ 0}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ UE\_ALLOW\_EXEC\_COMMANDS\_IN\_SHIPPING\ 1}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ WITH\_EDITOR\ 1}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ WITH\_IOSTORE\_IN\_EDITOR\ 1}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ WITH\_SERVER\_CODE\ 1}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ UE\_FNAME\_OUTLINE\_NUMBER\ 0}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ WITH\_PUSH\_MODEL\ 1}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ WITH\_CEF3\ 1}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ WITH\_LIVE\_CODING\ 1}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ WITH\_CPP\_MODULES\ 0}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ WITH\_CPP\_COROUTINES\ 0}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ WITH\_PROCESS\_PRIORITY\_CONTROL\ 0}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ UBT\_MODULE\_MANIFEST\ "{}UnrealEditor.modules"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ UBT\_MODULE\_MANIFEST\_DEBUGGAME\ "{}UnrealEditor-\/Win64-\/DebugGame.modules"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ UBT\_COMPILED\_PLATFORM\ Win64}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ UBT\_COMPILED\_TARGET\ Editor}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ UE\_APP\_NAME\ "{}UnrealEditor"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ NDIS\_MINIPORT\_MAJOR\_VERSION\ 0}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ WIN32\ 1}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ \_WIN32\_WINNT\ 0x0601}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ WINVER\ 0x0601}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ PLATFORM\_WINDOWS\ 1}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ PLATFORM\_MICROSOFT\ 1}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ OVERRIDE\_PLATFORM\_HEADER\_NAME\ Windows}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ RHI\_RAYTRACING\ 1}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ NDEBUG\ 1}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ UE\_BUILD\_DEVELOPMENT\ 1}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ UE\_IS\_ENGINE\_MODULE\ 1}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ UE\_ENABLE\_INCLUDE\_ORDER\_DEPRECATED\_IN\_5\_1\ 0}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ UE\_ENABLE\_INCLUDE\_ORDER\_DEPRECATED\_IN\_5\_2\ 0}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ UE\_ENABLE\_INCLUDE\_ORDER\_DEPRECATED\_IN\_5\_3\ 0}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ GPUPARTICLE\_LOCAL\_VF\_ONLY\ 0}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ WITH\_ODSC\ 0}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ GPUPARTICLE\_LOCAL\_VF\_ONLY\ 0}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ WITH\_ODSC\ 0}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ ENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ UE\_MEMORY\_TAGS\_TRACE\_ENABLED\ 1}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ UE\_ENABLE\_ICU\ 1}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ WITH\_ADDITIONAL\_CRASH\_CONTEXTS\ 1}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ WITH\_VS\_PERF\_PROFILER\ 1}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ WITH\_SUPERLUMINAL\_PROFILER\ 0}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ WITH\_CONCURRENCYVIEWER\_PROFILER\ 0}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ WITH\_DIRECTXMATH\ 0}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ PLATFORM\_SUPPORTS\_PLATFORM\_EVENTS\ 1}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ PLATFORM\_SUPPORTS\_TRACE\_WIN32\_VIRTUAL\_MEMORY\_HOOKS\ 1}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ PLATFORM\_SUPPORTS\_TRACE\_WIN32\_MODULE\_DIAGNOSTICS\ 1}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ PLATFORM\_SUPPORTS\_TRACE\_WIN32\_CALLSTACK\ 1}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ UE\_MEMORY\_TRACE\_AVAILABLE\ 1}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ WITH\_MALLOC\_STOMP\ 1}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ CORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ TRACELOG\_API\ DLLIMPORT}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ PLATFORM\_MAX\_LOCAL\_PLAYERS\ 0}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ COREONLINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ COREUOBJECT\_API\ DLLIMPORT}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ FIELDNOTIFICATION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ NETCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ NETCOMMON\_API\ DLLIMPORT}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ IMAGECORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ JSON\_API\ DLLIMPORT}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ JSONUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ WITH\_FREETYPE\ 1}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ SLATECORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ INPUTCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ UE\_WINDOWS\_USING\_UIA\ 1}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ APPLICATIONCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ RHI\_WANT\_BREADCRUMB\_EVENTS\ 1}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ RHI\_WANT\_RESOURCE\_INFO\ 1}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ RHI\_API\ DLLIMPORT}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ SLATE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ WITH\_UNREALPNG\ 1}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ WITH\_UNREALJPEG\ 1}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ WITH\_LIBJPEGTURBO\ 1}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ WITH\_UNREALEXR\ 1}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ WITH\_UNREALEXR\_MINIMAL\ 0}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ IMAGEWRAPPER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ WITH\_LIBTIFF\ 1}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ MESSAGING\_API\ DLLIMPORT}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ MESSAGINGCOMMON\_API\ DLLIMPORT}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ RENDERCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ ANALYTICSET\_API\ DLLIMPORT}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ ANALYTICS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ SOCKETS\_PACKAGE\ 1}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ SOCKETS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ ASSETREGISTRY\_API\ DLLIMPORT}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ ENGINEMESSAGES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ ENGINESETTINGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ SYNTHBENCHMARK\_API\ DLLIMPORT}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ GAMEPLAYTAGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ DEVELOPERSETTINGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ PACKETHANDLER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ RELIABILITYHANDLERCOMPONENT\_API\ DLLIMPORT}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ AUDIOPLATFORMCONFIGURATION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ MESHDESCRIPTION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ STATICMESHDESCRIPTION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ SKELETALMESHDESCRIPTION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ ANIMATIONCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ PAKFILE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ RSA\_API\ DLLIMPORT}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#define\ NETWORKREPLAYSTREAMING\_API\ DLLIMPORT}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#define\ PHYSICSCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ COMPILE\_WITHOUT\_UNREAL\_SUPPORT\ 0}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ CHAOS\_CHECKED\ 0}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#define\ CHAOS\_DEBUG\_NAME\ 1}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ CHAOSCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ INTEL\_ISPC\ 1}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ COMPILE\_WITHOUT\_UNREAL\_SUPPORT\ 0}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ CHAOS\_MEMORY\_TRACKING\ 0}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ CHAOS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ VORONOI\_API\ DLLIMPORT}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ GEOMETRYCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ SIGNALPROCESSING\_API\ DLLIMPORT}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ AUDIOEXTENSIONS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ AUDIOMIXERCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ AUDIOMIXER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ TARGETPLATFORM\_API\ DLLIMPORT}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ TEXTUREFORMAT\_API\ DLLIMPORT}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#define\ DESKTOPPLATFORM\_API\ DLLIMPORT}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ AUDIOLINKENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#define\ AUDIOLINKCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#define\ COOKONTHEFLY\_API\ DLLIMPORT}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ NETWORKING\_API\ DLLIMPORT}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ IOSTOREONDEMAND\_API\ DLLIMPORT}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ TEXTUREBUILDUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ HORDE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ CLOTHINGSYSTEMRUNTIMEINTERFACE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ IRISCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ MOVIESCENECAPTURE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ RENDERER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ TYPEDELEMENTFRAMEWORK\_API\ DLLIMPORT}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ TYPEDELEMENTRUNTIME\_API\ DLLIMPORT}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ ANIMATIONDATACONTROLLER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#define\ INTERCHANGECORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ KISMET\_API\ DLLIMPORT}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#define\ TOOLMENUS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ WITH\_RECAST\ 1}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ WITH\_NAVMESH\_SEGMENT\_LINKS\ 1}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ WITH\_NAVMESH\_CLUSTER\_LINKS\ 1}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#define\ UNREALED\_API\ DLLIMPORT}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ ASSETTAGSEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#define\ COLLECTIONMANAGER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ CONTENTBROWSER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ ASSETTOOLS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#define\ ASSETDEFINITION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ EDITORSUBSYSTEM\_API\ DLLIMPORT}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ MERGE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#define\ EDITORFRAMEWORK\_API\ DLLIMPORT}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ INTERACTIVETOOLSFRAMEWORK\_API\ DLLIMPORT}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ CONTENTBROWSERDATA\_API\ DLLIMPORT}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#define\ READ\_TARGET\_ENABLED\_PLUGINS\_FROM\_RECEIPT\ 1}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ LOAD\_PLUGINS\_FOR\_TARGET\_PLATFORMS\ 1}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ PROJECTS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#define\ MESHUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ MESHMERGEUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#define\ MESHREDUCTIONINTERFACE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ RAWMESH\_API\ DLLIMPORT}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ MATERIALUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ KISMETCOMPILER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ UE\_WITH\_IRIS\ 1}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ GAMEPLAYTASKS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ PROPERTYEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ EDITORCONFIG\_API\ DLLIMPORT}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ ACTORPICKERMODE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ SCENEDEPTHPICKERMODE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ CLASSVIEWER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ DIRECTORYWATCHER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ DOCUMENTATION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#define\ MAINFRAME\_API\ DLLIMPORT}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ SANDBOXFILE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#define\ SOURCE\_CONTROL\_WITH\_SLATE\ 1}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ SOURCECONTROL\_API\ DLLIMPORT}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ UNCONTROLLEDCHANGELISTS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#define\ UNREALEDMESSAGES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ BLUEPRINTGRAPH\_API\ DLLIMPORT}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ HTTP\_PACKAGE\ 1}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ CURL\_ENABLE\_DEBUG\_CALLBACK\ 1}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ CURL\_ENABLE\_NO\_TIMEOUTS\_OPTION\ 1}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ WITH\_WINHTTP\ 1}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ HTTP\_API\ DLLIMPORT}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ FUNCTIONALTESTING\_API\ DLLIMPORT}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ AUTOMATIONCONTROLLER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ AUTOMATIONTEST\_API\ DLLIMPORT}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ LOCALIZATION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ WITH\_SNDFILE\_IO\ 1}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ AUDIOEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ UELIBSAMPLERATE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ LEVELEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ COMMONMENUEXTENSIONS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ SETTINGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ TOOLWIDGETS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#define\ VREDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ VIEWPORTINTERACTION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ HEADMOUNTEDDISPLAY\_API\ DLLIMPORT}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ LANDSCAPE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ DETAILCUSTOMIZATIONS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#define\ GRAPHEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#define\ STRUCTVIEWER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ ENABLE\_HTTP\_FOR\_NFS\ 1}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#define\ NETWORKFILESYSTEM\_API\ DLLIMPORT}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ UMG\_API\ DLLIMPORT}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ MOVIESCENE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ TIMEMANAGEMENT\_API\ DLLIMPORT}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ MOVIESCENETRACKS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#define\ CONSTRAINTS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#define\ PROPERTYPATH\_API\ DLLIMPORT}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ WITH\_RECAST\ 1}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#define\ WITH\_NAVMESH\_SEGMENT\_LINKS\ 1}}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#define\ WITH\_NAVMESH\_CLUSTER\_LINKS\ 1}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#define\ NAVIGATIONSYSTEM\_API\ DLLIMPORT}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#define\ GEOMETRYCOLLECTIONENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#define\ FIELDSYSTEMENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#define\ WITH\_CLOTH\_COLLISION\_DETECTION\ 1}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_VISUAL\_DEBUGGER\ 0}}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#define\ INCLUDE\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}INCLUDE\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#define\ WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CHAOS\_NEEDS\_TO\_BE\_FIXED\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 1."{})\ 1}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#define\ WITH\_PHYSX\_COOKING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_PHYSX\_COOKING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#define\ PHYSICS\_INTERFACE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}PHYSICS\_INTERFACE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#define\ WITH\_APEX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#define\ WITH\_APEX\_CLOTHING\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_APEX\_CLOTHING\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#define\ WITH\_NVCLOTH\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_NVCLOTH\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#define\ WITH\_IMMEDIATE\_PHYSX\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_IMMEDIATE\_PHYSX\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#define\ WITH\_CUSTOM\_SQ\_STRUCTURE\ UE\_DEPRECATED\_MACRO(5.1,\ "{}WITH\_CUSTOM\_SQ\_STRUCTURE\ is\ deprecated\ and\ should\ always\ be\ considered\ 0."{})\ 0}}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#define\ CHAOSSOLVERENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ DATAFLOWCORE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#define\ DATAFLOWENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#define\ MESHBUILDER\_API\ DLLIMPORT}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#define\ MESHUTILITIESCOMMON\_API\ DLLIMPORT}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#define\ MATERIALSHADERQUALITYSETTINGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#define\ TOOLMENUSEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#define\ STATUSBAR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#define\ INTERCHANGEENGINE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#define\ DEVELOPERTOOLSETTINGS\_API\ DLLIMPORT}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#define\ SUBOBJECTDATAINTERFACE\_API\ DLLIMPORT}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ SUBOBJECTEDITOR\_API\ DLLIMPORT}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#define\ PHYSICSUTILITIES\_API\ DLLIMPORT}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ WIDGETREGISTRATION\_API\ DLLIMPORT}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#define\ AUDIOMIXERXAUDIO2\_API\ DLLIMPORT}}
+
+\end{DoxyCode}

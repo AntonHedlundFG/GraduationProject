@@ -1,0 +1,85 @@
+\doxysection{CGrid\+Tile.\+cpp}
+\hypertarget{_c_grid_tile_8cpp_source}{}\label{_c_grid_tile_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridTile.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridTile.cpp}}
+\mbox{\hyperlink{_c_grid_tile_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_8h}{Grid/CGrid.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_utils_library_8h}{Grid/CGridUtilsLibrary.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Net/UnrealNetwork.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>\&\ OutLifetimeProps)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00010\ \ \ \ \ Super::GetLifetimeReplicatedProps(OutLifetimeProps);}
+\DoxyCodeLine{00011\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}});}
+\DoxyCodeLine{00012\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ \mbox{\hyperlink{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456}{StraightLinks}});}
+\DoxyCodeLine{00013\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ \mbox{\hyperlink{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa}{DiagonalLinks}});}
+\DoxyCodeLine{00014\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ \mbox{\hyperlink{class_a_c_grid_tile_a5d9838171f5e3e6cdb82997fc81c33ac}{TileContent}});}
+\DoxyCodeLine{00015\ \ \ \ \ DOREPLIFETIME(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}},\ \mbox{\hyperlink{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}{GridCoords}});}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \mbox{\hyperlink{class_a_c_grid_tile_ab5cf21f262fe3926ebb5ee4c992635b8}{ACGridTile::ACGridTile}}()}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ bReplicates\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}{ACGridTile::Initialize}}(\mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ inParentGrid,\ FVector2D\ inCoords)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}}\ =\ inParentGrid;}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}{GridCoords}}\ =\ inCoords;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_adf1069e529731a6c82189fcadc425759}{ACGridTile::BeginPlay}}()}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_ac9ec1bca8f10c0ae1435d2e7e577e3c6}{ACGridTile::CreateLinks}}()}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TopX\ =\ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}}-\/>GridDimensions.X;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TopY\ =\ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}}-\/>GridDimensions.Y;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ TArray<FVector2D>\ StraightDirections\ =\ \mbox{\hyperlink{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6}{UCGridUtilsLibrary::StraightDirections}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ direction\ :\ StraightDirections)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FVector2D\ Coords\ =\ \mbox{\hyperlink{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}{GridCoords}}\ +\ direction;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Coords.X\ <\ 0\ ||\ Coords.Y\ <\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Coords.X\ >=\ TopX\ ||\ Coords.Y\ >=\ TopY)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(TObjectPtr<ACGridTile>\ Neighbour\ =\ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}}-\/>GetTileAtPosition(Coords.X,\ Coords.Y))}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456}{StraightLinks}}.Add(Neighbour);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ TArray<FVector2D>\ DiagonalDirections\ =\ \mbox{\hyperlink{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}{UCGridUtilsLibrary::DiagonalDirections}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ direction\ :\ DiagonalDirections)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FVector2D\ Coords\ =\ \mbox{\hyperlink{class_a_c_grid_tile_ac6168bf9954a735d069f81036c9b2b6c}{GridCoords}}\ +\ direction;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Coords.X\ <\ 0\ ||\ Coords.Y\ <\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Coords.X\ >=\ TopX\ ||\ Coords.Y\ >=\ TopY)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(TObjectPtr<ACGridTile>\ Neighbour\ =\ \mbox{\hyperlink{class_a_c_grid_tile_a2cc6aacd9ae334a581bb89fb9c8ac5f0}{ParentGrid}}-\/>GetTileAtPosition(Coords.X,\ Coords.Y))}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa}{DiagonalLinks}}.Add(Neighbour);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1}{ACGridTile::GetNeighbours}}(\textcolor{keywordtype}{bool}\ bIncludeDiagonals)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ TArray<ACGridTile*>\ Neighbours\ =\ \mbox{\hyperlink{class_a_c_grid_tile_a403c9fa834f35f6ab6d5971a4d619456}{StraightLinks}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (bIncludeDiagonals)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ Neighbours.Append(\mbox{\hyperlink{class_a_c_grid_tile_a01e389726a20f7d18904d55886f10faa}{DiagonalLinks}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ Neighbours;}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+
+\end{DoxyCode}

@@ -1,0 +1,106 @@
+\doxysection{CGrid\+Utils\+Library.\+cpp}
+\hypertarget{_c_grid_utils_library_8cpp_source}{}\label{_c_grid_utils_library_8cpp_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridUtilsLibrary.cpp@{TacticalRogueLite/Source/TacticalRogueLite/Private/Grid/CGridUtilsLibrary.cpp}}
+\mbox{\hyperlink{_c_grid_utils_library_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_utils_library_8h}{Grid/CGridUtilsLibrary.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_grid_tile_8h}{Grid/CGridTile.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_8h}{Items/CItem.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ TArray<FVector2D>\ \mbox{\hyperlink{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6}{UCGridUtilsLibrary::StraightDirections}}()}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ TArray<FVector2D>\ Directions;}
+\DoxyCodeLine{00011\ \ \ \ \ Directions.Add(FVector2D(0,\ 1));}
+\DoxyCodeLine{00012\ \ \ \ \ Directions.Add(FVector2D(0,\ -\/1));}
+\DoxyCodeLine{00013\ \ \ \ \ Directions.Add(FVector2D(-\/1,\ 0));}
+\DoxyCodeLine{00014\ \ \ \ \ Directions.Add(FVector2D(1,\ 0));}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ Directions;}
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ TArray<FVector2D>\ \mbox{\hyperlink{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}{UCGridUtilsLibrary::DiagonalDirections}}()}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ TArray<FVector2D>\ Directions;}
+\DoxyCodeLine{00022\ \ \ \ \ Directions.Add(FVector2D(1,\ 1));}
+\DoxyCodeLine{00023\ \ \ \ \ Directions.Add(FVector2D(1,\ -\/1));}
+\DoxyCodeLine{00024\ \ \ \ \ Directions.Add(FVector2D(-\/1,\ 1));}
+\DoxyCodeLine{00025\ \ \ \ \ Directions.Add(FVector2D(-\/1,\ -\/1));}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ Directions;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b}{UCGridUtilsLibrary::BFS\_Pathfinding}}(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inStart,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTarget)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ TArray<ACGridTile*>\ OpenSet;}
+\DoxyCodeLine{00033\ \ \ \ \ TSet<ACGridTile*>\ ClosedSet;}
+\DoxyCodeLine{00034\ \ \ \ \ TMap<ACGridTile*,\ ACGridTile*>\ Parents;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ OpenSet.Add(inStart);}
+\DoxyCodeLine{00037\ \ \ \ \ ClosedSet.Add(inStart);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (OpenSet.Num()\ >\ 0)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ CurrentTile\ =\ OpenSet[0];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ OpenSet.RemoveAt(0);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (CurrentTile\ ==\ inTarget)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ Path;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ PathTile\ =\ CurrentTile;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (PathTile\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Path.Insert(PathTile,\ 0);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PathTile\ =\ Parents[PathTile];}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Path;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ Neighbours\ =\ inItem\ ==\ \textcolor{keyword}{nullptr}\ ?\ CurrentTile-\/>\mbox{\hyperlink{class_a_c_grid_tile_afdb16a036c16530c499e7d032441f6c1}{GetNeighbours}}()\ :\ inItem-\/>\mbox{\hyperlink{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0}{GetReachableTiles}}(CurrentTile);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ neighbour\ :\ Neighbours)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (neighbour\ ==\ \textcolor{keyword}{nullptr}\ ||\ ClosedSet.Contains(neighbour))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Cast<ACUnit>(neighbour-\/>GetContent()))}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OpenSet.Add(neighbour);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClosedSet.Add(neighbour);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Parents.Add(neighbour,\ CurrentTile);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ TArray<ACGridTile*>();}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ TSet<ACGridTile*>\ \mbox{\hyperlink{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e}{UCGridUtilsLibrary::FloodFill}}(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inStart,\ \textcolor{keywordtype}{int}\ Depth)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ TArray<ACGridTile*>\ OpenSet;}
+\DoxyCodeLine{00074\ \ \ \ \ TArray<ACGridTile*>\ NextSet;}
+\DoxyCodeLine{00075\ \ \ \ \ TSet<ACGridTile*>\ ClosedSet;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ OpenSet.Add(inStart);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ Depth;\ i++)}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ Current\ :\ OpenSet)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<ACGridTile*>\ Neighbours\ =\ inItem-\/>\mbox{\hyperlink{class_u_c_item_aa4af95a220faed6e6d72a4c7963640f0}{GetReachableTiles}}(Current);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ Neighbour\ :\ Neighbours)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ClosedSet.Contains(Neighbour))}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NextSet.Add(Neighbour);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClosedSet.Add(Neighbour);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ OpenSet\ =\ NextSet;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ ClosedSet;}
+\DoxyCodeLine{00100\ \}}
+
+\end{DoxyCode}

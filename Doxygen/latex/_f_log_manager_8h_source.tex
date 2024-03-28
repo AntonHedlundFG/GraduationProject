@@ -1,0 +1,105 @@
+\doxysection{FLog\+Manager.\+h}
+\hypertarget{_f_log_manager_8h_source}{}\label{_f_log_manager_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/FLogManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/FLogManager.h}}
+\mbox{\hyperlink{_f_log_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ FLogger:\ A\ thread-\/safe,\ asynchronous\ logging\ class}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_f_log_manager}{FLogManager}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Public\ API\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00012\ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ log\ message\ to\ the\ queue\ for\ processing}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a8ab8561d96215d968da33019641682ab}{Log}}(\textcolor{keyword}{const}\ FString\&\ Message);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Reads\ all\ log\ entries\ from\ the\ current\ log\ file}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FString>\ \mbox{\hyperlink{class_f_log_manager_a9489f0a9277575045cb19ee07e7b168f}{ReadLog}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Get\ one\ of\ the\ most\ recent\ log\ entries,\ returns\ an\ empty\ string\ if\ the\ ID\ is\ invalid}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ FString\ \mbox{\hyperlink{class_f_log_manager_a223ee84a9c2a59ceb7152caa761d9a3a}{GetRecentLogEntry}}(int64\ LogID);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Rotates\ the\ log\ file\ by\ closing\ the\ current\ one\ and\ creating\ a\ new\ one}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a3ec43f774763082d39bec25b76160ef5}{RotateLogFile}}();}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Initializes\ the\ logger\ by\ creating\ the\ log\ file\ and\ starting\ the\ worker\ thread}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_ac3e798abbaf50dda3b1d893cfc81e9c9}{Initialize}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Shuts\ down\ the\ logger\ by\ closing\ the\ log\ file\ and\ stopping\ the\ worker\ thread}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a0842189e7c8d5126b58a162b2697306f}{ShutDown}}();}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Constructor/Destructor}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a7f32243e7abcaa62963de2fa6c78d869}{FLogManager}}();}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_a847be3f3720cfd1d165f06af12b81bd7}{\string~FLogManager}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Prevent\ copying\ and\ assignment}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager_ac766e37ab8d371c91251ff3714d2a80a}{FLogManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_f_log_manager}{FLogManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_f_log_manager}{FLogManager}}\&\ \mbox{\hyperlink{class_f_log_manager_a41a0753408c42d9822550bbe9af60019}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_f_log_manager}{FLogManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ File\ management\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ current\ log\ file\ path\ or\ generates\ a\ new\ one\ if\ it's\ empty}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ FString\ \mbox{\hyperlink{class_f_log_manager_aa94ccf3632abe057a5654514347d3962}{GetLogPath}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Generates\ a\ new\ log\ file\ path\ based\ on\ the\ current\ date\ and\ time}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ FString\ \mbox{\hyperlink{class_f_log_manager_a18c4e4cf84ee9b0d6d4190ccd6e4a83e}{GetNewLogFilePath}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ the\ log\ file\ is\ too\ large}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_log_manager_a7a21c4f1ede74e7d7931fc6d1a4e7c21}{IsLogTooBig}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Logs\ a\ message\ to\ the\ log\ file}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_af33195169a437391672da239c17573f8}{WriteToLog}}(FString\&\ Message);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Ensures\ the\ log\ file\ is\ open\ for\ writing}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a1bf1fda9b7073b2df4f26af6afe36e4f}{EnsureFileLogOpen}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Closes\ the\ log\ file\ if\ it's\ open}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a09080a78da48a0f479e08d115ecd8ec5}{CheckAndCloseLog}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Threading\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_adab3b3c81a56047c5a11965edb4977e2}{StartLogWorkerThread}}();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Stops\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_ac2ee2e2f7179a88dce012a39a4045b34}{StopLogWorkerThread}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Background\ worker\ for\ processing\ queued\ log\ messages}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a0571545b3729f3fa0166c97732aefa7b}{LogWorker}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Utilities\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Sanitizes\ the\ message\ by\ removing\ unwanted\ characters\ and\ truncating\ it\ if\ necessary}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a757f6164f72969dfaaa607af3616750b}{SanitizeMessage}}(FString\&\ Message);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Members\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Static\ members}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ FString\ \mbox{\hyperlink{class_f_log_manager_a0d333d2f0a4f6ec9049dd45e50a9c628}{LogFilePath}};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ FArchive*\ \mbox{\hyperlink{class_f_log_manager_a9dbf4653cec00111b6164f5fabe2bf15}{LogFile}};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_f_log_manager_a55052da79636a78b43b70c36e6a4932e}{LogMutex}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_f_log_manager_ae92895ee8efa773692b045c078a8ebce}{WorkerMutex}};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_log_manager_a87d250389796967791a4c8fc000eb9d0}{bIsWorkerDone}};}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ int64\ \mbox{\hyperlink{class_f_log_manager_aa0a7dda63332d7ebca676547a53e93f0}{LogItemID}};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ int16\ \mbox{\hyperlink{class_f_log_manager_a764c35c408a0736491552126c6fb7bc4}{LogFileIndex}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FString>\ \mbox{\hyperlink{class_f_log_manager_a255845cfd6c571927f0dce86be48da38}{SessionLogFilePaths}};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Threading\ components}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<FString>\ \mbox{\hyperlink{class_f_log_manager_ad329262efd85ccac88783379028a0b1e}{LogQueue}};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_f_log_manager_a4bfac754b13f643473f0f2830e2ccddb}{QueueMutex}};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ std::condition\_variable\ \mbox{\hyperlink{class_f_log_manager_ae8efb4e8bf59fc2784af56f57359c062}{WorkerDoneCondition}};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ std::condition\_variable\ \mbox{\hyperlink{class_f_log_manager_a3eb228e60d6a225e6f3301a8ba35c152}{LogCondition}};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{static}\ std::thread\ \mbox{\hyperlink{class_f_log_manager_a428387182c1a657d8845ccf5d93df3fe}{LogThread}};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_log_manager_a6ed857ed2d7f7cf8be7285a90d6d1812}{bIsRunning}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Configuration}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FString\ \mbox{\hyperlink{class_f_log_manager_ab7d87ea15d7175078aff20221c22f519}{RelativeLogPath}}\ =\ TEXT(\textcolor{stringliteral}{"{}TacticalRogueLiteLogs/"{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ FString\ \mbox{\hyperlink{class_f_log_manager_a673700e7254f36e48f14c87357dacd84}{LogInternalTag}}\ =\ TEXT(\textcolor{stringliteral}{"{}[LOGGER\ INTERNAL]"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ int16\ \mbox{\hyperlink{class_f_log_manager_a9bf1cd4664af193d7d4bd9d3db9c9a96}{MaxLogSizeMB}}\ =\ 10;\ \textcolor{comment}{//\ Maximum\ log\ file\ size\ in\ megabytes}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ int64\ \mbox{\hyperlink{class_f_log_manager_af1091f0530851b3fe577146c95637c06}{GetMaxLogSize}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_log_manager_a9bf1cd4664af193d7d4bd9d3db9c9a96}{MaxLogSizeMB}}\ *\ 1024\ *\ 1024;\ \}\ \textcolor{comment}{//\ Convert\ MB\ to\ bytes}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Recent\ Log\ Entries\ Management\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_f_log_manager_a75f6db4ac549c5744cca2ed2d74ba04a}{MaxLogEntries}}\ =\ 300;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::pair<int64,\ FString>>\ \mbox{\hyperlink{class_f_log_manager_a4ba8b674ddabc07a9ea2786bc44f79e0}{RecentLogEntries}};}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ std::unordered\_map<int64,\ size\_t>\ \mbox{\hyperlink{class_f_log_manager_a7ca6a00d00ac0d5ca943e146f0e51201}{RecentLogIndexMap}};\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_f_log_manager_ae8bd967dae480f29faf260464e0ac9c8}{RecentLogMutex}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_f_log_manager_a42e83867a70d68d2a8b7698aedeb02e6}{NextLogIndex}};\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_log_manager_a3fd6ad11ee198c0bc40c5d5937b97cf6}{AddRecentLogEntry}}(\textcolor{keyword}{const}\ FString\&\ Message);}
+\DoxyCodeLine{00099\ \};}
+
+\end{DoxyCode}
