@@ -18,7 +18,6 @@ class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
 public:	
 	UCInventoryComponent();
 	
-
 	UFUNCTION(Category = "Items")
 	TArray<UCItem*>GetAllItems() const { return AllItems; }
 	UFUNCTION(Category = "Items|Equipment")
@@ -28,7 +27,7 @@ public:
 
 	//No need to call Add/Remove Item function when using one of these
 	UFUNCTION(Category = "Items|Equipment")
-	void EquipItem(UCItem* inItem, EItemSlots inSlot = EItemSlots::EIS_None);
+	bool TryEquipItem(UCItem* inItem, EItemSlots inSlot = EItemSlots::EIS_None);
     UFUNCTION(Category = "Items|Equipment")
     void UnEquipItem(EItemSlots inSlot);
 
@@ -40,17 +39,17 @@ public:
 
 
 protected:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Boots;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Weapon;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Armor;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Helmet;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items|Equipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItem> Ring;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
 	TArray<UCItem*> AllItems;
 	
 };

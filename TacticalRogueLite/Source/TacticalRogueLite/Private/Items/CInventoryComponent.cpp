@@ -5,10 +5,23 @@
 #include "GridContent/CUnit.h"
 #include "Items/CItem.h"
 #include "Items/ItemSlots.h"
+#include "Net/UnrealNetwork.h"
 
 UCInventoryComponent::UCInventoryComponent()
 {
-	
+	SetIsReplicatedByDefault(true);
+}
+
+void UCInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UCInventoryComponent, Boots);
+	DOREPLIFETIME(UCInventoryComponent, Weapon);
+	DOREPLIFETIME(UCInventoryComponent, Armor);
+	DOREPLIFETIME(UCInventoryComponent, Helmet);
+	DOREPLIFETIME(UCInventoryComponent, Ring);
+	DOREPLIFETIME(UCInventoryComponent, AllItems);
 }
 
 TArray<UCItem*> UCInventoryComponent::GetEquippedItems() const
@@ -57,33 +70,44 @@ UCItem* UCInventoryComponent::GetItemInSlot(EItemSlots inSlot) const
 	}
 }
 
-void UCInventoryComponent::EquipItem(UCItem* inItem, EItemSlots inSlot)
+bool UCInventoryComponent::TryEquipItem(UCItem* inItem, EItemSlots inSlot)
 {
-	EItemSlots slot = inSlot == EItemSlots::EIS_None? inItem->ItemSlot : inSlot;
+	const EItemSlots slot = inSlot == EItemSlots::EIS_None? inItem->ItemSlot : inSlot;
+	bool bSuccess = false;
 
+	UnEquipItem(slot);
 	
 	switch (slot)
 	{
 	case EItemSlots::EIS_Boots:
 		Boots = inItem;
+		bSuccess = true;
 		break;
 	case EItemSlots::EIS_Weapon:
 		Weapon = inItem;
+		bSuccess = true;
 		break;
 	case EItemSlots::EIS_Body:
 		Armor = inItem;
+		bSuccess = true;
 		break;
 	case EItemSlots::EIS_Helmet:
 		Helmet = inItem;
+		bSuccess = true;
 		break;
 	case EItemSlots::EIS_Ring:
 		Ring = inItem;
+		bSuccess = true;
 		break;
 	default:
 		break;
 	}
-	
-	AddItem(inItem);
+
+	if (bSuccess)
+	{
+		AddItem(inItem);
+	}
+	return bSuccess;
 }
 
 void UCInventoryComponent::UnEquipItem(EItemSlots inSlot)
