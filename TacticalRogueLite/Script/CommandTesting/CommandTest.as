@@ -127,9 +127,3 @@ class USTestCommand : UCCommand
         return UCCombatLogger::Format(ECombatLogCategory::DEFAULT,f"Moving {TargetUnit = } from {FromTile = } to {TargetTile = }");
     }
 }
-
-
-class ASTestUnit : ACUnit
-{
-
-}

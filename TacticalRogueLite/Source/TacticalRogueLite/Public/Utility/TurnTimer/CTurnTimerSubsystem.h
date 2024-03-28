@@ -6,9 +6,9 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "CTurnTimerSubsystem.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTurnTimerExecute, ACUnit*, AffectedUnit);
-
 class ACUnit;
+
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnTurnTimerExecute, ACUnit*, AffectedUnit);
 
 UENUM(BlueprintType)
 enum EProgressTurnMethod : uint8
@@ -19,6 +19,7 @@ enum EProgressTurnMethod : uint8
 	EPTM_Max
 };
 
+// A return type created by SetTimer(), used to ClearTimer()
 USTRUCT(BlueprintType)
 struct FTurnTimerHandle
 {
@@ -27,24 +28,33 @@ struct FTurnTimerHandle
 	friend class UCTurnTimerSubsystem;
 
 public:
-
-	UPROPERTY(BlueprintAssignable, Category = "Turn Timer")
-	FOnTurnTimerExecute OnTurnTimerExecute;
-
-	bool IsValid() { return bIsValid; }
+	FTurnTimerHandle() {}
+	FTurnTimerHandle(uint32 ID)
+	{
+		TimerID = ID;
+	}
 
 protected:
 
 	uint32 TimerID = 0;
+
+};
+
+//Internal struct keeping track of an individual timer
+USTRUCT()
+struct FTurnTimer
+{
+	GENERATED_BODY()
+
+public:
 
 	uint8 NumberOfTurns = 0;
 	uint8 TurnsRemaining = 0;
 	bool bLooping = false;
 	EProgressTurnMethod ProgressTurnMethod = EProgressTurnMethod::EPTM_None;
 	ACUnit* AffectedUnit;
+	FOnTurnTimerExecute BoundDelegate;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Turn Timer")
-	bool bIsValid = false;
 };
 
 /**
@@ -63,24 +73,27 @@ public:
 	/// Should work just like SetTimer in the usual FTimerManager, except
 	/// instead of using floats for duration, we use integers to describe
 	/// number of turns until activation.
-	/// Subscribe to the OnTurnTimerExecute delegate in the FTurnTimerHandle
-	/// to handle callbacks when the timer activates.
+	/// Pass in a bound FOnTurnTimerExecute delegate, which will execute when the
+	/// timer activates.
 	/// </summary>
-	/// <param name="InOutHandle"> Timer Handle, can be used to ClearTimer()</param>
 	/// <param name="InNumberOfTurns">How many turns until activation</param>
 	/// <param name="InAffectedUnit">The unit whose turn is counted</param>
 	/// <param name="InbLoop"> Should the timer reset and start again on activation? </param>
 	/// <param name="InProgressTurnMethod"> Should the timer activate at the end or start of the affected units turn?</param>
+	/// <returns>A handle which can be used to identify and clear the set timer.</returns>
 	UFUNCTION(BlueprintCallable, Category = "Turn Timer")
-	void SetTimer(FTurnTimerHandle& InOutHandle, 
-				const int InNumberOfTurns, 
+	FTurnTimerHandle SetTimer(const int InNumberOfTurns, 
 				ACUnit* InAffectedUnit,
 				const bool InbLoop, 
-				const EProgressTurnMethod InProgressTurnMethod);
+				const EProgressTurnMethod InProgressTurnMethod, 
+				FOnTurnTimerExecute InDelegate);
 
 	//Invalidates the handle and removes the related timer.
 	UFUNCTION(BlueprintCallable, Category = "Turn Timer")
-	void ClearTimer(FTurnTimerHandle& InOutHandle);
+	void ClearTimer(FTurnTimerHandle InHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Turn Timer")
+	bool IsTimerActive(FTurnTimerHandle InHandle);
 
 protected:
 
@@ -88,8 +101,9 @@ protected:
 	// Do not call this manually
 	void NextTurn(const ACUnit* PreviousUnit, const ACUnit* NextUnit);
 
-	TMap<uint32, FTurnTimerHandle*> ActiveTurnTimers;
+	TMap<uint32, FTurnTimer> ActiveTurnTimers;
 
+	//Used internally to generate ID for new timers.
 	uint32 LastTimerID = 0;
 	
 };
