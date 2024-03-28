@@ -122,20 +122,11 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 	FAbility OutAbility;
 	ActionComponent->TryGetAbility(inItemSlotTag, OutAbility);
 
-	for (auto Action : OutAbility.Actions)
-	{
-		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);
-		if (Targetable)
-		{
-			if (Targetable->IsTileReachable(inUnit->GetTile(), inTargetTile))
-				break;
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
-				return false;
-			}
 
-		}
+	if (!OutAbility.IsValidTargetTile(inUnit->GetTile(), inTargetTile))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
+		return false;
 	}
 	
 	for (auto Action : OutAbility.Actions)

@@ -8,6 +8,7 @@
 
 class UWorld;
 class UCActionComponent;
+class ACGridTile;
 
 /*USTRUCT()
 struct FActionRepData
@@ -39,6 +40,9 @@ public:
 
 	UPROPERTY()
 	FGameplayTag InventorySlotTag;
+
+	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
+	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 
 	bool operator==(const FAbility& Other) {
 		return ((Actions == Other.Actions) && (InventorySlotTag == Other.InventorySlotTag));

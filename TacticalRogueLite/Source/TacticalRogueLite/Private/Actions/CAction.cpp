@@ -2,6 +2,7 @@
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
 #include "GridContent/CUnit.h"
+#include "Actions/CTargetableAction.h"
 //TODO: include project h.file
 #include "Net/UnrealNetwork.h"
 
@@ -118,8 +119,20 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 	DOREPLIFETIME(UCAction, ActionComp);
 }
 
+TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
+{
+	for (auto Action : Actions)
+	{
+		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);
+		if (Targetable)
+		{
+			return Targetable->GetValidTargetTiles(fromTile);
+		}
+	}
+	return TArray<ACGridTile*>();
+}
 
-
-
-
-
+bool FAbility::IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile)
+{
+	return GetValidTargetTiles(fromTile).Contains(toTile);
+}

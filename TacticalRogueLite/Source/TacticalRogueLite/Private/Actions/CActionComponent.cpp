@@ -3,6 +3,7 @@
 #include "Actions/CAction.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
+#include "GridContent/CUnit.h"
 #include "TacticalRogueLite/TacticalRogueLite.h"
 
 
@@ -94,18 +95,17 @@ bool UCActionComponent::TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbilit
 
 TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot)
 {
-	//TEMPORARY SO THINGS DONT BREAK
-	// we should be using an Ability class with this functionality instead.
-	// so we can use GetAbility(itemSlot)->GetValidTiles(...);
-	return TArray<ACGridTile*>();
+	ACUnit* Owner = Cast<ACUnit>(GetOwner());
+	FAbility OutAbility;
+	if (!TryGetAbility(itemSlot, OutAbility) || !Owner)
+		return TArray<ACGridTile*>();
+
+	return OutAbility.GetValidTargetTiles(Owner->GetTile());
 }
 
 bool UCActionComponent::IsValidTargetTile(FGameplayTag ItemSlot, ACGridTile* TargetTile)
 {
-	//TEMPORARY SO THINGS DONT BREAK
-	// we should be using an Ability class with this functionality instead.
-	// so we can use GetAbility(itemSlot)->GetValidTiles(...);
-	return true;
+	return GetValidTargetTiles(ItemSlot).Contains(TargetTile);
 }
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)
