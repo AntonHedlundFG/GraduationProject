@@ -16,9 +16,6 @@ class TACTICALROGUELITE_API UCTargetableAction : public UCAction
 public:
 
 	ACGridTile* TargetTile;
-	
-	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile)
-	{ return ReceiveGetReachableTiles(inTile); }
 
 	virtual TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile)
 	{ return ReceiveGetValidTargetTiles(inTile); }
@@ -34,9 +31,7 @@ public:
 protected:
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit); 
-	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile);
+	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit);
 
 #pragma endregion
 };

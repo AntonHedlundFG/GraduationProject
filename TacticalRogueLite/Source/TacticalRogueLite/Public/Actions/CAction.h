@@ -35,10 +35,13 @@ struct FAbility
 	GENERATED_USTRUCT_BODY()
 
 public:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
+	TArray<UCAction*> InstantiatedActions;
+
+	UPROPERTY(EditAnywhere)
 	FGameplayTag InventorySlotTag;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);

@@ -6,6 +6,8 @@
 #include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions/CActionComponent.h"
+#include "ItemData/CItemData.h"
 
 UCInventoryComponent::UCInventoryComponent()
 {
@@ -158,5 +160,17 @@ void UCInventoryComponent::RemoveItem(UCItem* inItem)
 		inItem->UnequipOnUnit(Unit);
 		AllItems.Remove(inItem);
 	}
+}
+
+void UCInventoryComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (ACUnit* Unit = Cast<ACUnit>(GetOwner()))
+	{
+		if (Unit->GetActionComp() && TESTITEM)
+			Unit->GetActionComp()->AddAbility(TESTITEM->Ability);
+	}
+
 }
 

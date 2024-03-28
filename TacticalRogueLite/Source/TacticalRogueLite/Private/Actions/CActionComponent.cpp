@@ -65,6 +65,12 @@ void UCActionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UCActionComponent::AddAbility(FAbility Ability)
 {
 	RemoveAbility(Ability.InventorySlotTag);
+	for (TSubclassOf<UCAction> ActionClass : Ability.Actions)
+	{
+		UCAction* InstancedObject = NewObject<UCAction>(GetOwner(), ActionClass);
+		InstancedObject->Initialize(this);
+		Ability.InstantiatedActions.Add(InstancedObject);
+	}
 	Abilities.Add(Ability);
 }
 
@@ -259,4 +265,5 @@ void UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(UCActionComponent, Actions);
+	DOREPLIFETIME(UCActionComponent, Abilities);
 }

@@ -113,7 +113,7 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		return;
 	}
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
-	if (ActionComp->IsValidTargetTile(TagCurrentlyUsed, inTargetTile))
+	if (!ActionComp->IsValidTargetTile(TagCurrentlyUsed, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
 		CancelAbilityUse();

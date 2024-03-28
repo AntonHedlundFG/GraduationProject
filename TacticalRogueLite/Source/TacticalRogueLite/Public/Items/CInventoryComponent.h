@@ -37,6 +37,11 @@ public:
 	UFUNCTION(Category = "Items")
 	void RemoveItem(UCItem* inItem);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<class UCItemData> TESTITEM;
+
+	virtual void BeginPlay() override;
+
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
@@ -51,5 +56,7 @@ protected:
 	TObjectPtr<UCItem> Ring;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
 	TArray<UCItem*> AllItems;
+
+	
 	
 };

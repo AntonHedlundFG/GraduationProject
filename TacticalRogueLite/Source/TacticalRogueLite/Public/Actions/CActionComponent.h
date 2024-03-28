@@ -68,7 +68,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Replicated)
 	TArray<TObjectPtr<UCAction>> Actions;
 
-	UPROPERTY(BlueprintReadOnly, Replicated)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated)
 	TArray<FAbility> Abilities;
 	
 	virtual void BeginPlay() override;

@@ -98,3 +98,13 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 
 	return ClosedSet;
 }
+
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillFromTag(FGameplayTagContainer MovementMethods, ACGridTile* inStart, int Depth)
+{
+	TSet<ACGridTile*> TestSet;
+	for (ACGridTile* Tile : inStart->GetNeighbours())
+		TestSet.Add(Tile);
+
+	//NOT IMPLEMENTED
+	return TestSet;
+}

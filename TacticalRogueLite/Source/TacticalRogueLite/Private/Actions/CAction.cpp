@@ -51,7 +51,7 @@ void UCAction::StartAction_Implementation(AActor* Instigator) //TODO: call it ex
 
 	if (GetOwningComponent()->GetOwnerRole() == ROLE_Authority)
 	{
-		TimeStarted = GetWorld()->TimeSeconds; 
+		//TimeStarted = GetWorld()->TimeSeconds; 
 	}
 
 	//GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
@@ -121,7 +121,7 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
 {
-	for (auto Action : Actions)
+	for (auto Action : InstantiatedActions)
 	{
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);
 		if (Targetable)
