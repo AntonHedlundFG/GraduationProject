@@ -30,14 +30,14 @@ void UCActionComponent::BeginPlay()
 void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	// Stop all
-	TArray<UCAction*> ActionsCopy = Actions;
-	for (UCAction* Action : ActionsCopy)
-	{
-		if (Action->IsRunning())
-		{
-			Action->StopAction(GetOwner());
-		}
-	}
+	// TArray<UCAction*> ActionsCopy = Actions;
+	// for (UCAction* Action : ActionsCopy)
+	// {
+	// 	if (Action->IsRunning())
+	// 	{
+	// 		Action->StopAction(GetOwner());
+	// 	}
+	// }
 
 	Super::EndPlay(EndPlayReason);
 }
@@ -60,6 +60,16 @@ void UCActionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// 		LogOnScreen(this, ActionMsg, TextColor, 0.0f);
 	// 	}
 }
+//
+void UCActionComponent::AddAbility(UCAbility Ability, FGameplayTag ItemSlot)
+{
+	//TODO: Find a way to store/stack each type of itemslot ability
+}
+
+void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
+{
+	
+}
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)
 {
@@ -78,7 +88,7 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
 	check(NewAction); //Macro that is treated as fatal error if false.
 
-	NewAction->Initialize(this);
+	NewAction->Initialize(this); //TODO: Add
 
 	Actions.Add(NewAction);
 
@@ -90,10 +100,10 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 
 void UCActionComponent::RemoveAction(UCAction* ActionToRemove)
 {
-	if (!ensure(ActionToRemove && !ActionToRemove->IsRunning()))
-	{
-		return;
-	}
+	// if (!ensure(ActionToRemove && !ActionToRemove->IsRunning()))
+	// {
+	// 	return;
+	// }
 
 	Actions.Remove(ActionToRemove);
 }
@@ -113,7 +123,7 @@ UCAction* UCActionComponent::GetAction(TSubclassOf<UCAction> ActionClass) const
 }
 
 
-bool UCActionComponent::StartActionByName(AActor* Instigator, FGameplayTag ActionName)
+/*bool UCActionComponent::StartActionByName(AActor* Instigator, FGameplayTag ActionName)
 {
 	//SCOPE_CYCLE_COUNTER(STAT_StartActionByName); //TODO: Enable stat commands/ask group if I can use them. 
 	// Inline variant, convenient when only used once in code, visible in Viewport stats. https://www.tomlooman.com/unreal-engine-profiling-stat-commands/
@@ -122,7 +132,7 @@ bool UCActionComponent::StartActionByName(AActor* Instigator, FGameplayTag Actio
 	// Visible in Unreal Insights
 	//SCOPED_NAMED_EVENT(StartActionName, FColor::Green);
 
-	for (UCAction* Action : Actions)
+	/*for (UCAction* Action : Actions)
 	{
 		if (Action->GetActivationTag() == ActionName)
 		{
@@ -153,11 +163,11 @@ bool UCActionComponent::StartActionByName(AActor* Instigator, FGameplayTag Actio
 		}
 	}
 
-	return false;
-}
+	return false;#1#
+}*/
 
 
-bool UCActionComponent::StopActionByName(AActor* Instigator, FGameplayTag ActionName)
+/*bool UCActionComponent::StopActionByName(AActor* Instigator, FGameplayTag ActionName)
 {
 	for (UCAction* Action : Actions)
 	{
@@ -178,18 +188,18 @@ bool UCActionComponent::StopActionByName(AActor* Instigator, FGameplayTag Action
 	}
 
 	return false;
-}
+}*/
 
 
 void UCActionComponent::ServerStartAction_Implementation(AActor* Instigator, FGameplayTag ActionName)
 {
-	StartActionByName(Instigator, ActionName);
+	//StartActionByName(Instigator, ActionName);
 }
 
 
 void UCActionComponent::ServerStopAction_Implementation(AActor* Instigator, FGameplayTag ActionName)
 {
-	StopActionByName(Instigator, ActionName);
+	//StopActionByName(Instigator, ActionName);
 }
 
 bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags)

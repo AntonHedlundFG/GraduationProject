@@ -43,7 +43,7 @@ void ACAliceTestCharacter::PrimaryAttack()
 	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.f, FColor::Red, FString::Printf(TEXT("ATTACK")));
 	if(!ActionComp) return;
 	
-	ActionComp->StartActionByName(this, SharedGameplayTags::Action_DefaultAttack);
+	//ActionComp->StartActionByName(this, SharedGameplayTags::Action_DefaultAttack);
 
 	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.f, FColor::Red, FString::Printf(TEXT("Action Comp")));
 }

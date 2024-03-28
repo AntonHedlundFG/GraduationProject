@@ -5,6 +5,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Items/ItemSlots.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Actions/CActionComponent.h"
 #include "CommandPattern/CDeathConsequence.h"
 #include "Items/CInventoryComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
@@ -23,6 +24,7 @@ ACUnit::ACUnit()
 	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 	Inventory = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
+	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));
 }
 
 void ACUnit::BeginPlay()
@@ -56,6 +58,11 @@ bool ACUnit::IsControlledBy(AController* inController)
 UCItem* ACUnit::GetItemInSlot(EItemSlots inSlot)
 {	
 	return Inventory->GetItemInSlot(inSlot);
+}
+
+UCActionComponent* ACUnit::GetActionComp() const
+{
+	return ActionComp;
 }
 
 void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)

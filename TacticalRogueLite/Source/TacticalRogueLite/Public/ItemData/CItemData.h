@@ -46,6 +46,22 @@ protected:
 
 public:
 
+	/// <summary>
+	/// Called by the server when a unit equips this item. This applies any
+	/// tags in GrantsTags to the unit, and EquipOnUnitInternal can be overridden
+	/// to apply further custom effects.
+	/// </summary>
+	/// <param name="inUnit"></param>
+	void EquipOnUnit(ACUnit* inUnit);
+
+	/// <summary>
+	/// Called by the server when a unit unequips this item. Removes any tags in 
+	/// GrantsTags from the unit, and UnequipOnUnitInternal can be overridden to 
+	/// remove any further custom effects.
+	/// </summary>
+	/// <param name="inUnit"></param>
+	void UnequipOnUnit(ACUnit* inUnit);
+
 	
 	//Tags added to owning actor when activated, removed when action stops */
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
@@ -72,15 +88,15 @@ public:
 
 	//Optional Action/Abilites assigned to Item. Can be used to grant abilities while the item is active/equipped or to run item specific functions.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actions"))
-	TArray<TSoftClassPtr<UCAction>> ActionClasses;
+	TArray<TSubclassOf<UCAction>> ActionClasses;
 
 	//Optional world representation of this object if dropped or equipped by a unit. 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actor"))
 	TSoftClassPtr<AActor> ActorClass;
 
 	//GamePlayTags to decorate the item. Can be used to setup categories, types, filters or one-off tags for very specific items.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Tags")
-	FGameplayTagContainer OwnedTag;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Tag")
+	FGameplayTag ItemSlot;
 
 	//UCItemData();
 

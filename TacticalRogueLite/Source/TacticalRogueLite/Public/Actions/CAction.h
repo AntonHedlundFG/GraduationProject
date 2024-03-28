@@ -9,7 +9,7 @@
 class UWorld;
 class UCActionComponent;
 
-USTRUCT()
+/*USTRUCT()
 struct FActionRepData
 {
 	GENERATED_BODY()
@@ -26,7 +26,7 @@ public:
 	{
 		bIsRunning = false;
 	}
-};
+};*/
 
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
@@ -52,30 +52,30 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
 	FGameplayTagContainer BlockedTags;
 
-	UPROPERTY(ReplicatedUsing="OnRep_RepData")
-	FActionRepData RepData;
+	// UPROPERTY(ReplicatedUsing="OnRep_RepData")
+	// FActionRepData RepData;
 
 	UPROPERTY(Replicated)
 	float TimeStarted;
 
-	UFUNCTION()
-	void OnRep_RepData();
+	// UFUNCTION()
+	// void OnRep_RepData();
 
 	//Start immediately when added to an action component.
 	UPROPERTY(EditDefaultsOnly, Category = "Action")
 	bool bAutoStart;
 
 	//Action nickname to start/stop without a reference to the object.
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
-	FGameplayTag ActivationTag;
+	// UPROPERTY(EditDefaultsOnly, Category = "Action")
+	// FGameplayTag ActivationTag;
 	
 public:
-
-	UFUNCTION(BlueprintPure)
-	FGameplayTag GetActivationTag() const
-	{
-		return ActivationTag;
-	}
+	
+	// UFUNCTION(BlueprintPure)
+	// FGameplayTag GetActivationTag() const
+	// {
+	// 	return ActivationTag;
+	// }
 
 	UFUNCTION(BlueprintPure)
 	bool IsAutoStart() const
@@ -85,14 +85,17 @@ public:
 
 	void Initialize(UCActionComponent* NewActionComp);
 
-	UFUNCTION(BlueprintCallable, Category = "Action")
-	bool IsRunning() const;
+	// UFUNCTION(BlueprintCallable, Category = "Action")
+	// bool IsRunning() const;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
 	bool CanStart(AActor* Instigator);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
 	void StartAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Action")
+	void UndoAction(ACUnit* Unit);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);

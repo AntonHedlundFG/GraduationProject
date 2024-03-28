@@ -1,6 +1,7 @@
 
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
+#include "GridContent/CUnit.h"
 //TODO: include project h.file
 #include "Net/UnrealNetwork.h"
 
@@ -21,10 +22,10 @@ UCActionComponent* UCAction::GetOwningComponent() const
 
 bool UCAction::CanStart_Implementation(AActor* Instigator)
 {
-	if (IsRunning())
-	{
-		return false;
-	}
+	// if (IsRunning())
+	// {
+	// 	return false;
+	// }
 
 	UCActionComponent* Comp = GetOwningComponent();
 	
@@ -37,15 +38,15 @@ bool UCAction::CanStart_Implementation(AActor* Instigator)
 }
 
 
-void UCAction::StartAction_Implementation(AActor* Instigator)
+void UCAction::StartAction_Implementation(AActor* Instigator) //TODO: call it execute. 
 {
 	//UE_LOGFMT(LogGame, Log, "Started: {ActionName}", GetName());
 
 	UCActionComponent* Comp = GetOwningComponent();	
 	Comp->ActiveGameplayTags.AppendTags(GrantsTags);
 
-	RepData.bIsRunning = true;
-	RepData.Instigator = Instigator;
+	// RepData.bIsRunning = true;
+	// RepData.Instigator = Instigator;
 
 	if (GetOwningComponent()->GetOwnerRole() == ROLE_Authority)
 	{
@@ -65,10 +66,15 @@ void UCAction::StopAction_Implementation(AActor* Instigator)
 	UCActionComponent* Comp = GetOwningComponent();
 	Comp->ActiveGameplayTags.RemoveTags(GrantsTags);
 
-	RepData.bIsRunning = false;
-	RepData.Instigator = Instigator;
+	// RepData.bIsRunning = false;
+	// RepData.Instigator = Instigator;
 
 	//GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+}
+
+void UCAction::UndoAction_Implementation(ACUnit* Unit)
+{
+	//TODO:
 }
 
 UWorld* UCAction::GetWorld() const
@@ -82,6 +88,7 @@ UWorld* UCAction::GetWorld() const
 
 	return nullptr;
 }
+/*
 void UCAction::OnRep_RepData()
 {
 	if (RepData.bIsRunning)
@@ -99,13 +106,14 @@ bool UCAction::IsRunning() const
 {
 	return RepData.bIsRunning;
 }
+*/
 
 
 void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(UCAction, RepData);
+	// DOREPLIFETIME(UCAction, RepData);
 	DOREPLIFETIME(UCAction, TimeStarted);
 	DOREPLIFETIME(UCAction, ActionComp);
 }

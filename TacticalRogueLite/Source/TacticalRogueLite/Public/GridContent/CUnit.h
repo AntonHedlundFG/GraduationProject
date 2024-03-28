@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
+class UCActionComponent;
 class UCAttributeComponent;
 class UCInventoryComponent;
 class UCItem;
@@ -20,6 +21,9 @@ class TACTICALROGUELITE_API ACUnit : public ACGridContent
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCAttributeComponent> AttributeComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<UCActionComponent> ActionComp;
 	
 public:
 	ACUnit();
@@ -36,6 +40,9 @@ public:
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
 	UFUNCTION(BlueprintCallable)
 	UCItem* GetItemInSlot(EItemSlots inSlot);
+
+	UFUNCTION(BlueprintCallable)
+	UCActionComponent* GetActionComp() const;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
 	TObjectPtr<UCInventoryComponent> Inventory;

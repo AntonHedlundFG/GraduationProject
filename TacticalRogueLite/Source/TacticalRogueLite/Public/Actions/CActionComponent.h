@@ -7,6 +7,8 @@
 
 class UCAction;
 
+using UCAbility = TArray<TSubclassOf<UCAction>>;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,6 +22,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActiveGameplayTags;
 
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void AddAbility(TArray<TSubclassOf<UCAction>> ActionClasses, FGameplayTag ItemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void RemoveAbility(FGameplayTag ItemSlot);
+
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
 
@@ -30,11 +38,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	UCAction* GetAction(TSubclassOf<UCAction> ActionClass) const;
 
-	UFUNCTION(BlueprintCallable, Category = "Actions")
-	bool StartActionByName(AActor* Instigator, FGameplayTag ActionName);
+	// UFUNCTION(BlueprintCallable, Category = "Actions")
+	// bool StartActionByName(AActor* Instigator, FGameplayTag ActionName);
 
-	UFUNCTION(BlueprintCallable, Category = "Actions")
-	bool StopActionByName(AActor* Instigator, FGameplayTag ActionName);
+	// UFUNCTION(BlueprintCallable, Category = "Actions")
+	// bool StopActionByName(AActor* Instigator, FGameplayTag ActionName);
 
 	UCActionComponent();
 

@@ -19,7 +19,7 @@ UCActionEffect_Rooted::UCActionEffect_Rooted()
 
 
 void UCActionEffect_Rooted::StartAction_Implementation(AActor* Instigator)
-{
+{//Grant tag = status.rooted
 	Super::StartAction_Implementation(Instigator);
 
 	// Start listening
