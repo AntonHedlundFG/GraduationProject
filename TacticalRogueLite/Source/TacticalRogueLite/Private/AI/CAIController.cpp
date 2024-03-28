@@ -110,6 +110,7 @@ void ACAIController::DecideBestActions()
 
 void ACAIController::ExecuteActions()
 {
+	/*
 	for (auto Action : BestActionsMap)
 	{
 		const EItemSlots ItemSlot = Action.Key->ItemSlot;
@@ -125,5 +126,5 @@ void ACAIController::ExecuteActions()
 			LOG_INFO("%s used by %s on %s", *ToString(ItemSlot), *GetName(), *Tile->GetName());
 		}
 	}
-	
+	*/
 }

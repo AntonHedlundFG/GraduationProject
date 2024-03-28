@@ -3,8 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Actions/CAction.h"
+#include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "CActionEffect.generated.h"
 
+class ACUnit;
 
 UCLASS()
 class TACTICALROGUELITE_API UCActionEffect : public UCAction
@@ -21,21 +23,12 @@ public:
 protected:
 	//TODO: Time not relevant in this project. Turn into 'turns'. 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effect")
-	float Duration;
+	int DurationInTurns;
 
-	//Time between 'ticks' to apply. Not relevant. 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effect")
-	float Period;
-
-	FTimerHandle PeriodHandle;
-	FTimerHandle DurationHandle;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effect")
+	EProgressTurnMethod ProgressTurnMethod;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	void ExecuteEffect(AActor* Instigator);
-
-public:
-
-	UFUNCTION(BlueprintCallable, Category = "Action")
-	float GetTimeRemaining() const;
+	void ExecuteEffect(AActor* AffectedUnit);
 	
 };

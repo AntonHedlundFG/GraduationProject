@@ -95,7 +95,7 @@ public:
 	void StartAction(AActor* Instigator);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void UndoAction(ACUnit* Unit);
+	void UndoAction(AActor* Instigator);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);

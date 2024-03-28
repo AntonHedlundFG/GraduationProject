@@ -7,8 +7,6 @@
 
 class UCAction;
 
-using UCAbility = TArray<TSubclassOf<UCAction>>;
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -27,6 +25,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void RemoveAbility(FGameplayTag ItemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	TArray<TSubclassOf<UCAction>> GetAbility(FGameplayTag ItemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool IsValidTargetTile(FGameplayTag ItemSlot, class ACGridTile* TargetTile);
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);

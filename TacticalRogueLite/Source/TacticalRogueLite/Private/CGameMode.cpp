@@ -14,6 +14,9 @@
 #include "CommandPattern/CConsequence.h"
 #include "Utility/Logging/CLogManager.h"
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
+#include "Actions/CAction.h"
+#include "Actions/CActionComponent.h"
+#include "Actions/CTargetableAction.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -65,7 +68,7 @@ void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
 	inConsequence->ExecuteConsequence();
 }
 
-bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
+bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGameplayTag inItemSlotTag, ACGridTile* inTargetTile)
 {
 	if (!GameStateRef)
 	{
@@ -95,33 +98,61 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, const 
 		return false;
 	}
 
-	UCItem* Item = inUnit->GetItemInSlot(inSlot);
+	/*UCItem* Item = inUnit->GetItemInSlot(inSlot);
 	if (!Item)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No item in this item slot"));
 		return false;
 	}
-
 	if (!Item->IsValidTargetTile(inUnit, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
 		return false;
 	}
-
 	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTargetTile);
 	if (!NewCommand)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ability command on this item"));
 		return false;
 	}
-
-
 	CommandList.Add(NewCommand);
 	NewCommand->ExecuteCommand(inController);
+	*/
+	UCActionComponent* ActionComponent = inUnit->GetActionComp();
+	TArray<TSubclassOf<UCAction>> Actions = ActionComponent->GetAbility(inItemSlotTag);
 
-	FString Log = FString("Executed command: ") + NewCommand->ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
-	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Executed command: ") + NewCommand->ToString());
+	for (auto Action : Actions)
+	{
+		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);
+		if (Targetable)
+		{
+			if (Targetable->IsTileReachable(inUnit->GetTile(), inTargetTile))
+				break;
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
+				return false;
+			}
+
+		}
+	}
+	
+	for (auto Action : Actions)
+	{
+		UCAction* NewAction = NewObject<UCAction>(ActionComponent, Action);
+		NewAction->Initialize(ActionComponent);
+		UCTargetableAction* Targetable = Cast<UCTargetableAction>(NewAction);
+		if (Targetable)
+		{
+			Targetable->TargetTile = inTargetTile;
+		}
+		ActionList.Add(NewAction);
+		NewAction->StartAction(inUnit);
+	}
+
+	//FString Log = FString("Executed command: ") + NewCommand->ToString();
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
+	//UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Executed command: ") + NewCommand->ToString());
 	return true;
 }
 

@@ -61,14 +61,36 @@ void UCActionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// 	}
 }
 //
-void UCActionComponent::AddAbility(UCAbility Ability, FGameplayTag ItemSlot)
+void UCActionComponent::AddAbility(TArray<TSubclassOf<UCAction>> Ability, FGameplayTag ItemSlot)
 {
 	//TODO: Find a way to store/stack each type of itemslot ability
 }
 
 void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
 {
-	
+	//TODO
+}
+
+TArray<TSubclassOf<UCAction>> UCActionComponent::GetAbility(FGameplayTag ItemSlot)
+{
+	//TODO
+	return TArray<TSubclassOf<UCAction>>();
+}
+
+TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot)
+{
+	//TEMPORARY SO THINGS DONT BREAK
+	// we should be using an Ability class with this functionality instead.
+	// so we can use GetAbility(itemSlot)->GetValidTiles(...);
+	return TArray<ACGridTile*>();
+}
+
+bool UCActionComponent::IsValidTargetTile(FGameplayTag ItemSlot, ACGridTile* TargetTile)
+{
+	//TEMPORARY SO THINGS DONT BREAK
+	// we should be using an Ability class with this functionality instead.
+	// so we can use GetAbility(itemSlot)->GetValidTiles(...);
+	return true;
 }
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)

@@ -72,7 +72,7 @@ void UCAction::StopAction_Implementation(AActor* Instigator)
 	//GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 }
 
-void UCAction::UndoAction_Implementation(ACUnit* Unit)
+void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
 	//TODO:
 }

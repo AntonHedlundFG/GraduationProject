@@ -12,9 +12,6 @@
 UCActionEffect_Rooted::UCActionEffect_Rooted()
 {
 	ReflectFraction = 0.2f;
-
-	Duration = 0.0f;
-	Period = 0.0f;
 }
 
 

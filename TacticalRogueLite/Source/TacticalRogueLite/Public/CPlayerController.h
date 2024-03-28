@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Items\ItemSlots.h"
 #include "TacticalRogueLite\OnlineSystem\Public\OnlinePlayerController.h"
+#include "GameplayTagContainer.h"
 #include "CPlayerController.generated.h"
 
 class ACUnit;
@@ -35,7 +36,7 @@ public:
 	// This should be called when the player STARTS using an ability, by using a keybind
 	// or UI button.
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	void InitiateAbilityUse(EItemSlots inItemSlot);
+	void InitiateAbilityUse(FGameplayTag inTag);
 
 	// This should be called when a player targets a tile after having used an ability
 	// through InitiateAbilityUse. This function makes the actual server RPC.
@@ -52,6 +53,7 @@ private:
 
 	// Stores the currently used itemslot designated in InitiateAbilityUse()
 	EItemSlots ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
+	FGameplayTag TagCurrentlyUsed;
 	// Stores the currently active Unit, fetched from the fromt of the turn order
 	// in InitiateAbilityUse().
 	// It's useful to make sure you don't try to initiate an ability, then end turn, 
@@ -73,7 +75,7 @@ private:
 	* @returns true if ability use was successful
 	*/
 	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
-	void Server_UseObject(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile);
+	void Server_UseObject(ACUnit* inUnit, FGameplayTag inTag, ACGridTile* inTargetTile);
 
 	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
 	void Server_TryUndo();

@@ -15,6 +15,7 @@ class ACGameState;
 class UCCommand;
 class ACGridTile;
 class UCConsequence;
+class UCAction;
 
 /**
  * 
@@ -43,7 +44,7 @@ public:
 	* @returns true if ability use was successful
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
-	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile);
+	bool TryAbilityUse(AController* inController, ACUnit* inUnit, FGameplayTag inItemSlotTag, ACGridTile* inTargetTile);
 
 	// Attempts to undo the latest command if it was created by inController
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
@@ -88,6 +89,9 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
 	TArray<UCCommand*> CommandHistory;
+
+	TArray<UCAction*> ActionList;
+	TArray<UCAction*> ActionHistory;
 
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();

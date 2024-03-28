@@ -6,6 +6,7 @@
 #include "Items\CItem.h"
 #include "Grid\CGridTile.h"
 #include "CGameMode.h"
+#include "Actions/CActionComponent.h"
 #include "Grid/Tiles/TileHighlightModes.h"
 
 ACGameState* ACPlayerController::GetGameState()
@@ -23,7 +24,7 @@ void ACPlayerController::UndoAbility()
 	Server_TryUndo();
 }
 
-void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
+void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 {
 	CancelAbilityUse();
 	if (!GetGameState())
@@ -36,23 +37,23 @@ void ACPlayerController::InitiateAbilityUse(EItemSlots inItemSlot)
 		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
 		return;
 	}
-	if (inItemSlot == EItemSlots::EIS_None || inItemSlot == EItemSlots::EIS_MAX)
+	if (inTag == FGameplayTag::EmptyTag)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
 		return;
 	}
 	
 	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
-	
-	if (!UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot))
+	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
+	if (ActionComp->GetAbility(inTag).IsEmpty())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No item in slot, cancelling ability use."));
 		return;
 	}
 
-	ItemSlotCurrentlyUsed = inItemSlot;
+	TagCurrentlyUsed = inTag;
 
-	HighlightedTiles = UnitCurrentlyUsingAbility->GetItemInSlot(inItemSlot)->GetValidTargetTiles(UnitCurrentlyUsingAbility);
+	HighlightedTiles = ActionComp->GetValidTargetTiles(inTag);
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(true);
@@ -89,7 +90,7 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		CancelAbilityUse();
 		return;
 	}
-
+	/*
 	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
@@ -103,9 +104,22 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
 		CancelAbilityUse();
 		return;
+	}*/
+	if (TagCurrentlyUsed == FGameplayTag::EmptyTag)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
+		CancelAbilityUse();
+		return;
+	}
+	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
+	if (ActionComp->IsValidTargetTile(TagCurrentlyUsed, inTargetTile))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
+		CancelAbilityUse();
+		return;
 	}
 	
-	Server_UseObject(UnitCurrentlyUsingAbility, ItemSlotCurrentlyUsed, inTargetTile);
+	Server_UseObject(UnitCurrentlyUsingAbility, TagCurrentlyUsed, inTargetTile);
 	CancelAbilityUse();
 }
 
@@ -132,7 +146,7 @@ void ACPlayerController::EndTurn()
 
 #pragma region Server RPCs
 
-void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile)
+void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, FGameplayTag inTag, ACGridTile* inTargetTile)
 {
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
@@ -140,7 +154,7 @@ void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, const E
 		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
 			return;
 	}
-	if (!GameMode->TryAbilityUse(this, inUnit, inSlot, inTargetTile))
+	if (!GameMode->TryAbilityUse(this, inUnit, inTag, inTargetTile))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
 		return;
