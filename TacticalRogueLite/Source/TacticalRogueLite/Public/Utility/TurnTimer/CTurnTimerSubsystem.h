@@ -11,7 +11,7 @@ class ACUnit;
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnTurnTimerExecute, ACUnit*, AffectedUnit);
 
 UENUM(BlueprintType)
-enum EProgressTurnMethod : uint8
+enum class EProgressTurnMethod : uint8
 {
 	EPTM_None,
 	EPTM_StartOfTurn,

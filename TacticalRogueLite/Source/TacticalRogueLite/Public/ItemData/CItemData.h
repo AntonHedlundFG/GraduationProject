@@ -8,6 +8,8 @@
 #include "Engine/DataAsset.h"
 #include "CItemData.generated.h"
 
+class ACUnit;
+
 UENUM()
 enum class EItemQuality : uint8
 {
