@@ -90,7 +90,7 @@ public:
 
 	//Optional Action/Abilites assigned to Item. Can be used to grant abilities while the item is active/equipped or to run item specific functions.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actions"))
-	TArray<TSubclassOf<UCAction>> ActionClasses;
+	FAbility Ability;
 
 	//Optional world representation of this object if dropped or equipped by a unit. 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actor"))

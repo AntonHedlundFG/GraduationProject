@@ -45,7 +45,8 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	
 	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
-	if (ActionComp->GetAbility(inTag).IsEmpty())
+	FAbility OutAbility;
+	if (!ActionComp->TryGetAbility(inTag, OutAbility))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No item in slot, cancelling ability use."));
 		return;

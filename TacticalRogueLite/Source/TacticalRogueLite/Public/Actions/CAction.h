@@ -28,6 +28,25 @@ public:
 	}
 };*/
 
+USTRUCT(BlueprintType)
+struct FAbility
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY()
+	TArray<TSubclassOf<UCAction>> Actions;
+
+	UPROPERTY()
+	FGameplayTag InventorySlotTag;
+
+	bool operator==(const FAbility& Other) {
+		return ((Actions == Other.Actions) && (InventorySlotTag == Other.InventorySlotTag));
+	}
+
+};
+
+
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
 {

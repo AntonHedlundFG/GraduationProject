@@ -16,7 +16,8 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 
 	if (ActionComp)
 	{
-		ActionComp->AddAbility(ActionClasses, ItemSlot);
+		Ability.InventorySlotTag = ItemSlot;
+		ActionComp->AddAbility(Ability);
 	}
 }
 

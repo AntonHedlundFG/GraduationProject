@@ -3,9 +3,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GameplayTagContainer.h"
+#include "CAction.h"
 #include "CActionComponent.generated.h"
 
-class UCAction;
+//class UCAction;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
 
@@ -21,13 +22,13 @@ public:
 	FGameplayTagContainer ActiveGameplayTags;
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	void AddAbility(TArray<TSubclassOf<UCAction>> ActionClasses, FGameplayTag ItemSlot);
+	void AddAbility(FAbility Ability);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void RemoveAbility(FGameplayTag ItemSlot);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	TArray<TSubclassOf<UCAction>> GetAbility(FGameplayTag ItemSlot);
+	bool TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbility);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
@@ -66,6 +67,9 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Replicated)
 	TArray<TObjectPtr<UCAction>> Actions;
+
+	UPROPERTY(BlueprintReadOnly, Replicated)
+	TArray<FAbility> Abilities;
 	
 	virtual void BeginPlay() override;
 

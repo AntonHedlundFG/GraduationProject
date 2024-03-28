@@ -119,9 +119,10 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 	NewCommand->ExecuteCommand(inController);
 	*/
 	UCActionComponent* ActionComponent = inUnit->GetActionComp();
-	TArray<TSubclassOf<UCAction>> Actions = ActionComponent->GetAbility(inItemSlotTag);
+	FAbility OutAbility;
+	ActionComponent->TryGetAbility(inItemSlotTag, OutAbility);
 
-	for (auto Action : Actions)
+	for (auto Action : OutAbility.Actions)
 	{
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);
 		if (Targetable)
@@ -137,7 +138,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		}
 	}
 	
-	for (auto Action : Actions)
+	for (auto Action : OutAbility.Actions)
 	{
 		UCAction* NewAction = NewObject<UCAction>(ActionComponent, Action);
 		NewAction->Initialize(ActionComponent);

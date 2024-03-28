@@ -61,20 +61,35 @@ void UCActionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// 	}
 }
 //
-void UCActionComponent::AddAbility(TArray<TSubclassOf<UCAction>> Ability, FGameplayTag ItemSlot)
+void UCActionComponent::AddAbility(FAbility Ability)
 {
-	//TODO: Find a way to store/stack each type of itemslot ability
+	RemoveAbility(Ability.InventorySlotTag);
+	Abilities.Add(Ability);
 }
 
 void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
 {
-	//TODO
+	for (FAbility& Ability : Abilities)
+	{
+		if (Ability.InventorySlotTag == ItemSlot)
+		{
+			Abilities.Remove(Ability);
+			return;
+		}
+	}
 }
 
-TArray<TSubclassOf<UCAction>> UCActionComponent::GetAbility(FGameplayTag ItemSlot)
+bool UCActionComponent::TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbility)
 {
-	//TODO
-	return TArray<TSubclassOf<UCAction>>();
+	for (FAbility& Ability : Abilities)
+	{
+		if (Ability.InventorySlotTag == ItemSlot)
+		{
+			outAbility = Ability;
+			return true;
+		}
+	}
+	return false;
 }
 
 TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot)
