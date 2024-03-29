@@ -2,10 +2,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "GameplayTagContainer.h"
 #include "CAction.generated.h"
 
+class UCAction;
 class UWorld;
 class UCActionComponent;
 class ACGridTile;
@@ -47,11 +47,34 @@ public:
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 
-	bool operator==(const FAbility& Other) {
-		return ((Actions == Other.Actions) && (InventorySlotTag == Other.InventorySlotTag));
+	bool operator==(const FAbility& Other) const {
+		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
 	}
 
 };
+
+inline bool IsValid(const FAbility& Ability)
+{
+	if (Ability.Actions.Num() == 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+inline uint32 GetTypeHash(const FAbility& Ability)
+{
+	uint32 Hash = 0;
+
+	Hash = HashCombine(Hash, GetTypeHash(Ability.InventorySlotTag));
+
+	for (TSubclassOf<UCAction> Action : Ability.Actions)
+	{
+		Hash = HashCombine(Hash, GetTypeHash(Action));
+	}
+	
+	return Hash;
+}
 
 
 UCLASS(Blueprintable)
