@@ -89,7 +89,7 @@ You can log messages using predefined macros for convenience, which support auto
 First, acquire the singleton instance of `UCLogManager`:
 
 ```angelscript
-UCLogManager@ logger = UCLogManager::Get();
+UCLogManager::Get();
 ```
 
 ### Logging Messages
@@ -97,7 +97,8 @@ UCLogManager@ logger = UCLogManager::Get();
 Call the `Log` function on the logger instance, specifying the category and message:
 
 ```angelscript
-logger.Log(UCLogManager::ELogCategory::LC_Info, "This is an informational message");
+UCLogManager::Get().Log(UCLogManager::ELogCategory::LC_Info, "This is an informational message");
+UCLogManager::Get().Log(UCLogManager::ELogCategory::LC_Warning, "This is a warning message");
 ```
 
 This guide aims to ensure consistent logging practices across C++, Blueprints, and potentially AngelScript within your Unreal Engine project.
@@ -110,21 +111,24 @@ Below are the examples of how the logging is to be used from Blueprints and the 
 
 - **Logging an Info Message:**  
   ![Logging an Info Message](ScreenShots/BlueprintLogInfo.png)  
-  `BlueprintLogInfo.png` in the ScreenShots folder.
+  Info Message Blueprint: `BlueprintLogInfo.png`
+
 
 - **Logging a Warning Message:**  
   ![Logging a Warning Message](ScreenShots/BlueprintLogWarning.png)  
-  `BlueprintLogWarning.png` in the ScreenShots folder.
+  Warning Message Blueprint: `BlueprintLogWarning.png`
+
 
 - **Logging an Error Message:**  
   ![Logging an Error Message](ScreenShots/BlueprintLogError.png)  
-  `BlueprintLogError.png` in the ScreenShots folder.
+  Error Message Blueprint: `BlueprintLogError.png`
+
 
 ### Results in the Editor Log
 
 - **Output of Logged Messages:**  
   ![Editor Log Results](ScreenShots/ResultUELog.png)  
-  `UELogResults.png` in the ScreenShots folder.
+  Output of Logged Messages in the Editor Log: `ResultUELog.png`
 
 ## Reading Logs in Blueprints
 
@@ -138,7 +142,7 @@ To read log entries of a specific category within Blueprints, follow these steps
 
 Example Blueprint:  
 ![Reading Logs by Category Blueprint](ScreenShots/BlueprintReadCategoryLog.png)  
-`BlueprintReadCategoryLog.png` in the ScreenShots folder.
+Read logs by category Blueprint: `BlueprintReadCategoryLog.png`
 
 ### Reading All Logs
 
@@ -150,7 +154,7 @@ To read all log entries:
 
 Example Blueprint:  
 ![Reading All Logs Blueprint](ScreenShots/BlueprintReadFullLog.png)  
-`BlueprintReadFullLog.png` in the ScreenShots folder.
+Read all logs Blueprint: `BlueprintReadFullLog.png`
 
 ## Blueprint Log Read Results
 
@@ -160,7 +164,7 @@ After executing the Blueprint to read logs by category, the printed strings can 
 
 Example of Output:  
 ![Result of Reading Category Specific Logs](ScreenShots/ResultReadCategoryLog.png)  
-`ResultReadCategoryLog.png` in the ScreenShots folder.
+Output of Reading Category Specific Logs and printing string in Editor: `ResultReadCategoryLog.png` 
 
 ### Results of Reading All Logs
 
@@ -168,4 +172,4 @@ Similarly, after executing the Blueprint to read all logs, the printed strings a
 
 Example of Output:  
 ![Result of Reading All Logs](ScreenShots/ResultReadFullLog.png)  
-`ResultReadFullLog.png` in the ScreenShots folder.
+Output of Reading All Logs and printing string in Editor: `ResultReadFullLog.png`
