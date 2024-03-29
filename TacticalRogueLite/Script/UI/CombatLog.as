@@ -1,5 +1,5 @@
 
-class USCombatLogWidget: UUserWidget
+class USCombatLogWidget: UCResizableWindow
 {
     const FString newline = "\n";
     UPROPERTY(BlueprintReadOnly, meta = (BindWidget))

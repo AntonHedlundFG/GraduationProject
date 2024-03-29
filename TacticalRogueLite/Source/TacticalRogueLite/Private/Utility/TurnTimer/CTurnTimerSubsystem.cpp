@@ -33,8 +33,8 @@ void UCTurnTimerSubsystem::NextTurn(const ACUnit* PreviousUnit, const ACUnit* Ne
 	for (auto TimerPair : ActiveTurnTimers)
 	{
 		FTurnTimer& Handle = TimerPair.Value;
-		if (!(Handle.AffectedUnit == PreviousUnit && Handle.ProgressTurnMethod == EPTM_EndOfTurn)
-			&& !(Handle.AffectedUnit == NextUnit && Handle.ProgressTurnMethod == EPTM_StartOfTurn)) continue;
+		if (!(Handle.AffectedUnit == PreviousUnit && Handle.ProgressTurnMethod == EProgressTurnMethod::EPTM_EndOfTurn)
+			&& !(Handle.AffectedUnit == NextUnit && Handle.ProgressTurnMethod == EProgressTurnMethod::EPTM_StartOfTurn)) continue;
 
 		Handle.TurnsRemaining--;
 		if (Handle.TurnsRemaining > 0) continue;
