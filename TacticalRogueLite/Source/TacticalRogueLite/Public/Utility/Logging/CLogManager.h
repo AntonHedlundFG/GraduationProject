@@ -89,7 +89,7 @@ public:
 	static void RotateLogFile();
 	
 	// Get the singleton instance of the logger
-	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get Logger Instance"))
+	UFUNCTION(BlueprintPure, Category = "Logging", meta = (DisplayName = "Get LogManager Instance"))
 	static UCLogManager* Get();
 
 	// Start and stop the logger
