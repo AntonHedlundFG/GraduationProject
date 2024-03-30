@@ -1,5 +1,5 @@
 ﻿#include "Utility/Logging/CLogManager.h"
-#include "Utility/Logging/FLogManager.h"
+#include "Utility/Logging/LogManager.h"
 
 UCLogManager* UCLogManager::Instance = nullptr;
 
@@ -15,12 +15,12 @@ UCLogManager* UCLogManager::Get()
 
 void UCLogManager::StartUp()
 {
-	FLogManager::Initialize();
+	LogManager::Initialize();
 }
 
 void UCLogManager::ShutDown()
 {
-	FLogManager::ShutDown();
+	LogManager::ShutDown();
 }
 
 
@@ -35,8 +35,11 @@ void UCLogManager::Log(ELogCategory Category, const FString& Message)
 	// Convert the enum to string and prepend to the message
 	const FString LogMessage = FString::Printf(TEXT("%s %s"), *ToString(Category), *Message);
 
+	// Convert FString (UTF-16) to std::string (UTF-8)
+	const std::string StdLogMessage(TCHAR_TO_UTF8(*LogMessage));
+	
 	// Use FLogger for actual logging
-	FLogManager::Log(LogMessage);
+	LogManager::Log(StdLogMessage);
 
 	// Broadcast if Instance exists
 	if (Get()) 
@@ -62,12 +65,20 @@ void UCLogManager::Log(ELogCategory Category, const FString& Message)
 TArray<FString> UCLogManager::GetAllLogEntries()
 {
 	LOG_INFO("Reading log entries");
-	return FLogManager::ReadLog();
+	std::vector<std::string> LogMessages = LogManager::ReadLog();
+
+	TArray<FString> LogEntries;
+	for (std::string LogMessage : LogMessages)
+	{
+		LogEntries.Add(FString(LogMessage.c_str()));
+	}
+	
+	return LogEntries;
 }
 
 TArray<FString> UCLogManager::GetAllLogEntriesByCategory(ELogCategory Category)
 {
-	TArray<FString> LogEntries = FLogManager::ReadLog();
+	TArray<FString> LogEntries = GetAllLogEntries();
 	TArray<FString> FilteredEntries;
 
 	for (FString LogEntry : LogEntries)
@@ -87,10 +98,11 @@ TArray<FString> UCLogManager::GetAllLogEntriesByCategory(ELogCategory Category)
 FString UCLogManager::GetRecentLogEntry(int64 LogID)
 {
 	LOG_INFO("Getting recent log entry with ID: %lld", LogID);
-	return FLogManager::GetRecentLogEntry(LogID);
+	FString LogEntry = FString(LogManager::GetRecentLogEntry(LogID).c_str());
+	return LogEntry;
 }
 
 void UCLogManager::RotateLogFile()
 {
-	FLogManager::RotateLogFile();
+	LogManager::RotateLogFile();
 }
