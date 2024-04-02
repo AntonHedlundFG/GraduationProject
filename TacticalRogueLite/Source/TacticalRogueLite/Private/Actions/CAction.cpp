@@ -23,91 +23,45 @@ UCActionComponent* UCAction::GetOwningComponent() const
 
 bool UCAction::CanStart_Implementation(AActor* Instigator)
 {
-	// if (IsRunning())
-	// {
-	// 	return false;
-	// }
-
 	UCActionComponent* Comp = GetOwningComponent();
 	
-	if (Comp->ActiveGameplayTags.HasAny(BlockedTags))
-	{
-		return false;
-	}
-
-	return true;
+	return !Comp->ActiveGameplayTags.HasAny(BlockedTags);
 }
 
 
-void UCAction::StartAction_Implementation(AActor* Instigator) //TODO: call it execute. 
+void UCAction::StartAction_Implementation(AActor* Instigator)
 {
-	//UE_LOGFMT(LogGame, Log, "Started: {ActionName}", GetName());
 
 	UCActionComponent* Comp = GetOwningComponent();	
 	Comp->ActiveGameplayTags.AppendTags(GrantsTags);
 
-	// RepData.bIsRunning = true;
-	// RepData.Instigator = Instigator;
-
-	if (GetOwningComponent()->GetOwnerRole() == ROLE_Authority)
-	{
-		//TimeStarted = GetWorld()->TimeSeconds; 
-	}
-
-	//GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
 }
 
 
 void UCAction::StopAction_Implementation(AActor* Instigator)
 {
-	//UE_LOGFMT(LogGame, Log, "Stopped: {name}", GetName());
-
-	//ensureAlways(bIsRunning);
 
 	UCActionComponent* Comp = GetOwningComponent();
 	Comp->ActiveGameplayTags.RemoveTags(GrantsTags);
 
-	// RepData.bIsRunning = false;
-	// RepData.Instigator = Instigator;
-
-	//GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 }
 
 void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
-	//TODO:
+	UCActionComponent* Comp = GetOwningComponent();
+	Comp->ActiveGameplayTags.RemoveTags(GrantsTags);
 }
 
 UWorld* UCAction::GetWorld() const
 {
-	//Outer is set when creating action via NewObject<T>.
-	AActor* Actor = Cast<AActor>(GetOuter());
-	if (Actor)
-	{
+	if (GetOwningComponent())
+		return GetOwningComponent()->GetWorld();
+
+	if (AActor* Actor = Cast<AActor>(GetOuter()))
 		return Actor->GetWorld();
-	}
 
 	return nullptr;
 }
-/*
-void UCAction::OnRep_RepData()
-{
-	if (RepData.bIsRunning)
-	{
-		StartAction(RepData.Instigator);
-	}
-	else
-	{
-		StopAction(RepData.Instigator);
-	}
-}
-
-
-bool UCAction::IsRunning() const
-{
-	return RepData.bIsRunning;
-}
-*/
 
 
 void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -115,13 +69,11 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	// DOREPLIFETIME(UCAction, RepData);
-	DOREPLIFETIME(UCAction, TimeStarted);
 	DOREPLIFETIME(UCAction, ActionComp);
 }
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
 {
-	UE_LOG(LogTemp, Warning, TEXT("TEST"));
 	for (auto Action : InstantiatedActions)
 	{
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);

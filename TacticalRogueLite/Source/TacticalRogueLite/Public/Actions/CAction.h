@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
 class UCAction;
@@ -10,24 +11,7 @@ class UWorld;
 class UCActionComponent;
 class ACGridTile;
 
-/*USTRUCT()
-struct FActionRepData
-{
-	GENERATED_BODY()
-
-public:
-
-	UPROPERTY()
-	bool bIsRunning;
-
-	UPROPERTY()
-	TObjectPtr<AActor> Instigator;
-
-	FActionRepData()
-	{
-		bIsRunning = false;
-	}
-};*/
+#pragma region FAbility struct
 
 USTRUCT(BlueprintType)
 struct FAbility
@@ -76,6 +60,8 @@ inline uint32 GetTypeHash(const FAbility& Ability)
 	return Hash;
 }
 
+#pragma endregion
+
 
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
@@ -100,42 +86,10 @@ protected:
 	//Action can only start if OwningActor has none of these Tags applied.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
 	FGameplayTagContainer BlockedTags;
-
-	// UPROPERTY(ReplicatedUsing="OnRep_RepData")
-	// FActionRepData RepData;
-
-	UPROPERTY(Replicated)
-	float TimeStarted;
-
-	// UFUNCTION()
-	// void OnRep_RepData();
-
-	//Start immediately when added to an action component.
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
-	bool bAutoStart;
-
-	//Action nickname to start/stop without a reference to the object.
-	// UPROPERTY(EditDefaultsOnly, Category = "Action")
-	// FGameplayTag ActivationTag;
 	
 public:
-	
-	// UFUNCTION(BlueprintPure)
-	// FGameplayTag GetActivationTag() const
-	// {
-	// 	return ActivationTag;
-	// }
-
-	UFUNCTION(BlueprintPure)
-	bool IsAutoStart() const
-	{
-		return bAutoStart;
-	}
 
 	void Initialize(UCActionComponent* NewActionComp);
-
-	// UFUNCTION(BlueprintCallable, Category = "Action")
-	// bool IsRunning() const;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
 	bool CanStart(AActor* Instigator);

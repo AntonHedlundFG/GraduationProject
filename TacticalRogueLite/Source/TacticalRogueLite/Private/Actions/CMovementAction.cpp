@@ -31,16 +31,18 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 
 TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
 {
-	//auto& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
-	FGameplayTagContainer Tags;
-	
-	UE_LOG(LogTemp, Warning, TEXT("HERETWO"));
+	if (!GetOwningComponent())
+	{
+		LOG_WARNING("GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
+		return TArray<ACGridTile*>();	
+	}
+
+	FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
 
 	TArray<ACGridTile*> ReturnTiles;
 	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFillFromTag(Tags, inTile, 2))
 	{
 		ReturnTiles.Add(Tile);
-		UE_LOG(LogTemp, Warning, TEXT("HERE"));
 	}
 
 	return ReturnTiles;

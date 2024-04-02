@@ -8,6 +8,9 @@
 
 class ACUnit;
 
+/* TODO: This should be an effect that uses a timer. When the timer is done
+* OnTimerFinished should be called.
+*/
 UCLASS()
 class TACTICALROGUELITE_API UCActionEffect : public UCAction
 {
@@ -29,6 +32,7 @@ protected:
 	EProgressTurnMethod ProgressTurnMethod;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	void ExecuteEffect(AActor* AffectedUnit);
+	void OnTimerFinished(AActor* AffectedUnit);
+
 	
 };

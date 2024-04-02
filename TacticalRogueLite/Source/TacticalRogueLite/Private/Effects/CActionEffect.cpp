@@ -10,7 +10,7 @@
 
 UCActionEffect::UCActionEffect()
 {
-	bAutoStart = true;
+
 }
 
 void UCActionEffect::StartAction_Implementation(AActor* Instigator)
@@ -30,12 +30,10 @@ void UCActionEffect::StopAction_Implementation(AActor* Instigator)
 
 	Super::StopAction_Implementation(Instigator);
 
-	UCActionComponent* Comp = GetOwningComponent();
-	Comp->RemoveAction(this);
 }
 
 
-void UCActionEffect::ExecuteEffect_Implementation(AActor* AffectedUnit)
+void UCActionEffect::OnTimerFinished_Implementation(AActor* AffectedUnit)
 {
 
 }
