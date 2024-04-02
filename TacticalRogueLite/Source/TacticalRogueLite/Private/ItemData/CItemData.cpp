@@ -35,5 +35,5 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 
 FPrimaryAssetId UCItemData::GetPrimaryAssetId() const
 {
-	return FPrimaryAssetId(ItemType, GetFName());
+	return FPrimaryAssetId("ItemData", GetFName());
 }
