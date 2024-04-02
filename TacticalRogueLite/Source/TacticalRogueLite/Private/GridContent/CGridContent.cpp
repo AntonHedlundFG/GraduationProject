@@ -24,8 +24,12 @@ void ACGridContent::SetTile(ACGridTile* inTile)
 	}
 
 	Tile = inTile;
-	Tile->SetContent(this);
-	SetActorLocation(inTile->GetActorLocation() + FVector(0,0,100));
+
+	if (Tile)
+	{
+		Tile->SetContent(this);
+		SetActorLocation(Tile->GetActorLocation() + FVector(0,0,100));
+	}
 }
 
 void ACGridContent::BeginPlay()
