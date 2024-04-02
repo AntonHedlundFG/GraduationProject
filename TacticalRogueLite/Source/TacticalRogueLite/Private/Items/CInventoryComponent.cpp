@@ -30,121 +30,92 @@ void UCInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
 {
 	TArray<UCItemData*> AllEquipped;
+	
 	if (Boots != nullptr)
-	{
 		AllEquipped.Add(Boots);
-	}
 	if (Weapon != nullptr)
-	{
 		AllEquipped.Add(Weapon);
-	}
 	if (Armor != nullptr)
-	{
 		AllEquipped.Add(Armor);
-	}
 	if (Helmet != nullptr)
-	{
 		AllEquipped.Add(Helmet);
-	}
 	if (Ring != nullptr)
-	{
 		AllEquipped.Add(Ring);
-	}
 	
 	return AllEquipped;
 }
 
 UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 {
-	EItemSlots slot = ConvertTagToSlot(inSlot);
 	
-	switch (slot)
-	{
-	case EItemSlots::EIS_Boots:
+	if (inSlot == SharedGameplayTags::ItemSlot_Boots)
 		return Boots;
-	case EItemSlots::EIS_Weapon:
+	if (inSlot == SharedGameplayTags::ItemSlot_Weapon)
 		return Weapon;
-	case EItemSlots::EIS_Armor:
+	if (inSlot == SharedGameplayTags::ItemSlot_Armor)
 		return Armor;
-	case EItemSlots::EIS_Helmet:
+	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
 		return Helmet;
-	case EItemSlots::EIS_Ring:
+	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
 		return Ring;
-	default:
-		return nullptr;
-	}
+
+	return nullptr;
 }
 
 bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 {
 	const FGameplayTag SlotTag = inItem->ItemSlot;
+	if (!CheckValidEquipmentTag(SlotTag))
+		return false;
+
 	UnEquipItem(SlotTag);
-	EItemSlots Slot = ConvertTagToSlot(SlotTag);
-	bool bSuccess = false;
-
-
-	switch (Slot)
-	{
-	case EItemSlots::EIS_Boots:
+	
+	if (SlotTag == SharedGameplayTags::ItemSlot_Boots)
 		Boots = inItem;
-		bSuccess = true;
-		break;
-	case EItemSlots::EIS_Weapon:
+	if (SlotTag == SharedGameplayTags::ItemSlot_Weapon)
 		Weapon = inItem;
-		bSuccess = true;
-		break;
-	case EItemSlots::EIS_Armor:
+	if (SlotTag == SharedGameplayTags::ItemSlot_Armor)
 		Armor = inItem;
-		bSuccess = true;
-		break;
-	case EItemSlots::EIS_Helmet:
+	if (SlotTag == SharedGameplayTags::ItemSlot_Helmet)
 		Helmet = inItem;
-		bSuccess = true;
-		break;
-	case EItemSlots::EIS_Ring:
+	if (SlotTag == SharedGameplayTags::ItemSlot_Ring)
 		Ring = inItem;
-		bSuccess = true;
-		break;
-	default:
-		break;
-	}
 
-	if (bSuccess)
-	{
-		AddItem(inItem);
-	}
-	return bSuccess;
+	AddItem(inItem);
+	return true;
 }
 
 void UCInventoryComponent::UnEquipItem(FGameplayTag inSlot)
 {
-	EItemSlots Slot = ConvertTagToSlot(inSlot);
-	
-	switch (Slot)
+	if (inSlot == SharedGameplayTags::ItemSlot_Boots)
 	{
-	case EItemSlots::EIS_Boots:
 		RemoveItem(Boots);
 		Boots = nullptr;
-		break;
-	case EItemSlots::EIS_Weapon:
+		return;
+	}
+	if (inSlot == SharedGameplayTags::ItemSlot_Weapon)
+	{
 		RemoveItem(Weapon);
 		Weapon = nullptr;
-		break;
-	case EItemSlots::EIS_Armor:
+		return;
+	}
+	if (inSlot == SharedGameplayTags::ItemSlot_Armor)
+	{
 		RemoveItem(Armor);
 		Armor = nullptr;
-		break;
-	case EItemSlots::EIS_Helmet:
+		return;
+	}
+	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
+	{
 		RemoveItem(Helmet);
 		Helmet = nullptr;
-		break;
-	case EItemSlots::EIS_Ring:
+		return;
+	}
+	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
+	{
 		RemoveItem(Ring);
 		Ring = nullptr;
-		break;
-		break;
-	default:
-		break;
+		return;
 	}
 }
 
@@ -168,34 +139,22 @@ void UCInventoryComponent::RemoveItem(UCItemData* inItem)
 	}
 }
 
-EItemSlots UCInventoryComponent::ConvertTagToSlot(FGameplayTag tag)
+bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 {
-	if (tag == SharedGameplayTags::ItemSlot_Boots)
+	if (
+		inTag == SharedGameplayTags::ItemSlot_Boots ||
+		inTag == SharedGameplayTags::ItemSlot_Weapon ||
+		inTag == SharedGameplayTags::ItemSlot_Armor ||
+		inTag == SharedGameplayTags::ItemSlot_Helmet ||
+		inTag == SharedGameplayTags::ItemSlot_Ring
+		)
 	{
-		return EItemSlots::EIS_Boots;
+		return true;
 	}
-	if (tag == SharedGameplayTags::ItemSlot_Weapon)
-	{
-		return EItemSlots::EIS_Weapon;
-	}
-	if (tag == SharedGameplayTags::ItemSlot_Armor)
-	{
-		return EItemSlots::EIS_Armor;
-	}
-	if (tag == SharedGameplayTags::ItemSlot_Helmet)
-	{
-		return EItemSlots::EIS_Helmet;
-	}
-	if (tag == SharedGameplayTags::ItemSlot_Ring)
-	{
-		return EItemSlots::EIS_Ring;
-	}
-	if (tag == SharedGameplayTags::ItemSlot_Charm)
-	{
-		return EItemSlots::EIS_None;
-	}
-	return EItemSlots::EIS_MAX;
+
+	return false;
 }
+
 
 void UCInventoryComponent::BeginPlay()
 {

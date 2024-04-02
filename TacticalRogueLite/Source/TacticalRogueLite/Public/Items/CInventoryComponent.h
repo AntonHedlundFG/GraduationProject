@@ -1,16 +1,17 @@
 
 #pragma once
 
+
 #include "CoreMinimal.h"
-#include "ItemSlots.h"
 #include "Components/ActorComponent.h"
-#include "GamePlayTags/SharedGamePlayTags.h"
+#include "ItemData/CItemData.h"
 #include "CInventoryComponent.generated.h"
 
 
-enum class EItemSlots : uint8;
+
 class UCItem;
 class UCItemData;
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
@@ -38,8 +39,8 @@ public:
 	void AddItem(UCItemData* inItem);
 	UFUNCTION(Category = "Items")
 	void RemoveItem(UCItemData* inItem);
-
-	EItemSlots ConvertTagToSlot(FGameplayTag tag);
+	UFUNCTION(Category = "Items|Equipment")
+	bool CheckValidEquipmentTag(FGameplayTag inTag);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UCItemData> TESTITEM;
@@ -51,6 +52,9 @@ public:
 
 
 protected:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
+	TArray<UCItemData*> AllItems;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItemData> Boots;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
@@ -61,9 +65,6 @@ protected:
 	TObjectPtr<UCItemData> Helmet;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItemData> Ring;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
-	TArray<UCItemData*> AllItems;
-
-	
-	
 };
+
+
