@@ -2,7 +2,6 @@
 
 
 #include "CGameMode.h"
-#include "CommandPattern\CCommand.h"
 #include "GridContent/CUnit.h"
 #include "Items/CItem.h"
 #include "CGameState.h"
@@ -11,7 +10,6 @@
 #include "CLevelURLAsset.h"
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
-#include "CommandPattern/CConsequence.h"
 #include "Utility/Logging/CLogManager.h"
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "Actions/CAction.h"

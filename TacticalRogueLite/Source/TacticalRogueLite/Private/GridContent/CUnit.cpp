@@ -6,7 +6,6 @@
 #include "Items/ItemSlots.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Actions/CActionComponent.h"
-#include "CommandPattern/CDeathConsequence.h"
 #include "Items/CInventoryComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 

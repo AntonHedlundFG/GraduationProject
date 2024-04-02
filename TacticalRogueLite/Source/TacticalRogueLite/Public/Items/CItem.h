@@ -87,8 +87,8 @@ public:
 
 public:
 
-	virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
-	{ return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile); }
+	//virtual UCCommand* GenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile)
+	//{ return ReceiveGenerateAbilityCommand(inController, inUnit, inTargetTile); }
 
 	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile)
 	{ return ReceiveGetReachableTiles(inTile); }
@@ -114,8 +114,8 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void ReceiveEquipOnUnit(ACUnit* inUnit);
-	UFUNCTION(BlueprintImplementableEvent)
-	UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile);
+	//UFUNCTION(BlueprintImplementableEvent)
+	//UCCommand* ReceiveGenerateAbilityCommand(AController* inController, ACUnit* inUnit, ACGridTile* inTargetTile);
 	UFUNCTION(BlueprintImplementableEvent)
 	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit); 
 	UFUNCTION(BlueprintImplementableEvent)
