@@ -44,6 +44,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UCItemData> TESTITEM;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UCItemData> TESTATTACKITEM;
+
 	virtual void BeginPlay() override;
 
 

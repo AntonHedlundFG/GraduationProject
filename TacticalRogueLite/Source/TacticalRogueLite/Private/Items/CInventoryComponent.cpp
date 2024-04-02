@@ -207,6 +207,8 @@ void UCInventoryComponent::BeginPlay()
 	{
 		if (Unit->GetActionComp() && TESTITEM)
 			Unit->GetActionComp()->AddAbility(TESTITEM->Ability);
+		if (Unit->GetActionComp() && TESTATTACKITEM)
+			Unit->GetActionComp()->AddAbility(TESTATTACKITEM->Ability);
 	}
 
 }

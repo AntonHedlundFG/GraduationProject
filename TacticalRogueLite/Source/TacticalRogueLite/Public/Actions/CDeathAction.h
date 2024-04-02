@@ -16,13 +16,15 @@ class TACTICALROGUELITE_API UCDeathAction : public UCAction
 {
 	GENERATED_BODY()
 	
+public:
+
 	virtual void StartAction_Implementation(AActor* Instigator) override;
 	virtual void UndoAction_Implementation(AActor* Instigator) override;
-
-protected:
 	
 	UPROPERTY(BlueprintReadWrite)
 	ACUnit* AffectedUnit;
+
+protected:
 
 	UPROPERTY()
 	ACGridTile* DeathTile;

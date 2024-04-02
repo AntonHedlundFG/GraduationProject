@@ -1,6 +1,8 @@
 
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions/CDeathAction.h"
+#include "CGameMode.h"
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv
 
@@ -21,7 +23,7 @@ UCAttributeComponent::UCAttributeComponent()
 
 bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 {
-	if (!GetOwner()->CanBeDamaged() && Delta < 0.0f)
+	if (!GetOwner()->CanBeDamaged() && Delta < 0)
 	{
 		return false;
 	}
@@ -41,9 +43,15 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 		}
 
 		//Died.
-		if (Delta < 0.0f && CurrentHealth == 0.0f)
+		if (OldHealth > 0 && NewHealth <= 0)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Died!"));
+			UCDeathAction* DeathAction = NewObject<UCDeathAction>(GetOuter(), UCDeathAction::StaticClass());
+			DeathAction->AffectedUnit = Cast<ACUnit>(GetOwner());
+			ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+			if (GameMode)
+			{
+				GameMode->RegisterAction(DeathAction);
+			}
 		}
 	}
 
