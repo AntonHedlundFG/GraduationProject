@@ -86,8 +86,16 @@ protected:
 	//Action can only start if OwningActor has none of these Tags applied.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
 	FGameplayTagContainer BlockedTags;
+
+	
 	
 public:
+
+	//If true, this was the first action in a chain of events resulting from player input.
+	//When undoing actions, we iterate backwards in the action history, until we find one where
+	//this is true.
+	UPROPERTY()
+	bool bIsUserIncited = false;
 
 	void Initialize(UCActionComponent* NewActionComp);
 

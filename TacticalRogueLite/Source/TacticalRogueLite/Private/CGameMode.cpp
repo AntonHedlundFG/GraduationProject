@@ -17,6 +17,7 @@
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
 #include "Actions/CTargetableAction.h"
+#include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -26,7 +27,7 @@ void ACGameMode::BeginPlay()
 		GameStateRef = GetGameState<ACGameState>();
 		if (!GameStateRef)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Wrong Game State class"));
+			LOG_WARNING("Wrong Game State class");
 			return;
 		}
 	}
@@ -52,20 +53,15 @@ void ACGameMode::BeginPlay()
 	ApplyPlayerCount(AllUnits);
 }
 
-void ACGameMode::RegisterAndExecuteConsequence(UCConsequence* inConsequence)
+void ACGameMode::RegisterAction(UCAction* inAction)
 {
-	if (!CommandList.IsEmpty())
-	{
-		CommandList.Last()->StoreConsequence(inConsequence);
-	}
-	else if (!CommandHistory.IsEmpty())
-	{
-		//This might happen if a consequence is triggered at the start of a turn when no command has been 
-		//executed yet. If so, we store it in the previous turn's last command to make sure its registered 
-		//somewhere, at least.
-		CommandHistory.Last()->StoreConsequence(inConsequence);
-	}
-	inConsequence->ExecuteConsequence();
+	ActionStack.Add(inAction);
+}
+
+void ACGameMode::RegisterActionOfClass(TSubclassOf<UCAction> inActionClass)
+{
+	UCAction* NewAction = NewObject<UCAction>(this, inActionClass);
+	ActionStack.Add(NewAction);
 }
 
 bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGameplayTag inItemSlotTag, ACGridTile* inTargetTile)
@@ -75,105 +71,112 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		GameStateRef = GetGameState<ACGameState>();
 		if (!GameStateRef)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Wrong Game State class"));
+			LOG_WARNING("Wrong Game State class");
 			return false;
 		}
 	}
 
 	if (GameStateRef->TurnOrder.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("There are no units in the turn order"));
+		LOG_WARNING("There are no units in the turn order");
 		return false;
 	}
 
 	if (GameStateRef->TurnOrder[0] != inUnit)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Unit is not first in the turn order"));
+		LOG_WARNING("Unit is not first in the turn order");
 		return false;
 	}
 
 	if (!inUnit->IsControlledBy(inController))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Unit is not owned by controller"));
+		LOG_WARNING("Unit is not owned by controller");
 		return false;
 	}
 
-	/*UCItem* Item = inUnit->GetItemInSlot(inSlot);
-	if (!Item)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No item in this item slot"));
-		return false;
-	}
-	if (!Item->IsValidTargetTile(inUnit, inTargetTile))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
-		return false;
-	}
-	UCCommand* NewCommand = Item->GenerateAbilityCommand(inController, inUnit, inTargetTile);
-	if (!NewCommand)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No ability command on this item"));
-		return false;
-	}
-	CommandList.Add(NewCommand);
-	NewCommand->ExecuteCommand(inController);
-	*/
 	UCActionComponent* ActionComponent = inUnit->GetActionComp();
+	if (!ActionComponent)
+	{
+		LOG_WARNING("No Action Component on unit");
+		return false;
+	}
+
 	FAbility OutAbility;
 	ActionComponent->TryGetAbility(inItemSlotTag, OutAbility);
-
-
 	if (!OutAbility.IsValidTargetTile(inUnit->GetTile(), inTargetTile))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Target tile is not valid for the item"));
+		LOG_WARNING("Target tile is not valid for this item slot");
 		return false;
 	}
 	
-	for (auto Action : OutAbility.Actions)
+	bool bHasDesignatedIncitingAction = false;
+
+	for (int i = OutAbility.Actions.Num() - 1; i >= 0; i--)
 	{
-		UCAction* NewAction = NewObject<UCAction>(ActionComponent, Action);
+		UCAction* NewAction = NewObject<UCAction>(ActionComponent, OutAbility.Actions[i]);
+
+		if (i == 0)
+			NewAction->bIsUserIncited = true;
+
 		NewAction->Initialize(ActionComponent);
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(NewAction);
 		if (Targetable)
 		{
 			Targetable->TargetTile = inTargetTile;
 		}
-		ActionList.Add(NewAction);
-		NewAction->StartAction(inUnit);
+		ActionStack.Add(NewAction);
 	}
 
-	//FString Log = FString("Executed command: ") + NewCommand->ToString();
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);
-	//UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Executed command: ") + NewCommand->ToString());
+	int Iterations = 0;
+	while (!ActionStack.IsEmpty())
+	{
+		UCAction* CurrentAction = ActionStack.Pop();
+		ActionList.Add(CurrentAction);
+		CurrentAction->StartAction(inUnit);
+		
+		Iterations++;
+		if (Iterations > 1000)
+		{
+			LOG_WARNING("Action Stack tried to execute over 1000 actions. Infinite loop suspected, clearing stack.");
+			ActionStack.Empty();
+			break;
+		}
+	}
+
 	return true;
 }
 
 bool ACGameMode::TryUndo(AController* inController)
 {
-	if (ActionList.IsEmpty())
+	if (!GameStateRef || !GameStateRef->TurnOrder[0])
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No commands in history"));
+		LOG_WARNING("No valid unit at front of game state turn order");
 		return false;
 	}
 
-	UCAction* LastAction = ActionList.Last();
-	/*
-	if (LastCommand->GetCommandCreator() != inController)
+	uint8 PlayerIndex = GameStateRef->TurnOrder[0]->ControllingPlayerIndex;
+	AOnlinePlayerState* PlayerState = inController->GetPlayerState<AOnlinePlayerState>();
+	if (!PlayerState || PlayerState->PlayerIndex != PlayerIndex)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Command was not performed by this controller"));
+		LOG_WARNING("Controller does not control current unit");
 		return false;
-	}*/
+	}
 
-	//LastCommand->UndoAllConsequences();
-	//LastCommand->UndoCommand();
+	while (true)
+	{
+		if (ActionList.IsEmpty())
+		{
+			LOG_WARNING("No commands in history");
+			return false;
+		}
+
+		UCAction* LastAction = ActionList.Last();
+		LastAction->UndoAction(inController);
+		ActionList.RemoveAtSwap(ActionList.Num() - 1);
+		if (LastAction->bIsUserIncited)
+			break;
+	}
 	
-	LastAction->UndoAction(inController);
-
-	ActionList.RemoveAtSwap(CommandList.Num() - 1);
-
-	/*FString Log = FString("Undid command: ") + LastCommand->ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);*/
-	//UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Undid command: ") + LastCommand->ToString());
 	return true;
 }
 
@@ -184,21 +187,21 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		GameStateRef = GetGameState<ACGameState>();
 		if (!GameStateRef)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Wrong Game State class"));
+			LOG_WARNING("Wrong Game State class");
 			return false;
 		}
 	}
 
 	if (GameStateRef->TurnOrder.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("There are no units in the turn order"));
+		LOG_WARNING("There are no units in the turn order");
 		return false;
 	}
 
 	ACUnit* CurrentUnit = GameStateRef->TurnOrder[0];
 	if (!CurrentUnit->IsControlledBy(inController))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Controller does not manage current unit"));
+		LOG_WARNING("Controller does not manage current unit");
 		return false;
 	}
 
@@ -220,7 +223,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	}
 	ActionList.Empty();
 
-	UE_LOG(LogTemp, Warning, TEXT("Turn ended"));
+	LOG_GAMEPLAY("Turn ended");
 	return true;
 }
 

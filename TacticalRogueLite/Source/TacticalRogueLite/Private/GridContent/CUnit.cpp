@@ -67,6 +67,7 @@ UCActionComponent* ACUnit::GetActionComp() const
 
 void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
+	/* NO LONGER RELEVANT; OLD SYSTEM
 	float OldHealth = NewHealth - Delta;
 	if (OldHealth > 0 && NewHealth <= 0)
 	{
@@ -77,5 +78,5 @@ void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* Owni
 			Death->DyingUnit = this;
 			GameMode->RegisterAndExecuteConsequence(Death);
 		}
-	}
+	}*/
 }
