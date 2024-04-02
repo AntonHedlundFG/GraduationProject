@@ -21,7 +21,10 @@ namespace SharedGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Status_Rooted, "Status.Rooted");
 
 	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Boots, "ItemSlot.Boots");
-	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Weapon, "ItemSlot.Weapon");
+	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Weapon, "ItemSlot.Weapon")
+	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Armor, "ItemSlot.Armor");
+	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Helmet, "ItemSlot.Helmet");
+	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Ring, "ItemSlot.Ring");;
 	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Charm, "ItemSlot.Charm");
 	
 

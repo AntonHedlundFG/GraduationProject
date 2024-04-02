@@ -10,7 +10,7 @@ enum class EItemSlots : uint8
 	EIS_None	UMETA(DisplayName = "None"),
 	EIS_Boots	UMETA(DisplayName = "Boots"),
 	EIS_Weapon	UMETA(DisplayName = "Weapon"),
-	EIS_Body	UMETA(DisplayName = "Body Armor"),
+	EIS_Armor	UMETA(DisplayName = "Body Armor"),
 	EIS_Helmet	UMETA(DisplayName = "Helmet"),
 	EIS_Ring	UMETA(DisplayName = "Ring"),
 	EIS_MAX		UMETA(Hidden)
@@ -26,7 +26,7 @@ inline FString ToString(EItemSlots Slot)
 		return "Boots";
 	case EItemSlots::EIS_Weapon:
 		return "Weapon";
-	case EItemSlots::EIS_Body:
+	case EItemSlots::EIS_Armor:
 		return "Body Armor";
 	case EItemSlots::EIS_Helmet:
 		return "Helmet";

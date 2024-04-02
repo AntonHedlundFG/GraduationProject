@@ -54,7 +54,7 @@ bool ACUnit::IsControlledBy(AController* inController)
 	return PS->PlayerIndex == ControllingPlayerIndex;
 }
 
-UCItem* ACUnit::GetItemInSlot(EItemSlots inSlot)
+UCItemData* ACUnit::GetItemInSlot(FGameplayTag inSlot)
 {	
 	return Inventory->GetItemInSlot(inSlot);
 }

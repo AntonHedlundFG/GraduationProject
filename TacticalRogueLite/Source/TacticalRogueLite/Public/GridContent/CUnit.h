@@ -39,7 +39,7 @@ public:
 
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
 	UFUNCTION(BlueprintCallable)
-	UCItem* GetItemInSlot(EItemSlots inSlot);
+	UCItemData* GetItemInSlot(FGameplayTag inSlot);
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() const;
