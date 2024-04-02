@@ -30,17 +30,17 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	CancelAbilityUse();
 	if (!GetGameState())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
+		LOG_WARNING("No ACGameState available, cancelling ability use.");
 		return;
 	}
 	if (GetGameState()->TurnOrder.Num() == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
+		LOG_WARNING("No valid unit at front of turn order, cancelling ability use.");
 		return;
 	}
 	if (inTag == FGameplayTag::EmptyTag)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
+		LOG_WARNING("Invalid item slot, cancelling ability use.");
 		return;
 	}
 	
@@ -57,7 +57,7 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	FAbility OutAbility;
 	if (!ActionComp->TryGetAbility(inTag, OutAbility))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No item in slot, cancelling ability use."));
+		LOG_WARNING("No item in slot, cancelling ability use.");
 		return;
 	}
 
@@ -69,63 +69,49 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		Tile->OnHighlightChange.Broadcast(true);
 		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
 	}
-	UE_LOG(LogTemp, Warning, TEXT("%d number of tiles"), HighlightedTiles.Num());
+	LOG_WARNING("%d number of tiles", HighlightedTiles.Num());
 }
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 {
 	if (!inTargetTile)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Target Tile nullptr, cancelling ability use."));
+		LOG_WARNING("Target Tile nullptr, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Tile Clicked: %s"), *inTargetTile->GetName());
+	LOG_WARNING("Tile Clicked: %s", *inTargetTile->GetName());
 
 	if (!UnitCurrentlyUsingAbility)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ability initiated, cancelling ability use."));
+		LOG_WARNING("No ability initiated, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
 	if (!GetGameState())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameState available, cancelling ability use."));
+		LOG_WARNING("No ACGameState available, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
 	if (GetGameState()->TurnOrder.Num() == 0 || GetGameState()->TurnOrder[0] != UnitCurrentlyUsingAbility)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No valid unit at front of turn order, cancelling ability use."));
+		LOG_WARNING("No valid unit at front of turn order, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
-	/*
-	if (ItemSlotCurrentlyUsed == EItemSlots::EIS_None || ItemSlotCurrentlyUsed == EItemSlots::EIS_MAX)
+	if (TagCurrentlyUsed == FGameplayTag::EmptyTag)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
+		LOG_WARNING("Invalid item slot, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
 
-	UCItem* UsedItem = UnitCurrentlyUsingAbility->GetItemInSlot(ItemSlotCurrentlyUsed);
-	if (!UsedItem || !UsedItem->IsValidTargetTile(UnitCurrentlyUsingAbility, inTargetTile))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
-		CancelAbilityUse();
-		return;
-	}*/
-	if (TagCurrentlyUsed == FGameplayTag::EmptyTag)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Invalid item slot, cancelling ability use."));
-		CancelAbilityUse();
-		return;
-	}
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
 	if (!ActionComp->IsValidTargetTile(TagCurrentlyUsed, inTargetTile))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Item target not valid, cancelling ability use."));
+		LOG_WARNING("Item target not valid, cancelling ability use.");
 		CancelAbilityUse();
 		return;
 	}
@@ -162,12 +148,12 @@ void ACPlayerController::Server_UseObject_Implementation(ACUnit* inUnit, FGamepl
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling ability use."))
-			return;
+		LOG_WARNING("No ACGameMode available, cancelling ability use.");
+		return;
 	}
 	if (!GameMode->TryAbilityUse(this, inUnit, inTag, inTargetTile))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Ability use failed in GameMode"));
+		LOG_WARNING("Ability use failed in GameMode");
 		return;
 	}
 }
@@ -177,12 +163,12 @@ void ACPlayerController::Server_TryUndo_Implementation()
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling undo."))
-			return;
+		LOG_WARNING("No ACGameMode available, cancelling undo.");
+		return;
 	}
 	if (!GameMode->TryUndo(this))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Undoing failed in GameMode"));
+		LOG_WARNING("Undoing failed in GameMode");
 		return;
 	}
 }
@@ -192,12 +178,12 @@ void ACPlayerController::Server_TryEndTurn_Implementation()
 	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if (!GameMode)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No ACGameMode available, cancelling end turn."))
-			return;
+		LOG_WARNING("No ACGameMode available, cancelling end turn.");
+		return;
 	}
 	if (!GameMode->TryEndTurn(this))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Endturn failed in GameMode"));
+		LOG_WARNING("Endturn failed in GameMode");
 		return;
 	}
 }
