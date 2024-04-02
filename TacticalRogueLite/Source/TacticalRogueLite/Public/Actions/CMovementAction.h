@@ -22,7 +22,10 @@ class TACTICALROGUELITE_API UCMovementAction : public UCTargetableAction
 
 protected:
 
+	UPROPERTY()
 	ACGridTile* FromTile;
+
+	UPROPERTY()
 	ACUnit* MovedUnit;
 
 };

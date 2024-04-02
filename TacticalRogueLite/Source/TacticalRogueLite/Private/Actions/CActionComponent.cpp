@@ -255,6 +255,14 @@ bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class 
 			WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
 		}
 	}
+	for (FAbility& Ability : Abilities)
+	{
+		for (UCAction* Action : Ability.InstantiatedActions)
+		{
+			if (Action)
+				WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
+		}
+	}
 
 	return WroteSomething;
 }

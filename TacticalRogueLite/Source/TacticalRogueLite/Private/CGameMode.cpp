@@ -150,27 +150,30 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 
 bool ACGameMode::TryUndo(AController* inController)
 {
-	if (CommandList.IsEmpty())
+	if (ActionList.IsEmpty())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No commands in history"));
 		return false;
 	}
 
-	UCCommand* LastCommand = CommandList.Last();
+	UCAction* LastAction = ActionList.Last();
+	/*
 	if (LastCommand->GetCommandCreator() != inController)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Command was not performed by this controller"));
 		return false;
-	}
+	}*/
 
-	LastCommand->UndoAllConsequences();
-	LastCommand->UndoCommand();
+	//LastCommand->UndoAllConsequences();
+	//LastCommand->UndoCommand();
+	
+	LastAction->UndoAction(inController);
 
-	CommandList.RemoveAtSwap(CommandList.Num() - 1);
+	ActionList.RemoveAtSwap(CommandList.Num() - 1);
 
 	/*FString Log = FString("Undid command: ") + LastCommand->ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *Log);*/
-	UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Undid command: ") + LastCommand->ToString());
+	//UCLogManager::Log(ELogCategory::LC_Gameplay,FString("Undid command: ") + LastCommand->ToString());
 	return true;
 }
 
@@ -211,11 +214,11 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	}
 
 	//Transfer all commands this turn into the command history
-	for (UCCommand* Command : CommandList)
+	for (UCAction* Action : ActionList)
 	{
-		CommandHistory.Add(Command);
+		ActionHistory.Add(Action);
 	}
-	CommandList.Empty();
+	ActionList.Empty();
 
 	UE_LOG(LogTemp, Warning, TEXT("Turn ended"));
 	return true;

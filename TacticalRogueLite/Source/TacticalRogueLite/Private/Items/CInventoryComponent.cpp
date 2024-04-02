@@ -166,6 +166,8 @@ void UCInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (GetNetMode() >= ENetMode::NM_Client) return;
+
 	if (ACUnit* Unit = Cast<ACUnit>(GetOwner()))
 	{
 		if (Unit->GetActionComp() && TESTITEM)

@@ -121,6 +121,7 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
 {
+	UE_LOG(LogTemp, Warning, TEXT("TEST"));
 	for (auto Action : InstantiatedActions)
 	{
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(Action);

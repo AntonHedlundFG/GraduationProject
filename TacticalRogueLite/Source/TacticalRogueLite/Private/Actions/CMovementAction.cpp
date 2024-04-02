@@ -34,6 +34,8 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
 	//auto& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
 	FGameplayTagContainer Tags;
 	
+	UE_LOG(LogTemp, Warning, TEXT("HERETWO"));
+
 	TArray<ACGridTile*> ReturnTiles;
 	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFillFromTag(Tags, inTile, 2))
 	{
