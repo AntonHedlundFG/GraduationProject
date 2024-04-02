@@ -101,10 +101,30 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillFromTag(FGameplayTagContainer MovementMethods, ACGridTile* inStart, int Depth)
 {
-	TSet<ACGridTile*> TestSet;
-	for (ACGridTile* Tile : inStart->GetNeighbours())
-		TestSet.Add(Tile);
+	//TODO: Implement properly. Right now only uses non-diagonal neighbours. Should be determining appropriate neighbours 
+	//from tags in MovementMethods.
 
-	//NOT IMPLEMENTED
-	return TestSet;
+	TArray<ACGridTile*> OpenSet;
+	OpenSet.Add(inStart);
+	TArray<ACGridTile*> NextOpenSet;
+	TSet<ACGridTile*> ClosedSet;
+	ClosedSet.Add(inStart);
+	for (int i = 0; i < Depth; i++)
+	{
+		for (ACGridTile* CurrentTile : OpenSet)
+		{
+			for (ACGridTile* Neighbour : CurrentTile->GetNeighbours(false))
+			{
+				if (!ClosedSet.Contains(Neighbour))
+				{
+					ClosedSet.Add(Neighbour);
+					NextOpenSet.Add(Neighbour);
+				}
+			}
+		}
+		OpenSet = NextOpenSet;
+		NextOpenSet.Empty();
+	}
+
+	return ClosedSet;
 }
