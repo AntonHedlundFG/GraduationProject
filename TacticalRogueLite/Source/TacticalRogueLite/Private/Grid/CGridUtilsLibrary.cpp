@@ -26,7 +26,7 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 
 	return Directions;
 }
-
+/*
 TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget)
 {
 	TArray<ACGridTile*> OpenSet;
@@ -98,11 +98,13 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 
 	return ClosedSet;
 }
+*/
 
-TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillFromTag(FGameplayTagContainer MovementMethods, ACGridTile* inStart, int Depth)
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/)
 {
-	//TODO: Implement properly. Right now only uses non-diagonal neighbours. Should be determining appropriate neighbours 
-	//from tags in MovementMethods.
+	//Default to regular straight movement.
+	if (MovementMethods.IsEmpty())
+		MovementMethods.AddTag(SharedGameplayTags::Movement_Straight);
 
 	TArray<ACGridTile*> OpenSet;
 	OpenSet.Add(inStart);
@@ -113,7 +115,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillFromTag(FGameplayTagContainer Mov
 	{
 		for (ACGridTile* CurrentTile : OpenSet)
 		{
-			for (ACGridTile* Neighbour : CurrentTile->GetNeighbours(false))
+			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
 			{
 				if (!ClosedSet.Contains(Neighbour))
 				{
@@ -127,4 +129,54 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillFromTag(FGameplayTagContainer Mov
 	}
 
 	return ClosedSet;
+}
+
+TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile)
+{
+	TSet<ACGridTile*> Neighbours;
+	
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Straight))
+	{
+		Neighbours.Append(inTile->GetNeighbours(false));
+	}
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Diagonal))
+	{
+		Neighbours.Append(inTile->GetDiagonalLinks());
+	}
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Knight))
+	{
+		//We do a 3-step BFS to get all tiles at a distance of 3
+		TArray<ACGridTile*> OpenTiles;
+		OpenTiles.Add(inTile);
+		TArray<ACGridTile*> NextOpenTiles;
+		TSet<ACGridTile*> ClosedTiles;
+		ClosedTiles.Add(inTile);
+		for (int i = 0; i < 3; i++)
+		{
+			NextOpenTiles.Empty();
+			for (ACGridTile* CurrentTile : OpenTiles)
+			{
+				for (ACGridTile* Neighbour : CurrentTile->GetNeighbours())
+				{
+					if (ClosedTiles.Contains(Neighbour))
+						continue;
+
+					ClosedTiles.Add(Neighbour);
+					NextOpenTiles.Add(Neighbour);
+				}
+			}
+			OpenTiles = NextOpenTiles;
+		}
+
+		//Now that we have all tiles at a distance of 3, remove the ones that are in a straight line from
+		//the starting point. This leaves us with the chess knight movement.
+		for (ACGridTile* Tile : NextOpenTiles)
+		{
+			FVector2D CoordsDelta = Tile->GetGridCoords() - inTile->GetGridCoords();
+			if (CoordsDelta.X != 0 && CoordsDelta.Y != 0)
+				Neighbours.Add(Tile);
+		}
+	}
+
+	return Neighbours;
 }

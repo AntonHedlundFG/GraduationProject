@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 #include "CGridUtilsLibrary.generated.h"
 
 
@@ -24,15 +25,19 @@ public:
 	static TArray<FVector2D> StraightDirections();
 	UFUNCTION(ScriptCallable)
 	static TArray<FVector2D> DiagonalDirections();
+	/*
 	UFUNCTION(ScriptCallable)
 	static TArray<ACGridTile*> BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget);
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth);
-
+	*/
 
 	//For example, MovementMethods can contain the tag "Movement_Straight" and "Movement_Diagonal".
 	//Or only "Movement_Diagonal"
 	UFUNCTION(ScriptCallable)
-	static TSet<ACGridTile*> FloodFillFromTag(FGameplayTagContainer MovementMethods, ACGridTile* inStart, int Depth);
+	static TSet<ACGridTile*> FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods = FGameplayTagContainer());
 	
+	UFUNCTION(ScriptCallable)
+	static TSet<ACGridTile*> ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile);
+
 };
