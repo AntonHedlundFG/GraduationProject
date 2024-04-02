@@ -67,6 +67,12 @@ public:
 	ACGrid* GetGameGrid() const { return GameStateRef->GameGrid; }
 	UFUNCTION(BlueprintCallable, Category = "Grid|Spawner")
 	ACGridSpawner* GetGridSpawner() const { return Spawner; }
+	UFUNCTION(BlueprintCallable, Category = "Units")
+	TArray<ACUnit*> GetAllUnits() const { return AllUnits; }
+	UFUNCTION(BlueprintCallable, Category = "Units")
+	TArray<ACUnit*> GetHeroUnits() const { return HeroUnits; }
+	UFUNCTION(BlueprintCallable, Category = "Units")
+	TArray<ACUnit*> GetEnemyUnits() const { return EnemyUnits; }
 
 protected:
 	UPROPERTY(BlueprintReadOnly)
