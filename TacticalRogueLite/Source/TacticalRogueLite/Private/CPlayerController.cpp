@@ -8,6 +8,7 @@
 #include "CGameMode.h"
 #include "Actions/CActionComponent.h"
 #include "Grid/Tiles/TileHighlightModes.h"
+#include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 ACGameState* ACPlayerController::GetGameState()
 {
@@ -44,6 +45,14 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	}
 	
 	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
+
+	AOnlinePlayerState* PS = GetPlayerState<AOnlinePlayerState>();
+	if (!PS || PS->PlayerIndex != UnitCurrentlyUsingAbility->ControllingPlayerIndex)
+	{
+		LOG_WARNING("Current unit not under your control");
+		return;
+	}
+
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
 	FAbility OutAbility;
 	if (!ActionComp->TryGetAbility(inTag, OutAbility))
