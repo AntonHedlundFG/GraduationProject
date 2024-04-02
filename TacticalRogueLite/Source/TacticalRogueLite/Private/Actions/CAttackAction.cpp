@@ -1,0 +1,75 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "Actions/CAttackAction.h"
+
+#include "Actions/CActionComponent.h"
+#include "Attributes/CAttributeComponent.h"
+#include "Attributes/CGameplayFunctionLibrary.h"
+#include "Grid/CGridTile.h"
+#include "Grid/CGridUtilsLibrary.h"
+#include "GridContent/CUnit.h"
+#include "Kismet/GameplayStatics.h"
+
+void UCAttackAction::StartAction_Implementation(AActor* Instigator)
+{
+	Super::StartAction_Implementation(Instigator);
+
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
+	OldHealth = Attributes->GetHealth();
+	
+	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), 2); 
+}
+
+void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
+{
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
+	Attributes->SetHealth(OldHealth);
+	
+	Super::UndoAction_Implementation(Instigator);
+}
+
+TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles(ACGridTile* inTile)
+{
+	
+	if (!GetOwningComponent())
+	{
+		LOG_WARNING("GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
+		return TArray<ACGridTile*>();	
+	}
+	
+
+	TArray<ACGridTile*> ReturnTiles;
+	for (ACGridTile* Tile : inTile->GetNeighbours(false))
+	{
+		if (Tile->GetContent() != nullptr && Tile->GetContent()->IsA(ACUnit::StaticClass()))
+		{
+			ReturnTiles.Add(Tile);
+		}
+	}
+
+	return ReturnTiles;
+	
+}
+
+void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth,
+                                     int Delta)
+{
+	AActor* OwningActor = GetOwningComponent()->GetOwner();
+
+	// Damage Only
+	if (Delta < 0 && OwningActor != InstigatorActor)
+	{
+		
+		if (Delta == 0)
+		{
+			return;
+		}
+
+		// Flip to positive, so we don't end up healing ourselves when passed into damage
+		Delta = FMath::Abs(Delta);
+
+		// Return damage sender...
+		UCGameplayFunctionLibrary::ApplyDamage(OwningActor, InstigatorActor, Delta);
+	}
+}

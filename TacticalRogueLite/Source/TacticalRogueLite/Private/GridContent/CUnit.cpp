@@ -30,8 +30,8 @@ void ACUnit::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
-		AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
+	// if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
+	// 	AttributeComp->OnHealthChanged.AddUniqueDynamic(this, &ACUnit::OnHealthChanged);
 	
 }
 
@@ -39,8 +39,8 @@ void ACUnit::EndPlay(EEndPlayReason::Type Reason)
 {
 	Super::EndPlay(Reason);
 
-	if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
-		AttributeComp->OnHealthChanged.RemoveDynamic(this, &ACUnit::OnHealthChanged);
+	// if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
+	// 	AttributeComp->OnHealthChanged.RemoveDynamic(this, &ACUnit::OnHealthChanged);
 }
 
 bool ACUnit::IsControlledBy(AController* inController)
@@ -64,18 +64,4 @@ UCActionComponent* ACUnit::GetActionComp() const
 	return ActionComp;
 }
 
-void ACUnit::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta)
-{
-	/* NO LONGER RELEVANT; OLD SYSTEM
-	float OldHealth = NewHealth - Delta;
-	if (OldHealth > 0 && NewHealth <= 0)
-	{
-		ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
-		if (GameMode)
-		{
-			UCDeathConsequence* Death = NewObject<UCDeathConsequence>(this);
-			Death->DyingUnit = this;
-			GameMode->RegisterAndExecuteConsequence(Death);
-		}
-	}*/
-}
+

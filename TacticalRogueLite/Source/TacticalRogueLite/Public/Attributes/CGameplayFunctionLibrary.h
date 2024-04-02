@@ -14,11 +14,9 @@ class TACTICALROGUELITE_API UCGameplayFunctionLibrary : public UBlueprintFunctio
 	public:
 
 		UFUNCTION(BlueprintCallable, Category = "Gameplay")
-		static bool ApplyDamage(AActor* DamageCauser, AActor* TargetActor, float DamageAmount);
+		static bool ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount);
 
-		UFUNCTION(BlueprintCallable, Category = "Gameplay")
-		static bool ApplyDirectionalDamage(AActor* DamageCauser, AActor* TargetActor, float DamageAmount, const FHitResult& HitResult);
-
+	
 		// UFUNCTION(BlueprintPure, Category = "PSO Caching")
 		// static int32 GetRemainingBundledPSOs();
 	};

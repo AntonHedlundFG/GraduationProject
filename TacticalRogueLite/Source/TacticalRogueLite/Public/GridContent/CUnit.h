@@ -48,12 +48,6 @@ public:
 	TObjectPtr<UCInventoryComponent> Inventory;
 	
 	// ----------------------------------------------------------------
-
-
 	
 
-protected:
-
-	UFUNCTION()
-	void OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta);
 };

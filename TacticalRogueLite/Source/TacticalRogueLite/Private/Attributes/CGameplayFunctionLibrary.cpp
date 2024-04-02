@@ -6,7 +6,7 @@
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CGameplayFunctionLibrary)
 
 
-bool UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetActor, float DamageAmount)
+bool UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount)
 {
 	UCAttributeComponent* AttributeComp = UCAttributeComponent::GetAttributes(TargetActor);
 	if (AttributeComp)
@@ -15,27 +15,6 @@ bool UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* Target
 	}
 	return false;
 }
-
-
-bool UCGameplayFunctionLibrary::ApplyDirectionalDamage(AActor* DamageCauser, AActor* TargetActor, float DamageAmount, const FHitResult& HitResult)
-{
-	if (ApplyDamage(DamageCauser, TargetActor, DamageAmount))
-	{
-		UPrimitiveComponent* HitComp = HitResult.GetComponent();
-		if (HitComp && HitComp->IsSimulatingPhysics(HitResult.BoneName))
-		{
-			// Direction = Target - Origin
-			FVector Direction = HitResult.TraceEnd - HitResult.TraceStart;
-			Direction.Normalize();
-
-			HitComp->AddImpulseAtLocation(Direction * 300000.f, HitResult.ImpactPoint, HitResult.BoneName);
-		}
-		return true;
-	}
-
-	return false;
-}
-
 
 // int32 USGameplayFunctionLibrary::GetRemainingBundledPSOs()
 // {

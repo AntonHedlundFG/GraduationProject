@@ -6,13 +6,13 @@
 #include "GameplayTagContainer.h"
 #include "CAttributeComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewHealth, float, Delta);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewRage, float, Delta);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewHealth, int, Delta);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewRage, int, Delta);
 
 //Säga till visualeffectcomp att något har ändrats(repl relaterat)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActiveGamePlayTagsChanged);
 //Alternative: Share the same signature with generic names.
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAttributeChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, float, NewValue, float, Delta);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAttributeChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewValue, int, Delta);
 
 
 UCLASS(BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -37,8 +37,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnActiveGamePlayTagsChanged OnActiveGamePlayTagsChanged;
-
-	// min container == activegameplaytags(attr)
+	
 	
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes", meta = (DisplayName = "IsAlive"))
@@ -73,10 +72,8 @@ protected:
 	//bool bIsAlive;
 
 	UFUNCTION(NetMulticast, Reliable) //NOTE: could mark as unreliable once moving the 'state' out of character(eg. once its cosmetic only).
-	void MulticastHealthChanged(AActor* InstigatorActor, float NewHealth, float Delta);
+	void MulticastHealthChanged(AActor* InstigatorActor, int NewHealth, int Delta);
 
-	UFUNCTION(NetMulticast, Unreliable) // Used for cosmetic changes only
-	void MulticastRageChanged(AActor* InstigatorActor, float NewRage, float Delta);
 
 public:
 
@@ -90,10 +87,13 @@ public:
 	bool IsFullHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	float GetHealth() const;
+	int GetHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	float GetBaseHealth() const;
+	void SetHealth(int NewHealth);
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	int GetBaseHealth() const;
 
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnAttributeChanged OnHealthChanged;
@@ -103,19 +103,8 @@ public:
 
 	//Passing in the difference we want applied. Return if the change actually succeeded.
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	void ApplyTagWithDuration(FGameplayTag InTag, int Duration);
-
-	// UFUNCTION(BlueprintCallable)
-	// float GetRage() const;
-	//
-	// UFUNCTION(BlueprintCallable, Category = "Attributes")
-	// bool ApplyRage(AActor* InstigatorActor, float Delta);
-
-	//Testing:
-	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	//FRuntimeFloatCurve Curve;
+	bool ApplyHealthChange(AActor* InstigatorActor, int Delta);
+	
+	
 	
 };
