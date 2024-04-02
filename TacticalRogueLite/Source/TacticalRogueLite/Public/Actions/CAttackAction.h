@@ -23,6 +23,9 @@ protected:
 	
 	UPROPERTY()
 	ACUnit* TargetUnit;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	int DamageAmount = 1;
 
 	int OldHealth;
 

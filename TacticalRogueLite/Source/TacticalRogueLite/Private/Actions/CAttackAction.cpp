@@ -18,7 +18,7 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	OldHealth = Attributes->GetHealth();
 	
-	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), 2); 
+	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount); 
 }
 
 void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
