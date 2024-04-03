@@ -2,7 +2,8 @@
 
 #include "NativeGameplayTags.h"
 
-
+namespace SharedGameplayTags
+{
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Level_IsCurrentLevel);
 	
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Pawn_IsPlayer);
