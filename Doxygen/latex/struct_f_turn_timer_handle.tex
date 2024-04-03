@@ -7,29 +7,14 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{struct_f_turn_timer_handle_a37173e040fa73e54635425ab6ea4eb64}{Is\+Valid}} ()
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
+\mbox{\hyperlink{struct_f_turn_timer_handle_abfb7b7f428250c098eb5debda0af70d9}{FTurn\+Timer\+Handle}} ()
 \item 
-FOn\+Turn\+Timer\+Execute \mbox{\hyperlink{struct_f_turn_timer_handle_a7791c66dc1f0a6fb86994746ad977b0a}{On\+Turn\+Timer\+Execute}}
+\mbox{\hyperlink{struct_f_turn_timer_handle_a4a2543043081d32e5435613fd8247c67}{FTurn\+Timer\+Handle}} (uint32 ID)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 uint32 \mbox{\hyperlink{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe}{Timer\+ID}} = 0
-\item 
-uint8 \mbox{\hyperlink{struct_f_turn_timer_handle_a2cccd42c47dac6f4b962492efaa3e609}{Number\+Of\+Turns}} = 0
-\item 
-uint8 \mbox{\hyperlink{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}{Turns\+Remaining}} = 0
-\item 
-bool \mbox{\hyperlink{struct_f_turn_timer_handle_a4265fa1f7b26da4415c242a8263f8fde}{b\+Looping}} = false
-\item 
-\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} \mbox{\hyperlink{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341}{Progress\+Turn\+Method}} = \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EProgress\+Turn\+Method\+::\+EPTM\+\_\+\+None}}
-\item 
-\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}{Affected\+Unit}}
-\item 
-bool \mbox{\hyperlink{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe}{b\+Is\+Valid}} = false
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -38,12 +23,18 @@ class \mbox{\hyperlink{struct_f_turn_timer_handle_a1928d0721addb454987190d7b97c0
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Member Function Documentation}
-\Hypertarget{struct_f_turn_timer_handle_a37173e040fa73e54635425ab6ea4eb64}\label{struct_f_turn_timer_handle_a37173e040fa73e54635425ab6ea4eb64} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!IsValid@{IsValid}}
-\index{IsValid@{IsValid}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{IsValid()}{IsValid()}}
-{\footnotesize\ttfamily bool FTurn\+Timer\+Handle\+::\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_f_turn_timer_handle_abfb7b7f428250c098eb5debda0af70d9}\label{struct_f_turn_timer_handle_abfb7b7f428250c098eb5debda0af70d9} 
+\index{FTurnTimerHandle@{FTurnTimerHandle}!FTurnTimerHandle@{FTurnTimerHandle}}
+\index{FTurnTimerHandle@{FTurnTimerHandle}!FTurnTimerHandle@{FTurnTimerHandle}}
+\doxysubsubsection{\texorpdfstring{FTurnTimerHandle()}{FTurnTimerHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTurn\+Timer\+Handle\+::\+FTurn\+Timer\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_f_turn_timer_handle_a4a2543043081d32e5435613fd8247c67}\label{struct_f_turn_timer_handle_a4a2543043081d32e5435613fd8247c67} 
+\index{FTurnTimerHandle@{FTurnTimerHandle}!FTurnTimerHandle@{FTurnTimerHandle}}
+\index{FTurnTimerHandle@{FTurnTimerHandle}!FTurnTimerHandle@{FTurnTimerHandle}}
+\doxysubsubsection{\texorpdfstring{FTurnTimerHandle()}{FTurnTimerHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTurn\+Timer\+Handle\+::\+FTurn\+Timer\+Handle (\begin{DoxyParamCaption}\item[{uint32}]{ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -57,53 +48,11 @@ class \mbox{\hyperlink{struct_f_turn_timer_handle_a1928d0721addb454987190d7b97c0
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5}\label{struct_f_turn_timer_handle_a66599d56d04c125bb49ad8d6ab7c34a5} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!AffectedUnit@{AffectedUnit}}
-\index{AffectedUnit@{AffectedUnit}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{AffectedUnit}{AffectedUnit}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*} FTurn\+Timer\+Handle\+::\+Affected\+Unit\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe}\label{struct_f_turn_timer_handle_aa56cb20024c89dd8cf1459d63c2d65fe} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!bIsValid@{bIsValid}}
-\index{bIsValid@{bIsValid}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{bIsValid}{bIsValid}}
-{\footnotesize\ttfamily bool FTurn\+Timer\+Handle\+::b\+Is\+Valid = false\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{struct_f_turn_timer_handle_a4265fa1f7b26da4415c242a8263f8fde}\label{struct_f_turn_timer_handle_a4265fa1f7b26da4415c242a8263f8fde} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!bLooping@{bLooping}}
-\index{bLooping@{bLooping}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{bLooping}{bLooping}}
-{\footnotesize\ttfamily bool FTurn\+Timer\+Handle\+::b\+Looping = false\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{struct_f_turn_timer_handle_a2cccd42c47dac6f4b962492efaa3e609}\label{struct_f_turn_timer_handle_a2cccd42c47dac6f4b962492efaa3e609} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!NumberOfTurns@{NumberOfTurns}}
-\index{NumberOfTurns@{NumberOfTurns}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{NumberOfTurns}{NumberOfTurns}}
-{\footnotesize\ttfamily uint8 FTurn\+Timer\+Handle\+::\+Number\+Of\+Turns = 0\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{struct_f_turn_timer_handle_a7791c66dc1f0a6fb86994746ad977b0a}\label{struct_f_turn_timer_handle_a7791c66dc1f0a6fb86994746ad977b0a} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!OnTurnTimerExecute@{OnTurnTimerExecute}}
-\index{OnTurnTimerExecute@{OnTurnTimerExecute}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{OnTurnTimerExecute}{OnTurnTimerExecute}}
-{\footnotesize\ttfamily FOn\+Turn\+Timer\+Execute FTurn\+Timer\+Handle\+::\+On\+Turn\+Timer\+Execute}
-
-\Hypertarget{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341}\label{struct_f_turn_timer_handle_ae7d31c88bbb98cf196e76820af6b6341} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!ProgressTurnMethod@{ProgressTurnMethod}}
-\index{ProgressTurnMethod@{ProgressTurnMethod}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{ProgressTurnMethod}{ProgressTurnMethod}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} FTurn\+Timer\+Handle\+::\+Progress\+Turn\+Method = \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EProgress\+Turn\+Method\+::\+EPTM\+\_\+\+None}}\hspace{0.3cm}{\ttfamily [protected]}}
-
 \Hypertarget{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe}\label{struct_f_turn_timer_handle_ad3bc11b74f95d349ebbc6796ec23aebe} 
 \index{FTurnTimerHandle@{FTurnTimerHandle}!TimerID@{TimerID}}
 \index{TimerID@{TimerID}!FTurnTimerHandle@{FTurnTimerHandle}}
 \doxysubsubsection{\texorpdfstring{TimerID}{TimerID}}
 {\footnotesize\ttfamily uint32 FTurn\+Timer\+Handle\+::\+Timer\+ID = 0\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd}\label{struct_f_turn_timer_handle_a641ae353f4f0e19e354d8a30dd6776bd} 
-\index{FTurnTimerHandle@{FTurnTimerHandle}!TurnsRemaining@{TurnsRemaining}}
-\index{TurnsRemaining@{TurnsRemaining}!FTurnTimerHandle@{FTurnTimerHandle}}
-\doxysubsubsection{\texorpdfstring{TurnsRemaining}{TurnsRemaining}}
-{\footnotesize\ttfamily uint8 FTurn\+Timer\+Handle\+::\+Turns\+Remaining = 0\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

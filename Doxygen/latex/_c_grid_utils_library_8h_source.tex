@@ -8,28 +8,39 @@
 \DoxyCodeLine{00004\ }
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Kismet/BlueprintFunctionLibrary.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CGridUtilsLibrary.generated.h"{}}}
-\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shared_game_play_tags_8h}{GamePlayTags/SharedGamePlayTags.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}CGridUtilsLibrary.generated.h"{}}}
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_item}{UCItem}};}
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
-\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }UCItem;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
 \DoxyCodeLine{00013\ }
-\DoxyCodeLine{00017\ UCLASS(BlueprintType)}
-\DoxyCodeLine{00018\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_grid_utils_library}{UCGridUtilsLibrary}}\ :\ public\ UBlueprintFunctionLibrary}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00023\ \ \ \ \ UFUNCTION(ScriptCallable)}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FVector2D>\ StraightDirections();}
-\DoxyCodeLine{00025\ \ \ \ \ UFUNCTION(ScriptCallable)}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FVector2D>\ DiagonalDirections();}
-\DoxyCodeLine{00027\ \ \ \ \ UFUNCTION(ScriptCallable)}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ TArray<ACGridTile*>\ BFS\_Pathfinding(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inStart,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTarget);}
-\DoxyCodeLine{00029\ \ \ \ \ UFUNCTION(ScriptCallable)}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ TSet<ACGridTile*>\ FloodFill(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inStart,\ \textcolor{keywordtype}{int}\ Depth);}
-\DoxyCodeLine{00031\ \ \ \ \ }
-\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ UCLASS(BlueprintType)}
+\DoxyCodeLine{00019\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_grid_utils_library}{UCGridUtilsLibrary}}\ :\ public\ UBlueprintFunctionLibrary}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ UFUNCTION(ScriptCallable)}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FVector2D>\ StraightDirections();}
+\DoxyCodeLine{00026\ \ \ \ \ UFUNCTION(ScriptCallable)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ TArray<FVector2D>\ DiagonalDirections();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ UFUNCTION(ScriptCallable)}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ static\ TArray<ACGridTile*>\ BFS\_Pathfinding(UCItem*\ inItem,\ ACGridTile*\ inStart,\ const\ ACGridTile*\ inTarget);}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ UFUNCTION(ScriptCallable)}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ static\ TSet<ACGridTile*>\ FloodFill(UCItem*\ inItem,\ ACGridTile*\ inStart,\ int\ Depth);}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//For\ example,\ MovementMethods\ can\ contain\ the\ tag\ "{}Movement\_Straight"{}\ and\ "{}Movement\_Diagonal"{}.}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//Or\ only\ "{}Movement\_Diagonal"{}}}
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION(ScriptCallable)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ TSet<ACGridTile*>\ FloodFill(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inStart,\ \textcolor{keywordtype}{int}\ Depth,\ FGameplayTagContainer\ MovementMethods\ =\ FGameplayTagContainer());}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ UFUNCTION(ScriptCallable)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ TSet<ACGridTile*>\ ReachableInSingleStep(FGameplayTagContainer\ MovementMethods,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \};}
 
 \end{DoxyCode}

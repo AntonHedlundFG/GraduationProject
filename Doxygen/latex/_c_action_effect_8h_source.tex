@@ -7,41 +7,38 @@
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CActionEffect.generated.h"{}}}
-\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_turn_timer_subsystem_8h}{Utility/TurnTimer/CTurnTimerSubsystem.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CActionEffect.generated.h"{}}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ UCLASS()}
-\DoxyCodeLine{00010\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_action_effect}{UCActionEffect}}\ :\ public\ \mbox{\hyperlink{class_u_c_action}{UCAction}}}
-\DoxyCodeLine{00011\ \{}
-\DoxyCodeLine{00012\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect}{UCActionEffect}}();}
-\DoxyCodeLine{00016\ \ \ \ \ }
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ StartAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{/*\ TODO:\ This\ should\ be\ an\ effect\ that\ uses\ a\ timer.\ When\ the\ timer\ is\ done}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*\ OnTimerFinished\ should\ be\ called.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00014\ UCLASS()}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_action_effect}{UCActionEffect}}\ :\ public\ \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ GENERATED\_BODY()}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ StopAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00020\ \ \ \ \ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//TODO:\ Time\ not\ relevant\ in\ this\ project.\ Turn\ into\ 'turns'.\ }}
-\DoxyCodeLine{00023\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Effect"{}})}
-\DoxyCodeLine{00024\ \ \ \ \ float\ Duration;}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//Time\ between\ 'ticks'\ to\ apply.\ Not\ relevant.\ }}
-\DoxyCodeLine{00027\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ "{}Effect"{})}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ Period;}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ FTimerHandle\ PeriodHandle;}
-\DoxyCodeLine{00031\ \ \ \ \ FTimerHandle\ DurationHandle;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Effect"{})}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ ExecuteEffect(AActor*\ Instigator);}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ public:}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ GetTimeRemaining()\ const;}
-\DoxyCodeLine{00040\ \ \ \ \ }
-\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_u_c_action_effect}{UCActionEffect}}();}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ StartAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ StopAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//TODO:\ Time\ not\ relevant\ in\ this\ project.\ Turn\ into\ 'turns'.\ }}
+\DoxyCodeLine{00028\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}Effect"{}})}
+\DoxyCodeLine{00029\ \ \ \ \ int\ DurationInTurns;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite,\ Category\ =\ "{}Effect"{})}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgressTurnMethod}}\ ProgressTurnMethod;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Effect"{})}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ OnTimerFinished(AActor*\ AffectedUnit);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00038\ \};}
 
 \end{DoxyCode}

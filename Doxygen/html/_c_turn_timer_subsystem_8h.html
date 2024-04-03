@@ -93,22 +93,24 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_turn_timer_handle.html">FTurnTimerHandle</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_turn_timer.html">FTurnTimer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_c_turn_timer_subsystem.html">UCTurnTimerSubsystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a3e81423897d558675395effb4cd98522" id="r_a3e81423897d558675395effb4cd98522"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e81423897d558675395effb4cd98522">EProgressTurnMethod</a> : uint8 { <a class="el" href="#a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e">EPTM_None</a>
-, <a class="el" href="#a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73">EPTM_StartOfTurn</a>
-, <a class="el" href="#a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc">EPTM_EndOfTurn</a>
-, <a class="el" href="#a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12">EPTM_Max</a>
+<tr class="memitem:a3e81423897d558675395effb4cd98522" id="r_a3e81423897d558675395effb4cd98522"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e81423897d558675395effb4cd98522">EProgressTurnMethod</a> : uint8 { <a class="el" href="#a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064">EPTM_None</a>
+, <a class="el" href="#a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6">EPTM_StartOfTurn</a>
+, <a class="el" href="#a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e">EPTM_EndOfTurn</a>
+, <a class="el" href="#a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b">EPTM_Max</a>
  }</td></tr>
 <tr class="separator:a3e81423897d558675395effb4cd98522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6b74c9338238a6920d3755639c7b7355" id="r_a6b74c9338238a6920d3755639c7b7355"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b74c9338238a6920d3755639c7b7355">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</a> (FOnTurnTimerExecute, <a class="el" href="class_a_c_unit.html">ACUnit</a> *, AffectedUnit)</td></tr>
-<tr class="separator:a6b74c9338238a6920d3755639c7b7355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b7b6abd947555868605d95b56d106a6" id="r_a3b7b6abd947555868605d95b56d106a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b7b6abd947555868605d95b56d106a6">DECLARE_DYNAMIC_DELEGATE_OneParam</a> (FOnTurnTimerExecute, <a class="el" href="class_a_c_unit.html">ACUnit</a> *, AffectedUnit)</td></tr>
+<tr class="separator:a3b7b6abd947555868605d95b56d106a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a3e81423897d558675395effb4cd98522" name="a3e81423897d558675395effb4cd98522"></a>
@@ -116,30 +118,38 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="#a3e81423897d558675395effb4cd98522">EProgressTurnMethod</a> : uint8</td>
+          <td class="memname">enum class <a class="el" href="#a3e81423897d558675395effb4cd98522">EProgressTurnMethod</a> : uint8</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e" name="a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e"></a>EPTM_None&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73" name="a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73"></a>EPTM_StartOfTurn&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc" name="a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc"></a>EPTM_EndOfTurn&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12" name="a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12"></a>EPTM_Max&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064" name="a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064"></a>EPTM_None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6" name="a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6"></a>EPTM_StartOfTurn&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e" name="a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e"></a>EPTM_EndOfTurn&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b" name="a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b"></a>EPTM_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a6b74c9338238a6920d3755639c7b7355" name="a6b74c9338238a6920d3755639c7b7355"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b74c9338238a6920d3755639c7b7355">&#9670;&#160;</a></span>DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam()</h2>
+<a id="a3b7b6abd947555868605d95b56d106a6" name="a3b7b6abd947555868605d95b56d106a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b7b6abd947555868605d95b56d106a6">&#9670;&#160;</a></span>DECLARE_DYNAMIC_DELEGATE_OneParam()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam </td>
+          <td class="memname">DECLARE_DYNAMIC_DELEGATE_OneParam </td>
           <td>(</td>
           <td class="paramtype">FOnTurnTimerExecute</td>          <td class="paramname"><span class="paramname">, </span></td>
         </tr>

@@ -1,0 +1,208 @@
+\doxysection{UCResizable\+Window Class Reference}
+\hypertarget{class_u_c_resizable_window}{}\label{class_u_c_resizable_window}\index{UCResizableWindow@{UCResizableWindow}}
+
+
+{\ttfamily \#include $<$CResizable\+Window.\+h$>$}
+
+Inheritance diagram for UCResizable\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_c_resizable_window}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a1ba0e65ea20ae57c2e01e2768fce2b31}{Update\+Scale}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a559b5dc8f45f70d38b438c0878c27a89}{Start\+Resize\+Timer}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a29c6f89c86e8961e851c3c7ccf1c215d}{On\+Diagonal\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a215263fafd1e5d0fe8138c3007a5f23f}{On\+Horizontal\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a29039726580a0b18f88ce42e945aa241}{On\+Vertical\+Pressed}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_c_resizable_window_a90fdf1d45efc817a44c84a1b14d12be8}{Set\+Up}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a409768f9b50593eea406c871870f6fa9}{Update\+Position}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_ace6f53a72521a649ec1eb3c156e9e531}{Start\+Move\+Timer}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a5ea511fad858cb813297730571e13bde}{On\+Header\+Button\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a069d566bda56a2a9ac29c88782226cd2}{Close}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a10911d26a0fcba640e27f63f8f32d8d2}{Open}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_resizable_window_a5c911d7fcbf48060074996e9ff12608c}{Diagonal\+Button}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_resizable_window_a5777cda7d8b51dd7d465624469093af2}{Horizontal\+Button}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_resizable_window_a1a0c5fde485c17cb534ee9716687e452}{Vertical\+Button}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_movable_window_a00bf71fd5aa652b9d357b8ec0faf9043}{b\+Is\+Open}} = false
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_adf6c82419b1fb27066568913c80bdc11}{Window\+Min\+Size}} = FVector2D(200,200)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_af970495b645674d5083800d40dc0b4a9}{Window\+Max\+Size}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a56226af27ffc789a677cd66ca926a296}{Header\+Button}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a0a87657a9a97d9d9c8db781e05f97e73}{Close\+Button}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a51c9b3a33edcb32041237aafc807dea9}{Canvas\+Panel\+Wrapper}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7e498f4fe2b88dd3cbf40c609e66e454}{Main\+Canvas}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a902ebd3ef3ace6dcf8d4d1ffcebf6a8f}{On\+Window\+Close}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a479cb6a8cc9998ab1e56db92e6e8f58e}{On\+Window\+Open}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_ae3108289552d2b0a2edf5088a6596c17}{Close\+Sound}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7a8e1e93a40c1cc86966b21471c30545}{Open\+Sound}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a7c3343f6be55a70edb1c0b3532cef88f}{Clear\+Resize\+Timer}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_resizable_window_a039e0da50173cf124d25757b31801dd8}{Set\+Click\+Difference}} ()
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_resizable_window_a284741d29b5c3334d65013c687c2e840}{Get\+New\+Canvas\+Scale}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_resizable_window_ae74831343f69039a5ea9d87773501e8c}{resize\+Timer\+Handle}}
+\item 
+\mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26}{EResize\+Type}} \mbox{\hyperlink{class_u_c_resizable_window_ac15a8b4437e7eb19612da6353dd1d0c7}{Scaling\+Type}} = None
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_resizable_window_a7812f7eb2c8f0c9597f1cba0e49768b9}{Click\+Difference}} = FVector2\+D\+::\+Zero()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a82c0776ef18f94c9f4c0ad6f4ab625cf}{Clamp\+Window\+Size}} (FVector2D vector)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a80ec5fa8bf18d8abfa86644f792882f4}{Get\+Mouse\+Position}} ()
+\item 
+UCanvas\+Panel\+Slot \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a33babeedb5c10a96058968b2d677eb2f}{Get\+Canvas\+Panel\+Slot}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_resizable_window_a7c3343f6be55a70edb1c0b3532cef88f}\label{class_u_c_resizable_window_a7c3343f6be55a70edb1c0b3532cef88f} 
+\index{UCResizableWindow@{UCResizableWindow}!ClearResizeTimer@{ClearResizeTimer}}
+\index{ClearResizeTimer@{ClearResizeTimer}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{ClearResizeTimer()}{ClearResizeTimer()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+Clear\+Resize\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_a284741d29b5c3334d65013c687c2e840}\label{class_u_c_resizable_window_a284741d29b5c3334d65013c687c2e840} 
+\index{UCResizableWindow@{UCResizableWindow}!GetNewCanvasScale@{GetNewCanvasScale}}
+\index{GetNewCanvasScale@{GetNewCanvasScale}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{GetNewCanvasScale()}{GetNewCanvasScale()}}
+{\footnotesize\ttfamily FVector2D UCResizable\+Window\+::\+Get\+New\+Canvas\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_a29c6f89c86e8961e851c3c7ccf1c215d}\label{class_u_c_resizable_window_a29c6f89c86e8961e851c3c7ccf1c215d} 
+\index{UCResizableWindow@{UCResizableWindow}!OnDiagonalPressed@{OnDiagonalPressed}}
+\index{OnDiagonalPressed@{OnDiagonalPressed}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{OnDiagonalPressed()}{OnDiagonalPressed()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+On\+Diagonal\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_resizable_window_a215263fafd1e5d0fe8138c3007a5f23f}\label{class_u_c_resizable_window_a215263fafd1e5d0fe8138c3007a5f23f} 
+\index{UCResizableWindow@{UCResizableWindow}!OnHorizontalPressed@{OnHorizontalPressed}}
+\index{OnHorizontalPressed@{OnHorizontalPressed}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{OnHorizontalPressed()}{OnHorizontalPressed()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+On\+Horizontal\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_resizable_window_a29039726580a0b18f88ce42e945aa241}\label{class_u_c_resizable_window_a29039726580a0b18f88ce42e945aa241} 
+\index{UCResizableWindow@{UCResizableWindow}!OnVerticalPressed@{OnVerticalPressed}}
+\index{OnVerticalPressed@{OnVerticalPressed}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{OnVerticalPressed()}{OnVerticalPressed()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+On\+Vertical\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_resizable_window_a039e0da50173cf124d25757b31801dd8}\label{class_u_c_resizable_window_a039e0da50173cf124d25757b31801dd8} 
+\index{UCResizableWindow@{UCResizableWindow}!SetClickDifference@{SetClickDifference}}
+\index{SetClickDifference@{SetClickDifference}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{SetClickDifference()}{SetClickDifference()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+Set\+Click\+Difference (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_a90fdf1d45efc817a44c84a1b14d12be8}\label{class_u_c_resizable_window_a90fdf1d45efc817a44c84a1b14d12be8} 
+\index{UCResizableWindow@{UCResizableWindow}!SetUp@{SetUp}}
+\index{SetUp@{SetUp}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{SetUp()}{SetUp()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_movable_window_a8c633b826558a04cab482e2421f90d52}{UCMovable\+Window}}.
+
+\Hypertarget{class_u_c_resizable_window_a559b5dc8f45f70d38b438c0878c27a89}\label{class_u_c_resizable_window_a559b5dc8f45f70d38b438c0878c27a89} 
+\index{UCResizableWindow@{UCResizableWindow}!StartResizeTimer@{StartResizeTimer}}
+\index{StartResizeTimer@{StartResizeTimer}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{StartResizeTimer()}{StartResizeTimer()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+Start\+Resize\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_resizable_window_a1ba0e65ea20ae57c2e01e2768fce2b31}\label{class_u_c_resizable_window_a1ba0e65ea20ae57c2e01e2768fce2b31} 
+\index{UCResizableWindow@{UCResizableWindow}!UpdateScale@{UpdateScale}}
+\index{UpdateScale@{UpdateScale}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{UpdateScale()}{UpdateScale()}}
+{\footnotesize\ttfamily void UCResizable\+Window\+::\+Update\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_resizable_window_a7812f7eb2c8f0c9597f1cba0e49768b9}\label{class_u_c_resizable_window_a7812f7eb2c8f0c9597f1cba0e49768b9} 
+\index{UCResizableWindow@{UCResizableWindow}!ClickDifference@{ClickDifference}}
+\index{ClickDifference@{ClickDifference}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{ClickDifference}{ClickDifference}}
+{\footnotesize\ttfamily FVector2D UCResizable\+Window\+::\+Click\+Difference = FVector2\+D\+::\+Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_a5c911d7fcbf48060074996e9ff12608c}\label{class_u_c_resizable_window_a5c911d7fcbf48060074996e9ff12608c} 
+\index{UCResizableWindow@{UCResizableWindow}!DiagonalButton@{DiagonalButton}}
+\index{DiagonalButton@{DiagonalButton}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{DiagonalButton}{DiagonalButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UCResizable\+Window\+::\+Diagonal\+Button}
+
+\Hypertarget{class_u_c_resizable_window_a5777cda7d8b51dd7d465624469093af2}\label{class_u_c_resizable_window_a5777cda7d8b51dd7d465624469093af2} 
+\index{UCResizableWindow@{UCResizableWindow}!HorizontalButton@{HorizontalButton}}
+\index{HorizontalButton@{HorizontalButton}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{HorizontalButton}{HorizontalButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UCResizable\+Window\+::\+Horizontal\+Button}
+
+\Hypertarget{class_u_c_resizable_window_ae74831343f69039a5ea9d87773501e8c}\label{class_u_c_resizable_window_ae74831343f69039a5ea9d87773501e8c} 
+\index{UCResizableWindow@{UCResizableWindow}!resizeTimerHandle@{resizeTimerHandle}}
+\index{resizeTimerHandle@{resizeTimerHandle}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{resizeTimerHandle}{resizeTimerHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCResizable\+Window\+::resize\+Timer\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_ac15a8b4437e7eb19612da6353dd1d0c7}\label{class_u_c_resizable_window_ac15a8b4437e7eb19612da6353dd1d0c7} 
+\index{UCResizableWindow@{UCResizableWindow}!ScalingType@{ScalingType}}
+\index{ScalingType@{ScalingType}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{ScalingType}{ScalingType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26}{EResize\+Type}} UCResizable\+Window\+::\+Scaling\+Type = None\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_resizable_window_a1a0c5fde485c17cb534ee9716687e452}\label{class_u_c_resizable_window_a1a0c5fde485c17cb534ee9716687e452} 
+\index{UCResizableWindow@{UCResizableWindow}!VerticalButton@{VerticalButton}}
+\index{VerticalButton@{VerticalButton}!UCResizableWindow@{UCResizableWindow}}
+\doxysubsubsection{\texorpdfstring{VerticalButton}{VerticalButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UCResizable\+Window\+::\+Vertical\+Button}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+UI/\mbox{\hyperlink{_c_resizable_window_8h}{CResizable\+Window.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_c_resizable_window_8cpp}{CResizable\+Window.\+cpp}}\end{DoxyCompactItemize}

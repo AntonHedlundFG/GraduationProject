@@ -1,0 +1,227 @@
+\doxysection{UCMovable\+Window Class Reference}
+\hypertarget{class_u_c_movable_window}{}\label{class_u_c_movable_window}\index{UCMovableWindow@{UCMovableWindow}}
+
+
+{\ttfamily \#include $<$CMovable\+Window.\+h$>$}
+
+Inheritance diagram for UCMovable\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_c_movable_window}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_movable_window_a8c633b826558a04cab482e2421f90d52}{Set\+Up}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a409768f9b50593eea406c871870f6fa9}{Update\+Position}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_ace6f53a72521a649ec1eb3c156e9e531}{Start\+Move\+Timer}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a5ea511fad858cb813297730571e13bde}{On\+Header\+Button\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a069d566bda56a2a9ac29c88782226cd2}{Close}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a10911d26a0fcba640e27f63f8f32d8d2}{Open}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_movable_window_a00bf71fd5aa652b9d357b8ec0faf9043}{b\+Is\+Open}} = false
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_adf6c82419b1fb27066568913c80bdc11}{Window\+Min\+Size}} = FVector2D(200,200)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_af970495b645674d5083800d40dc0b4a9}{Window\+Max\+Size}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a56226af27ffc789a677cd66ca926a296}{Header\+Button}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a0a87657a9a97d9d9c8db781e05f97e73}{Close\+Button}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a51c9b3a33edcb32041237aafc807dea9}{Canvas\+Panel\+Wrapper}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7e498f4fe2b88dd3cbf40c609e66e454}{Main\+Canvas}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a902ebd3ef3ace6dcf8d4d1ffcebf6a8f}{On\+Window\+Close}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a479cb6a8cc9998ab1e56db92e6e8f58e}{On\+Window\+Open}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_ae3108289552d2b0a2edf5088a6596c17}{Close\+Sound}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7a8e1e93a40c1cc86966b21471c30545}{Open\+Sound}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a82c0776ef18f94c9f4c0ad6f4ab625cf}{Clamp\+Window\+Size}} (FVector2D vector)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a80ec5fa8bf18d8abfa86644f792882f4}{Get\+Mouse\+Position}} ()
+\item 
+UCanvas\+Panel\+Slot \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a33babeedb5c10a96058968b2d677eb2f}{Get\+Canvas\+Panel\+Slot}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a0fdb3416f44e06d8689342d272af20a4}{Clear\+Move\+Timer}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_movable_window_a7acebcec1254ae161ba416ff83d88b5d}{move\+Timer\+Handle}}
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a498c8c91164373bb2c900e049538fdf7}{Click\+Difference\+\_\+\+Movable}} = FVector2\+D\+::\+Zero()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_movable_window_a82c0776ef18f94c9f4c0ad6f4ab625cf}\label{class_u_c_movable_window_a82c0776ef18f94c9f4c0ad6f4ab625cf} 
+\index{UCMovableWindow@{UCMovableWindow}!ClampWindowSize@{ClampWindowSize}}
+\index{ClampWindowSize@{ClampWindowSize}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{ClampWindowSize()}{ClampWindowSize()}}
+{\footnotesize\ttfamily FVector2D UCMovable\+Window\+::\+Clamp\+Window\+Size (\begin{DoxyParamCaption}\item[{FVector2D}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_movable_window_a0fdb3416f44e06d8689342d272af20a4}\label{class_u_c_movable_window_a0fdb3416f44e06d8689342d272af20a4} 
+\index{UCMovableWindow@{UCMovableWindow}!ClearMoveTimer@{ClearMoveTimer}}
+\index{ClearMoveTimer@{ClearMoveTimer}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{ClearMoveTimer()}{ClearMoveTimer()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Clear\+Move\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_movable_window_a069d566bda56a2a9ac29c88782226cd2}\label{class_u_c_movable_window_a069d566bda56a2a9ac29c88782226cd2} 
+\index{UCMovableWindow@{UCMovableWindow}!Close@{Close}}
+\index{Close@{Close}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_movable_window_a33babeedb5c10a96058968b2d677eb2f}\label{class_u_c_movable_window_a33babeedb5c10a96058968b2d677eb2f} 
+\index{UCMovableWindow@{UCMovableWindow}!GetCanvasPanelSlot@{GetCanvasPanelSlot}}
+\index{GetCanvasPanelSlot@{GetCanvasPanelSlot}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{GetCanvasPanelSlot()}{GetCanvasPanelSlot()}}
+{\footnotesize\ttfamily UCanvas\+Panel\+Slot \texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Get\+Canvas\+Panel\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_movable_window_a80ec5fa8bf18d8abfa86644f792882f4}\label{class_u_c_movable_window_a80ec5fa8bf18d8abfa86644f792882f4} 
+\index{UCMovableWindow@{UCMovableWindow}!GetMousePosition@{GetMousePosition}}
+\index{GetMousePosition@{GetMousePosition}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{GetMousePosition()}{GetMousePosition()}}
+{\footnotesize\ttfamily FVector2D UCMovable\+Window\+::\+Get\+Mouse\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_movable_window_a5ea511fad858cb813297730571e13bde}\label{class_u_c_movable_window_a5ea511fad858cb813297730571e13bde} 
+\index{UCMovableWindow@{UCMovableWindow}!OnHeaderButtonPressed@{OnHeaderButtonPressed}}
+\index{OnHeaderButtonPressed@{OnHeaderButtonPressed}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{OnHeaderButtonPressed()}{OnHeaderButtonPressed()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+On\+Header\+Button\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_movable_window_a10911d26a0fcba640e27f63f8f32d8d2}\label{class_u_c_movable_window_a10911d26a0fcba640e27f63f8f32d8d2} 
+\index{UCMovableWindow@{UCMovableWindow}!Open@{Open}}
+\index{Open@{Open}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{Open()}{Open()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_movable_window_a8c633b826558a04cab482e2421f90d52}\label{class_u_c_movable_window_a8c633b826558a04cab482e2421f90d52} 
+\index{UCMovableWindow@{UCMovableWindow}!SetUp@{SetUp}}
+\index{SetUp@{SetUp}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{SetUp()}{SetUp()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_c_resizable_window_a90fdf1d45efc817a44c84a1b14d12be8}{UCResizable\+Window}}, and \mbox{\hyperlink{class_u_game_menu_widget_acaa9692f7204b8dd677d3cfc2d6c9f59}{UGame\+Menu\+Widget}}.
+
+\Hypertarget{class_u_c_movable_window_ace6f53a72521a649ec1eb3c156e9e531}\label{class_u_c_movable_window_ace6f53a72521a649ec1eb3c156e9e531} 
+\index{UCMovableWindow@{UCMovableWindow}!StartMoveTimer@{StartMoveTimer}}
+\index{StartMoveTimer@{StartMoveTimer}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{StartMoveTimer()}{StartMoveTimer()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Start\+Move\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_movable_window_a409768f9b50593eea406c871870f6fa9}\label{class_u_c_movable_window_a409768f9b50593eea406c871870f6fa9} 
+\index{UCMovableWindow@{UCMovableWindow}!UpdatePosition@{UpdatePosition}}
+\index{UpdatePosition@{UpdatePosition}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{UpdatePosition()}{UpdatePosition()}}
+{\footnotesize\ttfamily void UCMovable\+Window\+::\+Update\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_movable_window_a00bf71fd5aa652b9d357b8ec0faf9043}\label{class_u_c_movable_window_a00bf71fd5aa652b9d357b8ec0faf9043} 
+\index{UCMovableWindow@{UCMovableWindow}!bIsOpen@{bIsOpen}}
+\index{bIsOpen@{bIsOpen}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{bIsOpen}{bIsOpen}}
+{\footnotesize\ttfamily bool UCMovable\+Window\+::b\+Is\+Open = false}
+
+\Hypertarget{class_u_c_movable_window_a51c9b3a33edcb32041237aafc807dea9}\label{class_u_c_movable_window_a51c9b3a33edcb32041237aafc807dea9} 
+\index{UCMovableWindow@{UCMovableWindow}!CanvasPanelWrapper@{CanvasPanelWrapper}}
+\index{CanvasPanelWrapper@{CanvasPanelWrapper}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{CanvasPanelWrapper}{CanvasPanelWrapper}}
+{\footnotesize\ttfamily UCanvas\+Panel\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Canvas\+Panel\+Wrapper}
+
+\Hypertarget{class_u_c_movable_window_a498c8c91164373bb2c900e049538fdf7}\label{class_u_c_movable_window_a498c8c91164373bb2c900e049538fdf7} 
+\index{UCMovableWindow@{UCMovableWindow}!ClickDifference\_Movable@{ClickDifference\_Movable}}
+\index{ClickDifference\_Movable@{ClickDifference\_Movable}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{ClickDifference\_Movable}{ClickDifference\_Movable}}
+{\footnotesize\ttfamily FVector2D UCMovable\+Window\+::\+Click\+Difference\+\_\+\+Movable = FVector2\+D\+::\+Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_movable_window_a0a87657a9a97d9d9c8db781e05f97e73}\label{class_u_c_movable_window_a0a87657a9a97d9d9c8db781e05f97e73} 
+\index{UCMovableWindow@{UCMovableWindow}!CloseButton@{CloseButton}}
+\index{CloseButton@{CloseButton}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{CloseButton}{CloseButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Close\+Button}
+
+\Hypertarget{class_u_c_movable_window_ae3108289552d2b0a2edf5088a6596c17}\label{class_u_c_movable_window_ae3108289552d2b0a2edf5088a6596c17} 
+\index{UCMovableWindow@{UCMovableWindow}!CloseSound@{CloseSound}}
+\index{CloseSound@{CloseSound}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{CloseSound}{CloseSound}}
+{\footnotesize\ttfamily USound\+Cue\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Close\+Sound}
+
+\Hypertarget{class_u_c_movable_window_a56226af27ffc789a677cd66ca926a296}\label{class_u_c_movable_window_a56226af27ffc789a677cd66ca926a296} 
+\index{UCMovableWindow@{UCMovableWindow}!HeaderButton@{HeaderButton}}
+\index{HeaderButton@{HeaderButton}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{HeaderButton}{HeaderButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Header\+Button}
+
+\Hypertarget{class_u_c_movable_window_a7e498f4fe2b88dd3cbf40c609e66e454}\label{class_u_c_movable_window_a7e498f4fe2b88dd3cbf40c609e66e454} 
+\index{UCMovableWindow@{UCMovableWindow}!MainCanvas@{MainCanvas}}
+\index{MainCanvas@{MainCanvas}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{MainCanvas}{MainCanvas}}
+{\footnotesize\ttfamily UCanvas\+Panel\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Main\+Canvas}
+
+\Hypertarget{class_u_c_movable_window_a7acebcec1254ae161ba416ff83d88b5d}\label{class_u_c_movable_window_a7acebcec1254ae161ba416ff83d88b5d} 
+\index{UCMovableWindow@{UCMovableWindow}!moveTimerHandle@{moveTimerHandle}}
+\index{moveTimerHandle@{moveTimerHandle}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{moveTimerHandle}{moveTimerHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCMovable\+Window\+::move\+Timer\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_movable_window_a902ebd3ef3ace6dcf8d4d1ffcebf6a8f}\label{class_u_c_movable_window_a902ebd3ef3ace6dcf8d4d1ffcebf6a8f} 
+\index{UCMovableWindow@{UCMovableWindow}!OnWindowClose@{OnWindowClose}}
+\index{OnWindowClose@{OnWindowClose}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{OnWindowClose}{OnWindowClose}}
+{\footnotesize\ttfamily FOn\+Change UCMovable\+Window\+::\+On\+Window\+Close}
+
+\Hypertarget{class_u_c_movable_window_a479cb6a8cc9998ab1e56db92e6e8f58e}\label{class_u_c_movable_window_a479cb6a8cc9998ab1e56db92e6e8f58e} 
+\index{UCMovableWindow@{UCMovableWindow}!OnWindowOpen@{OnWindowOpen}}
+\index{OnWindowOpen@{OnWindowOpen}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{OnWindowOpen}{OnWindowOpen}}
+{\footnotesize\ttfamily FOn\+Change UCMovable\+Window\+::\+On\+Window\+Open}
+
+\Hypertarget{class_u_c_movable_window_a7a8e1e93a40c1cc86966b21471c30545}\label{class_u_c_movable_window_a7a8e1e93a40c1cc86966b21471c30545} 
+\index{UCMovableWindow@{UCMovableWindow}!OpenSound@{OpenSound}}
+\index{OpenSound@{OpenSound}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{OpenSound}{OpenSound}}
+{\footnotesize\ttfamily USound\+Cue\texorpdfstring{$\ast$}{*} UCMovable\+Window\+::\+Open\+Sound}
+
+\Hypertarget{class_u_c_movable_window_af970495b645674d5083800d40dc0b4a9}\label{class_u_c_movable_window_af970495b645674d5083800d40dc0b4a9} 
+\index{UCMovableWindow@{UCMovableWindow}!WindowMaxSize@{WindowMaxSize}}
+\index{WindowMaxSize@{WindowMaxSize}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{WindowMaxSize}{WindowMaxSize}}
+{\footnotesize\ttfamily FVector2D UCMovable\+Window\+::\+Window\+Max\+Size}
+
+\Hypertarget{class_u_c_movable_window_adf6c82419b1fb27066568913c80bdc11}\label{class_u_c_movable_window_adf6c82419b1fb27066568913c80bdc11} 
+\index{UCMovableWindow@{UCMovableWindow}!WindowMinSize@{WindowMinSize}}
+\index{WindowMinSize@{WindowMinSize}!UCMovableWindow@{UCMovableWindow}}
+\doxysubsubsection{\texorpdfstring{WindowMinSize}{WindowMinSize}}
+{\footnotesize\ttfamily FVector2D UCMovable\+Window\+::\+Window\+Min\+Size = FVector2D(200,200)}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+UI/\mbox{\hyperlink{_c_movable_window_8h}{CMovable\+Window.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_c_movable_window_8cpp}{CMovable\+Window.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,107 @@
+\doxysection{Log\+Manager.\+h}
+\hypertarget{_log_manager_8h_source}{}\label{_log_manager_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/LogManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/LogManager.h}}
+\mbox{\hyperlink{_log_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ FLogger:\ A\ thread-\/safe,\ asynchronous\ logging\ class}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_log_manager}{LogManager}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Public\ API\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ log\ message\ to\ the\ queue\ for\ processing}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a3772660ba34d65de9e2e9c8998cd187c}{Log}}(\textcolor{keyword}{const}\ std::string\&\ Message);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Reads\ all\ log\ entries\ from\ the\ current\ log\ file}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{class_log_manager_a8a3e0d656020daf7c078e6cf9dfbb6b6}{ReadLog}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Get\ one\ of\ the\ most\ recent\ log\ entries,\ returns\ an\ empty\ string\ if\ the\ ID\ is\ invalid}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_log_manager_a6e12d9bd9c11edad5bd5f3e09e5b4a37}{GetRecentLogEntry}}(int64\_t\ logID);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Rotates\ the\ log\ file\ by\ closing\ the\ current\ one\ and\ creating\ a\ new\ one}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a82e6134160636e95d04af504fb8fda8a}{RotateLogFile}}();}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Initializes\ the\ logger\ by\ creating\ the\ log\ file\ and\ starting\ the\ worker\ thread}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_ae57117b0dc4964f5d6856eba63c570de}{Initialize}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Shuts\ down\ the\ logger\ by\ closing\ the\ log\ file\ and\ stopping\ the\ worker\ thread}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a63327449a44035f69f3f3536cc335a66}{ShutDown}}();}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Constructor/Destructor}}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_log_manager_aedab1387b9084cd125446f3b8d82861f}{LogManager}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_log_manager_a7e6291dd344ad467c049c39f65f6897c}{\string~LogManager}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Prevent\ copying\ and\ assignment}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_log_manager_a4e36ec4436338ae0c50f9ea05eb7b388}{LogManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_log_manager}{LogManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_log_manager}{LogManager}}\&\ \mbox{\hyperlink{class_log_manager_a3813eab1ec0ba85c213efc092a60259a}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_log_manager}{LogManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ File\ management\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Logs\ a\ message\ to\ the\ log\ file}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_ab4b6e03fba0a2009f2a9068064792c0b}{WriteToLog}}(std::string\&\ Message);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ current\ log\ file\ path\ or\ generates\ a\ new\ one\ if\ it's\ empty}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_log_manager_afb6e0ba49d38aea6600e95e1b58d8464}{GetLogPath}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Generates\ a\ new\ log\ file\ path\ based\ on\ the\ current\ date\ and\ time}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_log_manager_af1405054d371089ad84d80edb26ba593}{GetNewLogFilePath}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ the\ log\ file\ is\ too\ large}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_log_manager_ae4996c3a7f94b65cda62104837dd45e3}{IsLogTooBig}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Ensures\ the\ log\ file\ is\ open\ for\ writing}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a2b9069c452c48dc43bcf3a628d5dfc6c}{EnsureFileLogOpen}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Closes\ the\ log\ file\ if\ it's\ open}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a2eca8c4ff4d7f14e358f7667ac500e60}{CheckAndCloseLog}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Threading\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a7685a70088ee877d9f38f6bc847d5c44}{StartLogWorkerThread}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Stops\ the\ worker\ thread\ for\ logging}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_ab7a94367399263cd0be0640b459a7fb2}{StopLogWorkerThread}}();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Background\ worker\ for\ processing\ queued\ log\ messages}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a5ccfb309f504f9005a27be082afe7dd3}{LogWorker}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Utilities\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Sanitizes\ the\ message\ by\ removing\ unwanted\ characters\ and\ truncating\ it\ if\ necessary}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a31943c93c153a5611c338e976fb9cbbb}{SanitizeMessage}}(std::string\&\ message);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Members\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Static\ members}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_log_manager_af3d8b1ad4e27c7df75dd410d06aba576}{logFilePath}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ std::ofstream\ \mbox{\hyperlink{class_log_manager_a9a5f265bb2d69cd2b73eda10a09ec1f2}{logFile}};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_log_manager_aa4c2da40b816114eea205132b4bae829}{logMutex}};}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_log_manager_a3d38f2e447af1a3941f849a1fe0497f0}{WorkerMutex}};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_log_manager_acdc161ea7d0bf84af40c5c9607990a5a}{bIsWorkerDone}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_log_manager_a7b388ce0b9faef8b8d3a6e1138ee356d}{logItemID}};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_log_manager_afb169aaf9e3a60d34f80c926970a8109}{logFileIndex}};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{class_log_manager_a72f0a12152194048ed6bf750104887ac}{sessionLogFilePaths}};}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Threading\ components}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::string>\ \mbox{\hyperlink{class_log_manager_a787ccf7dd9f1e5cbc8f18cc2b4eb3dce}{logQueue}};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_log_manager_ad5e21ed8623d61022a6edc4c9ec6f405}{queueMutex}};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{static}\ std::condition\_variable\ \mbox{\hyperlink{class_log_manager_a67656a1f147a48f0eff404727a3e6f2e}{workerDoneCondition}};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ std::condition\_variable\ \mbox{\hyperlink{class_log_manager_a3ce1b913be2a0e1b15fb0bb1b6b71dd2}{logCondition}};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ std::thread\ \mbox{\hyperlink{class_log_manager_a3c890b2b3d323a11a5a2dd0ce7674624}{logThread}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_log_manager_a521ce436c81a58dd7b9e62948f12feb0}{bIsRunning}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Configuration}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{class_log_manager_a5a27462bc051cf9229549b3ebb63d9bc}{appName}}\ =\ \textcolor{stringliteral}{"{}TacticalRogueLite"{}};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{class_log_manager_ab586595e2f40234990cc5cdbb95b3619}{logInternalTag}}\ =\ \textcolor{stringliteral}{"{}[LOGGER\ INTERNAL]"{}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_log_manager_a212ef6536eeff7c07db194ca4af2230b}{maxLogSize}}\ =\ 10\ *\ 1024\ *\ 1024;\ \textcolor{comment}{//\ mb\ *\ kb\ *\ b}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Recent\ Log\ Entries\ Management\ -\/-\/-\/\ //}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_log_manager_aa78f4b693b46e674049959635c5c0746}{maxLogEntries}}\ =\ 300;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::pair<int64,\ std::string>>\ \mbox{\hyperlink{class_log_manager_adcbc513d5acc086afc6cff26851d1dfc}{recentLogEntries}};}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ std::unordered\_map<int64,\ size\_t>\ \mbox{\hyperlink{class_log_manager_aae6a5ffabf16cadf8676c9b1a0b48f78}{recentLogIndexMap}};\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{class_log_manager_a0ab504a646910fac7c38ea0b5a897408}{recentLogMutex}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_log_manager_af360c4707125c5bd6dd2e6309068f5c1}{nextLogIndex}};\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_log_manager_a6b3b6fc5ee5790e2b7ee9119fdb912a1}{AddRecentLogEntry}}(\textcolor{keyword}{const}\ std::string\&\ Message);}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+
+\end{DoxyCode}

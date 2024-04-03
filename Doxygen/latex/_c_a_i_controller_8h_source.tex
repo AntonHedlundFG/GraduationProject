@@ -1,0 +1,39 @@
+\doxysection{CAIController.\+h}
+\hypertarget{_c_a_i_controller_8h_source}{}\label{_c_a_i_controller_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/AI/CAIController.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/AI/CAIController.h}}
+\mbox{\hyperlink{_c_a_i_controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}AIController.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_unit_8h}{GridContent/CUnit.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CAIController.generated.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_game_mode}{ACGameMode}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid}{ACGrid}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ UCLASS()}
+\DoxyCodeLine{00012\ class\ \mbox{\hyperlink{class_a_c_a_i_controller}{ACAIController}}\ :\ public\ AAIController}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ OnTurnChanged();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_a10f64f76692bc263be3d6d466e6e0bf7}{BeginPlay}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//float\ ScoreAction(UCItem*\ Item,\ ACGrid*\ Grid);}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ DecideBestActions();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ ExecuteActions();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ Unit;}
+\DoxyCodeLine{00027\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ Grid;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//UPROPERTY()}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//TMap<TObjectPtr<UCItem>,\ TObjectPtr<ACGridTile>>\ BestActionsMap;}}
+\DoxyCodeLine{00031\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_mode}{ACGameMode}}*\ GameMode;}
+\DoxyCodeLine{00033\ \};}
+
+\end{DoxyCode}

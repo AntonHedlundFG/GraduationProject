@@ -5,58 +5,72 @@
 \DoxyCodeLine{00001\ }
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_item_slots_8h}{ItemSlots.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Components/ActorComponent.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CInventoryComponent.generated.h"{}}}
-\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_item_data_8h}{ItemData/CItemData.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}CInventoryComponent.generated.h"{}}}
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ :\ uint8;}
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_item}{UCItem}};}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ UCLASS(\ ClassGroup=(Custom),\ meta=(BlueprintSpawnableComponent)\ )}
-\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }TACTICALROGUELITE\_API\ UCInventoryComponent\ :\ \textcolor{keyword}{public}\ UActorComponent}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ public:\ }
-\DoxyCodeLine{00019\ \ \ \ \ UCInventoryComponent();}
-\DoxyCodeLine{00020\ \ \ \ \ }
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items"{})}
-\DoxyCodeLine{00023\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item}{UCItem}}*>GetAllItems()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ AllItems;\ \}}
-\DoxyCodeLine{00024\ \ \ \ \ UFUNCTION(Category\ =\ \textcolor{stringliteral}{"{}Items|Equipment"{}})}
-\DoxyCodeLine{00025\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item}{UCItem}}*>\ GetEquippedItems()\ const;}
-\DoxyCodeLine{00026\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_u_c_item}{UCItem}}*\ GetItemInSlot(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot)\ const;}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//No\ need\ to\ call\ Add/Remove\ Item\ function\ when\ using\ one\ of\ these}}
-\DoxyCodeLine{00030\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ EquipItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem,\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot\ =\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}::EIS\_None);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }UCItem;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_item_data}{UCItemData}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ UCLASS(\ ClassGroup=(Custom),\ meta=(BlueprintSpawnableComponent)\ )}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TACTICALROGUELITE\_API\ UCInventoryComponent\ :\ \textcolor{keyword}{public}\ UActorComponent}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ public:\ }
+\DoxyCodeLine{00022\ \ \ \ \ UCInventoryComponent();}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items"{})}
+\DoxyCodeLine{00025\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*>GetAllItems()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ AllItems;\ \}}
+\DoxyCodeLine{00026\ \ \ \ \ UFUNCTION(Category\ =\ \textcolor{stringliteral}{"{}Items|Equipment"{}})}
+\DoxyCodeLine{00027\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*>\ GetEquippedItems()\ const;}
+\DoxyCodeLine{00028\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*\ GetItemInSlot(FGameplayTag\ inSlot);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//No\ need\ to\ call\ Add/Remove\ Item\ function\ when\ using\ one\ of\ these}}
 \DoxyCodeLine{00032\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ UnEquipItem(\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot);}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//Use\ for\ adding\ "{}charms"{},\ these\ will\ be\ automatically\ called\ in\ Equip/UnEquip\ functions\ respectively}}
-\DoxyCodeLine{00036\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items"{})}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ AddItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryEquipItem(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*\ inItem);}
+\DoxyCodeLine{00034\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ UnEquipItem(FGameplayTag\ inSlot);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//Use\ for\ adding\ "{}charms"{},\ these\ will\ be\ automatically\ called\ in\ Equip/UnEquip\ functions\ respectively}}
 \DoxyCodeLine{00038\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items"{})}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveItem(\mbox{\hyperlink{class_u_c_item}{UCItem}}*\ inItem);}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ protected:}
-\DoxyCodeLine{00043\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00044\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item}{UCItem}}>\ Boots;}
-\DoxyCodeLine{00045\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00046\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item}{UCItem}}>\ Weapon;}
-\DoxyCodeLine{00047\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00048\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item}{UCItem}}>\ Armor;}
-\DoxyCodeLine{00049\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00050\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item}{UCItem}}>\ Helmet;}
-\DoxyCodeLine{00051\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items|Equipment"{})}
-\DoxyCodeLine{00052\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item}{UCItem}}>\ Ring;}
-\DoxyCodeLine{00053\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Items"{})}
-\DoxyCodeLine{00054\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item}{UCItem}}*>\ AllItems;}
-\DoxyCodeLine{00055\ \ \ \ \ }
-\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ AddItem(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*\ inItem);}
+\DoxyCodeLine{00040\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items"{})}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveItem(\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*\ inItem);}
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION(Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ CheckValidEquipmentTag(FGameplayTag\ inTag);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{00046\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ TESTITEM;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{00049\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ TESTATTACKITEM;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ protected:}
+\DoxyCodeLine{00055\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items"{})}
+\DoxyCodeLine{00056\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}*>\ AllItems;}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00059\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ Boots;}
+\DoxyCodeLine{00060\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00061\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ Weapon;}
+\DoxyCodeLine{00062\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00063\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ Armor;}
+\DoxyCodeLine{00064\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00065\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ Helmet;}
+\DoxyCodeLine{00066\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Replicated,\ Category\ =\ "{}Items|Equipment"{})}
+\DoxyCodeLine{00067\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_u_c_item_data}{UCItemData}}>\ Ring;}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
 
 \end{DoxyCode}

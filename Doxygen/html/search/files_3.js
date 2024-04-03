@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['flogmanager_2ecpp_0',['FLogManager.cpp',['../_f_log_manager_8cpp.html',1,'']]],
-  ['flogmanager_2eh_1',['FLogManager.h',['../_f_log_manager_8h.html',1,'']]]
+  ['gamemenuwidget_2ecpp_0',['GameMenuWidget.cpp',['../_game_menu_widget_8cpp.html',1,'']]],
+  ['gamemenuwidget_2eh_1',['GameMenuWidget.h',['../_game_menu_widget_8h.html',1,'']]]
 ];

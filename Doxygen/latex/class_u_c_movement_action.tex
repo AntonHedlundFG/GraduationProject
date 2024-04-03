@@ -1,0 +1,128 @@
+\doxysection{UCMovement\+Action Class Reference}
+\hypertarget{class_u_c_movement_action}{}\label{class_u_c_movement_action}\index{UCMovementAction@{UCMovementAction}}
+
+
+{\ttfamily \#include $<$CMovement\+Action.\+h$>$}
+
+Inheritance diagram for UCMovement\+Action\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_u_c_movement_action}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movement_action_a0d0de8f3f12d6a7a3c52529917253217}{From\+Tile}}
+\item 
+\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movement_action_a280b682ea2a7517b163b1919e878ce1c}{Moved\+Unit}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+TSoft\+Object\+Ptr$<$ UTexture2D $>$ \mbox{\hyperlink{class_u_c_action_a0866b8cdfbc25eef204e113d266d56ee}{Icon}}
+\item 
+TObject\+Ptr$<$ UCAction\+Component $>$ \mbox{\hyperlink{class_u_c_action_a57d880d0373784a7b28b607b3ac9cbab}{Action\+Comp}}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_ac1a77196f4b1e501c74af9a4c16683fa}{Grants\+Tags}}
+\item 
+FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0}{Blocked\+Tags}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_c_movement_action_a139e5372d032dbbe60fc32160ec0b491}{Start\+Action\+\_\+\+Implementation}} (AActor \texorpdfstring{$\ast$}{*}Instigator) override
+\item 
+virtual void \mbox{\hyperlink{class_u_c_movement_action_ae387e45e9ab6f9f79e87bbab7be4b248}{Undo\+Action\+\_\+\+Implementation}} (AActor \texorpdfstring{$\ast$}{*}Instigator) override
+\item 
+virtual TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_movement_action_aaf2ca8eaf784a3f168b1f08a10da9f8c}{Get\+Valid\+Target\+Tiles}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Tile) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_u_c_targetable_action}{UCTargetable\+Action}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_targetable_action_a35a6c59b6a1b5cb0bfebcdad434421bc}{Is\+Tile\+Reachable}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}from\+Tile, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}to\+Tile)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_action_a8f8a7009c33d7cdedadaf24da25a398c}{Initialize}} (UCAction\+Component \texorpdfstring{$\ast$}{*}New\+Action\+Comp)
+\item 
+bool \mbox{\hyperlink{class_u_c_action_a053eca4e165d39f16be0aa0b399b6daf}{Can\+Start}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_aea136113a464cf9545170c7a066027c9}{Start\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_a23e97deda5a5ab1d7d98338c43c8c20b}{Undo\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_a13d48a1a91e8b8f4f0f359ba0c680179}{Stop\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+virtual UWorld \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_accaf4f2c7ae7637a0315b36a3d94b2ff}{Get\+World}} () const override
+\item 
+virtual bool \mbox{\hyperlink{class_u_c_action_a2173f8d9b2decb6673611971ca598244}{Is\+Supported\+For\+Networking}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_u_c_targetable_action}{UCTargetable\+Action}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_targetable_action_aa3cbff92abf9aadfe86c06298d6fbbd5}{Target\+Tile}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_action_ad46370dd971f49f892fd4ec979818526}{b\+Is\+User\+Incited}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_targetable_action}{UCTargetable\+Action}}}
+\begin{DoxyCompactItemize}
+\item 
+TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_targetable_action_a59f5e58941195f5d27a707cd26d7409e}{Receive\+Get\+Valid\+Target\+Tiles}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Unit)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\begin{DoxyCompactItemize}
+\item 
+UCAction\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{Get\+Owning\+Component}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_movement_action_aaf2ca8eaf784a3f168b1f08a10da9f8c}\label{class_u_c_movement_action_aaf2ca8eaf784a3f168b1f08a10da9f8c} 
+\index{UCMovementAction@{UCMovementAction}!GetValidTargetTiles@{GetValidTargetTiles}}
+\index{GetValidTargetTiles@{GetValidTargetTiles}!UCMovementAction@{UCMovementAction}}
+\doxysubsubsection{\texorpdfstring{GetValidTargetTiles()}{GetValidTargetTiles()}}
+{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCMovement\+Action\+::\+Get\+Valid\+Target\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_targetable_action_ab350282c7c0f89bae7d41791f2730edf}{UCTargetable\+Action}}.
+
+\Hypertarget{class_u_c_movement_action_a139e5372d032dbbe60fc32160ec0b491}\label{class_u_c_movement_action_a139e5372d032dbbe60fc32160ec0b491} 
+\index{UCMovementAction@{UCMovementAction}!StartAction\_Implementation@{StartAction\_Implementation}}
+\index{StartAction\_Implementation@{StartAction\_Implementation}!UCMovementAction@{UCMovementAction}}
+\doxysubsubsection{\texorpdfstring{StartAction\_Implementation()}{StartAction\_Implementation()}}
+{\footnotesize\ttfamily void UCMovement\+Action\+::\+Start\+Action\+\_\+\+Implementation (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_u_c_movement_action_ae387e45e9ab6f9f79e87bbab7be4b248}\label{class_u_c_movement_action_ae387e45e9ab6f9f79e87bbab7be4b248} 
+\index{UCMovementAction@{UCMovementAction}!UndoAction\_Implementation@{UndoAction\_Implementation}}
+\index{UndoAction\_Implementation@{UndoAction\_Implementation}!UCMovementAction@{UCMovementAction}}
+\doxysubsubsection{\texorpdfstring{UndoAction\_Implementation()}{UndoAction\_Implementation()}}
+{\footnotesize\ttfamily void UCMovement\+Action\+::\+Undo\+Action\+\_\+\+Implementation (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_movement_action_a0d0de8f3f12d6a7a3c52529917253217}\label{class_u_c_movement_action_a0d0de8f3f12d6a7a3c52529917253217} 
+\index{UCMovementAction@{UCMovementAction}!FromTile@{FromTile}}
+\index{FromTile@{FromTile}!UCMovementAction@{UCMovementAction}}
+\doxysubsubsection{\texorpdfstring{FromTile}{FromTile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}}\texorpdfstring{$\ast$}{*} UCMovement\+Action\+::\+From\+Tile\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_movement_action_a280b682ea2a7517b163b1919e878ce1c}\label{class_u_c_movement_action_a280b682ea2a7517b163b1919e878ce1c} 
+\index{UCMovementAction@{UCMovementAction}!MovedUnit@{MovedUnit}}
+\index{MovedUnit@{MovedUnit}!UCMovementAction@{UCMovementAction}}
+\doxysubsubsection{\texorpdfstring{MovedUnit}{MovedUnit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_unit}{ACUnit}}\texorpdfstring{$\ast$}{*} UCMovement\+Action\+::\+Moved\+Unit\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Actions/\mbox{\hyperlink{_c_movement_action_8h}{CMovement\+Action.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Actions/\mbox{\hyperlink{_c_movement_action_8cpp}{CMovement\+Action.\+cpp}}\end{DoxyCompactItemize}

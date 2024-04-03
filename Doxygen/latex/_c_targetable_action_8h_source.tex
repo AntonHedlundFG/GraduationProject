@@ -1,0 +1,43 @@
+\doxysection{CTargetable\+Action.\+h}
+\hypertarget{_c_targetable_action_8h_source}{}\label{_c_targetable_action_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CTargetableAction.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CTargetableAction.h}}
+\mbox{\hyperlink{_c_targetable_action_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CTargetableAction.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ UCLASS()}
+\DoxyCodeLine{00012\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_targetable_action}{UCTargetableAction}}\ :\ public\ \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ \mbox{\hyperlink{class_u_c_targetable_action_aa3cbff92abf9aadfe86c06298d6fbbd5}{TargetTile}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ TArray<ACGridTile*>\ \mbox{\hyperlink{class_u_c_targetable_action_ab350282c7c0f89bae7d41791f2730edf}{GetValidTargetTiles}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTile)}
+\DoxyCodeLine{00021\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ReceiveGetValidTargetTiles(inTile);\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_c_targetable_action_a35a6c59b6a1b5cb0bfebcdad434421bc}{IsTileReachable}}(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ fromTile,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ toTile)\ }
+\DoxyCodeLine{00024\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ GetValidTargetTiles(fromTile).Contains(toTile);\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ region\ AngelScript\ overridables}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ UFUNCTION(BlueprintImplementableEvent)}
+\DoxyCodeLine{00034\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ ReceiveGetValidTargetTiles(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inUnit);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00037\ \};}
+
+\end{DoxyCode}

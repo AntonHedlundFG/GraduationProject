@@ -1,0 +1,97 @@
+\doxysection{ACTurn\+Order\+UIManager Class Reference}
+\hypertarget{class_a_c_turn_order_u_i_manager}{}\label{class_a_c_turn_order_u_i_manager}\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+
+
+{\ttfamily \#include $<$CTurn\+Order\+UIManager.\+h$>$}
+
+Inheritance diagram for ACTurn\+Order\+UIManager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_c_turn_order_u_i_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TSubclass\+Of$<$ \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} $>$ \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_a67768c05e08b0072ebb59bf07efdf8c6}{Portrait\+Widget}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_a405e36ccc001d1259a742175923141a0}{Begin\+Play}} () override
+\item 
+void \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_a83f890c4bf785e71e80780a8f46947a1}{Update\+Turn\+List}} ()
+\item 
+\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_af2b2b894441033996c16cff0e9de51eb}{Create\+Portrait\+Widget}} ()
+\item 
+\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_a2748c965658a30ffe4dab9eb1ccc6926}{De\+Queue\+Portrait\+Widget}} ()
+\item 
+void \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_aebfbe70af75cd21b3af14d918ae5a9b1}{En\+Queue\+Portrait\+Widget}} (\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*}widget)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TQueue$<$ \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_ae01cf1efd5e7c17036e942aac22ac95b}{Widget\+Pool}}
+\item 
+\mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_af7d72532e9502cc9bd9f96982a8f2e61}{Game\+State}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_c_turn_order_u_i_manager_a405e36ccc001d1259a742175923141a0}\label{class_a_c_turn_order_u_i_manager_a405e36ccc001d1259a742175923141a0} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACTurn\+Order\+UIManager\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_af2b2b894441033996c16cff0e9de51eb}\label{class_a_c_turn_order_u_i_manager_af2b2b894441033996c16cff0e9de51eb} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!CreatePortraitWidget@{CreatePortraitWidget}}
+\index{CreatePortraitWidget@{CreatePortraitWidget}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{CreatePortraitWidget()}{CreatePortraitWidget()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*} ACTurn\+Order\+UIManager\+::\+Create\+Portrait\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_a2748c965658a30ffe4dab9eb1ccc6926}\label{class_a_c_turn_order_u_i_manager_a2748c965658a30ffe4dab9eb1ccc6926} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!DeQueuePortraitWidget@{DeQueuePortraitWidget}}
+\index{DeQueuePortraitWidget@{DeQueuePortraitWidget}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{DeQueuePortraitWidget()}{DeQueuePortraitWidget()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*} ACTurn\+Order\+UIManager\+::\+De\+Queue\+Portrait\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_aebfbe70af75cd21b3af14d918ae5a9b1}\label{class_a_c_turn_order_u_i_manager_aebfbe70af75cd21b3af14d918ae5a9b1} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!EnQueuePortraitWidget@{EnQueuePortraitWidget}}
+\index{EnQueuePortraitWidget@{EnQueuePortraitWidget}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{EnQueuePortraitWidget()}{EnQueuePortraitWidget()}}
+{\footnotesize\ttfamily void ACTurn\+Order\+UIManager\+::\+En\+Queue\+Portrait\+Widget (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}} \texorpdfstring{$\ast$}{*}}]{widget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_a83f890c4bf785e71e80780a8f46947a1}\label{class_a_c_turn_order_u_i_manager_a83f890c4bf785e71e80780a8f46947a1} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!UpdateTurnList@{UpdateTurnList}}
+\index{UpdateTurnList@{UpdateTurnList}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{UpdateTurnList()}{UpdateTurnList()}}
+{\footnotesize\ttfamily void ACTurn\+Order\+UIManager\+::\+Update\+Turn\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_turn_order_u_i_manager_af7d72532e9502cc9bd9f96982a8f2e61}\label{class_a_c_turn_order_u_i_manager_af7d72532e9502cc9bd9f96982a8f2e61} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!GameState@{GameState}}
+\index{GameState@{GameState}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}}\texorpdfstring{$\ast$}{*} ACTurn\+Order\+UIManager\+::\+Game\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_a67768c05e08b0072ebb59bf07efdf8c6}\label{class_a_c_turn_order_u_i_manager_a67768c05e08b0072ebb59bf07efdf8c6} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!PortraitWidget@{PortraitWidget}}
+\index{PortraitWidget@{PortraitWidget}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{PortraitWidget}{PortraitWidget}}
+{\footnotesize\ttfamily TSubclass\+Of$<$\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}}$>$ ACTurn\+Order\+UIManager\+::\+Portrait\+Widget}
+
+\Hypertarget{class_a_c_turn_order_u_i_manager_ae01cf1efd5e7c17036e942aac22ac95b}\label{class_a_c_turn_order_u_i_manager_ae01cf1efd5e7c17036e942aac22ac95b} 
+\index{ACTurnOrderUIManager@{ACTurnOrderUIManager}!WidgetPool@{WidgetPool}}
+\index{WidgetPool@{WidgetPool}!ACTurnOrderUIManager@{ACTurnOrderUIManager}}
+\doxysubsubsection{\texorpdfstring{WidgetPool}{WidgetPool}}
+{\footnotesize\ttfamily TQueue$<$\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurn\+Order\+Portrait\+Widget}}\texorpdfstring{$\ast$}{*}$>$ ACTurn\+Order\+UIManager\+::\+Widget\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+UI/\mbox{\hyperlink{_c_turn_order_u_i_manager_8h}{CTurn\+Order\+UIManager.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+UI/\mbox{\hyperlink{_c_turn_order_u_i_manager_8cpp}{CTurn\+Order\+UIManager.\+cpp}}\end{DoxyCompactItemize}

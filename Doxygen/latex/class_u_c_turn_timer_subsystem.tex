@@ -13,9 +13,11 @@ Inheritance diagram for UCTurn\+Timer\+Subsystem\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a5f3aa96eb4e96e7b982562a2a6839936}{Set\+Timer}} (\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \&In\+Out\+Handle, const int In\+Number\+Of\+Turns, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}In\+Affected\+Unit, const bool Inb\+Loop, const \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} In\+Progress\+Turn\+Method)
-\begin{DoxyCompactList}\small\item\em Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of using floats for duration, we use integers to describe number of turns until activation. Subscribe to the On\+Turn\+Timer\+Execute delegate in the \doxylink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle} to handle callbacks when the timer activates. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb}{Clear\+Timer}} (\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \&In\+Out\+Handle)
+\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \mbox{\hyperlink{class_u_c_turn_timer_subsystem_aa0320c07ef8e1300f1cea2997c0e8940}{Set\+Timer}} (const int In\+Number\+Of\+Turns, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}In\+Affected\+Unit, const bool Inb\+Loop, const \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} In\+Progress\+Turn\+Method, FOn\+Turn\+Timer\+Execute In\+Delegate)
+\begin{DoxyCompactList}\small\item\em Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of using floats for duration, we use integers to describe number of turns until activation. Pass in a bound FOn\+Turn\+Timer\+Execute delegate, which will execute when the timer activates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a56e9c46990b34405f3d4d2917953911e}{Clear\+Timer}} (\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} In\+Handle)
+\item 
+bool \mbox{\hyperlink{class_u_c_turn_timer_subsystem_af89ef14b54a0253a5618ee6498bde678}{Is\+Timer\+Active}} (\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} In\+Handle)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -25,7 +27,7 @@ void \mbox{\hyperlink{class_u_c_turn_timer_subsystem_ac25c5b5552b6e064c172c4429b
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-TMap$<$ uint32, \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}{Active\+Turn\+Timers}}
+TMap$<$ uint32, \mbox{\hyperlink{struct_f_turn_timer}{FTurn\+Timer}} $>$ \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a97b659eff7a5b692f09563722c3cff55}{Active\+Turn\+Timers}}
 \item 
 uint32 \mbox{\hyperlink{class_u_c_turn_timer_subsystem_acd9380bd38c406425c299d67ad79ae5a}{Last\+Timer\+ID}} = 0
 \end{DoxyCompactItemize}
@@ -37,11 +39,17 @@ class \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a77188af39d9c5c4e922ee39fe
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb}\label{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb} 
+\Hypertarget{class_u_c_turn_timer_subsystem_a56e9c46990b34405f3d4d2917953911e}\label{class_u_c_turn_timer_subsystem_a56e9c46990b34405f3d4d2917953911e} 
 \index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!ClearTimer@{ClearTimer}}
 \index{ClearTimer@{ClearTimer}!UCTurnTimerSubsystem@{UCTurnTimerSubsystem}}
 \doxysubsubsection{\texorpdfstring{ClearTimer()}{ClearTimer()}}
-{\footnotesize\ttfamily void UCTurn\+Timer\+Subsystem\+::\+Clear\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \&}]{In\+Out\+Handle }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void UCTurn\+Timer\+Subsystem\+::\+Clear\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}}}]{In\+Handle }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_turn_timer_subsystem_af89ef14b54a0253a5618ee6498bde678}\label{class_u_c_turn_timer_subsystem_af89ef14b54a0253a5618ee6498bde678} 
+\index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!IsTimerActive@{IsTimerActive}}
+\index{IsTimerActive@{IsTimerActive}!UCTurnTimerSubsystem@{UCTurnTimerSubsystem}}
+\doxysubsubsection{\texorpdfstring{IsTimerActive()}{IsTimerActive()}}
+{\footnotesize\ttfamily bool UCTurn\+Timer\+Subsystem\+::\+Is\+Timer\+Active (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}}}]{In\+Handle }\end{DoxyParamCaption})}
 
 \Hypertarget{class_u_c_turn_timer_subsystem_ac25c5b5552b6e064c172c4429b6b580e}\label{class_u_c_turn_timer_subsystem_ac25c5b5552b6e064c172c4429b6b580e} 
 \index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!NextTurn@{NextTurn}}
@@ -49,20 +57,18 @@ class \mbox{\hyperlink{class_u_c_turn_timer_subsystem_a77188af39d9c5c4e922ee39fe
 \doxysubsubsection{\texorpdfstring{NextTurn()}{NextTurn()}}
 {\footnotesize\ttfamily void UCTurn\+Timer\+Subsystem\+::\+Next\+Turn (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{Previous\+Unit,  }\item[{const \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{Next\+Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-\Hypertarget{class_u_c_turn_timer_subsystem_a5f3aa96eb4e96e7b982562a2a6839936}\label{class_u_c_turn_timer_subsystem_a5f3aa96eb4e96e7b982562a2a6839936} 
+\Hypertarget{class_u_c_turn_timer_subsystem_aa0320c07ef8e1300f1cea2997c0e8940}\label{class_u_c_turn_timer_subsystem_aa0320c07ef8e1300f1cea2997c0e8940} 
 \index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!SetTimer@{SetTimer}}
 \index{SetTimer@{SetTimer}!UCTurnTimerSubsystem@{UCTurnTimerSubsystem}}
 \doxysubsubsection{\texorpdfstring{SetTimer()}{SetTimer()}}
-{\footnotesize\ttfamily void UCTurn\+Timer\+Subsystem\+::\+Set\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} \&}]{In\+Out\+Handle,  }\item[{const int}]{In\+Number\+Of\+Turns,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{In\+Affected\+Unit,  }\item[{const bool}]{Inb\+Loop,  }\item[{const \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}}}]{In\+Progress\+Turn\+Method }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}} UCTurn\+Timer\+Subsystem\+::\+Set\+Timer (\begin{DoxyParamCaption}\item[{const int}]{In\+Number\+Of\+Turns,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{In\+Affected\+Unit,  }\item[{const bool}]{Inb\+Loop,  }\item[{const \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}}}]{In\+Progress\+Turn\+Method,  }\item[{FOn\+Turn\+Timer\+Execute}]{In\+Delegate }\end{DoxyParamCaption})}
 
 
 
-Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of using floats for duration, we use integers to describe number of turns until activation. Subscribe to the On\+Turn\+Timer\+Execute delegate in the \doxylink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle} to handle callbacks when the timer activates. 
+Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of using floats for duration, we use integers to describe number of turns until activation. Pass in a bound FOn\+Turn\+Timer\+Execute delegate, which will execute when the timer activates. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em In\+Out\+Handle} & Timer Handle, can be used to \doxylink{class_u_c_turn_timer_subsystem_a8d905b65b7a4a760b7e6ceaad579d2bb}{Clear\+Timer()}\\
-\hline
 {\em In\+Number\+Of\+Turns} & How many turns until activation\\
 \hline
 {\em In\+Affected\+Unit} & The unit whose turn is counted\\
@@ -72,6 +78,9 @@ Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of
 {\em In\+Progress\+Turn\+Method} & Should the timer activate at the end or start of the affected units turn?\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A handle which can be used to identify and clear the set timer.
+\end{DoxyReturn}
 
 
 \doxysubsection{Friends And Related Symbol Documentation}
@@ -84,11 +93,11 @@ Should work just like Set\+Timer in the usual FTimer\+Manager, except instead of
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46}\label{class_u_c_turn_timer_subsystem_a9c9a46d559bf4aa5cb4172e318480d46} 
+\Hypertarget{class_u_c_turn_timer_subsystem_a97b659eff7a5b692f09563722c3cff55}\label{class_u_c_turn_timer_subsystem_a97b659eff7a5b692f09563722c3cff55} 
 \index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!ActiveTurnTimers@{ActiveTurnTimers}}
 \index{ActiveTurnTimers@{ActiveTurnTimers}!UCTurnTimerSubsystem@{UCTurnTimerSubsystem}}
 \doxysubsubsection{\texorpdfstring{ActiveTurnTimers}{ActiveTurnTimers}}
-{\footnotesize\ttfamily TMap$<$uint32, \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}}\texorpdfstring{$\ast$}{*}$>$ UCTurn\+Timer\+Subsystem\+::\+Active\+Turn\+Timers\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily TMap$<$uint32, \mbox{\hyperlink{struct_f_turn_timer}{FTurn\+Timer}}$>$ UCTurn\+Timer\+Subsystem\+::\+Active\+Turn\+Timers\hspace{0.3cm}{\ttfamily [protected]}}
 
 \Hypertarget{class_u_c_turn_timer_subsystem_acd9380bd38c406425c299d67ad79ae5a}\label{class_u_c_turn_timer_subsystem_acd9380bd38c406425c299d67ad79ae5a} 
 \index{UCTurnTimerSubsystem@{UCTurnTimerSubsystem}!LastTimerID@{LastTimerID}}

@@ -1,0 +1,50 @@
+\doxysection{CTurn\+Order\+Portrait\+Widget.\+h}
+\hypertarget{_c_turn_order_portrait_widget_8h_source}{}\label{_c_turn_order_portrait_widget_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CTurnOrderPortraitWidget.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CTurnOrderPortraitWidget.h}}
+\mbox{\hyperlink{_c_turn_order_portrait_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Components/Image.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Components/RichTextBlock.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Components/ScrollBox.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}CTurnOrderPortraitWidget.generated.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ UCLASS()}
+\DoxyCodeLine{00017\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurnOrderPortraitWidget}}\ :\ public\ UUserWidget}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00020\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00021\ \ \ \ \ URichTextBlock*\ TextBlock;}
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00023\ \ \ \ \ UImage*\ Portrait;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ protected:}
+\DoxyCodeLine{00026\ \ \ \ \ FTimerHandle\ AnimateToPositionHandle;}
+\DoxyCodeLine{00027\ \ \ \ \ FTimerHandle\ AnimatedRemoveFromQueueHandle;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ public:}
+\DoxyCodeLine{00033\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00034\ \ \ \ \ FVector\ RemoveFromQueueAnimationOffsetTarget;}
+\DoxyCodeLine{00035\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00036\ \ \ \ \ UCurveFloat*\ RemoveFromQueueAnimationEasing;}
+\DoxyCodeLine{00037\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00038\ \ \ \ \ UCurveFloat*\ ToPositionAnimationEasing;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ UPROPERTY(\ Transient,\ meta\ =\ (\ BindWidgetAnim\ )\ )}
+\DoxyCodeLine{00041\ \ \ \ \ UWidgetAnimation*\ OutAnimation;}
+\DoxyCodeLine{00042\ \ \ \ \ UPROPERTY(\ Transient,\ meta\ =\ (\ BindWidgetAnim\ )\ )}
+\DoxyCodeLine{00043\ \ \ \ \ UWidgetAnimation*\ InAnimation;}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ SetText(FString\ Text);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ SetPortrait(FSlateBrush\ Brush);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ AnimateOut();}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ AnimateIn();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ StartAnimationTimer\_ToPosition();}
+\DoxyCodeLine{00050\ \};}
+
+\end{DoxyCode}

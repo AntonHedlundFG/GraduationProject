@@ -13,17 +13,13 @@ Inheritance diagram for UCAction\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_aabe8ee009046ddfc2bbd88ac6cae5fa9}{Get\+Activation\+Tag}} () const
-\item 
-bool \mbox{\hyperlink{class_u_c_action_ad248caef9b49e4c76a28d916604d932b}{Is\+Auto\+Start}} () const
-\item 
 void \mbox{\hyperlink{class_u_c_action_a8f8a7009c33d7cdedadaf24da25a398c}{Initialize}} (UCAction\+Component \texorpdfstring{$\ast$}{*}New\+Action\+Comp)
-\item 
-bool \mbox{\hyperlink{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}{Is\+Running}} () const
 \item 
 bool \mbox{\hyperlink{class_u_c_action_a053eca4e165d39f16be0aa0b399b6daf}{Can\+Start}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
 \item 
 void \mbox{\hyperlink{class_u_c_action_aea136113a464cf9545170c7a066027c9}{Start\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
+\item 
+void \mbox{\hyperlink{class_u_c_action_a23e97deda5a5ab1d7d98338c43c8c20b}{Undo\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
 \item 
 void \mbox{\hyperlink{class_u_c_action_a13d48a1a91e8b8f4f0f359ba0c680179}{Stop\+Action}} (AActor \texorpdfstring{$\ast$}{*}Instigator)
 \item 
@@ -31,12 +27,15 @@ virtual UWorld \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_acca
 \item 
 virtual bool \mbox{\hyperlink{class_u_c_action_a2173f8d9b2decb6673611971ca598244}{Is\+Supported\+For\+Networking}} () const override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_action_ad46370dd971f49f892fd4ec979818526}{b\+Is\+User\+Incited}} = false
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 UCAction\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}{Get\+Owning\+Component}} () const
-\item 
-void \mbox{\hyperlink{class_u_c_action_a9dee6cc873801809dad30c96ac038c22}{On\+Rep\+\_\+\+Rep\+Data}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -48,14 +47,6 @@ TObject\+Ptr$<$ UCAction\+Component $>$ \mbox{\hyperlink{class_u_c_action_a57d88
 FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_ac1a77196f4b1e501c74af9a4c16683fa}{Grants\+Tags}}
 \item 
 FGameplay\+Tag\+Container \mbox{\hyperlink{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0}{Blocked\+Tags}}
-\item 
-\mbox{\hyperlink{struct_f_action_rep_data}{FAction\+Rep\+Data}} \mbox{\hyperlink{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}{Rep\+Data}}
-\item 
-float \mbox{\hyperlink{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}{Time\+Started}}
-\item 
-bool \mbox{\hyperlink{class_u_c_action_a1d8ab79305504d38d364b14e5515f914}{b\+Auto\+Start}}
-\item 
-FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d6108c}{Activation\+Tag}}
 \end{DoxyCompactItemize}
 
 
@@ -65,12 +56,6 @@ FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d610
 \index{CanStart@{CanStart}!UCAction@{UCAction}}
 \doxysubsubsection{\texorpdfstring{CanStart()}{CanStart()}}
 {\footnotesize\ttfamily bool UCAction\+::\+Can\+Start (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})}
-
-\Hypertarget{class_u_c_action_aabe8ee009046ddfc2bbd88ac6cae5fa9}\label{class_u_c_action_aabe8ee009046ddfc2bbd88ac6cae5fa9} 
-\index{UCAction@{UCAction}!GetActivationTag@{GetActivationTag}}
-\index{GetActivationTag@{GetActivationTag}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{GetActivationTag()}{GetActivationTag()}}
-{\footnotesize\ttfamily FGameplay\+Tag UCAction\+::\+Get\+Activation\+Tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \Hypertarget{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc}\label{class_u_c_action_ae2bf72ebcd2b6fef8564081b0887d7cc} 
 \index{UCAction@{UCAction}!GetOwningComponent@{GetOwningComponent}}
@@ -90,29 +75,11 @@ FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d610
 \doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
 {\footnotesize\ttfamily void UCAction\+::\+Initialize (\begin{DoxyParamCaption}\item[{UCAction\+Component \texorpdfstring{$\ast$}{*}}]{New\+Action\+Comp }\end{DoxyParamCaption})}
 
-\Hypertarget{class_u_c_action_ad248caef9b49e4c76a28d916604d932b}\label{class_u_c_action_ad248caef9b49e4c76a28d916604d932b} 
-\index{UCAction@{UCAction}!IsAutoStart@{IsAutoStart}}
-\index{IsAutoStart@{IsAutoStart}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{IsAutoStart()}{IsAutoStart()}}
-{\footnotesize\ttfamily bool UCAction\+::\+Is\+Auto\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-\Hypertarget{class_u_c_action_af3db33b4349f38d39903c74c3cabd440}\label{class_u_c_action_af3db33b4349f38d39903c74c3cabd440} 
-\index{UCAction@{UCAction}!IsRunning@{IsRunning}}
-\index{IsRunning@{IsRunning}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{IsRunning()}{IsRunning()}}
-{\footnotesize\ttfamily bool UCAction\+::\+Is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
 \Hypertarget{class_u_c_action_a2173f8d9b2decb6673611971ca598244}\label{class_u_c_action_a2173f8d9b2decb6673611971ca598244} 
 \index{UCAction@{UCAction}!IsSupportedForNetworking@{IsSupportedForNetworking}}
 \index{IsSupportedForNetworking@{IsSupportedForNetworking}!UCAction@{UCAction}}
 \doxysubsubsection{\texorpdfstring{IsSupportedForNetworking()}{IsSupportedForNetworking()}}
 {\footnotesize\ttfamily virtual bool UCAction\+::\+Is\+Supported\+For\+Networking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
-
-\Hypertarget{class_u_c_action_a9dee6cc873801809dad30c96ac038c22}\label{class_u_c_action_a9dee6cc873801809dad30c96ac038c22} 
-\index{UCAction@{UCAction}!OnRep\_RepData@{OnRep\_RepData}}
-\index{OnRep\_RepData@{OnRep\_RepData}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{OnRep\_RepData()}{OnRep\_RepData()}}
-{\footnotesize\ttfamily void UCAction\+::\+On\+Rep\+\_\+\+Rep\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 \Hypertarget{class_u_c_action_aea136113a464cf9545170c7a066027c9}\label{class_u_c_action_aea136113a464cf9545170c7a066027c9} 
 \index{UCAction@{UCAction}!StartAction@{StartAction}}
@@ -126,6 +93,12 @@ FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d610
 \doxysubsubsection{\texorpdfstring{StopAction()}{StopAction()}}
 {\footnotesize\ttfamily void UCAction\+::\+Stop\+Action (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})}
 
+\Hypertarget{class_u_c_action_a23e97deda5a5ab1d7d98338c43c8c20b}\label{class_u_c_action_a23e97deda5a5ab1d7d98338c43c8c20b} 
+\index{UCAction@{UCAction}!UndoAction@{UndoAction}}
+\index{UndoAction@{UndoAction}!UCAction@{UCAction}}
+\doxysubsubsection{\texorpdfstring{UndoAction()}{UndoAction()}}
+{\footnotesize\ttfamily void UCAction\+::\+Undo\+Action (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator }\end{DoxyParamCaption})}
+
 
 
 \doxysubsection{Member Data Documentation}
@@ -135,17 +108,11 @@ FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d610
 \doxysubsubsection{\texorpdfstring{ActionComp}{ActionComp}}
 {\footnotesize\ttfamily TObject\+Ptr$<$UCAction\+Component$>$ UCAction\+::\+Action\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
 
-\Hypertarget{class_u_c_action_a749029e4a7841552186fcbe184d6108c}\label{class_u_c_action_a749029e4a7841552186fcbe184d6108c} 
-\index{UCAction@{UCAction}!ActivationTag@{ActivationTag}}
-\index{ActivationTag@{ActivationTag}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{ActivationTag}{ActivationTag}}
-{\footnotesize\ttfamily FGameplay\+Tag UCAction\+::\+Activation\+Tag\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{class_u_c_action_a1d8ab79305504d38d364b14e5515f914}\label{class_u_c_action_a1d8ab79305504d38d364b14e5515f914} 
-\index{UCAction@{UCAction}!bAutoStart@{bAutoStart}}
-\index{bAutoStart@{bAutoStart}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{bAutoStart}{bAutoStart}}
-{\footnotesize\ttfamily bool UCAction\+::b\+Auto\+Start\hspace{0.3cm}{\ttfamily [protected]}}
+\Hypertarget{class_u_c_action_ad46370dd971f49f892fd4ec979818526}\label{class_u_c_action_ad46370dd971f49f892fd4ec979818526} 
+\index{UCAction@{UCAction}!bIsUserIncited@{bIsUserIncited}}
+\index{bIsUserIncited@{bIsUserIncited}!UCAction@{UCAction}}
+\doxysubsubsection{\texorpdfstring{bIsUserIncited}{bIsUserIncited}}
+{\footnotesize\ttfamily bool UCAction\+::b\+Is\+User\+Incited = false}
 
 \Hypertarget{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0}\label{class_u_c_action_aa30c1cd692d9b2c9012ec79f396459e0} 
 \index{UCAction@{UCAction}!BlockedTags@{BlockedTags}}
@@ -164,18 +131,6 @@ FGameplay\+Tag \mbox{\hyperlink{class_u_c_action_a749029e4a7841552186fcbe184d610
 \index{Icon@{Icon}!UCAction@{UCAction}}
 \doxysubsubsection{\texorpdfstring{Icon}{Icon}}
 {\footnotesize\ttfamily TSoft\+Object\+Ptr$<$UTexture2D$>$ UCAction\+::\+Icon\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0}\label{class_u_c_action_a9d8ac18778762d7eceed89525d0618e0} 
-\index{UCAction@{UCAction}!RepData@{RepData}}
-\index{RepData@{RepData}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{RepData}{RepData}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_f_action_rep_data}{FAction\+Rep\+Data}} UCAction\+::\+Rep\+Data\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b}\label{class_u_c_action_a2bd81166ab459b4d79ebae4abe31bc5b} 
-\index{UCAction@{UCAction}!TimeStarted@{TimeStarted}}
-\index{TimeStarted@{TimeStarted}!UCAction@{UCAction}}
-\doxysubsubsection{\texorpdfstring{TimeStarted}{TimeStarted}}
-{\footnotesize\ttfamily float UCAction\+::\+Time\+Started\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

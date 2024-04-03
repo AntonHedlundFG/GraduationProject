@@ -1,0 +1,377 @@
+\doxysection{Log\+Manager Class Reference}
+\hypertarget{class_log_manager}{}\label{class_log_manager}\index{LogManager@{LogManager}}
+
+
+{\ttfamily \#include $<$Log\+Manager.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_log_manager_a3772660ba34d65de9e2e9c8998cd187c}{Log}} (const std\+::string \&Message)
+\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_log_manager_a8a3e0d656020daf7c078e6cf9dfbb6b6}{Read\+Log}} ()
+\item 
+static std\+::string \mbox{\hyperlink{class_log_manager_a6e12d9bd9c11edad5bd5f3e09e5b4a37}{Get\+Recent\+Log\+Entry}} (int64\+\_\+t log\+ID)
+\item 
+static void \mbox{\hyperlink{class_log_manager_a82e6134160636e95d04af504fb8fda8a}{Rotate\+Log\+File}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_ae57117b0dc4964f5d6856eba63c570de}{Initialize}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a63327449a44035f69f3f3536cc335a66}{Shut\+Down}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_log_manager_aedab1387b9084cd125446f3b8d82861f}{Log\+Manager}} ()
+\item 
+\mbox{\hyperlink{class_log_manager_a7e6291dd344ad467c049c39f65f6897c}{\texorpdfstring{$\sim$}{\string~}\+Log\+Manager}} ()
+\item 
+\mbox{\hyperlink{class_log_manager_a4e36ec4436338ae0c50f9ea05eb7b388}{Log\+Manager}} (const \mbox{\hyperlink{class_log_manager}{Log\+Manager}} \&)=delete
+\item 
+\mbox{\hyperlink{class_log_manager}{Log\+Manager}} \& \mbox{\hyperlink{class_log_manager_a3813eab1ec0ba85c213efc092a60259a}{operator=}} (const \mbox{\hyperlink{class_log_manager}{Log\+Manager}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_log_manager_ab4b6e03fba0a2009f2a9068064792c0b}{Write\+To\+Log}} (std\+::string \&Message)
+\item 
+static std\+::string \mbox{\hyperlink{class_log_manager_afb6e0ba49d38aea6600e95e1b58d8464}{Get\+Log\+Path}} ()
+\item 
+static std\+::string \mbox{\hyperlink{class_log_manager_af1405054d371089ad84d80edb26ba593}{Get\+New\+Log\+File\+Path}} ()
+\item 
+static bool \mbox{\hyperlink{class_log_manager_ae4996c3a7f94b65cda62104837dd45e3}{Is\+Log\+Too\+Big}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a2b9069c452c48dc43bcf3a628d5dfc6c}{Ensure\+File\+Log\+Open}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a2eca8c4ff4d7f14e358f7667ac500e60}{Check\+And\+Close\+Log}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a7685a70088ee877d9f38f6bc847d5c44}{Start\+Log\+Worker\+Thread}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_ab7a94367399263cd0be0640b459a7fb2}{Stop\+Log\+Worker\+Thread}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a5ccfb309f504f9005a27be082afe7dd3}{Log\+Worker}} ()
+\item 
+static void \mbox{\hyperlink{class_log_manager_a31943c93c153a5611c338e976fb9cbbb}{Sanitize\+Message}} (std\+::string \&message)
+\item 
+static void \mbox{\hyperlink{class_log_manager_a6b3b6fc5ee5790e2b7ee9119fdb912a1}{Add\+Recent\+Log\+Entry}} (const std\+::string \&Message)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_log_manager_af3d8b1ad4e27c7df75dd410d06aba576}{log\+File\+Path}}
+\item 
+static std\+::ofstream \mbox{\hyperlink{class_log_manager_a9a5f265bb2d69cd2b73eda10a09ec1f2}{log\+File}}
+\item 
+static std\+::mutex \mbox{\hyperlink{class_log_manager_aa4c2da40b816114eea205132b4bae829}{log\+Mutex}}
+\item 
+static std\+::mutex \mbox{\hyperlink{class_log_manager_a3d38f2e447af1a3941f849a1fe0497f0}{Worker\+Mutex}}
+\item 
+static bool \mbox{\hyperlink{class_log_manager_acdc161ea7d0bf84af40c5c9607990a5a}{b\+Is\+Worker\+Done}}
+\item 
+static long long \mbox{\hyperlink{class_log_manager_a7b388ce0b9faef8b8d3a6e1138ee356d}{log\+Item\+ID}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{class_log_manager_afb169aaf9e3a60d34f80c926970a8109}{log\+File\+Index}}
+\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_log_manager_a72f0a12152194048ed6bf750104887ac}{session\+Log\+File\+Paths}}
+\item 
+static std\+::queue$<$ std\+::string $>$ \mbox{\hyperlink{class_log_manager_a787ccf7dd9f1e5cbc8f18cc2b4eb3dce}{log\+Queue}}
+\item 
+static std\+::mutex \mbox{\hyperlink{class_log_manager_ad5e21ed8623d61022a6edc4c9ec6f405}{queue\+Mutex}}
+\item 
+static std\+::condition\+\_\+variable \mbox{\hyperlink{class_log_manager_a67656a1f147a48f0eff404727a3e6f2e}{worker\+Done\+Condition}}
+\item 
+static std\+::condition\+\_\+variable \mbox{\hyperlink{class_log_manager_a3ce1b913be2a0e1b15fb0bb1b6b71dd2}{log\+Condition}}
+\item 
+static std\+::thread \mbox{\hyperlink{class_log_manager_a3c890b2b3d323a11a5a2dd0ce7674624}{log\+Thread}}
+\item 
+static bool \mbox{\hyperlink{class_log_manager_a521ce436c81a58dd7b9e62948f12feb0}{b\+Is\+Running}}
+\item 
+static const std\+::string \mbox{\hyperlink{class_log_manager_a5a27462bc051cf9229549b3ebb63d9bc}{app\+Name}} = "{}Tactical\+Rogue\+Lite"{}
+\item 
+static const std\+::string \mbox{\hyperlink{class_log_manager_ab586595e2f40234990cc5cdbb95b3619}{log\+Internal\+Tag}} = "{}\mbox{[}LOGGER INTERNAL\mbox{]}"{}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_log_manager_a212ef6536eeff7c07db194ca4af2230b}{max\+Log\+Size}} = 10 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_log_manager_aa78f4b693b46e674049959635c5c0746}{max\+Log\+Entries}} = 300
+\item 
+static std\+::vector$<$ std\+::pair$<$ int64, std\+::string $>$ $>$ \mbox{\hyperlink{class_log_manager_adcbc513d5acc086afc6cff26851d1dfc}{recent\+Log\+Entries}}
+\item 
+static std\+::unordered\+\_\+map$<$ int64, size\+\_\+t $>$ \mbox{\hyperlink{class_log_manager_aae6a5ffabf16cadf8676c9b1a0b48f78}{recent\+Log\+Index\+Map}}
+\item 
+static std\+::mutex \mbox{\hyperlink{class_log_manager_a0ab504a646910fac7c38ea0b5a897408}{recent\+Log\+Mutex}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{class_log_manager_af360c4707125c5bd6dd2e6309068f5c1}{next\+Log\+Index}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_log_manager_aedab1387b9084cd125446f3b8d82861f}\label{class_log_manager_aedab1387b9084cd125446f3b8d82861f} 
+\index{LogManager@{LogManager}!LogManager@{LogManager}}
+\index{LogManager@{LogManager}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{LogManager()}{LogManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Log\+Manager\+::\+Log\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a7e6291dd344ad467c049c39f65f6897c}\label{class_log_manager_a7e6291dd344ad467c049c39f65f6897c} 
+\index{LogManager@{LogManager}!````~LogManager@{\texorpdfstring{$\sim$}{\string~}LogManager}}
+\index{````~LogManager@{\texorpdfstring{$\sim$}{\string~}LogManager}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LogManager()}{\string~LogManager()}}
+{\footnotesize\ttfamily Log\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Log\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a4e36ec4436338ae0c50f9ea05eb7b388}\label{class_log_manager_a4e36ec4436338ae0c50f9ea05eb7b388} 
+\index{LogManager@{LogManager}!LogManager@{LogManager}}
+\index{LogManager@{LogManager}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{LogManager()}{LogManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Log\+Manager\+::\+Log\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_log_manager}{Log\+Manager}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_log_manager_a6b3b6fc5ee5790e2b7ee9119fdb912a1}\label{class_log_manager_a6b3b6fc5ee5790e2b7ee9119fdb912a1} 
+\index{LogManager@{LogManager}!AddRecentLogEntry@{AddRecentLogEntry}}
+\index{AddRecentLogEntry@{AddRecentLogEntry}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{AddRecentLogEntry()}{AddRecentLogEntry()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Add\+Recent\+Log\+Entry (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a2eca8c4ff4d7f14e358f7667ac500e60}\label{class_log_manager_a2eca8c4ff4d7f14e358f7667ac500e60} 
+\index{LogManager@{LogManager}!CheckAndCloseLog@{CheckAndCloseLog}}
+\index{CheckAndCloseLog@{CheckAndCloseLog}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{CheckAndCloseLog()}{CheckAndCloseLog()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Check\+And\+Close\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a2b9069c452c48dc43bcf3a628d5dfc6c}\label{class_log_manager_a2b9069c452c48dc43bcf3a628d5dfc6c} 
+\index{LogManager@{LogManager}!EnsureFileLogOpen@{EnsureFileLogOpen}}
+\index{EnsureFileLogOpen@{EnsureFileLogOpen}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{EnsureFileLogOpen()}{EnsureFileLogOpen()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Ensure\+File\+Log\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_afb6e0ba49d38aea6600e95e1b58d8464}\label{class_log_manager_afb6e0ba49d38aea6600e95e1b58d8464} 
+\index{LogManager@{LogManager}!GetLogPath@{GetLogPath}}
+\index{GetLogPath@{GetLogPath}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{GetLogPath()}{GetLogPath()}}
+{\footnotesize\ttfamily std\+::string Log\+Manager\+::\+Get\+Log\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_af1405054d371089ad84d80edb26ba593}\label{class_log_manager_af1405054d371089ad84d80edb26ba593} 
+\index{LogManager@{LogManager}!GetNewLogFilePath@{GetNewLogFilePath}}
+\index{GetNewLogFilePath@{GetNewLogFilePath}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{GetNewLogFilePath()}{GetNewLogFilePath()}}
+{\footnotesize\ttfamily std\+::string Log\+Manager\+::\+Get\+New\+Log\+File\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a6e12d9bd9c11edad5bd5f3e09e5b4a37}\label{class_log_manager_a6e12d9bd9c11edad5bd5f3e09e5b4a37} 
+\index{LogManager@{LogManager}!GetRecentLogEntry@{GetRecentLogEntry}}
+\index{GetRecentLogEntry@{GetRecentLogEntry}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{GetRecentLogEntry()}{GetRecentLogEntry()}}
+{\footnotesize\ttfamily std\+::string Log\+Manager\+::\+Get\+Recent\+Log\+Entry (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{log\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_ae57117b0dc4964f5d6856eba63c570de}\label{class_log_manager_ae57117b0dc4964f5d6856eba63c570de} 
+\index{LogManager@{LogManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_ae4996c3a7f94b65cda62104837dd45e3}\label{class_log_manager_ae4996c3a7f94b65cda62104837dd45e3} 
+\index{LogManager@{LogManager}!IsLogTooBig@{IsLogTooBig}}
+\index{IsLogTooBig@{IsLogTooBig}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{IsLogTooBig()}{IsLogTooBig()}}
+{\footnotesize\ttfamily bool Log\+Manager\+::\+Is\+Log\+Too\+Big (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a3772660ba34d65de9e2e9c8998cd187c}\label{class_log_manager_a3772660ba34d65de9e2e9c8998cd187c} 
+\index{LogManager@{LogManager}!Log@{Log}}
+\index{Log@{Log}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{Log()}{Log()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Log (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_a5ccfb309f504f9005a27be082afe7dd3}\label{class_log_manager_a5ccfb309f504f9005a27be082afe7dd3} 
+\index{LogManager@{LogManager}!LogWorker@{LogWorker}}
+\index{LogWorker@{LogWorker}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{LogWorker()}{LogWorker()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Log\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a3813eab1ec0ba85c213efc092a60259a}\label{class_log_manager_a3813eab1ec0ba85c213efc092a60259a} 
+\index{LogManager@{LogManager}!operator=@{operator=}}
+\index{operator=@{operator=}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_log_manager}{Log\+Manager}} \& Log\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_log_manager}{Log\+Manager}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+\Hypertarget{class_log_manager_a8a3e0d656020daf7c078e6cf9dfbb6b6}\label{class_log_manager_a8a3e0d656020daf7c078e6cf9dfbb6b6} 
+\index{LogManager@{LogManager}!ReadLog@{ReadLog}}
+\index{ReadLog@{ReadLog}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{ReadLog()}{ReadLog()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Log\+Manager\+::\+Read\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_a82e6134160636e95d04af504fb8fda8a}\label{class_log_manager_a82e6134160636e95d04af504fb8fda8a} 
+\index{LogManager@{LogManager}!RotateLogFile@{RotateLogFile}}
+\index{RotateLogFile@{RotateLogFile}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{RotateLogFile()}{RotateLogFile()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Rotate\+Log\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_a31943c93c153a5611c338e976fb9cbbb}\label{class_log_manager_a31943c93c153a5611c338e976fb9cbbb} 
+\index{LogManager@{LogManager}!SanitizeMessage@{SanitizeMessage}}
+\index{SanitizeMessage@{SanitizeMessage}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{SanitizeMessage()}{SanitizeMessage()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Sanitize\+Message (\begin{DoxyParamCaption}\item[{std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a63327449a44035f69f3f3536cc335a66}\label{class_log_manager_a63327449a44035f69f3f3536cc335a66} 
+\index{LogManager@{LogManager}!ShutDown@{ShutDown}}
+\index{ShutDown@{ShutDown}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{ShutDown()}{ShutDown()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Shut\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_log_manager_a7685a70088ee877d9f38f6bc847d5c44}\label{class_log_manager_a7685a70088ee877d9f38f6bc847d5c44} 
+\index{LogManager@{LogManager}!StartLogWorkerThread@{StartLogWorkerThread}}
+\index{StartLogWorkerThread@{StartLogWorkerThread}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{StartLogWorkerThread()}{StartLogWorkerThread()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Start\+Log\+Worker\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_ab7a94367399263cd0be0640b459a7fb2}\label{class_log_manager_ab7a94367399263cd0be0640b459a7fb2} 
+\index{LogManager@{LogManager}!StopLogWorkerThread@{StopLogWorkerThread}}
+\index{StopLogWorkerThread@{StopLogWorkerThread}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{StopLogWorkerThread()}{StopLogWorkerThread()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Stop\+Log\+Worker\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_ab4b6e03fba0a2009f2a9068064792c0b}\label{class_log_manager_ab4b6e03fba0a2009f2a9068064792c0b} 
+\index{LogManager@{LogManager}!WriteToLog@{WriteToLog}}
+\index{WriteToLog@{WriteToLog}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{WriteToLog()}{WriteToLog()}}
+{\footnotesize\ttfamily void Log\+Manager\+::\+Write\+To\+Log (\begin{DoxyParamCaption}\item[{std\+::string \&}]{Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_log_manager_a5a27462bc051cf9229549b3ebb63d9bc}\label{class_log_manager_a5a27462bc051cf9229549b3ebb63d9bc} 
+\index{LogManager@{LogManager}!appName@{appName}}
+\index{appName@{appName}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{appName}{appName}}
+{\footnotesize\ttfamily const std\+::string Log\+Manager\+::app\+Name = "{}Tactical\+Rogue\+Lite"{}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a521ce436c81a58dd7b9e62948f12feb0}\label{class_log_manager_a521ce436c81a58dd7b9e62948f12feb0} 
+\index{LogManager@{LogManager}!bIsRunning@{bIsRunning}}
+\index{bIsRunning@{bIsRunning}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{bIsRunning}{bIsRunning}}
+{\footnotesize\ttfamily bool Log\+Manager\+::b\+Is\+Running\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_acdc161ea7d0bf84af40c5c9607990a5a}\label{class_log_manager_acdc161ea7d0bf84af40c5c9607990a5a} 
+\index{LogManager@{LogManager}!bIsWorkerDone@{bIsWorkerDone}}
+\index{bIsWorkerDone@{bIsWorkerDone}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{bIsWorkerDone}{bIsWorkerDone}}
+{\footnotesize\ttfamily bool Log\+Manager\+::b\+Is\+Worker\+Done\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a3ce1b913be2a0e1b15fb0bb1b6b71dd2}\label{class_log_manager_a3ce1b913be2a0e1b15fb0bb1b6b71dd2} 
+\index{LogManager@{LogManager}!logCondition@{logCondition}}
+\index{logCondition@{logCondition}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logCondition}{logCondition}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable Log\+Manager\+::log\+Condition\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a9a5f265bb2d69cd2b73eda10a09ec1f2}\label{class_log_manager_a9a5f265bb2d69cd2b73eda10a09ec1f2} 
+\index{LogManager@{LogManager}!logFile@{logFile}}
+\index{logFile@{logFile}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logFile}{logFile}}
+{\footnotesize\ttfamily std\+::ofstream Log\+Manager\+::log\+File\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_afb169aaf9e3a60d34f80c926970a8109}\label{class_log_manager_afb169aaf9e3a60d34f80c926970a8109} 
+\index{LogManager@{LogManager}!logFileIndex@{logFileIndex}}
+\index{logFileIndex@{logFileIndex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logFileIndex}{logFileIndex}}
+{\footnotesize\ttfamily size\+\_\+t Log\+Manager\+::log\+File\+Index\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_af3d8b1ad4e27c7df75dd410d06aba576}\label{class_log_manager_af3d8b1ad4e27c7df75dd410d06aba576} 
+\index{LogManager@{LogManager}!logFilePath@{logFilePath}}
+\index{logFilePath@{logFilePath}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logFilePath}{logFilePath}}
+{\footnotesize\ttfamily std\+::string Log\+Manager\+::log\+File\+Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_ab586595e2f40234990cc5cdbb95b3619}\label{class_log_manager_ab586595e2f40234990cc5cdbb95b3619} 
+\index{LogManager@{LogManager}!logInternalTag@{logInternalTag}}
+\index{logInternalTag@{logInternalTag}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logInternalTag}{logInternalTag}}
+{\footnotesize\ttfamily const std\+::string Log\+Manager\+::log\+Internal\+Tag = "{}\mbox{[}LOGGER INTERNAL\mbox{]}"{}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a7b388ce0b9faef8b8d3a6e1138ee356d}\label{class_log_manager_a7b388ce0b9faef8b8d3a6e1138ee356d} 
+\index{LogManager@{LogManager}!logItemID@{logItemID}}
+\index{logItemID@{logItemID}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logItemID}{logItemID}}
+{\footnotesize\ttfamily long long Log\+Manager\+::log\+Item\+ID\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_aa4c2da40b816114eea205132b4bae829}\label{class_log_manager_aa4c2da40b816114eea205132b4bae829} 
+\index{LogManager@{LogManager}!logMutex@{logMutex}}
+\index{logMutex@{logMutex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logMutex}{logMutex}}
+{\footnotesize\ttfamily std\+::mutex Log\+Manager\+::log\+Mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a787ccf7dd9f1e5cbc8f18cc2b4eb3dce}\label{class_log_manager_a787ccf7dd9f1e5cbc8f18cc2b4eb3dce} 
+\index{LogManager@{LogManager}!logQueue@{logQueue}}
+\index{logQueue@{logQueue}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logQueue}{logQueue}}
+{\footnotesize\ttfamily std\+::queue$<$ std\+::string $>$ Log\+Manager\+::log\+Queue\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a3c890b2b3d323a11a5a2dd0ce7674624}\label{class_log_manager_a3c890b2b3d323a11a5a2dd0ce7674624} 
+\index{LogManager@{LogManager}!logThread@{logThread}}
+\index{logThread@{logThread}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{logThread}{logThread}}
+{\footnotesize\ttfamily std\+::thread Log\+Manager\+::log\+Thread\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_aa78f4b693b46e674049959635c5c0746}\label{class_log_manager_aa78f4b693b46e674049959635c5c0746} 
+\index{LogManager@{LogManager}!maxLogEntries@{maxLogEntries}}
+\index{maxLogEntries@{maxLogEntries}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{maxLogEntries}{maxLogEntries}}
+{\footnotesize\ttfamily constexpr size\+\_\+t Log\+Manager\+::max\+Log\+Entries = 300\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a212ef6536eeff7c07db194ca4af2230b}\label{class_log_manager_a212ef6536eeff7c07db194ca4af2230b} 
+\index{LogManager@{LogManager}!maxLogSize@{maxLogSize}}
+\index{maxLogSize@{maxLogSize}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{maxLogSize}{maxLogSize}}
+{\footnotesize\ttfamily constexpr size\+\_\+t Log\+Manager\+::max\+Log\+Size = 10 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_af360c4707125c5bd6dd2e6309068f5c1}\label{class_log_manager_af360c4707125c5bd6dd2e6309068f5c1} 
+\index{LogManager@{LogManager}!nextLogIndex@{nextLogIndex}}
+\index{nextLogIndex@{nextLogIndex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{nextLogIndex}{nextLogIndex}}
+{\footnotesize\ttfamily size\+\_\+t Log\+Manager\+::next\+Log\+Index\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_ad5e21ed8623d61022a6edc4c9ec6f405}\label{class_log_manager_ad5e21ed8623d61022a6edc4c9ec6f405} 
+\index{LogManager@{LogManager}!queueMutex@{queueMutex}}
+\index{queueMutex@{queueMutex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{queueMutex}{queueMutex}}
+{\footnotesize\ttfamily std\+::mutex Log\+Manager\+::queue\+Mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_adcbc513d5acc086afc6cff26851d1dfc}\label{class_log_manager_adcbc513d5acc086afc6cff26851d1dfc} 
+\index{LogManager@{LogManager}!recentLogEntries@{recentLogEntries}}
+\index{recentLogEntries@{recentLogEntries}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{recentLogEntries}{recentLogEntries}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ int64, std\+::string $>$ $>$ Log\+Manager\+::recent\+Log\+Entries\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_aae6a5ffabf16cadf8676c9b1a0b48f78}\label{class_log_manager_aae6a5ffabf16cadf8676c9b1a0b48f78} 
+\index{LogManager@{LogManager}!recentLogIndexMap@{recentLogIndexMap}}
+\index{recentLogIndexMap@{recentLogIndexMap}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{recentLogIndexMap}{recentLogIndexMap}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$ int64, size\+\_\+t $>$ Log\+Manager\+::recent\+Log\+Index\+Map\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a0ab504a646910fac7c38ea0b5a897408}\label{class_log_manager_a0ab504a646910fac7c38ea0b5a897408} 
+\index{LogManager@{LogManager}!recentLogMutex@{recentLogMutex}}
+\index{recentLogMutex@{recentLogMutex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{recentLogMutex}{recentLogMutex}}
+{\footnotesize\ttfamily std\+::mutex Log\+Manager\+::recent\+Log\+Mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a72f0a12152194048ed6bf750104887ac}\label{class_log_manager_a72f0a12152194048ed6bf750104887ac} 
+\index{LogManager@{LogManager}!sessionLogFilePaths@{sessionLogFilePaths}}
+\index{sessionLogFilePaths@{sessionLogFilePaths}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{sessionLogFilePaths}{sessionLogFilePaths}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Log\+Manager\+::session\+Log\+File\+Paths\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a67656a1f147a48f0eff404727a3e6f2e}\label{class_log_manager_a67656a1f147a48f0eff404727a3e6f2e} 
+\index{LogManager@{LogManager}!workerDoneCondition@{workerDoneCondition}}
+\index{workerDoneCondition@{workerDoneCondition}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{workerDoneCondition}{workerDoneCondition}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable Log\+Manager\+::worker\+Done\+Condition\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_log_manager_a3d38f2e447af1a3941f849a1fe0497f0}\label{class_log_manager_a3d38f2e447af1a3941f849a1fe0497f0} 
+\index{LogManager@{LogManager}!WorkerMutex@{WorkerMutex}}
+\index{WorkerMutex@{WorkerMutex}!LogManager@{LogManager}}
+\doxysubsubsection{\texorpdfstring{WorkerMutex}{WorkerMutex}}
+{\footnotesize\ttfamily std\+::mutex Log\+Manager\+::\+Worker\+Mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Utility/\+Logging/\mbox{\hyperlink{_log_manager_8h}{Log\+Manager.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+Utility/\+Logging/\mbox{\hyperlink{_log_manager_8cpp}{Log\+Manager.\+cpp}}\end{DoxyCompactItemize}

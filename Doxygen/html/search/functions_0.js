@@ -9,10 +9,13 @@ var searchData=
   ['acunit_6',['ACUnit',['../class_a_c_unit.html#ace2f38350b55ba497a5b7b301c759dbf',1,'ACUnit']]],
   ['addoption_7',['AddOption',['../struct_f_level_load_settings.html#a9042e58f4da63af0f80d36dad2cb006f',1,'FLevelLoadSettings']]],
   ['addplayertoreconnectablelist_8',['AddPlayerToReconnectableList',['../class_u_epic_online_subsystem.html#ad6bbcfb58640bd3bf34c0086610b87a2',1,'UEpicOnlineSubsystem']]],
-  ['addrecentlogentry_9',['AddRecentLogEntry',['../class_f_log_manager.html#a3fd6ad11ee198c0bc40c5d5937b97cf6',1,'FLogManager']]],
+  ['addrecentlogentry_9',['AddRecentLogEntry',['../class_log_manager.html#a6b3b6fc5ee5790e2b7ee9119fdb912a1',1,'LogManager']]],
   ['addunittoorder_10',['AddUnitToOrder',['../class_a_c_game_state.html#af633147621ba5b43b9ec59e2d20240a9',1,'ACGameState']]],
-  ['applyplayercount_11',['ApplyPlayerCount',['../class_a_c_game_mode.html#a8ef7d5e36732375fc8c97e3a700d64ae',1,'ACGameMode']]],
-  ['attemptdeveloperlogin_12',['AttemptDeveloperLogin',['../class_u_epic_online_subsystem.html#acc7ea7129d4bcf84adc54b6ea3d5d422',1,'UEpicOnlineSubsystem']]],
-  ['attemptlogin_13',['AttemptLogin',['../class_u_epic_online_subsystem.html#a72631980c1463128c6b311dbcbac5ce5',1,'UEpicOnlineSubsystem']]],
-  ['attemptloginwithaccountportal_14',['AttemptLoginWithAccountPortal',['../class_u_epic_online_subsystem.html#a88d637e4b5f6e107720e1d88afab904e',1,'UEpicOnlineSubsystem']]]
+  ['animatein_11',['AnimateIn',['../class_u_c_turn_order_portrait_widget.html#a627f68da4ec94fd18a70cac1b387e6ea',1,'UCTurnOrderPortraitWidget']]],
+  ['animateout_12',['AnimateOut',['../class_u_c_turn_order_portrait_widget.html#a97413310386ecc46c81aaf152b7be6bb',1,'UCTurnOrderPortraitWidget']]],
+  ['applydamage_13',['ApplyDamage',['../class_u_c_gameplay_function_library.html#a8ec74c0f78b342660621ee775ce51748',1,'UCGameplayFunctionLibrary']]],
+  ['applyplayercount_14',['ApplyPlayerCount',['../class_a_c_game_mode.html#a8ef7d5e36732375fc8c97e3a700d64ae',1,'ACGameMode']]],
+  ['attemptdeveloperlogin_15',['AttemptDeveloperLogin',['../class_u_epic_online_subsystem.html#acc7ea7129d4bcf84adc54b6ea3d5d422',1,'UEpicOnlineSubsystem']]],
+  ['attemptlogin_16',['AttemptLogin',['../class_u_epic_online_subsystem.html#a72631980c1463128c6b311dbcbac5ce5',1,'UEpicOnlineSubsystem']]],
+  ['attemptloginwithaccountportal_17',['AttemptLoginWithAccountPortal',['../class_u_epic_online_subsystem.html#a88d637e4b5f6e107720e1d88afab904e',1,'UEpicOnlineSubsystem']]]
 ];

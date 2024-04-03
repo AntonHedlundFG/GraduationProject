@@ -8,21 +8,23 @@
 \item 
 struct \mbox{\hyperlink{struct_f_turn_timer_handle}{FTurn\+Timer\+Handle}}
 \item 
+struct \mbox{\hyperlink{struct_f_turn_timer}{FTurn\+Timer}}
+\item 
 class \mbox{\hyperlink{class_u_c_turn_timer_subsystem}{UCTurn\+Timer\+Subsystem}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} \+: uint8 \{ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}{EPTM\+\_\+\+None}}
-, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73}{EPTM\+\_\+\+Start\+Of\+Turn}}
-, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc}{EPTM\+\_\+\+End\+Of\+Turn}}
-, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12}{EPTM\+\_\+\+Max}}
+enum class \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} \+: uint8 \{ \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064}{EPTM\+\_\+\+None}}
+, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6}{EPTM\+\_\+\+Start\+Of\+Turn}}
+, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e}{EPTM\+\_\+\+End\+Of\+Turn}}
+, \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b}{EPTM\+\_\+\+Max}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a6b74c9338238a6920d3755639c7b7355}{DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+One\+Param}} (FOn\+Turn\+Timer\+Execute, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}, Affected\+Unit)
+\mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3b7b6abd947555868605d95b56d106a6}{DECLARE\+\_\+\+DYNAMIC\+\_\+\+DELEGATE\+\_\+\+One\+Param}} (FOn\+Turn\+Timer\+Execute, \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}, Affected\+Unit)
 \end{DoxyCompactItemize}
 
 
@@ -31,22 +33,22 @@ enum \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd985
 \index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EProgressTurnMethod@{EProgressTurnMethod}}
 \index{EProgressTurnMethod@{EProgressTurnMethod}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}
 \doxysubsubsection{\texorpdfstring{EProgressTurnMethod}{EProgressTurnMethod}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} \+: uint8}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522}{EProgress\+Turn\+Method}} \+: uint8\hspace{0.3cm}{\ttfamily [strong]}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_None@{EPTM\_None}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_None@{EPTM\_None}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ad9dc7dce7a8f5e887123284906b32c0e} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_None@{EPTM\_None}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_None@{EPTM\_None}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a17f0a87d62ff30519edbaddfeb944064} 
 EPTM\+\_\+\+None&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_StartOfTurn@{EPTM\_StartOfTurn}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_StartOfTurn@{EPTM\_StartOfTurn}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a5e5f0171a046ed6fcd77f1f6fb9e3d73} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_StartOfTurn@{EPTM\_StartOfTurn}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_StartOfTurn@{EPTM\_StartOfTurn}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a0c15d1559fcd5d6c413e96b1525d86b6} 
 EPTM\+\_\+\+Start\+Of\+Turn&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_EndOfTurn@{EPTM\_EndOfTurn}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_EndOfTurn@{EPTM\_EndOfTurn}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522adac7625f438850df098f0ba3b880dcfc} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_EndOfTurn@{EPTM\_EndOfTurn}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_EndOfTurn@{EPTM\_EndOfTurn}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522acb29da7bc227a825f78571576166739e} 
 EPTM\+\_\+\+End\+Of\+Turn&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_Max@{EPTM\_Max}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_Max@{EPTM\_Max}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522ab1e91d658b56c0fa3d2c5d4efc2c4a12} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EPTM\_Max@{EPTM\_Max}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!EPTM\_Max@{EPTM\_Max}}}\Hypertarget{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b}\label{_c_turn_timer_subsystem_8h_a3e81423897d558675395effb4cd98522a3f5cd6c59ae04f20d9df640b771fae2b} 
 EPTM\+\_\+\+Max&\\
 \hline
 
@@ -54,9 +56,9 @@ EPTM\+\_\+\+Max&\\
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{_c_turn_timer_subsystem_8h_a6b74c9338238a6920d3755639c7b7355}\label{_c_turn_timer_subsystem_8h_a6b74c9338238a6920d3755639c7b7355} 
-\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}}
-\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}
-\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE\_OneParam()}}
-{\footnotesize\ttfamily DECLARE\+\_\+\+DYNAMIC\+\_\+\+MULTICAST\+\_\+\+DELEGATE\+\_\+\+One\+Param (\begin{DoxyParamCaption}\item[{FOn\+Turn\+Timer\+Execute}]{,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{Affected\+Unit}]{ }\end{DoxyParamCaption})}
+\Hypertarget{_c_turn_timer_subsystem_8h_a3b7b6abd947555868605d95b56d106a6}\label{_c_turn_timer_subsystem_8h_a3b7b6abd947555868605d95b56d106a6} 
+\index{CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}!DECLARE\_DYNAMIC\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_DELEGATE\_OneParam}}
+\index{DECLARE\_DYNAMIC\_DELEGATE\_OneParam@{DECLARE\_DYNAMIC\_DELEGATE\_OneParam}!CTurnTimerSubsystem.h@{CTurnTimerSubsystem.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_DELEGATE\_OneParam()}{DECLARE\_DYNAMIC\_DELEGATE\_OneParam()}}
+{\footnotesize\ttfamily DECLARE\+\_\+\+DYNAMIC\+\_\+\+DELEGATE\+\_\+\+One\+Param (\begin{DoxyParamCaption}\item[{FOn\+Turn\+Timer\+Execute}]{,  }\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{Affected\+Unit}]{ }\end{DoxyParamCaption})}
 

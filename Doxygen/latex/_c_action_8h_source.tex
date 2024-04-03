@@ -6,108 +6,122 @@
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}UObject/NoExportTypes.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameplayTagContainer.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameplayTagContainer.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_log_manager_8h}{Utility/Logging/CLogManager.h}}"{}}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CAction.generated.h"{}}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }UWorld;}
-\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }UCActionComponent;}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ USTRUCT()}
-\DoxyCodeLine{00013\ struct\ \mbox{\hyperlink{struct_f_action_rep_data}{FActionRepData}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ UPROPERTY()}
-\DoxyCodeLine{00020\ \ \ \ \ bool\ bIsRunning;}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY()}
-\DoxyCodeLine{00023\ \ \ \ \ TObjectPtr<AActor>\ Instigator;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_action}{UCAction}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }UWorld;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }UCActionComponent;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ region\ FAbility\ struct}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ USTRUCT(BlueprintType)}
+\DoxyCodeLine{00017\ struct\ \mbox{\hyperlink{struct_f_ability}{FAbility}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ GENERATED\_USTRUCT\_BODY()}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ UPROPERTY(EditAnywhere)}
+\DoxyCodeLine{00023\ \ \ \ \ TArray<TSubclassOf<\mbox{\hyperlink{class_u_c_action}{UCAction}}>>\ Actions;}
 \DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{struct_f_action_rep_data}{FActionRepData}}()}
-\DoxyCodeLine{00026\ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ bIsRunning\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00028\ \ \ \ \ \}}
-\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00025\ \ \ \ \ UPROPERTY(VisibleAnywhere)}
+\DoxyCodeLine{00026\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_action}{UCAction}}*>\ InstantiatedActions;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ UPROPERTY(EditAnywhere)}
+\DoxyCodeLine{00029\ \ \ \ \ FGameplayTag\ InventorySlotTag;}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ UCLASS(Blueprintable)}
-\DoxyCodeLine{00032\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_action}{UCAction}}\ :\ public\ UObject}
-\DoxyCodeLine{00033\ \{}
-\DoxyCodeLine{00034\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00037\ \ \ \ \ }
-\DoxyCodeLine{00038\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}UI"{}})}
-\DoxyCodeLine{00039\ \ \ \ \ TSoftObjectPtr<UTexture2D>\ Icon;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ UPROPERTY(Replicated)}
-\DoxyCodeLine{00042\ \ \ \ \ TObjectPtr<UCActionComponent>\ ActionComp;}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00045\ \ \ \ \ UCActionComponent*\ GetOwningComponent()\ const;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//Tags\ added\ to\ owning\ actor\ when\ activated,\ removed\ when\ action\ stops.}}
-\DoxyCodeLine{00048\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
-\DoxyCodeLine{00049\ \ \ \ \ FGameplayTagContainer\ GrantsTags;}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//Action\ can\ only\ start\ if\ OwningActor\ has\ none\ of\ these\ Tags\ applied.}}
-\DoxyCodeLine{00052\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
-\DoxyCodeLine{00053\ \ \ \ \ FGameplayTagContainer\ BlockedTags;}
+\DoxyCodeLine{00031\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*>\ GetValidTargetTiles(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ fromTile);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsValidTargetTile(\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ fromTile,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ toTile);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(const\ \mbox{\hyperlink{struct_f_ability}{FAbility}}\&\ Other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Actions\ ==\ Other.Actions\ \&\&\ InventorySlotTag\ ==\ Other.InventorySlotTag;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_action_8h_a2306cee08e9687b47fbd90f4419ade4c}{IsValid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_f_ability}{FAbility}}\&\ Ability)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (Ability.\mbox{\hyperlink{struct_f_ability_a505b4e23207c146f9084df2e5708ec8a}{Actions}}.Num()\ ==\ 0)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a}{GetTypeHash}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_f_ability}{FAbility}}\&\ Ability)}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ uint32\ Hash\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ Hash\ =\ HashCombine(Hash,\ \mbox{\hyperlink{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a}{GetTypeHash}}(Ability.\mbox{\hyperlink{struct_f_ability_a4ab5e44738fd75114a837362a97277b8}{InventorySlotTag}}));}
 \DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ UPROPERTY(ReplicatedUsing="{}OnRep\_RepData"{})}
-\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{struct_f_action_rep_data}{FActionRepData}}\ RepData;}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ UPROPERTY(Replicated)}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ TimeStarted;}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ UFUNCTION()}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ OnRep\_RepData();}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//Start\ immediately\ when\ added\ to\ an\ action\ component.}}
-\DoxyCodeLine{00065\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ bAutoStart;}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//Action\ nickname\ to\ start/stop\ without\ a\ reference\ to\ the\ object.}}
-\DoxyCodeLine{00069\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00070\ \ \ \ \ FGameplayTag\ ActivationTag;}
-\DoxyCodeLine{00071\ \ \ \ \ }
-\DoxyCodeLine{00072\ public:}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ UFUNCTION(BlueprintPure)}
-\DoxyCodeLine{00075\ \ \ \ \ FGameplayTag\ GetActivationTag()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ActivationTag;}
-\DoxyCodeLine{00078\ \ \ \ \ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ UFUNCTION(BlueprintPure)}
-\DoxyCodeLine{00081\ \ \ \ \ bool\ IsAutoStart()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00082\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bAutoStart;}
-\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (TSubclassOf<UCAction>\ Action\ :\ Ability.\mbox{\hyperlink{struct_f_ability_a505b4e23207c146f9084df2e5708ec8a}{Actions}})}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Hash\ =\ HashCombine(Hash,\ \mbox{\hyperlink{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a}{GetTypeHash}}(Action));}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ Hash;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ UCLASS(Blueprintable)}
+\DoxyCodeLine{00067\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_action}{UCAction}}\ :\ public\ UObject}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadOnly,\ Category\ =\ \textcolor{stringliteral}{"{}UI"{}})}
+\DoxyCodeLine{00074\ \ \ \ \ TSoftObjectPtr<UTexture2D>\ Icon;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ UPROPERTY(Replicated)}
+\DoxyCodeLine{00077\ \ \ \ \ TObjectPtr<UCActionComponent>\ ActionComp;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ "{}Action"{})}
+\DoxyCodeLine{00080\ \ \ \ \ UCActionComponent*\ GetOwningComponent()\ const;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//Tags\ added\ to\ owning\ actor\ when\ activated,\ removed\ when\ action\ stops.}}
+\DoxyCodeLine{00083\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00084\ \ \ \ \ FGameplayTagContainer\ GrantsTags;}
 \DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ Initialize(UCActionComponent*\ NewActionComp);}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Action"{}})}
-\DoxyCodeLine{00089\ \ \ \ \ bool\ IsRunning()\ const;}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ CanStart(AActor*\ Instigator);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//Action\ can\ only\ start\ if\ OwningActor\ has\ none\ of\ these\ Tags\ applied.}}
+\DoxyCodeLine{00087\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ Category\ =\ "{}Tags"{})}
+\DoxyCodeLine{00088\ \ \ \ \ FGameplayTagContainer\ BlockedTags;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00092\ public:}
 \DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ StartAction(AActor*\ Instigator);}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ UFUNCTION(BlueprintCallable,\ BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ StopAction(AActor*\ Instigator);}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//If\ true,\ this\ was\ the\ first\ action\ in\ a\ chain\ of\ events\ resulting\ from\ player\ input.}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//When\ undoing\ actions,\ we\ iterate\ backwards\ in\ the\ action\ history,\ until\ we\ find\ one\ where}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//this\ is\ true.}}
+\DoxyCodeLine{00097\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ bIsUserIncited\ =\ false;}
 \DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ virtual\ UWorld*\ GetWorld()\ const\ override;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_c_grid_tile_a8445fbb7360e950cb5245377c1a5fd5d}{Initialize}}(UCActionComponent*\ NewActionComp);}
 \DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ IsSupportedForNetworking()\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00105\ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00102\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ CanStart(AActor*\ Instigator);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ StartAction(AActor*\ Instigator);}
 \DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ UFUNCTION(BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ UndoAction(AActor*\ Instigator);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ UFUNCTION(BlueprintCallable,\ BlueprintNativeEvent,\ Category\ =\ "{}Action"{})}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ StopAction(AActor*\ Instigator);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ virtual\ UWorld*\ GetWorld()\ const\ override;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ IsSupportedForNetworking()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \};}
+\DoxyCodeLine{00121\ }
 
 \end{DoxyCode}

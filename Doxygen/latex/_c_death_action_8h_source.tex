@@ -1,0 +1,37 @@
+\doxysection{CDeath\+Action.\+h}
+\hypertarget{_c_death_action_8h_source}{}\label{_c_death_action_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CDeathAction.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CDeathAction.h}}
+\mbox{\hyperlink{_c_death_action_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_action_8h}{Actions/CAction.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CDeathAction.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ UCLASS()}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_death_action}{UCDeathAction}}\ :\ public\ \mbox{\hyperlink{class_u_c_action}{UCAction}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00018\ \ \ \ \ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ StartAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UndoAction\_Implementation(AActor*\ Instigator)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ UPROPERTY(BlueprintReadWrite)}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ AffectedUnit;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ protected:}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ DeathTile;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ DeathTurnOrderIndex;}
+\DoxyCodeLine{00034\ \};}
+
+\end{DoxyCode}

@@ -17,30 +17,30 @@ static TArray$<$ FVector2D $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_af6
 \item 
 static TArray$<$ FVector2D $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}{Diagonal\+Directions}} ()
 \item 
-static TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b}{BFS\+\_\+\+Pathfinding}} (\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}in\+Item, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Start, const \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target)
+static TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_ad59df0153e0742ff9586ddffa31882df}{Flood\+Fill}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Start, int Depth, FGameplay\+Tag\+Container Movement\+Methods=FGameplay\+Tag\+Container())
 \item 
-static TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e}{Flood\+Fill}} (\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}in\+Item, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Start, int Depth)
+static TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_u_c_grid_utils_library_aa6d4662c6faee82d6d82ead1c560aad4}{Reachable\+In\+Single\+Step}} (FGameplay\+Tag\+Container Movement\+Methods, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Tile)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b}\label{class_u_c_grid_utils_library_ad8b6cf6baf7abee08522b5041d24f73b} 
-\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!BFS\_Pathfinding@{BFS\_Pathfinding}}
-\index{BFS\_Pathfinding@{BFS\_Pathfinding}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
-\doxysubsubsection{\texorpdfstring{BFS\_Pathfinding()}{BFS\_Pathfinding()}}
-{\footnotesize\ttfamily TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+BFS\+\_\+\+Pathfinding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}}]{in\+Item,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Start,  }\item[{const \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
 \Hypertarget{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00}\label{class_u_c_grid_utils_library_ab7efa9f5406d8af7fa50cdad77079e00} 
 \index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!DiagonalDirections@{DiagonalDirections}}
 \index{DiagonalDirections@{DiagonalDirections}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
 \doxysubsubsection{\texorpdfstring{DiagonalDirections()}{DiagonalDirections()}}
 {\footnotesize\ttfamily TArray$<$ FVector2D $>$ UCGrid\+Utils\+Library\+::\+Diagonal\+Directions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-\Hypertarget{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e}\label{class_u_c_grid_utils_library_a596dce52e9b3aef5c3a7c3c90ca2ee9e} 
+\Hypertarget{class_u_c_grid_utils_library_ad59df0153e0742ff9586ddffa31882df}\label{class_u_c_grid_utils_library_ad59df0153e0742ff9586ddffa31882df} 
 \index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!FloodFill@{FloodFill}}
 \index{FloodFill@{FloodFill}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
 \doxysubsubsection{\texorpdfstring{FloodFill()}{FloodFill()}}
-{\footnotesize\ttfamily TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+Flood\+Fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*}}]{in\+Item,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Start,  }\item[{int}]{Depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+Flood\+Fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Start,  }\item[{int}]{Depth,  }\item[{FGameplay\+Tag\+Container}]{Movement\+Methods = {\ttfamily FGameplayTagContainer()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_u_c_grid_utils_library_aa6d4662c6faee82d6d82ead1c560aad4}\label{class_u_c_grid_utils_library_aa6d4662c6faee82d6d82ead1c560aad4} 
+\index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!ReachableInSingleStep@{ReachableInSingleStep}}
+\index{ReachableInSingleStep@{ReachableInSingleStep}!UCGridUtilsLibrary@{UCGridUtilsLibrary}}
+\doxysubsubsection{\texorpdfstring{ReachableInSingleStep()}{ReachableInSingleStep()}}
+{\footnotesize\ttfamily TSet$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*} $>$ UCGrid\+Utils\+Library\+::\+Reachable\+In\+Single\+Step (\begin{DoxyParamCaption}\item[{FGameplay\+Tag\+Container}]{Movement\+Methods,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \Hypertarget{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6}\label{class_u_c_grid_utils_library_af6ae9ab0df332d518f124fd1eee7b7c6} 
 \index{UCGridUtilsLibrary@{UCGridUtilsLibrary}!StraightDirections@{StraightDirections}}

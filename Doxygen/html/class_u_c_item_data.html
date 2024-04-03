@@ -91,6 +91,16 @@ Inheritance diagram for UCItemData:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a0024165e0d34f6a68feedbf8910bea78" id="r_a0024165e0d34f6a68feedbf8910bea78"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0024165e0d34f6a68feedbf8910bea78">GetItemName</a> () const</td></tr>
+<tr class="separator:a0024165e0d34f6a68feedbf8910bea78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198800d6fd29d8b7c70801b9e45c9290" id="r_a198800d6fd29d8b7c70801b9e45c9290"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a198800d6fd29d8b7c70801b9e45c9290">GetDescription</a> () const</td></tr>
+<tr class="separator:a198800d6fd29d8b7c70801b9e45c9290"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f0b52ea925debaa7d196254d6774949" id="r_a6f0b52ea925debaa7d196254d6774949"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f0b52ea925debaa7d196254d6774949">EquipOnUnit</a> (<a class="el" href="class_a_c_unit.html">ACUnit</a> *inUnit)</td></tr>
+<tr class="memdesc:a6f0b52ea925debaa7d196254d6774949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the server when a unit equips this item. This applies any tags in GrantsTags to the unit, and EquipOnUnitInternal can be overridden to apply further custom effects.  <br /></td></tr>
+<tr class="separator:a6f0b52ea925debaa7d196254d6774949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687d7a58b100ef72171ed9de87d04dab" id="r_a687d7a58b100ef72171ed9de87d04dab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a687d7a58b100ef72171ed9de87d04dab">UnequipOnUnit</a> (<a class="el" href="class_a_c_unit.html">ACUnit</a> *inUnit)</td></tr>
+<tr class="memdesc:a687d7a58b100ef72171ed9de87d04dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the server when a unit unequips this item. Removes any tags in GrantsTags from the unit, and UnequipOnUnitInternal can be overridden to remove any further custom effects.  <br /></td></tr>
+<tr class="separator:a687d7a58b100ef72171ed9de87d04dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa62b3fbb7f3a6c141fa106d6f41e4dc9" id="r_aa62b3fbb7f3a6c141fa106d6f41e4dc9"><td class="memItemLeft" align="right" valign="top">FPrimaryAssetId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa62b3fbb7f3a6c141fa106d6f41e4dc9">GetPrimaryAssetId</a> () const override</td></tr>
 <tr class="separator:aa62b3fbb7f3a6c141fa106d6f41e4dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14d8228cba87f0449aac5b03dda24f44" id="r_a14d8228cba87f0449aac5b03dda24f44"><td class="memItemLeft" align="right" valign="top">TSoftObjectPtr&lt; UMaterialInterface &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14d8228cba87f0449aac5b03dda24f44">GetIconAsMaterial</a> () const</td></tr>
@@ -106,27 +116,71 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ab7654a9543e4b42be6ecf1f3846af9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9edec744fa6e91a1eb5ed7d711b7280" id="r_af9edec744fa6e91a1eb5ed7d711b7280"><td class="memItemLeft" align="right" valign="top">TSoftObjectPtr&lt; UObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9edec744fa6e91a1eb5ed7d711b7280">Icon</a></td></tr>
 <tr class="separator:af9edec744fa6e91a1eb5ed7d711b7280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14b16d788e19b5eebef43e80010ad208" id="r_a14b16d788e19b5eebef43e80010ad208"><td class="memItemLeft" align="right" valign="top">FPrimaryAssetType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14b16d788e19b5eebef43e80010ad208">ItemType</a></td></tr>
-<tr class="separator:a14b16d788e19b5eebef43e80010ad208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbf2b253c093851029f28638edb1199f" id="r_afbf2b253c093851029f28638edb1199f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_item_data_8h.html#a718706dc01c2f868b68588e12e1ef6cb">EItemQuality</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbf2b253c093851029f28638edb1199f">Quality</a></td></tr>
-<tr class="separator:afbf2b253c093851029f28638edb1199f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14fe758caec72e810a5cf0caead0c789" id="r_a14fe758caec72e810a5cf0caead0c789"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14fe758caec72e810a5cf0caead0c789">StackLimit</a></td></tr>
-<tr class="separator:a14fe758caec72e810a5cf0caead0c789"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab366ecbf8fe09d0c75a995c4f2cea6fd" id="r_ab366ecbf8fe09d0c75a995c4f2cea6fd"><td class="memItemLeft" align="right" valign="top">TArray&lt; TSoftClassPtr&lt; <a class="el" href="class_u_c_action.html">UCAction</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab366ecbf8fe09d0c75a995c4f2cea6fd">ActionClasses</a></td></tr>
-<tr class="separator:ab366ecbf8fe09d0c75a995c4f2cea6fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcd8643d115efa8d9f5615a72eeb649" id="r_a0bcd8643d115efa8d9f5615a72eeb649"><td class="memItemLeft" align="right" valign="top">TSoftClassPtr&lt; AActor &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bcd8643d115efa8d9f5615a72eeb649">ActorClass</a></td></tr>
-<tr class="separator:a0bcd8643d115efa8d9f5615a72eeb649"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a8feba80f659ad70c4d8df46a582a5b" id="r_a7a8feba80f659ad70c4d8df46a582a5b"><td class="memItemLeft" align="right" valign="top">FGameplayTagContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a8feba80f659ad70c4d8df46a582a5b">OwnedTag</a></td></tr>
-<tr class="separator:a7a8feba80f659ad70c4d8df46a582a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0293f633eb8121d876c088e34c9d7386" id="r_a0293f633eb8121d876c088e34c9d7386"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_ability.html">FAbility</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0293f633eb8121d876c088e34c9d7386">Ability</a></td></tr>
+<tr class="separator:a0293f633eb8121d876c088e34c9d7386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897e06ad0ae5b761ba2cfd185e2a0984" id="r_a897e06ad0ae5b761ba2cfd185e2a0984"><td class="memItemLeft" align="right" valign="top">FGameplayTag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a897e06ad0ae5b761ba2cfd185e2a0984">ItemSlot</a></td></tr>
+<tr class="separator:a897e06ad0ae5b761ba2cfd185e2a0984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485f9bb2f2bc9a79c22fc6d86897f85f" id="r_a485f9bb2f2bc9a79c22fc6d86897f85f"><td class="memItemLeft" align="right" valign="top">FGameplayTagContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a485f9bb2f2bc9a79c22fc6d86897f85f">ItemTags</a></td></tr>
+<tr class="separator:a485f9bb2f2bc9a79c22fc6d86897f85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8c2eaa83f6bd6fc19b5b1fd5227a9746" id="r_a8c2eaa83f6bd6fc19b5b1fd5227a9746"><td class="memItemLeft" align="right" valign="top">FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c2eaa83f6bd6fc19b5b1fd5227a9746">ItenName</a></td></tr>
-<tr class="separator:a8c2eaa83f6bd6fc19b5b1fd5227a9746"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6a986f602a5adb74c5887677a903c63" id="r_aa6a986f602a5adb74c5887677a903c63"><td class="memItemLeft" align="right" valign="top">FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6a986f602a5adb74c5887677a903c63">ItemDescription</a></td></tr>
-<tr class="separator:aa6a986f602a5adb74c5887677a903c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c11d502db7cf594cb4629760afc51a6" id="r_a9c11d502db7cf594cb4629760afc51a6"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c11d502db7cf594cb4629760afc51a6">ItemName</a></td></tr>
+<tr class="separator:a9c11d502db7cf594cb4629760afc51a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00656d851dc05e7d0ce3d083ed6fdab1" id="r_a00656d851dc05e7d0ce3d083ed6fdab1"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00656d851dc05e7d0ce3d083ed6fdab1">ItemDescription</a></td></tr>
+<tr class="separator:a00656d851dc05e7d0ce3d083ed6fdab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6f0b52ea925debaa7d196254d6774949" name="a6f0b52ea925debaa7d196254d6774949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f0b52ea925debaa7d196254d6774949">&#9670;&#160;</a></span>EquipOnUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCItemData::EquipOnUnit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_c_unit.html">ACUnit</a> *</td>          <td class="paramname"><span class="paramname"><em>inUnit</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called by the server when a unit equips this item. This applies any tags in GrantsTags to the unit, and EquipOnUnitInternal can be overridden to apply further custom effects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inUnit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a198800d6fd29d8b7c70801b9e45c9290" name="a198800d6fd29d8b7c70801b9e45c9290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198800d6fd29d8b7c70801b9e45c9290">&#9670;&#160;</a></span>GetDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UCItemData::GetDescription </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a14d8228cba87f0449aac5b03dda24f44" name="a14d8228cba87f0449aac5b03dda24f44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a14d8228cba87f0449aac5b03dda24f44">&#9670;&#160;</a></span>GetIconAsMaterial()</h2>
 
@@ -177,6 +231,31 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a0024165e0d34f6a68feedbf8910bea78" name="a0024165e0d34f6a68feedbf8910bea78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0024165e0d34f6a68feedbf8910bea78">&#9670;&#160;</a></span>GetItemName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UCItemData::GetItemName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa62b3fbb7f3a6c141fa106d6f41e4dc9" name="aa62b3fbb7f3a6c141fa106d6f41e4dc9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa62b3fbb7f3a6c141fa106d6f41e4dc9">&#9670;&#160;</a></span>GetPrimaryAssetId()</h2>
 
@@ -202,29 +281,40 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab366ecbf8fe09d0c75a995c4f2cea6fd" name="ab366ecbf8fe09d0c75a995c4f2cea6fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab366ecbf8fe09d0c75a995c4f2cea6fd">&#9670;&#160;</a></span>ActionClasses</h2>
+<a id="a687d7a58b100ef72171ed9de87d04dab" name="a687d7a58b100ef72171ed9de87d04dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a687d7a58b100ef72171ed9de87d04dab">&#9670;&#160;</a></span>UnequipOnUnit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TArray&lt;TSoftClassPtr&lt;<a class="el" href="class_u_c_action.html">UCAction</a>&gt; &gt; UCItemData::ActionClasses</td>
+          <td class="memname">void UCItemData::UnequipOnUnit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_c_unit.html">ACUnit</a> *</td>          <td class="paramname"><span class="paramname"><em>inUnit</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Called by the server when a unit unequips this item. Removes any tags in GrantsTags from the unit, and UnequipOnUnitInternal can be overridden to remove any further custom effects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inUnit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a0bcd8643d115efa8d9f5615a72eeb649" name="a0bcd8643d115efa8d9f5615a72eeb649"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bcd8643d115efa8d9f5615a72eeb649">&#9670;&#160;</a></span>ActorClass</h2>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0293f633eb8121d876c088e34c9d7386" name="a0293f633eb8121d876c088e34c9d7386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0293f633eb8121d876c088e34c9d7386">&#9670;&#160;</a></span>Ability</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TSoftClassPtr&lt;AActor&gt; UCItemData::ActorClass</td>
+          <td class="memname"><a class="el" href="struct_f_ability.html">FAbility</a> UCItemData::Ability</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -273,8 +363,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa6a986f602a5adb74c5887677a903c63" name="aa6a986f602a5adb74c5887677a903c63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6a986f602a5adb74c5887677a903c63">&#9670;&#160;</a></span>ItemDescription</h2>
+<a id="a00656d851dc05e7d0ce3d083ed6fdab1" name="a00656d851dc05e7d0ce3d083ed6fdab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00656d851dc05e7d0ce3d083ed6fdab1">&#9670;&#160;</a></span>ItemDescription</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,7 +373,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">FText UCItemData::ItemDescription</td>
+          <td class="memname">FString UCItemData::ItemDescription</td>
         </tr>
       </table>
   </td>
@@ -295,22 +385,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a14b16d788e19b5eebef43e80010ad208" name="a14b16d788e19b5eebef43e80010ad208"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14b16d788e19b5eebef43e80010ad208">&#9670;&#160;</a></span>ItemType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FPrimaryAssetType UCItemData::ItemType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8c2eaa83f6bd6fc19b5b1fd5227a9746" name="a8c2eaa83f6bd6fc19b5b1fd5227a9746"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c2eaa83f6bd6fc19b5b1fd5227a9746">&#9670;&#160;</a></span>ItenName</h2>
+<a id="a9c11d502db7cf594cb4629760afc51a6" name="a9c11d502db7cf594cb4629760afc51a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c11d502db7cf594cb4629760afc51a6">&#9670;&#160;</a></span>ItemName</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +395,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">FText UCItemData::ItenName</td>
+          <td class="memname">FString UCItemData::ItemName</td>
         </tr>
       </table>
   </td>
@@ -331,42 +407,28 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a8feba80f659ad70c4d8df46a582a5b" name="a7a8feba80f659ad70c4d8df46a582a5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a8feba80f659ad70c4d8df46a582a5b">&#9670;&#160;</a></span>OwnedTag</h2>
+<a id="a897e06ad0ae5b761ba2cfd185e2a0984" name="a897e06ad0ae5b761ba2cfd185e2a0984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897e06ad0ae5b761ba2cfd185e2a0984">&#9670;&#160;</a></span>ItemSlot</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">FGameplayTagContainer UCItemData::OwnedTag</td>
+          <td class="memname">FGameplayTag UCItemData::ItemSlot</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="afbf2b253c093851029f28638edb1199f" name="afbf2b253c093851029f28638edb1199f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbf2b253c093851029f28638edb1199f">&#9670;&#160;</a></span>Quality</h2>
+<a id="a485f9bb2f2bc9a79c22fc6d86897f85f" name="a485f9bb2f2bc9a79c22fc6d86897f85f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a485f9bb2f2bc9a79c22fc6d86897f85f">&#9670;&#160;</a></span>ItemTags</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_c_item_data_8h.html#a718706dc01c2f868b68588e12e1ef6cb">EItemQuality</a> UCItemData::Quality</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a14fe758caec72e810a5cf0caead0c789" name="a14fe758caec72e810a5cf0caead0c789"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14fe758caec72e810a5cf0caead0c789">&#9670;&#160;</a></span>StackLimit</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32 UCItemData::StackLimit</td>
+          <td class="memname">FGameplayTagContainer UCItemData::ItemTags</td>
         </tr>
       </table>
 </div><div class="memdoc">

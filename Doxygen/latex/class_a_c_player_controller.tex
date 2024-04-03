@@ -15,7 +15,7 @@ Inheritance diagram for ACPlayer\+Controller\+:\begin{figure}[H]
 \item 
 void \mbox{\hyperlink{class_a_c_player_controller_a0c9aed74a1603a7d69560888a273773b}{Undo\+Ability}} ()
 \item 
-void \mbox{\hyperlink{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4}{Initiate\+Ability\+Use}} (\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Item\+Slot)
+void \mbox{\hyperlink{class_a_c_player_controller_a96e160f878a709a815e5f5cc4592f67f}{Initiate\+Ability\+Use}} (FGameplay\+Tag in\+Tag)
 \item 
 void \mbox{\hyperlink{class_a_c_player_controller_a0b4d8b138d5e8bc2a58bca40c971c2b2}{Finalize\+Ability\+Use}} (\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
 \item 
@@ -35,7 +35,7 @@ void \mbox{\hyperlink{class_a_online_player_controller_affcda06eadef36b45d4ebf60
 \item 
 \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_ad911dc6b5daff759e74624a92b437bd1}{Get\+Game\+State}} ()
 \item 
-void \mbox{\hyperlink{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57}{Server\+\_\+\+Use\+Object}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Slot, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
+void \mbox{\hyperlink{class_a_c_player_controller_a9467d1894168ce2ae61faca847f96e3f}{Server\+\_\+\+Use\+Object}} (\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}in\+Unit, FGameplay\+Tag in\+Tag, \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}in\+Target\+Tile)
 \item 
 void \mbox{\hyperlink{class_a_c_player_controller_a13cb60efaf3fb9f194793ce3cab8d88f}{Server\+\_\+\+Try\+Undo}} ()
 \item 
@@ -47,6 +47,8 @@ void \mbox{\hyperlink{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a
 \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_acfc9069d4032f44cb70625c752408bfc}{Game\+State\+Ref}}
 \item 
 \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} \mbox{\hyperlink{class_a_c_player_controller_a5c84d29711db79264cc510623e3f509a}{Item\+Slot\+Currently\+Used}} = EItem\+Slots\+::\+EIS\+\_\+\+None
+\item 
+FGameplay\+Tag \mbox{\hyperlink{class_a_c_player_controller_abb3e70e27049697eb15e1498a0495406}{Tag\+Currently\+Used}}
 \item 
 \mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a}{Unit\+Currently\+Using\+Ability}} = nullptr
 \item 
@@ -79,11 +81,11 @@ TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$
 \doxysubsubsection{\texorpdfstring{GetGameState()}{GetGameState()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_a_c_game_state}{ACGame\+State}} \texorpdfstring{$\ast$}{*} ACPlayer\+Controller\+::\+Get\+Game\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\Hypertarget{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4}\label{class_a_c_player_controller_acdd838b9521536b58b72d8e06f5d13f4} 
+\Hypertarget{class_a_c_player_controller_a96e160f878a709a815e5f5cc4592f67f}\label{class_a_c_player_controller_a96e160f878a709a815e5f5cc4592f67f} 
 \index{ACPlayerController@{ACPlayerController}!InitiateAbilityUse@{InitiateAbilityUse}}
 \index{InitiateAbilityUse@{InitiateAbilityUse}!ACPlayerController@{ACPlayerController}}
 \doxysubsubsection{\texorpdfstring{InitiateAbilityUse()}{InitiateAbilityUse()}}
-{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Initiate\+Ability\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Item\+Slot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Initiate\+Ability\+Use (\begin{DoxyParamCaption}\item[{FGameplay\+Tag}]{in\+Tag }\end{DoxyParamCaption})}
 
 \Hypertarget{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a69b}\label{class_a_c_player_controller_a1a2ee0884a4dc028d5be1eebf327a69b} 
 \index{ACPlayerController@{ACPlayerController}!Server\_TryEndTurn@{Server\_TryEndTurn}}
@@ -97,11 +99,11 @@ TArray$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$
 \doxysubsubsection{\texorpdfstring{Server\_TryUndo()}{Server\_TryUndo()}}
 {\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Try\+Undo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\Hypertarget{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57}\label{class_a_c_player_controller_a9d708fc5bc206c99d62d27ed8f120c57} 
+\Hypertarget{class_a_c_player_controller_a9467d1894168ce2ae61faca847f96e3f}\label{class_a_c_player_controller_a9467d1894168ce2ae61faca847f96e3f} 
 \index{ACPlayerController@{ACPlayerController}!Server\_UseObject@{Server\_UseObject}}
 \index{Server\_UseObject@{Server\_UseObject}!ACPlayerController@{ACPlayerController}}
 \doxysubsubsection{\texorpdfstring{Server\_UseObject()}{Server\_UseObject()}}
-{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Use\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{const \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Slot,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void ACPlayer\+Controller\+::\+Server\+\_\+\+Use\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_c_unit}{ACUnit}} \texorpdfstring{$\ast$}{*}}]{in\+Unit,  }\item[{FGameplay\+Tag}]{in\+Tag,  }\item[{\mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} \texorpdfstring{$\ast$}{*}}]{in\+Target\+Tile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 This function is called by client to notify server of object use. on the server, it is forwarded to the Game\+Mode to handle activitiy. 
 \begin{DoxyParams}{Parameters}
@@ -141,6 +143,12 @@ true if ability use was successful
 \index{ItemSlotCurrentlyUsed@{ItemSlotCurrentlyUsed}!ACPlayerController@{ACPlayerController}}
 \doxysubsubsection{\texorpdfstring{ItemSlotCurrentlyUsed}{ItemSlotCurrentlyUsed}}
 {\footnotesize\ttfamily \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} ACPlayer\+Controller\+::\+Item\+Slot\+Currently\+Used = EItem\+Slots\+::\+EIS\+\_\+\+None\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_a_c_player_controller_abb3e70e27049697eb15e1498a0495406}\label{class_a_c_player_controller_abb3e70e27049697eb15e1498a0495406} 
+\index{ACPlayerController@{ACPlayerController}!TagCurrentlyUsed@{TagCurrentlyUsed}}
+\index{TagCurrentlyUsed@{TagCurrentlyUsed}!ACPlayerController@{ACPlayerController}}
+\doxysubsubsection{\texorpdfstring{TagCurrentlyUsed}{TagCurrentlyUsed}}
+{\footnotesize\ttfamily FGameplay\+Tag ACPlayer\+Controller\+::\+Tag\+Currently\+Used\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a}\label{class_a_c_player_controller_a5b3bb52cf198b037329d9ad326bb900a} 
 \index{ACPlayerController@{ACPlayerController}!UnitCurrentlyUsingAbility@{UnitCurrentlyUsingAbility}}

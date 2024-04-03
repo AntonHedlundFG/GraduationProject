@@ -1,0 +1,60 @@
+\doxysection{CResizable\+Window.\+h}
+\hypertarget{_c_resizable_window_8h_source}{}\label{_c_resizable_window_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CResizableWindow.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CResizableWindow.h}}
+\mbox{\hyperlink{_c_resizable_window_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_movable_window_8h}{CMovableWindow.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}CResizableWindow.generated.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ UENUM(BlueprintType)}
+\DoxyCodeLine{00013\ enum\ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26}{EResizeType}}\ :\ uint8}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ None\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26a5fd3d6f02c1dc582f80e2af875af4561}{UMETA}}(Hidden),}
+\DoxyCodeLine{00016\ \ \ \ \ Diagonal\ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26a5fd3d6f02c1dc582f80e2af875af4561}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Diagonal"{}}),}
+\DoxyCodeLine{00017\ \ \ \ \ Horizontal\ \ \ \ \ \ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26a5fd3d6f02c1dc582f80e2af875af4561}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Horizontal"{}}),}
+\DoxyCodeLine{00018\ \ \ \ \ Vertical\ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26a5fd3d6f02c1dc582f80e2af875af4561}{UMETA}}(DisplayName\ =\ \textcolor{stringliteral}{"{}Vertical"{}}),}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }UButton;}
+\DoxyCodeLine{00021\ UCLASS()}
+\DoxyCodeLine{00022\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_resizable_window}{UCResizableWindow}}\ :\ public\ \mbox{\hyperlink{class_u_c_movable_window}{UCMovableWindow}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ FTimerHandle\ resizeTimerHandle;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_c_resizable_window_8h_a09298740c06cd84c56553b671748fe26}{EResizeType}}\ ScalingType\ =\ None;}
+\DoxyCodeLine{00029\ \ \ \ \ FVector2D\ ClickDifference\ =\ FVector2D::Zero();}
+\DoxyCodeLine{00030\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ ClearResizeTimer();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ SetClickDifference();}
+\DoxyCodeLine{00033\ \ \ \ \ FVector2D\ GetNewCanvasScale();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ public:}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateScale();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ StartResizeTimer();}
+\DoxyCodeLine{00040\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ OnDiagonalPressed();}
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ OnHorizontalPressed();}
+\DoxyCodeLine{00044\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ OnVerticalPressed();}
+\DoxyCodeLine{00046\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetUp()\ override;}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00049\ \ \ \ \ UButton*\ DiagonalButton;}
+\DoxyCodeLine{00050\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00051\ \ \ \ \ UButton*\ HorizontalButton;}
+\DoxyCodeLine{00052\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00053\ \ \ \ \ UButton*\ VerticalButton;}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \};}
+
+\end{DoxyCode}

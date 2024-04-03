@@ -9,6 +9,10 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \end{DoxyCompactList}
 \item \contentsline{section}{ACGrid\+Spawner}{\pageref{class_a_c_grid_spawner}}{}
 \item \contentsline{section}{ACGrid\+Tile}{\pageref{class_a_c_grid_tile}}{}
+\item \contentsline{section}{ACTurn\+Order\+UIManager}{\pageref{class_a_c_turn_order_u_i_manager}}{}
+\end{DoxyCompactList}
+\item AAIController\begin{DoxyCompactList}
+\item \contentsline{section}{ACAIController}{\pageref{class_a_c_a_i_controller}}{}
 \end{DoxyCompactList}
 \item ACharacter\begin{DoxyCompactList}
 \item \contentsline{section}{ACAlice\+Test\+Character}{\pageref{class_a_c_alice_test_character}}{}
@@ -35,16 +39,16 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \item \contentsline{section}{AOnline\+Player\+State}{\pageref{class_a_online_player_state}}{}
 \end{DoxyCompactList}
 \item \contentsline{section}{Doxygen\+Documentation\+Reference}{\pageref{class_doxygen_documentation_reference}}{}
-\item \contentsline{section}{FAction\+Rep\+Data}{\pageref{struct_f_action_rep_data}}{}
+\item \contentsline{section}{FAbility}{\pageref{struct_f_ability}}{}
 \item FComponent\+Visualizer\begin{DoxyCompactList}
 \item \contentsline{section}{Connector\+Visualizer}{\pageref{class_connector_visualizer}}{}
 \item \contentsline{section}{FScrolling\+Combat\+Text\+Visualizer}{\pageref{class_f_scrolling_combat_text_visualizer}}{}
 \end{DoxyCompactList}
 \item \contentsline{section}{FLevel\+Info}{\pageref{struct_f_level_info}}{}
 \item \contentsline{section}{FLevel\+Load\+Settings}{\pageref{struct_f_level_load_settings}}{}
-\item \contentsline{section}{FLog\+Manager}{\pageref{class_f_log_manager}}{}
 \item \contentsline{section}{FSession\+Details}{\pageref{struct_f_session_details}}{}
 \item \contentsline{section}{FSession\+Search\+Results}{\pageref{struct_f_session_search_results}}{}
+\item \contentsline{section}{FTurn\+Timer}{\pageref{struct_f_turn_timer}}{}
 \item \contentsline{section}{FTurn\+Timer\+Handle}{\pageref{struct_f_turn_timer_handle}}{}
 \item \contentsline{section}{ICSavable}{\pageref{class_i_c_savable}}{}
 \begin{DoxyCompactList}
@@ -54,6 +58,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \item IModule\+Interface\begin{DoxyCompactList}
 \item \contentsline{section}{FTactical\+Rogue\+Lite\+Editor\+Module}{\pageref{class_f_tactical_rogue_lite_editor_module}}{}
 \end{DoxyCompactList}
+\item \contentsline{section}{Log\+Manager}{\pageref{class_log_manager}}{}
 \item Module\+Rules\begin{DoxyCompactList}
 \item \contentsline{section}{Tactical\+Rogue\+Lite}{\pageref{class_tactical_rogue_lite}}{}
 \item \contentsline{section}{Tactical\+Rogue\+Lite\+Editor}{\pageref{class_tactical_rogue_lite_editor}}{}
@@ -67,10 +72,10 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \item \contentsline{section}{UCSavable\+Component}{\pageref{class_u_c_savable_component}}{}
 \end{DoxyCompactList}
 \item UBlueprint\+Function\+Library\begin{DoxyCompactList}
+\item \contentsline{section}{UCGameplay\+Function\+Library}{\pageref{class_u_c_gameplay_function_library}}{}
 \item \contentsline{section}{UCGrid\+Utils\+Library}{\pageref{class_u_c_grid_utils_library}}{}
 \end{DoxyCompactList}
 \item UData\+Asset\begin{DoxyCompactList}
-\item \contentsline{section}{UCItem}{\pageref{class_u_c_item}}{}
 \item \contentsline{section}{UCLevel\+URLAsset}{\pageref{class_u_c_level_u_r_l_asset}}{}
 \item \contentsline{section}{UCTile\+Highlight\+Data}{\pageref{class_u_c_tile_highlight_data}}{}
 \end{DoxyCompactList}
@@ -87,16 +92,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \item \contentsline{section}{UCAction}{\pageref{class_u_c_action}}{}
 \begin{DoxyCompactList}
 \item \contentsline{section}{UCAction\+Effect}{\pageref{class_u_c_action_effect}}{}
+\item \contentsline{section}{UCDeath\+Action}{\pageref{class_u_c_death_action}}{}
+\item \contentsline{section}{UCTargetable\+Action}{\pageref{class_u_c_targetable_action}}{}
 \begin{DoxyCompactList}
-\item \contentsline{section}{UCAction\+Effect\+\_\+\+Rooted}{\pageref{class_u_c_action_effect___rooted}}{}
+\item \contentsline{section}{UCAttack\+Action}{\pageref{class_u_c_attack_action}}{}
+\item \contentsline{section}{UCMovement\+Action}{\pageref{class_u_c_movement_action}}{}
 \end{DoxyCompactList}
 \end{DoxyCompactList}
 \item \contentsline{section}{UCCombat\+Logger}{\pageref{class_u_c_combat_logger}}{}
-\item \contentsline{section}{UCCommand}{\pageref{class_u_c_command}}{}
-\item \contentsline{section}{UCConsequence}{\pageref{class_u_c_consequence}}{}
-\begin{DoxyCompactList}
-\item \contentsline{section}{UCDeath\+Consequence}{\pageref{class_u_c_death_consequence}}{}
-\end{DoxyCompactList}
 \item \contentsline{section}{UCLog\+Manager}{\pageref{class_u_c_log_manager}}{}
 \item \contentsline{section}{UCSave\+Game\+Manager}{\pageref{class_u_c_save_game_manager}}{}
 \end{DoxyCompactList}
@@ -106,6 +109,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically\+:\b
 \end{DoxyCompactList}
 \item USave\+Game\begin{DoxyCompactList}
 \item \contentsline{section}{UCSave\+Game}{\pageref{class_u_c_save_game}}{}
+\end{DoxyCompactList}
+\item UUser\+Widget\begin{DoxyCompactList}
+\item \contentsline{section}{UCMovable\+Window}{\pageref{class_u_c_movable_window}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{UCResizable\+Window}{\pageref{class_u_c_resizable_window}}{}
+\item \contentsline{section}{UGame\+Menu\+Widget}{\pageref{class_u_game_menu_widget}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{UCTurn\+Order\+Portrait\+Widget}{\pageref{class_u_c_turn_order_portrait_widget}}{}
 \end{DoxyCompactList}
 \item UWorld\+Subsystem\begin{DoxyCompactList}
 \item \contentsline{section}{UCTurn\+Timer\+Subsystem}{\pageref{class_u_c_turn_timer_subsystem}}{}

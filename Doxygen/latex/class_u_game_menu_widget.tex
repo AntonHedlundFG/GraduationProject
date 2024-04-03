@@ -1,0 +1,106 @@
+\doxysection{UGame\+Menu\+Widget Class Reference}
+\hypertarget{class_u_game_menu_widget}{}\label{class_u_game_menu_widget}\index{UGameMenuWidget@{UGameMenuWidget}}
+
+
+{\ttfamily \#include $<$Game\+Menu\+Widget.\+h$>$}
+
+Inheritance diagram for UGame\+Menu\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_game_menu_widget}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_game_menu_widget_acaa9692f7204b8dd677d3cfc2d6c9f59}{Set\+Up}} () override
+\item 
+void \mbox{\hyperlink{class_u_game_menu_widget_a79450052608fb1636ff3e80c547a707e}{Quit\+Game}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_game_menu_widget_aab044a3b9c4b46b6145d7e13f6bff0f6}{Quit\+Button}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a409768f9b50593eea406c871870f6fa9}{Update\+Position}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_ace6f53a72521a649ec1eb3c156e9e531}{Start\+Move\+Timer}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a5ea511fad858cb813297730571e13bde}{On\+Header\+Button\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a069d566bda56a2a9ac29c88782226cd2}{Close}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_movable_window_a10911d26a0fcba640e27f63f8f32d8d2}{Open}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_c_movable_window_a00bf71fd5aa652b9d357b8ec0faf9043}{b\+Is\+Open}} = false
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_adf6c82419b1fb27066568913c80bdc11}{Window\+Min\+Size}} = FVector2D(200,200)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_af970495b645674d5083800d40dc0b4a9}{Window\+Max\+Size}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a56226af27ffc789a677cd66ca926a296}{Header\+Button}}
+\item 
+UButton \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a0a87657a9a97d9d9c8db781e05f97e73}{Close\+Button}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a51c9b3a33edcb32041237aafc807dea9}{Canvas\+Panel\+Wrapper}}
+\item 
+UCanvas\+Panel \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7e498f4fe2b88dd3cbf40c609e66e454}{Main\+Canvas}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a902ebd3ef3ace6dcf8d4d1ffcebf6a8f}{On\+Window\+Close}}
+\item 
+FOn\+Change \mbox{\hyperlink{class_u_c_movable_window_a479cb6a8cc9998ab1e56db92e6e8f58e}{On\+Window\+Open}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_ae3108289552d2b0a2edf5088a6596c17}{Close\+Sound}}
+\item 
+USound\+Cue \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a7a8e1e93a40c1cc86966b21471c30545}{Open\+Sound}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_u_c_movable_window}{UCMovable\+Window}}}
+\begin{DoxyCompactItemize}
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a82c0776ef18f94c9f4c0ad6f4ab625cf}{Clamp\+Window\+Size}} (FVector2D vector)
+\item 
+FVector2D \mbox{\hyperlink{class_u_c_movable_window_a80ec5fa8bf18d8abfa86644f792882f4}{Get\+Mouse\+Position}} ()
+\item 
+UCanvas\+Panel\+Slot \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_movable_window_a33babeedb5c10a96058968b2d677eb2f}{Get\+Canvas\+Panel\+Slot}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_game_menu_widget_a79450052608fb1636ff3e80c547a707e}\label{class_u_game_menu_widget_a79450052608fb1636ff3e80c547a707e} 
+\index{UGameMenuWidget@{UGameMenuWidget}!QuitGame@{QuitGame}}
+\index{QuitGame@{QuitGame}!UGameMenuWidget@{UGameMenuWidget}}
+\doxysubsubsection{\texorpdfstring{QuitGame()}{QuitGame()}}
+{\footnotesize\ttfamily void UGame\+Menu\+Widget\+::\+Quit\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_game_menu_widget_acaa9692f7204b8dd677d3cfc2d6c9f59}\label{class_u_game_menu_widget_acaa9692f7204b8dd677d3cfc2d6c9f59} 
+\index{UGameMenuWidget@{UGameMenuWidget}!SetUp@{SetUp}}
+\index{SetUp@{SetUp}!UGameMenuWidget@{UGameMenuWidget}}
+\doxysubsubsection{\texorpdfstring{SetUp()}{SetUp()}}
+{\footnotesize\ttfamily void UGame\+Menu\+Widget\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_c_movable_window_a8c633b826558a04cab482e2421f90d52}{UCMovable\+Window}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_game_menu_widget_aab044a3b9c4b46b6145d7e13f6bff0f6}\label{class_u_game_menu_widget_aab044a3b9c4b46b6145d7e13f6bff0f6} 
+\index{UGameMenuWidget@{UGameMenuWidget}!QuitButton@{QuitButton}}
+\index{QuitButton@{QuitButton}!UGameMenuWidget@{UGameMenuWidget}}
+\doxysubsubsection{\texorpdfstring{QuitButton}{QuitButton}}
+{\footnotesize\ttfamily UButton\texorpdfstring{$\ast$}{*} UGame\+Menu\+Widget\+::\+Quit\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+UI/\mbox{\hyperlink{_game_menu_widget_8h}{Game\+Menu\+Widget.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\mbox{\hyperlink{_game_menu_widget_8cpp}{Game\+Menu\+Widget.\+cpp}}\end{DoxyCompactItemize}

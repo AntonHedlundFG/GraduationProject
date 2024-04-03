@@ -19,9 +19,13 @@ virtual void \mbox{\hyperlink{class_a_c_unit_a10d13088923c88ea274774e688e59e21}{
 \item 
 virtual void \mbox{\hyperlink{class_a_c_unit_acc664600c473c532db3b3e00f97ad34a}{End\+Play}} (EEnd\+Play\+Reason\+::\+Type Reason) override
 \item 
+FString \mbox{\hyperlink{class_a_c_unit_aecff7a0e948bc32581a94231af745b4b}{Get\+Unit\+Name}} ()
+\item 
 bool \mbox{\hyperlink{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}{Is\+Controlled\+By}} (AController \texorpdfstring{$\ast$}{*}in\+Controller)
 \item 
-\mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538}{Get\+Item\+In\+Slot}} (\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}} in\+Slot)
+\mbox{\hyperlink{class_u_c_item_data}{UCItem\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_unit_a545725c5712cf14b7ac7f12e43319939}{Get\+Item\+In\+Slot}} (FGameplay\+Tag in\+Slot)
+\item 
+UCAction\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_c_unit_a7589b853b92b584f7e0f1473b22a91b1}{Get\+Action\+Comp}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
 \begin{DoxyCompactItemize}
@@ -39,25 +43,25 @@ uint8 \mbox{\hyperlink{class_a_c_unit_a251cef1106ee0a760ab99f7e3ec3620f}{Control
 \item 
 TObject\+Ptr$<$ UCInventory\+Component $>$ \mbox{\hyperlink{class_a_c_unit_aadcdb77e46c8d5c5a0616a10c16b8cea}{Inventory}}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{class_a_c_unit_aef5908601630b1d991488485b885b5cb}{On\+Health\+Changed}} (AActor \texorpdfstring{$\ast$}{*}Instigator\+Actor, UCAttribute\+Component \texorpdfstring{$\ast$}{*}Owning\+Comp, float New\+Health, float Delta)
-\end{DoxyCompactItemize}
-\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \mbox{\hyperlink{class_a_c_grid_content_a66266cd92e4d4fdd1a58530b6fbfb3c0}{Tick}} (float Delta\+Time) override
-\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 TObject\+Ptr$<$ UCAttribute\+Component $>$ \mbox{\hyperlink{class_a_c_unit_a620608185341a40f082454e8dc99b6e9}{Attribute\+Comp}}
+\item 
+TObject\+Ptr$<$ UCAction\+Component $>$ \mbox{\hyperlink{class_a_c_unit_ac132d3657b90ec29eb9e1a8243c8121d}{Action\+Comp}}
+\item 
+FString \mbox{\hyperlink{class_a_c_unit_a3e8ed1e6e621f2a684de44afe36a2d78}{Unit\+Name}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
 \begin{DoxyCompactItemize}
 \item 
 TObject\+Ptr$<$ \mbox{\hyperlink{class_a_c_grid_tile}{ACGrid\+Tile}} $>$ \mbox{\hyperlink{class_a_c_grid_content_a932b99bc2ba7bf93b26970a844ad0277}{Tile}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_a_c_grid_content}{ACGrid\+Content}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_c_grid_content_a66266cd92e4d4fdd1a58530b6fbfb3c0}{Tick}} (float Delta\+Time) override
 \end{DoxyCompactItemize}
 
 
@@ -87,11 +91,23 @@ Reimplemented from \mbox{\hyperlink{class_a_c_grid_content_a9e98b4533e2c2c1351da
 \doxysubsubsection{\texorpdfstring{EndPlay()}{EndPlay()}}
 {\footnotesize\ttfamily void ACUnit\+::\+End\+Play (\begin{DoxyParamCaption}\item[{EEnd\+Play\+Reason\+::\+Type}]{Reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-\Hypertarget{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538}\label{class_a_c_unit_a88a76ba63de0a77fe55a9ad73636e538} 
+\Hypertarget{class_a_c_unit_a7589b853b92b584f7e0f1473b22a91b1}\label{class_a_c_unit_a7589b853b92b584f7e0f1473b22a91b1} 
+\index{ACUnit@{ACUnit}!GetActionComp@{GetActionComp}}
+\index{GetActionComp@{GetActionComp}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{GetActionComp()}{GetActionComp()}}
+{\footnotesize\ttfamily UCAction\+Component \texorpdfstring{$\ast$}{*} ACUnit\+::\+Get\+Action\+Comp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_a_c_unit_a545725c5712cf14b7ac7f12e43319939}\label{class_a_c_unit_a545725c5712cf14b7ac7f12e43319939} 
 \index{ACUnit@{ACUnit}!GetItemInSlot@{GetItemInSlot}}
 \index{GetItemInSlot@{GetItemInSlot}!ACUnit@{ACUnit}}
 \doxysubsubsection{\texorpdfstring{GetItemInSlot()}{GetItemInSlot()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_item}{UCItem}} \texorpdfstring{$\ast$}{*} ACUnit\+::\+Get\+Item\+In\+Slot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItem\+Slots}}}]{in\+Slot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_c_item_data}{UCItem\+Data}} \texorpdfstring{$\ast$}{*} ACUnit\+::\+Get\+Item\+In\+Slot (\begin{DoxyParamCaption}\item[{FGameplay\+Tag}]{in\+Slot }\end{DoxyParamCaption})}
+
+\Hypertarget{class_a_c_unit_aecff7a0e948bc32581a94231af745b4b}\label{class_a_c_unit_aecff7a0e948bc32581a94231af745b4b} 
+\index{ACUnit@{ACUnit}!GetUnitName@{GetUnitName}}
+\index{GetUnitName@{GetUnitName}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{GetUnitName()}{GetUnitName()}}
+{\footnotesize\ttfamily FString ACUnit\+::\+Get\+Unit\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \Hypertarget{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202}\label{class_a_c_unit_a789eb26a4f2097d24588f91f8adeb202} 
 \index{ACUnit@{ACUnit}!IsControlledBy@{IsControlledBy}}
@@ -99,15 +115,15 @@ Reimplemented from \mbox{\hyperlink{class_a_c_grid_content_a9e98b4533e2c2c1351da
 \doxysubsubsection{\texorpdfstring{IsControlledBy()}{IsControlledBy()}}
 {\footnotesize\ttfamily bool ACUnit\+::\+Is\+Controlled\+By (\begin{DoxyParamCaption}\item[{AController \texorpdfstring{$\ast$}{*}}]{in\+Controller }\end{DoxyParamCaption})}
 
-\Hypertarget{class_a_c_unit_aef5908601630b1d991488485b885b5cb}\label{class_a_c_unit_aef5908601630b1d991488485b885b5cb} 
-\index{ACUnit@{ACUnit}!OnHealthChanged@{OnHealthChanged}}
-\index{OnHealthChanged@{OnHealthChanged}!ACUnit@{ACUnit}}
-\doxysubsubsection{\texorpdfstring{OnHealthChanged()}{OnHealthChanged()}}
-{\footnotesize\ttfamily void ACUnit\+::\+On\+Health\+Changed (\begin{DoxyParamCaption}\item[{AActor \texorpdfstring{$\ast$}{*}}]{Instigator\+Actor,  }\item[{UCAttribute\+Component \texorpdfstring{$\ast$}{*}}]{Owning\+Comp,  }\item[{float}]{New\+Health,  }\item[{float}]{Delta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
 
 
 \doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_c_unit_ac132d3657b90ec29eb9e1a8243c8121d}\label{class_a_c_unit_ac132d3657b90ec29eb9e1a8243c8121d} 
+\index{ACUnit@{ACUnit}!ActionComp@{ActionComp}}
+\index{ActionComp@{ActionComp}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{ActionComp}{ActionComp}}
+{\footnotesize\ttfamily TObject\+Ptr$<$UCAction\+Component$>$ ACUnit\+::\+Action\+Comp\hspace{0.3cm}{\ttfamily [protected]}}
+
 \Hypertarget{class_a_c_unit_a620608185341a40f082454e8dc99b6e9}\label{class_a_c_unit_a620608185341a40f082454e8dc99b6e9} 
 \index{ACUnit@{ACUnit}!AttributeComp@{AttributeComp}}
 \index{AttributeComp@{AttributeComp}!ACUnit@{ACUnit}}
@@ -125,6 +141,12 @@ Reimplemented from \mbox{\hyperlink{class_a_c_grid_content_a9e98b4533e2c2c1351da
 \index{Inventory@{Inventory}!ACUnit@{ACUnit}}
 \doxysubsubsection{\texorpdfstring{Inventory}{Inventory}}
 {\footnotesize\ttfamily TObject\+Ptr$<$UCInventory\+Component$>$ ACUnit\+::\+Inventory}
+
+\Hypertarget{class_a_c_unit_a3e8ed1e6e621f2a684de44afe36a2d78}\label{class_a_c_unit_a3e8ed1e6e621f2a684de44afe36a2d78} 
+\index{ACUnit@{ACUnit}!UnitName@{UnitName}}
+\index{UnitName@{UnitName}!ACUnit@{ACUnit}}
+\doxysubsubsection{\texorpdfstring{UnitName}{UnitName}}
+{\footnotesize\ttfamily FString ACUnit\+::\+Unit\+Name\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

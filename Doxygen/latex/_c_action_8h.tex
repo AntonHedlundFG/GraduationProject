@@ -1,13 +1,35 @@
 \doxysection{Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+Actions/\+CAction.h File Reference}
 \hypertarget{_c_action_8h}{}\label{_c_action_8h}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CAction.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/Actions/CAction.h}}
 {\ttfamily \#include "{}Core\+Minimal.\+h"{}}\newline
-{\ttfamily \#include "{}UObject/\+No\+Export\+Types.\+h"{}}\newline
 {\ttfamily \#include "{}Gameplay\+Tag\+Container.\+h"{}}\newline
+{\ttfamily \#include "{}Utility/\+Logging/\+CLog\+Manager.\+h"{}}\newline
 {\ttfamily \#include "{}CAction.\+generated.\+h"{}}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{struct_f_action_rep_data}{FAction\+Rep\+Data}}
+struct \mbox{\hyperlink{struct_f_ability}{FAbility}}
 \item 
 class \mbox{\hyperlink{class_u_c_action}{UCAction}}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_c_action_8h_a2306cee08e9687b47fbd90f4419ade4c}{Is\+Valid}} (const \mbox{\hyperlink{struct_f_ability}{FAbility}} \&Ability)
+\item 
+uint32 \mbox{\hyperlink{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a}{Get\+Type\+Hash}} (const \mbox{\hyperlink{struct_f_ability}{FAbility}} \&Ability)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a}\label{_c_action_8h_a67c0ac94a8038b248aae1530ef4eea5a} 
+\index{CAction.h@{CAction.h}!GetTypeHash@{GetTypeHash}}
+\index{GetTypeHash@{GetTypeHash}!CAction.h@{CAction.h}}
+\doxysubsubsection{\texorpdfstring{GetTypeHash()}{GetTypeHash()}}
+{\footnotesize\ttfamily uint32 Get\+Type\+Hash (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_ability}{FAbility}} \&}]{Ability }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{_c_action_8h_a2306cee08e9687b47fbd90f4419ade4c}\label{_c_action_8h_a2306cee08e9687b47fbd90f4419ade4c} 
+\index{CAction.h@{CAction.h}!IsValid@{IsValid}}
+\index{IsValid@{IsValid}!CAction.h@{CAction.h}}
+\doxysubsubsection{\texorpdfstring{IsValid()}{IsValid()}}
+{\footnotesize\ttfamily bool Is\+Valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_ability}{FAbility}} \&}]{Ability }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

@@ -1,0 +1,148 @@
+\doxysection{UCTurn\+Order\+Portrait\+Widget Class Reference}
+\hypertarget{class_u_c_turn_order_portrait_widget}{}\label{class_u_c_turn_order_portrait_widget}\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+
+
+{\ttfamily \#include $<$CTurn\+Order\+Portrait\+Widget.\+h$>$}
+
+Inheritance diagram for UCTurn\+Order\+Portrait\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_c_turn_order_portrait_widget}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a874104f80f7b241a39680d2b7c6cb4b2}{Set\+Text}} (FString Text)
+\item 
+void \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a7ee982a4d3e96347e7fb49004969a23b}{Set\+Portrait}} (FSlate\+Brush Brush)
+\item 
+void \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a97413310386ecc46c81aaf152b7be6bb}{Animate\+Out}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a627f68da4ec94fd18a70cac1b387e6ea}{Animate\+In}} ()
+\item 
+void \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a940dfb4872a925430c3d62fcff31c06d}{Start\+Animation\+Timer\+\_\+\+To\+Position}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FVector \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_ab45eb78741b90a72c966ec240e798115}{Remove\+From\+Queue\+Animation\+Offset\+Target}}
+\item 
+UCurve\+Float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a2db9a64059c0b1774180f47a7477989c}{Remove\+From\+Queue\+Animation\+Easing}}
+\item 
+UCurve\+Float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a95f407398f7e263cb117cbffce217380}{To\+Position\+Animation\+Easing}}
+\item 
+UWidget\+Animation \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_aac082b916dec1a941fed82e68c95452d}{Out\+Animation}}
+\item 
+UWidget\+Animation \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a504abd57a979773b2e4e7898cd7430e7}{In\+Animation}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a54c16ed0a1f5b2dd5b3b8fb45cd8b51c}{Animate\+To\+Position\+Handle}}
+\item 
+FTimer\+Handle \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a6829473bf23ebc88913ae93f688177bd}{Animated\+Remove\+From\+Queue\+Handle}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+URich\+Text\+Block \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a8c0420ab3f41a5da5ddec2e8820fc612}{Text\+Block}}
+\item 
+UImage \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_c_turn_order_portrait_widget_a84eb322a84c4b45eef99df05fb2142f4}{Portrait}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_c_turn_order_portrait_widget_a627f68da4ec94fd18a70cac1b387e6ea}\label{class_u_c_turn_order_portrait_widget_a627f68da4ec94fd18a70cac1b387e6ea} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!AnimateIn@{AnimateIn}}
+\index{AnimateIn@{AnimateIn}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{AnimateIn()}{AnimateIn()}}
+{\footnotesize\ttfamily void UCTurn\+Order\+Portrait\+Widget\+::\+Animate\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a97413310386ecc46c81aaf152b7be6bb}\label{class_u_c_turn_order_portrait_widget_a97413310386ecc46c81aaf152b7be6bb} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!AnimateOut@{AnimateOut}}
+\index{AnimateOut@{AnimateOut}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{AnimateOut()}{AnimateOut()}}
+{\footnotesize\ttfamily void UCTurn\+Order\+Portrait\+Widget\+::\+Animate\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a7ee982a4d3e96347e7fb49004969a23b}\label{class_u_c_turn_order_portrait_widget_a7ee982a4d3e96347e7fb49004969a23b} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!SetPortrait@{SetPortrait}}
+\index{SetPortrait@{SetPortrait}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{SetPortrait()}{SetPortrait()}}
+{\footnotesize\ttfamily void UCTurn\+Order\+Portrait\+Widget\+::\+Set\+Portrait (\begin{DoxyParamCaption}\item[{FSlate\+Brush}]{Brush }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a874104f80f7b241a39680d2b7c6cb4b2}\label{class_u_c_turn_order_portrait_widget_a874104f80f7b241a39680d2b7c6cb4b2} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!SetText@{SetText}}
+\index{SetText@{SetText}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{SetText()}{SetText()}}
+{\footnotesize\ttfamily void UCTurn\+Order\+Portrait\+Widget\+::\+Set\+Text (\begin{DoxyParamCaption}\item[{FString}]{Text }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a940dfb4872a925430c3d62fcff31c06d}\label{class_u_c_turn_order_portrait_widget_a940dfb4872a925430c3d62fcff31c06d} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!StartAnimationTimer\_ToPosition@{StartAnimationTimer\_ToPosition}}
+\index{StartAnimationTimer\_ToPosition@{StartAnimationTimer\_ToPosition}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{StartAnimationTimer\_ToPosition()}{StartAnimationTimer\_ToPosition()}}
+{\footnotesize\ttfamily void UCTurn\+Order\+Portrait\+Widget\+::\+Start\+Animation\+Timer\+\_\+\+To\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_c_turn_order_portrait_widget_a6829473bf23ebc88913ae93f688177bd}\label{class_u_c_turn_order_portrait_widget_a6829473bf23ebc88913ae93f688177bd} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!AnimatedRemoveFromQueueHandle@{AnimatedRemoveFromQueueHandle}}
+\index{AnimatedRemoveFromQueueHandle@{AnimatedRemoveFromQueueHandle}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{AnimatedRemoveFromQueueHandle}{AnimatedRemoveFromQueueHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCTurn\+Order\+Portrait\+Widget\+::\+Animated\+Remove\+From\+Queue\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a54c16ed0a1f5b2dd5b3b8fb45cd8b51c}\label{class_u_c_turn_order_portrait_widget_a54c16ed0a1f5b2dd5b3b8fb45cd8b51c} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!AnimateToPositionHandle@{AnimateToPositionHandle}}
+\index{AnimateToPositionHandle@{AnimateToPositionHandle}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{AnimateToPositionHandle}{AnimateToPositionHandle}}
+{\footnotesize\ttfamily FTimer\+Handle UCTurn\+Order\+Portrait\+Widget\+::\+Animate\+To\+Position\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a504abd57a979773b2e4e7898cd7430e7}\label{class_u_c_turn_order_portrait_widget_a504abd57a979773b2e4e7898cd7430e7} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!InAnimation@{InAnimation}}
+\index{InAnimation@{InAnimation}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{InAnimation}{InAnimation}}
+{\footnotesize\ttfamily UWidget\+Animation\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+In\+Animation}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_aac082b916dec1a941fed82e68c95452d}\label{class_u_c_turn_order_portrait_widget_aac082b916dec1a941fed82e68c95452d} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!OutAnimation@{OutAnimation}}
+\index{OutAnimation@{OutAnimation}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{OutAnimation}{OutAnimation}}
+{\footnotesize\ttfamily UWidget\+Animation\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+Out\+Animation}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a84eb322a84c4b45eef99df05fb2142f4}\label{class_u_c_turn_order_portrait_widget_a84eb322a84c4b45eef99df05fb2142f4} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!Portrait@{Portrait}}
+\index{Portrait@{Portrait}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{Portrait}{Portrait}}
+{\footnotesize\ttfamily UImage\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+Portrait\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a2db9a64059c0b1774180f47a7477989c}\label{class_u_c_turn_order_portrait_widget_a2db9a64059c0b1774180f47a7477989c} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!RemoveFromQueueAnimationEasing@{RemoveFromQueueAnimationEasing}}
+\index{RemoveFromQueueAnimationEasing@{RemoveFromQueueAnimationEasing}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{RemoveFromQueueAnimationEasing}{RemoveFromQueueAnimationEasing}}
+{\footnotesize\ttfamily UCurve\+Float\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+Remove\+From\+Queue\+Animation\+Easing}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_ab45eb78741b90a72c966ec240e798115}\label{class_u_c_turn_order_portrait_widget_ab45eb78741b90a72c966ec240e798115} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!RemoveFromQueueAnimationOffsetTarget@{RemoveFromQueueAnimationOffsetTarget}}
+\index{RemoveFromQueueAnimationOffsetTarget@{RemoveFromQueueAnimationOffsetTarget}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{RemoveFromQueueAnimationOffsetTarget}{RemoveFromQueueAnimationOffsetTarget}}
+{\footnotesize\ttfamily FVector UCTurn\+Order\+Portrait\+Widget\+::\+Remove\+From\+Queue\+Animation\+Offset\+Target}
+
+Where the widget should animate to when it\textquotesingle{}s object is being removed from the turn queue. \Hypertarget{class_u_c_turn_order_portrait_widget_a8c0420ab3f41a5da5ddec2e8820fc612}\label{class_u_c_turn_order_portrait_widget_a8c0420ab3f41a5da5ddec2e8820fc612} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!TextBlock@{TextBlock}}
+\index{TextBlock@{TextBlock}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{TextBlock}{TextBlock}}
+{\footnotesize\ttfamily URich\+Text\+Block\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+Text\+Block\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_u_c_turn_order_portrait_widget_a95f407398f7e263cb117cbffce217380}\label{class_u_c_turn_order_portrait_widget_a95f407398f7e263cb117cbffce217380} 
+\index{UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}!ToPositionAnimationEasing@{ToPositionAnimationEasing}}
+\index{ToPositionAnimationEasing@{ToPositionAnimationEasing}!UCTurnOrderPortraitWidget@{UCTurnOrderPortraitWidget}}
+\doxysubsubsection{\texorpdfstring{ToPositionAnimationEasing}{ToPositionAnimationEasing}}
+{\footnotesize\ttfamily UCurve\+Float\texorpdfstring{$\ast$}{*} UCTurn\+Order\+Portrait\+Widget\+::\+To\+Position\+Animation\+Easing}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Public/\+UI/\mbox{\hyperlink{_c_turn_order_portrait_widget_8h}{CTurn\+Order\+Portrait\+Widget.\+h}}\item 
+Tactical\+Rogue\+Lite/\+Source/\+Tactical\+Rogue\+Lite/\+Private/\+UI/\mbox{\hyperlink{_c_turn_order_portrait_widget_8cpp}{CTurn\+Order\+Portrait\+Widget.\+cpp}}\end{DoxyCompactItemize}

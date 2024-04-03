@@ -1,0 +1,78 @@
+\doxysection{CMovable\+Window.\+h}
+\hypertarget{_c_movable_window_8h_source}{}\label{_c_movable_window_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CMovableWindow.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CMovableWindow.h}}
+\mbox{\hyperlink{_c_movable_window_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Components/CanvasPanel.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Sound/SoundCue.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}CMovableWindow.generated.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }UCanvasPanelSlot;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }UButton;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }UCanvasPanel;}
+\DoxyCodeLine{00018\ \mbox{\hyperlink{_c_movable_window_8h_a9ffb9ae25183b874c4e3e88f3d299652}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}}(FOnChange);}
+\DoxyCodeLine{00019\ UCLASS()}
+\DoxyCodeLine{00020\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_u_c_movable_window}{UCMovableWindow}}\ :\ public\ UUserWidget}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00023\ \ \ \ \ FTimerHandle\ moveTimerHandle;}
+\DoxyCodeLine{00024\ \ \ \ \ FVector2D\ ClickDifference\_Movable\ =\ FVector2D::Zero();}
+\DoxyCodeLine{00025\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ ClearMoveTimer();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ protected:}
+\DoxyCodeLine{00029\ \ \ \ \ FVector2D\ ClampWindowSize(FVector2D\ vector);}
+\DoxyCodeLine{00030\ \ \ \ \ FVector2D\ GetMousePosition();}
+\DoxyCodeLine{00031\ \ \ \ \ UCanvasPanelSlot*\ GetCanvasPanelSlot();}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00033\ public:}
+\DoxyCodeLine{00034\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ bIsOpen\ =\ false;}
+\DoxyCodeLine{00036\ \ \ \ \ UPROPERTY(BlueprintReadWrite,EditAnywhere)}
+\DoxyCodeLine{00037\ \ \ \ \ FVector2D\ WindowMinSize\ =\ FVector2D(200,200);}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ UPROPERTY(BlueprintReadWrite,EditAnywhere)}
+\DoxyCodeLine{00040\ \ \ \ \ FVector2D\ WindowMaxSize;}
+\DoxyCodeLine{00041\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00043\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetUp();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdatePosition();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ StartMoveTimer();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ OnHeaderButtonPressed();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ Close();}
+\DoxyCodeLine{00054\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ Open();}
+\DoxyCodeLine{00056\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00057\ \ \ \ \ UButton*\ HeaderButton;}
+\DoxyCodeLine{00058\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00059\ \ \ \ \ UButton*\ CloseButton;}
+\DoxyCodeLine{00060\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00061\ \ \ \ \ UCanvasPanel*\ CanvasPanelWrapper;}
+\DoxyCodeLine{00062\ \ \ \ \ UPROPERTY(meta=(BindWidget))}
+\DoxyCodeLine{00063\ \ \ \ \ UCanvasPanel*\ MainCanvas;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00066\ \ \ \ \ FOnChange\ OnWindowClose;}
+\DoxyCodeLine{00067\ \ \ \ \ UPROPERTY(BlueprintAssignable)}
+\DoxyCodeLine{00068\ \ \ \ \ FOnChange\ OnWindowOpen;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00071\ \ \ \ \ USoundCue*\ CloseSound;}
+\DoxyCodeLine{00072\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00073\ \ \ \ \ USoundCue*\ OpenSound;}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \};}
+
+\end{DoxyCode}

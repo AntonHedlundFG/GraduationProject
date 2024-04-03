@@ -1,0 +1,36 @@
+\doxysection{CTurn\+Order\+UIManager.\+h}
+\hypertarget{_c_turn_order_u_i_manager_8h_source}{}\label{_c_turn_order_u_i_manager_8h_source}\index{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CTurnOrderUIManager.h@{TacticalRogueLite/Source/TacticalRogueLite/Public/UI/CTurnOrderUIManager.h}}
+\mbox{\hyperlink{_c_turn_order_u_i_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_state_8h}{CGameState.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_turn_order_portrait_widget_8h}{CTurnOrderPortraitWidget.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}UObject/NoExportTypes.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}CTurnOrderUIManager.generated.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ UCLASS()}
+\DoxyCodeLine{00015\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_turn_order_u_i_manager}{ACTurnOrderUIManager}}\ :\ public\ AActor}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ TQueue<UCTurnOrderPortraitWidget*>\ \mbox{\hyperlink{class_a_c_turn_order_u_i_manager_ae01cf1efd5e7c17036e942aac22ac95b}{WidgetPool}};}
+\DoxyCodeLine{00019\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_a_c_game_state}{ACGameState}}*\ GameState;}
+\DoxyCodeLine{00021\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00022\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateTurnList();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//PoolingSystem\ will\ be\ refactored\ later\ on}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurnOrderPortraitWidget}}*\ CreatePortraitWidget();}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurnOrderPortraitWidget}}*\ DeQueuePortraitWidget();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ EnQueuePortraitWidget(\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurnOrderPortraitWidget}}*\ widget);}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ public:}
+\DoxyCodeLine{00031\ \ \ \ \ UPROPERTY(EditAnywhere,BlueprintReadWrite)}
+\DoxyCodeLine{00032\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_c_turn_order_portrait_widget}{UCTurnOrderPortraitWidget}}>\ PortraitWidget;}
+\DoxyCodeLine{00033\ \};}
+
+\end{DoxyCode}

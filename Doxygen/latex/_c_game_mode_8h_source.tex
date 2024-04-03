@@ -16,75 +16,92 @@
 \DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid}{ACGrid}};}
 \DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_unit}{ACUnit}};}
 \DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_game_state}{ACGameState}};}
-\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_command}{UCCommand}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }UCCommand;}
 \DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}};}
-\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}};}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00022\ UCLASS()}
-\DoxyCodeLine{00023\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_game_mode}{ACGameMode}}\ :\ public\ \mbox{\hyperlink{class_a_online_game_mode}{AOnlineGameMode}}}
-\DoxyCodeLine{00024\ \{}
-\DoxyCodeLine{00025\ \ \ \ \ GENERATED\_BODY()}
-\DoxyCodeLine{00026\ \ \ \ \ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BeginPlay()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{/*\ Whenever\ an\ ability\ or\ event\ is\ triggered\ as\ a\ result\ of\ a\ UCCommand\ occuring}}
-\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ *\ a\ UCConsequence\ should\ be\ created\ and\ sent\ into\ this\ function\ for\ execution.}}
-\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ *\ This\ will\ make\ sure\ it\ can\ be\ undone\ if\ a\ player\ tries\ to\ undo\ the\ original\ UCCommand.}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }UCConsequence;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_c_action}{UCAction}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ UCLASS()}
+\DoxyCodeLine{00024\ class\ TACTICALROGUELITE\_API\ \mbox{\hyperlink{class_a_c_game_mode}{ACGameMode}}\ :\ public\ \mbox{\hyperlink{class_a_online_game_mode}{AOnlineGameMode}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BeginPlay()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ Whenever\ an\ action\ is\ triggered\ indirectly\ (not\ as\ part\ of\ an\ ability\ use),\ register\ it\ here.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ *\ For\ example:\ A\ unit\ dies\ as\ a\ result\ of\ an\ attack.}}
 \DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ */}}
 \DoxyCodeLine{00034\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ RegisterAndExecuteConsequence(\mbox{\hyperlink{class_u_c_consequence}{UCConsequence}}*\ inConsequence);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ RegisterAction(\mbox{\hyperlink{class_u_c_action}{UCAction}}*\ inAction);}
 \DoxyCodeLine{00036\ }
-\DoxyCodeLine{00045\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryAbilityUse(AController*\ inController,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{_item_slots_8h_aafeac79b04dbc9443349876a3ad0789e}{EItemSlots}}\ inSlot,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Attempts\ to\ undo\ the\ latest\ command\ if\ it\ was\ created\ by\ inController}}
-\DoxyCodeLine{00049\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryUndo(AController*\ inController);}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities"{}})}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryEndTurn(AController*\ inController);}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//Resets\ game\ state\ turn\ order\ list,\ and\ adds\ all\ Units\ in\ world\ to\ the\ order\ list.}}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ InitializeTurnOrder(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units);}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//If\ fewer\ than\ 4\ players,\ this\ function\ "{}downgrades"{}\ units,\ until\ they\ are}}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//considered\ controlled\ by\ an\ actual\ player.}}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//With\ 2\ players,\ unit\ 3/4\ become\ controlled\ by\ 1/2.}}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//With\ 3\ players,\ unit\ 4\ become\ controlled\ by\ 1}}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//With\ 1\ player,\ all\ units\ become\ controlled\ by\ 1.}}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ ApplyPlayerCount(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units);}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Grid"{}})}
-\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ GetGameGrid()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ GameStateRef-\/>GameGrid;\ \}}
-\DoxyCodeLine{00067\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Spawner"{}})}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ GetGridSpawner()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Spawner;\ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ It\ is\ preferable\ to\ use\ RegisterAction,\ so\ that\ the\ caller\ can\ have}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ control\ over\ object\ creation,\ and\ call\ inAction-\/>Initialize()}}
+\DoxyCodeLine{00039\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ RegisterActionOfClass(TSubclassOf<UCAction>\ inActionClass);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00050\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryAbilityUse(AController*\ inController,\ \mbox{\hyperlink{class_a_c_unit}{ACUnit}}*\ inUnit,\ FGameplayTag\ inItemSlotTag,\ \mbox{\hyperlink{class_a_c_grid_tile}{ACGridTile}}*\ inTargetTile);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Attempts\ to\ undo\ the\ latest\ command\ if\ it\ was\ created\ by\ inController}}
+\DoxyCodeLine{00054\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities|Commands"{}})}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryUndo(AController*\ inController);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Abilities"{}})}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ TryEndTurn(AController*\ inController);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//Resets\ game\ state\ turn\ order\ list,\ and\ adds\ all\ Units\ in\ world\ to\ the\ order\ list.}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ InitializeTurnOrder(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//If\ fewer\ than\ 4\ players,\ this\ function\ "{}downgrades"{}\ units,\ until\ they\ are}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//considered\ controlled\ by\ an\ actual\ player.}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//With\ 2\ players,\ unit\ 3/4\ become\ controlled\ by\ 1/2.}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//With\ 3\ players,\ unit\ 4\ become\ controlled\ by\ 1}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//With\ 1\ player,\ all\ units\ become\ controlled\ by\ 1.}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ ApplyPlayerCount(\textcolor{keyword}{const}\ TArray<ACUnit*>\&\ Units);}
 \DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00071\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
-\DoxyCodeLine{00072\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_game_state}{ACGameState}}>\ GameStateRef;}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Grid|Spawner"{})}
-\DoxyCodeLine{00075\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}>\ SpawnerClass;}
-\DoxyCodeLine{00076\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ "{}Grid|Spawner"{})}
-\DoxyCodeLine{00077\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}>\ Spawner;}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
-\DoxyCodeLine{00080\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ AllUnits;}
-\DoxyCodeLine{00081\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
-\DoxyCodeLine{00082\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ HeroUnits;}
-\DoxyCodeLine{00083\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
-\DoxyCodeLine{00084\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ EnemyUnits;}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ "{}Abilities|Commands"{})}
-\DoxyCodeLine{00087\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_command}{UCCommand}}*>\ CommandList;}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ "{}Abilities|Commands"{})}
-\DoxyCodeLine{00090\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_command}{UCCommand}}*>\ CommandHistory;}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ UFUNCTION(Category\ =\ "{}Grid|Spawner"{})}
-\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ CreateSpawner();}
-\DoxyCodeLine{00094\ \ \ \ \ }
-\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00070\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Grid"{}})}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid}{ACGrid}}*\ GetGameGrid()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ GameStateRef-\/>GameGrid;\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Grid|Spawner"{}})}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ GetGridSpawner()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Spawner;\ \}}
+\DoxyCodeLine{00074\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Units"{}})}
+\DoxyCodeLine{00075\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ GetAllUnits()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ AllUnits;\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Units"{}})}
+\DoxyCodeLine{00077\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ GetHeroUnits()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ HeroUnits;\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ UFUNCTION(BlueprintCallable,\ Category\ =\ \textcolor{stringliteral}{"{}Units"{}})}
+\DoxyCodeLine{00079\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ GetEnemyUnits()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ EnemyUnits;\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00082\ \ \ \ \ UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{00083\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_game_state}{ACGameState}}>\ GameStateRef;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Grid|Spawner"{})}
+\DoxyCodeLine{00086\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}>\ SpawnerClass;}
+\DoxyCodeLine{00087\ \ \ \ \ UPROPERTY(BlueprintReadOnly,\ Category\ =\ "{}Grid|Spawner"{})}
+\DoxyCodeLine{00088\ \ \ \ \ TObjectPtr<\mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}>\ Spawner;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
+\DoxyCodeLine{00091\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ AllUnits;}
+\DoxyCodeLine{00092\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
+\DoxyCodeLine{00093\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ HeroUnits;}
+\DoxyCodeLine{00094\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ EditAnywhere,\ Category\ =\ "{}Units"{})}
+\DoxyCodeLine{00095\ \ \ \ \ TArray<\mbox{\hyperlink{class_a_c_unit}{ACUnit}}*>\ EnemyUnits;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//Actions\ placed\ on\ stack\ have\ not\ been\ executed\ yet}}
+\DoxyCodeLine{00098\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00099\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_action}{UCAction}}*>\ ActionStack;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//List\ of\ all\ executed\ actions\ this\ turn}}
+\DoxyCodeLine{00102\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00103\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_action}{UCAction}}*>\ ActionList;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//History\ of\ all\ executed\ actions\ of\ previous\ turns}}
+\DoxyCodeLine{00106\ \ \ \ \ UPROPERTY(VisibleAnywhere,\ BlueprintReadOnly,\ Category\ =\ "{}Actions"{})}
+\DoxyCodeLine{00107\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_c_action}{UCAction}}*>\ ActionHistory;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ UFUNCTION(Category\ =\ "{}Grid|Spawner"{})}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{class_a_c_grid_spawner}{ACGridSpawner}}*\ CreateSpawner();}
+\DoxyCodeLine{00111\ \ \ \ \ }
+\DoxyCodeLine{00112\ \};}
 
 \end{DoxyCode}
