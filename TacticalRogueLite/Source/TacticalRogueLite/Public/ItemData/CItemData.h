@@ -10,16 +10,6 @@
 
 class ACUnit;
 
-UENUM()
-enum class EItemQuality : uint8
-{
-	Common,
-	UnCommon,
-	Rare,
-	Epic,
-	Legendary,
-};
-
 //Base class for anything considered an item in the game. Can be things like weapons, schematics, upgrades. Only contains the data for these items.
 //PrimaryDataAsset adds the support to use AssetManager, which is a system that lets us more easly asynchronously load parts of assets.
 //https://www.tomlooman.com/unreal-engine-asset-manager-async-loading/
@@ -30,21 +20,19 @@ class TACTICALROGUELITE_API UCItemData : public UPrimaryDataAsset
 
 public:
 
-	// //Get item name.
-	// UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
-	// FText GetTitle() const;
-	//
-	// //Get item name, overriden in Blueprint to.
-	// UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
-	// FText GetDescription() const;
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	FString GetItemName() const { return ItemName; }
+	
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	FString GetDescription() const { return ItemDescription; }
 
 protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
-	FText ItenName;
+	FString ItemName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
-	FText ItemDescription;
+	FString ItemDescription;
 
 public:
 
@@ -77,30 +65,21 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "UI", meta = (AssetBundles = "UI", AllowedClasses = "MaterialInterface, Texture2D"))
 	TSoftObjectPtr<UObject> Icon;
 
-	//Weapon, augment etc. Used by the asset manager and game code may use it to understand the available 'features' of the item.
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
-	FPrimaryAssetType ItemType;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
-	EItemQuality Quality;
-
-	//Maximum allowed in the stack. 0 = unlimited.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
-	int32 StackLimit;
+	// TODO: Figure out if this is useful
+	// Weapon, augment etc. Used by the asset manager and game code may use it to understand the available 'features' of the item.
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
+	//FPrimaryAssetType ItemType;
 
 	//Optional Action/Abilites assigned to Item. Can be used to grant abilities while the item is active/equipped or to run item specific functions.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actions"))
-	TArray<TSubclassOf<UCAction>> ActionClasses;
-
-	//Optional world representation of this object if dropped or equipped by a unit. 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Classes", meta = (AssetBundles = "Actor"))
-	TSoftClassPtr<AActor> ActorClass;
+	FAbility Ability;
 
 	//GamePlayTags to decorate the item. Can be used to setup categories, types, filters or one-off tags for very specific items.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Tag")
 	FGameplayTag ItemSlot;
 
-	//UCItemData();
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Tag")
+	FGameplayTagContainer ItemTags;
 
 	FPrimaryAssetId GetPrimaryAssetId() const override;
 

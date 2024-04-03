@@ -1,14 +1,17 @@
 
 #pragma once
 
+
 #include "CoreMinimal.h"
-#include "ItemSlots.h"
 #include "Components/ActorComponent.h"
+#include "ItemData/CItemData.h"
 #include "CInventoryComponent.generated.h"
 
 
-enum class EItemSlots : uint8;
+
 class UCItem;
+class UCItemData;
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
@@ -19,37 +22,49 @@ public:
 	UCInventoryComponent();
 	
 	UFUNCTION(Category = "Items")
-	TArray<UCItem*>GetAllItems() const { return AllItems; }
+	TArray<UCItemData*>GetAllItems() const { return AllItems; }
 	UFUNCTION(Category = "Items|Equipment")
-	TArray<UCItem*> GetEquippedItems() const;
+	TArray<UCItemData*> GetEquippedItems() const;
 	UFUNCTION(Category = "Items|Equipment")
-	UCItem* GetItemInSlot(EItemSlots inSlot) const;
+	UCItemData* GetItemInSlot(FGameplayTag inSlot);
 
 	//No need to call Add/Remove Item function when using one of these
 	UFUNCTION(Category = "Items|Equipment")
-	bool TryEquipItem(UCItem* inItem, EItemSlots inSlot = EItemSlots::EIS_None);
+	bool TryEquipItem(UCItemData* inItem);
     UFUNCTION(Category = "Items|Equipment")
-    void UnEquipItem(EItemSlots inSlot);
+    void UnEquipItem(FGameplayTag inSlot);
 
 	//Use for adding "charms", these will be automatically called in Equip/UnEquip functions respectively
 	UFUNCTION(Category = "Items")
-	void AddItem(UCItem* inItem);
+	void AddItem(UCItemData* inItem);
 	UFUNCTION(Category = "Items")
-	void RemoveItem(UCItem* inItem);
+	void RemoveItem(UCItemData* inItem);
+	UFUNCTION(Category = "Items|Equipment")
+	bool CheckValidEquipmentTag(FGameplayTag inTag);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UCItemData> TESTITEM;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UCItemData> TESTATTACKITEM;
+
+	virtual void BeginPlay() override;
 
 
 protected:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItem> Boots;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItem> Weapon;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItem> Armor;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItem> Helmet;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItem> Ring;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
-	TArray<UCItem*> AllItems;
+	TArray<UCItemData*> AllItems;
 	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
+	TObjectPtr<UCItemData> Boots;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
+	TObjectPtr<UCItemData> Weapon;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
+	TObjectPtr<UCItemData> Armor;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
+	TObjectPtr<UCItemData> Helmet;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
+	TObjectPtr<UCItemData> Ring;
 };
+
+

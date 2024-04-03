@@ -6,20 +6,22 @@
 #include "Actions/CAction.h"
 #include "CTargetableAction.generated.h"
 
+class ACUnit;
 
 UCLASS()
 class TACTICALROGUELITE_API UCTargetableAction : public UCAction
 {
 	GENERATED_BODY()
-	
-	virtual TArray<ACGridTile*> GetReachableTiles(ACGridTile* inTile)
-	{ return ReceiveGetReachableTiles(inTile); }
 
+public:
 
-protected:
+	ACGridTile* TargetTile;
 
-	virtual TArray<ACGridTile*> GetValidTargetTilesInternal(ACUnit* inUnit)
-	{ return ReceiveGetValidTargetTiles(inUnit); }
+	virtual TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile)
+	{ return ReceiveGetValidTargetTiles(inTile); }
+
+	bool IsTileReachable(ACGridTile* fromTile, ACGridTile* toTile) 
+	{ return GetValidTargetTiles(fromTile).Contains(toTile); }
 
 #pragma endregion
 
@@ -29,9 +31,7 @@ protected:
 protected:
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACUnit* inUnit); 
-	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetReachableTiles(ACGridTile* inTile);
+	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit);
 
 #pragma endregion
 };

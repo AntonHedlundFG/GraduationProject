@@ -1,12 +1,13 @@
 
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions/CDeathAction.h"
+#include "CGameMode.h"
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAttributeComponent)
 
-static TAutoConsoleVariable<float> CVarDamageMultiplier(TEXT("game.DamageMultiplier"), 1.0f, TEXT("Global Damage Modifier for Attribute Component."), ECVF_Cheat);
 
 UCAttributeComponent::UCAttributeComponent()
 {
@@ -20,48 +21,43 @@ UCAttributeComponent::UCAttributeComponent()
 	bAutoActivate = true;
 }
 
-bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delta)
+bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 {
-	if (!GetOwner()->CanBeDamaged() && Delta < 0.0f)
+	if (!GetOwner()->CanBeDamaged() && Delta < 0)
 	{
 		return false;
 	}
 
-	if (Delta < 0.0f)
-	{
-		const float DamageMultiplier = CVarDamageMultiplier.GetValueOnGameThread();
-		Delta *= DamageMultiplier;
-	}
-
-	float OldHealth = CurrentHealth;
-	float NewHealth = FMath::Clamp(CurrentHealth + Delta, 0.0f, BaseHealth);
-
-	float ActualDelta = NewHealth - OldHealth;
-
+	
+	int OldHealth = CurrentHealth;
+	int NewHealth = CurrentHealth + Delta;
+	
 	//Is Server?
 	if (GetOwner()->HasAuthority())
 	{
 		CurrentHealth = NewHealth;
 
-		if (ActualDelta != 0.0f)
+		if (Delta != 0.0f)
 		{
-			MulticastHealthChanged(InstigatorActor, CurrentHealth, ActualDelta);
+			MulticastHealthChanged(InstigatorActor, CurrentHealth, Delta);
 		}
 
 		//Died.
-		if (ActualDelta < 0.0f && CurrentHealth == 0.0f)
+		if (OldHealth > 0 && NewHealth <= 0)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Died!"));
+			UCDeathAction* DeathAction = NewObject<UCDeathAction>(GetOuter(), UCDeathAction::StaticClass());
+			DeathAction->AffectedUnit = Cast<ACUnit>(GetOwner());
+			ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+			if (GameMode)
+			{
+				GameMode->RegisterAction(DeathAction);
+			}
 		}
 	}
 
-	return ActualDelta != 0;
+	return Delta != 0;
 }
 
-void UCAttributeComponent::ApplyTagWithDuration(FGameplayTag InTag, int Duration)
-{
-	
-}
 
 UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 {
@@ -105,28 +101,28 @@ bool UCAttributeComponent::IsFullHealth() const
 }
 
 
-float UCAttributeComponent::GetHealth() const
+int UCAttributeComponent::GetHealth() const
 {
 	return CurrentHealth;
 }
 
+void UCAttributeComponent::SetHealth(int NewHealth)
+{
+	CurrentHealth = NewHealth;
+}
 
-float UCAttributeComponent::GetBaseHealth() const
+
+int UCAttributeComponent::GetBaseHealth() const
 {
 	return BaseHealth;
 }
 
 
-void UCAttributeComponent::MulticastHealthChanged_Implementation(AActor* InstigatorActor, float NewHealth, float Delta)
+void UCAttributeComponent::MulticastHealthChanged_Implementation(AActor* InstigatorActor, int NewHealth, int Delta)
 {
 	OnHealthChanged.Broadcast(InstigatorActor, this, NewHealth, Delta);
 }
 
-
-void UCAttributeComponent::MulticastRageChanged_Implementation(AActor* InstigatorActor, float NewRage, float Delta)
-{
-	OnRageChanged.Broadcast(InstigatorActor, this, NewRage, Delta);
-}
 
 void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

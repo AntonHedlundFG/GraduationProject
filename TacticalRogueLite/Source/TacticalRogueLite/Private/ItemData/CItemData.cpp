@@ -16,7 +16,8 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 
 	if (ActionComp)
 	{
-		ActionComp->AddAbility(ActionClasses, ItemSlot);
+		Ability.InventorySlotTag = ItemSlot;
+		ActionComp->AddAbility(Ability);
 	}
 }
 
@@ -34,5 +35,5 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 
 FPrimaryAssetId UCItemData::GetPrimaryAssetId() const
 {
-	return FPrimaryAssetId(ItemType, GetFName());
+	return FPrimaryAssetId("ItemData", GetFName());
 }

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "CResizableWindow.h"
+#include "UI/CResizableWindow.h"
 #include "Components/CanvasPanelSlot.h"
 
 void UCResizableWindow::ClearResizeTimer()

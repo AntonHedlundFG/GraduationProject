@@ -3,11 +3,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GameplayTagContainer.h"
+#include "CAction.h"
 #include "CActionComponent.generated.h"
 
-class UCAction;
-
-using UCAbility = TArray<TSubclassOf<UCAction>>;
+//class UCAction;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
 
@@ -23,42 +22,26 @@ public:
 	FGameplayTagContainer ActiveGameplayTags;
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	void AddAbility(TArray<TSubclassOf<UCAction>> ActionClasses, FGameplayTag ItemSlot);
+	void AddAbility(FAbility Ability);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void RemoveAbility(FGameplayTag ItemSlot);
 
-	UFUNCTION(BlueprintCallable, Category = "Actions")
-	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbility);
 
-	UFUNCTION(BlueprintCallable, Category = "Actions")
-	void RemoveAction(UCAction* ActionToRemove);
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
 
-	//Returns first occurrence of action matching the class provided.
-	UFUNCTION(BlueprintCallable, Category = "Actions")
-	UCAction* GetAction(TSubclassOf<UCAction> ActionClass) const;
-
-	// UFUNCTION(BlueprintCallable, Category = "Actions")
-	// bool StartActionByName(AActor* Instigator, FGameplayTag ActionName);
-
-	// UFUNCTION(BlueprintCallable, Category = "Actions")
-	// bool StopActionByName(AActor* Instigator, FGameplayTag ActionName);
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool IsValidTargetTile(FGameplayTag ItemSlot, class ACGridTile* TargetTile);
 
 	UCActionComponent();
 
 protected:
-	UFUNCTION(Server, Reliable)
-	void ServerStartAction(AActor* Instigator, FGameplayTag ActionName);
 
-	UFUNCTION(Server, Reliable)
-	void ServerStopAction(AActor* Instigator, FGameplayTag ActionName);
-
-	//Granted abilities on game start.
-	UPROPERTY(EditAnywhere, Category = "Actions")
-	TArray<TSubclassOf<UCAction>> DefaultActions;
-
-	UPROPERTY(BlueprintReadOnly, Replicated)
-	TArray<TObjectPtr<UCAction>> Actions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated)
+	TArray<FAbility> Abilities;
 	
 	virtual void BeginPlay() override;
 
@@ -66,15 +49,14 @@ protected:
 
 public:
 
+	/* TODO: Replace these with relevant delegates
 	UPROPERTY(BlueprintAssignable)
 	FOnActionStateChanged OnActionStarted;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnActionStateChanged OnActionStopped;
-
+	*/
 	virtual bool ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags) override;
 	
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 		
 };

@@ -15,6 +15,7 @@ class ACGameState;
 class UCCommand;
 class ACGridTile;
 class UCConsequence;
+class UCAction;
 
 /**
  * 
@@ -27,12 +28,16 @@ class TACTICALROGUELITE_API ACGameMode : public AOnlineGameMode
 public:
 	virtual void BeginPlay() override;
 
-	/* Whenever an ability or event is triggered as a result of a UCCommand occuring
-	* a UCConsequence should be created and sent into this function for execution.
-	* This will make sure it can be undone if a player tries to undo the original UCCommand.
+	/* Whenever an action is triggered indirectly (not as part of an ability use), register it here.
+	* For example: A unit dies as a result of an attack.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
-	void RegisterAndExecuteConsequence(UCConsequence* inConsequence);
+	void RegisterAction(UCAction* inAction);
+
+	// It is preferable to use RegisterAction, so that the caller can have
+	// control over object creation, and call inAction->Initialize()
+	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
+	void RegisterActionOfClass(TSubclassOf<UCAction> inActionClass);
 
 	/** Should be called by a controller (AI or Player) to attempt an ability use.
 	* @param Controller - The source of the ability activation
@@ -43,7 +48,7 @@ public:
 	* @returns true if ability use was successful
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
-	bool TryAbilityUse(AController* inController, ACUnit* inUnit, const EItemSlots inSlot, ACGridTile* inTargetTile);
+	bool TryAbilityUse(AController* inController, ACUnit* inUnit, FGameplayTag inItemSlotTag, ACGridTile* inTargetTile);
 
 	// Attempts to undo the latest command if it was created by inController
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
@@ -89,11 +94,17 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
 	TArray<ACUnit*> EnemyUnits;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
-	TArray<UCCommand*> CommandList;
+	//Actions placed on stack have not been executed yet
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
+	TArray<UCAction*> ActionStack;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Abilities|Commands")
-	TArray<UCCommand*> CommandHistory;
+	//List of all executed actions this turn
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
+	TArray<UCAction*> ActionList;
+
+	//History of all executed actions of previous turns
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
+	TArray<UCAction*> ActionHistory;
 
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();

@@ -24,11 +24,15 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCActionComponent> ActionComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
+	FString UnitName;
 	
 public:
 	ACUnit();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
+	FString GetUnitName() { return UnitName.IsEmpty() ? GetName() : UnitName; }
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)
@@ -39,7 +43,7 @@ public:
 
 	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
 	UFUNCTION(BlueprintCallable)
-	UCItem* GetItemInSlot(EItemSlots inSlot);
+	UCItemData* GetItemInSlot(FGameplayTag inSlot);
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() const;
@@ -48,12 +52,6 @@ public:
 	TObjectPtr<UCInventoryComponent> Inventory;
 	
 	// ----------------------------------------------------------------
-
-
 	
 
-protected:
-
-	UFUNCTION()
-	void OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, float NewHealth, float Delta);
 };

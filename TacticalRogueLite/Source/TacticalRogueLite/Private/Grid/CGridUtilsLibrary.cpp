@@ -3,7 +3,6 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Grid/CGridTile.h"
-#include "Items/CItem.h"
 
 TArray<FVector2D> UCGridUtilsLibrary::StraightDirections()
 {
@@ -26,7 +25,7 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 
 	return Directions;
 }
-
+/*
 TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget)
 {
 	TArray<ACGridTile*> OpenSet;
@@ -97,4 +96,98 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 	}
 
 	return ClosedSet;
+}
+*/
+
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/)
+{
+	//Default to regular straight movement.
+	if (MovementMethods.IsEmpty())
+		MovementMethods.AddTag(SharedGameplayTags::Movement_Straight);
+
+	TArray<ACGridTile*> OpenSet;
+	OpenSet.Add(inStart);
+	TArray<ACGridTile*> NextOpenSet;
+	TSet<ACGridTile*> ClosedSet;
+	ClosedSet.Add(inStart);
+	for (int i = 0; i < Depth; i++)
+	{
+		for (ACGridTile* CurrentTile : OpenSet)
+		{
+			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
+			{
+				//Can't pass through occupied tiles unless flying.
+				if (!MovementMethods.HasTag(SharedGameplayTags::Movement_Flying) && Neighbour->GetContent() != nullptr)
+					continue;
+
+				if (!ClosedSet.Contains(Neighbour))
+				{
+					ClosedSet.Add(Neighbour);
+					NextOpenSet.Add(Neighbour);
+				}
+			}
+		}
+		OpenSet = NextOpenSet;
+		NextOpenSet.Empty();
+	}
+
+	//Can't land on occupied tiles
+	TSet<ACGridTile*> FinalSet;
+	for (ACGridTile* Tile : ClosedSet)
+	{
+		if (Tile->GetContent() == nullptr)
+			FinalSet.Add(Tile);
+	}
+
+	return FinalSet;
+}
+
+TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile)
+{
+	TSet<ACGridTile*> Neighbours;
+	
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Straight))
+	{
+		Neighbours.Append(inTile->GetNeighbours(false));
+	}
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Diagonal))
+	{
+		Neighbours.Append(inTile->GetDiagonalLinks());
+	}
+	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Knight))
+	{
+		//We do a 3-step BFS to get all tiles at a distance of 3
+		TArray<ACGridTile*> OpenTiles;
+		OpenTiles.Add(inTile);
+		TArray<ACGridTile*> NextOpenTiles;
+		TSet<ACGridTile*> ClosedTiles;
+		ClosedTiles.Add(inTile);
+		for (int i = 0; i < 3; i++)
+		{
+			NextOpenTiles.Empty();
+			for (ACGridTile* CurrentTile : OpenTiles)
+			{
+				for (ACGridTile* Neighbour : CurrentTile->GetNeighbours())
+				{
+					if (ClosedTiles.Contains(Neighbour))
+						continue;
+
+					ClosedTiles.Add(Neighbour);
+					NextOpenTiles.Add(Neighbour);
+				}
+			}
+			OpenTiles = NextOpenTiles;
+		}
+
+		//Now that we have all tiles at a distance of 3, remove the ones that are in a straight line from
+		//the starting point. This leaves us with the chess knight movement.
+		for (ACGridTile* Tile : NextOpenTiles)
+		{
+			FVector2D CoordsDelta = Tile->GetGridCoords() - inTile->GetGridCoords();
+			if (CoordsDelta.X != 0 && CoordsDelta.Y != 0)
+				Neighbours.Add(Tile);
+		}
+	}
+
+	return Neighbours;
 }

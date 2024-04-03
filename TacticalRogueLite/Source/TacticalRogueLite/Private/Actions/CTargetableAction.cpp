@@ -2,4 +2,6 @@
 
 
 #include "Actions/CTargetableAction.h"
+#include "Grid/CGridTile.h"
+#include "GridContent/CUnit.h"
 

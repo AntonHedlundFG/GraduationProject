@@ -3,7 +3,7 @@
 #include "Utility/Logging/CLogManager.h"
 #include "Grid/CGridTile.h"
 #include "Items/CInventoryComponent.h"
-#include "Items/CItem.h"
+//#include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 
 void ACAIController::OnTurnChanged()
@@ -40,7 +40,7 @@ void ACAIController::BeginPlay()
 	// Subscribe to turn change
 	GameMode->GetGameState<ACGameState>()->OnTurnOrderUpdate.AddDynamic(this, &ACAIController::OnTurnChanged);
 }
-
+/*
 float ACAIController::ScoreAction(UCItem* Item, ACGrid* inGrid)
 {
 	// Score the action based on the item's effects
@@ -48,11 +48,13 @@ float ACAIController::ScoreAction(UCItem* Item, ACGrid* inGrid)
 	// Average considerations to get a final score
 	return 0;
 }
-
+*/
 void ACAIController::DecideBestActions()
 {
 	// Get all tiles reachable by move item
-	UCItem* MoveItem = Unit->GetItemInSlot(EItemSlots::EIS_Boots);
+
+	/* TODO: Change to use itemdata / actioncomponent
+	UCItemData* MoveItem = Unit->GetItemInSlot(SharedGameplayTags::ItemSlot_Boots);
 	TArray<ACGridTile*> ReachableTiles;
 	if(MoveItem == nullptr)
 	{
@@ -98,10 +100,15 @@ void ACAIController::DecideBestActions()
 			}
 		}
 	} 
+
+
 	// If there are multiple best actions, choose one randomly
 	const size_t BestActionIndex = FMath::RandRange(0, BestActions.Num() - 1);
 	BestActionsMap.Add(MoveItem, BestActions[BestActionIndex].Value); // Add boots first for move
 	BestActionsMap.Add(BestActions[BestActionIndex].Key, BestActions[BestActionIndex].Value);
+
+	*/
+
 	// Loop over all possible actions on that tile and score it accordingly
 	// TODO: Take negative effects into account
 	// If it's possible to move again, evaluate again from the new tile.
@@ -110,6 +117,7 @@ void ACAIController::DecideBestActions()
 
 void ACAIController::ExecuteActions()
 {
+	/*
 	for (auto Action : BestActionsMap)
 	{
 		const EItemSlots ItemSlot = Action.Key->ItemSlot;
@@ -125,5 +133,5 @@ void ACAIController::ExecuteActions()
 			LOG_INFO("%s used by %s on %s", *ToString(ItemSlot), *GetName(), *Tile->GetName());
 		}
 	}
-	
+	*/
 }
