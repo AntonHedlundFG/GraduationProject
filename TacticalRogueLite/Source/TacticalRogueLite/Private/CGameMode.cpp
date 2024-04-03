@@ -56,7 +56,7 @@ void ACGameMode::BeginPlay()
 	}
 	else
 	{
-		LOG_WARNING("DefaultUnitEquipmentData Missing");
+		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
 	}
 	
 	InitializeTurnOrder(AllUnits);
