@@ -116,6 +116,10 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 		{
 			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
 			{
+				//Can't pass through occupied tiles unless flying.
+				if (!MovementMethods.HasTag(SharedGameplayTags::Movement_Flying) && Neighbour->GetContent() != nullptr)
+					continue;
+
 				if (!ClosedSet.Contains(Neighbour))
 				{
 					ClosedSet.Add(Neighbour);
@@ -127,7 +131,15 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 		NextOpenSet.Empty();
 	}
 
-	return ClosedSet;
+	//Can't land on occupied tiles
+	TSet<ACGridTile*> FinalSet;
+	for (ACGridTile* Tile : ClosedSet)
+	{
+		if (Tile->GetContent() == nullptr)
+			FinalSet.Add(Tile);
+	}
+
+	return FinalSet;
 }
 
 TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile)
