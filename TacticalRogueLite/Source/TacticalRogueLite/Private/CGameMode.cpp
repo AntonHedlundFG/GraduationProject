@@ -17,6 +17,8 @@
 #include "Items/CDefaultUnitEquipment.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
+#include "Settings/LevelEditorPlaySettings.h"
+
 
 void ACGameMode::BeginPlay()
 {
@@ -256,8 +258,8 @@ void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 
 void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
 {
-	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, 0);
-	if (!PlayerCount) return;
+	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, DefaultPlayerCount);
+
 	for (ACUnit* Unit : Units)
 	{
 		if (!Unit) continue;
