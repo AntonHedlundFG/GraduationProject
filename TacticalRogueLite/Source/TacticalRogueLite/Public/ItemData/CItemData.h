@@ -19,6 +19,7 @@ class TACTICALROGUELITE_API UCItemData : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
+	
 
 	UFUNCTION(BlueprintCallable, Category = "UI")
 	FString GetItemName() const { return ItemName; }
@@ -81,9 +82,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Tag")
 	FGameplayTagContainer ItemTags;
 
+	UFUNCTION(BlueprintPure)
+	FGameplayTag GetItemSlotTag() const
+	{
+		return ItemSlot;
+	}
+
 	FPrimaryAssetId GetPrimaryAssetId() const override;
 
-public:
 
 	//Utility to find any ItemData class through its OwnedTags without having to load every asset(using Asset Registry).
 	// UFUNCTION(BlueprintCallable, Category = "AssetRegistry")

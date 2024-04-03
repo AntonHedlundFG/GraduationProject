@@ -25,7 +25,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCActionComponent> ActionComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCInventoryComponent> InventoryComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")

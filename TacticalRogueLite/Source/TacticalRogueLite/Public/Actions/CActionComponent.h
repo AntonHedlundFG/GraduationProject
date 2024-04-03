@@ -8,7 +8,7 @@
 
 //class UCAction;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityChanged, UCActionComponent*, OwningComp, FAbility, Ability);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TACTICALROGUELITE_API UCActionComponent : public UActorComponent
@@ -49,13 +49,13 @@ protected:
 
 public:
 
-	/* TODO: Replace these with relevant delegates
+	//TODO: Replace these with relevant delegates
 	UPROPERTY(BlueprintAssignable)
-	FOnActionStateChanged OnActionStarted;
+	FOnAbilityChanged OnAbilityChanged;
 
-	UPROPERTY(BlueprintAssignable)
-	FOnActionStateChanged OnActionStopped;
-	*/
+	// UPROPERTY(BlueprintAssignable)
+	// FOnActionStateChanged OnCharmAdded;
+	
 	virtual bool ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags) override;
 	
 		

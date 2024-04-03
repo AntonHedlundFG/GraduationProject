@@ -81,6 +81,9 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 		Ring = inItem;
 
 	AddItem(inItem);
+	
+	OnItemChanged.Broadcast(this, inItem);
+	
 	return true;
 }
 

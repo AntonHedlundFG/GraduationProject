@@ -1,17 +1,15 @@
 
 #pragma once
 
-
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "ItemData/CItemData.h"
 #include "CInventoryComponent.generated.h"
 
-
-
 class UCItem;
 class UCItemData;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnItemChanged, UCInventoryComponent*, OwningComp, UCItemData*, ItemData);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
@@ -21,11 +19,11 @@ class TACTICALROGUELITE_API UCInventoryComponent : public UActorComponent
 public:	
 	UCInventoryComponent();
 	
-	UFUNCTION(Category = "Items")
+	UFUNCTION(BlueprintCallable, Category = "Items")
 	TArray<UCItemData*>GetAllItems() const { return AllItems; }
-	UFUNCTION(Category = "Items|Equipment")
+	UFUNCTION(BlueprintCallable, Category = "Items|Equipment")
 	TArray<UCItemData*> GetEquippedItems() const;
-	UFUNCTION(Category = "Items|Equipment")
+	UFUNCTION(BlueprintCallable, Category = "Items|Equipment")
 	UCItemData* GetItemInSlot(FGameplayTag inSlot);
 
 	//No need to call Add/Remove Item function when using one of these
@@ -41,6 +39,9 @@ public:
 	void RemoveItem(UCItemData* inItem);
 	UFUNCTION(Category = "Items|Equipment")
 	bool CheckValidEquipmentTag(FGameplayTag inTag);
+
+	UPROPERTY(BlueprintAssignable)
+	FOnItemChanged OnItemChanged;
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
