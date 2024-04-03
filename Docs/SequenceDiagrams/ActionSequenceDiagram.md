@@ -1,3 +1,4 @@
+```mermaid 
 sequenceDiagram
 participant GM as AGameMode
 participant PC as APlayerController
@@ -26,3 +27,4 @@ GM->>Ability: GetActions()
 Note over GM: Create new Action object instances
 Note over GM: Add new Actions to ActionStack
 Note over GM: Start executing actions from stack
+```
