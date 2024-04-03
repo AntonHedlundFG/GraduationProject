@@ -48,7 +48,10 @@ public:
 	bool IsControlledBy(AController* inController);
 	
 	UFUNCTION(BlueprintCallable)
-	UCItemData* GetItemInSlot(FGameplayTag inSlot);
+	UCItemData* GetItemDataInSlot(FGameplayTag inSlot);
+	
+	UFUNCTION(BlueprintCallable)
+	bool TryGetAbilityInSlot(FGameplayTag ItemSlot, FAbility& outAbility);
 
 	UFUNCTION(BlueprintCallable)
 	UCAttributeComponent* GetAttributeComp() const { return AttributeComp; }
