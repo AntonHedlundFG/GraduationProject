@@ -32,8 +32,12 @@ public:
 	TArray<ACGridTile*> GetEnemySpawnTiles() const { return EnemySpawnTiles; }
 	UFUNCTION()
 	ACGridTile* GetTileFromCoords(FVector2D inCoords);
+	UFUNCTION()
+	TArray<ACGridTile*> GetAllTiles() { return AllTiles; };
 	
 protected:
+	UPROPERTY()
+	TArray<TObjectPtr<ACGridTile>> AllTiles;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
 	UPROPERTY()

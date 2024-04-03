@@ -37,8 +37,8 @@ void ACGameMode::BeginPlay()
 
 	if (Spawner)
 	{
-		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles());
-		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles());
+		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles(), Spawner->HeroNames);
+		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
 		for (ACUnit* EnemyUnit : EnemyUnits)
 		{
 			EnemyUnit->ControllingPlayerIndex = 0;

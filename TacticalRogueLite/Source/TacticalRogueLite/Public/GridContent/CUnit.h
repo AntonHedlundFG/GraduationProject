@@ -35,7 +35,10 @@ public:
 	ACUnit();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
+	UFUNCTION(BlueprintCallable)
 	FString GetUnitName() { return UnitName.IsEmpty() ? GetName() : UnitName; }
+	UFUNCTION(BlueprintCallable)
+	void SetUnitName(FString inName) { UnitName = inName; }
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)

@@ -11,27 +11,30 @@ ACGridSpawner::ACGridSpawner()
 }
 
 
-
-TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles)
+TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames)
 {
 	TArray<ACUnit*> Units;
 	for (int i = 0 ; i < inSpawnTiles.Num() ; i ++)
 	{
 		if (i >= inUnits.Num()) break;
-		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i]);
+		ACUnit* Unit = i < inNames.Num()?
+			SpawnUnit(inUnits[i], inSpawnTiles[i], inNames[i]):
+			SpawnUnit(inUnits[i], inSpawnTiles[i], "");
 		Unit->ControllingPlayerIndex = i + 1;
 		Units.Add(Unit);
 	}
 	return Units;
 }
 
-ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile)
+ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FString inName)
 {
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
 	SpawnPosition.Z += 100;
 	TObjectPtr<ACUnit> Unit = GetWorld()->SpawnActor<ACUnit>(inUnitType, SpawnPosition , FRotator::ZeroRotator);
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
+	if (!inName.IsEmpty())
+		Unit->SetUnitName(inName);
 	return Unit;
 }
 
