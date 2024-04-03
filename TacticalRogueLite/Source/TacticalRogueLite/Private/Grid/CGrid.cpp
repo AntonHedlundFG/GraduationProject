@@ -6,10 +6,7 @@
 
 ACGrid::ACGrid()
 {
-<<<<<<< HEAD
-=======
 	bReplicates = true;
->>>>>>> 9ed3bbc85c62c4c439be06b345fd147cf7f67a88
 }
 
 void ACGrid::GenerateTiles(int inRows, int inColumns)
@@ -27,10 +24,7 @@ void ACGrid::GenerateTiles(int inRows, int inColumns)
 			TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(StandardTileBlueprint, NodePosition, FRotator::ZeroRotator);
 			Tile->Initialize(this, TileCoords);
 			TileMap.Add(TileCoords, Tile);
-<<<<<<< HEAD
-=======
 			AllTiles.Add(Tile);
->>>>>>> 9ed3bbc85c62c4c439be06b345fd147cf7f67a88
 		}
 	}
 	
