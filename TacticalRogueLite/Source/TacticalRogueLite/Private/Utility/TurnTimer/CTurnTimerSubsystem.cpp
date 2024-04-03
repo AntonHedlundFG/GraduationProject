@@ -30,6 +30,8 @@ bool UCTurnTimerSubsystem::IsTimerActive(FTurnTimerHandle InHandle)
 
 void UCTurnTimerSubsystem::NextTurn(const ACUnit* PreviousUnit, const ACUnit* NextUnit)
 {
+	TArray<uint32> TimersToRemove;
+
 	for (auto TimerPair : ActiveTurnTimers)
 	{
 		FTurnTimer& Handle = TimerPair.Value;
@@ -47,8 +49,11 @@ void UCTurnTimerSubsystem::NextTurn(const ACUnit* PreviousUnit, const ACUnit* Ne
 		}
 		else
 		{
-			//Remove timer and invalidate handle
-			ActiveTurnTimers.Remove(TimerPair.Key);
+			TimersToRemove.Add(TimerPair.Key);
 		}
+	}
+	for (uint32 Key : TimersToRemove)
+	{
+		ActiveTurnTimers.Remove(Key);
 	}
 }
