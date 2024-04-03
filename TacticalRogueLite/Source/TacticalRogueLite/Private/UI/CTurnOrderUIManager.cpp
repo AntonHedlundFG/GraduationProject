@@ -20,7 +20,10 @@ void ACTurnOrderUIManager::UpdateTurnList()
 
 UCTurnOrderPortraitWidget* ACTurnOrderUIManager::CreatePortraitWidget()
 {
-	
+	UCTurnOrderPortraitWidget* Widget = CreateWidget<UCTurnOrderPortraitWidget>(GetWorld()->GetGameInstance(),PortraitWidget);
+	Widget->AddToViewport();
+	Widget->SetVisibility(ESlateVisibility::Hidden);
+	return Widget;
 }
 UCTurnOrderPortraitWidget* ACTurnOrderUIManager::DeQueuePortraitWidget()
 {
@@ -28,10 +31,23 @@ UCTurnOrderPortraitWidget* ACTurnOrderUIManager::DeQueuePortraitWidget()
 	{
 		WidgetPool.Enqueue(CreatePortraitWidget());
 	}
-	UCTurnOrderPortraitWidget* PortraitWidget;
-	WidgetPool.Dequeue(PortraitWidget);
-	return PortraitWidget;
+	UCTurnOrderPortraitWidget* Widget;
+	WidgetPool.Dequeue(Widget);
+	HandleDequeue(Widget);
+	return Widget;
 }
 void ACTurnOrderUIManager::EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget)
 {
+	HandleEnqueue(widget);
+	WidgetPool.Enqueue(widget);
+}
+
+void ACTurnOrderUIManager::HandleEnqueue(UCTurnOrderPortraitWidget* widget)
+{
+	widget->SetVisibility(ESlateVisibility::Hidden);
+}
+
+void ACTurnOrderUIManager::HandleDequeue(UCTurnOrderPortraitWidget* widget)
+{
+	widget->SetVisibility(ESlateVisibility::Visible);
 }

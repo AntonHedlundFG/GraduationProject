@@ -21,12 +21,14 @@ class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 	GENERATED_BODY()
 	virtual void BeginPlay() override;
 	void UpdateTurnList();
+	TArray<ACUnit*> LastTurnOrder;
 
 	//PoolingSystem will be refactored later on
 	UCTurnOrderPortraitWidget* CreatePortraitWidget();
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();
 	void EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget);
-	
+	void HandleEnqueue(UCTurnOrderPortraitWidget* widget);
+	void HandleDequeue(UCTurnOrderPortraitWidget* widget);
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TSubclassOf<UCTurnOrderPortraitWidget> PortraitWidget;
