@@ -42,15 +42,6 @@ public:
 	UFUNCTION(Category = "Items|Equipment")
 	bool CheckValidEquipmentTag(FGameplayTag inTag);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UCItemData> TESTITEM;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UCItemData> TESTATTACKITEM;
-
-	virtual void BeginPlay() override;
-
-
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items")
 	TArray<UCItemData*> AllItems;

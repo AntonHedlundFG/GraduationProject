@@ -14,6 +14,7 @@
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
 #include "Actions/CTargetableAction.h"
+#include "Items/CDefaultUnitEquipment.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACGameMode::BeginPlay()
@@ -45,6 +46,18 @@ void ACGameMode::BeginPlay()
 	}
 	AllUnits.Append(HeroUnits);
 	AllUnits.Append(EnemyUnits);
+
+	if (DefaultEquipmentData)
+	{
+		for (auto Unit : AllUnits)
+		{
+			DefaultEquipmentData->EquipUnit(Unit);
+		}
+	}
+	else
+	{
+		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
+	}
 	
 	InitializeTurnOrder(AllUnits);
 	ApplyPlayerCount(AllUnits);
