@@ -26,39 +26,23 @@ void ACGridTile::Initialize(ACGrid* inParentGrid, FVector2D inCoords)
 	GridCoords = inCoords;
 }
 
-void ACGridTile::BeginPlay()
+void ACGridTile::GenerateLinks()
 {
-	Super::BeginPlay();
-}
-
-
-
-void ACGridTile::CreateLinks()
-{
-	const int TopX = ParentGrid->GridDimensions.X;
-	const int TopY = ParentGrid->GridDimensions.Y;
-
-	TArray<FVector2D> StraightDirections = UCGridUtilsLibrary::StraightDirections();
-	for (auto direction : StraightDirections)
+	TArray<FVector2D> Straights = UCGridUtilsLibrary::StraightDirections();
+	for (FVector2D Direction : Straights)
 	{
-		const FVector2D Coords = GridCoords + direction;
-		if (Coords.X < 0 || Coords.Y < 0) continue;
-		if (Coords.X >= TopX || Coords.Y >= TopY) continue;
-
-		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
+		const FVector2D Coords = GridCoords + Direction;
+		if (TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileFromCoords(Coords))
 		{
 			StraightLinks.Add(Neighbour);
 		}
 	}
-
-	TArray<FVector2D> DiagonalDirections = UCGridUtilsLibrary::DiagonalDirections();
-	for (auto direction : DiagonalDirections)
+	
+	TArray<FVector2D> Diagonals = UCGridUtilsLibrary::DiagonalDirections();
+	for (FVector2D Direction : Diagonals)
 	{
-		const FVector2D Coords = GridCoords + direction;
-		if (Coords.X < 0 || Coords.Y < 0) continue;
-		if (Coords.X >= TopX || Coords.Y >= TopY) continue;
-
-		if(TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileAtPosition(Coords.X, Coords.Y))
+		const FVector2D Coords = GridCoords + Direction;
+		if (TObjectPtr<ACGridTile> Neighbour = ParentGrid->GetTileFromCoords(Coords))
 		{
 			DiagonalLinks.Add(Neighbour);
 		}
