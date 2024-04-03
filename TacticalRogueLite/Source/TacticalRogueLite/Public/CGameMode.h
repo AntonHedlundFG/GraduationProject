@@ -111,5 +111,9 @@ protected:
 
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
+
+	// If playing in PIE mode, this is how many players we assume are playing.
+	UPROPERTY(EditAnywhere, Category = "Units")
+	int DefaultPlayerCount = 2;
 	
 };

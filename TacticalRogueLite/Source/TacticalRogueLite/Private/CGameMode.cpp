@@ -16,6 +16,9 @@
 #include "Actions/CTargetableAction.h"
 #include "Items/CDefaultUnitEquipment.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
+#include "Utility/CRandomComponent.h"
+#include "Settings/LevelEditorPlaySettings.h"
+
 
 void ACGameMode::BeginPlay()
 {
@@ -118,9 +121,8 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		LOG_WARNING("Target tile is not valid for this item slot");
 		return false;
 	}
-	
-	bool bHasDesignatedIncitingAction = false;
 
+	// Create instances of each action in the used ability, and add them to the stack in reverse order
 	for (int i = OutAbility.Actions.Num() - 1; i >= 0; i--)
 	{
 		UCAction* NewAction = NewObject<UCAction>(ActionComponent, OutAbility.Actions[i]);
@@ -137,6 +139,9 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		ActionStack.Add(NewAction);
 	}
 
+	// Now that the stack is full of actions, start iterating through and executing them.
+	// Note that the stack -CAN- grow during iteration, as triggered actions can be registered
+	// as a result of executed actions.
 	int Iterations = 0;
 	while (!ActionStack.IsEmpty())
 	{
@@ -240,18 +245,21 @@ bool ACGameMode::TryEndTurn(AController* inController)
 void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 {
 	GameStateRef->TurnOrder.Empty();
-	for (ACUnit* Unit : Units)
+	
+	TArray<ACUnit*> UnitsRemaining = Units;
+	while (UnitsRemaining.Num() > 0)
 	{
-		if (Unit)
-			GameStateRef->AddUnitToOrder(Unit);
+		int RandomIndex = GameStateRef->Random->GetRandRange(0, UnitsRemaining.Num() - 1, false);
+		GameStateRef->AddUnitToOrder(UnitsRemaining[RandomIndex]);
+		UnitsRemaining.RemoveAtSwap(RandomIndex);
 	}
 	GameStateRef->OnRep_TurnOrder();
 }
 
 void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
 {
-	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, 0);
-	if (!PlayerCount) return;
+	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, DefaultPlayerCount);
+
 	for (ACUnit* Unit : Units)
 	{
 		if (!Unit) continue;
