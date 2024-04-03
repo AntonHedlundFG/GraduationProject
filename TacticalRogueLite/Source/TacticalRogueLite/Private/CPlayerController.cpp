@@ -68,7 +68,6 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		Tile->OnHighlightChange.Broadcast(true);
 		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
 	}
-	LOG_WARNING("%d number of tiles", HighlightedTiles.Num());
 }
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
