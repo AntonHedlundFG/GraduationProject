@@ -24,11 +24,15 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCActionComponent> ActionComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
+	FString UnitName;
 	
 public:
 	ACUnit();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
+	FString GetUnitName() { return UnitName.IsEmpty() ? GetName() : UnitName; }
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)

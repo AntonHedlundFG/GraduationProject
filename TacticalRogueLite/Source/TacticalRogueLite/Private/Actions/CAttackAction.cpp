@@ -19,12 +19,36 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 	OldHealth = Attributes->GetHealth();
 	
 	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount); 
+
+	ACUnit* Attacker = Cast<ACUnit>(Instigator);
+	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" attacked ")
+			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" for ")
+			.Append(FString::FromInt(DamageAmount))
+			.Append(" damage.")
+	);
 }
 
 void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 {
 	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	Attributes->SetHealth(OldHealth);
+
+	ACUnit* Attacker = Cast<ACUnit>(Instigator);
+	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" undid their attack on  ")
+			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" for ")
+			.Append(FString::FromInt(DamageAmount))
+			.Append(" damage.")
+	);
 	
 	Super::UndoAction_Implementation(Instigator);
 }

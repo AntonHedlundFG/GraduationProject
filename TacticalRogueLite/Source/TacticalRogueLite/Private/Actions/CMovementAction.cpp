@@ -18,6 +18,11 @@ void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 	FromTile = MovedUnit->GetTile();
 	MovedUnit->SetTile(TargetTile);
 
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay, 
+		MovedUnit->GetUnitName().Append(" moved.")
+	);
+
 }
 void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 {
@@ -27,6 +32,10 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 
 	MovedUnit->SetTile(FromTile);
 
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		MovedUnit->GetUnitName().Append(" returned.")
+	);
 }
 
 TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)

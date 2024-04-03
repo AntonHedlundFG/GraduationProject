@@ -35,6 +35,11 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 	AffectedUnit->SetTile(nullptr);
 	AffectedUnit->SetActorLocation(FVector::OneVector * 10000);
 
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		AffectedUnit->GetUnitName().Append(" died.")
+	);
+
 }
 
 void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
@@ -49,4 +54,9 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 	AffectedUnit->SetTile(DeathTile);
 	if (DeathTurnOrderIndex != INDEX_NONE)
 		GameState->TurnOrder.Insert(AffectedUnit, DeathTurnOrderIndex);
+
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		AffectedUnit->GetUnitName().Append(" resurrected.")
+	);
 }
