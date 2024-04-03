@@ -3,7 +3,6 @@
 
 #include "CPlayerController.h"
 #include "CGameState.h"
-#include "Items\CItem.h"
 #include "Grid\CGridTile.h"
 #include "CGameMode.h"
 #include "Actions/CActionComponent.h"

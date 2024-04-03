@@ -17,7 +17,7 @@ public:
 	void OnTurnChanged();
 	virtual void BeginPlay() override;
 
-	float ScoreAction(UCItem* Item, ACGrid* Grid);
+	//float ScoreAction(UCItem* Item, ACGrid* Grid);
 	void DecideBestActions();
 	void ExecuteActions();
 
@@ -26,8 +26,8 @@ private:
 	ACUnit* Unit;
 	UPROPERTY()
 	ACGrid* Grid;
-	UPROPERTY()
-	TMap<TObjectPtr<UCItem>, TObjectPtr<ACGridTile>> BestActionsMap;
+	//UPROPERTY()
+	//TMap<TObjectPtr<UCItem>, TObjectPtr<ACGridTile>> BestActionsMap;
 	UPROPERTY()
 	ACGameMode* GameMode;
 };

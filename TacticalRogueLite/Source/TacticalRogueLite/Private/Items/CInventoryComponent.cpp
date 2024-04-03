@@ -3,7 +3,6 @@
 #include "Items/CInventoryComponent.h"
 
 #include "GridContent/CUnit.h"
-#include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 #include "Net/UnrealNetwork.h"
 #include "Actions/CActionComponent.h"

@@ -3,7 +3,6 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Grid/CGridTile.h"
-#include "Items/CItem.h"
 
 TArray<FVector2D> UCGridUtilsLibrary::StraightDirections()
 {

@@ -3,7 +3,6 @@
 
 #include "CGameMode.h"
 #include "GridContent/CUnit.h"
-#include "Items/CItem.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
 #include "Grid\CGridTile.h"

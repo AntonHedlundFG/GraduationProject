@@ -3,7 +3,7 @@
 #include "Utility/Logging/CLogManager.h"
 #include "Grid/CGridTile.h"
 #include "Items/CInventoryComponent.h"
-#include "Items/CItem.h"
+//#include "Items/CItem.h"
 #include "Items/ItemSlots.h"
 
 void ACAIController::OnTurnChanged()
@@ -40,7 +40,7 @@ void ACAIController::BeginPlay()
 	// Subscribe to turn change
 	GameMode->GetGameState<ACGameState>()->OnTurnOrderUpdate.AddDynamic(this, &ACAIController::OnTurnChanged);
 }
-
+/*
 float ACAIController::ScoreAction(UCItem* Item, ACGrid* inGrid)
 {
 	// Score the action based on the item's effects
@@ -48,7 +48,7 @@ float ACAIController::ScoreAction(UCItem* Item, ACGrid* inGrid)
 	// Average considerations to get a final score
 	return 0;
 }
-
+*/
 void ACAIController::DecideBestActions()
 {
 	// Get all tiles reachable by move item
