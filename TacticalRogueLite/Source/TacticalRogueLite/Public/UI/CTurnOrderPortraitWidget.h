@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/CanvasPanel.h"
 #include "Components/Image.h"
 #include "Components/RichTextBlock.h"
 #include "Components/ScrollBox.h"
@@ -21,21 +22,14 @@ class TACTICALROGUELITE_API UCTurnOrderPortraitWidget : public UUserWidget
 	URichTextBlock* TextBlock;
 	UPROPERTY(meta=(BindWidget))
 	UImage* Portrait;
-
-protected:
-	FTimerHandle AnimateToPositionHandle;
-	FTimerHandle AnimatedRemoveFromQueueHandle;
-
+	UPROPERTY(meta=(BindWidget))
+	UCanvasPanel* Panel;
 public:
 	/*!
 	 * Where the widget should animate to when it's object is being removed from the turn queue.
 	 */
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FVector RemoveFromQueueAnimationOffsetTarget;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	UCurveFloat* RemoveFromQueueAnimationEasing;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	UCurveFloat* ToPositionAnimationEasing;
 
 	UPROPERTY( Transient, meta = ( BindWidgetAnim ) )
 	UWidgetAnimation* OutAnimation;
@@ -44,7 +38,7 @@ public:
 	
 	void SetText(FString Text);
 	void SetPortrait(FSlateBrush Brush);
+	void SetPosition(FVector ViewportPosition);
 	void AnimateOut();
 	void AnimateIn();
-	void StartAnimationTimer_ToPosition();
 };

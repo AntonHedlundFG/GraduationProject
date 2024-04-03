@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Initialize(ACGrid* inParentGrid, FVector2D inCoords);
 	UFUNCTION(BlueprintCallable)
-	void CreateLinks();
+	void GenerateLinks();
 
 #pragma region Get/Set
 	UFUNCTION(BlueprintCallable)
@@ -69,7 +69,5 @@ protected:
 	FVector2D GridCoords;
 
 	ETileHighlightModes CurrentHighlightMode = ETileHighlightModes::ETHM_Default;
-	
-	virtual void BeginPlay() override;
 
 };

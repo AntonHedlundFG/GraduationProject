@@ -12,6 +12,10 @@ void UCTurnOrderPortraitWidget::SetPortrait(FSlateBrush Brush)
 {
 }
 
+void UCTurnOrderPortraitWidget::SetPosition(FVector ViewportPosition)
+{
+}
+
 void UCTurnOrderPortraitWidget::AnimateOut()
 {
 	PlayAnimation(OutAnimation);
@@ -20,10 +24,5 @@ void UCTurnOrderPortraitWidget::AnimateOut()
 void UCTurnOrderPortraitWidget::AnimateIn()
 {
 	PlayAnimation(InAnimation);
-}
-
-void UCTurnOrderPortraitWidget::StartAnimationTimer_ToPosition()
-{
-	//PlayAnimation(InAnimation);
 }
 

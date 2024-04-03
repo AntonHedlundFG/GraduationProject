@@ -25,6 +25,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCActionComponent> ActionComp;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
+	TObjectPtr<UCInventoryComponent> InventoryComp;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
 	FString UnitName;
 	
@@ -40,16 +43,19 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsControlledBy(AController* inController);
-
-	// -- TEMPORARY SOLUTION, SHOULD BE REPLACED BY INVENTORY SYSTEM --
+	
 	UFUNCTION(BlueprintCallable)
 	UCItemData* GetItemInSlot(FGameplayTag inSlot);
 
 	UFUNCTION(BlueprintCallable)
-	UCActionComponent* GetActionComp() const;
+	UCAttributeComponent* GetAttributeComp() const { return AttributeComp; }
+	
+	UFUNCTION(BlueprintCallable)
+	UCActionComponent* GetActionComp() const { return ActionComp; }
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
-	TObjectPtr<UCInventoryComponent> Inventory;
+	UFUNCTION(BlueprintCallable)
+	UCInventoryComponent* GetInventoryComp() const { return InventoryComp; }
+
 	
 	// ----------------------------------------------------------------
 	

@@ -3,7 +3,6 @@
 
 #include "CGameMode.h"
 #include "Net/UnrealNetwork.h"
-#include "Items/ItemSlots.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Actions/CActionComponent.h"
 #include "Items/CInventoryComponent.h"
@@ -22,7 +21,7 @@ ACUnit::ACUnit()
 	bReplicates = true;
 	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
-	Inventory = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
+	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));
 }
 
@@ -55,13 +54,8 @@ bool ACUnit::IsControlledBy(AController* inController)
 }
 
 UCItemData* ACUnit::GetItemInSlot(FGameplayTag inSlot)
-{	
-	return Inventory->GetItemInSlot(inSlot);
-}
-
-UCActionComponent* ACUnit::GetActionComp() const
 {
-	return ActionComp;
+	return InventoryComp->GetItemInSlot(inSlot);
 }
 
 

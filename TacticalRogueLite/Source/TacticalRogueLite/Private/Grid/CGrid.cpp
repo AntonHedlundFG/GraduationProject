@@ -4,23 +4,8 @@
 #include "Net/UnrealNetwork.h"
 
 
-void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(ACGrid, Tiles);
-}
-
 ACGrid::ACGrid()
 {
-}
-
-void ACGrid::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// GenerateTiles(GridDimensions.X, GridDimensions.Y);
-	// GenerateSpawnTiles();
-	// CreateSpawner();
 }
 
 void ACGrid::GenerateTiles(int inRows, int inColumns)
@@ -34,31 +19,28 @@ void ACGrid::GenerateTiles(int inRows, int inColumns)
 			FVector NodePosition = BottomLeft;
 			NodePosition.X += x*NodeInterval;
 			NodePosition.Y += y*NodeInterval;
-			TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(TileBlueprint, NodePosition, FRotator::ZeroRotator);
-			Tile->Initialize(this, FVector2D(x,y));
-			Tiles.Add(Tile);
+			FVector2D TileCoords = FVector2D(x,y);
+			TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(StandardTileBlueprint, NodePosition, FRotator::ZeroRotator);
+			Tile->Initialize(this, TileCoords);
+			TileMap.Add(TileCoords, Tile);
 		}
 	}
 	
-	for (auto tile : Tiles)
+	for (auto tile : TileMap)
 	{
-		tile->CreateLinks();
+		tile.Value->GenerateLinks();
 	}
 
 	GenerateSpawnTiles();
 }
-
-ACGridTile* ACGrid::GetTileAtPosition(int inX, int inY)
+	
+ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 {
-	FVector2D PositionVector = FVector2D(inX, inY);
-	for (auto tile : Tiles)
+	for (auto Element : TileMap)
 	{
-		if (tile->GetGridCoords() == PositionVector)
-		{
-			return tile;
-		}
+		if (Element.Key == inCoords)
+			return Element.Value;
 	}
-
 	return nullptr;
 }
 
@@ -91,21 +73,21 @@ void ACGrid::GenerateSpawnTiles()
 	EnemySpawns.Add(FVector2D(9,8));
 	
 	
-	for (auto tile : Tiles)
+	for (auto tile : TileMap)
 	{
 		for (auto coords : HeroSpawns)
 		{
-			if (tile->GetGridCoords() == coords)
+			if (tile.Key == coords)
 			{
-				HeroSpawnTiles.Add(tile);
+				HeroSpawnTiles.Add(tile.Value);
 			}
 		}
 
 		for (auto coords : EnemySpawns)
 		{
-			if (tile->GetGridCoords() == coords)
+			if (tile.Key == coords)
 			{
-				EnemySpawnTiles.Add(tile);
+				EnemySpawnTiles.Add(tile.Value);
 			}
 		}
 	}
