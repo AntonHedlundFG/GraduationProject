@@ -2,21 +2,17 @@
 
 
 #include "Actions\Visualizer\CActionVisualizerSystem.h"
+#include "Actions\Visualizer\CActionVisualization.h"
 #include "CGameState.h"
 #include "Utility\Logging\CLogManager.h"
+#include "Actions\CAction.h"
 
-// Sets default values for this component's properties
 UCActionVisualizerSystem::UCActionVisualizerSystem()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
-// Called when the game starts
 void UCActionVisualizerSystem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -28,14 +24,48 @@ void UCActionVisualizerSystem::BeginPlay()
 		return;
 	}
 
+	for (auto Template : AllAvailableVisualizationTemplates)
+	{
+		AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, Template));
+	}
+
+	GameState->OnActionListUpdate.AddDynamic(this, &UCActionVisualizerSystem::OnActionListUpdate);
+
+}
+
+void UCActionVisualizerSystem::EndPlay(EEndPlayReason::Type Reason)
+{
+	GameState->OnActionListUpdate.RemoveAll(this);
+}
+
+void UCActionVisualizerSystem::OnActionListUpdate()
+{
+}
+
+UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)
+{
+	for (UCActionVisualization* Visualization : AllAvailableVisualizationInstances)
+	{
+		if (Visualization && Visualization->CanVisualizeAction(Action))
+		{
+			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
+			VisualizationInstance->InitializeVisualization(Action);
+			return VisualizationInstance;
+		}
+	}
+	LOG_WARNING("No available visualization template for this type of action");
+	return nullptr;
 }
 
 
-// Called every frame
 void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (CurrentVisualization && CurrentVisualization->TickVisualization(DeltaTime))
+	{
+		LOG_INFO("Finished visualizing");
+		CurrentVisualization = nullptr;
+	}
 }
 
