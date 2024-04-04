@@ -155,7 +155,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 	while (!ActionStack.IsEmpty())
 	{
 		UCAction* CurrentAction = ActionStack.Pop();
-		ActionList.Add(CurrentAction);
+		GameStateRef->ActionList.Add(CurrentAction);
 		CurrentAction->StartAction(inUnit);
 		
 		Iterations++;
@@ -188,15 +188,15 @@ bool ACGameMode::TryUndo(AController* inController)
 
 	while (true)
 	{
-		if (ActionList.IsEmpty())
+		if (GameStateRef->ActionList.IsEmpty())
 		{
 			LOG_WARNING("No commands in history");
 			return false;
 		}
 
-		UCAction* LastAction = ActionList.Last();
+		UCAction* LastAction = GameStateRef->ActionList.Last();
 		LastAction->UndoAction(inController);
-		ActionList.RemoveAtSwap(ActionList.Num() - 1);
+		GameStateRef->ActionList.RemoveAtSwap(GameStateRef->ActionList.Num() - 1);
 		if (LastAction->bIsUserIncited)
 			break;
 	}
@@ -241,11 +241,11 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	}
 
 	//Transfer all commands this turn into the command history
-	for (UCAction* Action : ActionList)
+	for (UCAction* Action : GameStateRef->ActionList)
 	{
-		ActionHistory.Add(Action);
+		GameStateRef->ActionHistory.Add(Action);
 	}
-	ActionList.Empty();
+	GameStateRef->ActionList.Empty();
 
 	LOG_GAMEPLAY("Turn ended");
 	return true;

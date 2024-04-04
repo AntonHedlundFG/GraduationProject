@@ -101,14 +101,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	TArray<UCAction*> ActionStack;
 
-	//List of all executed actions this turn
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
-	TArray<UCAction*> ActionList;
-
-	//History of all executed actions of previous turns
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
-	TArray<UCAction*> ActionHistory;
-
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
 
