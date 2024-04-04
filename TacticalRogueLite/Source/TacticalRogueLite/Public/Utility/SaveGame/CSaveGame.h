@@ -4,6 +4,7 @@
 #include "GameFramework/SaveGame.h"
 #include "CSaveGame.generated.h"
 
+
 UCLASS()
 class UCSaveGame : public USaveGame
 {
@@ -28,5 +29,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
 	int32 SavedCurrentStateSeed;
+
+	UPROPERTY(VisibleAnywhere, Category = "UnitAndItemData")
+	TArray<struct FCNamesAndItemsList> NamesAndItems;
 
 };

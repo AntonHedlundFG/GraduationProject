@@ -15,6 +15,7 @@
 #include "Actions/CActionComponent.h"
 #include "Actions/CTargetableAction.h"
 #include "Items/CDefaultUnitEquipment.h"
+#include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
 #include "Settings/LevelEditorPlaySettings.h"
@@ -34,14 +35,8 @@ void ACGameMode::BeginPlay()
 			return;
 		}
 	}
+	UCSaveGameManager::Get()->LoadGame();
 	
-	UCSaveGame* SaveGame = nullptr;
-	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
-	{
-		SaveGame = UCSaveGameManager::Get()->LoadGame();
-	}
-
-
 	Spawner = CreateSpawner();
 
 	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
@@ -49,6 +44,8 @@ void ACGameMode::BeginPlay()
 
 	if (Spawner)
 	{
+		// InitializeHeroUnits(grid);
+		
 		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles(), Spawner->HeroNames);
 		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
 		for (ACUnit* EnemyUnit : EnemyUnits)
@@ -289,4 +286,24 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 {
 	ACGridSpawner* spawner = GetWorld()->SpawnActor<ACGridSpawner>(SpawnerClass, FVector::Zero(), FRotator::ZeroRotator);
 	return spawner;
+}
+
+void ACGameMode::InitializeHeroUnits(ACGrid* grid)
+{
+	UCSaveGame* SaveGame = nullptr;
+	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	{
+		LOG_WARNING("Couldn't Find SaveGame When Initializing Units in GameMode");
+		return;
+	}
+
+	const int HeroUnitsNum = 4;
+	for(int8 i = 0; i < HeroUnitsNum ; i++)
+	{
+		if (i > Spawner->NamesAndItemList.Num() || i > grid->GetHeroSpawnTiles().Num())
+			break;
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], grid->GetHeroSpawnTiles()[i],
+							Spawner->NamesAndItemList[i].Items, Spawner->NamesAndItemList[i].Name);
+		HeroUnits.Add(Unit);
+	}
 }
