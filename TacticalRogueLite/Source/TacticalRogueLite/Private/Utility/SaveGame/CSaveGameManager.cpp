@@ -42,14 +42,14 @@ UCSaveGame* UCSaveGameManager::LoadGame()
 	return SaveGameInstance;
 }
 
-UCSaveGame* UCSaveGameManager::GetSaveGameInstance()
+bool UCSaveGameManager::TryGetSaveGame(UCSaveGame* inSaveGame)
 {
-	if(SaveGameInstance == nullptr) // Load Save Game if we have no active Save Game Instance
+	if(SaveGameInstance == nullptr)
 	{
-		return LoadGame();
+		return false;
 	}
-
-	return SaveGameInstance; // Return the active Save Game Instance
+	inSaveGame = SaveGameInstance;
+	return true; // Return the active Save Game Instance
 }
 
 void UCSaveGameManager::TriggerSaveEvent()

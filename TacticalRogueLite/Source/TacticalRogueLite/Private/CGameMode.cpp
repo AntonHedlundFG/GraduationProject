@@ -18,11 +18,13 @@
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
 #include "Settings/LevelEditorPlaySettings.h"
+#include "Utility/SaveGame/CSaveGameManager.h"
 
 
 void ACGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
 	if (!GameStateRef)
 	{
 		GameStateRef = GetGameState<ACGameState>();
@@ -32,6 +34,13 @@ void ACGameMode::BeginPlay()
 			return;
 		}
 	}
+	
+	UCSaveGame* SaveGame = nullptr;
+	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	{
+		SaveGame = UCSaveGameManager::Get()->LoadGame();
+	}
+
 
 	Spawner = CreateSpawner();
 
