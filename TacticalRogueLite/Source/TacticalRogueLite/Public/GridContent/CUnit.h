@@ -11,6 +11,7 @@ class UCAttributeComponent;
 class UCInventoryComponent;
 class UCItem;
 class ACGridTile;
+class USkeletalMesh;
 enum class EItemSlots : uint8;
 
 UCLASS()
@@ -20,6 +21,10 @@ class TACTICALROGUELITE_API ACUnit : public ACGridContent
 
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	USkeletalMeshComponent* SkeletalMesh;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCAttributeComponent> AttributeComp;
 

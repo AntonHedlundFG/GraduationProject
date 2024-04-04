@@ -65,6 +65,7 @@ inline uint32 GetTypeHash(const FAbility& Ability)
 
 #pragma endregion
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionCompleted);
 
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
@@ -113,6 +114,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
 
+	UPROPERTY(BlueprintAssignable, Category = "Action")
+	FOnActionCompleted OnActionCompleted;
+	
 	virtual UWorld* GetWorld() const override;
 
 	FGameplayTagContainer GetActionTags() const { return ActionTags; }
