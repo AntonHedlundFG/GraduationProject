@@ -28,3 +28,8 @@ bool UCActionVisualization::TickVisualization_Implementation(float DeltaTime)
 	}
 	return false;
 }
+
+bool UCActionVisualization::RevertVisualization_Implementation(float DeltaTime)
+{
+	return true;
+}

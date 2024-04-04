@@ -39,6 +39,9 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
 	bool TickVisualization(float DeltaTime);
 
+	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
+	bool RevertVisualization(float DeltaTime);
+
 	//Set by the system upon creation.
 	UCActionVisualizerSystem* ParentSystem;
 
