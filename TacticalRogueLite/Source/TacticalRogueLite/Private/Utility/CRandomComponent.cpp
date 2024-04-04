@@ -10,18 +10,6 @@ UCRandomComponent::UCRandomComponent()
 	SetIsReplicatedByDefault(true);
 }
 
-void UCRandomComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	RegisterToSaveManager();
-}
-
-void UCRandomComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
-	UnregisterFromSaveManager();
-}
-
 void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 {
 	StartSeed = ValidateSeed(inStartSeed); 
@@ -185,8 +173,8 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 
 void UCRandomComponent::OnSave()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
-	if (SaveGame)
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		SaveGame->SavedRandomStream = RandomStream;
 		SaveGame->SavedStartSeed = StartSeed;
@@ -195,12 +183,16 @@ void UCRandomComponent::OnSave()
 		SaveGame->SavedTicksSinceSave = TicksSinceSave;
 		SaveGame->SavedTicksAtSave = TicksAtSave;
 	}
+	else
+	{
+		LOG_ERROR("Could not find Save Game Instance to save Random State");
+	}
 }
 
 void UCRandomComponent::OnLoad()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
-	if (SaveGame)
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		RandomStream = SaveGame->SavedRandomStream;
 		StartSeed = ValidateSeed(SaveGame->SavedStartSeed); 
@@ -208,6 +200,10 @@ void UCRandomComponent::OnLoad()
 		Ticks = SaveGame->SavedTicks;
 		TicksSinceSave = SaveGame->SavedTicksSinceSave;
 		TicksAtSave = SaveGame->SavedTicksAtSave;
+	}
+	else
+	{
+		LOG_ERROR("Could not find Save Game Instance to load Random State");
 	}
 }
 
