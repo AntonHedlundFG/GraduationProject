@@ -30,12 +30,12 @@ void UCActionComponent::AddAbility(FAbility Ability)
 	RemoveAbility(Ability.InventorySlotTag);
 	for (TSubclassOf<UCAction> ActionClass : Ability.Actions)
 	{
-		UCAction* InstancedObject = NewObject<UCAction>(GetOwner(), ActionClass);
-		InstancedObject->Initialize(this);
+		UCAction* NewInstancedAction = NewObject<UCAction>(GetOwner(), ActionClass);
+		NewInstancedAction->Initialize(this);
 		
-		Ability.ActionGameplayTags.AppendTags(InstancedObject->GetGrantsTags());
+		Ability.ActionTags.AppendTags(NewInstancedAction->GetActionTags());
 		
-		Ability.InstantiatedActions.Add(InstancedObject);
+		Ability.InstantiatedActions.Add(NewInstancedAction);
 	}
 	Abilities.Add(Ability);
 }
