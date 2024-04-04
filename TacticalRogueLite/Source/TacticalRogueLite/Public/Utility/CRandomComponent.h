@@ -13,6 +13,9 @@ public:
 	UCRandomComponent();
 	
 protected:
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	
 public:
 	// Initializes the random stream with a specific seed.
 	void InitializeFromStart(int32 inStartSeed);

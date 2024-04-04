@@ -26,21 +26,21 @@ void UCSaveGameManager::SaveGame()
 	LOG_INFO("SaveGame Saved");
 }
 
-UCSaveGame* UCSaveGameManager::LoadGame()
+void UCSaveGameManager::LoadGame()
 {
 	if (UGameplayStatics::DoesSaveGameExist(SaveSlot, UserIndex)) // Load Save Game if it exists
 	{
 		SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::LoadGameFromSlot(SaveSlot, UserIndex));
+		LOG_INFO("SaveGame Loaded");
 	}
-	else // Create a new Save Game Instance if it doesn't exist
+	else
 	{
-		SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame::StaticClass()));
+		LOG_WARNING("No SaveGame Found When Loading");
+		
 	}
-
 	TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
-	LOG_INFO("SaveGame Loaded");
-	return SaveGameInstance;
 }
+
 
 bool UCSaveGameManager::TryGetSaveGame(UCSaveGame* inSaveGame)
 {

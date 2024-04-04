@@ -10,6 +10,18 @@ UCRandomComponent::UCRandomComponent()
 	SetIsReplicatedByDefault(true);
 }
 
+void UCRandomComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	RegisterToSaveManager();
+}
+
+void UCRandomComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	UnregisterFromSaveManager();
+}
+
 void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 {
 	StartSeed = ValidateSeed(inStartSeed); 
@@ -195,7 +207,7 @@ void UCRandomComponent::OnLoad()
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		RandomStream = SaveGame->SavedRandomStream;
-		StartSeed = ValidateSeed(SaveGame->SavedStartSeed); 
+		StartSeed = ValidateSeed(SaveGame->SavedStartSeed);
 		CurrentStateSeed = ValidateSeed(SaveGame->SavedCurrentStateSeed);
 		Ticks = SaveGame->SavedTicks;
 		TicksSinceSave = SaveGame->SavedTicksSinceSave;
