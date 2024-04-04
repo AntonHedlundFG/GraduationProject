@@ -40,6 +40,14 @@ void UCActionVisualizerSystem::EndPlay(EEndPlayReason::Type Reason)
 
 void UCActionVisualizerSystem::OnActionListUpdate()
 {
+	if (GetNetMode() == ENetMode::NM_Client)
+		LOG_INFO("Client: ActionListUpdate in VisualizerSystem");
+	else
+		LOG_INFO("Server: ActionListUpdate in VisualizerSystem");
+	if (!CurrentVisualization)
+	{
+		CurrentVisualization = CreateVisualizationForAction(nullptr);
+	}
 }
 
 UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)
@@ -49,6 +57,7 @@ UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UC
 		if (Visualization && Visualization->CanVisualizeAction(Action))
 		{
 			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
+			VisualizationInstance->ParentSystem = this;
 			VisualizationInstance->InitializeVisualization(Action);
 			return VisualizationInstance;
 		}
@@ -64,7 +73,6 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 
 	if (CurrentVisualization && CurrentVisualization->TickVisualization(DeltaTime))
 	{
-		LOG_INFO("Finished visualizing");
 		CurrentVisualization = nullptr;
 	}
 }

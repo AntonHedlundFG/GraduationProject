@@ -7,6 +7,7 @@
 #include "CActionVisualization.generated.h"
 
 class UCAction;
+class UCActionVisualizerSystem;
 
 /**
  * 
@@ -16,7 +17,7 @@ class TACTICALROGUELITE_API UCActionVisualization : public UObject
 {
 	GENERATED_BODY()
 
-	friend class UCActionVisualizerSystem;
+	friend UCActionVisualizerSystem;
 
 protected:
 
@@ -37,6 +38,9 @@ protected:
 	// it can move on to a new visualization.
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
 	bool TickVisualization(float DeltaTime);
+
+	//Set by the system upon creation.
+	UCActionVisualizerSystem* ParentSystem;
 
 
 	// -- TESTING ----

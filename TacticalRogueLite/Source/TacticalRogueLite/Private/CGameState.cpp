@@ -18,5 +18,7 @@ void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACGameState, TurnOrder);
 	DOREPLIFETIME(ACGameState, Random);
+	DOREPLIFETIME(ACGameState, ActionList);
+	DOREPLIFETIME(ACGameState, ActionHistory);
 }
 

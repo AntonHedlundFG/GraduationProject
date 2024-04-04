@@ -166,6 +166,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 			break;
 		}
 	}
+	GameStateRef->OnActionListUpdate.Broadcast();
 
 	return true;
 }
@@ -200,6 +201,7 @@ bool ACGameMode::TryUndo(AController* inController)
 		if (LastAction->bIsUserIncited)
 			break;
 	}
+	GameStateRef->OnActionListUpdate.Broadcast();
 	
 	return true;
 }
@@ -246,6 +248,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		GameStateRef->ActionHistory.Add(Action);
 	}
 	GameStateRef->ActionList.Empty();
+	GameStateRef->OnActionListUpdate.Broadcast();
 
 	LOG_GAMEPLAY("Turn ended");
 	return true;
