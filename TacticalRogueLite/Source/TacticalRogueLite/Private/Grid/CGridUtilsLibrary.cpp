@@ -25,8 +25,8 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 
 	return Directions;
 }
-/*
-TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget)
+
+TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags)
 {
 	TArray<ACGridTile*> OpenSet;
 	TSet<ACGridTile*> ClosedSet;
@@ -51,7 +51,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(UCItem* inItem, ACGridTi
 			return Path;
 		}
 
-		TArray<ACGridTile*> Neighbours = inItem == nullptr ? CurrentTile->GetNeighbours() : inItem->GetReachableTiles(CurrentTile);
+		TSet<ACGridTile*> Neighbours = ReachableInSingleStep(MovementTags, CurrentTile);
 		for (auto neighbour : Neighbours)
 		{
 			if (neighbour == nullptr || ClosedSet.Contains(neighbour)) continue;
@@ -67,6 +67,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(UCItem* inItem, ACGridTi
 	return TArray<ACGridTile*>();
 }
 
+/*
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth)
 {
 	TArray<ACGridTile*> OpenSet;
