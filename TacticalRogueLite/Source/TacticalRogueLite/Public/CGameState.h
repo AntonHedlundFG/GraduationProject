@@ -11,6 +11,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionListUpdate);
 
 class ACGrid;
+class UCAction;
 class UCActionVisualizerSystem;
 
 UCLASS()
