@@ -11,11 +11,16 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionListUpdate);
 
 class ACGrid;
+class UCActionVisualizerSystem;
 
 UCLASS()
 class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Actions")
+	TObjectPtr<UCActionVisualizerSystem> ActionVisualizerSystem;
 	
 public:
 	ACGameState();

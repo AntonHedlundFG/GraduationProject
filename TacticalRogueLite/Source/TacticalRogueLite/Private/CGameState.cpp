@@ -5,10 +5,12 @@
 
 #include "Utility/CRandomComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions\Visualizer\CActionVisualizerSystem.h"
 
 ACGameState::ACGameState()
 {
 	Random = CreateDefaultSubobject<UCRandomComponent>(TEXT("Random"));
+	ActionVisualizerSystem = CreateDefaultSubobject<UCActionVisualizerSystem>(TEXT("ActionVisualizerSystem"));
 }
 
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
