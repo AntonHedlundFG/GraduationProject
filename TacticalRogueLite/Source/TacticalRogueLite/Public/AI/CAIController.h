@@ -3,10 +3,11 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "GridContent/CUnit.h"
+#include "Actions/CAction.h"
 #include "CAIController.generated.h"
 
-class ACGameMode;
 class ACGrid;
+class ACGameMode;
 
 UCLASS()
 class ACAIController : public AAIController
@@ -17,7 +18,7 @@ public:
 	void OnTurnChanged();
 	virtual void BeginPlay() override;
 
-	//float ScoreAction(UCItem* Item, ACGrid* Grid);
+	float ScoreAction(FAbility& Ability, ACGrid* inGrid);
 	void DecideBestActions();
 	void ExecuteActions();
 
@@ -26,8 +27,8 @@ private:
 	ACUnit* Unit;
 	UPROPERTY()
 	ACGrid* Grid;
-	//UPROPERTY()
-	//TMap<TObjectPtr<UCItem>, TObjectPtr<ACGridTile>> BestActionsMap;
+	UPROPERTY()
+	TMap<FAbility, ACGridTile*> BestActionsMap;
 	UPROPERTY()
 	ACGameMode* GameMode;
 };

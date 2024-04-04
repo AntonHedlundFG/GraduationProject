@@ -32,6 +32,9 @@ void UCActionComponent::AddAbility(FAbility Ability)
 	{
 		UCAction* InstancedObject = NewObject<UCAction>(GetOwner(), ActionClass);
 		InstancedObject->Initialize(this);
+		
+		Ability.ActionGameplayTags.AppendTags(InstancedObject->GetGrantsTags());
+		
 		Ability.InstantiatedActions.Add(InstancedObject);
 	}
 	Abilities.Add(Ability);
@@ -43,7 +46,7 @@ void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
 	{
 		if (Ability.InventorySlotTag == ItemSlot)
 		{
-			Abilities.Remove(Ability);
+			Abilities.Remove(Ability); // Remove the ability from the array leaving it out of scope
 			return;
 		}
 	}

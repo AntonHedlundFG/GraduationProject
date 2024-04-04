@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	FGameplayTag InventorySlotTag;
 
+	UPROPERTY(VisibleAnywhere)
+	FGameplayTagContainer ActionGameplayTags;
+
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 
@@ -79,13 +82,13 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	UCActionComponent* GetOwningComponent() const;
 
-	//Tags added to owning actor when activated, removed when action stops.
+	// GrantToAbilityTags
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
 	FGameplayTagContainer GrantsTags;
 
-	//Action can only start if OwningActor has none of these Tags applied.
+	// Action can only start if OwningActor has none of these Tags applied.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
-	FGameplayTagContainer BlockedTags;
+	FGameplayTagContainer BlockedTags; // BlockingTags
 
 	
 	
@@ -112,6 +115,10 @@ public:
 	void StopAction(AActor* Instigator);
 
 	virtual UWorld* GetWorld() const override;
+
+	FGameplayTagContainer GetGrantsTags() const { return GrantsTags; }
+
+	FGameplayTagContainer GetBlockedTags() const { return BlockedTags; }
 
 	virtual bool IsSupportedForNetworking() const override
 	{

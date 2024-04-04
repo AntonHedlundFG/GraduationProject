@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
+struct FAbility;
 class UCActionComponent;
 class UCAttributeComponent;
 class UCInventoryComponent;
@@ -53,6 +54,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool TryGetAbilityInSlot(FGameplayTag ItemSlot, FAbility& outAbility);
 
+	UFUNCTION(BlueprintCallable)
+	TArray<FAbility> GetEquippedAbilities() const;
+	
 	UFUNCTION(BlueprintCallable)
 	UCAttributeComponent* GetAttributeComp() const { return AttributeComp; }
 	

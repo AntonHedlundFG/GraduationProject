@@ -1,10 +1,9 @@
 ﻿#include "AI/CAIController.h"
 #include "CGameMode.h"
-#include "Utility/Logging/CLogManager.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridTile.h"
-#include "Items/CInventoryComponent.h"
-//#include "Items/CItem.h"
-#include "Items/ItemSlots.h"
+#include "ItemData/CItemData.h"
+#include "Utility/Logging/CLogManager.h"
 
 void ACAIController::OnTurnChanged()
 {
@@ -40,79 +39,42 @@ void ACAIController::BeginPlay()
 	// Subscribe to turn change
 	GameMode->GetGameState<ACGameState>()->OnTurnOrderUpdate.AddDynamic(this, &ACAIController::OnTurnChanged);
 }
-/*
-float ACAIController::ScoreAction(UCItem* Item, ACGrid* inGrid)
+
+float ACAIController::ScoreAction(FAbility& Ability, ACGrid* inGrid)
 {
 	// Score the action based on the item's effects
 	// Take considerations into effect
 	// Average considerations to get a final score
 	return 0;
 }
-*/
+
 void ACAIController::DecideBestActions()
 {
-	// Get all tiles reachable by move item
+	BestActionsMap.Empty();
+	if(Unit == nullptr)
+	{
+		LOG_ERROR("Unit is nullptr for %s", *GetName());
+		return;
+	}
 
-	/* TODO: Change to use itemdata / actioncomponent
-	UCItemData* MoveItem = Unit->GetItemInSlot(SharedGameplayTags::ItemSlot_Boots);
-	TArray<ACGridTile*> ReachableTiles;
-	if(MoveItem == nullptr)
+	// Get all abilities
+	TArray<FAbility> Abilities = Unit->GetEquippedAbilities();
+	FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::Movement);
+	TArray<FAbility> MoveAbilities;
+	for (FAbility& Ability : Abilities)
 	{
-		ReachableTiles.Add(Unit->GetTile());
-	}
-	else
-	{
-		ReachableTiles = MoveItem->GetValidTargetTiles(Unit);
-	}
-	TArray<UCItem*> InventoryItems = Unit->Inventory->GetEquippedItems();
-	InventoryItems.RemoveSingle(MoveItem);
-	
-	TMap<float, TPair<UCItem*, ACGridTile*>> BestActions;
-	for (ACGridTile* ReachableTile : ReachableTiles)
-	{
-		for (UCItem* InventoryItem : InventoryItems)
+		if(Ability.InventorySlotTag.MatchesAny(MoveAbilitiesTagContainer))
 		{
-			float Score = ScoreAction(InventoryItem, ReachableTile->GetParentGrid());
-			// Compare with scores in map
-			// If more than 5 best actions, replace the worst one with this one
-			if(BestActionsMap.Num() < 5)
-			{
-				BestActions.Add(Score, TPairInitializer(InventoryItem, ReachableTile));
-				BestActions.KeySort([](float A, float B)
-				{
-					return A > B; // Sort in descending order	
-				});
-			}
-			else
-			{
-				// Get last element
-				const float WorstScore = BestActions.end().Key();
-				if(Score > WorstScore)
-				{
-					BestActions.Remove(WorstScore);
-					BestActions.Add(Score, TPairInitializer(InventoryItem, ReachableTile));
-					
-					BestActions.KeySort([](float A, float B)
-					{
-						return A > B; // Sort in descending order	
-					});
-				}
-			}
+			MoveAbilities.Add(Ability);
+			break;
 		}
-	} 
-
-
-	// If there are multiple best actions, choose one randomly
-	const size_t BestActionIndex = FMath::RandRange(0, BestActions.Num() - 1);
-	BestActionsMap.Add(MoveItem, BestActions[BestActionIndex].Value); // Add boots first for move
-	BestActionsMap.Add(BestActions[BestActionIndex].Key, BestActions[BestActionIndex].Value);
-
-	*/
-
-	// Loop over all possible actions on that tile and score it accordingly
-	// TODO: Take negative effects into account
-	// If it's possible to move again, evaluate again from the new tile.
-	// Store the best action in BestActionsMap
+	}
+	for (int i = 0; i < MoveAbilities.Num(); ++i)
+	{
+		FAbility Ability = MoveAbilities[i];
+		// Get all valid target tiles
+		LOG_INFO("Getting valid target tiles for %s", *Ability.InventorySlotTag.ToString());
+	}
 }
 
 void ACAIController::ExecuteActions()
