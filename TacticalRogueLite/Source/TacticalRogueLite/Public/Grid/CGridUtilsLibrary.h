@@ -24,7 +24,8 @@ public:
 	UFUNCTION(ScriptCallable)
 	static TArray<FVector2D> DiagonalDirections();
 	UFUNCTION(ScriptCallable)
-	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags);
+	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer
+	                                           & BlockingTags, bool bIncludeTargetInPath = true);
 	
 	/*
 	UFUNCTION(ScriptCallable)
