@@ -58,7 +58,7 @@ UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UC
 		{
 			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
 			VisualizationInstance->ParentSystem = this;
-			VisualizationInstance->InitializeVisualization(Action);
+			VisualizationInstance->Enter(Action);
 			return VisualizationInstance;
 		}
 	}
@@ -71,7 +71,7 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (CurrentVisualization && CurrentVisualization->TickVisualization(DeltaTime))
+	if (CurrentVisualization && CurrentVisualization->Tick(DeltaTime))
 	{
 		CurrentVisualization = nullptr;
 	}
