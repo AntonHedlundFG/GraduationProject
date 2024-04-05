@@ -100,6 +100,12 @@ public:
 	UPROPERTY()
 	bool bIsUserIncited = false;
 
+	UPROPERTY(ReplicatedUsing=OnRep_bIsUndone)
+	bool bIsUndone = false;
+
+	UFUNCTION()
+	void OnRep_bIsUndone();
+
 	void Initialize(UCActionComponent* NewActionComp);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")

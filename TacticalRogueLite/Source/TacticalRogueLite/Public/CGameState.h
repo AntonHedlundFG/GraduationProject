@@ -55,6 +55,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnActionListUpdate OnActionListUpdate;
 
+	virtual bool ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags) override;
+
 protected:
 
 	UFUNCTION()

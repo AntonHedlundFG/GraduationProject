@@ -45,6 +45,7 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 
 void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 {
+
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 	if (!AffectedUnit || !GameState)
 	{
@@ -63,4 +64,6 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 		ELogCategory::LC_Gameplay,
 		AffectedUnit->GetUnitName().Append(" resurrected.")
 	);
+
+	Super::UndoAction_Implementation(Instigator);
 }

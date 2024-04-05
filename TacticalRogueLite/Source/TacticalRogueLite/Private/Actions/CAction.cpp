@@ -11,6 +11,11 @@
 //"Inline the generated cpp file into module cpp file to improve compile time because less header parsing is required."
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAction)
 
+void UCAction::OnRep_bIsUndone()
+{
+	LOG_INFO("Action undone");
+}
+
 void UCAction::Initialize(UCActionComponent* NewActionComp)
 {
 	ActionComp = NewActionComp;
@@ -50,6 +55,7 @@ void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
+	bIsUndone = true;
 }
 
 UWorld* UCAction::GetWorld() const
@@ -70,6 +76,7 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 
 	// DOREPLIFETIME(UCAction, RepData);
 	DOREPLIFETIME(UCAction, ActionComp);
+	DOREPLIFETIME(UCAction, bIsUndone);
 }
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)

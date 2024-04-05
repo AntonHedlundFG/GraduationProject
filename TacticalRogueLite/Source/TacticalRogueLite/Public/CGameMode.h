@@ -102,6 +102,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	TArray<UCAction*> ActionStack;
 
+	//This keeps track of which index in GameState->ActionList should be the starting point
+	//of undoing actions when TryUndo is successfully called.
+	UPROPERTY()
+	int NextUndoIndex = -1;
+
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
 
