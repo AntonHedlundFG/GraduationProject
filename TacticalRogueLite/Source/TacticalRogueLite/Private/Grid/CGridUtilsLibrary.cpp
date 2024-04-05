@@ -26,7 +26,6 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 	return Directions;
 }
 
-// Inset tagcontainer for blocked tags
 TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,
 	const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath /*= true*/)
 {
@@ -45,7 +44,6 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 		if (CurrentTile == inTarget)
 		{
 			TArray<ACGridTile*> Path;
-			// if bBool we wanna start from parent to current Parents[CurrentTile];
 			ACGridTile* PathTile = CurrentTile;
 			while (PathTile != nullptr)
 			{
