@@ -38,7 +38,7 @@ public:
 	
 	void SetText(FString Text);
 	void SetPortrait(FSlateBrush Brush);
-	void SetPosition(FVector ViewportPosition);
+	void SetPosition(FVector2D ViewportPosition);
 	void AnimateOut();
 	void AnimateIn();
 };

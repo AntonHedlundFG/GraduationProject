@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "CGameState.h"
 #include "CTurnOrderPortraitWidget.h"
-#include "MeshAttributes.h"
-#include "UObject/NoExportTypes.h"
 #include "CTurnOrderUIManager.generated.h"
 
 /**
@@ -17,27 +15,32 @@ USTRUCT()
 struct FTurnOrderAnimationTask
 {
 	GENERATED_BODY()
+	int state = -1;
+	float timer;
 	float WaitTimeAfterCompletion = 0;
 	float WaitTimeBetweenAnimations = 0;
 	TArray<UCTurnOrderPortraitWidget*> Portraits;
-	virtual bool Execute(){return true;}
+	virtual bool Execute(float DeltaTime){return true;}
 	virtual ~FTurnOrderAnimationTask();
 };
-
+inline bool IsValid(const FTurnOrderAnimationTask &obj)
+{
+	return obj.state != -1;
+}
 struct FTurnOrderAnimationTask_Remove : FTurnOrderAnimationTask
 {
 public:
 	FTurnOrderAnimationTask_Remove(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits,float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations);
 	//virtual~FTurnOrderAnimationTask_Remove()override;
-	virtual bool Execute() override;
+	virtual bool Execute(float DeltaTime) override;
 };
 struct FTurnOrderAnimationTask_Add : FTurnOrderAnimationTask
 {
 	TArray<FVector2D> Positions;
 public:
-	FTurnOrderAnimationTask_Add(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits,TArray<FVector2D> Positions, float WaitTimeAfterCompletion,float WaitTimeBetweenAnimations);
+	FTurnOrderAnimationTask_Add(TArray<UCTurnOrderPortraitWidget*>AffectedPortraits,TArray<FVector2D>Positions, float WaitTimeAfterCompletion,float WaitTimeBetweenAnimations);
 	//virtual~FTurnOrderAnimationTask_Add()override;
-	virtual bool Execute() override;
+	virtual bool Execute(float DeltaTime) override;
 };
 
 struct FTurnOrderAnimationTask_MoveTo : FTurnOrderAnimationTask
@@ -46,32 +49,51 @@ struct FTurnOrderAnimationTask_MoveTo : FTurnOrderAnimationTask
 	public:
 	FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations);
 	//virtual~FTurnOrderAnimationTask_MoveTo()override;
-	virtual bool Execute() override;
+	virtual bool Execute(float DeltaTime) override;
+};
+
+struct FTurnOrderAnimationTask_EnqueueWidgets : FTurnOrderAnimationTask
+{
+	ACTurnOrderUIManager* TurnManager;
+	TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue;
+	FTurnOrderAnimationTask_EnqueueWidgets(TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue,ACTurnOrderUIManager* TurnManager);
+	virtual bool Execute(float DeltaTime) override;
 };
 #pragma endregion 
 UCLASS()
 class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 {
-	
+	ACTurnOrderUIManager();
 	TQueue<UCTurnOrderPortraitWidget*> WidgetPool;
 	UPROPERTY()
 	ACGameState* GameState;
 	GENERATED_BODY()
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	UFUNCTION()
 	void UpdateTurnList();
+	UPROPERTY()
 	TArray<ACUnit*> LastTurnOrder;
-
+	UPROPERTY()
+	TMap<ACUnit*,UCTurnOrderPortraitWidget*> ActivePortraits;
+	TArray<FTurnOrderAnimationTask*> Tasks;
 	//PoolingSystem will be refactored later on
 	UCTurnOrderPortraitWidget* CreatePortraitWidget();
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();
-	void EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget);
 	void HandleEnqueue(UCTurnOrderPortraitWidget* widget);
 	void HandleDequeue(UCTurnOrderPortraitWidget* widget);
-	TArray<FVector2D> CalculateVieportPositionOfPortrait(int AmountOfUnits);
+	bool TryGetActiveWidget(UCTurnOrderPortraitWidget* widget,ACUnit* key);
+	TArray<FVector2D> CalculateViewportPositions(int AmountOfUnits);
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TSubclassOf<UCTurnOrderPortraitWidget> PortraitWidget;
-	//UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,meta=(ClampMin = 0,ClampMax = 1))
+	float WidgetListStartPositionOffsetFromAnchor = 0.2f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float PortraitPixelOffset = 120.0f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float AnimationTimeOffset = 0.2f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float AnimationWaitTime = 0.2f;
+	void EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget);
 };

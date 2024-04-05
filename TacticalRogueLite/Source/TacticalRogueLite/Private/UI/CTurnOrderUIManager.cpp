@@ -2,6 +2,8 @@
 
 
 #include "UI/CTurnOrderUIManager.h"
+#include "Kismet/GameplayStatics.h"
+#include "Utility/Logging/CLogManager.h"
 
 FTurnOrderAnimationTask::~FTurnOrderAnimationTask()
 {
@@ -12,28 +14,90 @@ FTurnOrderAnimationTask_Remove::FTurnOrderAnimationTask_Remove(TArray<UCTurnOrde
 	Portraits = AffectedPortraits;
 	this->WaitTimeAfterCompletion = WaitTimeAfterCompletion;
 	this->WaitTimeBetweenAnimations = WaitTimeBetweenAnimations;
+	state = 0;
 }
 
 
-bool FTurnOrderAnimationTask_Remove::Execute()
+bool FTurnOrderAnimationTask_Remove::Execute(float DeltaTime)
 {
-	return FTurnOrderAnimationTask::Execute();
+	switch (state)
+	{
+		default:return true;
+		case 0:
+			if(Portraits.Num() == 0){ state = 1; break;}
+			if(timer == 0)
+			{
+				UCTurnOrderPortraitWidget* Widget = (Portraits)[0];
+				Portraits.RemoveAt(0);
+				Widget->AnimateOut();
+			}
+			if(timer >= WaitTimeBetweenAnimations)
+			{
+				timer = 0;
+			}
+			break;
+		case 1:
+			if(timer > WaitTimeAfterCompletion)
+			{
+				state = 2;
+			}
+			break;
+		case 2: return true;
+	}
+	timer += DeltaTime;
+	return false;
 }
 
 FTurnOrderAnimationTask_Add::FTurnOrderAnimationTask_Add(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions,
                                                          float WaitTimeAfterCompletion = 0, float WaitTimeBetweenAnimations = 0)
 {
+	
 	Portraits = AffectedPortraits;
 	this->Positions = Positions;
 	this->WaitTimeAfterCompletion = WaitTimeAfterCompletion;
 	this->WaitTimeBetweenAnimations = WaitTimeBetweenAnimations;
+	state = 0;
 }
 
 
 
-bool FTurnOrderAnimationTask_Add::Execute()
+bool FTurnOrderAnimationTask_Add::Execute(float DeltaTime)
 {
-	return FTurnOrderAnimationTask::Execute();
+	switch (state)
+	{
+		case 0:
+			if(timer == 0)
+			{
+				if(Portraits.Num() == 0)
+				{
+					state = 1;
+					break;
+				}
+				UCTurnOrderPortraitWidget* Widget = (Portraits)[0];
+				Portraits.RemoveAt(0);
+				Widget->SetPosition((Positions)[0]);
+				Positions.RemoveAt(0);
+				Widget->SetVisibility(ESlateVisibility::Visible);
+				Widget->AnimateIn();
+				UE_LOG(LogTemp,Warning,TEXT("AddingWidgetTOScreen"));
+			}
+			if(timer >= WaitTimeBetweenAnimations)
+			{
+				timer = 0;
+				return false;
+			}
+			break;
+		case 1:
+			if(timer >= WaitTimeAfterCompletion)
+			{
+				state = 2;
+			}
+			break;
+		case 2:
+			return true;
+	}
+	timer += DeltaTime;
+	return false;
 }
 
 FTurnOrderAnimationTask_MoveTo::FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits,
@@ -43,12 +107,35 @@ FTurnOrderAnimationTask_MoveTo::FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrde
 	this->Positions = Positions;
 	this->WaitTimeAfterCompletion = WaitTimeAfterCompletion;
 	this->WaitTimeBetweenAnimations = WaitTimeBetweenAnimations;
+	state = 0;
 }
 
 
-bool FTurnOrderAnimationTask_MoveTo::Execute()
+bool FTurnOrderAnimationTask_MoveTo::Execute(float DeltaTime)
 {
-	return FTurnOrderAnimationTask::Execute();
+	return true;
+}
+
+FTurnOrderAnimationTask_EnqueueWidgets::FTurnOrderAnimationTask_EnqueueWidgets(
+	TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue, ACTurnOrderUIManager* TurnManager)
+{
+	this->WidgetsToEnqueue = WidgetsToEnqueue;
+	this->TurnManager = TurnManager;
+	state = 0;
+}
+
+bool FTurnOrderAnimationTask_EnqueueWidgets::Execute(float DeltaTime)
+{
+	for (UCTurnOrderPortraitWidget* Widget : Portraits)
+	{
+		TurnManager->EnQueuePortraitWidget(Widget);
+	}
+	return true;
+}
+
+ACTurnOrderUIManager::ACTurnOrderUIManager()
+{
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 void ACTurnOrderUIManager::BeginPlay()
@@ -61,15 +148,109 @@ void ACTurnOrderUIManager::BeginPlay()
 	}
 }
 
+void ACTurnOrderUIManager::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	if(Tasks.IsEmpty())
+	{
+		return;
+	}
+	else
+	{
+		bool TaskFinished = Tasks[0]->Execute(DeltaSeconds);
+		if(TaskFinished)
+		{
+			delete Tasks[0];
+			Tasks.RemoveAt(0);
+		}
+	}
+}
+
 void ACTurnOrderUIManager::UpdateTurnList()
 {
+	UE_LOG(LogTemp,Warning,TEXT("UpdateTurnList Called"));
 	TArray<ACUnit*>* NewTurnOrder =  &Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
+	if(NewTurnOrder->Num() == 0 && LastTurnOrder.Num() == 0){return;}
+	
+	TArray<UCTurnOrderPortraitWidget*> WidgetsToAdd;
+	TArray<FVector2D> AddPositions;
+	TArray<UCTurnOrderPortraitWidget*> WidgetsToRemove;
+	TArray<UCTurnOrderPortraitWidget*> WidgetsToMove;
+	TArray<FVector2D> MovePositions;
+
+	TArray<FVector2D> NewPositions = CalculateViewportPositions(NewTurnOrder->Num());
+
+	TArray<ACUnit*> UnitQueue = TArray<ACUnit*>(*NewTurnOrder);
+
+	for(int i = 0; i < NewTurnOrder->Num(); i++)
+	{
+		ACUnit* Unit = UnitQueue[0];
+		UnitQueue.RemoveAt(0);
+
+		if(!LastTurnOrder.Contains(Unit))
+		{
+			UCTurnOrderPortraitWidget* Widget = DeQueuePortraitWidget();
+			Widget->SetText(Unit->GetUnitName());
+			ActivePortraits.Add(Unit,Widget);
+			WidgetsToAdd.Add(Widget);
+			AddPositions.Add(NewPositions[i]);
+		}
+		else if(LastTurnOrder[i] != Unit)
+		{
+			UCTurnOrderPortraitWidget* Widget = nullptr;
+			if(TryGetActiveWidget(Widget,Unit))
+			{
+				WidgetsToMove.Add(Widget);
+				MovePositions.Add(NewPositions[i]);
+			}
+			else
+			{
+				LOG(ELogCategory::LC_Error,"Trying to remove portrait Widget that doesn't exist.[CTurnOrderUIManager]");
+			}
+		}
+	}
+
+	for(ACUnit* Unit: LastTurnOrder)
+	{
+		if(!NewTurnOrder->Contains(Unit))
+		{
+			UCTurnOrderPortraitWidget* Widget = nullptr;
+			if(TryGetActiveWidget(Widget,Unit))
+			{
+				WidgetsToRemove.Add(Widget);
+				ActivePortraits.Remove(Unit);
+			}
+			else
+			{
+				LOG(ELogCategory::LC_Error,"Trying to remove portrait Widget that doesn't exist.[CTurnOrderUIManager]");
+			}
+		}
+	}
+	if(WidgetsToRemove.Num() != 0)
+	{
+		FTurnOrderAnimationTask_Remove* RemoveTask =  new FTurnOrderAnimationTask_Remove(WidgetsToRemove,AnimationWaitTime,AnimationTimeOffset);
+		Tasks.Add(RemoveTask);
+		FTurnOrderAnimationTask_EnqueueWidgets* EnqueueTask = new FTurnOrderAnimationTask_EnqueueWidgets(WidgetsToRemove,this);
+		Tasks.Add(EnqueueTask);
+	}
+	if(WidgetsToMove.Num() != 0)
+	{
+		FTurnOrderAnimationTask_MoveTo* MoveTask = new FTurnOrderAnimationTask_MoveTo(WidgetsToMove,MovePositions,AnimationWaitTime,AnimationTimeOffset);
+		Tasks.Add(MoveTask);
+	}
+	if(WidgetsToAdd.Num() != 0)
+	{
+		FTurnOrderAnimationTask_Add* AddTask = new FTurnOrderAnimationTask_Add(WidgetsToAdd,AddPositions,AnimationWaitTime,AnimationTimeOffset);
+		Tasks.Add(AddTask);
+	}
+	LastTurnOrder = TArray<ACUnit*>(*NewTurnOrder);
 }
 
 UCTurnOrderPortraitWidget* ACTurnOrderUIManager::CreatePortraitWidget()
 {
 	UCTurnOrderPortraitWidget* Widget = CreateWidget<UCTurnOrderPortraitWidget>(GetWorld()->GetGameInstance(),PortraitWidget);
-	Widget->AddToViewport();
+	UE_LOG(LogTemp,Warning,TEXT("Creating new portrait widget"));
+	Widget->AddToViewport(-999);
 	Widget->SetVisibility(ESlateVisibility::Hidden);
 	return Widget;
 }
@@ -97,10 +278,34 @@ void ACTurnOrderUIManager::HandleEnqueue(UCTurnOrderPortraitWidget* widget)
 
 void ACTurnOrderUIManager::HandleDequeue(UCTurnOrderPortraitWidget* widget)
 {
-	widget->SetVisibility(ESlateVisibility::Visible);
+	widget->SetVisibility(ESlateVisibility::Hidden);
 }
 
-TArray<FVector2D> ACTurnOrderUIManager::CalculateVieportPositionOfPortrait(int AmountOfUnits)
+bool ACTurnOrderUIManager::TryGetActiveWidget(UCTurnOrderPortraitWidget* widget, ACUnit* key)
 {
-	return TArray<FVector2D>();
+	if(ActivePortraits.Contains(key))
+	{
+		widget = ActivePortraits[key];
+		return true;
+	}
+	widget = nullptr;
+	return false;
+}
+
+TArray<FVector2D> ACTurnOrderUIManager::CalculateViewportPositions(int AmountOfUnits)
+{
+	int32 ViewportX;
+	int32 ViewportY;
+	UGameplayStatics::GetPlayerController(GetWorld(),0)->GetViewportSize(ViewportX,ViewportY);
+
+	TArray<FVector2D> Positions;
+
+	for(int i = 0; i < AmountOfUnits; i++)
+	{
+		int XPos = 0;
+		int YPos = ViewportY * WidgetListStartPositionOffsetFromAnchor + (PortraitPixelOffset * i);
+		Positions.Add(FVector2D(XPos,YPos));
+	}
+	
+	return Positions;
 }
