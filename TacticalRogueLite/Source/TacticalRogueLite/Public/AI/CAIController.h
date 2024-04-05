@@ -9,6 +9,7 @@
 class ACGrid;
 class ACGameMode;
 
+#pragma region FActionPath
 struct FActionPath
 {
 private:
@@ -37,6 +38,7 @@ public:
 		return TotalScore / Path.Num(); // TODO: This is a very simple scoring system, we should look into improving this
 	}
 };
+#pragma endregion
 
 UCLASS()
 class ACAIController : public AAIController
