@@ -6,6 +6,7 @@
 #include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
+class UCConsideration;
 class UCAction;
 class UWorld;
 class UCActionComponent;
@@ -30,6 +31,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	FGameplayTagContainer ActionTags;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);

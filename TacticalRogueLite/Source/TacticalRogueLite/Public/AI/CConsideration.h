@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "CAIContext.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Object.h"
 #include "CConsideration.generated.h"
 
@@ -11,7 +13,7 @@ class UCConsideration : public UDataAsset
 public:
 	// Returns the score of this consideration
 	UFUNCTION(BlueprintCallable)
-	int32 GetScore() const { return 0; }
+	virtual float Evaluate(FCAIContext Context) const { return 0; }
 
 	UFUNCTION(BlueprintCallable)
 	virtual FString ToString() const { return Name; } 
@@ -19,6 +21,9 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Name;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(ClampMin=0, ClampMax=100))
-	int32 Weight;
+	UPROPERTY(EditDefaultsOnly)
+	FRuntimeFloatCurve Curve;
+	UPROPERTY(EditDefaultsOnly)
+	FGameplayTagContainer Tags;
+	
 };

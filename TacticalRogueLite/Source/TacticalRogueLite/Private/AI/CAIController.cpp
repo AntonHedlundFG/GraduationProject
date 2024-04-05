@@ -1,5 +1,7 @@
 ﻿#include "AI/CAIController.h"
 #include "CGameMode.h"
+#include "AI/CAIContext.h"
+#include "AI/CConsideration.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridTile.h"
 #include "ItemData/CItemData.h"
@@ -31,7 +33,7 @@ void ACAIController::OnTurnChanged()
 	{
 		GameMode->TryEndTurn(this);
 	});
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, .5f, false);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
 }
 
 void ACAIController::BeginPlay()
@@ -50,29 +52,32 @@ void ACAIController::BeginPlay()
 
 float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile)
 {
-	float Score;
+	float Score = 1;
 	// Score the action based on the item's effects
 	// Take considerations into effect
+	for (const UCConsideration* Consideration : Ability.Considerations)
+	{
+		const float ConsiderationScore = Consideration->Evaluate(FCAIContext());
+		Score *= ConsiderationScore;
+
+		if(Score == 0)
+		{
+			return 0; // If any consideration returns 0, the action is invalid (Will always return 0 after this point)
+		}
+	}
 	// Average considerations to get a final score
-
-	// Temp/Test
-	ACUnit* TargetUnit = GameMode->GetHeroUnits()[0]; 
-	ACGridTile* TargetUnitTile = TargetUnit->GetTile();
-	StartTile = Unit->GetTile();
-
-	float StartToTargetUnitDistance = FVector::Dist(StartTile->GetActorLocation(), TargetTile->GetActorLocation());
-	float AbilityTargetToTargetUnitDistance = FVector::Dist(TargetTile->GetActorLocation(), TargetUnitTile->GetActorLocation());
-	
-	Score = StartToTargetUnitDistance / AbilityTargetToTargetUnitDistance ;
-
+	const float OriginalScore = Score;
+	const float ModFactor = 1 - (1.0f / Ability.Considerations.Num());
+	const float MakeUpValue = (1 - OriginalScore) * ModFactor;
+	Score += OriginalScore + (MakeUpValue * OriginalScore);
 	
 	UKismetSystemLibrary::DrawDebugString(
 		GetWorld(),
 		TargetTile->GetActorLocation() + FVector::UpVector * 100,
-		FString::Printf(TEXT("Score: %.2f"), Score),
+		FString::Printf(TEXT("Score: %.1f"), Score),
 		nullptr,
 		FLinearColor::Black,
-		.5f);
+		4.5f);
 	
 	return Score;
 }
