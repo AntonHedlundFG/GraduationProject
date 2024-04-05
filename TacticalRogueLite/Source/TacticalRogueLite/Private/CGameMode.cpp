@@ -20,6 +20,7 @@
 #include "Utility/CRandomComponent.h"
 #include "Settings/LevelEditorPlaySettings.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
+#include <CUndoAction.h>
 
 
 void ACGameMode::BeginPlay()
@@ -165,6 +166,9 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 	}
 	GameStateRef->OnActionListUpdate.Broadcast();
 
+	//We update the UndoIndex since we know this action was triggered by player input.
+	NextUndoIndex = GameStateRef->ActionList.Num() - 1;
+
 	return true;
 }
 
@@ -184,20 +188,44 @@ bool ACGameMode::TryUndo(AController* inController)
 		return false;
 	}
 
-	while (true)
+	//Here we establish a list of all actions that should be undone in the same batch
+	//as many of them will NOT be UserIncited. When we've found a userIncited action, 
+	//we finish our undoing.
+	TArray<TSoftObjectPtr<UCAction>> UndoneActions;
+	while (NextUndoIndex >= 0 && !GameStateRef->ActionList[NextUndoIndex]->bIsUndone)
 	{
-		if (GameStateRef->ActionList.IsEmpty())
-		{
-			LOG_WARNING("No commands in history");
-			return false;
-		}
-
-		UCAction* LastAction = GameStateRef->ActionList.Last();
-		LastAction->UndoAction(inController);
-		GameStateRef->ActionList.RemoveAtSwap(GameStateRef->ActionList.Num() - 1);
-		if (LastAction->bIsUserIncited)
+		UCAction* CurrentAction = GameStateRef->ActionList[NextUndoIndex];
+		CurrentAction->UndoAction(inController);
+		UndoneActions.Add(CurrentAction);
+		NextUndoIndex--;
+		if (CurrentAction->bIsUserIncited)
 			break;
 	}
+
+	//Create the actual UndoAction for replication and visualisation purposes. 
+	if (UndoneActions.Num() > 0)
+	{
+		UCUndoAction* UndoAction = NewObject<UCUndoAction>(this, UCUndoAction::StaticClass());
+		UndoAction->UndoneActions = UndoneActions;
+		GameStateRef->ActionList.Add(UndoAction);
+	}
+
+	//Move our NextUndoIndex pointer to the most recent action which has not been undone.
+	while (NextUndoIndex >= 0 && GameStateRef->ActionList[NextUndoIndex]->bIsUndone)
+		NextUndoIndex--;
+
+	//Now we validate that there is actually a user incited action that can be undone
+	//to make sure the user doesn't undo triggered actions that are created at the start
+	//of their turn. Only UserIncited actions and the actions they trigger are undoable.
+	int TestUserInciteIndex = NextUndoIndex;
+	while (TestUserInciteIndex >= 0 && !GameStateRef->ActionList[TestUserInciteIndex]->bIsUserIncited)
+	{
+		TestUserInciteIndex--;
+	}
+	if (TestUserInciteIndex < 0)
+		NextUndoIndex = -1;
+
+	//Broadcast delegate on server since it does not receive OnRep-calls.
 	GameStateRef->OnActionListUpdate.Broadcast();
 	
 	return true;
@@ -246,6 +274,8 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	}
 	GameStateRef->ActionList.Empty();
 	GameStateRef->OnActionListUpdate.Broadcast();
+
+	NextUndoIndex = -1;
 
 	LOG_GAMEPLAY("Turn ended");
 	return true;

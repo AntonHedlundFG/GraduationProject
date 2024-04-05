@@ -24,7 +24,7 @@ bool FTurnOrderAnimationTask_Remove::Execute(float DeltaTime)
 	{
 		default:return true;
 		case 0:
-			if(Portraits.Num() == 0){ state = 1; break;}
+			
 			if(timer == 0)
 			{
 				UCTurnOrderPortraitWidget* Widget = (Portraits)[0];
@@ -34,6 +34,11 @@ bool FTurnOrderAnimationTask_Remove::Execute(float DeltaTime)
 			if(timer >= WaitTimeBetweenAnimations)
 			{
 				timer = 0;
+				if(Portraits.Num() == 0)
+				{
+					state = 1;
+				}
+				return false;
 			}
 			break;
 		case 1:
@@ -101,20 +106,61 @@ bool FTurnOrderAnimationTask_Add::Execute(float DeltaTime)
 }
 
 FTurnOrderAnimationTask_MoveTo::FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits,
-	TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations)
+	TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations ,UCurveFloat* AnimationEasing)
 {
 	Portraits = AffectedPortraits;
 	this->Positions = Positions;
 	this->WaitTimeAfterCompletion = WaitTimeAfterCompletion;
 	this->WaitTimeBetweenAnimations = WaitTimeBetweenAnimations;
+	this->AnimationEasing = AnimationEasing;
 	state = 0;
 }
 
 
 bool FTurnOrderAnimationTask_MoveTo::Execute(float DeltaTime)
 {
-	return true;
+	FVector2D LerpedPosition;
+	switch (state)
+	{
+		case 0:
+			if(timer == 0)
+			{
+				CurrentlyAnimatingPortrait = Portraits[0];
+				Portraits.RemoveAt(0);
+				StartPosition = CurrentlyAnimatingPortrait->GetPosition();
+				EndPosition = Positions[0];
+				Positions.RemoveAt(0);
+			}
+			//Currently animating portrait is null for some reason hmmmmmmmmm
+		    LerpedPosition = StartPosition + (EndPosition - StartPosition) * AnimationEasing->GetFloatValue(timer/WaitTimeBetweenAnimations);
+		    CurrentlyAnimatingPortrait->SetPosition(LerpedPosition);
+		
+			if(timer >=  WaitTimeBetweenAnimations)
+			{
+				timer = 0;
+				CurrentlyAnimatingPortrait->SetPosition(EndPosition);
+				if(Portraits.IsEmpty())
+				{
+					timer = 0;
+					state = 1;
+				}
+				return false;
+			}
+		break;
+		case 1:
+			if(timer > WaitTimeAfterCompletion)
+			{
+				state = 2;
+				return false;
+			}
+			break;
+		case 2: return true;
+		default: return true;
+	}
+	timer += DeltaTime;
+	return false;
 }
+
 
 FTurnOrderAnimationTask_EnqueueWidgets::FTurnOrderAnimationTask_EnqueueWidgets(
 	TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue, ACTurnOrderUIManager* TurnManager)
@@ -157,6 +203,10 @@ void ACTurnOrderUIManager::Tick(float DeltaSeconds)
 	}
 	else
 	{
+		if(Tasks[0]->bHasStarted)
+		{
+			Tasks[0]->Start();
+		}
 		bool TaskFinished = Tasks[0]->Execute(DeltaSeconds);
 		if(TaskFinished)
 		{
@@ -197,8 +247,8 @@ void ACTurnOrderUIManager::UpdateTurnList()
 		}
 		else if(LastTurnOrder[i] != Unit)
 		{
-			UCTurnOrderPortraitWidget* Widget = nullptr;
-			if(TryGetActiveWidget(Widget,Unit))
+			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
+			if(Widget != nullptr)
 			{
 				WidgetsToMove.Add(Widget);
 				MovePositions.Add(NewPositions[i]);
@@ -214,8 +264,8 @@ void ACTurnOrderUIManager::UpdateTurnList()
 	{
 		if(!NewTurnOrder->Contains(Unit))
 		{
-			UCTurnOrderPortraitWidget* Widget = nullptr;
-			if(TryGetActiveWidget(Widget,Unit))
+			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
+			if(Widget != nullptr)
 			{
 				WidgetsToRemove.Add(Widget);
 				ActivePortraits.Remove(Unit);
@@ -235,7 +285,7 @@ void ACTurnOrderUIManager::UpdateTurnList()
 	}
 	if(WidgetsToMove.Num() != 0)
 	{
-		FTurnOrderAnimationTask_MoveTo* MoveTask = new FTurnOrderAnimationTask_MoveTo(WidgetsToMove,MovePositions,AnimationWaitTime,AnimationTimeOffset);
+		FTurnOrderAnimationTask_MoveTo* MoveTask = new FTurnOrderAnimationTask_MoveTo(WidgetsToMove,MovePositions,AnimationWaitTime,MoveAnimationLerpTime,AnimationMoveToEasing);
 		Tasks.Add(MoveTask);
 	}
 	if(WidgetsToAdd.Num() != 0)
@@ -281,15 +331,15 @@ void ACTurnOrderUIManager::HandleDequeue(UCTurnOrderPortraitWidget* widget)
 	widget->SetVisibility(ESlateVisibility::Hidden);
 }
 
-bool ACTurnOrderUIManager::TryGetActiveWidget(UCTurnOrderPortraitWidget* widget, ACUnit* key)
+
+
+UCTurnOrderPortraitWidget* ACTurnOrderUIManager::GetActiveWidget(ACUnit* key)
 {
 	if(ActivePortraits.Contains(key))
 	{
-		widget = ActivePortraits[key];
-		return true;
+		return ActivePortraits[key];
 	}
-	widget = nullptr;
-	return false;
+	return nullptr;
 }
 
 TArray<FVector2D> ACTurnOrderUIManager::CalculateViewportPositions(int AmountOfUnits)

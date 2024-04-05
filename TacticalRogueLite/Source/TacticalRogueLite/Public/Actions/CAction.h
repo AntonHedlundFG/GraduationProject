@@ -6,6 +6,7 @@
 #include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
+class UCConsideration;
 class UCAction;
 class UWorld;
 class UCActionComponent;
@@ -30,6 +31,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	FGameplayTagContainer ActionTags;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
@@ -99,6 +103,12 @@ public:
 	//this is true.
 	UPROPERTY()
 	bool bIsUserIncited = false;
+
+	UPROPERTY(ReplicatedUsing=OnRep_bIsUndone)
+	bool bIsUndone = false;
+
+	UFUNCTION()
+	void OnRep_bIsUndone();
 
 	void Initialize(UCActionComponent* NewActionComp);
 

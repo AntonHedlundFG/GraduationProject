@@ -26,11 +26,13 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 	return Directions;
 }
 
-TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags)
+TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,
+	const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath /*= true*/)
 {
 	TArray<ACGridTile*> OpenSet;
 	TSet<ACGridTile*> ClosedSet;
 	TMap<ACGridTile*, ACGridTile*> Parents;
+	Parents.Add(inStart, nullptr);
 
 	OpenSet.Add(inStart);
 	ClosedSet.Add(inStart);
@@ -55,7 +57,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 		for (auto neighbour : Neighbours)
 		{
 			if (neighbour == nullptr || ClosedSet.Contains(neighbour)) continue;
-			if (!Cast<ACUnit>(neighbour->GetContent()))
+			if (!(neighbour->GetContent() && neighbour->GetContent()->GridContentTags.HasAny(BlockingTags)) || (!bIncludeTargetInPath && neighbour == inTarget))
 			{
 				OpenSet.Add(neighbour);
 				ClosedSet.Add(neighbour);

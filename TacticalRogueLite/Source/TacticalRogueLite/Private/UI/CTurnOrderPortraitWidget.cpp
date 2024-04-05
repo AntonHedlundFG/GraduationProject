@@ -21,6 +21,12 @@ void UCTurnOrderPortraitWidget::SetPosition(FVector2D ViewportPosition)
 	 PanelSlot->SetPosition(ViewportPosition);
 }
 
+FVector2D UCTurnOrderPortraitWidget::GetPosition()
+{
+	UCanvasPanelSlot* PanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(Panel);
+	return PanelSlot->GetPosition();
+}
+
 void UCTurnOrderPortraitWidget::AnimateOut()
 {
 	PlayAnimation(OutAnimation);

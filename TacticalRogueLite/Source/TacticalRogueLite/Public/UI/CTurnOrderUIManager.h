@@ -16,11 +16,13 @@ struct FTurnOrderAnimationTask
 {
 	GENERATED_BODY()
 	int state = -1;
-	float timer;
+	float timer = 0;
 	float WaitTimeAfterCompletion = 0;
 	float WaitTimeBetweenAnimations = 0;
 	TArray<UCTurnOrderPortraitWidget*> Portraits;
+	bool bHasStarted = false;
 	virtual bool Execute(float DeltaTime){return true;}
+	virtual void Start(){timer = 0;}
 	virtual ~FTurnOrderAnimationTask();
 };
 inline bool IsValid(const FTurnOrderAnimationTask &obj)
@@ -46,8 +48,12 @@ public:
 struct FTurnOrderAnimationTask_MoveTo : FTurnOrderAnimationTask
 {
 	TArray<FVector2D> Positions;
+	UCurveFloat* AnimationEasing;
+	UCTurnOrderPortraitWidget* CurrentlyAnimatingPortrait;
+	FVector2D StartPosition;
+	FVector2D EndPosition;
 	public:
-	FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations);
+	FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations,UCurveFloat* AnimationEasing);
 	//virtual~FTurnOrderAnimationTask_MoveTo()override;
 	virtual bool Execute(float DeltaTime) override;
 };
@@ -82,11 +88,13 @@ class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();
 	void HandleEnqueue(UCTurnOrderPortraitWidget* widget);
 	void HandleDequeue(UCTurnOrderPortraitWidget* widget);
-	bool TryGetActiveWidget(UCTurnOrderPortraitWidget* widget,ACUnit* key);
+	UCTurnOrderPortraitWidget* GetActiveWidget(ACUnit* key);
 	TArray<FVector2D> CalculateViewportPositions(int AmountOfUnits);
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TSubclassOf<UCTurnOrderPortraitWidget> PortraitWidget;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UCurveFloat* AnimationMoveToEasing;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,meta=(ClampMin = 0,ClampMax = 1))
 	float WidgetListStartPositionOffsetFromAnchor = 0.2f;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
@@ -95,5 +103,7 @@ public:
 	float AnimationTimeOffset = 0.2f;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float AnimationWaitTime = 0.2f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float MoveAnimationLerpTime = 0.1f;
 	void EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget);
 };

@@ -2,9 +2,10 @@
 
 
 #include "CGameState.h"
-
+#include "Engine/ActorChannel.h"
 #include "Utility/CRandomComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions/CAction.h"
 #include "Actions\Visualizer\CActionVisualizerSystem.h"
 
 ACGameState::ACGameState()
@@ -22,3 +23,22 @@ void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	DOREPLIFETIME(ACGameState, ActionHistory);
 }
 
+bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags)
+{
+	bool WroteSomething = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
+
+	for (UCAction* Action : ActionList)
+	{
+		if (Action)
+			WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
+
+	}
+	for (UCAction* Action : ActionHistory)
+	{
+		if (Action)
+			WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
+
+	}
+
+	return WroteSomething;
+}

@@ -4,7 +4,9 @@ namespace SharedGameplayTags
 {
 	UE_DEFINE_GAMEPLAY_TAG(Level_IsCurrentLevel, "Level.IsCurrentLevel"); //Experimental, might be good use for levelstreaming....
 	
-	UE_DEFINE_GAMEPLAY_TAG(Pawn_IsPlayer, "Pawn.IsPlayer");
+	UE_DEFINE_GAMEPLAY_TAG(Unit, "Unit");
+	UE_DEFINE_GAMEPLAY_TAG(Unit_IsPlayer, "Unit.IsPlayer");
+	UE_DEFINE_GAMEPLAY_TAG(Unit_IsEnemy, "Unit.IsEnemy");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Action, "Action");
 	UE_DEFINE_GAMEPLAY_TAG(Action_Attacking, "Action.Attacking");

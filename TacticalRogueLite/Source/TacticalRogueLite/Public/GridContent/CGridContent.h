@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "CGridContent.generated.h"
 
@@ -22,6 +23,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
 	void SetTile(ACGridTile* inTile);
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
+	FGameplayTagContainer GridContentTags;
+	
 protected:
 	UPROPERTY(Replicated, BlueprintReadOnly)
 	TObjectPtr<ACGridTile> Tile;
