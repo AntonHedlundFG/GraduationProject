@@ -49,9 +49,7 @@ struct FTurnOrderAnimationTask_MoveTo : FTurnOrderAnimationTask
 {
 	TArray<FVector2D> Positions;
 	UCurveFloat* AnimationEasing;
-	UCTurnOrderPortraitWidget* CurrentlyAnimatingPortrait;
-	FVector2D StartPosition;
-	FVector2D EndPosition;
+	TArray<FVector2D> StartPositions;
 	public:
 	FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations,UCurveFloat* AnimationEasing);
 	//virtual~FTurnOrderAnimationTask_MoveTo()override;

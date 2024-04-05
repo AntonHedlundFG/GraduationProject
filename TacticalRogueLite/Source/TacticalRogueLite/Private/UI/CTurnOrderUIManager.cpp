@@ -2,6 +2,8 @@
 
 
 #include "UI/CTurnOrderUIManager.h"
+
+#include "MeshAttributes.h"
 #include "Kismet/GameplayStatics.h"
 #include "Utility/Logging/CLogManager.h"
 
@@ -125,25 +127,20 @@ bool FTurnOrderAnimationTask_MoveTo::Execute(float DeltaTime)
 		case 0:
 			if(timer == 0)
 			{
-				CurrentlyAnimatingPortrait = Portraits[0];
-				Portraits.RemoveAt(0);
-				StartPosition = CurrentlyAnimatingPortrait->GetPosition();
-				EndPosition = Positions[0];
-				Positions.RemoveAt(0);
+				for (UCTurnOrderPortraitWidget* Portrait : Portraits)
+				{
+					StartPositions.Add(Portrait->GetPosition());
+				}
 			}
-			//Currently animating portrait is null for some reason hmmmmmmmmm
-		    LerpedPosition = StartPosition + (EndPosition - StartPosition) * AnimationEasing->GetFloatValue(timer/WaitTimeBetweenAnimations);
-		    CurrentlyAnimatingPortrait->SetPosition(LerpedPosition);
-		
+			for(int i = 0; i < Portraits.Num(); i++)
+			{
+				LerpedPosition = StartPositions[i] + (Positions[i] - StartPositions[i]) * AnimationEasing->GetFloatValue(timer/WaitTimeBetweenAnimations);
+				Portraits[i]->SetPosition(LerpedPosition);
+			}
 			if(timer >=  WaitTimeBetweenAnimations)
 			{
-				timer = 0;
-				CurrentlyAnimatingPortrait->SetPosition(EndPosition);
-				if(Portraits.IsEmpty())
-				{
 					timer = 0;
 					state = 1;
-				}
 				return false;
 			}
 		break;
@@ -285,6 +282,8 @@ void ACTurnOrderUIManager::UpdateTurnList()
 	}
 	if(WidgetsToMove.Num() != 0)
 	{
+		Algo::Reverse(WidgetsToMove);
+		Algo::Reverse(MovePositions);
 		FTurnOrderAnimationTask_MoveTo* MoveTask = new FTurnOrderAnimationTask_MoveTo(WidgetsToMove,MovePositions,AnimationWaitTime,MoveAnimationLerpTime,AnimationMoveToEasing);
 		Tasks.Add(MoveTask);
 	}
