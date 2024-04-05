@@ -28,6 +28,7 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 	else
 	{
 		GameState->TurnOrder.RemoveAt(DeathTurnOrderIndex);
+		GameState->OnRep_TurnOrder();
 	}
 
 	DeathTile = AffectedUnit->GetTile();
@@ -53,7 +54,10 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 
 	AffectedUnit->SetTile(DeathTile);
 	if (DeathTurnOrderIndex != INDEX_NONE)
+	{
 		GameState->TurnOrder.Insert(AffectedUnit, DeathTurnOrderIndex);
+		GameState->OnRep_TurnOrder();
+	}
 
 	UCLogManager::Log(
 		ELogCategory::LC_Gameplay,
