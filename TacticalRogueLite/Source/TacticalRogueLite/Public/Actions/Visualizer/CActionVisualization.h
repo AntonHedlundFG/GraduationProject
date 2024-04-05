@@ -31,16 +31,19 @@ protected:
 	// Here we can fetch data about what the action did, like which path a movement action used, 
 	// or how much damage an attack did.
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
-	void InitializeVisualization(UCAction* FromAction);
+	void Enter(UCAction* FromAction);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
+	void Exit(UCAction* FromAction);
 
 	// While the visualization is active within the VisualizerSystem, it will call this function 
 	// every tick. It should return true when the visualization is finished, to let the system know
 	// it can move on to a new visualization.
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
-	bool TickVisualization(float DeltaTime);
+	bool Tick(float DeltaTime);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
-	bool RevertVisualization(float DeltaTime);
+	bool RevertTick(float DeltaTime);
 
 	//Set by the system upon creation.
 	UCActionVisualizerSystem* ParentSystem;

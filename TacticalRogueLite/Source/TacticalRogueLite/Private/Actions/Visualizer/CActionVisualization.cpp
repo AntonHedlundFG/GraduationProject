@@ -10,13 +10,19 @@ bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 	return true;
 }
 
-void UCActionVisualization::InitializeVisualization_Implementation(UCAction* FromAction)
+void UCActionVisualization::Enter_Implementation(UCAction* FromAction)
 {
 	TimePassed = 0.0f;
 }
 
-bool UCActionVisualization::TickVisualization_Implementation(float DeltaTime)
+void UCActionVisualization::Exit_Implementation(UCAction* FromAction)
 {
+
+}
+
+bool UCActionVisualization::Tick_Implementation(float DeltaTime)
+{
+	
 	TimePassed += DeltaTime;
 	if (TimePassed > 5.0f)
 	{
@@ -29,7 +35,7 @@ bool UCActionVisualization::TickVisualization_Implementation(float DeltaTime)
 	return false;
 }
 
-bool UCActionVisualization::RevertVisualization_Implementation(float DeltaTime)
+bool UCActionVisualization::RevertTick_Implementation(float DeltaTime)
 {
 	return true;
 }
