@@ -32,11 +32,11 @@ public:
 
 	// Load Game
 	UFUNCTION(BlueprintCallable)
-	class UCSaveGame* LoadGame();
+	void LoadGame();
 
 	// Get Save Game Instance
 	UFUNCTION(BlueprintCallable)
-	UCSaveGame* GetSaveGameInstance();
+	bool TryGetSaveGame(UCSaveGame* inSaveGame);
 
 
 private:

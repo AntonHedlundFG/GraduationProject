@@ -4,14 +4,16 @@ namespace SharedGameplayTags
 {
 	UE_DEFINE_GAMEPLAY_TAG(Level_IsCurrentLevel, "Level.IsCurrentLevel"); //Experimental, might be good use for levelstreaming....
 	
-	UE_DEFINE_GAMEPLAY_TAG(Action_IsPlayer, "Pawn.IsPlayer");
+	UE_DEFINE_GAMEPLAY_TAG(Pawn_IsPlayer, "Pawn.IsPlayer");
 	
+	UE_DEFINE_GAMEPLAY_TAG(Action, "Action");
 	UE_DEFINE_GAMEPLAY_TAG(Action_Attacking, "Action.Attacking");
 	UE_DEFINE_GAMEPLAY_TAG(Action_CursorSelect, "Action.CursorSelect");
-	UE_DEFINE_GAMEPLAY_TAG(Action_MoveTo, "Action.MoveTo");
+	UE_DEFINE_GAMEPLAY_TAG(Action_Moving, "Action.Moving");
 	UE_DEFINE_GAMEPLAY_TAG(Action_DefaultAttack, "Action.DefaultAttack");
 	UE_DEFINE_GAMEPLAY_TAG(Action_Rooted, "Action.Rooted");
 
+	UE_DEFINE_GAMEPLAY_TAG(Movement, "Movement");
 	UE_DEFINE_GAMEPLAY_TAG(Movement_Straight, "Movement.Straight");
 	UE_DEFINE_GAMEPLAY_TAG(Movement_Diagonal, "Movement.Diagonal");
 	UE_DEFINE_GAMEPLAY_TAG(Movement_Knight, "Movement.Knight");
@@ -20,6 +22,7 @@ namespace SharedGameplayTags
 
 	UE_DEFINE_GAMEPLAY_TAG(Status_Rooted, "Status.Rooted");
 
+	UE_DEFINE_GAMEPLAY_TAG(ItemSlot, "ItemSlot");
 	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Boots, "ItemSlot.Boots");
 	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Weapon, "ItemSlot.Weapon")
 	UE_DEFINE_GAMEPLAY_TAG(ItemSlot_Armor, "ItemSlot.Armor");
@@ -30,6 +33,7 @@ namespace SharedGameplayTags
 
 	//UE_DEFINE_GAMEPLAY_TAG(Status_Rooted, "ItemSlot.Boots");
 
+	UE_DEFINE_GAMEPLAY_TAG(Attribute, "Attribute");
 	UE_DEFINE_GAMEPLAY_TAG(Attribute_AttackDamage, "Attribute.AttackDamage");
 	UE_DEFINE_GAMEPLAY_TAG(Attribute_CritChance, "Attribute.CritChance");
 	UE_DEFINE_GAMEPLAY_TAG(Attribute_Armor, "Attribute.Armor");

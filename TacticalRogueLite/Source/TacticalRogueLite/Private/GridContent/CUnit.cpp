@@ -1,11 +1,11 @@
 
 #include "GridContent/CUnit.h"
-
-#include "CGameMode.h"
 #include "Net/UnrealNetwork.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Actions/CActionComponent.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 #include "Items/CInventoryComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -23,6 +23,7 @@ ACUnit::ACUnit()
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));
+	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
 }
 
 void ACUnit::BeginPlay()
@@ -62,5 +63,23 @@ bool ACUnit::TryGetAbilityInSlot(FGameplayTag ItemSlot, FAbility& outAbility)
 {
 	return ActionComp->TryGetAbility(ItemSlot, outAbility);
 }
+
+TArray<FAbility> ACUnit::GetEquippedAbilities() const
+{
+	// TODO: There is probably a better way to do this
+	TArray<FAbility> Abilities;
+	const FGameplayTagContainer AbilitySlotsContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::ItemSlot);
+	for (int i = 0; i < AbilitySlotsContainer.Num(); ++i)
+	{
+		FGameplayTag Slot = AbilitySlotsContainer.GetByIndex(i);
+		FAbility Ability;
+		if(ActionComp->TryGetAbility(Slot, Ability))
+		{
+			Abilities.Add(Ability);
+		}
+	}
+	return Abilities;
+}
+
 
 

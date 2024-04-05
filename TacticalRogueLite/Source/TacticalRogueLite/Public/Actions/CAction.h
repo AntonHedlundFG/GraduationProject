@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	FGameplayTag InventorySlotTag;
 
+	UPROPERTY(VisibleAnywhere)
+	FGameplayTagContainer ActionTags;
+
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 
@@ -62,6 +65,7 @@ inline uint32 GetTypeHash(const FAbility& Ability)
 
 #pragma endregion
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionCompleted);
 
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
@@ -79,15 +83,14 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	UCActionComponent* GetOwningComponent() const;
 
-	//Tags added to owning actor when activated, removed when action stops.
+	// Tags that are granted to the ability when it is instantiated.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
-	FGameplayTagContainer GrantsTags;
+	FGameplayTagContainer ActionTags;
 
-	//Action can only start if OwningActor has none of these Tags applied.
+	// Action can only start if OwningActor has none of these Tags applied.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
-	FGameplayTagContainer BlockedTags;
+	FGameplayTagContainer ActionBlockingTags; 
 
-	
 	
 public:
 
@@ -111,7 +114,14 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
 
+	UPROPERTY(BlueprintAssignable, Category = "Action")
+	FOnActionCompleted OnActionCompleted;
+	
 	virtual UWorld* GetWorld() const override;
+
+	FGameplayTagContainer GetActionTags() const { return ActionTags; }
+
+	FGameplayTagContainer GetBlockedTags() const { return ActionBlockingTags; }
 
 	virtual bool IsSupportedForNetworking() const override
 	{

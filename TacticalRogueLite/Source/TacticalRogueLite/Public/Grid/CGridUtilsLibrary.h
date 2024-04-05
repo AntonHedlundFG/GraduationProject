@@ -7,10 +7,8 @@
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "CGridUtilsLibrary.generated.h"
 
-
-class UCItem;
+class UCTargetableAction;
 class ACGridTile;
-
 
 /**
  * 
@@ -25,9 +23,10 @@ public:
 	static TArray<FVector2D> StraightDirections();
 	UFUNCTION(ScriptCallable)
 	static TArray<FVector2D> DiagonalDirections();
-	/*
 	UFUNCTION(ScriptCallable)
-	static TArray<ACGridTile*> BFS_Pathfinding(UCItem* inItem, ACGridTile* inStart, const ACGridTile* inTarget);
+	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags);
+	
+	/*
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth);
 	*/

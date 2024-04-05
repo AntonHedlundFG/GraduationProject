@@ -25,7 +25,7 @@ bool UCAction::CanStart_Implementation(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	
-	return !Comp->ActiveGameplayTags.HasAny(BlockedTags);
+	return !Comp->ActiveGameplayTags.HasAny(ActionBlockingTags);
 }
 
 
@@ -33,7 +33,7 @@ void UCAction::StartAction_Implementation(AActor* Instigator)
 {
 
 	UCActionComponent* Comp = GetOwningComponent();	
-	Comp->ActiveGameplayTags.AppendTags(GrantsTags);
+	Comp->ActiveGameplayTags.AppendTags(ActionTags);
 
 }
 
@@ -42,14 +42,14 @@ void UCAction::StopAction_Implementation(AActor* Instigator)
 {
 
 	UCActionComponent* Comp = GetOwningComponent();
-	Comp->ActiveGameplayTags.RemoveTags(GrantsTags);
+	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 
 }
 
 void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
-	Comp->ActiveGameplayTags.RemoveTags(GrantsTags);
+	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
 UWorld* UCAction::GetWorld() const

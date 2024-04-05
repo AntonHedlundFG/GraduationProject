@@ -185,8 +185,8 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 
 void UCRandomComponent::OnSave()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
-	if (SaveGame)
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		SaveGame->SavedRandomStream = RandomStream;
 		SaveGame->SavedStartSeed = StartSeed;
@@ -195,19 +195,27 @@ void UCRandomComponent::OnSave()
 		SaveGame->SavedTicksSinceSave = TicksSinceSave;
 		SaveGame->SavedTicksAtSave = TicksAtSave;
 	}
+	else
+	{
+		LOG_ERROR("Could not find Save Game Instance to save Random State");
+	}
 }
 
 void UCRandomComponent::OnLoad()
 {
-	UCSaveGame* SaveGame = UCSaveGameManager::Get()->GetSaveGameInstance();
-	if (SaveGame)
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		RandomStream = SaveGame->SavedRandomStream;
-		StartSeed = ValidateSeed(SaveGame->SavedStartSeed); 
+		StartSeed = ValidateSeed(SaveGame->SavedStartSeed);
 		CurrentStateSeed = ValidateSeed(SaveGame->SavedCurrentStateSeed);
 		Ticks = SaveGame->SavedTicks;
 		TicksSinceSave = SaveGame->SavedTicksSinceSave;
 		TicksAtSave = SaveGame->SavedTicksAtSave;
+	}
+	else
+	{
+		LOG_ERROR("Could not find Save Game Instance to load Random State");
 	}
 }
 

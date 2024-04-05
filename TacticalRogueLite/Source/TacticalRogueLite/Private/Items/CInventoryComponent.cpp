@@ -63,6 +63,8 @@ UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 
 bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 {
+	if(inItem == nullptr)
+		return false;
 	const FGameplayTag SlotTag = inItem->ItemSlot;
 	if (!CheckValidEquipmentTag(SlotTag))
 		return false;
@@ -81,6 +83,9 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 		Ring = inItem;
 
 	AddItem(inItem);
+	
+	//OnItemChanged.Broadcast(this, inItem);
+	
 	return true;
 }
 

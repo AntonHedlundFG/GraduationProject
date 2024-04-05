@@ -5,11 +5,13 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
+struct FAbility;
 class UCActionComponent;
 class UCAttributeComponent;
 class UCInventoryComponent;
 class UCItem;
 class ACGridTile;
+class USkeletalMesh;
 enum class EItemSlots : uint8;
 
 UCLASS()
@@ -19,13 +21,17 @@ class TACTICALROGUELITE_API ACUnit : public ACGridContent
 
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	USkeletalMeshComponent* SkeletalMesh;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCAttributeComponent> AttributeComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCActionComponent> ActionComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Items")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCInventoryComponent> InventoryComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
@@ -53,6 +59,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool TryGetAbilityInSlot(FGameplayTag ItemSlot, FAbility& outAbility);
 
+	UFUNCTION(BlueprintCallable)
+	TArray<FAbility> GetEquippedAbilities() const;
+	
 	UFUNCTION(BlueprintCallable)
 	UCAttributeComponent* GetAttributeComp() const { return AttributeComp; }
 	

@@ -8,6 +8,7 @@
 #include "TacticalRogueLite\OnlineSystem\Public\OnlineGameMode.h"
 #include "CGameMode.generated.h"
 
+class UCSavedUnitAndItemData;
 class UCDefaultUnitEquipment;
 class ACGridSpawner;
 class ACGrid;
@@ -88,7 +89,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Grid|Spawner")
 	TObjectPtr<ACGridSpawner> Spawner;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units|DefaultEquipment")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units|Defaults")
 	TObjectPtr<UCDefaultUnitEquipment> DefaultEquipmentData;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
 	TArray<ACUnit*> AllUnits;
@@ -101,15 +102,14 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	TArray<UCAction*> ActionStack;
 
-	//List of all executed actions this turn
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
-	TArray<UCAction*> ActionList;
-
-	//History of all executed actions of previous turns
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
-	TArray<UCAction*> ActionHistory;
-
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
+
+	UFUNCTION(Category = "Units")
+	void InitializeHeroUnits(ACGrid* grid);
+
+	// If playing in PIE mode, this is how many players we assume are playing.
+	UPROPERTY(EditAnywhere, Category = "Units")
+	int DefaultPlayerCount = 2;
 	
 };

@@ -8,13 +8,20 @@
 #include "CGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionListUpdate);
 
 class ACGrid;
+class UCAction;
+class UCActionVisualizerSystem;
 
 UCLASS()
 class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Actions")
+	TObjectPtr<UCActionVisualizerSystem> ActionVisualizerSystem;
 	
 public:
 	ACGameState();
@@ -36,5 +43,21 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Grid|Grid")
 	TObjectPtr<ACGrid> GameGrid;
+
+	// List of all executed actions this turn
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_ActionList, Category = "Actions")
+	TArray<UCAction*> ActionList;
+
+	// History of all executed actions of previous turns
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Actions")
+	TArray<UCAction*> ActionHistory;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnActionListUpdate OnActionListUpdate;
+
+protected:
+
+	UFUNCTION()
+	void OnRep_ActionList() { OnActionListUpdate.Broadcast(); }
 
 };

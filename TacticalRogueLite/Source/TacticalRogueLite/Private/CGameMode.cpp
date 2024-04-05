@@ -15,12 +15,17 @@
 #include "Actions/CActionComponent.h"
 #include "Actions/CTargetableAction.h"
 #include "Items/CDefaultUnitEquipment.h"
+#include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
+#include "Settings/LevelEditorPlaySettings.h"
+#include "Utility/SaveGame/CSaveGameManager.h"
+
 
 void ACGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
 	if (!GameStateRef)
 	{
 		GameStateRef = GetGameState<ACGameState>();
@@ -30,7 +35,8 @@ void ACGameMode::BeginPlay()
 			return;
 		}
 	}
-
+	UCSaveGameManager::Get()->LoadGame();
+	
 	Spawner = CreateSpawner();
 
 	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
@@ -38,6 +44,8 @@ void ACGameMode::BeginPlay()
 
 	if (Spawner)
 	{
+		// InitializeHeroUnits(grid);
+		
 		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles(), Spawner->HeroNames);
 		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
 		for (ACUnit* EnemyUnit : EnemyUnits)
@@ -144,7 +152,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 	while (!ActionStack.IsEmpty())
 	{
 		UCAction* CurrentAction = ActionStack.Pop();
-		ActionList.Add(CurrentAction);
+		GameStateRef->ActionList.Add(CurrentAction);
 		CurrentAction->StartAction(inUnit);
 		
 		Iterations++;
@@ -155,6 +163,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 			break;
 		}
 	}
+	GameStateRef->OnActionListUpdate.Broadcast();
 
 	return true;
 }
@@ -177,18 +186,19 @@ bool ACGameMode::TryUndo(AController* inController)
 
 	while (true)
 	{
-		if (ActionList.IsEmpty())
+		if (GameStateRef->ActionList.IsEmpty())
 		{
 			LOG_WARNING("No commands in history");
 			return false;
 		}
 
-		UCAction* LastAction = ActionList.Last();
+		UCAction* LastAction = GameStateRef->ActionList.Last();
 		LastAction->UndoAction(inController);
-		ActionList.RemoveAtSwap(ActionList.Num() - 1);
+		GameStateRef->ActionList.RemoveAtSwap(GameStateRef->ActionList.Num() - 1);
 		if (LastAction->bIsUserIncited)
 			break;
 	}
+	GameStateRef->OnActionListUpdate.Broadcast();
 	
 	return true;
 }
@@ -230,11 +240,12 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	}
 
 	//Transfer all commands this turn into the command history
-	for (UCAction* Action : ActionList)
+	for (UCAction* Action : GameStateRef->ActionList)
 	{
-		ActionHistory.Add(Action);
+		GameStateRef->ActionHistory.Add(Action);
 	}
-	ActionList.Empty();
+	GameStateRef->ActionList.Empty();
+	GameStateRef->OnActionListUpdate.Broadcast();
 
 	LOG_GAMEPLAY("Turn ended");
 	return true;
@@ -256,8 +267,8 @@ void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 
 void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)
 {
-	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, 0);
-	if (!PlayerCount) return;
+	int PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, DefaultPlayerCount);
+
 	for (ACUnit* Unit : Units)
 	{
 		if (!Unit) continue;
@@ -275,4 +286,24 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 {
 	ACGridSpawner* spawner = GetWorld()->SpawnActor<ACGridSpawner>(SpawnerClass, FVector::Zero(), FRotator::ZeroRotator);
 	return spawner;
+}
+
+void ACGameMode::InitializeHeroUnits(ACGrid* grid)
+{
+	UCSaveGame* SaveGame = nullptr;
+	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	{
+		LOG_WARNING("Couldn't Find SaveGame When Initializing Units in GameMode");
+		return;
+	}
+
+	const int HeroUnitsNum = 4;
+	for(int8 i = 0; i < HeroUnitsNum ; i++)
+	{
+		if (i > Spawner->NamesAndItemList.Num() || i > grid->GetHeroSpawnTiles().Num())
+			break;
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], grid->GetHeroSpawnTiles()[i],
+							Spawner->NamesAndItemList[i].Items, Spawner->NamesAndItemList[i].Name);
+		HeroUnits.Add(Unit);
+	}
 }

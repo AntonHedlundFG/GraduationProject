@@ -5,10 +5,12 @@
 
 #include "Utility/CRandomComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions\Visualizer\CActionVisualizerSystem.h"
 
 ACGameState::ACGameState()
 {
 	Random = CreateDefaultSubobject<UCRandomComponent>(TEXT("Random"));
+	ActionVisualizerSystem = CreateDefaultSubobject<UCActionVisualizerSystem>(TEXT("ActionVisualizerSystem"));
 }
 
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -16,5 +18,7 @@ void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACGameState, TurnOrder);
 	DOREPLIFETIME(ACGameState, Random);
+	DOREPLIFETIME(ACGameState, ActionList);
+	DOREPLIFETIME(ACGameState, ActionHistory);
 }
 

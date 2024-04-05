@@ -14,15 +14,11 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
-	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
-
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	
 public:
 	// Initializes the random stream with a specific seed.
 	void InitializeFromStart(int32 inStartSeed);
-
-	// Initializes the random stream with a specific seed and state.
-	void InitializeFromSave(int32 inStartSeed, int32 inCurrentStateSeed, int64 inTicks, int32 inTicksSinceSave,
-	                        int32 inTicksAtSave);
 
 	// Generates a random value within a specified range, optionally without advancing the state.
 	UFUNCTION(BlueprintCallable)
