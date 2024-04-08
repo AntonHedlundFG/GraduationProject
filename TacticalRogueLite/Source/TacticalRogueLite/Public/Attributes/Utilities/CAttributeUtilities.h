@@ -62,6 +62,11 @@ public:
     {
         return FastArrayDeltaSerialize<FGameplayTagStack, FGameplayTagStackContainer>(Stacks, DeltaParms, *this);
     }
+
+    /* NOT FULLY TESTED
+     * Empties the container
+     */
+    void ClearAllStacks();
  
     /* 
      * Adds count to the tag's stack.
