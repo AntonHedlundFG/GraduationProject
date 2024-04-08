@@ -27,13 +27,7 @@ void ACAIController::OnTurnChanged()
 	auto actions = DecideBestActions();
 	ExecuteActions(actions);
 
-	FTimerHandle TimerHandle;
-	FTimerDelegate TimerDel;
-	TimerDel.BindLambda([this]()
-	{
-		GameMode->TryEndTurn(this);
-	});
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+	// Turn End through ExecuteActions
 }
 
 void ACAIController::BeginPlay()
@@ -156,17 +150,35 @@ void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& B
 	});
 }
 
-void ACAIController::ExecuteActions(FActionPath& BestActions)
+void ACAIController::ExecuteActions(FActionPath BestActions)
 {
 	if(GameMode)
 	{
-		for (TPair<FAbility, ACGridTile*> Path : BestActions.GetPath())
+		FTimerHandle TimerHandle;
+		FTimerDelegate TimerDel;
+		float TimerDelay = FMath::RandRange(0.5f, 1.5f);
+		TArray<TPair<FAbility, ACGridTile*>> Path = BestActions.GetPath();
+		if(Path.Num() > 0)
 		{
-			if(!GameMode->TryAbilityUse(this, Unit, Path.Key.InventorySlotTag, Path.Value))
+			const TPair<FAbility, ACGridTile*> Ability = Path.Top();
+			BestActions.GetPath().Pop();
+			if(!GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
 			{
 				LOG_ERROR("Ability use failed for %s", *GetName());
-				return;
 			}
+
+			TimerDel.BindLambda([this, BestActions]()
+			{
+				ExecuteActions(BestActions);
+			});
 		}
+		else
+		{
+			TimerDel.BindLambda([this]()
+			{
+				GameMode->TryEndTurn(this);
+			});
+		}
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
 	}	
 }

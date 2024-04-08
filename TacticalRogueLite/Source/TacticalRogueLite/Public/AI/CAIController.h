@@ -53,7 +53,7 @@ public:
 	FActionPath DecideBestActions();
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
-	void ExecuteActions(FActionPath& BestActions);
+	void ExecuteActions(FActionPath BestActions);
 
 private:
 	UPROPERTY()
