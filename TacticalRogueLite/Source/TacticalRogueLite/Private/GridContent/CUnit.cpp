@@ -80,5 +80,15 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 	return Abilities;
 }
 
+bool ACUnit::HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount)
+{
+	return AttributeComp->HasRemainingCharges(ItemSlot, Amount);
+}
+
+int32 ACUnit::GetRemainingCharges(FGameplayTag ItemSlot)
+{
+	return AttributeComp->GetRemainingCharges(ItemSlot);
+}
+
 
 

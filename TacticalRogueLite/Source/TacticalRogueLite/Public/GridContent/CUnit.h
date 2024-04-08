@@ -79,14 +79,10 @@ public:
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	bool HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount = 1) {
-		return AttributeComp->HasRemainingCharges(ItemSlot, Amount);
-	}
+	bool HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount = 1);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
-	int32 GetRemainingCharges(FGameplayTag ItemSlot) {
-		return AttributeComp->GetRemainingCharges(ItemSlot);
-	}
+	int32 GetRemainingCharges(FGameplayTag ItemSlot);
 
 #pragma endregion
 
