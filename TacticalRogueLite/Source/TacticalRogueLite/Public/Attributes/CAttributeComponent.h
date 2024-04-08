@@ -48,8 +48,6 @@ public:
 
 
 protected:
-
-	virtual void BeginPlay() override;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentHealth;

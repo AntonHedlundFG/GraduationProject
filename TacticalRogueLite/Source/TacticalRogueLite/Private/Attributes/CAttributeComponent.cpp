@@ -22,20 +22,6 @@ UCAttributeComponent::UCAttributeComponent()
 	bAutoActivate = true;
 }
 
-void UCAttributeComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if (GetNetMode() == NM_ListenServer)
-	{
-		FGameplayTagContainer AllItemTags = UGameplayTagsManager::Get().RequestGameplayTagChildren(Tag_ItemSlot);
-		for (FGameplayTag ItemTag : AllItemTags)
-		{
-			AddMaxCharges(ItemTag, 2);
-		}
-	}
-}
-
 bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 {
 	if (!GetOwner()->CanBeDamaged() && Delta < 0)
@@ -191,7 +177,7 @@ void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, int32 Amount)
 
 void UCAttributeComponent::ResetSpentCharges()
 {
-	//TODO: Make a clear all in attributeutility.
+	UsedItemCharges.ClearAllStacks();
 }
 
 #pragma endregion

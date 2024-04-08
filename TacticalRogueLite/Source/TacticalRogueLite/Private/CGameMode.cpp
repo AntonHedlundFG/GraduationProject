@@ -287,6 +287,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
 	if (Attributes)
 	{
+		LOG_INFO("Resetting spent charges on %s", *GameStateRef->TurnOrder[0]->GetUnitName());
 		Attributes->ResetSpentCharges();
 	}
 
