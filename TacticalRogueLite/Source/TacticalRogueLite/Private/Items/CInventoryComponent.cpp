@@ -21,8 +21,7 @@ void UCInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCInventoryComponent, Boots);
 	DOREPLIFETIME(UCInventoryComponent, Weapon);
 	DOREPLIFETIME(UCInventoryComponent, Armor);
-	DOREPLIFETIME(UCInventoryComponent, Helmet);
-	DOREPLIFETIME(UCInventoryComponent, Ring);
+	DOREPLIFETIME(UCInventoryComponent, Trinket);
 	DOREPLIFETIME(UCInventoryComponent, AllItems);
 }
 
@@ -36,10 +35,8 @@ TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
 		AllEquipped.Add(Weapon);
 	if (Armor != nullptr)
 		AllEquipped.Add(Armor);
-	if (Helmet != nullptr)
-		AllEquipped.Add(Helmet);
-	if (Ring != nullptr)
-		AllEquipped.Add(Ring);
+	if (Trinket != nullptr)
+		AllEquipped.Add(Trinket);
 	
 	return AllEquipped;
 }
@@ -53,10 +50,8 @@ UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 		return Weapon;
 	if (inSlot == SharedGameplayTags::ItemSlot_Armor)
 		return Armor;
-	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
-		return Helmet;
-	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
-		return Ring;
+	if (inSlot == SharedGameplayTags::ItemSlot_Trinket)
+		return Trinket;
 
 	return nullptr;
 }
@@ -77,10 +72,8 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 		Weapon = inItem;
 	if (SlotTag == SharedGameplayTags::ItemSlot_Armor)
 		Armor = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Helmet)
-		Helmet = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Ring)
-		Ring = inItem;
+	if (SlotTag == SharedGameplayTags::ItemSlot_Trinket)
+		Trinket = inItem;
 
 	AddItem(inItem);
 	
@@ -109,16 +102,10 @@ void UCInventoryComponent::UnEquipItem(FGameplayTag inSlot)
 		Armor = nullptr;
 		return;
 	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
+	if (inSlot == SharedGameplayTags::ItemSlot_Trinket)
 	{
-		RemoveItem(Helmet);
-		Helmet = nullptr;
-		return;
-	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
-	{
-		RemoveItem(Ring);
-		Ring = nullptr;
+		RemoveItem(Trinket);
+		Trinket = nullptr;
 		return;
 	}
 }
@@ -149,8 +136,7 @@ bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 		inTag == SharedGameplayTags::ItemSlot_Boots ||
 		inTag == SharedGameplayTags::ItemSlot_Weapon ||
 		inTag == SharedGameplayTags::ItemSlot_Armor ||
-		inTag == SharedGameplayTags::ItemSlot_Helmet ||
-		inTag == SharedGameplayTags::ItemSlot_Ring
+		inTag == SharedGameplayTags::ItemSlot_Trinket
 		)
 	{
 		return true;
