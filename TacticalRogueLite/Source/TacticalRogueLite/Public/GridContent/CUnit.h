@@ -34,7 +34,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCInventoryComponent> InventoryComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
+	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Units")
 	FString UnitName;
 	
 public:
