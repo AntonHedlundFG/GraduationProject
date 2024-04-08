@@ -284,6 +284,13 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	GameStateRef->TurnOrder.Add(CurrentUnit);
 	GameStateRef->OnRep_TurnOrder();
 
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
+	if (Attributes)
+	{
+		Attributes->ResetSpentCharges();
+	}
+
+	//Move TurnTimerSubsystem forward
 	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
 	if (Subsystem)
 	{
