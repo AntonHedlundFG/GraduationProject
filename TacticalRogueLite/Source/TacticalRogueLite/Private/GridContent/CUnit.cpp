@@ -67,7 +67,7 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 {
 	// TODO: There is probably a better way to do this
 	TArray<FAbility> Abilities;
-	const FGameplayTagContainer AbilitySlotsContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::ItemSlot);
+	const FGameplayTagContainer AbilitySlotsContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(Tag_ItemSlot);
 	for (int i = 0; i < AbilitySlotsContainer.Num(); ++i)
 	{
 		FGameplayTag Slot = AbilitySlotsContainer.GetByIndex(i);

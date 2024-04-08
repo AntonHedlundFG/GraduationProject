@@ -13,7 +13,7 @@ class UCConsideration : public UDataAsset
 public:
 	// Returns the score of this consideration
 	UFUNCTION(BlueprintCallable)
-	virtual float Evaluate(FCAIContext Context) const { return 0; }
+	virtual float Evaluate(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile, FCAIContext& Context) const { return 0; }
 
 	UFUNCTION(BlueprintCallable)
 	virtual FString ToString() const { return Name; } 

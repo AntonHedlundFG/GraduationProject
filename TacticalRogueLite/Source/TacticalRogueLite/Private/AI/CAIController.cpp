@@ -1,6 +1,5 @@
 ﻿#include "AI/CAIController.h"
 #include "CGameMode.h"
-#include "AI/CAIContext.h"
 #include "AI/CConsideration.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridTile.h"
@@ -51,7 +50,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	// Take considerations into effect
 	for (const UCConsideration* Consideration : Ability.Considerations)
 	{
-		const float ConsiderationScore = Consideration->Evaluate(FCAIContext());
+		const float ConsiderationScore = Consideration->Evaluate(Ability, StartTile, TargetTile, Context);
 		Score *= ConsiderationScore;
 
 		if(Score == 0)
@@ -60,10 +59,19 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 		}
 	}
 	// Average considerations to get a final score
-	const float OriginalScore = Score;
-	const float ModFactor = 1 - (1.0f / Ability.Considerations.Num());
-	const float MakeUpValue = (1 - OriginalScore) * ModFactor;
-	Score += OriginalScore + (MakeUpValue * OriginalScore);
+	const int32 NumConsiderations = Ability.Considerations.Num();
+	if(NumConsiderations > 0)
+	{
+		const float OriginalScore = Score;
+		const float ModFactor = 1 - (1.0f / Ability.Considerations.Num());
+		const float MakeUpValue = (1 - OriginalScore) * ModFactor;
+		Score += OriginalScore + (MakeUpValue * OriginalScore);
+	}
+	else
+	{
+		Score = 0;
+		LOG_WARNING("No considerations for %s on Unit: %s", *Ability.InventorySlotTag.ToString(), *Unit->GetUnitName());
+	}
 	
 	UKismetSystemLibrary::DrawDebugString(
 		GetWorld(),
@@ -97,9 +105,9 @@ FActionPath ACAIController::DecideBestActions()
 	return BestPaths[0];
 }
 
-void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath)
+void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath)
 {
-	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::Movement);
+	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(Tag_Movement);
 
 	for (FAbility Ability : Abilities)
 	{

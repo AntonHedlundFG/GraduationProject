@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include "CAIContext.h"
 #include "GridContent/CUnit.h"
 #include "Actions/CAction.h"
 #include "CAIController.generated.h"
@@ -51,7 +52,7 @@ public:
 
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
-	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
+	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath);
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
 	void ExecuteActions(FActionPath BestActions);
 
@@ -64,4 +65,6 @@ private:
 	TMap<FAbility, ACGridTile*> BestActionsMap;
 	UPROPERTY()
 	ACGameMode* GameMode;
+	UPROPERTY()
+	FCAIContext Context;
 };
