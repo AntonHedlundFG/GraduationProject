@@ -74,5 +74,21 @@ public:
 	
 	// ----------------------------------------------------------------
 	
+#pragma region Item Charges
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount = 1) {
+		return AttributeComp->HasRemainingCharges(ItemSlot, Amount);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	int32 GetRemainingCharges(FGameplayTag ItemSlot) {
+		return AttributeComp->GetRemainingCharges(ItemSlot);
+	}
+
+#pragma endregion
+
 
 };
