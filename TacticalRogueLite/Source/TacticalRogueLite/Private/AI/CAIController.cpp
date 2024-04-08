@@ -99,7 +99,7 @@ FActionPath ACAIController::DecideBestActions()
 	ACGridTile* UnitTile = Unit->GetTile();
 
 	// Recursively score all possible actions
-	FActionPath InitialPath;
+	const FActionPath InitialPath;
 	EvalAbilitiesFromTile(UnitTile, Abilities, BestPaths, InitialPath);
 
 	return BestPaths[0];
@@ -107,7 +107,7 @@ FActionPath ACAIController::DecideBestActions()
 
 void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath)
 {
-	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(Tag_Movement);
+	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
 
 	for (FAbility Ability : Abilities)
 	{

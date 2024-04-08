@@ -25,6 +25,6 @@ void UCUnitAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	if (ActionComp)
 	{
-		bIsMoving = ActionComp->ActiveGameplayTags.HasTag(Tag_Action_Moving); //Should maybe be eventdriven instead. 
+		bIsMoving = ActionComp->ActiveGameplayTags.HasTag(TAG_Action_Moving); //Should maybe be eventdriven instead. 
 	}
 }

@@ -44,13 +44,13 @@ TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
 UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 {
 	
-	if (inSlot == Tag_ItemSlot_Boots)
+	if (inSlot == TAG_ItemSlot_Boots)
 		return Boots;
-	if (inSlot == Tag_ItemSlot_Weapon)
+	if (inSlot == TAG_ItemSlot_Weapon)
 		return Weapon;
-	if (inSlot == Tag_ItemSlot_Armor)
+	if (inSlot == TAG_ItemSlot_Armor)
 		return Armor;
-	if (inSlot == Tag_ItemSlot_Trinket)
+	if (inSlot == TAG_ItemSlot_Trinket)
 		return Trinket;
 
 	return nullptr;
@@ -66,13 +66,13 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 
 	UnEquipItem(SlotTag);
 	
-	if (SlotTag == Tag_ItemSlot_Boots)
+	if (SlotTag == TAG_ItemSlot_Boots)
 		Boots = inItem;
-	if (SlotTag == Tag_ItemSlot_Weapon)
+	if (SlotTag == TAG_ItemSlot_Weapon)
 		Weapon = inItem;
-	if (SlotTag == Tag_ItemSlot_Armor)
+	if (SlotTag == TAG_ItemSlot_Armor)
 		Armor = inItem;
-	if (SlotTag == Tag_ItemSlot_Trinket)
+	if (SlotTag == TAG_ItemSlot_Trinket)
 		Trinket = inItem;
 
 	AddItem(inItem);
@@ -84,25 +84,25 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 
 void UCInventoryComponent::UnEquipItem(FGameplayTag inSlot)
 {
-	if (inSlot == Tag_ItemSlot_Boots)
+	if (inSlot == TAG_ItemSlot_Boots)
 	{
 		RemoveItem(Boots);
 		Boots = nullptr;
 		return;
 	}
-	if (inSlot == Tag_ItemSlot_Weapon)
+	if (inSlot == TAG_ItemSlot_Weapon)
 	{
 		RemoveItem(Weapon);
 		Weapon = nullptr;
 		return;
 	}
-	if (inSlot == Tag_ItemSlot_Armor)
+	if (inSlot == TAG_ItemSlot_Armor)
 	{
 		RemoveItem(Armor);
 		Armor = nullptr;
 		return;
 	}
-	if (inSlot == Tag_ItemSlot_Trinket)
+	if (inSlot == TAG_ItemSlot_Trinket)
 	{
 		RemoveItem(Trinket);
 		Trinket = nullptr;
@@ -133,10 +133,10 @@ void UCInventoryComponent::RemoveItem(UCItemData* inItem)
 bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 {
 	if (
-		inTag == Tag_ItemSlot_Boots ||
-		inTag == Tag_ItemSlot_Weapon ||
-		inTag == Tag_ItemSlot_Armor ||
-		inTag == Tag_ItemSlot_Trinket
+		inTag == TAG_ItemSlot_Boots ||
+		inTag == TAG_ItemSlot_Weapon ||
+		inTag == TAG_ItemSlot_Armor ||
+		inTag == TAG_ItemSlot_Trinket
 		)
 	{
 		return true;
