@@ -8,6 +8,7 @@
 #include "Actions/CActionComponent.h"
 #include "Grid/Tiles/TileHighlightModes.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
+#include "Attributes/CAttributeComponent.h"
 
 ACGameState* ACPlayerController::GetGameState()
 {
@@ -57,6 +58,18 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	if (!ActionComp->TryGetAbility(inTag, OutAbility))
 	{
 		LOG_WARNING("No item in slot, cancelling ability use.");
+		return;
+	}
+
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(UnitCurrentlyUsingAbility);
+	if (!Attributes)
+	{
+		LOG_WARNING("No attributes component on unit, cancelling ability use.");
+		return;
+	}
+	if (!Attributes->HasRemainingCharges(inTag))
+	{
+		LOG_WARNING("No charges remaining for item, cancelling ability use.");
 		return;
 	}
 

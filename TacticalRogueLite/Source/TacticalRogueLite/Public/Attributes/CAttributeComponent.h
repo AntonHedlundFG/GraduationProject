@@ -105,6 +105,55 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	bool ApplyHealthChange(AActor* InstigatorActor, int Delta);
 	
+
+#pragma region Item Charges
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool HasRemainingCharges(FGameplayTag ItemSlot, int Amount = 1) { 
+		return RemainingCharges(ItemSlot) >= Amount; 
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	uint8 RemainingCharges(FGameplayTag ItemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool TrySpendCharge(FGameplayTag ItemSlot, uint8 Amount = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool TryUndoSpendCharge(FGameplayTag ItemSlot, uint8 Amount = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void AddMaxCharges(FGameplayTag ItemSlot, uint8 Amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void RemoveMaxCharges(FGameplayTag ItemSlot, uint8 Amount);
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 BootsCharges = 1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 WeaponCharges = 1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 ArmorCharges = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 TrinketCharges = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 BootsUsed = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 WeaponUsed = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 ArmorUsed = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Abilities")
+	uint8 TrinketUsed = 0;
+
+	uint8& GetMaxChargesRef(FGameplayTag ItemSlot);
+	uint8& GetUsedChargesRef(FGameplayTag ItemSlot);
+
+#pragma endregion
 	
 	
 };

@@ -234,10 +234,13 @@ void ACTurnOrderUIManager::UpdateTurnList()
 		ACUnit* Unit = UnitQueue[0];
 		UnitQueue.RemoveAt(0);
 
+		if (!Unit) continue;
+
 		if(!LastTurnOrder.Contains(Unit))
 		{
 			UCTurnOrderPortraitWidget* Widget = DeQueuePortraitWidget();
-			Widget->SetText(Unit->GetUnitName());
+			FString UnitName = Unit->GetUnitName();
+			Widget->SetText(UnitName);
 			ActivePortraits.Add(Unit,Widget);
 			WidgetsToAdd.Add(Widget);
 			AddPositions.Add(NewPositions[i]);

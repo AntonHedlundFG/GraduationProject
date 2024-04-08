@@ -3,6 +3,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Actions/CDeathAction.h"
 #include "CGameMode.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv
 
@@ -57,7 +58,6 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 
 	return Delta != 0;
 }
-
 
 UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 {
@@ -136,4 +136,90 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCAttributeComponent, RageMax);
 }
 
+
+
+#pragma region Item Charges
+
+uint8 UCAttributeComponent::RemainingCharges(FGameplayTag ItemSlot)
+{
+	uint8 MaxCharges = GetMaxChargesRef(ItemSlot);
+	uint8 CurrentUses = GetUsedChargesRef(ItemSlot);
+	return CurrentUses > MaxCharges ? 0 : MaxCharges - CurrentUses;
+}
+
+bool UCAttributeComponent::TrySpendCharge(FGameplayTag ItemSlot, uint8 Amount /* = 1 */)
+{
+	if (RemainingCharges(ItemSlot) < Amount)
+		return false;
+
+	GetUsedChargesRef(ItemSlot) += Amount;
+	return true;
+}
+
+bool UCAttributeComponent::TryUndoSpendCharge(FGameplayTag ItemSlot, uint8 Amount /* = 1 */)
+{
+	if (GetUsedChargesRef(ItemSlot) < Amount)
+		return false;
+	GetUsedChargesRef(ItemSlot) -= Amount;
+	return true;
+}
+
+void UCAttributeComponent::AddMaxCharges(FGameplayTag ItemSlot, uint8 Amount)
+{
+	GetMaxChargesRef(ItemSlot) += Amount;
+}
+
+void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, uint8 Amount)
+{
+	uint8& MaxChargesRef = GetMaxChargesRef(ItemSlot);
+	MaxChargesRef = Amount >= MaxChargesRef ? 0 : MaxChargesRef - Amount;
+}
+
+uint8& UCAttributeComponent::GetMaxChargesRef(FGameplayTag ItemSlot)
+{
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Boots)
+	{
+		return BootsCharges;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Armor)
+	{
+		return ArmorCharges;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Weapon)
+	{
+		return WeaponCharges;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Trinket)
+	{
+		return TrinketCharges;
+	}
+
+	LOG_ERROR("Accessing item charge using wrong tag. Defaulting to Boots reference. %s", *ItemSlot.ToString());
+	return BootsCharges;
+}
+
+uint8& UCAttributeComponent::GetUsedChargesRef(FGameplayTag ItemSlot)
+{
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Boots)
+	{
+		return BootsUsed;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Armor)
+	{
+		return ArmorUsed;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Weapon)
+	{
+		return WeaponUsed;
+	}
+	if (ItemSlot == SharedGameplayTags::ItemSlot_Trinket)
+	{
+		return TrinketUsed;
+	}
+
+	LOG_ERROR("Accessing item usage using wrong tag. Defaulting to Boots reference. %s", *ItemSlot.ToString());
+	return BootsUsed;
+}
+
+#pragma endregion
 

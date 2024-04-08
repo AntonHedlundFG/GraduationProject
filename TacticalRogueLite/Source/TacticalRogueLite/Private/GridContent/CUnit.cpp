@@ -12,8 +12,7 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACUnit, ControllingPlayerIndex);
-
-
+	DOREPLIFETIME(ACUnit, UnitName);
 }
 
 ACUnit::ACUnit()

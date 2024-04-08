@@ -35,14 +35,14 @@ protected:
 	TObjectPtr<UCInventoryComponent> InventoryComp;
 
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Units")
-	FString UnitName;
+	FString UnitName = FString();
 	
 public:
 	ACUnit();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
 	UFUNCTION(BlueprintCallable)
-	FString GetUnitName() { return UnitName.IsEmpty() ? GetName() : UnitName; }
+	FString GetUnitName() { return UnitName; }
 	UFUNCTION(BlueprintCallable)
 	void SetUnitName(FString inName) { UnitName = inName; }
 
