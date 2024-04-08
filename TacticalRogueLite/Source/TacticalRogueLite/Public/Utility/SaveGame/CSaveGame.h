@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "GameplayTagContainer.h"
 #include "CSaveGame.generated.h"
 
 
@@ -32,5 +33,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = "UnitAndItemData")
 	TArray<struct FCNamesAndItemsList> NamesAndItems;
+
+	//All unlocked achievements, used by the Achievement subsystem.
+	UPROPERTY()
+	FGameplayTagContainer UnlockedAchievements;
 
 };
