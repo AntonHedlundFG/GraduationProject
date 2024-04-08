@@ -145,9 +145,9 @@ public:
 
 protected:
 
-	UPROPERTY(Replicated)
+	UPROPERTY(Replicated, BlueprintReadOnly)
 	FGameplayTagStackContainer UsedItemCharges;
-	UPROPERTY(Replicated)
+	UPROPERTY(Replicated, BlueprintReadOnly)
 	FGameplayTagStackContainer MaxItemCharges;
 
 #pragma endregion
