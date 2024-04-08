@@ -17,7 +17,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Movement_Diagonal, "Movement.Diagonal");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Movement_Knight, "Movement.Knight");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Movement_Flying, "Movement.Flying");
 
-
+UE_DEFINE_GAMEPLAY_TAG(TAG_Status, "Status");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Status_Rooted, "Status.Rooted");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot, "ItemSlot");
