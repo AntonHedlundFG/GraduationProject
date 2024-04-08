@@ -28,7 +28,7 @@ void UCAttributeComponent::BeginPlay()
 
 	if (GetNetMode() == NM_ListenServer)
 	{
-		FGameplayTagContainer AllItemTags = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::ItemSlot);
+		FGameplayTagContainer AllItemTags = UGameplayTagsManager::Get().RequestGameplayTagChildren(Tag_ItemSlot);
 		for (FGameplayTag ItemTag : AllItemTags)
 		{
 			AddMaxCharges(ItemTag, 2);
