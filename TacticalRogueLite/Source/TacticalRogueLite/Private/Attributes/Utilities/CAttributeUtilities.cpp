@@ -12,6 +12,13 @@
 *
 **/
 
+void FGameplayTagStackContainer::ClearAllStacks()
+{
+    Stacks.Empty();
+    TagCountMap.Empty();
+    MarkArrayDirty();
+}
+
 void FGameplayTagStackContainer::AddStackCount(FGameplayTag Tag, int32 Count)
 {
     if (Count > 0)
