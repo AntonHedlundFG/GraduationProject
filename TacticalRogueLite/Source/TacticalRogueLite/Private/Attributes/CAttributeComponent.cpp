@@ -22,6 +22,20 @@ UCAttributeComponent::UCAttributeComponent()
 	bAutoActivate = true;
 }
 
+void UCAttributeComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (GetNetMode() == NM_ListenServer)
+	{
+		FGameplayTagContainer AllItemTags = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::ItemSlot);
+		for (FGameplayTag ItemTag : AllItemTags)
+		{
+			AddMaxCharges(ItemTag, 2);
+		}
+	}
+}
+
 bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 {
 	if (!GetOwner()->CanBeDamaged() && Delta < 0)
@@ -131,6 +145,8 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCAttributeComponent, CurrentHealth);
 	DOREPLIFETIME(UCAttributeComponent, BaseHealth);
 	DOREPLIFETIME(UCAttributeComponent, ActiveGameplayTags);
+	DOREPLIFETIME(UCAttributeComponent, MaxItemCharges);
+	DOREPLIFETIME(UCAttributeComponent, UsedItemCharges);
 
 	DOREPLIFETIME(UCAttributeComponent, Rage);
 	DOREPLIFETIME(UCAttributeComponent, RageMax);
@@ -140,85 +156,42 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 
 #pragma region Item Charges
 
-uint8 UCAttributeComponent::RemainingCharges(FGameplayTag ItemSlot)
+int32 UCAttributeComponent::GetRemainingCharges(FGameplayTag ItemSlot)
 {
-	uint8 MaxCharges = GetMaxChargesRef(ItemSlot);
-	uint8 CurrentUses = GetUsedChargesRef(ItemSlot);
-	return CurrentUses > MaxCharges ? 0 : MaxCharges - CurrentUses;
+	return MaxItemCharges.GetStackCount(ItemSlot) - UsedItemCharges.GetStackCount(ItemSlot);
 }
 
-bool UCAttributeComponent::TrySpendCharge(FGameplayTag ItemSlot, uint8 Amount /* = 1 */)
+bool UCAttributeComponent::TrySpendCharge(FGameplayTag ItemSlot, int32 Amount /* = 1 */)
 {
-	if (RemainingCharges(ItemSlot) < Amount)
+	if (GetRemainingCharges(ItemSlot) < Amount)
 		return false;
-
-	GetUsedChargesRef(ItemSlot) += Amount;
+	
+	UsedItemCharges.AddStackCount(ItemSlot, Amount);
 	return true;
 }
 
-bool UCAttributeComponent::TryUndoSpendCharge(FGameplayTag ItemSlot, uint8 Amount /* = 1 */)
+bool UCAttributeComponent::TryUndoSpendCharge(FGameplayTag ItemSlot, int32 Amount /* = 1 */)
 {
-	if (GetUsedChargesRef(ItemSlot) < Amount)
+	if (UsedItemCharges.GetStackCount(ItemSlot) < Amount)
 		return false;
-	GetUsedChargesRef(ItemSlot) -= Amount;
+
+	UsedItemCharges.RemoveStackCount(ItemSlot, Amount);
 	return true;
 }
 
-void UCAttributeComponent::AddMaxCharges(FGameplayTag ItemSlot, uint8 Amount)
+void UCAttributeComponent::AddMaxCharges(FGameplayTag ItemSlot, int32 Amount)
 {
-	GetMaxChargesRef(ItemSlot) += Amount;
+	MaxItemCharges.AddStackCount(ItemSlot, Amount);
 }
 
-void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, uint8 Amount)
+void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, int32 Amount)
 {
-	uint8& MaxChargesRef = GetMaxChargesRef(ItemSlot);
-	MaxChargesRef = Amount >= MaxChargesRef ? 0 : MaxChargesRef - Amount;
+	MaxItemCharges.RemoveStackCount(ItemSlot, Amount);
 }
 
-uint8& UCAttributeComponent::GetMaxChargesRef(FGameplayTag ItemSlot)
+void UCAttributeComponent::ResetSpentCharges()
 {
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Boots)
-	{
-		return BootsCharges;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Armor)
-	{
-		return ArmorCharges;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Weapon)
-	{
-		return WeaponCharges;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Trinket)
-	{
-		return TrinketCharges;
-	}
-
-	LOG_ERROR("Accessing item charge using wrong tag. Defaulting to Boots reference. %s", *ItemSlot.ToString());
-	return BootsCharges;
-}
-
-uint8& UCAttributeComponent::GetUsedChargesRef(FGameplayTag ItemSlot)
-{
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Boots)
-	{
-		return BootsUsed;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Armor)
-	{
-		return ArmorUsed;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Weapon)
-	{
-		return WeaponUsed;
-	}
-	if (ItemSlot == SharedGameplayTags::ItemSlot_Trinket)
-	{
-		return TrinketUsed;
-	}
-
-	LOG_ERROR("Accessing item usage using wrong tag. Defaulting to Boots reference. %s", *ItemSlot.ToString());
-	return BootsUsed;
+	//TODO: Make a clear all in attributeutility.
 }
 
 #pragma endregion
