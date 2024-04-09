@@ -22,6 +22,7 @@
 #include "Utility/SaveGame/CSaveGameManager.h"
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Achievements\CVictoryCondition.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -69,6 +70,8 @@ void ACGameMode::BeginPlay()
 		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
 	}
 	
+	InitializeVictoryCondition();
+
 	InitializeTurnOrder(AllUnits);
 	ApplyPlayerCount(AllUnits);
 }
@@ -279,6 +282,22 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		return false;
 	}
 
+	//Check for victory conditions
+	if (VictoryCondition && VictoryCondition->CheckVictoryCondition())
+	{
+		//Temporary implementation.
+		LOG_GAMEPLAY("You've won the game!");
+		return true;
+	}
+
+	//Check for loss conditions
+	if (VictoryCondition && VictoryCondition->CheckLossCondition())
+	{
+		//Temporary implementation.
+		LOG_GAMEPLAY("You've lost the game!");
+		return true;
+	}
+
 	//Move active unit to back of the line
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
@@ -367,4 +386,14 @@ void ACGameMode::InitializeHeroUnits(ACGrid* grid)
 							Spawner->NamesAndItemList[i].Items, Spawner->NamesAndItemList[i].Name);
 		HeroUnits.Add(Unit);
 	}
+}
+
+void ACGameMode::InitializeVictoryCondition()
+{
+
+	//This is a temporary implementation that should probably be handled by a 
+	//procedural generation system.
+
+	VictoryCondition = NewObject<UCVictoryCondition>(this, UCVictoryCondition::StaticClass());
+	VictoryCondition->Initialize(this, GameStateRef);
 }
