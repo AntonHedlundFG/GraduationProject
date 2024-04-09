@@ -5,6 +5,7 @@
 #include "CLevelURLAsset.h"
 #include "CharacterSelect/CCharacterSelectGameState.h"
 #include "Kismet/GameplayStatics.h"
+#include "Utility/Logging/CLogManager.h"
 
 ACCharacterSelectGameMode::ACCharacterSelectGameMode()
 {
@@ -19,6 +20,11 @@ void ACCharacterSelectGameMode::BeginPlay()
 	if(StateRef)
 	{
 		StateRef->PlayerCount = PlayerCount;
-		StateRef->OnInitialized.Broadcast();
+		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::SaveGameAndStart);
 	}
+}
+
+void ACCharacterSelectGameMode::SaveGameAndStart()
+{
+	LOG_INFO("Ready To Start");
 }

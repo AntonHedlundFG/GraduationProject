@@ -33,7 +33,9 @@ protected:
 
 	UPROPERTY()
 	ACCharacterSelectGameState* StateRef;
-	
 	UPROPERTY()
 	int8 PlayerCount;
+
+	UFUNCTION()
+	void SaveGameAndStart();
 };

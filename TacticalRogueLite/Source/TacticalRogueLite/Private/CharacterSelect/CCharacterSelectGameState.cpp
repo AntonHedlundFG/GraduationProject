@@ -60,5 +60,17 @@ void ACCharacterSelectGameState::OnRep_UpdateReadyStatus(TArray<bool> inArray)
 		ReadyInfo = inArray;
 		OnRep_UpdateUI();
 	}
+	CheckReady();
+}
+
+void ACCharacterSelectGameState::CheckReady()
+{
+	for (const bool PlayerReady : ReadyInfo)
+	{
+		if (PlayerReady == false)
+			return;
+	}
+	
+	OnReadyToStart.Broadcast();
 }
 

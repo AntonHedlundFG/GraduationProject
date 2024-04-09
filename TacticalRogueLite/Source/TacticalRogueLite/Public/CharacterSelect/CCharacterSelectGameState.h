@@ -5,7 +5,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "CCharacterSelectGameState.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInitialized);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReadyToStart);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUI);
 
 class UCSetControllingPlayerWidget;
@@ -22,7 +22,7 @@ public:
 	ACCharacterSelectGameState();
 
 	UPROPERTY(BlueprintAssignable, Category = "Update UI")
-	FInitialized OnInitialized;
+	FReadyToStart OnReadyToStart;
 	UPROPERTY(BlueprintAssignable, Category = "Update UI")
 	FUpdateUI OnUpdateUI;
 
@@ -47,5 +47,9 @@ public:
 	void OnRep_UpdateReadyStatus(TArray<bool> inArray);
 	UFUNCTION()
 	void OnRep_UpdateUI() { OnUpdateUI.Broadcast(); }
+
+
+protected:
+	void CheckReady();
 	
 };

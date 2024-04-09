@@ -15,11 +15,11 @@ class TACTICALROGUELITE_API ACCharacterSelectController : public AOnlinePlayerCo
 	GENERATED_BODY()
 
 public:
-	UFUNCTION()
+	UFUNCTION(Server, Reliable)
 	void Server_UpdateReady(int InWidgetIndex, bool InReadyStatus);
-	UFUNCTION()
+	UFUNCTION(Server, Reliable)
 	void Server_UpdatePlayerIndex(int InWidgetIndex, int InPlayerIndex);
-	UFUNCTION()
+	UFUNCTION(Server, Reliable)
 	void Server_UpdateCharacterIndex(int InWidgetIndex, int InCharacterIndex);
 
 protected:

@@ -10,7 +10,7 @@ void ACCharacterSelectController::BeginPlay()
 	StateRef = Cast<ACCharacterSelectGameState>(GetWorld()->GetGameState());
 }
 
-void ACCharacterSelectController::Server_UpdateReady(int InWidgetIndex, bool InReadyStatus)
+void ACCharacterSelectController::Server_UpdateReady_Implementation(int InWidgetIndex, bool InReadyStatus)
 {
 	if (StateRef)
 	{
@@ -21,7 +21,7 @@ void ACCharacterSelectController::Server_UpdateReady(int InWidgetIndex, bool InR
 	}
 }
 
-void ACCharacterSelectController::Server_UpdatePlayerIndex(int InWidgetIndex, int InPlayerIndex)
+void ACCharacterSelectController::Server_UpdatePlayerIndex_Implementation(int InWidgetIndex, int InPlayerIndex)
 {
 	if (StateRef)
 	{
@@ -32,13 +32,14 @@ void ACCharacterSelectController::Server_UpdatePlayerIndex(int InWidgetIndex, in
 	}
 }
 
-void ACCharacterSelectController::Server_UpdateCharacterIndex(int InWidgetIndex, int InCharacterIndex)
+void ACCharacterSelectController::Server_UpdateCharacterIndex_Implementation(int InWidgetIndex, int InCharacterIndex)
 {
 	if (StateRef)
 	{
 		TArray<int> Characters = StateRef->CharacterIndexes;
 		Characters[InWidgetIndex] = InCharacterIndex;
 
+		StateRef->CharacterIndexes = Characters;
 		StateRef->OnRep_UpdateCharacters(Characters);
 	}
 }
