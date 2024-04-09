@@ -41,8 +41,7 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	TArray<int> Characters = StateRef->CharacterIndexes;
 	for (auto Index : Characters)
 	{
-		FCNamesAndItemsList Data;
-		Data.Items = StartCharacters->StartCharacterList[Index].ItemList;
+		FCNamesAndItemsList Data = StartCharacters->StartCharacterList[Index];
 		Data.Name = "Hero_" + CharacterNumber;
 		CharacterNumber++;
 		SpawnUnitData.Add(Data);

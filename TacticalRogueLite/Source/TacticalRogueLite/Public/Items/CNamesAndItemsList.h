@@ -9,8 +9,8 @@ struct FCNamesAndItemsList
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
-	TArray<UCItemData*> Items;
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Character Details")
 	FString Name;
+	UPROPERTY(EditAnywhere, Category = "Character Details")
+	TArray<UCItemData*> Items;
 };
