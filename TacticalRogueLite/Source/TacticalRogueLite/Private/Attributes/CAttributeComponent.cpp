@@ -189,10 +189,6 @@ void UCAttributeComponent::ResetSpentCharges()
 void UCAttributeComponent::BroadcastOnItemChargesChanged()
 {
 	OnItemChargesChanged.Broadcast();
-	if (GetNetMode() == ENetMode::NM_Client)
-		LOG_WARNING("Client: Item Charges Changed broadcast.");
-	else
-		LOG_WARNING("Server: Item Charges Changed broadcast.");
 }
 
 #pragma endregion
