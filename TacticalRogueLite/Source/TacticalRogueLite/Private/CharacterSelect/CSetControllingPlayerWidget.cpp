@@ -22,6 +22,7 @@ void UCSetControllingPlayerWidget::IncreaseIndex()
 	if (Controller)
 	{
 		int Max = GameState->PlayerCount;
+		int PlayerIndex = GameState->ControllingPlayerIndex[WidgetIndex];
 		PlayerIndex++;
 		if (PlayerIndex > Max)
 			PlayerIndex = 1;
@@ -44,9 +45,11 @@ void UCSetControllingPlayerWidget::DecreaseIndex()
 
 	if (Controller)
 	{
+		int Max = GameState->PlayerCount;
+		int PlayerIndex = GameState->ControllingPlayerIndex[WidgetIndex];
 		PlayerIndex--;
 		if (PlayerIndex < 1 )
-			PlayerIndex = GameState->PlayerCount;
+			PlayerIndex = Max;
 
 		Controller->Server_UpdatePlayerIndex(WidgetIndex, PlayerIndex);
 	}

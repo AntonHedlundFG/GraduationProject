@@ -16,6 +16,8 @@ class TACTICALROGUELITE_API ACCharacterSelectController : public AOnlinePlayerCo
 
 public:
 	UFUNCTION()
+	void Server_UpdateReady(int InWidgetIndex, bool InReadyStatus);
+	UFUNCTION()
 	void Server_UpdatePlayerIndex(int InWidgetIndex, int InPlayerIndex);
 	UFUNCTION()
 	void Server_UpdateCharacterIndex(int InWidgetIndex, int InCharacterIndex);

@@ -13,6 +13,7 @@ void ACCharacterSelectGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 	DOREPLIFETIME(ACCharacterSelectGameState, CharacterIndexes);
 	DOREPLIFETIME(ACCharacterSelectGameState, ControllingPlayerIndex);
 	DOREPLIFETIME(ACCharacterSelectGameState, LockedInfo);
+	DOREPLIFETIME(ACCharacterSelectGameState, ReadyInfo);
 }
 
 ACCharacterSelectGameState::ACCharacterSelectGameState()
@@ -24,6 +25,8 @@ ACCharacterSelectGameState::ACCharacterSelectGameState()
 	ControllingPlayerIndex = TArray{1,1,1,1};
 	CharacterIndexes = TArray{0,0,0,0};
 	LockedInfo = TArray{false, false, false, false};
+	ReadyInfo = TArray{false, false, false, false};
+
 }
 
 void ACCharacterSelectGameState::OnRep_UpdateControllingPlayers(TArray<int> inArray)
@@ -31,7 +34,6 @@ void ACCharacterSelectGameState::OnRep_UpdateControllingPlayers(TArray<int> inAr
 	if (inArray.Num() == ControllingPlayerIndex.Num())
 	{
 		ControllingPlayerIndex = inArray;
-		OnRep_UpdateUI();
 	}
 }
 
@@ -40,7 +42,6 @@ void ACCharacterSelectGameState::OnRep_UpdateCharacters(TArray<int> inArray)
 	if (inArray.Num() == ControllingPlayerIndex.Num())
 	{
 		CharacterIndexes = inArray;
-		OnRep_UpdateUI();
 	}
 }
 
@@ -49,6 +50,14 @@ void ACCharacterSelectGameState::OnRep_UpdateLocks(TArray<bool> inArray)
 	if (inArray.Num() == LockedInfo.Num())
 	{
 		LockedInfo = inArray;
+	}
+}
+
+void ACCharacterSelectGameState::OnRep_UpdateReadyStatus(TArray<bool> inArray)
+{
+	if (inArray.Num() == ReadyInfo.Num())
+	{
+		ReadyInfo = inArray;
 		OnRep_UpdateUI();
 	}
 }

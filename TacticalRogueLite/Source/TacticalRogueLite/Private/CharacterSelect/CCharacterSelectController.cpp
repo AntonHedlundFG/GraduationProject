@@ -10,6 +10,17 @@ void ACCharacterSelectController::BeginPlay()
 	StateRef = Cast<ACCharacterSelectGameState>(GetWorld()->GetGameState());
 }
 
+void ACCharacterSelectController::Server_UpdateReady(int InWidgetIndex, bool InReadyStatus)
+{
+	if (StateRef)
+	{
+		TArray<bool> ReadyArray = StateRef->ReadyInfo;
+		ReadyArray[InWidgetIndex] = InReadyStatus;
+
+		StateRef->OnRep_UpdateReadyStatus(ReadyArray);
+	}
+}
+
 void ACCharacterSelectController::Server_UpdatePlayerIndex(int InWidgetIndex, int InPlayerIndex)
 {
 	if (StateRef)

@@ -10,14 +10,15 @@
 
 void UCCharacterSelectorWidget::IncreaseIndex()
 {
-	if (!CanInteract())
+	if (!CanInteract() || GameState->ReadyInfo[WidgetIndex])
 		return;
 
 	if (!Controller)
 		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
 	
-	if (Controller)
+	if (Controller && GameState)
 	{
+		int CharacterIndex = GameState->CharacterIndexes[WidgetIndex];
 		CharacterIndex++;
 		if (CharacterIndex >= StartCharacters->StartCharacterList.Num())
 			CharacterIndex = 0;
@@ -28,19 +29,35 @@ void UCCharacterSelectorWidget::IncreaseIndex()
 
 void UCCharacterSelectorWidget::DecreaseIndex()
 {
+	if (!CanInteract() || GameState->ReadyInfo[WidgetIndex])
+		return;
+
+	if (!Controller)
+		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
+	
+	if (Controller && GameState)
+	{
+		int CharacterIndex = GameState->CharacterIndexes[WidgetIndex];
+		CharacterIndex--;
+		if (CharacterIndex < 0 )
+			CharacterIndex = StartCharacters->StartCharacterList.Num() - 1;
+
+		Controller->Server_UpdateCharacterIndex(WidgetIndex, CharacterIndex);
+	}
+}
+
+void UCCharacterSelectorWidget::ToggleReady()
+{
 	if (!CanInteract())
 		return;
 
 	if (!Controller)
 		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
 	
-	if (Controller)
+	if (Controller && GameState)
 	{
-		CharacterIndex--;
-		if (CharacterIndex < 0 )
-			CharacterIndex = StartCharacters->StartCharacterList.Num() - 1;
-
-		Controller->Server_UpdateCharacterIndex(WidgetIndex, CharacterIndex);
+		const bool bIsReady = GameState->ReadyInfo[WidgetIndex];
+		Controller->Server_UpdateReady(WidgetIndex, !bIsReady);
 	}
 }
 

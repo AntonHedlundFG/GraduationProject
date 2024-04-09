@@ -32,6 +32,8 @@ public:
 	TArray<int> CharacterIndexes;
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	TArray<bool> LockedInfo;
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_UpdateUI)
+	TArray<bool> ReadyInfo;
 	UPROPERTY(BlueprintReadOnly, Replicated)
 	int PlayerCount;
 
@@ -41,7 +43,9 @@ public:
 	void OnRep_UpdateCharacters(TArray<int> inArray);
 	UFUNCTION(BlueprintCallable)
 	void OnRep_UpdateLocks(TArray<bool> inArray);
-
+	UFUNCTION(BlueprintCallable)
+	void OnRep_UpdateReadyStatus(TArray<bool> inArray);
+	UFUNCTION()
 	void OnRep_UpdateUI() { OnUpdateUI.Broadcast(); }
 	
 };

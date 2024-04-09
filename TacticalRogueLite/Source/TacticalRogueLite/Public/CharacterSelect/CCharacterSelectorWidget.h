@@ -20,8 +20,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
 	int WidgetIndex;
 	
-	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
-	int CharacterIndex;
+	// UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
+	// int CharacterIndex;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Starting Characters")
 	TObjectPtr<UCStartCharacterData> StartCharacters;
@@ -31,6 +31,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DecreaseIndex();
+
+	UFUNCTION(BlueprintCallable)
+	void ToggleReady();
 
 	UFUNCTION(BlueprintPure)
 	bool CanInteract();

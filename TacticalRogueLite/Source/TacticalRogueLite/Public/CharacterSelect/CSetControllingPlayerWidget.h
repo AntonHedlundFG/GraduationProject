@@ -21,9 +21,6 @@ class TACTICALROGUELITE_API UCSetControllingPlayerWidget : public UUserWidget
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Controlling Player")
 	int WidgetIndex;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Controlling Player")
-	int PlayerIndex;
 	
 	UPROPERTY(BlueprintReadWrite, Category = "Controlling Player")
 	bool bIsLocked = false;
