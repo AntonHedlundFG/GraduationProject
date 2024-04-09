@@ -18,6 +18,7 @@ class UCCommand;
 class ACGridTile;
 class UCConsequence;
 class UCAction;
+class UCVictoryCondition;
 
 /**
  * 
@@ -29,6 +30,36 @@ class TACTICALROGUELITE_API ACGameMode : public AOnlineGameMode
 	
 public:
 	virtual void BeginPlay() override;
+
+protected:
+
+	//Resets game state turn order list, and adds all Units in world to the order list.
+	void InitializeTurnOrder(const TArray<ACUnit*>& Units);
+
+	//If fewer than 4 players, this function "downgrades" units, until they are
+	//considered controlled by an actual player.
+	//With 2 players, unit 3/4 become controlled by 1/2.
+	//With 3 players, unit 4 become controlled by 1
+	//With 1 player, all units become controlled by 1.
+	void ApplyPlayerCount(const TArray<ACUnit*>& Units);
+
+	UFUNCTION(Category = "Units")
+	void InitializeHeroUnits(ACGrid* grid);
+
+	// If playing in PIE mode, this is how many players we assume are playing.
+	UPROPERTY(EditAnywhere, Category = "Units")
+	int DefaultPlayerCount = 2;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units|Defaults")
+	TObjectPtr<UCDefaultUnitEquipment> DefaultEquipmentData;
+
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<ACGameState> GameStateRef;
+
+
+#pragma region Actions & Abilities
+
+public:
 
 	/* Whenever an action is triggered indirectly (not as part of an ability use), register it here.
 	* For example: A unit dies as a result of an attack.
@@ -59,15 +90,24 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool TryEndTurn(AController* inController);
 
-	//Resets game state turn order list, and adds all Units in world to the order list.
-	void InitializeTurnOrder(const TArray<ACUnit*>& Units);
+protected:
 
-	//If fewer than 4 players, this function "downgrades" units, until they are
-	//considered controlled by an actual player.
-	//With 2 players, unit 3/4 become controlled by 1/2.
-	//With 3 players, unit 4 become controlled by 1
-	//With 1 player, all units become controlled by 1.
-	void ApplyPlayerCount(const TArray<ACUnit*>& Units);
+	//Actions placed on stack have not been executed yet
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
+	TArray<UCAction*> ActionStack;
+
+	//This keeps track of which index in GameState->ActionList should be the starting point
+	//of undoing actions when TryUndo is successfully called.
+	UPROPERTY()
+	int NextUndoIndex = -1;
+
+#pragma endregion
+
+
+
+#pragma region Grid and Content
+
+public:
 
 	UFUNCTION(BlueprintCallable, Category = "Grid|Grid")
 	ACGrid* GetGameGrid() const { return GameStateRef->GameGrid; }
@@ -81,16 +121,15 @@ public:
 	TArray<ACUnit*> GetEnemyUnits() const { return EnemyUnits; }
 
 protected:
-	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<ACGameState> GameStateRef;
+
+	UFUNCTION(Category = "Grid|Spawner")
+	ACGridSpawner* CreateSpawner();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid|Spawner")
 	TSubclassOf<ACGridSpawner> SpawnerClass;
 	UPROPERTY(BlueprintReadOnly, Category = "Grid|Spawner")
 	TObjectPtr<ACGridSpawner> Spawner;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units|Defaults")
-	TObjectPtr<UCDefaultUnitEquipment> DefaultEquipmentData;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
 	TArray<ACUnit*> AllUnits;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
@@ -98,23 +137,27 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Units")
 	TArray<ACUnit*> EnemyUnits;
 
-	//Actions placed on stack have not been executed yet
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
-	TArray<UCAction*> ActionStack;
+#pragma endregion
 
-	//This keeps track of which index in GameState->ActionList should be the starting point
-	//of undoing actions when TryUndo is successfully called.
-	UPROPERTY()
-	int NextUndoIndex = -1;
 
-	UFUNCTION(Category = "Grid|Spawner")
-	ACGridSpawner* CreateSpawner();
 
-	UFUNCTION(Category = "Units")
-	void InitializeHeroUnits(ACGrid* grid);
+#pragma region Victory Conditions
 
-	// If playing in PIE mode, this is how many players we assume are playing.
-	UPROPERTY(EditAnywhere, Category = "Units")
-	int DefaultPlayerCount = 2;
+protected:
+
+	//This class represents the victory (and loss) conditions. 
+	//Right now we create it right here in the game mode, but it should 
+	//be assigned to the game mode by the procedural generation system later.
+	//At the end of each turn, we call the CheckVictoryCondition() and 
+	//CheckLossCondition() of this object.
+	UPROPERTY(BlueprintReadOnly, Category = "Victory Condition")
+	TObjectPtr<UCVictoryCondition> VictoryCondition;
+
+	//This is run in BeginPlay to assign relevant references to the victory condition.
+	//Once we have a procedural generation system, it should probably take over this task.
+	UFUNCTION(Category = "Victory Condition")
+	void InitializeVictoryCondition();
+
+#pragma endregion
 	
 };
