@@ -10,7 +10,12 @@
 
 void UCItemData::EquipOnUnit(ACUnit* inUnit)
 {
-	UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.AppendTags(GrantsTags); //TODO: Change to gameplaytagcountcontainer
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(inUnit);
+	if (Attributes)
+	{
+		Attributes->ActiveGameplayTags.AppendTags(GrantsTags);
+		Attributes->AddMaxCharges(ItemSlot, 1);
+	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
 
@@ -23,7 +28,12 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 
 void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 {
-	UCAttributeComponent::GetAttributes(inUnit)->ActiveGameplayTags.RemoveTags(GrantsTags);
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(inUnit);
+	if (Attributes)
+	{
+		Attributes->ActiveGameplayTags.RemoveTags(GrantsTags);
+		Attributes->RemoveMaxCharges(ItemSlot, 1);
+	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
 

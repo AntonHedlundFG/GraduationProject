@@ -20,8 +20,8 @@
 #include "Utility/CRandomComponent.h"
 #include "Settings/LevelEditorPlaySettings.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
-#include <CUndoAction.h>
-
+#include "CUndoAction.h"
+#include "Attributes/CAttributeComponent.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -129,13 +129,29 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		return false;
 	}
 
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(inUnit);
+	if (!Attributes)
+	{
+		LOG_WARNING("No Attribute Component on unit");
+		return false;
+	}
+	if (!Attributes->TrySpendCharge(inItemSlotTag))
+	{
+		LOG_WARNING("Not enough charges remaining on item");
+		return false;
+	}
+	
+
 	// Create instances of each action in the used ability, and add them to the stack in reverse order
 	for (int i = OutAbility.Actions.Num() - 1; i >= 0; i--)
 	{
 		UCAction* NewAction = NewObject<UCAction>(ActionComponent, OutAbility.Actions[i]);
 
 		if (i == 0)
+		{
 			NewAction->bIsUserIncited = true;
+			NewAction->UserIncitedItemSlot = inItemSlotTag;
+		}
 
 		NewAction->Initialize(ActionComponent);
 		UCTargetableAction* Targetable = Cast<UCTargetableAction>(NewAction);
@@ -199,7 +215,14 @@ bool ACGameMode::TryUndo(AController* inController)
 		UndoneActions.Add(CurrentAction);
 		NextUndoIndex--;
 		if (CurrentAction->bIsUserIncited)
+		{
+			UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
+			if (Attributes)
+			{
+				Attributes->TryUndoSpendCharge(CurrentAction->UserIncitedItemSlot);
+			}
 			break;
+		}
 	}
 
 	//Create the actual UndoAction for replication and visualisation purposes. 
@@ -261,6 +284,14 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	GameStateRef->TurnOrder.Add(CurrentUnit);
 	GameStateRef->OnRep_TurnOrder();
 
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
+	if (Attributes)
+	{
+		LOG_INFO("Resetting spent charges on %s", *GameStateRef->TurnOrder[0]->GetUnitName());
+		Attributes->ResetSpentCharges();
+	}
+
+	//Move TurnTimerSubsystem forward
 	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
 	if (Subsystem)
 	{

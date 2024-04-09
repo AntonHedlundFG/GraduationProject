@@ -54,9 +54,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
 	TObjectPtr<UCItemData> Armor;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItemData> Helmet;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Category = "Items|Equipment")
-	TObjectPtr<UCItemData> Ring;
+	TObjectPtr<UCItemData> Trinket;
 };
 
 

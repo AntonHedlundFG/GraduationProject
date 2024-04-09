@@ -69,6 +69,26 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 	return TArray<ACGridTile*>();
 }
 
+ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart,
+	TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags,
+	FGameplayTagContainer& BlockingTags)
+{
+	ACGridContent* ClosestContent = nullptr;
+	int32 ClosestDistance = INT32_MAX;
+	// We use a BFS to find the closest content
+	for (ACGridContent* Content : ContentArray)
+	{
+		TArray<ACGridTile*> Path = BFS_Pathfinding(inStart, Content->GetTile(), MovementTags, BlockingTags);
+		if (Path.Num() < ClosestDistance)
+		{
+			ClosestDistance = Path.Num();
+			ClosestContent = Content;
+		}
+	}
+	
+	return ClosestContent;
+}
+
 /*
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth)
 {
@@ -106,7 +126,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 {
 	//Default to regular straight movement.
 	if (MovementMethods.IsEmpty())
-		MovementMethods.AddTag(SharedGameplayTags::Movement_Straight);
+		MovementMethods.AddTag(TAG_Movement_Straight);
 
 	TArray<ACGridTile*> OpenSet;
 	OpenSet.Add(inStart);
@@ -120,7 +140,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
 			{
 				//Can't pass through occupied tiles unless flying.
-				if (!MovementMethods.HasTag(SharedGameplayTags::Movement_Flying) && Neighbour->GetContent() != nullptr)
+				if (!MovementMethods.HasTag(TAG_Movement_Flying) && Neighbour->GetContent() != nullptr)
 					continue;
 
 				if (!ClosedSet.Contains(Neighbour))
@@ -149,15 +169,15 @@ TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(FGameplayTagContaine
 {
 	TSet<ACGridTile*> Neighbours;
 	
-	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Straight))
+	if (MovementMethods.HasTag(TAG_Movement_Straight))
 	{
 		Neighbours.Append(inTile->GetNeighbours(false));
 	}
-	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Diagonal))
+	if (MovementMethods.HasTag(TAG_Movement_Diagonal))
 	{
 		Neighbours.Append(inTile->GetDiagonalLinks());
 	}
-	if (MovementMethods.HasTag(SharedGameplayTags::Movement_Knight))
+	if (MovementMethods.HasTag(TAG_Movement_Knight))
 	{
 		//We do a 3-step BFS to get all tiles at a distance of 3
 		TArray<ACGridTile*> OpenTiles;

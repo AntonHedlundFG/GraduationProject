@@ -34,15 +34,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCInventoryComponent> InventoryComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
-	FString UnitName;
+	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Units")
+	FString UnitName = FString();
 	
 public:
 	ACUnit();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
 	UFUNCTION(BlueprintCallable)
-	FString GetUnitName() { return UnitName.IsEmpty() ? GetName() : UnitName; }
+	FString GetUnitName() { return UnitName; }
 	UFUNCTION(BlueprintCallable)
 	void SetUnitName(FString inName) { UnitName = inName; }
 
@@ -74,5 +74,17 @@ public:
 	
 	// ----------------------------------------------------------------
 	
+#pragma region Item Charges
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	int32 GetRemainingCharges(FGameplayTag ItemSlot);
+
+#pragma endregion
+
 
 };

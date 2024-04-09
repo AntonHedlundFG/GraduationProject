@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GameplayTagContainer.h"
+#include "Utilities/CAttributeUtilities.h"
 #include "CAttributeComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewHealth, int, Delta);
@@ -47,7 +48,6 @@ public:
 
 
 protected:
-	//movement turns
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentHealth;
@@ -104,7 +104,53 @@ public:
 	//Passing in the difference we want applied. Return if the change actually succeeded.
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	bool ApplyHealthChange(AActor* InstigatorActor, int Delta);
+
+	UPROPERTY(Replicated)
+	FGameplayTagStackContainer GameplayStats;
+
+	void AddStatTagCount(FGameplayTag Tag, int32 Count) { return GameplayStats.AddStackCount(Tag, Count); }
 	
+	void RemoveStatTagCount(FGameplayTag Tag, int32 Count) { return GameplayStats.RemoveStackCount(Tag, Count); }
+	
+	int32 GetStatTagStackCount(FGameplayTag Tag) const { return GameplayStats.GetStackCount(Tag); }
+ 
+	bool HasStatTag(FGameplayTag Tag) const { return GameplayStats.HasTag(Tag); }
+
+#pragma region Item Charges
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount = 1) { 
+		return GetRemainingCharges(ItemSlot) >= Amount; 
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	int32 GetRemainingCharges(FGameplayTag ItemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool TrySpendCharge(FGameplayTag ItemSlot, int32 Amount = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool TryUndoSpendCharge(FGameplayTag ItemSlot, int32 Amount = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void AddMaxCharges(FGameplayTag ItemSlot, int32 Amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void RemoveMaxCharges(FGameplayTag ItemSlot, int32 Amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void ResetSpentCharges();
+
+protected:
+
+	UPROPERTY(Replicated, BlueprintReadOnly)
+	FGameplayTagStackContainer UsedItemCharges;
+	UPROPERTY(Replicated, BlueprintReadOnly)
+	FGameplayTagStackContainer MaxItemCharges;
+
+#pragma endregion
 	
 	
 };

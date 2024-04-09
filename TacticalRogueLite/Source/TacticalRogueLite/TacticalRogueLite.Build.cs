@@ -23,6 +23,7 @@ public class TacticalRogueLite : ModuleRules
 			"UMG",
 			"Slate",
 			"SlateCore",
+			"NetCore",
 			
 			
 		});

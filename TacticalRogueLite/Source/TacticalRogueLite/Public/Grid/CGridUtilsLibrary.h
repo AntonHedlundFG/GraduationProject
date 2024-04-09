@@ -7,6 +7,7 @@
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "CGridUtilsLibrary.generated.h"
 
+class ACGridContent;
 class UCTargetableAction;
 class ACGridTile;
 
@@ -24,9 +25,10 @@ public:
 	UFUNCTION(ScriptCallable)
 	static TArray<FVector2D> DiagonalDirections();
 	UFUNCTION(ScriptCallable)
-	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer
-	                                           & BlockingTags, bool bIncludeTargetInPath = true);
-	
+	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath = true);
+	UFUNCTION(ScriptCallable)
+	static ACGridContent* GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags, FGameplayTagContainer& BlockingTags);
+
 	/*
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth);

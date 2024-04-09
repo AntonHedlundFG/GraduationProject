@@ -21,8 +21,7 @@ void UCInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCInventoryComponent, Boots);
 	DOREPLIFETIME(UCInventoryComponent, Weapon);
 	DOREPLIFETIME(UCInventoryComponent, Armor);
-	DOREPLIFETIME(UCInventoryComponent, Helmet);
-	DOREPLIFETIME(UCInventoryComponent, Ring);
+	DOREPLIFETIME(UCInventoryComponent, Trinket);
 	DOREPLIFETIME(UCInventoryComponent, AllItems);
 }
 
@@ -36,10 +35,8 @@ TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
 		AllEquipped.Add(Weapon);
 	if (Armor != nullptr)
 		AllEquipped.Add(Armor);
-	if (Helmet != nullptr)
-		AllEquipped.Add(Helmet);
-	if (Ring != nullptr)
-		AllEquipped.Add(Ring);
+	if (Trinket != nullptr)
+		AllEquipped.Add(Trinket);
 	
 	return AllEquipped;
 }
@@ -47,16 +44,14 @@ TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
 UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 {
 	
-	if (inSlot == SharedGameplayTags::ItemSlot_Boots)
+	if (inSlot == TAG_ItemSlot_Boots)
 		return Boots;
-	if (inSlot == SharedGameplayTags::ItemSlot_Weapon)
+	if (inSlot == TAG_ItemSlot_Weapon)
 		return Weapon;
-	if (inSlot == SharedGameplayTags::ItemSlot_Armor)
+	if (inSlot == TAG_ItemSlot_Armor)
 		return Armor;
-	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
-		return Helmet;
-	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
-		return Ring;
+	if (inSlot == TAG_ItemSlot_Trinket)
+		return Trinket;
 
 	return nullptr;
 }
@@ -71,16 +66,14 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 
 	UnEquipItem(SlotTag);
 	
-	if (SlotTag == SharedGameplayTags::ItemSlot_Boots)
+	if (SlotTag == TAG_ItemSlot_Boots)
 		Boots = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Weapon)
+	if (SlotTag == TAG_ItemSlot_Weapon)
 		Weapon = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Armor)
+	if (SlotTag == TAG_ItemSlot_Armor)
 		Armor = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Helmet)
-		Helmet = inItem;
-	if (SlotTag == SharedGameplayTags::ItemSlot_Ring)
-		Ring = inItem;
+	if (SlotTag == TAG_ItemSlot_Trinket)
+		Trinket = inItem;
 
 	AddItem(inItem);
 	
@@ -91,34 +84,28 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 
 void UCInventoryComponent::UnEquipItem(FGameplayTag inSlot)
 {
-	if (inSlot == SharedGameplayTags::ItemSlot_Boots)
+	if (inSlot == TAG_ItemSlot_Boots)
 	{
 		RemoveItem(Boots);
 		Boots = nullptr;
 		return;
 	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Weapon)
+	if (inSlot == TAG_ItemSlot_Weapon)
 	{
 		RemoveItem(Weapon);
 		Weapon = nullptr;
 		return;
 	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Armor)
+	if (inSlot == TAG_ItemSlot_Armor)
 	{
 		RemoveItem(Armor);
 		Armor = nullptr;
 		return;
 	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Helmet)
+	if (inSlot == TAG_ItemSlot_Trinket)
 	{
-		RemoveItem(Helmet);
-		Helmet = nullptr;
-		return;
-	}
-	if (inSlot == SharedGameplayTags::ItemSlot_Ring)
-	{
-		RemoveItem(Ring);
-		Ring = nullptr;
+		RemoveItem(Trinket);
+		Trinket = nullptr;
 		return;
 	}
 }
@@ -146,11 +133,10 @@ void UCInventoryComponent::RemoveItem(UCItemData* inItem)
 bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 {
 	if (
-		inTag == SharedGameplayTags::ItemSlot_Boots ||
-		inTag == SharedGameplayTags::ItemSlot_Weapon ||
-		inTag == SharedGameplayTags::ItemSlot_Armor ||
-		inTag == SharedGameplayTags::ItemSlot_Helmet ||
-		inTag == SharedGameplayTags::ItemSlot_Ring
+		inTag == TAG_ItemSlot_Boots ||
+		inTag == TAG_ItemSlot_Weapon ||
+		inTag == TAG_ItemSlot_Armor ||
+		inTag == TAG_ItemSlot_Trinket
 		)
 	{
 		return true;

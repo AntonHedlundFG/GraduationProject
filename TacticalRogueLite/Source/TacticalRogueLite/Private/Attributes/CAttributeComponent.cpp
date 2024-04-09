@@ -3,6 +3,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Actions/CDeathAction.h"
 #include "CGameMode.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv
 
@@ -57,7 +58,6 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 
 	return Delta != 0;
 }
-
 
 UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 {
@@ -131,9 +131,54 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCAttributeComponent, CurrentHealth);
 	DOREPLIFETIME(UCAttributeComponent, BaseHealth);
 	DOREPLIFETIME(UCAttributeComponent, ActiveGameplayTags);
+	DOREPLIFETIME(UCAttributeComponent, MaxItemCharges);
+	DOREPLIFETIME(UCAttributeComponent, UsedItemCharges);
 
 	DOREPLIFETIME(UCAttributeComponent, Rage);
 	DOREPLIFETIME(UCAttributeComponent, RageMax);
 }
 
+
+
+#pragma region Item Charges
+
+int32 UCAttributeComponent::GetRemainingCharges(FGameplayTag ItemSlot)
+{
+	return MaxItemCharges.GetStackCount(ItemSlot) - UsedItemCharges.GetStackCount(ItemSlot);
+}
+
+bool UCAttributeComponent::TrySpendCharge(FGameplayTag ItemSlot, int32 Amount /* = 1 */)
+{
+	if (GetRemainingCharges(ItemSlot) < Amount)
+		return false;
+	
+	UsedItemCharges.AddStackCount(ItemSlot, Amount);
+	return true;
+}
+
+bool UCAttributeComponent::TryUndoSpendCharge(FGameplayTag ItemSlot, int32 Amount /* = 1 */)
+{
+	if (UsedItemCharges.GetStackCount(ItemSlot) < Amount)
+		return false;
+
+	UsedItemCharges.RemoveStackCount(ItemSlot, Amount);
+	return true;
+}
+
+void UCAttributeComponent::AddMaxCharges(FGameplayTag ItemSlot, int32 Amount)
+{
+	MaxItemCharges.AddStackCount(ItemSlot, Amount);
+}
+
+void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, int32 Amount)
+{
+	MaxItemCharges.RemoveStackCount(ItemSlot, Amount);
+}
+
+void UCAttributeComponent::ResetSpentCharges()
+{
+	UsedItemCharges.ClearAllStacks();
+}
+
+#pragma endregion
 

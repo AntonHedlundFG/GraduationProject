@@ -104,6 +104,10 @@ public:
 	UPROPERTY()
 	bool bIsUserIncited = false;
 
+	//Used to keep track of item charges
+	UPROPERTY()
+	FGameplayTag UserIncitedItemSlot;
+
 	UPROPERTY(ReplicatedUsing=OnRep_bIsUndone)
 	bool bIsUndone = false;
 

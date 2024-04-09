@@ -12,8 +12,7 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACUnit, ControllingPlayerIndex);
-
-
+	DOREPLIFETIME(ACUnit, UnitName);
 }
 
 ACUnit::ACUnit()
@@ -68,7 +67,7 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 {
 	// TODO: There is probably a better way to do this
 	TArray<FAbility> Abilities;
-	const FGameplayTagContainer AbilitySlotsContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(SharedGameplayTags::ItemSlot);
+	const FGameplayTagContainer AbilitySlotsContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_ItemSlot);
 	for (int i = 0; i < AbilitySlotsContainer.Num(); ++i)
 	{
 		FGameplayTag Slot = AbilitySlotsContainer.GetByIndex(i);
@@ -79,6 +78,16 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 		}
 	}
 	return Abilities;
+}
+
+bool ACUnit::HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount)
+{
+	return AttributeComp->HasRemainingCharges(ItemSlot, Amount);
+}
+
+int32 ACUnit::GetRemainingCharges(FGameplayTag ItemSlot)
+{
+	return AttributeComp->GetRemainingCharges(ItemSlot);
 }
 
 
