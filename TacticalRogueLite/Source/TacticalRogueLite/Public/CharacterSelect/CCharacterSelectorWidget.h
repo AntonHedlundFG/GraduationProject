@@ -2,10 +2,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CStartCharacter.h"
 #include "Blueprint/UserWidget.h"
 #include "CCharacterSelectorWidget.generated.h"
 
+class ACCharacterSelectGameState;
+class ACCharacterSelectGameController;
 class UCStartCharacterData;
 /**
  * 
@@ -17,6 +18,9 @@ class TACTICALROGUELITE_API UCCharacterSelectorWidget : public UUserWidget
 
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
+	int WidgetIndex;
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
 	int CharacterIndex;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Starting Characters")
@@ -27,6 +31,14 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DecreaseIndex();
-	
+
+	UFUNCTION(BlueprintPure)
+	bool CanInteract();
+
+protected:
+	UPROPERTY()
+	ACCharacterSelectGameState* GameState;
+	UPROPERTY()
+	ACCharacterSelectController* Controller;
 	
 };
