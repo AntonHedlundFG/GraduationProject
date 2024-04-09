@@ -7,7 +7,10 @@ class USCombatLogWidget: UCResizableWindow
     UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta=(MultiLine=true))
     URichTextBlock TextBox;
     FString PrevMessage = "";
-    
+    UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+    UCGameplayLogDropDownMenu FilterMenu;
+    int LogFilter;
+
     UFUNCTION(BlueprintCallable)
     void ClearLog()
     {
@@ -16,7 +19,8 @@ class USCombatLogWidget: UCResizableWindow
     UFUNCTION()
     private void RecieveMessage(ELogCategory Category,const FString& Message)
     {
-        if(Category == ELogCategory::LC_Gameplay)
+        int Flag = UCGameplayLogDropDownMenu::GetFilterFlag(Category);
+        if(LogFilter & Flag == Flag)
         {
             AddMessage(Message);
         }
@@ -24,8 +28,11 @@ class USCombatLogWidget: UCResizableWindow
     UFUNCTION(BlueprintCallable)
     void Initialize()
     {
-        UCLogManager::Get().OnNewLogEntry.AddUFunction(this,n"RecieveMessage"); 
-        AddMessage(UCCombatLogger::Format(ECombatLogCategory::COMBAT,"Combat Logger Initialized."));
+        UCLogManager::Get().OnNewLogEntry.AddUFunction(this,n"RecieveMessage");
+        FilterMenu.OnFilterUpdated.AddUFunction(this,n"UpdateFilter");
+        //Since the log is initialized before the filter, We have to set the filter here, before it can be updated;
+        LogFilter |= UCGameplayLogDropDownMenu::GetFilterFlag(ELogCategory::LC_Gameplay);
+       // AddMessage(UCCombatLogger::Format(ECombatLogCategory::COMBAT,"Combat Logger Initialized."));
     }
 
     UFUNCTION(BlueprintCallable)
@@ -36,6 +43,11 @@ class USCombatLogWidget: UCResizableWindow
         FText newText = FText::FromString(newMsg);
         TextBox.SetText(newText);
         ScrollBox.ScrollToEnd();
+    }
+    UFUNCTION()
+    void UpdateFilter(int Filter)
+    {
+        LogFilter = Filter;
     }
 
 }
