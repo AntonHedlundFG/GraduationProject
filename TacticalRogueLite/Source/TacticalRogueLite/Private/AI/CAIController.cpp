@@ -23,7 +23,8 @@ void ACAIController::OnTurnChanged()
 	}
 	LOG_INFO("AI Controller %s is taking turn", *GetName());
 
-	auto actions = DecideBestActions();
+	UpdateContext();
+	const auto actions = DecideBestActions();
 	ExecuteActions(actions);
 
 	// Turn End through ExecuteActions
@@ -48,7 +49,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	float Score = 1;
 	// Score the action based on the item's effects
 	// Take considerations into effect
-	for (const UCConsideration* Consideration : Ability.Considerations)
+	for (UCConsideration* Consideration : Ability.Considerations)
 	{
 		const float ConsiderationScore = Consideration->Evaluate(Ability, StartTile, TargetTile, Context);
 		Score *= ConsiderationScore;
@@ -76,7 +77,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	UKismetSystemLibrary::DrawDebugString(
 		GetWorld(),
 		TargetTile->GetActorLocation() + FVector::UpVector * 100,
-		FString::Printf(TEXT("Score: %.1f"), Score),
+		FString::Printf(TEXT("%.1f"), Score),
 		nullptr,
 		FLinearColor::Black,
 		4.5f);
@@ -105,15 +106,17 @@ FActionPath ACAIController::DecideBestActions()
 	return BestPaths[0];
 }
 
-void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath)
+void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath)
 {
 	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
 
+	// Evaluate all abilities from the current tile
 	for (FAbility Ability : Abilities)
 	{
+		// Skip abilities that have already been used in this path
 		if (CurrentPath.HasUsedAbility(Ability))
 		{
-			continue; // Skip abilities that have already been used in this path
+			continue; 
 		}
 		
 		TArray<ACGridTile*> ReachableTiles = Ability.GetValidTargetTiles(CurrentTile);
@@ -123,18 +126,16 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray
 			const float Score = ScoreAction(Ability, CurrentTile, Tile);
 			FActionPath NewPath = CurrentPath;
 			NewPath.AddToPath(Ability, Tile, Score);
-
+			
 			// If it's a movement ability, recursively evaluate the next tile
 			if(Ability.ActionTags.HasAny(MoveAbilitiesTagContainer))
 			{
 				EvalAbilitiesFromTile(Tile, Abilities, BestPaths, NewPath);
 			}
-			else
-			{
-				// If it's not a movement ability, path ends here
-				// Add the path to the best paths
-				TryAddBestPath(NewPath, BestPaths);
-			}
+			
+			// If it's not a movement ability, path ends here
+			// Add the path to the best paths
+			TryAddBestPath(NewPath, BestPaths);
 		}
 	}
 }
@@ -146,6 +147,8 @@ void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& B
 	{
 		if(BestPaths.Num() >= 5)
 		{
+			FActionPath ActionPath = BestPaths.Top();
+			LOG_INFO("Removing action with score %f", ActionPath.GetScore());
 			BestPaths.Pop();
 		}
 		BestPaths.Add(NewPath);
@@ -164,17 +167,20 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 	{
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDel;
-		float TimerDelay = FMath::RandRange(0.5f, 1.5f);
+		const float TimerDelay = FMath::RandRange(.1f, .5f);
 		TArray<TPair<FAbility, ACGridTile*>> Path = BestActions.GetPath();
 		if(Path.Num() > 0)
 		{
 			const TPair<FAbility, ACGridTile*> Ability = Path.Top();
 			BestActions.GetPath().Pop();
-			if(!GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
+			if(GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
 			{
-				LOG_ERROR("Ability use failed for %s", *GetName());
+				LOG_ERROR("AI Controller used ability %s", *Ability.Key.InventorySlotTag.ToString());
 			}
-
+			else
+			{
+				LOG_ERROR("Ability use of %s failed for AI", *Ability.Key.InventorySlotTag.ToString());
+			}
 			TimerDel.BindLambda([this, BestActions]()
 			{
 				ExecuteActions(BestActions);
@@ -189,4 +195,11 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		}
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
 	}	
+}
+
+void ACAIController::UpdateContext()
+{
+	Context.CurrentUnit = Unit;
+	Context.PlayerUnits = GameMode->GetHeroUnits();
+	Context.AIUnits = GameMode->GetEnemyUnits();
 }

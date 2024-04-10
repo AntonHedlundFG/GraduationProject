@@ -36,7 +36,7 @@ public:
 	float GetScore() const
 	{
 		if(Path.Num() == 0)	{ return 0; } // No score if no path
-		return TotalScore / Path.Num(); // TODO: This is a very simple scoring system, we should look into improving this
+		return TotalScore; /// Path.Num(); // TODO: This is a very simple scoring system, we should look into improving this
 	}
 };
 #pragma endregion
@@ -52,9 +52,10 @@ public:
 
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
-	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, const TArray<FAbility>& Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath);
+	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath);
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
 	void ExecuteActions(FActionPath BestActions);
+	void UpdateContext();
 
 private:
 	UPROPERTY()
