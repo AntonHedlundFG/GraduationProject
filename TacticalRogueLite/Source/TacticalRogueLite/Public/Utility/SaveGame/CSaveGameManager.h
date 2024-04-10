@@ -36,7 +36,7 @@ public:
 
 	// Get Save Game Instance
 	UFUNCTION(BlueprintCallable)
-	bool TryGetSaveGame(UCSaveGame* inSaveGame);
+	bool TryGetSaveGame(UCSaveGame*& inSaveGame);
 
 
 private:

@@ -41,6 +41,8 @@ protected:
 	TObjectPtr<UCStartCharacterData> StartCharacters;
 	UPROPERTY()
 	TArray<FCNamesAndItemsList> SpawnUnitData;
+	UPROPERTY()
+	TArray<int> ControllingPlayers;
 
 	UFUNCTION()
 	void CreateSaveGameAndStart();

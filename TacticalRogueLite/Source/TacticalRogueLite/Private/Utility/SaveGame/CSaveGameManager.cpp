@@ -42,7 +42,7 @@ void UCSaveGameManager::LoadGame()
 }
 
 
-bool UCSaveGameManager::TryGetSaveGame(UCSaveGame* inSaveGame)
+bool UCSaveGameManager::TryGetSaveGame(UCSaveGame*& inSaveGame)
 {
 	if(SaveGameInstance == nullptr)
 	{

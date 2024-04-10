@@ -5,12 +5,14 @@
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
+#include "Items/CNamesAndItemsList.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
 ACGridSpawner::ACGridSpawner()
 {
-	
+	NamesAndItemList = TArray<FCNamesAndItemsList>();
+	ControllingPlayers = TArray<int>();
 }
 
 void ACGridSpawner::BeginPlay()
@@ -92,7 +94,17 @@ void ACGridSpawner::OnSave()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		SaveGame->NamesAndItems = NamesAndItemList;
+		SaveGame->NamesAndItems.Empty();
+		for (auto Data : NamesAndItemList)
+		{
+			SaveGame->NamesAndItems.Add(Data);
+		}
+		
+		SaveGame->ControllingPlayers.Empty();
+		for (auto Data : ControllingPlayers)
+		{
+			SaveGame->ControllingPlayers.Add(Data);
+		}
 	}
 	else
 	{
@@ -105,7 +117,17 @@ void ACGridSpawner::OnLoad()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		NamesAndItemList = SaveGame->NamesAndItems;
+		NamesAndItemList.Empty();
+		for (auto Data : SaveGame->NamesAndItems)
+		{
+			NamesAndItemList.Add(Data);
+		}
+		
+		ControllingPlayers.Empty();
+		for (auto Data : SaveGame->ControllingPlayers)
+		{
+			ControllingPlayers.Add(Data);
+		}
 	}
 	else
 	{

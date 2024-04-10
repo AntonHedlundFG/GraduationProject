@@ -35,23 +35,35 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 		LOG_WARNING("No Start Character Data in Game Mode");
 		return;
 	}
+	if (!StateRef)
+	{
+		LOG_WARNING("No Game State Reference in Game Mode");
+		return;
+	}
 	
+	TArray<int> Characters = StateRef->CharacterIndexes;
+	ControllingPlayers = StateRef->ControllingPlayerIndex;
+
 	SpawnUnitData.Empty();
 	int CharacterNumber = 1;
-	TArray<int> Characters = StateRef->CharacterIndexes;
+	
 	for (auto Index : Characters)
 	{
 		FCNamesAndItemsList Data = StartCharacters->StartCharacterList[Index];
-		Data.Name = "Hero_" + CharacterNumber;
+		FString HeroName = "Hero_";
+		HeroName += FString::FromInt(CharacterNumber);
+		Data.Name = HeroName;
 		CharacterNumber++;
 		SpawnUnitData.Add(Data);
 	}
 
 	/*
+	*/
 	UCSaveGameManager* SaveManager = UCSaveGameManager::Get();
 	RegisterToSaveManager();
 	SaveManager->SaveGame();
-	*/
+	UnregisterFromSaveManager();
+	
 	LOG_INFO("Ready To Start");
 }
 
@@ -60,7 +72,18 @@ void ACCharacterSelectGameMode::OnSave()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		SaveGame->NamesAndItems = SpawnUnitData;
+		
+		SaveGame->NamesAndItems.Empty();
+		for (auto Data : SpawnUnitData)
+		{
+			SaveGame->NamesAndItems.Add(Data);
+		}
+		
+		SaveGame->ControllingPlayers.Empty();
+		for (auto Data : ControllingPlayers)
+		{
+			SaveGame->ControllingPlayers.Add(Data);
+		}
 	}
 	else
 	{
