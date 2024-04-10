@@ -11,6 +11,7 @@ const FPrimaryAssetType	UCAssetManager::ArmorItemType = TEXT("Armor");
 const FPrimaryAssetType	UCAssetManager::TrinketItemType = TEXT("Trinket");
 const FPrimaryAssetType	UCAssetManager::CharmItemType = TEXT("Charm");
 const FPrimaryAssetType	UCAssetManager::AchievementItemType = TEXT("Achievement");
+const FPrimaryAssetType	UCAssetManager::ItemType = TEXT("Item");
 
 UCAssetManager& UCAssetManager::Get()
 {
