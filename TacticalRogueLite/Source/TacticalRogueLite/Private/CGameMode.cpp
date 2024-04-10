@@ -18,7 +18,7 @@
 #include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
-#include "Settings/LevelEditorPlaySettings.h"
+//#include "Settings/LevelEditorPlaySettings.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
