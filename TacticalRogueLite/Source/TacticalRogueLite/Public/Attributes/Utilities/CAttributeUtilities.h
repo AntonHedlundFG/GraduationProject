@@ -7,6 +7,8 @@
 #include "Net/Serialization/FastArraySerializer.h"
 #include "CAttributeUtilities.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStackChanged);
+
 /**
  *	===================== Fast TArray Replication ===================== 
  *
@@ -93,6 +95,10 @@ public:
     {
         return TagCountMap.FindRef(Tag); 
     }
+
+    UPROPERTY()
+    FOnStackChanged OnStackChanged;
+
      
  
 private:

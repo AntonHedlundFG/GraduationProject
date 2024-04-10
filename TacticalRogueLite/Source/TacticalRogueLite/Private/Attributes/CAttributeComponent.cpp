@@ -59,6 +59,12 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 	return Delta != 0;
 }
 
+void UCAttributeComponent::BeginPlay()
+{
+	UsedItemCharges.OnStackChanged.AddDynamic(this, &UCAttributeComponent::BroadcastOnItemChargesChanged);
+	MaxItemCharges.OnStackChanged.AddDynamic(this, &UCAttributeComponent::BroadcastOnItemChargesChanged);
+}
+
 UCAttributeComponent* UCAttributeComponent::GetAttributes(AActor* FromActor)
 {
 	if (FromActor)
@@ -178,6 +184,11 @@ void UCAttributeComponent::RemoveMaxCharges(FGameplayTag ItemSlot, int32 Amount)
 void UCAttributeComponent::ResetSpentCharges()
 {
 	UsedItemCharges.ClearAllStacks();
+}
+
+void UCAttributeComponent::BroadcastOnItemChargesChanged()
+{
+	OnItemChargesChanged.Broadcast();
 }
 
 #pragma endregion

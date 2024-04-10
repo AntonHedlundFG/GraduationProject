@@ -17,6 +17,7 @@ void FGameplayTagStackContainer::ClearAllStacks()
     Stacks.Empty();
     TagCountMap.Empty();
     MarkArrayDirty();
+    OnStackChanged.Broadcast();
 }
 
 void FGameplayTagStackContainer::AddStackCount(FGameplayTag Tag, int32 Count)
@@ -31,6 +32,7 @@ void FGameplayTagStackContainer::AddStackCount(FGameplayTag Tag, int32 Count)
                 Stack.Count = NewCount;
                 TagCountMap[Tag] = NewCount;
                 MarkItemDirty(Stack);
+                OnStackChanged.Broadcast();
                 return;
             }
         }
@@ -38,6 +40,7 @@ void FGameplayTagStackContainer::AddStackCount(FGameplayTag Tag, int32 Count)
         FGameplayTagStack& NewStack = Stacks.Emplace_GetRef(Tag, Count);
         MarkItemDirty(NewStack);
         TagCountMap.Add(Tag, Count);
+        OnStackChanged.Broadcast();
     }
 }
  
@@ -63,6 +66,7 @@ void FGameplayTagStackContainer::RemoveStackCount(FGameplayTag Tag, int32 Count)
                     TagCountMap[Tag] = NewCount;
                     MarkItemDirty(Stack);
                 }
+                OnStackChanged.Broadcast();
                 return;
             }
         }
@@ -76,6 +80,8 @@ void FGameplayTagStackContainer::PreReplicatedRemove(const TArrayView<int32> Rem
         const FGameplayTag Tag = Stacks[Index].Tag;
         TagCountMap.Remove(Tag);
     }
+    if (RemovedIndices.Num() > 0)
+        OnStackChanged.Broadcast();
 }
  
 void FGameplayTagStackContainer::PostReplicatedAdd(const TArrayView<int32> AddedIndices, int32 FinalSize)
@@ -85,6 +91,8 @@ void FGameplayTagStackContainer::PostReplicatedAdd(const TArrayView<int32> Added
         const FGameplayTagStack& Stack = Stacks[Index];
         TagCountMap.Add(Stack.Tag, Stack.Count);
     }
+    if (AddedIndices.Num() > 0)
+        OnStackChanged.Broadcast();
 }
  
 void FGameplayTagStackContainer::PostReplicatedChange(const TArrayView<int32> ChangedIndices, int32 FinalSize)
@@ -94,4 +102,6 @@ void FGameplayTagStackContainer::PostReplicatedChange(const TArrayView<int32> Ch
         const FGameplayTagStack& Stack = Stacks[Index];
         TagCountMap[Stack.Tag] = Stack.Count;
     }
+    if (ChangedIndices.Num() > 0)
+        OnStackChanged.Broadcast();
 }

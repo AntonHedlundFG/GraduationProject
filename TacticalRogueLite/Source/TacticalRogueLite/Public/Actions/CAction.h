@@ -93,7 +93,11 @@ protected:
 
 	// Action can only start if OwningActor has none of these Tags applied.
 	UPROPERTY(EditDefaultsOnly, Category = "Tags")
-	FGameplayTagContainer ActionBlockingTags; 
+	FGameplayTagContainer ActionBlockingTags;
+
+	//Action nickname to start/stop without a reference to the object.
+	UPROPERTY(EditDefaultsOnly, Category = "Action")
+	FGameplayTag ActivationTag;
 
 	
 public:
