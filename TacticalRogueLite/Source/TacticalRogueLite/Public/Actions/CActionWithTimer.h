@@ -7,9 +7,7 @@
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "CActionWithTimer.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class TACTICALROGUELITE_API UCActionWithTimer : public UCAction
 {
