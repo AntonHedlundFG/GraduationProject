@@ -245,7 +245,7 @@ void ACTurnOrderUIManager::UpdateTurnList()
 			WidgetsToAdd.Add(Widget);
 			AddPositions.Add(NewPositions[i]);
 		}
-		else if(LastTurnOrder[i] != Unit)
+		else if(i < LastTurnOrder.Num() && LastTurnOrder[i] != Unit)
 		{
 			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
 			if(Widget != nullptr)

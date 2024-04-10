@@ -14,7 +14,7 @@ void UCVictoryCondition::Initialize(ACGameMode* inGameMode, ACGameState* inGameS
 
 bool UCVictoryCondition::CheckVictoryCondition()
 {
-	if (!GameStateRef)
+	if (!GameModeRef)
 		return false;
 
 	for (auto* Unit : GameModeRef->GetEnemyUnits())
@@ -28,7 +28,7 @@ bool UCVictoryCondition::CheckVictoryCondition()
 
 bool UCVictoryCondition::CheckLossCondition()
 {
-	if (!GameStateRef)
+	if (!GameModeRef)
 		return false;
 
 	for (auto* Unit : GameModeRef->GetHeroUnits())
