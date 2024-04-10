@@ -128,7 +128,7 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 			NewPath.AddToPath(Ability, Tile, Score);
 			
 			// If it's a movement ability, recursively evaluate the next tile
-			if(Ability.ActionTags.HasAny(MoveAbilitiesTagContainer))
+			if(Ability.AbilityTags.HasAny(MoveAbilitiesTagContainer))
 			{
 				EvalAbilitiesFromTile(Tile, Abilities, BestPaths, NewPath);
 			}
