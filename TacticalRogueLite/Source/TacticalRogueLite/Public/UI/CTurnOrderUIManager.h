@@ -5,30 +5,22 @@
 #include "CoreMinimal.h"
 #include "CGameState.h"
 #include "CTurnOrderPortraitWidget.h"
+#include "Utility/CoroutineSystem/CCORExecutor.h"
 #include "CTurnOrderUIManager.generated.h"
 
 /**
  * 
  */
 #pragma region AnimationTasks
+
 USTRUCT()
-struct FTurnOrderAnimationTask
+struct FTurnOrderAnimationTask : public FExecutable
 {
 	GENERATED_BODY()
-	int state = -1;
-	float timer = 0;
 	float WaitTimeAfterCompletion = 0;
 	float WaitTimeBetweenAnimations = 0;
 	TArray<UCTurnOrderPortraitWidget*> Portraits;
-	bool bHasStarted = false;
-	virtual bool Execute(float DeltaTime){return true;}
-	virtual void Start(){timer = 0;}
-	virtual ~FTurnOrderAnimationTask();
 };
-inline bool IsValid(const FTurnOrderAnimationTask &obj)
-{
-	return obj.state != -1;
-}
 struct FTurnOrderAnimationTask_Remove : FTurnOrderAnimationTask
 {
 public:
@@ -73,14 +65,16 @@ class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 	ACGameState* GameState;
 	GENERATED_BODY()
 	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaSeconds) override;
+	UPROPERTY()
+	UCCORExecutor* Executor;
+	//virtual void Tick(float DeltaSeconds) override;
 	UFUNCTION()
 	void UpdateTurnList();
 	UPROPERTY()
 	TArray<ACUnit*> LastTurnOrder;
 	UPROPERTY()
 	TMap<ACUnit*,UCTurnOrderPortraitWidget*> ActivePortraits;
-	TArray<FTurnOrderAnimationTask*> Tasks;
+	//TArray<FTurnOrderAnimationTask*> Tasks;
 	//PoolingSystem will be refactored later on
 	UCTurnOrderPortraitWidget* CreatePortraitWidget();
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();

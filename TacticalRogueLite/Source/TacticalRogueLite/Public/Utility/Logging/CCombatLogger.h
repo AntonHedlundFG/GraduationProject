@@ -11,6 +11,10 @@ enum class ECombatLogCategory : uint8
 {
 	DEFAULT			UMETA(DisplayName = "Default"),
 	COMBAT			UMETA(DisplayName = "Combat"),
+	RED				UMETA(DisplayName = "Red"),
+	ORANGE			UMETA(DisplayName = "Orange"),
+	CYAN			UMETA(DisplayName = "Cyan"),
+	GREEN			UMETA(DisplayName = "Green")
 };
 
 inline FString ToCombatLogStyleBegin(ECombatLogCategory LogCategory)
@@ -18,6 +22,10 @@ inline FString ToCombatLogStyleBegin(ECombatLogCategory LogCategory)
 	switch (LogCategory)
 	{
 	case ECombatLogCategory::COMBAT: return TEXT("<Combat>");
+	case ECombatLogCategory::RED: return TEXT("<Red>");
+	case ECombatLogCategory::ORANGE: return TEXT("<Orange>");
+	case ECombatLogCategory::CYAN: return TEXT("<Cyan>");
+	case ECombatLogCategory::GREEN: return TEXT("<Green>");
 	default: return TEXT("");
 	}
 }

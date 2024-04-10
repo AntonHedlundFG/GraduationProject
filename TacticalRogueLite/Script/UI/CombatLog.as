@@ -22,7 +22,9 @@ class USCombatLogWidget: UCResizableWindow
         int Flag = UCGameplayLogDropDownMenu::GetFilterFlag(Category);
         if(LogFilter & Flag == Flag)
         {
-            AddMessage(Message);
+            //UCLogManager::BlueprintLog(ELogCategory::LC_Info,"Category is: " + Category);
+            FString FormatedMessage = FormatMessage(Message,Category);
+            AddMessage(FormatedMessage);
         }
     }
     UFUNCTION(BlueprintCallable)
@@ -32,6 +34,7 @@ class USCombatLogWidget: UCResizableWindow
         FilterMenu.OnFilterUpdated.AddUFunction(this,n"UpdateFilter");
         //Since the log is initialized before the filter, We have to set the filter here, before it can be updated;
         LogFilter |= UCGameplayLogDropDownMenu::GetFilterFlag(ELogCategory::LC_Gameplay);
+        ClearLog();
        // AddMessage(UCCombatLogger::Format(ECombatLogCategory::COMBAT,"Combat Logger Initialized."));
     }
 
@@ -49,5 +52,18 @@ class USCombatLogWidget: UCResizableWindow
     {
         LogFilter = Filter;
     }
-
+    FString FormatMessage(const FString& Message,ELogCategory Category)
+    {
+        if(Category == ELogCategory::LC_Gameplay){return Message;}
+        ECombatLogCategory CLogCategory;
+        switch(Category)
+        {
+            case ELogCategory::LC_Error: CLogCategory = ECombatLogCategory::RED; break;
+            case ELogCategory::LC_Warning: CLogCategory = ECombatLogCategory::ORANGE; break;
+            case ELogCategory::LC_Network: CLogCategory = ECombatLogCategory::CYAN; break;
+            case ELogCategory::LC_Info: CLogCategory = ECombatLogCategory::GREEN; break;
+            default: CLogCategory = ECombatLogCategory::DEFAULT; break;
+        }
+        return UCCombatLogger::Format(CLogCategory,Message);
+    }
 }
