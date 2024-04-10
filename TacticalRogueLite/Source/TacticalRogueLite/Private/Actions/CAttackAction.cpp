@@ -26,7 +26,7 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 		ELogCategory::LC_Gameplay,
 		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
 			.Append(" attacked ")
-			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(Attacker ? Defender->GetUnitName() : FString("Unknown Unit"))
 			.Append(" for ")
 			.Append(FString::FromInt(DamageAmount))
 			.Append(" damage.")
