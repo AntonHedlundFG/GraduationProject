@@ -143,6 +143,11 @@ protected:
 
 #pragma region Victory Conditions
 
+public:
+
+	UFUNCTION()
+	UCVictoryCondition* GetVictoryCondition() { return VictoryCondition; }
+
 protected:
 
 	//This class represents the victory (and loss) conditions. 

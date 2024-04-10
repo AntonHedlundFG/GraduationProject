@@ -33,8 +33,13 @@ public:
 	// Returns true if the players have lost.
 	virtual bool CheckLossCondition();
 
+	bool bWonByCheating = false;
+	bool bLoseByCheating = false;
+
 protected:
 
 	TSoftObjectPtr<ACGameMode> GameModeRef;
 	TSoftObjectPtr<ACGameState> GameStateRef;
+
+	
 };

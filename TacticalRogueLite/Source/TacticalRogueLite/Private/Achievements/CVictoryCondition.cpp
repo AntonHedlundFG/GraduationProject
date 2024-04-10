@@ -17,6 +17,8 @@ bool UCVictoryCondition::CheckVictoryCondition()
 	if (!GameModeRef)
 		return false;
 
+	if (bWonByCheating) return true;
+
 	for (auto* Unit : GameModeRef->GetEnemyUnits())
 	{
 		UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(Unit);
@@ -30,6 +32,8 @@ bool UCVictoryCondition::CheckLossCondition()
 {
 	if (!GameModeRef)
 		return false;
+
+	if (bLoseByCheating) return true;
 
 	for (auto* Unit : GameModeRef->GetHeroUnits())
 	{
