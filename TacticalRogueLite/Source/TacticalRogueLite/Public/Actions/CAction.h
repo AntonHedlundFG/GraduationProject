@@ -29,15 +29,18 @@ public:
 	UPROPERTY(EditAnywhere)
 	FGameplayTag InventorySlotTag;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGameplayTagContainer ActionTags;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FGameplayTagContainer BlockingTags;
 
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
-
+	
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
 	}
@@ -131,6 +134,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	static TArray<ACGridTile*> GetValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
 
 	UPROPERTY(BlueprintAssignable, Category = "Action")
 	FOnActionCompleted OnActionCompleted;
