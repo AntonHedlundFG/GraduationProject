@@ -37,18 +37,17 @@ void ACGameMode::BeginPlay()
 			return;
 		}
 	}
-	UCSaveGameManager::Get()->LoadGame();
-	
 	Spawner = CreateSpawner();
+	
+	UCSaveGameManager::Get()->LoadGame();
 
 	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
 	GameStateRef->GameGrid = grid;
 
 	if (Spawner)
 	{
-		// InitializeHeroUnits(grid);
+		InitializeHeroUnits(grid);
 		
-		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, grid->GetHeroSpawnTiles(), Spawner->HeroNames);
 		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
 		for (ACUnit* EnemyUnit : EnemyUnits)
 		{
@@ -60,7 +59,7 @@ void ACGameMode::BeginPlay()
 
 	if (DefaultEquipmentData)
 	{
-		for (auto Unit : AllUnits)
+		for (auto Unit : EnemyUnits)
 		{
 			DefaultEquipmentData->EquipUnit(Unit);
 		}
@@ -388,22 +387,61 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 	return spawner;
 }
 
-void ACGameMode::InitializeHeroUnits(ACGrid* grid)
+void ACGameMode::SpawnDefaultHeroUnits(ACGrid* InGrid)
 {
+	if (DefaultEquipmentData)
+	{
+		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, InGrid->GetHeroSpawnTiles(), Spawner->HeroNames);
+
+		for (auto Unit : HeroUnits)
+		{
+			DefaultEquipmentData->EquipUnit(Unit);
+		}
+	}
+	else
+	{
+		LOG_WARNING("No Default Equipment Data in GameMode");
+	}
+}
+
+void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
+{
+	const int HeroUnitsNum = 4;
+	
 	UCSaveGame* SaveGame = nullptr;
 	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		LOG_WARNING("Couldn't Find SaveGame When Initializing Units in GameMode");
+		SpawnDefaultHeroUnits(InGrid);
 		return;
 	}
+	
+	if (Spawner->NamesAndItemList.Num() != HeroUnitsNum)
+	{
+		SpawnDefaultHeroUnits(InGrid);
+		return;
+	}
+	
+	HeroUnits = TArray<ACUnit*>();
 
-	const int HeroUnitsNum = 4;
+	TArray<ACGridTile*> SpawnTiles = InGrid->GetHeroSpawnTiles();
 	for(int8 i = 0; i < HeroUnitsNum ; i++)
 	{
-		if (i > Spawner->NamesAndItemList.Num() || i > grid->GetHeroSpawnTiles().Num())
+		if (i >= Spawner->NamesAndItemList.Num() || i >= SpawnTiles.Num())
 			break;
-		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], grid->GetHeroSpawnTiles()[i],
+		
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i],
 							Spawner->NamesAndItemList[i].Items, Spawner->NamesAndItemList[i].Name);
+
+		if (i < Spawner->ControllingPlayers.Num())
+		{
+			Unit->ControllingPlayerIndex = Spawner->ControllingPlayers[i];
+		}
+		else
+		{
+			Unit->ControllingPlayerIndex = 1;
+		}
+		
 		HeroUnits.Add(Unit);
 	}
 }
