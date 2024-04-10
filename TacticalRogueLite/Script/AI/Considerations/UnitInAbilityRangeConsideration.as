@@ -12,7 +12,7 @@
         TArray<ACGridTile> ValidTiles = UCAction::GetValidTargetTiles(Ability, TargetTile);
 
         // Add Player units if ability is offensive, otherwise add AI units
-        TArray<ACUnit> Units = Ability.ActionTags.HasTag(GameplayTags::AbilityType_Offensive) ? Context.PlayerUnits : Context.AIUnits;
+        TArray<ACUnit> Units = Ability.AbilityTags.HasTag(GameplayTags::AbilityType_Offensive) ? Context.PlayerUnits : Context.AIUnits;
 
         for (ACUnit Unit : Units)
         {
