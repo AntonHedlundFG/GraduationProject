@@ -8,9 +8,7 @@
 
 class ACGridTile;
 
-/**
- * 
- */
+
 UCLASS()
 class TACTICALROGUELITE_API UCMovementAction : public UCTargetableAction
 {

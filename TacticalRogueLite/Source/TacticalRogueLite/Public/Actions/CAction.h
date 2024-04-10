@@ -23,19 +23,19 @@ public:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(Transient)
 	TArray<UCAction*> InstantiatedActions;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(Transient, meta=(Categories="ItemSlot")) //Is ok if transient + category?
 	FGameplayTag InventorySlotTag;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FGameplayTagContainer ActionTags;
+	UPROPERTY(Transient, BlueprintReadOnly) //Changed from editdefaults to transient
+	FGameplayTagContainer AbilityTags;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(Transient, BlueprintReadOnly) //Changed from editdefaults to transient
 	FGameplayTagContainer BlockingTags;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly) //Will be moved
 	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
