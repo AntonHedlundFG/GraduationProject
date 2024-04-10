@@ -22,6 +22,13 @@ ACGameState* ACPlayerController::GetGameState()
 void ACPlayerController::UndoAbility()
 {
 	CancelAbilityUse();
+
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return;
+	}
+
 	Server_TryUndo();
 }
 
@@ -31,6 +38,11 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	if (!GetGameState())
 	{
 		LOG_WARNING("No ACGameState available, cancelling ability use.");
+		return;
+	}
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
 		return;
 	}
 	if (GetGameState()->TurnOrder.Num() == 0)
@@ -106,6 +118,11 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		CancelAbilityUse();
 		return;
 	}
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return;
+	}
 	if (GetGameState()->TurnOrder.Num() == 0 || GetGameState()->TurnOrder[0] != UnitCurrentlyUsingAbility)
 	{
 		LOG_WARNING("No valid unit at front of turn order, cancelling ability use.");
@@ -146,6 +163,17 @@ void ACPlayerController::CancelAbilityUse()
 void ACPlayerController::EndTurn()
 {
 	CancelAbilityUse();
+	if (!GetGameState())
+	{
+		LOG_WARNING("No ACGameState available, cancelling ability use.");
+		CancelAbilityUse();
+		return;
+	}
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return;
+	}
 	Server_TryEndTurn();
 }
 

@@ -99,6 +99,12 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		}
 	}
 
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return false;
+	}
+
 	if (GameStateRef->TurnOrder.IsEmpty())
 	{
 		LOG_WARNING("There are no units in the turn order");
@@ -199,6 +205,12 @@ bool ACGameMode::TryUndo(AController* inController)
 		return false;
 	}
 
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return false;
+	}
+
 	uint8 PlayerIndex = GameStateRef->TurnOrder[0]->ControllingPlayerIndex;
 	AOnlinePlayerState* PlayerState = inController->GetPlayerState<AOnlinePlayerState>();
 	if (!PlayerState || PlayerState->PlayerIndex != PlayerIndex)
@@ -269,6 +281,12 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		}
 	}
 
+	if (GameStateRef->IsGameOver())
+	{
+		LOG_INFO("Game is already over");
+		return false;
+	}
+
 	if (GameStateRef->TurnOrder.IsEmpty())
 	{
 		LOG_WARNING("There are no units in the turn order");
@@ -287,6 +305,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	{
 		//Temporary implementation.
 		LOG_GAMEPLAY("You've won the game!");
+		GameStateRef->SetGameIsOver(true);
 		return true;
 	}
 
@@ -295,6 +314,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	{
 		//Temporary implementation.
 		LOG_GAMEPLAY("You've lost the game!");
+		GameStateRef->SetGameIsOver(true);
 		return true;
 	}
 

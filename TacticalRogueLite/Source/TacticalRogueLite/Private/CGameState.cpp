@@ -42,3 +42,11 @@ bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBu
 
 	return WroteSomething;
 }
+
+void ACGameState::SetGameIsOver(bool inbGameIsOver)
+{
+	if (GetNetMode() > ENetMode::NM_ListenServer) return;
+
+	bGameIsOver = inbGameIsOver;
+	OnGameIsOver.Broadcast();
+}

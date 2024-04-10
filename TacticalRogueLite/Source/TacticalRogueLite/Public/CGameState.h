@@ -9,6 +9,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionListUpdate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameIsOver);
 
 class ACGrid;
 class UCAction;
@@ -61,5 +62,28 @@ protected:
 
 	UFUNCTION()
 	void OnRep_ActionList() { OnActionListUpdate.Broadcast(); }
+
+#pragma region Victory Condition
+
+public:
+
+	UFUNCTION()
+	void SetGameIsOver(bool inbGameIsOver);
+
+	UFUNCTION(BlueprintPure)
+	bool IsGameOver() { return bGameIsOver; }
+
+protected:
+
+	UPROPERTY(ReplicatedUsing = OnRep_bGameIsOver, VisibleAnywhere, Category = "Victory Condition")
+	bool bGameIsOver;
+
+	UFUNCTION()
+	void OnRep_bGameIsOver() { OnGameIsOver.Broadcast(); }
+
+	UPROPERTY(BlueprintAssignable, Category = "Victory Condition")
+	FOnGameIsOver OnGameIsOver;
+
+#pragma endregion
 
 };
