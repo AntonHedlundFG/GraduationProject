@@ -10,25 +10,45 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Kismet/GameplayStatics.h"
-#include "Net/UnrealNetwork.h"
 
 void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 {
 	Super::StartAction_Implementation(Instigator);
 
-	AttackingUnit = Cast<ACUnit>(Instigator);
-	TargetUnit = Cast<ACUnit>(TargetTile->GetContent());
-
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	OldHealth = Attributes->GetHealth();
+	
+	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount); 
 
-	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount);
+	ACUnit* Attacker = Cast<ACUnit>(Instigator);
+	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" attacked ")
+			.Append(Attacker ? Defender->GetUnitName() : FString("Unknown Unit"))
+			.Append(" for ")
+			.Append(FString::FromInt(DamageAmount))
+			.Append(" damage.")
+	);
 }
 
 void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 {
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	Attributes->SetHealth(OldHealth);
+
+	ACUnit* Attacker = Cast<ACUnit>(Instigator);
+	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
+	UCLogManager::Log(
+		ELogCategory::LC_Gameplay,
+		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" undid their attack on  ")
+			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(" for ")
+			.Append(FString::FromInt(DamageAmount))
+			.Append(" damage.")
+	);
 	
 	Super::UndoAction_Implementation(Instigator);
 }
@@ -55,28 +75,25 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles(ACGridTile* inTile)
 	return ReturnTiles;
 	
 }
-void UCAttackAction::PrintStartMessage()
-{
-	LOG_GAMEPLAY("%s attacked %s for %d damage.",
-		AttackingUnit ? *AttackingUnit->GetUnitName() : *FString("Unknown Unit"),
-		AttackingUnit ? *AttackingUnit->GetUnitName() : *FString("Unknown Unit"),
-		DamageAmount
-	);
-}
-void UCAttackAction::PrintUndoMessage()
-{
-	LOG_GAMEPLAY("%s undid their attack on %s for %d damage.",
-		AttackingUnit ? *AttackingUnit->GetUnitName() : *FString("Unknown Unit"),
-		AttackingUnit ? *AttackingUnit->GetUnitName() : *FString("Unknown Unit"),
-		DamageAmount
-	);
-}
 
-void UCAttackAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth,
+                                     int Delta)
 {
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	AActor* OwningActor = GetOwningComponent()->GetOwner();
 
-	DOREPLIFETIME(UCAttackAction, AttackingUnit);
-	DOREPLIFETIME(UCAttackAction, TargetUnit);
-	DOREPLIFETIME(UCAttackAction, DamageAmount);
+	// Damage Only
+	if (Delta < 0 && OwningActor != InstigatorActor)
+	{
+		
+		if (Delta == 0)
+		{
+			return;
+		}
+
+		// Flip to positive, so we don't end up healing ourselves when passed into damage
+		Delta = FMath::Abs(Delta);
+
+		// Return damage sender...
+		UCGameplayFunctionLibrary::ApplyDamage(OwningActor, InstigatorActor, Delta);
+	}
 }
