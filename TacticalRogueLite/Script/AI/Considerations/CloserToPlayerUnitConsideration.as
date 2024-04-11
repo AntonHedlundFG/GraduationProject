@@ -1,5 +1,8 @@
 ﻿class USCloserToPlayerUnitConsideration : UCConsideration
 {
+    UPROPERTY(EditDefaultsOnly, Category = "Consideration")
+    FRuntimeFloatCurve Curve;
+
     UFUNCTION(BlueprintOverride)
     float Evaluate(FAbility& Ability, ACGridTile StartTile, ACGridTile TargetTile, FCAIContext& Context)
     {

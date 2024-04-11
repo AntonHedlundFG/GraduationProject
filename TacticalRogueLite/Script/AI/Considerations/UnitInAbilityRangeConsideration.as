@@ -1,10 +1,5 @@
 ﻿class USUnitInAbilityRangeConsideration : UCConsideration
 {
-    UPROPERTY(EditAnywhere)
-    bool bConsiderFriendlyUnits = false;
-    UPROPERTY(EditAnywhere)
-    bool bConsiderEnemyUnits = true;
-
     UFUNCTION(BlueprintOverride)
     float Evaluate(FAbility& Ability, ACGridTile StartTile, ACGridTile TargetTile, FCAIContext& Context)
     {
@@ -17,20 +12,16 @@
         for (ACUnit Unit : Units)
         {
             ACGridTile UnitTile = Unit.GetTile();
-            if (UnitTile == nullptr)
-            {
-                continue;
-            }
+            // If we find any unit on the valid tiles, return 1.0
             if(ValidTiles.Contains(UnitTile))
             {
-                Score += 1.0f /Context.PlayerUnits.Num();
+                Score = 1.0f;
+                break;
             }
         }
 
-        float FinalScore = Curve.GetFloatValue(Score);
-
         // UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} unit in range");
         
-        return Curve.GetFloatValue(Score);
+        return 0;
     }
 }
