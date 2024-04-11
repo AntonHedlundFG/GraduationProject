@@ -6,7 +6,7 @@
 #include "CCharacterSelectorWidget.generated.h"
 
 class ACCharacterSelectGameState;
-class ACCharacterSelectGameController;
+class ACCharacterSelectController;
 class UCStartCharacterData;
 /**
  * 
@@ -41,6 +41,7 @@ public:
 protected:
 	UPROPERTY()
 	ACCharacterSelectGameState* GameState;
+	
 	UPROPERTY()
 	ACCharacterSelectController* Controller;
 	
