@@ -11,10 +11,10 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Moving, "Action.Moving");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_DefaultAttack, "Action.DefaultAttack");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Rooted, "Action.Rooted");
 
-UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype, "Abilitytype");
-UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Offensive, "Abilitytype.Offensive");
-UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Defensive, "Abilitytype.Defensive");
-UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Supporting, "Abilitytype.Supporting");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype, "AbilityType");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Offensive, "AbilityType.Offensive");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Defensive, "AbilityType.Defensive");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Supporting, "AbilityType.Supporting");
 
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Movement, "Movement");
