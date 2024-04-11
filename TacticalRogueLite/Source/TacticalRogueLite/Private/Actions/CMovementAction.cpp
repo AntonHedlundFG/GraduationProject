@@ -40,7 +40,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
 	}
 
 	FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
-
+	
 	TArray<ACGridTile*> ReturnTiles;
 	ReturnTiles.Add(inTile);
 	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags))

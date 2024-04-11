@@ -29,13 +29,14 @@ public:
 	UPROPERTY(Transient, meta=(Categories="ItemSlot")) //Is ok if transient + category?
 	FGameplayTag InventorySlotTag;
 
-	UPROPERTY(Transient, BlueprintReadOnly) //Changed from editdefaults to transient
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
 	FGameplayTagContainer AbilityTags;
 
-	UPROPERTY(Transient, BlueprintReadOnly) //Changed from editdefaults to transient
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
 	FGameplayTagContainer BlockingTags;
 
-	UPROPERTY(EditDefaultsOnly) //Will be moved
+	//Used for AI
+	UPROPERTY(EditDefaultsOnly, Category = "AI") //Will be moved
 	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
