@@ -24,14 +24,14 @@ UCAttributeComponent::UCAttributeComponent()
 
 bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 {
-	if (!GetOwner()->CanBeDamaged() && Delta < 0)
+	if (!GetOwner()->CanBeDamaged())
 	{
 		return false;
 	}
 
 	
 	int OldHealth = CurrentHealth;
-	int NewHealth = CurrentHealth + Delta;
+	int NewHealth = (CurrentHealth + Delta > BaseHealth)? BaseHealth:(CurrentHealth + Delta < 0)? 0: CurrentHealth + Delta;
 	
 	//Is Server?
 	if (GetOwner()->HasAuthority())

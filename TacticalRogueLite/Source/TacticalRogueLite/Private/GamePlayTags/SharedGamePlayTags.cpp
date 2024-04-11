@@ -25,6 +25,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Movement_Flying, "Movement.Flying");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Status, "Status");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Status_Rooted, "Status.Rooted");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Status_Silenced, "Status.Silenced");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot, "ItemSlot");
 UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot_Boots, "ItemSlot.Boots");

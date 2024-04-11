@@ -15,7 +15,17 @@ bool UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* Target
 	}
 	return false;
 }
- 
+
+bool UCGameplayFunctionLibrary::ApplyHealing(AActor* Insitgator, AActor* Target, int Amount)
+{
+	UCAttributeComponent* AttributeComp = UCAttributeComponent::GetAttributes(Target);
+	if (AttributeComp)
+	{
+		return AttributeComp->ApplyHealthChange(Insitgator, Amount);
+	}
+	return false;
+}
+
 // int32 USGameplayFunctionLibrary::GetRemainingBundledPSOs()
 // {
 // 	// Counts Bundled PSOs remaining, exposed for UI access

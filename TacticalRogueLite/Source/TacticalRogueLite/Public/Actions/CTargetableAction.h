@@ -14,7 +14,7 @@ class TACTICALROGUELITE_API UCTargetableAction : public UCAction
 	GENERATED_BODY()
 
 public:
-
+	UPROPERTY(BlueprintReadWrite)
 	ACGridTile* TargetTile;
 
 	UFUNCTION(BlueprintNativeEvent)

@@ -16,7 +16,8 @@ class TACTICALROGUELITE_API UCGameplayFunctionLibrary : public UBlueprintFunctio
 		UFUNCTION(BlueprintCallable, Category = "Gameplay")
 		static bool ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount);
 
-	
+		UFUNCTION(BlueprintCallable,Category="Gameplay")
+		static bool ApplyHealing(AActor* Insitgator, AActor* Target, int Amount);
 		// UFUNCTION(BlueprintPure, Category = "PSO Caching")
 		// static int32 GetRemainingBundledPSOs();
 	};
