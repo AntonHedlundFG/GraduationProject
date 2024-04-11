@@ -88,6 +88,14 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	TagCurrentlyUsed = inTag;
 
 	HighlightedTiles = ActionComp->GetValidTargetTiles(inTag);
+
+	//If we only have 1 valid target, we don't need to wait for the player to choose targets.
+	if (HighlightedTiles.Num() == 1)
+	{
+		FinalizeAbilityUse(HighlightedTiles[0]);
+		return;
+	}
+
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(true);

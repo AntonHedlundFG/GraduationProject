@@ -26,6 +26,8 @@ public:
 	virtual void StartInitialLoading() override;
 
 	/**Static types for items*/
+	static const FPrimaryAssetType	ItemType;
+	
 	static const FPrimaryAssetType	BootsItemType;
 	static const FPrimaryAssetType	WeaponItemType;
 	static const FPrimaryAssetType	ArmorItemType;

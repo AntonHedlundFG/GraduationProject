@@ -33,7 +33,7 @@ void UCActionComponent::AddAbility(FAbility Ability)
 		UCAction* NewInstancedAction = NewObject<UCAction>(GetOwner(), ActionClass);
 		NewInstancedAction->Initialize(this);
 		
-		Ability.ActionTags.AppendTags(NewInstancedAction->GetActionTags());
+		Ability.AbilityTags.AppendTags(NewInstancedAction->GetActionTags());
 		
 		Ability.InstantiatedActions.Add(NewInstancedAction);
 	}

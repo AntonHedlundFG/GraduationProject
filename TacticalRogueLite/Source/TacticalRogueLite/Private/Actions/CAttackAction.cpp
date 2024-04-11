@@ -26,7 +26,7 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 		ELogCategory::LC_Gameplay,
 		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
 			.Append(" attacked ")
-			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(Attacker ? Defender->GetUnitName() : FString("Unknown Unit"))
 			.Append(" for ")
 			.Append(FString::FromInt(DamageAmount))
 			.Append(" damage.")
@@ -53,7 +53,7 @@ void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 	Super::UndoAction_Implementation(Instigator);
 }
 
-TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles(ACGridTile* inTile)
+TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
 {
 	
 	if (!GetOwningComponent())

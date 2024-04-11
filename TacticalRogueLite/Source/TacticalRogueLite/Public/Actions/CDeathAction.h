@@ -8,9 +8,6 @@
 
 class ACUnit;
 
-/**
- * 
- */
 UCLASS()
 class TACTICALROGUELITE_API UCDeathAction : public UCAction
 {

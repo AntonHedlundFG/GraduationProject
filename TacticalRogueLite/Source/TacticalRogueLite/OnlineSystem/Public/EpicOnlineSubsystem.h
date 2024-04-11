@@ -306,11 +306,12 @@ public:
 	// Helper function to get UniqueNetId from both Local and Remote PlayerControllers.
 	UFUNCTION(Category = "Online Services")
 	FUniqueNetIdRepl GetUniqueNetIdOf(APlayerController* Player);
-
-private:
-
+	
 	UFUNCTION(BlueprintCallable, Category = "Online Services")
 	void ServerTravel(const FString& LevelURL);
+
+
+
 	
 	
 };

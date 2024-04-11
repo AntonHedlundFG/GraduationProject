@@ -14,6 +14,19 @@ ACGameState::ACGameState()
 	ActionVisualizerSystem = CreateDefaultSubobject<UCActionVisualizerSystem>(TEXT("ActionVisualizerSystem"));
 }
 
+void ACGameState::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (UCLogManager* LogManager = UCLogManager::Get())
+	{
+		if (GetNetMode() == ENetMode::NM_ListenServer)
+		{
+			LogManager->OnServerBroadcastMessage.AddDynamic(this, &ACGameState::Multicast_BroadcastLogMessage);
+		}
+	}
+}
+
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
@@ -41,6 +54,11 @@ bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBu
 	}
 
 	return WroteSomething;
+}
+
+void ACGameState::Multicast_BroadcastLogMessage_Implementation(ELogCategory Category, const FString& Message)
+{
+	LOG(Category, "%s", *Message);
 }
 
 void ACGameState::SetGameIsOver(bool inbGameIsOver)

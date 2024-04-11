@@ -23,21 +23,25 @@ public:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(Transient)
 	TArray<UCAction*> InstantiatedActions;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(Transient, meta=(Categories="ItemSlot")) //Is ok if transient + category?
 	FGameplayTag InventorySlotTag;
 
-	UPROPERTY(VisibleAnywhere)
-	FGameplayTagContainer ActionTags;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
+	FGameplayTagContainer AbilityTags;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
+	FGameplayTagContainer BlockingTags;
+
+	//Used for AI
+	UPROPERTY(EditDefaultsOnly, Category = "AI") //Will be moved
 	TArray<UCConsideration*> Considerations;
 
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
-
+	
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
 	}
@@ -88,15 +92,15 @@ protected:
 	UCActionComponent* GetOwningComponent() const;
 
 	// Tags that are granted to the ability when it is instantiated.
-	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionTags;
 
 	// Action can only start if OwningActor has none of these Tags applied.
-	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionBlockingTags;
 
 	//Action nickname to start/stop without a reference to the object.
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
 	
@@ -131,6 +135,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	static TArray<ACGridTile*> GetAbilityValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
 
 	UPROPERTY(BlueprintAssignable, Category = "Action")
 	FOnActionCompleted OnActionCompleted;

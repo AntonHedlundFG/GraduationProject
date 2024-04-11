@@ -26,6 +26,7 @@ protected:
 	
 public:
 	ACGameState();
+	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
@@ -62,6 +63,10 @@ protected:
 
 	UFUNCTION()
 	void OnRep_ActionList() { OnActionListUpdate.Broadcast(); }
+
+	//Logs a message on all clients if called on server. On client, only logs locally.
+	UFUNCTION(NetMulticast, Reliable)
+	void Multicast_BroadcastLogMessage(ELogCategory Category, const FString& Message);
 
 #pragma region Victory Condition
 

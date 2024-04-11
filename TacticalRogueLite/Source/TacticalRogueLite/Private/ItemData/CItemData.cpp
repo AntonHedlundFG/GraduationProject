@@ -13,7 +13,7 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(inUnit);
 	if (Attributes)
 	{
-		Attributes->ActiveGameplayTags.AppendTags(GrantsTags);
+		Attributes->ActiveGameplayTags.AppendTags(OwnedTags);
 		Attributes->AddMaxCharges(ItemSlot, 1);
 	}
 
@@ -31,7 +31,8 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(inUnit);
 	if (Attributes)
 	{
-		Attributes->ActiveGameplayTags.RemoveTags(GrantsTags);
+		//Append the items ownedtags to the attributecomp.
+		Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
 		Attributes->RemoveMaxCharges(ItemSlot, 1);
 	}
 
@@ -43,7 +44,3 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 	}
 }
 
-FPrimaryAssetId UCItemData::GetPrimaryAssetId() const
-{
-	return FPrimaryAssetId("ItemData", GetFName());
-}

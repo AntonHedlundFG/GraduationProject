@@ -44,7 +44,7 @@ protected:
 	void ApplyPlayerCount(const TArray<ACUnit*>& Units);
 
 	UFUNCTION(Category = "Units")
-	void InitializeHeroUnits(ACGrid* grid);
+	void InitializeHeroUnits(ACGrid* InGrid);
 
 	// If playing in PIE mode, this is how many players we assume are playing.
 	UPROPERTY(EditAnywhere, Category = "Units")
@@ -124,6 +124,8 @@ protected:
 
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
+	UFUNCTION(Category = "Units")
+	void SpawnDefaultHeroUnits(ACGrid* InGrid);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid|Spawner")
 	TSubclassOf<ACGridSpawner> SpawnerClass;

@@ -34,6 +34,8 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
 	TArray<FCNamesAndItemsList> NamesAndItemList;
 	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
+	TArray<int> ControllingPlayers;
+	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
 	TMap<int8, FString> UnitIndexAndNames;
 
 	///Spawns units on tiles given by array

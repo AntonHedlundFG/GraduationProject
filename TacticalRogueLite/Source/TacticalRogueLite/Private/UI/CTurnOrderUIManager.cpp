@@ -191,29 +191,6 @@ void ACTurnOrderUIManager::BeginPlay()
 	Executor = GetWorld()->GetSubsystem<UCCORExecutor>();
 	
 }
-
-/*void ACTurnOrderUIManager::Tick(float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-	if(Tasks.IsEmpty())
-	{
-		return;
-	}
-	else
-	{
-		if(Tasks[0]->bHasStarted)
-		{
-			Tasks[0]->Start();
-		}
-		bool TaskFinished = Tasks[0]->Execute(DeltaSeconds);
-		if(TaskFinished)
-		{
-			delete Tasks[0];
-			Tasks.RemoveAt(0);
-		}
-	}
-}*/
-
 void ACTurnOrderUIManager::UpdateTurnList()
 {
 	UE_LOG(LogTemp,Warning,TEXT("UpdateTurnList Called"));

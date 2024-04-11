@@ -61,6 +61,8 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 
 void UCAttributeComponent::BeginPlay()
 {
+	Super::BeginPlay();
+
 	UsedItemCharges.OnStackChanged.AddDynamic(this, &UCAttributeComponent::BroadcastOnItemChargesChanged);
 	MaxItemCharges.OnStackChanged.AddDynamic(this, &UCAttributeComponent::BroadcastOnItemChargesChanged);
 }

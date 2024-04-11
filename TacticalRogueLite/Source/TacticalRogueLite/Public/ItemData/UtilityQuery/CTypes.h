@@ -30,10 +30,10 @@ class UCActionComponent;
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ItemTable")
  	float Weight;
 
- 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Qunatity")
+ 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quantity")
  	int32 Min;
 
- 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Qunatity")
+ 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quantity")
  	int32 Max;
 
  	//Item is only included if all tags are present when rolling.
@@ -99,6 +99,82 @@ class UCActionComponent;
  		BucketName = "Default";
  	}
  };
+
+USTRUCT(BlueprintType)
+struct FItemRollResult
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(BlueprintReadOnly)
+	FPrimaryAssetId ItemID;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 Amount;
+};
+
+UENUM(BlueprintType)
+enum class ERollType : uint8
+{
+	//When item is picked it stays in the bucket to be possible picked again.
+	WithReplacement,
+
+	//When picked the item is no longer considered to be picked again until next reset.
+	WithoutReplacement
+};
+
+//Configures individual buckets at runtime before a roll on item table.
+USTRUCT(BlueprintType)
+struct FBucketInfo
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName BucketName;
+
+	//Max times this bucket can be picked. Use 0 to ignore an entire Group for even more control.
+	//(0=IgnoredBucket, -1=UnlimitedReplacement).
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 MaxOccurance;
+
+protected:
+
+	//Default weight to assign a bucket.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Weight;
+
+public:
+	FBucketInfo()
+	{
+		BucketName = "Default";
+		MaxOccurance = 1;
+		Weight = 10.0f;
+
+		TimesSelected = 0;
+	}
+
+	//Internal use...
+
+	//Remaining Bucket weight including replacement logic.
+	int32 BucketWeight()
+	{
+		if (MaxOccurance <= -1)
+		{
+			return Weight;
+		}
+
+		if (TimesSelected < MaxOccurance)
+		{
+			return Weight;
+		}
+
+		return 0.0f;
+	}
+	int32 TimesSelected;
+};
 
 UCLASS()
 class TACTICALROGUELITE_API UCTypes : public UDataTable

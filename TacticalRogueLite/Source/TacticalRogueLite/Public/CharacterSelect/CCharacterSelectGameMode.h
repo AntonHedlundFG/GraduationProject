@@ -7,6 +7,7 @@
 #include "CCharacterSelectGameMode.generated.h"
 
 
+class UCLevelURLAsset;
 struct FCNamesAndItemsList;
 class ACCharacterSelectGameState;
 class UCStartCharacterData;
@@ -20,6 +21,9 @@ class TACTICALROGUELITE_API ACCharacterSelectGameMode : public AOnlineGameMode, 
 
 public:
 	ACCharacterSelectGameMode();
+
+	UPROPERTY(EditAnywhere, Category = "Level Loading")
+	TObjectPtr<UCLevelURLAsset> LevelURLAsset;
 	
 	UPROPERTY(EditAnywhere, Category = "Player Count")
 	int8 DefaultPlayerCount = 2;
@@ -41,6 +45,8 @@ protected:
 	TObjectPtr<UCStartCharacterData> StartCharacters;
 	UPROPERTY()
 	TArray<FCNamesAndItemsList> SpawnUnitData;
+	UPROPERTY()
+	TArray<int> ControllingPlayers;
 
 	UFUNCTION()
 	void CreateSaveGameAndStart();

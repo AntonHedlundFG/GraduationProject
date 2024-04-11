@@ -31,7 +31,7 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
 }
 
-TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
+TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
 {
 	if (!GetOwningComponent())
 	{
@@ -40,7 +40,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
 	}
 
 	FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
-
+	
 	TArray<ACGridTile*> ReturnTiles;
 	ReturnTiles.Add(inTile);
 	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags))

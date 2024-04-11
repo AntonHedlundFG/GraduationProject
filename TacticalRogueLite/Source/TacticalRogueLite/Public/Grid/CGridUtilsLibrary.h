@@ -37,7 +37,7 @@ public:
 	//For example, MovementMethods can contain the tag "Movement_Straight" and "Movement_Diagonal".
 	//Or only "Movement_Diagonal"
 	UFUNCTION(ScriptCallable)
-	static TSet<ACGridTile*> FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods = FGameplayTagContainer());
+	static TSet<ACGridTile*> FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods = FGameplayTagContainer(), bool BlockedByUnits = true);
 	
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile);
