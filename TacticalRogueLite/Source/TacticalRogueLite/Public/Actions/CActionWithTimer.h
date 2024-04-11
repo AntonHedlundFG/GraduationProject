@@ -23,6 +23,12 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
 	void OnTimerFinishes(ACUnit* inAffectedUnit);
 
+	//FOR ANGELSCRIPT: Call this from your StartAction implementation to start 
+	//the timer. Make sure you set AffectedUnit first, since this is done in
+	//the C++ default implementation which does not get called.
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	void BindTimer();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
 	int NumberOfTurns = 1;
 

@@ -89,7 +89,8 @@ TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
 			return Targetable->GetValidTargetTiles(fromTile);
 		}
 	}
-	return TArray<ACGridTile*>();
+	//If no items are targetable, return yourself as a target so the ability activates automatically.
+	return TArray<ACGridTile*> { fromTile };
 }
 
 bool FAbility::IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile)

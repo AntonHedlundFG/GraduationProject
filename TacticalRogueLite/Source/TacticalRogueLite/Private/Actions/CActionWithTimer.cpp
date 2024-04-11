@@ -11,11 +11,7 @@ void UCActionWithTimer::StartAction_Implementation(AActor* Instigator)
 	if (!AffectedUnit)
 		AffectedUnit = Cast<ACUnit>(Instigator);
 
-	TimerDelegate.BindUFunction(this, FName("OnTimerFinishes"));
-	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
-	if (Subsystem)
-		TimerHandle = Subsystem->SetTimer(NumberOfTurns, AffectedUnit, bShouldLoop, ProgressTurnMethod, TimerDelegate);
-	LOG_INFO("Setting a timer");
+	
 }
 
 void UCActionWithTimer::UndoAction_Implementation(AActor* Instigator)
@@ -27,6 +23,15 @@ void UCActionWithTimer::UndoAction_Implementation(AActor* Instigator)
 	LOG_INFO("Clearing a timer");
 
 	Super::UndoAction_Implementation(Instigator);
+}
+
+void UCActionWithTimer::BindTimer()
+{
+	TimerDelegate.BindUFunction(this, FName("OnTimerFinishes"));
+	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
+	if (Subsystem)
+		TimerHandle = Subsystem->SetTimer(NumberOfTurns, AffectedUnit, bShouldLoop, ProgressTurnMethod, TimerDelegate);
+	LOG_INFO("Setting a timer");
 }
 
 void UCActionWithTimer::OnTimerFinishes_Implementation(ACUnit* inAffectedUnit)
