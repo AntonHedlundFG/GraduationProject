@@ -43,6 +43,11 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 		LOG_WARNING("No Game State Reference in Game Mode");
 		return;
 	}
+	if (!LevelURLAsset)
+	{
+		LOG_WARNING("No Level URL Asset in Game Mode");
+		return;
+	}
 	
 	TArray<int> Characters = StateRef->CharacterIndexes;
 	ControllingPlayers = StateRef->ControllingPlayerIndex;
