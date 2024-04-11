@@ -34,6 +34,8 @@ inline FString ToString(ELogCategory LogCategory)
 
 #pragma region Logging Macros
 
+//Gameplay messages will always attempt to log to all clients and server. If called on a client
+//the message only displays on the client.
 #define LOG(Category, Message, ...) \
 UCLogManager::Log(Category, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
@@ -46,8 +48,10 @@ UCLogManager::Log(ELogCategory::LC_Warning, FString::Printf(TEXT(Message), ##__V
 #define LOG_ERROR(Message, ...) \
 UCLogManager::Log(ELogCategory::LC_Error, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
+//Gameplay messages will always attempt to log to all clients and server. If called on a client
+//the message only displays on the client.
 #define LOG_GAMEPLAY(Message, ...) \
-UCLogManager::Log(ELogCategory::LC_Gameplay, FString::Printf(TEXT(Message), ##__VA_ARGS__))
+UCLogManager::LogFromServer(ELogCategory::LC_Gameplay, FString::Printf(TEXT(Message), ##__VA_ARGS__))
 
 #define LOG_NETWORK(Message, ...) \
 UCLogManager::Log(ELogCategory::LC_Network, FString::Printf(TEXT(Message), ##__VA_ARGS__))
@@ -71,6 +75,10 @@ public:
 
 	// Log a message with a category
 	static void Log(ELogCategory Category, const FString& Message);
+
+	// Attempts to log a message on ALL clients and server. If called on a client
+	// message is only logged locally on that client.
+	static void LogFromServer(ELogCategory Category, const FString& Message);
 
 	// Read all log entries from the log file
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log"))
@@ -99,6 +107,10 @@ public:
 	// Delegate for broadcasting log events
 	UPROPERTY(BlueprintAssignable, Category = "Logging")
 	FOnNewLogEntry OnNewLogEntry;
+
+	// Delegate for managing server-wide broadcasts. The GameState listens to this event.
+	UPROPERTY(BlueprintAssignable, Category = "Logging")
+	FOnNewLogEntry OnServerBroadcastMessage;
 
 private:
 	static UCLogManager* Instance;

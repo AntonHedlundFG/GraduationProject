@@ -62,6 +62,12 @@ void UCLogManager::Log(ELogCategory Category, const FString& Message)
 	
 }
 
+void UCLogManager::LogFromServer(ELogCategory Category, const FString& Message)
+{
+	if (Get())
+		Get()->OnServerBroadcastMessage.Broadcast(Category, Message);
+}
+
 TArray<FString> UCLogManager::GetAllLogEntries()
 {
 	LOG_INFO("Reading log entries");
