@@ -3,6 +3,7 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Grid/CGridTile.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 
 TArray<FVector2D> UCGridUtilsLibrary::StraightDirections()
 {
@@ -125,6 +126,8 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/)
 {
 	//Default to regular straight movement.
+	FGameplayTagContainer ValidMovements = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
+	MovementMethods = MovementMethods.Filter(ValidMovements);
 	if (MovementMethods.IsEmpty())
 		MovementMethods.AddTag(TAG_Movement_Straight);
 
