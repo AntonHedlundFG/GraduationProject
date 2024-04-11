@@ -23,6 +23,7 @@
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Achievements\CVictoryCondition.h"
+#include "Utility/SaveGame/CSaveGame.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -72,7 +73,6 @@ void ACGameMode::BeginPlay()
 	InitializeVictoryCondition();
 
 	InitializeTurnOrder(AllUnits);
-	ApplyPlayerCount(AllUnits);
 }
 
 void ACGameMode::RegisterAction(UCAction* inAction)
@@ -399,6 +399,7 @@ void ACGameMode::SpawnDefaultHeroUnits(ACGrid* InGrid)
 		{
 			DefaultEquipmentData->EquipUnit(Unit);
 		}
+		ApplyPlayerCount(HeroUnits);
 	}
 	else
 	{
