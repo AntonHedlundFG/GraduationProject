@@ -44,7 +44,7 @@ void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 		ELogCategory::LC_Gameplay,
 		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
 			.Append(" undid their attack on  ")
-			.Append(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
+			.Append(Defender ? Defender->GetUnitName() : FString("Unknown Unit"))
 			.Append(" for ")
 			.Append(FString::FromInt(DamageAmount))
 			.Append(" damage.")
