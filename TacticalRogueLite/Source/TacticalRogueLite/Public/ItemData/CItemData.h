@@ -30,7 +30,7 @@ public:
 	/// to apply further custom effects.
 	/// </summary>
 	/// <param name="inUnit"></param>
-	void EquipOnUnit(ACUnit* inUnit);
+	virtual void EquipOnUnit(ACUnit* inUnit);
 
 	/// <summary>
 	/// Called by the server when a unit unequips this item. Removes any tags in 
@@ -38,7 +38,7 @@ public:
 	/// remove any further custom effects.
 	/// </summary>
 	/// <param name="inUnit"></param>
-	void UnequipOnUnit(ACUnit* inUnit);
+	virtual void UnequipOnUnit(ACUnit* inUnit);
 	
 
 	//Optional Action/Abilites assigned to Item. Can be used to grant abilities while the item is active/equipped or to run item specific functions.
