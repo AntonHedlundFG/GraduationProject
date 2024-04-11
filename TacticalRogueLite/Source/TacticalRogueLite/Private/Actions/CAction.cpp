@@ -13,12 +13,7 @@
 
 void UCAction::OnRep_bIsUndone()
 {
-	PrintUndoMessage();
-}
-
-void UCAction::OnRep_bIsStarted()
-{
-	PrintStartMessage();
+	LOG_INFO("Action undone");
 }
 
 void UCAction::Initialize(UCActionComponent* NewActionComp)
@@ -44,7 +39,6 @@ void UCAction::StartAction_Implementation(AActor* Instigator)
 
 	UCActionComponent* Comp = GetOwningComponent();	
 	Comp->ActiveGameplayTags.AppendTags(ActionTags);
-	bIsStarted = true;
 
 }
 
@@ -83,7 +77,6 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 	// DOREPLIFETIME(UCAction, RepData);
 	DOREPLIFETIME(UCAction, ActionComp);
 	DOREPLIFETIME(UCAction, bIsUndone);
-	DOREPLIFETIME(UCAction, bIsStarted);
 }
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
