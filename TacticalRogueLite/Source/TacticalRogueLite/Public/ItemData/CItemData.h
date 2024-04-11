@@ -41,7 +41,7 @@ public:
 	void UnequipOnUnit(ACUnit* inUnit);
 	
 
-	//Optional Action/Abilites assigned to Item. Can be used to grant abilities while the item is active/equipped or to run item specific functions.
+	//Optional Action/Abilites assigned to Item. 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ability", meta = (AssetBundles = "Abilities"))
 	FAbility Ability;
 	
