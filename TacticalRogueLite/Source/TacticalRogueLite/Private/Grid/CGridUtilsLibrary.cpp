@@ -123,7 +123,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inSt
 }
 */
 
-TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/)
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/, bool BlockedByUnits /* true*/)
 {
 	//Default to regular straight movement.
 	FGameplayTagContainer ValidMovements = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
@@ -143,7 +143,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
 			{
 				//Can't pass through occupied tiles unless flying.
-				if (!MovementMethods.HasTag(TAG_Movement_Flying) && Neighbour->GetContent() != nullptr)
+				if (!MovementMethods.HasTag(TAG_Movement_Flying) && BlockedByUnits && Neighbour->GetContent() != nullptr)
 					continue;
 
 				if (!ClosedSet.Contains(Neighbour))
@@ -161,7 +161,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 	TSet<ACGridTile*> FinalSet;
 	for (ACGridTile* Tile : ClosedSet)
 	{
-		if (Tile->GetContent() == nullptr)
+		if (Tile->GetContent() == nullptr || !BlockedByUnits)
 			FinalSet.Add(Tile);
 	}
 

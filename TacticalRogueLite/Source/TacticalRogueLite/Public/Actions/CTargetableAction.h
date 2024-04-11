@@ -17,8 +17,13 @@ public:
 
 	ACGridTile* TargetTile;
 
-	virtual TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile)
-	{ return ReceiveGetValidTargetTiles(inTile); }
+	UFUNCTION(BlueprintNativeEvent)
+	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile);
+
+	virtual TArray<ACGridTile*> GetValidTargetTiles_Implementation(ACGridTile* inTile)
+	{
+		return TArray<ACGridTile*>();
+	}
 
 	bool IsTileReachable(ACGridTile* fromTile, ACGridTile* toTile) 
 	{ return GetValidTargetTiles(fromTile).Contains(toTile); }
@@ -30,8 +35,8 @@ public:
 
 protected:
 	
-	UFUNCTION(BlueprintImplementableEvent)
-	TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit);
+	// UFUNCTION(BlueprintImplementableEvent)
+	// TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit);
 
 #pragma endregion
 };

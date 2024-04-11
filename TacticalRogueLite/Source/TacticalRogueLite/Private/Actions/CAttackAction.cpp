@@ -53,7 +53,7 @@ void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 	Super::UndoAction_Implementation(Instigator);
 }
 
-TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles(ACGridTile* inTile)
+TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
 {
 	
 	if (!GetOwningComponent())

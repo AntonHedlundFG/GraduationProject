@@ -31,7 +31,7 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
 }
 
-TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
+TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
 {
 	if (!GetOwningComponent())
 	{

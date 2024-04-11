@@ -4,7 +4,7 @@
     float Evaluate(FAbility& Ability, ACGridTile StartTile, ACGridTile TargetTile, FCAIContext& Context)
     {
         float Score = 0.0f;
-        TArray<ACGridTile> ValidTiles = UCAction::GetValidTargetTiles(Ability, TargetTile);
+        TArray<ACGridTile> ValidTiles = UCAction::GetAbilityValidTargetTiles(Ability, TargetTile);
 
         // Add Player units if ability is offensive, otherwise add AI units
         TArray<ACUnit> Units = Ability.AbilityTags.HasTag(GameplayTags::AbilityType_Offensive) ? Context.PlayerUnits : Context.AIUnits;

@@ -92,15 +92,15 @@ protected:
 	UCActionComponent* GetOwningComponent() const;
 
 	// Tags that are granted to the ability when it is instantiated.
-	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionTags;
 
 	// Action can only start if OwningActor has none of these Tags applied.
-	UPROPERTY(EditDefaultsOnly, Category = "Tags")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionBlockingTags;
 
 	//Action nickname to start/stop without a reference to the object.
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
 	
@@ -137,7 +137,7 @@ public:
 	void StopAction(AActor* Instigator);
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-	static TArray<ACGridTile*> GetValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
+	static TArray<ACGridTile*> GetAbilityValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
 
 	UPROPERTY(BlueprintAssignable, Category = "Action")
 	FOnActionCompleted OnActionCompleted;
