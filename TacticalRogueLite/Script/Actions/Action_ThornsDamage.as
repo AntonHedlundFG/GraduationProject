@@ -41,6 +41,8 @@ class USGainThornsAction : UCActionWithTimer
     UPROPERTY(Replicated)
     int DamageAmount = 1;
 
+    default NumberOfTurns = 1;
+
     UPROPERTY(Replicated)
     bool bCanThornsAtRange = false;
 
