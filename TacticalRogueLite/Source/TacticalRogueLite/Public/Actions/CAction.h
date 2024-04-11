@@ -121,6 +121,12 @@ public:
 	UFUNCTION()
 	void OnRep_bIsUndone();
 
+	UPROPERTY(ReplicatedUsing = OnRep_bIsStarted)
+	bool bIsStarted = false;
+
+	UFUNCTION()
+	void OnRep_bIsStarted();
+
 	void Initialize(UCActionComponent* NewActionComp);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
@@ -134,6 +140,20 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
+
+	// -- These two functions can be overridden to make sure logs are printed
+	// both on server and clients. Make sure any property references are 
+	// properly replicated. Check CMovementAction.h & .cpp for example.
+	// This is separated from StartAction/UndoAction since they only
+	// run on the server.
+
+	UFUNCTION()
+	virtual void PrintStartMessage() { /*LOG_INFO("Action Performed"); */}
+
+	UFUNCTION()
+	virtual void PrintUndoMessage() { /*LOG_INFO("Action Undone"); */ }
+
+	// --
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	static TArray<ACGridTile*> GetValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }

@@ -179,6 +179,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		UCAction* CurrentAction = ActionStack.Pop();
 		GameStateRef->ActionList.Add(CurrentAction);
 		CurrentAction->StartAction(inUnit);
+		CurrentAction->PrintStartMessage();
 		
 		Iterations++;
 		if (Iterations > 1000)
@@ -226,6 +227,7 @@ bool ACGameMode::TryUndo(AController* inController)
 	{
 		UCAction* CurrentAction = GameStateRef->ActionList[NextUndoIndex];
 		CurrentAction->UndoAction(inController);
+		CurrentAction->PrintUndoMessage();
 		UndoneActions.Add(CurrentAction);
 		NextUndoIndex--;
 		if (CurrentAction->bIsUserIncited)

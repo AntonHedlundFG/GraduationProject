@@ -15,20 +15,20 @@ class TACTICALROGUELITE_API UCAttackAction : public UCTargetableAction
 	virtual void StartAction_Implementation(AActor* Instigator) override;
 	virtual void UndoAction_Implementation(AActor* Instigator) override;
 	virtual TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile) override;
+	virtual void PrintStartMessage() override;
+	virtual void PrintUndoMessage() override;
 
 protected:
 	
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	ACUnit* AttackingUnit;
 	
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	ACUnit* TargetUnit;
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	UPROPERTY(EditDefaultsOnly, Replicated, Category = "Damage")
 	int DamageAmount = 1;
 
 	int OldHealth;
 
-	UFUNCTION()
-	void OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth, int Delta);
 };

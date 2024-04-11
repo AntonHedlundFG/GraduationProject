@@ -7,6 +7,7 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "Actions/CActionComponent.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Net/UnrealNetwork.h"
 
 void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 {
@@ -17,8 +18,6 @@ void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 
 	FromTile = MovedUnit->GetTile();
 	MovedUnit->SetTile(TargetTile);
-
-	LOG_GAMEPLAY("%s moved.", *MovedUnit->GetUnitName());
 }
 void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 {
@@ -27,8 +26,6 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 	if (!MovedUnit) return;
 
 	MovedUnit->SetTile(FromTile);
-
-	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
 }
 
 TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
@@ -49,4 +46,22 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles(ACGridTile* inTile)
 	}
 
 	return ReturnTiles;
+}
+
+void UCMovementAction::PrintStartMessage()
+{
+	LOG_GAMEPLAY("%s moved.", MovedUnit ? *MovedUnit->GetUnitName() : *FString("Unknown Unit"));
+}
+
+void UCMovementAction::PrintUndoMessage()
+{
+	LOG_GAMEPLAY("%s returned.", MovedUnit ? *MovedUnit->GetUnitName() : *FString("Unknown Unit"));
+}
+
+void UCMovementAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// DOREPLIFETIME(UCAction, RepData);
+	DOREPLIFETIME(UCMovementAction, MovedUnit);
 }
