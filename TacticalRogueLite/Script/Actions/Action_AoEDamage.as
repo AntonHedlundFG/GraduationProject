@@ -54,7 +54,7 @@ class USAction_AoEDamage : UCAction
             CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage);
 
              
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for {Damage} damage.");
+            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
         }
     }
 
@@ -64,7 +64,7 @@ class USAction_AoEDamage : UCAction
         for (int i = TargetsArray.Num() - 1; i >= 0; i--)
         {
             TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]);
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid {Damage} damage on {TargetsArray[i].GetUnitName()}.");
+            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Damage} </> damage on {TargetsArray[i].GetUnitName()}.");
         }
     }
 }

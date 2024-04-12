@@ -74,14 +74,6 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 		LOG_WARNING("No considerations for %s on Unit: %s", *Ability.InventorySlotTag.ToString(), *Unit->GetUnitName());
 	}
 	
-	UKismetSystemLibrary::DrawDebugString(
-		GetWorld(),
-		TargetTile->GetActorLocation() + FVector::UpVector * 100,
-		FString::Printf(TEXT("%.1f"), Score),
-		nullptr,
-		FLinearColor::Black,
-		4.5f);
-	
 	return Score;
 }
 
@@ -103,6 +95,11 @@ FActionPath ACAIController::DecideBestActions()
 	const FActionPath InitialPath;
 	EvalAbilitiesFromTile(UnitTile, Abilities, BestPaths, InitialPath);
 
+	if(BestPaths.Num() == 0)
+	{
+		BestPaths.Add(FActionPath());
+	}
+	
 	return BestPaths[0];
 }
 
@@ -124,6 +121,9 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 		for (ACGridTile* Tile : ReachableTiles)
 		{
 			const float Score = ScoreAction(Ability, CurrentTile, Tile);
+			
+			if(Score == 0) continue; // Skip paths with invalid actions
+			
 			FActionPath NewPath = CurrentPath;
 			NewPath.AddToPath(Ability, Tile, Score);
 			

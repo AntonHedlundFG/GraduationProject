@@ -2,6 +2,7 @@ class USHealAction: UCTargetableAction
 {
     UPROPERTY(BlueprintReadWrite)
     int Range;
+    ACUnit InsitagorUnit;
     int OldHealth;
     UPROPERTY(BlueprintReadWrite)
     int HealAmount;
@@ -46,17 +47,25 @@ class USHealAction: UCTargetableAction
          OldHealth = Attributes.GetHealth();
          CGameplay::ApplyHealing(Instigator,TargetTile.GetContent(),HealAmount);
 
-         ACUnit From = Cast<ACUnit>(Instigator);
+         InsitagorUnit = Cast<ACUnit>(Instigator);
+         ACUnit From = InsitagorUnit;
          ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
-
-         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
+        
+        if(From == To)
+        {
+             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
+        }
+        else
+        {
+             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
+        }
     }
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
         UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetTile.GetContent());
         Attributes.SetHealth(OldHealth);
-        ACUnit From = Cast<ACUnit>(Instigator);
+        ACUnit From = InsitagorUnit;
         ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Undid <Green>{HealAmount}</> healing on {To.GetUnitName()}.");
     }

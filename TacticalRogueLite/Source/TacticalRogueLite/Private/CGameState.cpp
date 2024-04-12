@@ -34,6 +34,7 @@ void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	DOREPLIFETIME(ACGameState, Random);
 	DOREPLIFETIME(ACGameState, ActionList);
 	DOREPLIFETIME(ACGameState, ActionHistory);
+	DOREPLIFETIME(ACGameState, bGameIsOver);
 }
 
 bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags)

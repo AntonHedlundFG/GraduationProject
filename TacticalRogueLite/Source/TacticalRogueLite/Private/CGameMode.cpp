@@ -245,6 +245,9 @@ bool ACGameMode::TryUndo(AController* inController)
 		UCUndoAction* UndoAction = NewObject<UCUndoAction>(this, UCUndoAction::StaticClass());
 		UndoAction->UndoneActions = UndoneActions;
 		GameStateRef->ActionList.Add(UndoAction);
+
+		//Broadcast delegate on server since it does not receive OnRep-calls.
+		GameStateRef->OnActionListUpdate.Broadcast();
 	}
 
 	//Move our NextUndoIndex pointer to the most recent action which has not been undone.
@@ -261,9 +264,7 @@ bool ACGameMode::TryUndo(AController* inController)
 	}
 	if (TestUserInciteIndex < 0)
 		NextUndoIndex = -1;
-
-	//Broadcast delegate on server since it does not receive OnRep-calls.
-	GameStateRef->OnActionListUpdate.Broadcast();
+		
 	
 	return true;
 }
