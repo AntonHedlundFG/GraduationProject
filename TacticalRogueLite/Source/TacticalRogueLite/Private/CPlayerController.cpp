@@ -23,7 +23,7 @@ void ACPlayerController::UndoAbility()
 {
 	CancelAbilityUse();
 
-	if (GameStateRef->IsGameOver())
+	if (GetGameState() && GetGameState()->IsGameOver())
 	{
 		LOG_INFO("Game is already over");
 		return;
@@ -40,7 +40,7 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		LOG_WARNING("No ACGameState available, cancelling ability use.");
 		return;
 	}
-	if (GameStateRef->IsGameOver())
+	if (GetGameState()->IsGameOver())
 	{
 		LOG_INFO("Game is already over");
 		return;
@@ -126,7 +126,7 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		CancelAbilityUse();
 		return;
 	}
-	if (GameStateRef->IsGameOver())
+	if (GetGameState()->IsGameOver())
 	{
 		LOG_INFO("Game is already over");
 		return;
@@ -177,7 +177,7 @@ void ACPlayerController::EndTurn()
 		CancelAbilityUse();
 		return;
 	}
-	if (GameStateRef->IsGameOver())
+	if (GetGameState()->IsGameOver())
 	{
 		LOG_INFO("Game is already over");
 		return;
