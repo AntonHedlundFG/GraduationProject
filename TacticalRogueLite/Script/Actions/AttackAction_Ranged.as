@@ -9,7 +9,7 @@ class USAttackAction_Ranged : UCAttackAction
     {
         if (GetOwningComponent() == nullptr)
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
+            UCLogManager::BlueprintLog(ELogCategory::LC_Error, "GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
             return TArray<ACGridTile>();	
         }
 
