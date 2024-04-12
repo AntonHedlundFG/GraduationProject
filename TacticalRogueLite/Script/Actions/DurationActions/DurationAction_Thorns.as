@@ -1,42 +1,4 @@
-class USThornsDamageAction : UCAction
-{
-    //This should be set by the delegate that creates this object.
-    UPROPERTY(Replicated)
-    int DamageAmount = 1;
-
-    //Store old health for undo functionality
-    UPROPERTY()
-    int OldHealth;
-
-    //The attacker that deals attack damage and should be thorns'd
-    UPROPERTY(Replicated)
-    ACUnit TargetUnit;
-
-    //The unit that has the thorns buff
-    UPROPERTY(Replicated)
-    ACUnit ThornsSource;
-
-    UFUNCTION(BlueprintOverride)
-    void StartAction(AActor Instigator)
-    {
-        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
-        OldHealth = Attributes.GetHealth();
-
-        CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount);
-
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
-    }
-    UFUNCTION(BlueprintOverride)
-    void UndoAction(AActor Instigator)
-    {
-        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
-        Attributes.SetHealth(OldHealth);
-
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
-    }
-}
-
-class USGainThornsAction : UCActionWithTimer
+class USDurationAction_Thorns : UCActionWithTimer
 {
     UPROPERTY(Replicated)
     int DamageAmount = 1;
@@ -92,7 +54,9 @@ class USGainThornsAction : UCActionWithTimer
         ACGameMode GameMode = Cast<ACGameMode>(Gameplay::GetGameMode());
         if (GameMode == nullptr) return;
 
-        USThornsDamageAction ThornsAction = Cast<USThornsDamageAction>(NewObject(Outer, USThornsDamageAction::StaticClass()));
+
+        //We generate an instance of damage here so that we can undo it without interfering with the thorns effect itself.
+        USThornsDamageTriggeredAction ThornsAction = Cast<USThornsDamageTriggeredAction>(NewObject(Outer, USThornsDamageTriggeredAction::StaticClass()));
         ThornsAction.DamageAmount = DamageAmount;
         ThornsAction.TargetUnit = Attacker;
         ThornsAction.ThornsSource = Defender;
@@ -101,3 +65,45 @@ class USGainThornsAction : UCActionWithTimer
 
 
 }
+
+//This class is NOT to be used anywhere else. It is simply a result of Thorns triggering. 
+//If you want to grant a unit thorns, use the USGainThornsAction. It will automatically create instances of this damage class.
+UCLASS(NotBlueprintable)
+class USThornsDamageTriggeredAction : UCAction
+{
+    //This should be set by the delegate that creates this object.
+    UPROPERTY(Replicated)
+    int DamageAmount = 1;
+
+    //Store old health for undo functionality
+    UPROPERTY()
+    int OldHealth;
+
+    //The attacker that deals attack damage and should be thorns'd
+    UPROPERTY(Replicated)
+    ACUnit TargetUnit;
+
+    //The unit that has the thorns buff
+    UPROPERTY(Replicated)
+    ACUnit ThornsSource;
+
+    UFUNCTION(BlueprintOverride)
+    void StartAction(AActor Instigator)
+    {
+        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
+        OldHealth = Attributes.GetHealth();
+
+        CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount);
+
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+    }
+    UFUNCTION(BlueprintOverride)
+    void UndoAction(AActor Instigator)
+    {
+        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
+        Attributes.SetHealth(OldHealth);
+
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+    }
+}
+
