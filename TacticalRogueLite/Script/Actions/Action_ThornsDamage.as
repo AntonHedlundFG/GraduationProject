@@ -53,7 +53,7 @@ class USGainThornsAction : UCActionWithTimer
             AffectedUnit = Cast<ACUnit>(Instigator);
         
         //Enable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"TriggerThorns");
+        AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"OnHealthChanged");
         
         BindTimer();
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} gained thorns.");
@@ -63,7 +63,7 @@ class USGainThornsAction : UCActionWithTimer
     void UndoAction(AActor Instigator)
     {
         //Disable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"TriggerThorns");
+        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"OnHealthChanged");
         
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} lost thorns.");
     }
@@ -72,13 +72,13 @@ class USGainThornsAction : UCActionWithTimer
     void OnTimerFinishes(ACUnit inAffectedUnit)
     {
         //Disable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"TriggerThorns");
+        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"OnHealthChanged");
 
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
     }
 
     UFUNCTION()
-    private void TriggerThorns(AActor InstigatorActor, UCAttributeComponent OwningComp, int NewValue,
+    private void OnHealthChanged(AActor InstigatorActor, UCAttributeComponent OwningComp, int NewValue,
                                int Delta)
     {
         ACUnit Attacker = Cast<ACUnit>(InstigatorActor);
