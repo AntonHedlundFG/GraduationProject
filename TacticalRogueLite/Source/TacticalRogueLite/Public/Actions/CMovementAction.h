@@ -20,10 +20,10 @@ class TACTICALROGUELITE_API UCMovementAction : public UCTargetableAction
 
 protected:
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	ACGridTile* FromTile;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	ACUnit* MovedUnit;
 
 };
