@@ -19,10 +19,12 @@ ACUnit::ACUnit()
 {
 	bReplicates = true;
 	
+	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
+	SetRootComponent(SkeletalMesh);
+
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));
-	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
 }
 
 void ACUnit::BeginPlay()
