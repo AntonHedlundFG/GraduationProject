@@ -1,4 +1,4 @@
-﻿class USCloserToPlayerUnitConsideration : UCConsideration
+﻿class USCloserToUnitOfTypeConsideration : UCConsideration
 {
     UPROPERTY(EditDefaultsOnly, Category = "Consideration")
     FRuntimeFloatCurve Curve;
@@ -8,16 +8,20 @@
     {
         float Score = 0;
 
-        // Find Closest Player Unit
-        TArray<ACGridContent> PlayerUnits;
+        // Find Closest Unit of type set in tags (only player or AI units)
+        FGameplayTagContainer PlayerConsiderationTag;
+        PlayerConsiderationTag.AddTag(GameplayTags::Unit_IsPlayer);
+        TArray<ACUnit> Units = ConsiderationTags.HasAny(PlayerConsiderationTag) ? Context.PlayerUnits : Context.AIUnits;
+        TArray<ACGridContent> ContentArray;
 
         for (ACUnit PlayerUnit : Context.PlayerUnits)
         {
-            PlayerUnits.Add(PlayerUnit);
+            ContentArray.Add(PlayerUnit);
         }
+
         FGameplayTagContainer AbilityTags = Ability.AbilityTags;
         FGameplayTagContainer BlockingTags = Ability.BlockingTags;
-        ACUnit ClosestUnit = Cast<ACUnit>(CGridUtils::GetClosestGridContent(StartTile, PlayerUnits, AbilityTags, BlockingTags));
+        ACUnit ClosestUnit = Cast<ACUnit>(CGridUtils::GetClosestGridContent(StartTile, ContentArray, AbilityTags, BlockingTags));
 
         if (ClosestUnit != nullptr)
         {
@@ -32,7 +36,7 @@
         }
 
         float FinalScore = Curve.GetFloatValue(Score);
-        // UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} closer to player unit.");
+        UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} closer to player unit.");
 
         return FinalScore;
     }
