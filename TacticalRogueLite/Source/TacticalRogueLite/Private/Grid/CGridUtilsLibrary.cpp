@@ -70,16 +70,16 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 	return TArray<ACGridTile*>();
 }
 
-ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart,
-	TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags,
-	FGameplayTagContainer& BlockingTags)
+ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags, FGameplayTagContainer& BlockingTags)
 {
 	ACGridContent* ClosestContent = nullptr;
 	int32 ClosestDistance = INT32_MAX;
 	// We use a BFS to find the closest content
-	for (ACGridContent* Content : ContentArray)
+	for (int i = 0; i < ContentArray.Num(); ++i)
 	{
-		TArray<ACGridTile*> Path = BFS_Pathfinding(inStart, Content->GetTile(), MovementTags, BlockingTags);
+		ACGridContent* Content = ContentArray[i];
+		const ACGridTile* ContentTile = Content->GetTile();
+		TArray<ACGridTile*> Path = BFS_Pathfinding(inStart, ContentTile, MovementTags, BlockingTags);
 		if (Path.Num() < ClosestDistance)
 		{
 			ClosestDistance = Path.Num();
