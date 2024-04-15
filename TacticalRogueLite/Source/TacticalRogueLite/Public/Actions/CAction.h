@@ -12,6 +12,8 @@ class UWorld;
 class UCActionComponent;
 class ACGridTile;
 
+
+
 #pragma region FAbility struct
 
 USTRUCT(BlueprintType)
@@ -23,7 +25,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
 
-	UPROPERTY(Transient)
+	UPROPERTY(Transient, BlueprintReadOnly)
 	TArray<UCAction*> InstantiatedActions;
 
 	UPROPERTY(Transient, meta=(Categories="ItemSlot")) //Is ok if transient + category?
@@ -104,6 +106,8 @@ protected:
 	FGameplayTag ActivationTag;
 
 	
+
+	
 public:
 
 	//If true, this was the first action in a chain of events resulting from player input.
@@ -124,6 +128,10 @@ public:
 
 	void Initialize(UCActionComponent* NewActionComp);
 
+	UFUNCTION(BlueprintCallable)
+	FGameplayTag GetActivationTag() const { return ActivationTag; }
+	
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
 	bool CanStart(AActor* Instigator);
 
@@ -138,9 +146,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	static TArray<ACGridTile*> GetAbilityValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
-
-	UPROPERTY(BlueprintAssignable, Category = "Action")
-	FOnActionCompleted OnActionCompleted;
+	
 	
 	virtual UWorld* GetWorld() const override;
 

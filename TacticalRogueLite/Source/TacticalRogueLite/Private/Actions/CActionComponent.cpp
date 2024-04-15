@@ -25,6 +25,71 @@ void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
+void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)
+{
+	if (!ensure(ActionClass))
+	{
+		return;
+	}
+
+	//Skip for clients.
+	if (!GetOwner()->HasAuthority())
+	{
+		LOG_WARNING("Client attempting to AddAction");
+		return;
+	}
+
+	UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
+	check(NewAction);
+
+	NewAction->Initialize(this);
+
+	Actions.Add(NewAction);
+
+	if (ensure(NewAction->CanStart(Instigator)))
+	{
+		NewAction->StartAction(Instigator);
+	}
+}
+
+void UCActionComponent::RemoveAction(UCAction* ActionToRemove)
+{
+	if (!ensure(ActionToRemove)) //&& !ActionToRemove->IsRunning()). == Checking if theres active timer.
+	{
+		return;
+	}
+
+	Actions.Remove(ActionToRemove);
+}
+
+UCAction* UCActionComponent::GetAction(TSubclassOf<UCAction> ActionClass) const
+{
+	
+	for (UCAction* Action : Actions)
+	{
+		if (Action->IsA(ActionClass))
+		{
+			return Action;
+		}
+	}
+
+	return nullptr;
+}
+
+bool UCActionComponent::StopActionByName(AActor* Instigator, FGameplayTag ActionName)
+{
+	for (UCAction* Action : Actions)
+	{
+		if (Action->GetActivationTag() == ActionName)
+		{
+			Action->StopAction(Instigator);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void UCActionComponent::AddAbility(FAbility Ability)
 {
 	RemoveAbility(Ability.InventorySlotTag);
@@ -92,6 +157,13 @@ bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class 
 				WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
 		}
 	}
+	for (UCAction* Action : Actions)
+	{
+		if (Action)
+		{
+			WroteSomething |= Channel->ReplicateSubobject(Action, *Bunch, *RepFlags);
+		}
+	}
 
 	return WroteSomething;
 }
@@ -102,4 +174,5 @@ void UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(UCActionComponent, Abilities);
+	DOREPLIFETIME(UCActionComponent, Actions);
 }

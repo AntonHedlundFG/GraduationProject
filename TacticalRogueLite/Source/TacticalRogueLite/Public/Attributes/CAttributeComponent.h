@@ -54,6 +54,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentHealth;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
+	int CurrentMovement;
+
 	UFUNCTION()
 	void OnRep_CurrentHealth()
 	{
@@ -62,6 +65,9 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
 	int BaseHealth;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
+	int BaseMovement;
 
 	/*Resource used to power certain Actions*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
@@ -97,11 +103,24 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	int GetBaseHealth() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	int GetMovement() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void SetMovement(int NewMovement);
+
+	//Set permanent upgrades.??
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void SetBaseMovement(int NewBaseMovement);
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	bool IsBaseMovement() const;
+
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnAttributeChanged OnHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
-	FOnAttributeChanged OnRageChanged;
+	FOnAttributeChanged OnMovementChanged;
 
 	//Passing in the difference we want applied. Return if the change actually succeeded.
 	UFUNCTION(BlueprintCallable, Category = "Attributes")

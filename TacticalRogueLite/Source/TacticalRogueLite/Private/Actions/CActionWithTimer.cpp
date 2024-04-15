@@ -2,6 +2,8 @@
 
 
 #include "Actions/CActionWithTimer.h"
+
+#include "Actions/CActionComponent.h"
 #include "GridContent/CUnit.h"
 
 void UCActionWithTimer::StartAction_Implementation(AActor* Instigator)
@@ -10,6 +12,9 @@ void UCActionWithTimer::StartAction_Implementation(AActor* Instigator)
 
 	if (!AffectedUnit)
 		AffectedUnit = Cast<ACUnit>(Instigator);
+
+
+	GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
 
 	
 }

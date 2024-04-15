@@ -39,7 +39,7 @@ void UCAction::StartAction_Implementation(AActor* Instigator)
 
 	UCActionComponent* Comp = GetOwningComponent();	
 	Comp->ActiveGameplayTags.AppendTags(ActionTags);
-
+	
 }
 
 
@@ -56,6 +56,8 @@ void UCAction::UndoAction_Implementation(AActor* Instigator)
 	UCActionComponent* Comp = GetOwningComponent();
 	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 	bIsUndone = true;
+
+	GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
 UWorld* UCAction::GetWorld() const
