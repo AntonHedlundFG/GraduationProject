@@ -70,8 +70,8 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	}
 	else
 	{
-		Score = 0;
-		LOG_WARNING("No considerations for %s on Unit: %s", *Ability.InventorySlotTag.ToString(), *Unit->GetUnitName());
+		Score = 1;
+		LOG_WARNING("No considerations for %s on Unit: %s -> Returning 1 for consideration score", *Ability.InventorySlotTag.ToString(), *Unit->GetUnitName());
 	}
 	
 	return Score;
