@@ -171,16 +171,15 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		TArray<TPair<FAbility, ACGridTile*>> Path = BestActions.GetPath();
 		if(Path.Num() > 0)
 		{
+			// Execute the top action and remove it from the path
 			const TPair<FAbility, ACGridTile*> Ability = Path.Top();
 			BestActions.GetPath().Pop();
-			if(GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
-			{
-				LOG_ERROR("AI Controller used ability %s", *Ability.Key.InventorySlotTag.ToString());
-			}
-			else
+			// Try to use the ability, Error log if it fails
+			if(!GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
 			{
 				LOG_ERROR("Ability use of %s failed for AI", *Ability.Key.InventorySlotTag.ToString());
 			}
+			// Set a timer to execute the next action
 			TimerDel.BindLambda([this, BestActions]()
 			{
 				ExecuteActions(BestActions);
@@ -188,11 +187,13 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		}
 		else
 		{
+			// End turn if no actions left
 			TimerDel.BindLambda([this]()
 			{
 				GameMode->TryEndTurn(this);
 			});
 		}
+		// Set the timer
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
 	}	
 }
