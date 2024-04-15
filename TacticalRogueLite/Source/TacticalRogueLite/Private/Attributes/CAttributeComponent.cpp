@@ -114,6 +114,7 @@ int UCAttributeComponent::GetHealth() const
 	return CurrentHealth;
 }
 
+
 void UCAttributeComponent::SetHealth(int NewHealth)
 {
 	CurrentHealth = NewHealth;
@@ -123,6 +124,26 @@ void UCAttributeComponent::SetHealth(int NewHealth)
 int UCAttributeComponent::GetBaseHealth() const
 {
 	return BaseHealth;
+}
+
+int UCAttributeComponent::GetMovement() const
+{
+	return CurrentMovement;
+}
+
+void UCAttributeComponent::SetMovement(int NewMovement)
+{
+	CurrentMovement = NewMovement;
+}
+
+void UCAttributeComponent::SetBaseMovement(int NewBaseMovement)
+{
+	//BaseMovement == NewBaseMovement;
+}
+
+bool UCAttributeComponent::IsBaseMovement() const
+{
+	return CurrentMovement == BaseMovement;
 }
 
 

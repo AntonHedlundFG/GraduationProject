@@ -26,9 +26,10 @@ class TACTICALROGUELITE_API UAnimatingTurnOrderBox : public UVerticalBox
 {
 	GENERATED_BODY()
 	UPROPERTY()
-	TArray<UCTurnOrderPortraitWidget*> ActivePortraits;
+	TArray<UUserWidget*> ActiveWidgets;
+	FVector2D WidgetOffset;
 public:
 	void UpdateOrder(TArray<int> NewOrder);
 	FVector2D GetWidgetCenterLocation(UWidget * Widget);
-	void InitializeList();
+	void InitializeSpacing(TSubclassOf<UUserWidget> Prefab);
 };

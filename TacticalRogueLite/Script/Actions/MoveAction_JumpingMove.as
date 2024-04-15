@@ -18,14 +18,13 @@ class USMoveAction_Jumping : UCMovementAction
         // Get the active tags of the character for MoveRange calculation
         FGameplayTagContainer ActiveTags = UCAttributeComponent::GetAttributes(GetOwningComponent().GetOwner()).ActiveGameplayTags;
         // TODO: Blocking tags
-
         // Get the tiles that are within the MoveRange and remove the tiles that are within the InnerBlockedRange
-        TSet<ACGridTile> Outer = CGridUtils::FloodFill(inTile, OuterMoveRange, ActiveTags);
-        TSet<ACGridTile> Inner = CGridUtils::FloodFill(inTile, InnerBlockedRange, ActiveTags, false);
+        TSet<ACGridTile> OuterTiles = CGridUtils::FloodFill(inTile, OuterMoveRange, ActiveTags);
+        TSet<ACGridTile> InnerTiles = CGridUtils::FloodFill(inTile, InnerBlockedRange, ActiveTags, false);
 
-        for (ACGridTile Tile : Outer)
+        for (ACGridTile Tile : OuterTiles)
         {
-            if (!Inner.Contains(Tile))
+            if (!InnerTiles.Contains(Tile))
             {
                 ReturnTiles.Add(Tile);
             }

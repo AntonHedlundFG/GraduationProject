@@ -29,3 +29,16 @@ FVector2D UAnimatingTurnOrderBox::GetWidgetCenterLocation(UWidget* Widget)
 	FVector2D Position = Geometry.AbsoluteToLocal(Widget->GetCachedGeometry().GetAbsolutePosition()) + Widget->GetCachedGeometry().GetLocalSize() / 2.0f;
 	return Position;
 }
+
+void UAnimatingTurnOrderBox::InitializeSpacing(TSubclassOf<UUserWidget> Prefab)
+{
+	UWidget* ChildA = CreateWidget(GetWorld()->GetGameInstance(),Prefab);
+	UWidget* ChildB = CreateWidget(GetWorld()->GetGameInstance(),Prefab);
+	AddChildToVerticalBox(ChildA);
+	AddChildToVerticalBox(ChildB);
+	FVector2D ACenterPosition = GetWidgetCenterLocation(ChildA);
+	FVector2D BCenterPosition = GetWidgetCenterLocation(ChildB);
+	WidgetOffset = BCenterPosition - ACenterPosition;
+	RemoveChild(ChildA);
+	RemoveChild(ChildB);
+}
