@@ -40,8 +40,6 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnActiveGamePlayTagsChanged OnActiveGamePlayTagsChanged;
-	
-	
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes", meta = (DisplayName = "IsAlive"))
 	static bool IsActorAlive(AActor* Actor);
@@ -53,6 +51,9 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentHealth;
+	
+	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Attributes")
+	bool bIsPendingKill;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
 	int CurrentMovement;
@@ -88,6 +89,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	bool Kill(AActor* InstigatorActor);
 
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void SetIsPendingKill(const bool bPendingKill) { bIsPendingKill = bPendingKill; }
+	
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	bool IsAlive() const;
 

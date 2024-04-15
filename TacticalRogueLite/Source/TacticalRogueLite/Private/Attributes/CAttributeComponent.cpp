@@ -52,6 +52,7 @@ bool UCAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, int Delta)
 			if (GameMode)
 			{
 				GameMode->RegisterAction(DeathAction);
+				bIsPendingKill = true;
 			}
 		}
 	}
@@ -99,7 +100,7 @@ bool UCAttributeComponent::Kill(AActor* InstigatorActor)
 
 bool UCAttributeComponent::IsAlive() const
 {
-	return CurrentHealth > 0.0f;
+	return CurrentHealth > 0.0f && !bIsPendingKill;
 }
 
 

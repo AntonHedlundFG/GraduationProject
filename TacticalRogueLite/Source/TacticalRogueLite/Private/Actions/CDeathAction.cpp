@@ -3,6 +3,7 @@
 
 #include "Actions/CDeathAction.h"
 #include "CGameState.h"
+#include "Attributes/CAttributeComponent.h"
 #include "GridContent/CUnit.h"
 
 void UCDeathAction::StartAction_Implementation(AActor* Instigator)
@@ -35,6 +36,7 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 
 	AffectedUnit->SetTile(nullptr);
 	AffectedUnit->SetActorLocation(FVector::OneVector * 10000);
+	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
 	UCLogManager::Log(
 		ELogCategory::LC_Gameplay,
@@ -64,6 +66,8 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 		ELogCategory::LC_Gameplay,
 		AffectedUnit->GetUnitName().Append(" resurrected.")
 	);
+
+	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
 	Super::UndoAction_Implementation(Instigator);
 }
