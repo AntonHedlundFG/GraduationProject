@@ -1,10 +1,10 @@
 ﻿#include "AI/CAIController.h"
 #include "CGameMode.h"
 #include "AI/CConsideration.h"
+#include "Attributes/CAttributeComponent.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridTile.h"
 #include "ItemData/CItemData.h"
-#include "Kismet/KismetSystemLibrary.h"
 #include "Utility/Logging/CLogManager.h"
 
 void ACAIController::OnTurnChanged()
@@ -51,6 +51,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	// Take considerations into effect
 	for (UCConsideration* Consideration : Ability.Considerations)
 	{
+		LOG_INFO("Evaluating consideration %s for %s", *Consideration->GetName(), *Ability.InventorySlotTag.ToString());
 		const float ConsiderationScore = Consideration->Evaluate(Ability, StartTile, TargetTile, Context);
 		Score *= ConsiderationScore;
 
@@ -80,11 +81,6 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 FActionPath ACAIController::DecideBestActions()
 {
 	BestActionsMap.Empty();
-	if(Unit == nullptr)
-	{
-		LOG_ERROR("Unit is nullptr for %s", *GetName());
-		return FActionPath();
-	}
 
 	// Init containers
 	const TArray<FAbility> Abilities = Unit->GetEquippedAbilities();
@@ -117,9 +113,10 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 		}
 		
 		TArray<ACGridTile*> ReachableTiles = Ability.GetValidTargetTiles(CurrentTile);
-        
-		for (ACGridTile* Tile : ReachableTiles)
+
+		for (int i = 0; i < ReachableTiles.Num(); ++i)
 		{
+			ACGridTile* Tile = ReachableTiles[i];
 			const float Score = ScoreAction(Ability, CurrentTile, Tile);
 			
 			if(Score == 0) continue; // Skip paths with invalid actions
@@ -134,7 +131,7 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 			}
 			
 			// If it's not a movement ability, path ends here
-			// Add the path to the best paths
+			// Try Add the path to the best paths
 			TryAddBestPath(NewPath, BestPaths);
 		}
 	}
@@ -172,8 +169,9 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		if(Path.Num() > 0)
 		{
 			// Execute the top action and remove it from the path
-			const TPair<FAbility, ACGridTile*> Ability = Path.Top();
-			BestActions.GetPath().Pop();
+			const TPair<FAbility, ACGridTile*> Ability = MoveTemp(BestActions.GetPath()[0]);
+			BestActions.GetPath().RemoveAt(0);
+			
 			// Try to use the ability, Error log if it fails
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
 			{
@@ -201,6 +199,20 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 void ACAIController::UpdateContext()
 {
 	Context.CurrentUnit = Unit;
-	Context.PlayerUnits = GameMode->GetHeroUnits();
-	Context.AIUnits = GameMode->GetEnemyUnits();
+	Context.PlayerUnits.Empty();
+	for (ACUnit* HeroUnit : GameMode->GetHeroUnits())
+	{
+		if(HeroUnit && HeroUnit->GetAttributeComp()->IsAlive())
+		{
+			Context.PlayerUnits.Add(HeroUnit);
+		}
+	}
+	Context.AIUnits.Empty();
+	for (ACUnit* EnemyUnit : GameMode->GetEnemyUnits())
+	{
+		if(EnemyUnit && EnemyUnit->GetAttributeComp()->IsAlive())
+		{
+			Context.AIUnits.Add(EnemyUnit);
+		}
+	}
 }
