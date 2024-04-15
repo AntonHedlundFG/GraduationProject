@@ -104,6 +104,9 @@ public:
 	int GetBaseHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	float GetHealthPercent() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	int GetMovement() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")

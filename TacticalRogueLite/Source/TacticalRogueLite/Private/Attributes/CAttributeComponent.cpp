@@ -126,6 +126,11 @@ int UCAttributeComponent::GetBaseHealth() const
 	return BaseHealth;
 }
 
+float UCAttributeComponent::GetHealthPercent() const
+{
+	return GetHealth() / static_cast<float>(GetBaseHealth());
+}
+
 int UCAttributeComponent::GetMovement() const
 {
 	return CurrentMovement;
