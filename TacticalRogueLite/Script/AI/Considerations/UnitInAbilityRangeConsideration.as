@@ -22,6 +22,6 @@
 
         // UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} unit in range");
         
-        return 0;
+        return Score;
     }
 }
