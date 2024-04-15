@@ -21,9 +21,7 @@ protected:
 	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<USizeBox> ParentSizeBox;
-	
-	UPROPERTY() //?
-	TObjectPtr<UCAttributeComponent> AttributeComp;
+
 
 public:
 
