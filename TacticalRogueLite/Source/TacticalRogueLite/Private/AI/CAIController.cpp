@@ -177,6 +177,7 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 			{
 				LOG_ERROR("Ability use of %s failed for AI", *Ability.Key.InventorySlotTag.ToString());
 			}
+			
 			// Set a timer to execute the next action
 			TimerDel.BindLambda([this, BestActions]()
 			{
@@ -199,20 +200,24 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 void ACAIController::UpdateContext()
 {
 	Context.CurrentUnit = Unit;
-	Context.PlayerUnits.Empty();
-	for (ACUnit* HeroUnit : GameMode->GetHeroUnits())
+	Context.PlayerUnits = GameMode->GetHeroUnits();
+
+	// TODO: Remove dead units from the context and add new when spawned based on event instead?
+	for (int i = Context.PlayerUnits.Num() - 1; i >= 0; --i)
 	{
-		if(HeroUnit && HeroUnit->GetAttributeComp()->IsAlive())
+		const ACUnit* HeroUnit = Context.PlayerUnits[i];
+		if(HeroUnit == nullptr || !HeroUnit->GetAttributeComp()->IsAlive())
 		{
-			Context.PlayerUnits.Add(HeroUnit);
+			Context.PlayerUnits.RemoveAt(i);
 		}
 	}
-	Context.AIUnits.Empty();
-	for (ACUnit* EnemyUnit : GameMode->GetEnemyUnits())
+	Context.AIUnits = GameMode->GetEnemyUnits();
+	for (int i = Context.AIUnits.Num() - 1; i >= 0; --i)
 	{
-		if(EnemyUnit && EnemyUnit->GetAttributeComp()->IsAlive())
+		const ACUnit* AIUnit = Context.AIUnits[i];
+		if(AIUnit == nullptr || !AIUnit->GetAttributeComp()->IsAlive())
 		{
-			Context.AIUnits.Add(EnemyUnit);
+			Context.AIUnits.RemoveAt(i);
 		}
 	}
 }
