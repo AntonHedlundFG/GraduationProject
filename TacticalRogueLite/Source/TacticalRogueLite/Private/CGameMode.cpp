@@ -23,6 +23,7 @@
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Achievements\CVictoryCondition.h"
+#include "GamePlayTags/SharedGamePlayTags.h"
 #include "Utility/SaveGame/CSaveGame.h"
 
 void ACGameMode::BeginPlay()
@@ -48,11 +49,17 @@ void ACGameMode::BeginPlay()
 	if (Spawner)
 	{
 		InitializeHeroUnits(grid);
+
+		for (const ACUnit* HeroUnit : HeroUnits)
+		{
+			HeroUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsPlayer);
+		}
 		
 		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
 		for (ACUnit* EnemyUnit : EnemyUnits)
 		{
 			EnemyUnit->ControllingPlayerIndex = 0;
+			EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
 		}
 	}
 	AllUnits.Append(HeroUnits);
