@@ -52,7 +52,7 @@ public:
 
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
-	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath);
+	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
 	void ExecuteActions(FActionPath BestActions);
 	void UpdateContext();

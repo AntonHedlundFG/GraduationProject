@@ -21,7 +21,7 @@ void ACAIController::OnTurnChanged()
 		Unit = nullptr;
 		return;
 	}
-	LOG_INFO("AI Controller %s is taking turn", *GetName());
+	LOG_INFO("AI Controller is taking turn with unit: %s.", *Unit->GetUnitName());
 
 	UpdateContext();
 	const auto actions = DecideBestActions();
@@ -51,7 +51,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	// Take considerations into effect
 	for (UCConsideration* Consideration : Ability.Considerations)
 	{
-		LOG_INFO("Evaluating consideration %s for %s", *Consideration->GetName(), *Ability.InventorySlotTag.ToString());
+		// LOG_INFO("Evaluating consideration %s for %s", *Consideration->GetName(), *Ability.InventorySlotTag.ToString());
 		const float ConsiderationScore = Consideration->Evaluate(Ability, StartTile, TargetTile, Context);
 		Score *= ConsiderationScore;
 
@@ -65,7 +65,7 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 	if(NumConsiderations > 0)
 	{
 		const float OriginalScore = Score;
-		const float ModFactor = 1 - (1.0f / Ability.Considerations.Num());
+		const float ModFactor = 1 - (1.0f / NumConsiderations);
 		const float MakeUpValue = (1 - OriginalScore) * ModFactor;
 		Score += OriginalScore + (MakeUpValue * OriginalScore);
 	}
@@ -88,7 +88,7 @@ FActionPath ACAIController::DecideBestActions()
 	ACGridTile* UnitTile = Unit->GetTile();
 
 	// Recursively score all possible actions
-	const FActionPath InitialPath;
+	FActionPath InitialPath;
 	EvalAbilitiesFromTile(UnitTile, Abilities, BestPaths, InitialPath);
 
 	if(BestPaths.Num() == 0)
@@ -99,7 +99,7 @@ FActionPath ACAIController::DecideBestActions()
 	return BestPaths[0];
 }
 
-void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, const FActionPath& CurrentPath)
+void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath)
 {
 	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
 
@@ -145,7 +145,7 @@ void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& B
 		if(BestPaths.Num() >= 5)
 		{
 			FActionPath ActionPath = BestPaths.Top();
-			LOG_INFO("Removing action with score %f", ActionPath.GetScore());
+			// LOG_INFO("Removing action with score %f", ActionPath.GetScore());
 			BestPaths.Pop();
 		}
 		BestPaths.Add(NewPath);
@@ -175,7 +175,12 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 			// Try to use the ability, Error log if it fails
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.Key.InventorySlotTag, Ability.Value))
 			{
-				LOG_ERROR("Ability use of %s failed for AI", *Ability.Key.InventorySlotTag.ToString());
+				FString UnitName;
+				if(Unit)
+				{
+					UnitName = Unit->GetUnitName();
+				}
+				LOG_ERROR("Ability use of %s failed for AI with Unit: %s", *Ability.Key.InventorySlotTag.ToString(), *UnitName);
 			}
 			
 			// Set a timer to execute the next action
@@ -186,6 +191,10 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		}
 		else
 		{
+			if(Unit)
+			{
+				LOG_INFO("Ending Turn for AI Unit: %s", *Unit->GetUnitName());
+			}
 			// End turn if no actions left
 			TimerDel.BindLambda([this]()
 			{
