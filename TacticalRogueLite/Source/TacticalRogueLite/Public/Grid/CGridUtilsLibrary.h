@@ -27,7 +27,8 @@ public:
 	UFUNCTION(ScriptCallable)
 	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath = true);
 	UFUNCTION(ScriptCallable)
-	static ACGridContent* GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags, FGameplayTagContainer& BlockingTags);
+	static ACGridContent* GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, const FGameplayTagContainer& MovementTags, const
+	                                            FGameplayTagContainer& BlockingTags);
 
 	/*
 	UFUNCTION(ScriptCallable)

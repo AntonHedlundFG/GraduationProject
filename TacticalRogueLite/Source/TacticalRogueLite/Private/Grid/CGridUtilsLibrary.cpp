@@ -70,7 +70,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 	return TArray<ACGridTile*>();
 }
 
-ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags, FGameplayTagContainer& BlockingTags)
+ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags)
 {
 	ACGridContent* ClosestContent = nullptr;
 	int32 ClosestDistance = INT32_MAX;
