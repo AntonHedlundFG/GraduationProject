@@ -54,7 +54,8 @@ ACGridRoom* ACGrid::CreateStartRoom()
 	
 	if (Room)
 	{
-		Room->InitializeValues(this, 6, 4);
+		Room->InitializeValues(this, 4);
+		Room->SetCustomPlatformDimensions(6, 4);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(5,0, true);
 
 		for (auto tile : RoomTiles)

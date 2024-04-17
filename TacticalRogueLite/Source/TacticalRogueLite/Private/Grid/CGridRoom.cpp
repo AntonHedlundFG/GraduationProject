@@ -33,10 +33,14 @@ void ACGridRoom::BeginPlay()
 	}
 }
 
-void ACGridRoom::InitializeValues(ACGrid* inParentGrid, int inEnemyAmount, int inPlatformWidth, int inPlatformLength)
+void ACGridRoom::InitializeValues(ACGrid* inParentGrid, int inEnemyAmount)
 {
 	GameGrid = inParentGrid;
 	EnemyAmount = inEnemyAmount;
+}
+
+void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength)
+{
 	PlatformWidth = inPlatformWidth;
 	PlatformLength = inPlatformLength;
 }
@@ -108,12 +112,15 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	OutArray.Append(PathArray_2);
 	const TArray<ACGridTile*> Neighbours_2 = SpawnNeighbours(Point_2, true);
 	OutArray.Append(Neighbours_2);
-	
+
+	//Generate path from entrance to point2
+	const TArray<ACGridTile*> PathArray_3 = CreatePath(StartCoords, Point_2, true);
+	OutArray.Append(PathArray_3);
 
 	//Generate path from point2 to exit
 	const FVector2D TargetCoords = FVector2d(ExitX, Y_Max);
-	const TArray<ACGridTile*> PathArray_3 = CreatePath(Point_2, TargetCoords, true);
-	OutArray.Append(PathArray_3);
+	const TArray<ACGridTile*> PathArray_4 = CreatePath(Point_2, TargetCoords, true);
+	OutArray.Append(PathArray_4);
 
 	//Create Hero Spawns
 	if (bWithHeroSpawns)

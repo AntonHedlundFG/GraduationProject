@@ -24,7 +24,9 @@ public:
 	UFUNCTION()
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION()
-	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4, int inPlatformWidth = 3, int inPlatformLength = 2);
+	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4);
+	UFUNCTION()
+	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
 	UFUNCTION()
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
 	UFUNCTION()
@@ -37,9 +39,9 @@ protected:
 
 	//Determines the width and length of area around entrance and exit 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
-	int PlatformWidth = 3;
+	int PlatformWidth = 4;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
-	int PlatformLength = 2;
+	int PlatformLength = 3;
 
 	//Used to determine the bounds of the room
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
