@@ -53,7 +53,7 @@ public:
 	
 	///Spawns a grid actor at a given position, and with the given dimensions
 	UFUNCTION()
-	ACGrid* SpawnGrid(FVector inGridCenter, int inRows, int inColumns);
+	ACGrid* SpawnGrid(FVector inGridCenter);
 
 	virtual void OnSave() override;
 	virtual void OnLoad() override;

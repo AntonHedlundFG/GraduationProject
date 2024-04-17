@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "CGrid.generated.h"
 
+class ACGridRoom;
 class ACGridTile;
 
 UCLASS()
@@ -16,16 +17,24 @@ public:
 	ACGrid();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	TSubclassOf<ACGridTile> StandardTileBlueprint;
+	TSubclassOf<ACGridTile> StandardTileBP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	TSubclassOf<ACGridRoom> RoomBP;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	int NodeInterval = 1000;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	FVector2D GridDimensions = FVector2D(10,10);
+	
 	UPROPERTY(BlueprintReadOnly, Category = "Grid Properties")
 	TMap<FVector2D,TObjectPtr<ACGridTile>> TileMap;
 
+	// UFUNCTION()
+	// void GenerateTiles(int inRows, int inColumns);
 	UFUNCTION()
-	void GenerateTiles(int inRows, int inColumns);
+	ACGridRoom* CreateNewRoom(int inStartX, int inStartY);
+	UFUNCTION()
+	ACGridRoom* CreateStartRoom();
+	UFUNCTION()
+	ACGridTile* SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()
 	TArray<ACGridTile*> GetHeroSpawnTiles() const { return HeroSpawnTiles; }
 	UFUNCTION()
@@ -39,11 +48,11 @@ protected:
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> AllTiles;
 	UPROPERTY()
+	TArray<TObjectPtr<ACGridRoom>> AllRooms;
+	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
-	
-	FVector FindBottomLeftCorner() const;
 
 	//Temporary Solution
 	void GenerateSpawnTiles();

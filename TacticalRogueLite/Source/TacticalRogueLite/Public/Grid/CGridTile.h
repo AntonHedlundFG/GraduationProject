@@ -57,15 +57,15 @@ public:
 #pragma endregion
 
 protected:
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TObjectPtr<ACGrid> ParentGrid;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TArray<TObjectPtr<ACGridTile>> StraightLinks;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TArray<TObjectPtr<ACGridTile>> DiagonalLinks;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TObjectPtr<ACGridContent> TileContent;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	FVector2D GridCoords;
 
 	ETileHighlightModes CurrentHighlightMode = ETileHighlightModes::ETHM_Default;

@@ -1,5 +1,7 @@
 
 #include "Grid/CGrid.h"
+
+#include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
 #include "Net/UnrealNetwork.h"
 
@@ -9,33 +11,97 @@ ACGrid::ACGrid()
 	bReplicates = true;
 }
 
-void ACGrid::GenerateTiles(int inRows, int inColumns)
+// void ACGrid::GenerateTiles(int inRows, int inColumns)
+// {
+// 	for(int x = 0 ; x < inRows; x++)
+// 	{
+// 		for(int y = 0 ; y < inColumns; y++)
+// 		{
+// 			SpawnTileAtIndex(x, y, StandardTileBP);
+// 		}
+// 	}
+// 	for (auto tile : TileMap)
+// 	{
+// 		tile.Value->GenerateLinks();
+// 	}
+// 	
+// 	GenerateSpawnTiles();
+// }
+
+ACGridRoom* ACGrid::CreateNewRoom(int inStartX, int inStartY)
 {
-	const FVector BottomLeft = FindBottomLeftCorner();
+	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 	
-	for(int x = 0 ; x < inRows; x++)
+	if (Room)
 	{
-		for(int y = 0 ; y < inColumns; y++)
+		Room->InitializeValues(this);
+		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(inStartX,inStartY);
+
+		for (auto tile : RoomTiles)
 		{
-			FVector NodePosition = BottomLeft;
-			NodePosition.X += x*NodeInterval;
-			NodePosition.Y += y*NodeInterval;
-			FVector2D TileCoords = FVector2D(x,y);
-			TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(StandardTileBlueprint, NodePosition, FRotator::ZeroRotator);
-			Tile->Initialize(this, TileCoords);
-			TileMap.Add(TileCoords, Tile);
-			AllTiles.Add(Tile);
+			tile->GenerateLinks();
 		}
+
+		AllRooms.Add(Room);
 	}
 	
-	for (auto tile : TileMap)
+	return Room;
+}
+
+ACGridRoom* ACGrid::CreateStartRoom()
+{
+	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
+	
+	if (Room)
 	{
-		tile.Value->GenerateLinks();
+		Room->InitializeValues(this, 6, 4);
+		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(5,0, true);
+
+		for (auto tile : RoomTiles)
+		{
+			tile->GenerateLinks();
+		}
+
+		AllRooms.Add(Room);
 	}
 
-	GenerateSpawnTiles();
-}
+	if (!Room->GetHeroSpawnTiles().IsEmpty())
+		HeroSpawnTiles = Room->GetHeroSpawnTiles();
 	
+	EnemySpawnTiles = Room->GetEnemySpawnTiles();
+	
+
+	// GenerateSpawnTiles();
+	
+	return Room;
+}
+
+ACGridTile* ACGrid::SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType)
+{
+	FVector TilePosition = GetActorLocation();
+	TilePosition.X += inY * NodeInterval;
+	TilePosition.Y += inX * NodeInterval;
+	TilePosition.Z = 0;
+
+	const FVector2D TileCoords = FVector2D(inX,inY);
+
+	if (TileMap.Contains(TileCoords))
+	{
+		return nullptr;
+	}
+	
+	TObjectPtr<ACGridTile> Tile = GetWorld()->SpawnActor<ACGridTile>(TileType, TilePosition, FRotator::ZeroRotator);
+	if (Tile)
+	{
+		Tile->Initialize(this, TileCoords);
+		TileMap.Add(TileCoords, Tile);
+		AllTiles.Add(Tile);
+	}
+	
+	return Tile;
+}
+
+
 ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 {
 	for (auto Element : TileMap)
@@ -46,15 +112,6 @@ ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 	return nullptr;
 }
 
-FVector ACGrid::FindBottomLeftCorner() const
-{
-	FVector Corner = GetActorLocation();
-
-	Corner.X -= GridDimensions.X / 2 * NodeInterval;
-	Corner.Y -= GridDimensions.Y / 2 * NodeInterval;
-	
-	return Corner;
-}
 
 
 //
@@ -63,16 +120,16 @@ FVector ACGrid::FindBottomLeftCorner() const
 void ACGrid::GenerateSpawnTiles()
 {
 	TArray<FVector2D> HeroSpawns;
-	HeroSpawns.Add(FVector2D(0,1));
-	HeroSpawns.Add(FVector2D(0,3));
-	HeroSpawns.Add(FVector2D(0,6));
-	HeroSpawns.Add(FVector2D(0,8));
+	HeroSpawns.Add(FVector2D(2,1));
+	HeroSpawns.Add(FVector2D(4,1));
+	HeroSpawns.Add(FVector2D(6,1));
+	HeroSpawns.Add(FVector2D(8,1));
 
 	TArray<FVector2D> EnemySpawns;
-	EnemySpawns.Add(FVector2D(9,1));
-	EnemySpawns.Add(FVector2D(9,3));
-	EnemySpawns.Add(FVector2D(9,6));
-	EnemySpawns.Add(FVector2D(9,8));
+	EnemySpawns.Add(FVector2D(2,10));
+	EnemySpawns.Add(FVector2D(4,10));
+	EnemySpawns.Add(FVector2D(6,10));
+	EnemySpawns.Add(FVector2D(8,10));
 	
 	
 	for (auto tile : TileMap)

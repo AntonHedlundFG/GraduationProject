@@ -43,13 +43,13 @@ void ACGameMode::BeginPlay()
 	
 	UCSaveGameManager::Get()->LoadGame();
 
-	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero(),10,10);
+	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero());
 	GameStateRef->GameGrid = grid;
 
 	if (Spawner)
 	{
 		InitializeHeroUnits(grid);
-
+	
 		for (const ACUnit* HeroUnit : HeroUnits)
 		{
 			HeroUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsPlayer);
@@ -64,7 +64,7 @@ void ACGameMode::BeginPlay()
 	}
 	AllUnits.Append(HeroUnits);
 	AllUnits.Append(EnemyUnits);
-
+	
 	if (DefaultEquipmentData)
 	{
 		for (auto Unit : EnemyUnits)
@@ -78,7 +78,7 @@ void ACGameMode::BeginPlay()
 	}
 	
 	InitializeVictoryCondition();
-
+	
 	InitializeTurnOrder(AllUnits);
 }
 

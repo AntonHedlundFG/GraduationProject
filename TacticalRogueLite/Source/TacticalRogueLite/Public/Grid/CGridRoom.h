@@ -1,0 +1,82 @@
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CGridRoom.generated.h"
+
+class ACGameState;
+class UCRandomComponent;
+class ACGrid;
+class ACGridTile;
+
+UCLASS()
+class TACTICALROGUELITE_API ACGridRoom : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACGridRoom();
+
+	UPROPERTY()
+	TObjectPtr<ACGrid> GameGrid;
+
+	UFUNCTION()
+	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
+	UFUNCTION()
+	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4, int inPlatformWidth = 3, int inPlatformLength = 2);
+	UFUNCTION()
+	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
+	UFUNCTION()
+	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
+
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Testing")
+	int SeedTest = 1993;
+
+	//Determines the width and length of area around entrance and exit 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
+	int PlatformWidth = 3;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
+	int PlatformLength = 2;
+
+	//Used to determine the bounds of the room
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
+	int RoomMaxWidth = 20;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
+	int RoomMaxLength = 15;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
+	int WidthVariance = 5;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
+	int LengthVariance = 3;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Enemy Spawn")
+	int EnemyAmount = 4;
+
+	UPROPERTY()
+	FVector2D MinCoords;
+	UPROPERTY()
+	FVector2D MaxCoords;
+
+	UPROPERTY()
+	TArray<ACGridTile*> RoomTiles;
+	UPROPERTY()
+	TArray<ACGridTile*> EnemySpawns;
+	UPROPERTY()
+	TArray<ACGridTile*> HeroSpawns;
+	UPROPERTY()
+	TObjectPtr<UCRandomComponent> RandomComp;
+	UPROPERTY()
+	TObjectPtr<ACGameState> StateRef;
+	
+	virtual void BeginPlay() override;
+
+	TArray<ACGridTile*> CreatePath(FVector2d inStart, FVector2d inTarget, bool bWithNeighbours);
+	TArray<ACGridTile*> CreatePlatform(int inMiddleX, int inStartY, bool isEntrance) const;
+	TArray<ACGridTile*> SpawnNeighbours(FVector2d inTileCoords, bool bIncludeDiagonals) const;
+	FVector2d CreatePoint(FVector2d inPreviousPoint, int inXMin, int inXMax, int inYMax) const;
+	void IncrementTowardsTarget(int32& inValue, int32 inTarget);
+	TArray<ACGridTile*> GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const;
+	
+
+};
