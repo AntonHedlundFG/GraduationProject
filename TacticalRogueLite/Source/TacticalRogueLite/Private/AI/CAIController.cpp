@@ -23,9 +23,16 @@ void ACAIController::OnTurnChanged()
 	}
 	LOG_INFO("AI Controller is taking turn with unit: %s.", *Unit->GetUnitName());
 
-	UpdateContext();
-	const auto actions = DecideBestActions();
-	ExecuteActions(actions);
+
+	FTimerHandle TimerHandle;
+	FTimerDelegate TimerDel;
+	const float TimerDelay = FMath::RandRange(0.7f, 1.5f);
+	TimerDel.BindLambda([this]()
+	{
+		// Start Turn
+		ExecuteTurn();
+	});
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
 
 	// Turn End through ExecuteActions
 }
@@ -42,6 +49,8 @@ void ACAIController::BeginPlay()
 	}
 	// Subscribe to turn change
 	GameMode->GetGameState<ACGameState>()->OnTurnOrderUpdate.AddDynamic(this, &ACAIController::OnTurnChanged);
+
+	
 }
 
 float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile)
@@ -81,7 +90,10 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 FActionPath ACAIController::DecideBestActions()
 {
 	BestActionsMap.Empty();
-
+	if(!Unit)
+	{
+		return FActionPath();
+	}
 	// Init containers
 	const TArray<FAbility> Abilities = Unit->GetEquippedAbilities();
 	TArray<FActionPath> BestPaths;
@@ -158,6 +170,8 @@ void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& B
 	});
 }
 
+float TimeTotal = 0;
+
 void ACAIController::ExecuteActions(FActionPath BestActions)
 {
 	if(GameMode)
@@ -165,6 +179,7 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDel;
 		const float TimerDelay = FMath::RandRange(.1f, .5f);
+		TimeTotal += TimerDelay;
 		TArray<TPair<FAbility, ACGridTile*>> Path = BestActions.GetPath();
 		if(Path.Num() > 0)
 		{
@@ -199,10 +214,11 @@ void ACAIController::ExecuteActions(FActionPath BestActions)
 			TimerDel.BindLambda([this]()
 			{
 				GameMode->TryEndTurn(this);
+				TimeTotal = 0;
 			});
 		}
 		// Set the timer
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimeTotal, false);
 	}	
 }
 
@@ -229,4 +245,11 @@ void ACAIController::UpdateContext()
 			Context.AIUnits.RemoveAt(i);
 		}
 	}
+}
+
+void ACAIController::ExecuteTurn()
+{
+	UpdateContext();
+	const auto actions = DecideBestActions();
+	ExecuteActions(actions);
 }

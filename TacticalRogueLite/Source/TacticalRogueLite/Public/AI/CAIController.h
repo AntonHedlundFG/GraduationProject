@@ -56,6 +56,7 @@ public:
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
 	void ExecuteActions(FActionPath BestActions);
 	void UpdateContext();
+	void ExecuteTurn();
 
 private:
 	UPROPERTY()
