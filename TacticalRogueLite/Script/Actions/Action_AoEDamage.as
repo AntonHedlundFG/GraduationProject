@@ -21,9 +21,7 @@ class USAction_AoEDamage : UCAction
         if(!IsValid(AttackingUnit))
             return;
 
-
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(AttackingUnit.GetTile(), Range, ActionTags, false);
-
+        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(AttackingUnit.GetTile());
 
         for (ACGridTile Tile : TilesInRange)
         {
@@ -66,5 +64,11 @@ class USAction_AoEDamage : UCAction
             TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]);
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Damage} </> damage on {TargetsArray[i].GetUnitName()}.");
         }
+    }
+
+    UFUNCTION(BlueprintOverride)
+    TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
+    {
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, false);
     }
 }

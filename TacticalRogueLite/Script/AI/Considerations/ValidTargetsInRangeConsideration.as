@@ -9,23 +9,20 @@ class USValidTargetsInRangeConsideration : UCConsideration
         float Score = 0;
 
         // Get reference to relevant units
-        TArray<ACUnit> ValidUnits = ConsiderationTags.HasTag(GameplayTags::Unit_IsPlayer) ? Context.PlayerUnits : Context.AIUnits;
 
-        FGameplayTagContainer AbilityTags = Ability.AbilityTags;
-        FGameplayTagContainer BlockingTags = Ability.BlockingTags;
+        auto TargetTiles = UCAction::GetAbilityInfluencedTiles(Ability, TargetTile);
 
-        auto TargetsTiles = UCAction::GetAbilityValidTargetTiles(Ability, TargetTile);
-
-        for (ACGridTile Tile : TargetsTiles)
+        for (ACGridTile Tile : TargetTiles)
         {
             if (Tile == nullptr) continue;
-
+            ACGridContent Content = Tile.GetContent();
             ACUnit TargetUnit = Cast<ACUnit>(Tile.GetContent());
             if (TargetUnit == nullptr) continue;
+            if(TargetUnit == Context.CurrentUnit) continue;
 
-            if (!ValidUnits.Contains(TargetUnit)) continue;
+            if (!TargetUnit.ActionComp.ActiveGameplayTags.HasAny(ConsiderationTags)) continue;
 
-            Score += (1.0f / TargetsTiles.Num());
+            Score += (1.0f / TargetTiles.Num());
         }
 
         float FinalScore = Curve.GetFloatValue(Score);

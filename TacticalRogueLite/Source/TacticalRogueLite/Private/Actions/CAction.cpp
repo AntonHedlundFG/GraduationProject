@@ -51,6 +51,11 @@ void UCAction::StopAction_Implementation(AActor* Instigator)
 
 }
 
+TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
+{
+	return { fromTile }; // Default implementation, just return the tile the action was started from.
+}
+
 void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
@@ -79,6 +84,16 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 	// DOREPLIFETIME(UCAction, RepData);
 	DOREPLIFETIME(UCAction, ActionComp);
 	DOREPLIFETIME(UCAction, bIsUndone);
+}
+
+TSet<ACGridTile*> FAbility::GetInfluencedTiles(ACGridTile* fromTile)
+{
+	TSet <ACGridTile*> InfluencedTiles;
+	for (auto Action : InstantiatedActions)
+	{
+		InfluencedTiles.Append(Action->GetActionInfluencedTiles(fromTile));
+	}
+	return InfluencedTiles;
 }
 
 TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)

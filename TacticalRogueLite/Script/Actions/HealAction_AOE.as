@@ -17,7 +17,7 @@ class USHealAction_AOE: UCAction
         }
         InsigatorUnit = Cast<ACUnit>(Instigator);
         ACGridTile startTile = InsigatorUnit.GetTile();
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(startTile, Range, ActionTags, false);
+        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(startTile);
         TArray<ACUnit> ValidUnits;
 
         for(auto Tile :TilesInRange)
@@ -37,8 +37,10 @@ class USHealAction_AOE: UCAction
                 }
             }
         }
-            ACUnit From = Cast<ACUnit>(Instigator);
-            ACUnit To;
+
+        ACUnit From = Cast<ACUnit>(Instigator);
+        ACUnit To;
+        
         for(ACUnit Unit : ValidUnits)
         {
             To = Unit;
@@ -73,5 +75,11 @@ class USHealAction_AOE: UCAction
                  UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> on {To.GetUnitName()}.");
             }
         }
+    }
+
+    UFUNCTION(BlueprintOverride)
+    TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
+    {
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, false);
     }
 }
