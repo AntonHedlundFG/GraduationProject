@@ -21,15 +21,15 @@ public:
 	UPROPERTY()
 	TObjectPtr<ACGrid> GameGrid;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
 
 
@@ -52,6 +52,9 @@ protected:
 	int WidthVariance = 5;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
 	int LengthVariance = 3;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
+	int RoomPoints = 2;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Enemy Spawn")
 	int EnemyAmount = 4;
 
@@ -74,11 +77,16 @@ protected:
 	virtual void BeginPlay() override;
 
 	TArray<ACGridTile*> CreatePath(FVector2d inStart, FVector2d inTarget, bool bWithNeighbours);
+	TArray<ACGridTile*> CreatePathsBetweenPoints(FVector2d inStart, FVector2d inTarget, TArray<ACGridTile*> inPointArray);
+	
+	FVector2d CreatePoint(int inPreviousX, FVector2d inMinCoords, FVector2d inMaxCoords) const;
+	TArray<ACGridTile*> GeneratePoints(int inPointAmount, FVector2d inStartCoords, FVector2d inMinCoords, FVector2d inMaxCoords);
+	
 	TArray<ACGridTile*> CreatePlatform(int inMiddleX, int inStartY, bool isEntrance) const;
 	TArray<ACGridTile*> SpawnNeighbours(FVector2d inTileCoords, bool bIncludeDiagonals) const;
-	FVector2d CreatePoint(FVector2d inPreviousPoint, int inXMin, int inXMax, int inYMax) const;
 	void IncrementTowardsTarget(int32& inValue, int32 inTarget);
+
+	void GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
 	TArray<ACGridTile*> GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const;
-	
 
 };

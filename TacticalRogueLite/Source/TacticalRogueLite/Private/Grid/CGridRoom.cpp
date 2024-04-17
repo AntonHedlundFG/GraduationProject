@@ -56,6 +56,13 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 
 	RandomComp->InitializeFromStart(SeedTest);
 
+	//Error control
+	if (PlatformLength * 2 > RoomMaxLength - LengthVariance)
+		RoomMaxLength += PlatformLength * 2;
+	
+	if (PlatformWidth * 2 > RoomMaxWidth - WidthVariance)
+		RoomMaxWidth += PlatformWidth * 2;
+
 	//Set Room Bounds
 	const int32 X_Min = RandomComp->GetRandRange(inStartX - RoomMaxWidth + PlatformWidth, inStartX + PlatformWidth, false);
 	const int32 X_Max = RandomComp->GetRandRange(X_Min + RoomMaxWidth - WidthVariance, X_Min + RoomMaxWidth, false);
@@ -82,56 +89,36 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	TArray<ACGridTile*> ExitArea = CreatePlatform(ExitX, Y_Max, false);
 	OutArray.Append(ExitArea);
 
-	
-	//Create random point 1
+
 	const FVector2D StartCoords = FVector2d(inStartX, inStartY);
-	const FVector2D Point_1 = CreatePoint(StartCoords, X_Min, X_Max, Y_Max);
-	ACGridTile* PointTile_1 = GameGrid->SpawnTileAtIndex(Point_1.X, Point_1.Y, GameGrid->StandardTileBP);
-	if (PointTile_1)
-	{
-		PointTile_1->SetTileHighlightMode(ETileHighlightModes::ETHM_Attackable);
-		OutArray.Add(PointTile_1);
-	}
-	//Generate path from entrance to point1
-	const TArray<ACGridTile*> PathArray_1 = CreatePath(StartCoords, Point_1, true);
-	OutArray.Append(PathArray_1);
-	const TArray<ACGridTile*> Neighbours_1 = SpawnNeighbours(Point_1, true);
-	OutArray.Append(Neighbours_1);
-
-	
-	//Create random point 2
-	const FVector2D Point_2 = CreatePoint(Point_1, X_Min, X_Max, Y_Max);
-	ACGridTile* PointTile_2 = GameGrid->SpawnTileAtIndex(Point_2.X, Point_2.Y, GameGrid->StandardTileBP);
-	if (PointTile_2)
-	{
-		PointTile_2->SetTileHighlightMode(ETileHighlightModes::ETHM_Attackable);
-		OutArray.Add(PointTile_2);
-	}
-	//Generate path from point1 to point2
-	const TArray<ACGridTile*> PathArray_2 = CreatePath(Point_1, Point_2, true);
-	OutArray.Append(PathArray_2);
-	const TArray<ACGridTile*> Neighbours_2 = SpawnNeighbours(Point_2, true);
-	OutArray.Append(Neighbours_2);
-
-	//Generate path from entrance to point2
-	const TArray<ACGridTile*> PathArray_3 = CreatePath(StartCoords, Point_2, true);
-	OutArray.Append(PathArray_3);
-
-	//Generate path from point2 to exit
 	const FVector2D TargetCoords = FVector2d(ExitX, Y_Max);
-	const TArray<ACGridTile*> PathArray_4 = CreatePath(Point_2, TargetCoords, true);
-	OutArray.Append(PathArray_4);
+
+	//Generate room points and spawn paths between them
+	const TArray<ACGridTile*> GeneratedPoints = GeneratePoints(RoomPoints, StartCoords, FVector2d(X_Min, Y_Min + PlatformLength), FVector2d(X_Max, Y_Max - PlatformLength));
+	if (GeneratedPoints.Num() < 1)
+	{
+		const TArray<ACGridTile*> StartToEnd = CreatePath(StartCoords, TargetCoords, true);
+		OutArray.Append(StartToEnd);
+	}
+	//if no points make a path from start to exit
+	else
+	{
+		OutArray.Append(CreatePathsBetweenPoints(StartCoords, TargetCoords, GeneratedPoints));
+	}
+	//Spawn neighbouring tiles around room points
+	for (const auto Tile : GeneratedPoints)
+	{
+		OutArray.Append(SpawnNeighbours(Tile->GetGridCoords(), true));
+	}
+	
 
 	//Create Hero Spawns
 	if (bWithHeroSpawns)
 	{
 		HeroSpawns.Append(GenerateSpawnsOnPlatform(StartArea, 4));
 	}
-	
-	//Create Enemy Spawns
-	EnemySpawns.Add(PointTile_1);
-	EnemySpawns.Add(PointTile_2);
-	EnemySpawns.Append(GenerateSpawnsOnPlatform(ExitArea, EnemyAmount - 2));
+
+	GenerateEnemySpawns(GeneratedPoints, ExitArea);
 	
 	RoomTiles = OutArray;
 	
@@ -219,6 +206,42 @@ TArray<ACGridTile*> ACGridRoom::CreatePath(FVector2d inStart, FVector2d inTarget
 	return OutArray;
 }
 
+TArray<ACGridTile*> ACGridRoom::CreatePathsBetweenPoints(FVector2d inStart, FVector2d inTarget,
+	TArray<ACGridTile*> inPointArray)
+{
+	TArray<ACGridTile*> OutArray = TArray<ACGridTile*>();
+	
+	for (int i = 0; i < inPointArray.Num(); i++)
+	{
+		//Path from start to point 1
+		if (i == 0)
+		{
+			const TArray<ACGridTile*> PointPath = CreatePath(inStart, inPointArray[i]->GetGridCoords(), true);
+			OutArray.Append(PointPath);
+		}
+		//Path from last point to exit
+		if (i == inPointArray.Num() - 1)
+		{
+			const TArray<ACGridTile*> PointPath = CreatePath(inPointArray[i]->GetGridCoords(), inTarget, true);
+			OutArray.Append(PointPath);
+		}
+		//Path from current point to next
+		if (i + 1 < inPointArray.Num())
+		{
+			const TArray<ACGridTile*> PointPath = CreatePath(inPointArray[i]->GetGridCoords(), inPointArray[i + 1]->GetGridCoords(), true);
+			OutArray.Append(PointPath);
+		}
+		//Paths from even to even point, and odd to odd point
+		if (i + 2 < inPointArray.Num())
+		{
+			const TArray<ACGridTile*> PointPath = CreatePath(inPointArray[i]->GetGridCoords(), inPointArray[i + 2]->GetGridCoords(), true);
+			OutArray.Append(PointPath);
+		}
+	}
+
+	return OutArray;
+}
+
 TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool isEntrance) const
 {
 	TArray<ACGridTile*> OutArray = TArray<ACGridTile*>();
@@ -233,7 +256,6 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, GameGrid->StandardTileBP);
 				if (Tile)
 				{
-					Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
 					OutArray.Add(Tile);
 				}
 			}
@@ -245,7 +267,6 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, GameGrid->StandardTileBP);
 				if (Tile)
 				{
-					Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Attackable);
 					OutArray.Add(Tile);
 				}
 			}
@@ -273,7 +294,6 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, GameGrid->StandardTileBP);
 		if (Tile)
 		{
-			Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Hovered);
 			OutArray.Add(Tile);
 		}
 	}
@@ -294,7 +314,6 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 			ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, GameGrid->StandardTileBP);
 			if (Tile)
 			{
-				Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Hovered);
 				OutArray.Add(Tile);
 			}
 		}
@@ -303,23 +322,90 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 	return OutArray;
 }
 
-FVector2d ACGridRoom::CreatePoint(FVector2d inPreviousPoint, int inXMin, int inXMax, int inYMax) const
+FVector2d ACGridRoom::CreatePoint(int inPreviousX, FVector2d inMinCoords, FVector2d inMaxCoords) const
 {
 	FVector2d PointCoords = FVector2d();
 
-	PointCoords.Y = RandomComp->GetRandRange(inPreviousPoint.Y + 1, inYMax - 1, false);
+	const int XMin = inMinCoords.X;
+	const int YMin = inMinCoords.Y;
+	const int XMax = inMaxCoords.X;
+	const int YMax = inMaxCoords.Y;
 
-	int32 MidX = (inXMin + inXMax) / 2;
-	if (inPreviousPoint.X >= MidX)
+	PointCoords.Y = RandomComp->GetRandRange(YMin + 1, YMax - 1, false);
+
+	const int32 MidX = (XMin + XMax) / 2;
+	if (inPreviousX >= MidX)
 	{
-		PointCoords.X = RandomComp->GetRandRange(inXMin + 1, MidX - 1, false);
+		PointCoords.X = RandomComp->GetRandRange(XMin + 1, MidX - PlatformWidth, false);
 	}
 	else
 	{
-		PointCoords.X = RandomComp->GetRandRange(MidX, inXMax - 1, false);
+		PointCoords.X = RandomComp->GetRandRange(MidX + PlatformWidth, XMax - 1, false);
 	}
 	
 	return PointCoords;
+}
+
+TArray<ACGridTile*> ACGridRoom::GeneratePoints(int inPointAmount, FVector2d inStartCoords, FVector2d inMinCoords, FVector2d inMaxCoords)
+{
+	TArray<ACGridTile*> OutArray = TArray<ACGridTile*>();
+	TArray<int> X_CoordsArray;
+	X_CoordsArray.Add(inStartCoords.X);
+
+	const int XMin = inMinCoords.X;
+	const int YMin = inMinCoords.Y;
+	const int XMax = inMaxCoords.X;
+	const int YMax = inMaxCoords.Y;
+
+	const int Length = YMax - YMin;
+
+	int PointAmount = inPointAmount;
+	if (Length < PointAmount)
+	{
+		PointAmount = Length;
+		LOG_WARNING("Not enough space to generate desired amount of points, spawning: %d points", PointAmount);
+	}
+
+	TArray<int> SmallIndexArray;
+	for (int i = 0; i < Length / 2; i++)
+	{
+		SmallIndexArray.Add(YMin + i);
+	}
+	TArray<int> BigIndexArray;
+	for (int i = Length / 2; i < Length; i++)
+	{
+		BigIndexArray.Add(YMin + i);
+	}
+	
+	for (int i = 0; i < PointAmount; i++)
+	{
+		int YCoords;
+		int Index;
+		
+		if (i < PointAmount / 2)
+		{
+			Index = RandomComp->GetRandRange(0, SmallIndexArray.Num() - 1, false);
+			YCoords = SmallIndexArray[Index];
+			SmallIndexArray.RemoveAt(Index);
+		}
+		else
+		{
+			Index = RandomComp->GetRandRange(0, BigIndexArray.Num() - 1, false);
+			YCoords = BigIndexArray[Index];
+			BigIndexArray.RemoveAt(Index);
+		}
+
+		const FVector2d PointCoords = CreatePoint(X_CoordsArray[i], FVector2d(XMin, YCoords), FVector2d(XMax, YCoords));
+		X_CoordsArray.Add(PointCoords.X);
+
+		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(PointCoords.X, PointCoords.Y, GameGrid->StandardTileBP);
+		if (Tile)
+		{
+			OutArray.Add(Tile);
+		}
+	}
+	
+	return OutArray;
 }
 
 void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
@@ -334,15 +420,45 @@ void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
 	}
 }
 
+void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
+{
+	const int PointAmount = inPoints.Num();
+	
+	TArray<int> Indexes;
+	for (int i = 0; i < PointAmount; i++)
+	{
+		Indexes.Add(i);
+	}
+	
+	for (int i = 0; i < PointAmount; i++)
+	{
+		if (i >= EnemyAmount)
+			return;
+
+		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
+		const int PointIndex = Indexes[X];
+		Indexes.RemoveAt(X);
+		
+		EnemySpawns.Add(inPoints[PointIndex]);
+	}
+
+	if (PointAmount < EnemyAmount)
+	{
+		EnemySpawns.Append(GenerateSpawnsOnPlatform(inPlatform, EnemyAmount - PointAmount));
+	}
+}
+
 TArray<ACGridTile*> ACGridRoom::GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const
 {
 	TArray<ACGridTile*> OutArray = TArray<ACGridTile*>();
 	const int Size = inPlatformTiles.Num();
 
-	for (int i = 0; i < inSpawnAmount; i++)
+	const int SpawnAmount = Size < inSpawnAmount ? Size : inSpawnAmount;
+
+	for (int i = 0; i < SpawnAmount; i++)
 	{
-		const int Min = i * Size / inSpawnAmount;
-		const int Max = (i + 1) * Size / inSpawnAmount - 1;
+		const int Min = i * Size / SpawnAmount;
+		const int Max = (i + 1) * Size / SpawnAmount - 1;
 		const int Index = RandomComp->GetRandRange(Min, Max, false);
 
 		ACGridTile* Tile = inPlatformTiles[Index];
