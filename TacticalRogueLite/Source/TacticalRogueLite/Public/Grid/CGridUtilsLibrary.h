@@ -27,13 +27,11 @@ public:
 	UFUNCTION(ScriptCallable)
 	static TArray<ACGridTile*> BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath = true);
 	UFUNCTION(ScriptCallable)
+	static TArray<ACGridTile*> AStar_Pathfinding(ACGridTile* inStart, ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,	const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath = true);
+	static float GetManhattanDistance(const ACGridTile* From, const ACGridTile* To);
+	UFUNCTION(ScriptCallable)
 	static ACGridContent* GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, const FGameplayTagContainer& MovementTags, const
 	                                            FGameplayTagContainer& BlockingTags);
-
-	/*
-	UFUNCTION(ScriptCallable)
-	static TSet<ACGridTile*> FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth);
-	*/
 
 	//For example, MovementMethods can contain the tag "Movement_Straight" and "Movement_Diagonal".
 	//Or only "Movement_Diagonal"

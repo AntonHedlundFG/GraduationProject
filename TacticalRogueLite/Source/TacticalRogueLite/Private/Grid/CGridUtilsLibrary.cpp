@@ -70,6 +70,95 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 	return TArray<ACGridTile*>();
 }
 
+#pragma region FTilePriority
+// Helper struct for A* pathfinding
+struct FTilePriority
+{
+	ACGridTile* Tile;
+	float FCost; // Total cost f = g + h
+
+	FTilePriority(ACGridTile* InTile, float InFCost) : Tile(InTile), FCost(InFCost) {}
+
+	// Operator overloads for priority comparison
+	bool operator>(const FTilePriority& Other) const
+	{
+		return FCost > Other.FCost;
+	}
+	bool operator<(const FTilePriority& Other) const
+	{
+		return FCost < Other.FCost;
+	}
+};
+#pragma endregion
+
+TArray<ACGridTile*> UCGridUtilsLibrary::AStar_Pathfinding(ACGridTile* inStart, ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,
+    const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath /*= true*/)
+{
+    if (!inStart || !inTarget) return {};
+
+    TArray<FTilePriority> OpenSet;
+    TMap<ACGridTile*, ACGridTile*> Parents;
+    TMap<ACGridTile*, float> GCosts;
+    TMap<ACGridTile*, float> FCosts;
+
+    OpenSet.Add(FTilePriority(inStart, 0.0f));
+    Parents.Add(inStart, nullptr);
+    GCosts.Add(inStart, 0.0f);
+    FCosts.Add(inStart, 0.0f);
+
+    while (OpenSet.Num() > 0)
+    {
+        // Sort the array to find the lowest FCost, Get and remove it
+        OpenSet.Sort();
+        FTilePriority Current = OpenSet[0];
+        OpenSet.RemoveAt(0); 
+
+        ACGridTile* CurrentTile = Current.Tile;
+    	
+        if (CurrentTile == inTarget) // Construct the path if we reached the target
+        {
+            TArray<ACGridTile*> Path;
+            while (CurrentTile != nullptr)
+            {
+                Path.Insert(CurrentTile, 0);
+                CurrentTile = Parents[CurrentTile];
+            }
+            return Path; // Return the path
+        }
+
+    	// Get the neighbours with ReachableInSingleStep which returns a set of tiles based on current movement tags
+        TSet<ACGridTile*> Neighbours = ReachableInSingleStep(MovementTags, CurrentTile); 
+        for (ACGridTile* Neighbour : Neighbours)
+        {
+            if (!Neighbour || Neighbour->GetContent() && Neighbour->GetContent()->GridContentTags.HasAny(BlockingTags))
+                continue;
+
+            float TentativeGCost = GCosts[CurrentTile] + Neighbour->GetCost();
+            float HeuristicCost = GetManhattanDistance(Neighbour, inTarget); // TODO: Look into implementing a better heuristic
+            float TentativeFCost = TentativeGCost + HeuristicCost;
+
+            if (!FCosts.Contains(Neighbour) || TentativeFCost < FCosts[Neighbour])
+            {
+                Parents.Add(Neighbour, CurrentTile);
+                GCosts.Add(Neighbour, TentativeGCost);
+                FCosts.Add(Neighbour, TentativeFCost);
+                OpenSet.Add(FTilePriority(Neighbour, TentativeFCost));
+            }
+        }
+    }
+
+    return TArray<ACGridTile*>(); // Return empty array if no path was found
+}
+
+float UCGridUtilsLibrary::GetManhattanDistance(const ACGridTile* From, const ACGridTile* To)
+{
+	FVector2D FromLocation = From->GetGridCoords();
+	FVector2D ToLocation = To->GetGridCoords();
+
+	// Compute Manhattan distance
+	return FMath::Abs(FromLocation.X - ToLocation.X) + FMath::Abs(FromLocation.Y - ToLocation.Y);
+}
+
 ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags)
 {
 	ACGridContent* ClosestContent = nullptr;
@@ -78,8 +167,8 @@ ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TA
 	for (int i = 0; i < ContentArray.Num(); ++i)
 	{
 		ACGridContent* Content = ContentArray[i];
-		const ACGridTile* ContentTile = Content->GetTile();
-		TArray<ACGridTile*> Path = BFS_Pathfinding(inStart, ContentTile, MovementTags, BlockingTags);
+		ACGridTile* ContentTile = Content->GetTile();
+		TArray<ACGridTile*> Path = AStar_Pathfinding(inStart, ContentTile, MovementTags, BlockingTags);
 		if (Path.Num() < ClosestDistance)
 		{
 			ClosestDistance = Path.Num();
@@ -89,39 +178,6 @@ ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TA
 	
 	return ClosestContent;
 }
-
-/*
-TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth)
-{
-	TArray<ACGridTile*> OpenSet;
-	TArray<ACGridTile*> NextSet;
-	TSet<ACGridTile*> ClosedSet;
-
-	OpenSet.Add(inStart);
-
-	for (int i = 0; i < Depth; i++)
-	{
-		for (ACGridTile* Current : OpenSet)
-		{
-			TArray<ACGridTile*> Neighbours = inItem->GetReachableTiles(Current);
-			for (ACGridTile* Neighbour : Neighbours)
-			{
-				if (!ClosedSet.Contains(Neighbour))
-				{
-					NextSet.Add(Neighbour);
-					ClosedSet.Add(Neighbour);
-				}
-
-			}
-		}
-
-		OpenSet = NextSet;
-
-	}
-
-	return ClosedSet;
-}
-*/
 
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/, bool BlockedByUnits /* true*/)
 {

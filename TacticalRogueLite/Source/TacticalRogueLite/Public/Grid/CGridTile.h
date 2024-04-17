@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Tiles/TileHighlightModes.h"
 #include "GameFramework/Actor.h"
+#include "GridContent/CGridContent.h"
 #include "CGridTile.generated.h"
 
 
@@ -11,7 +12,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlig
 
 
 class UCTileHighlightData;
-class ACGridContent;
 class ACGrid;
 
 UCLASS()
@@ -54,6 +54,8 @@ public:
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetTileHighlightMode(ETileHighlightModes inHighlightMode);
+	UFUNCTION(BlueprintCallable)
+	float GetCost() const { return TileContent ? TileContent->GetCost() : 0; }
 #pragma endregion
 
 protected:

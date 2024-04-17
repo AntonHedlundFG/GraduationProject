@@ -23,12 +23,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid|Tiles")
 	void SetTile(ACGridTile* inTile);
 
+	UFUNCTION(BlueprintCallable, Category = "Grid|Content")
+	float GetCost() const { return Cost; }
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
 	FGameplayTagContainer GridContentTags;
 	
 protected:
 	UPROPERTY(Replicated, BlueprintReadOnly)
 	TObjectPtr<ACGridTile> Tile;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
+	float Cost = 0;
 	
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
