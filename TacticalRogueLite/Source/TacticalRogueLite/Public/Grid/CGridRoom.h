@@ -21,15 +21,15 @@ public:
 	UPROPERTY()
 	TObjectPtr<ACGrid> GameGrid;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
 
 
@@ -88,8 +88,5 @@ protected:
 
 	void GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
 	TArray<ACGridTile*> GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const;
-
-	int RoundIntFraction(int in_1, int in_2);
-	
 
 };

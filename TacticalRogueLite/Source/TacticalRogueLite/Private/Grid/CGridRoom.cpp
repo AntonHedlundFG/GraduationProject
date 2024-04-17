@@ -468,31 +468,3 @@ TArray<ACGridTile*> ACGridRoom::GenerateSpawnsOnPlatform(TArray<ACGridTile*> inP
 	
 	return OutArray;
 }
-
-int ACGridRoom::RoundIntFraction(int in_1, int in_2)
-{
-	if (in_2 == 0)
-	{
-		LOG_WARNING("Trying to divide by 0");
-		return 0;
-	}
-	
-	//multiply first value by 1000
-	const int Big_1 = in_1 * 1000;
-	
-	//divide big int by second value
-	int Fraction = Big_1 / in_2;
-	
-	//get remainder
-	const int Remainder = Fraction % 1000;
-	
-	//divide by 1000 (make it small again)
-	Fraction = Fraction / 1000;
-	
-	if (Remainder >= 500)
-	{
-		Fraction++;
-	}
-	
-	return Fraction;
-}
