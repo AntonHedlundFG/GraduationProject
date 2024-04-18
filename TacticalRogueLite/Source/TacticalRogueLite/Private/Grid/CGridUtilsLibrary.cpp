@@ -210,42 +210,72 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 	return ClosedSet;
 }
 
-TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(ACGridTile* inTile, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& MovementBlockingTags /*= FGameplayTagContainer()*/)
+TSet<FVector2D> UCGridUtilsLibrary::FloodFillWithCoordinates(const FVector2D startCoord, int Depth, const FGameplayTagContainer& MovementTags)
 {
+	//Default to regular straight movement.
+	FGameplayTagContainer ValidMovements = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
+	FGameplayTagContainer FilteredMoveTags = MovementTags.Filter(ValidMovements);
+	if (FilteredMoveTags.IsEmpty())
+		FilteredMoveTags.AddTag(TAG_Movement_Straight);
+
+	TArray<FVector2D> OpenSet;
+	OpenSet.Add(startCoord);
+	TArray<FVector2D> NextOpenSet;
+	TSet<FVector2D> ClosedSet;
+	ClosedSet.Add(startCoord);
+	for (int i = 0; i < Depth; i++)
+	{
+		for (FVector2D CurrentTile : OpenSet)
+		{
+			for (FVector2D Neighbour : GetReachableCoordinates(CurrentTile, FilteredMoveTags))
+			{
+				if (!ClosedSet.Contains(Neighbour))
+				{
+					ClosedSet.Add(Neighbour);
+					NextOpenSet.Add(Neighbour);
+				}
+			}
+		}
+		OpenSet = NextOpenSet;
+		NextOpenSet.Empty();
+	}
+
+	return ClosedSet;
+}
+
+TSet<FVector2D> UCGridUtilsLibrary::GetReachableCoordinates(FVector2D TileCoords, const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/) {
 	TSet<FVector2D> NeighboursCoords;
 
-	FVector2D TileCoords = inTile->GetGridCoords();
-	ACGrid* Grid = inTile->GetParentGrid();
-	
-	if (MovementTags.HasTag(TAG_Movement_Straight))
-	{
+	if (MovementTags.HasTag(TAG_Movement_Straight)) {
 		NeighboursCoords.Append(ACGrid::GetTileNeighboursCoordinates(TileCoords));
 	}
-	if (MovementTags.HasTag(TAG_Movement_Diagonal) )
-	{
+	if (MovementTags.HasTag(TAG_Movement_Diagonal)) {
 		NeighboursCoords.Append(ACGrid::GetDiagonalTileNeighboursCoordinates(TileCoords));
 	}
-	if (MovementTags.HasTag(TAG_Movement_Knight))
-	{
-		// Knight movement
+	if (MovementTags.HasTag(TAG_Movement_Knight)) {
 		TSet<FVector2D> KnightMoves = {
-			FVector2D(1, 2),	FVector2D(2, 1),	FVector2D(2, -1), FVector2D(1, -2),
-			FVector2D(-1, -2), FVector2D(-2, -1),	FVector2D(-2, 1), FVector2D(-1, 2)
+			FVector2D(1, 2), FVector2D(2, 1), FVector2D(2, -1), FVector2D(1, -2),
+			FVector2D(-1, -2), FVector2D(-2, -1), FVector2D(-2, 1), FVector2D(-1, 2)
 		};
-		for (FVector2D Move : KnightMoves)
-		{
+		for (FVector2D Move : KnightMoves) {
 			NeighboursCoords.Add(TileCoords + Move);
-		}		
+		}
 	}
 
-	TSet<ACGridTile*> Neighbours;
+	return NeighboursCoords;
+}
+
+
+TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(ACGridTile* inTile, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& MovementBlockingTags /*= FGameplayTagContainer()*/) {
+	ACGrid* Grid = inTile->GetParentGrid();
+
+	TSet<FVector2D> Coordinates = GetReachableCoordinates(inTile->GetGridCoords(), MovementTags);
 	
-	// Go Through all the coordinates and add the tiles to the Neighbours set if they are valid and don't have blocking tags
-	for (auto It = NeighboursCoords.CreateIterator(); It; ++It)
-	{
-		FVector2D NeighbourCoords = *It;
+	TSet<ACGridTile*> Neighbours;
+
+	for (FVector2D NeighbourCoords : Coordinates) {
 		ACGridTile* NeighbourTile = Grid->GetTileFromCoords(NeighbourCoords);
-		if(!NeighbourTile) continue;
+		if (!NeighbourTile) continue;
 		if (NeighbourTile->GetContent() && NeighbourTile->GetContent()->GridContentTags.HasAny(MovementBlockingTags)) continue;
 
 		Neighbours.Add(NeighbourTile);
@@ -253,3 +283,4 @@ TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(ACGridTile* inTile, 
 
 	return Neighbours;
 }
+

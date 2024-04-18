@@ -37,7 +37,16 @@ public:
 	//Or only "Movement_Diagonal"
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> FloodFill(ACGridTile* inStart, int Depth, const FGameplayTagContainer& MovementTags = FGameplayTagContainer(), const FGameplayTagContainer& MovementBlockingTags = FGameplayTagContainer());
+
+	UFUNCTION(ScriptCallable)
+	static TSet<FVector2D> FloodFillWithCoordinates(FVector2D startCoord, int Depth, const FGameplayTagContainer& MovementTags = FGameplayTagContainer());
 	
+	// Returns a set of coordinates that are reachable from the input tile.
+	// No filters are applied, so this will return all reachable coordinates even if the tiles are blocked or if there are no tiles at the coordinates.
+	UFUNCTION(ScriptCallable)
+	static TSet<FVector2D> GetReachableCoordinates(FVector2D TileCoords, const FGameplayTagContainer& MovementTags = FGameplayTagContainer());
+
+	// Returns a set of tiles that are reachable from the input tile. 
 	UFUNCTION(ScriptCallable)
 	static TSet<ACGridTile*> ReachableInSingleStep(ACGridTile* inTile, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& MovementBlockingTags = FGameplayTagContainer());
 
