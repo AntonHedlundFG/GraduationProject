@@ -50,11 +50,10 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	TArray<ACGridTile*> OutArray = TArray<ACGridTile*>();
 
 	EnemySpawns.Empty();
+	RoomTiles.Empty();
 
 	if (!GameGrid)
 		return OutArray;
-
-	RandomComp->InitializeFromStart(SeedTest);
 
 	//Error control
 	if (PlatformLength * 2 > RoomMaxLength - LengthVariance)
@@ -79,7 +78,7 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 
 	//Create exit tile
 	const int32 ExitX = RandomComp->GetRandRange(X_Min + PlatformWidth, X_Max - PlatformWidth, false);
-	ACGridTile* ExitTile = GameGrid->SpawnTileAtIndex(ExitX, Y_Max + 1, GameGrid->StandardTileBP);
+	ExitTile = GameGrid->SpawnTileAtIndex(ExitX, Y_Max + 1, GameGrid->StandardTileBP);
 	if (ExitTile)
 	{
 		ExitTile->SetTileHighlightMode(ETileHighlightModes::ETHM_Attackable);
@@ -95,6 +94,7 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 
 	//Generate room points and spawn paths between them
 	const TArray<ACGridTile*> GeneratedPoints = GeneratePoints(RoomPoints, StartCoords, FVector2d(X_Min, Y_Min + PlatformLength), FVector2d(X_Max, Y_Max - PlatformLength));
+	OutArray.Append(GeneratedPoints);
 	if (GeneratedPoints.Num() < 1)
 	{
 		const TArray<ACGridTile*> StartToEnd = CreatePath(StartCoords, TargetCoords, true);

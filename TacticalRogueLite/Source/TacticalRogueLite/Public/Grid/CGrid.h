@@ -16,6 +16,8 @@ class TACTICALROGUELITE_API ACGrid : public AActor
 public:	
 	ACGrid();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings|Testing")
+	int SeedTest = 1993;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TSubclassOf<ACGridTile> StandardTileBP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
@@ -27,12 +29,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Grid Properties")
 	TMap<FVector2D,TObjectPtr<ACGridTile>> TileMap;
 
-	// UFUNCTION()
-	// void GenerateTiles(int inRows, int inColumns);
 	UFUNCTION()
-	ACGridRoom* CreateNewRoom(int inStartX, int inStartY);
+	ACGridRoom* CreateNewRoom(int inEnemyAmount = 4);
 	UFUNCTION()
-	ACGridRoom* CreateStartRoom();
+	ACGridRoom* CreateStartRoom(int inStartX, int inStartY);
 	UFUNCTION()
 	ACGridTile* SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()
@@ -43,6 +43,8 @@ public:
 	ACGridTile* GetTileFromCoords(FVector2D inCoords);
 	UFUNCTION()
 	TArray<ACGridTile*> GetAllTiles() { return AllTiles; };
+	UFUNCTION()
+	ACGridRoom* GetLatestRoom() { return AllRooms.Last(); }
 	
 protected:
 	UPROPERTY()
