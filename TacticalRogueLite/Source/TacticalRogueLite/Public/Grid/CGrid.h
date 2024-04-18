@@ -39,7 +39,7 @@ public:
 	TArray<ACGridTile*> GetHeroSpawnTiles() const { return HeroSpawnTiles; }
 	UFUNCTION()
 	TArray<ACGridTile*> GetEnemySpawnTiles() const { return EnemySpawnTiles; }
-	UFUNCTION()
+	UFUNCTION(ScriptCallable)
 	ACGridTile* GetTileFromCoords(FVector2D inCoords);
 	UFUNCTION()
 	TArray<ACGridTile*> GetAllTiles() { return AllTiles; };
