@@ -80,6 +80,6 @@ class USHealAction_AOE: UCAction
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, false);
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
     }
 }

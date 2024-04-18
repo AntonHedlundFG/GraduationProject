@@ -25,8 +25,8 @@
 
         if (ClosestUnit != nullptr)
         {
-            int DistanceFromStart = CGridUtils::AStar_Pathfinding(Context.CurrentUnit.GetTile(), ClosestUnit.GetTile(), ConsiderationTags, BlockingTags, true).Num();
-            int DistanceFromTarget = CGridUtils::AStar_Pathfinding(TargetTile, ClosestUnit.GetTile(), ConsiderationTags, BlockingTags, true).Num();
+            int DistanceFromStart = CGridUtils::AStar_Pathfinding(Context.CurrentUnit.GetTile(), ClosestUnit.GetTile(), ConsiderationTags, BlockingTags).Num();
+            int DistanceFromTarget = CGridUtils::AStar_Pathfinding(TargetTile, ClosestUnit.GetTile(), ConsiderationTags, BlockingTags).Num();
             if(DistanceFromTarget == 0 || DistanceFromTarget == 0) return Curve.GetFloatValue(1);
             float DistanceScore = float(DistanceFromTarget) / float(DistanceFromStart);
             if(DistanceScore > 0 && DistanceScore < 1)

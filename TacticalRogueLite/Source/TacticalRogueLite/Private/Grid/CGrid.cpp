@@ -114,7 +114,33 @@ ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 	return nullptr;
 }
 
+TSet<FVector2D> ACGrid::GetTileNeighboursCoordinates(FVector2D inCoords, bool bIncludeDiagonals /*= false*/)
+{
+	TSet<FVector2D> Neighbours;
+	Neighbours.Add(inCoords + FVector2d(1,0)); // Up
+	Neighbours.Add(inCoords + FVector2d(-1,0)); // Down
+	Neighbours.Add(inCoords + FVector2d(0,1)); // Right
+	Neighbours.Add(inCoords + FVector2d(0,-1)); // Left
 
+	if(bIncludeDiagonals)
+	{
+		Neighbours.Append(GetDiagonalTileNeighboursCoordinates(inCoords));
+	}
+
+	return Neighbours;	
+}
+
+TSet<FVector2D> ACGrid::GetDiagonalTileNeighboursCoordinates(FVector2D inCoords)
+{
+	TSet<FVector2D> Neighbours;
+
+	Neighbours.Add(inCoords + FVector2d(1,1)); // Up Right
+	Neighbours.Add(inCoords + FVector2d(-1,1)); // Down Right
+	Neighbours.Add(inCoords + FVector2d(1,-1)); // Up Left
+	Neighbours.Add(inCoords + FVector2d(-1,-1)); // Down Left
+
+	return Neighbours;	
+}
 
 //
 //SUPER UGLY, DON'T LOOK!! WILL CHANGE LATER!

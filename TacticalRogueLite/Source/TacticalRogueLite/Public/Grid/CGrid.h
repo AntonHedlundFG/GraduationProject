@@ -45,6 +45,10 @@ public:
 	TArray<ACGridTile*> GetAllTiles() { return AllTiles; };
 	UFUNCTION()
 	ACGridRoom* GetLatestRoom() { return AllRooms.Last(); }
+	UFUNCTION()
+	static TSet<FVector2D> GetTileNeighboursCoordinates(FVector2D inCoords, bool bIncludeDiagonals = false);
+	UFUNCTION()
+	static TSet<FVector2D> GetDiagonalTileNeighboursCoordinates(FVector2D inCoords);
 	
 protected:
 	UPROPERTY()

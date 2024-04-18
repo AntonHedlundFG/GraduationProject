@@ -35,7 +35,7 @@
         for( ACGridContent Content : ContentInRange)
         {
                 // Pathfind towards StartTile
-                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), StartTile, ActionTags, ActionTags, false);
+                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), StartTile, ActionTags, FGameplayTagContainer());
                 for (int i = 1; i <= MoveTileCount; i++)
                 {
                     if(i >= Path.Num())
@@ -80,6 +80,6 @@
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, false);
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
     }
 }
