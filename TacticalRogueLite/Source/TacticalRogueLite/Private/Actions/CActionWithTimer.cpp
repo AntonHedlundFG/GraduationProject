@@ -28,6 +28,8 @@ void UCActionWithTimer::UndoAction_Implementation(AActor* Instigator)
 	LOG_INFO("Clearing a timer");
 
 	Super::UndoAction_Implementation(Instigator);
+
+	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 }
 
 void UCActionWithTimer::BindTimer()
