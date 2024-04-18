@@ -31,12 +31,10 @@ public:
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
+	ACGridTile* GetExitTile() const { return ExitTile; }
 
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Testing")
-	int SeedTest = 1993;
-
 	//Determines the width and length of area around entrance and exit 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
 	int PlatformWidth = 4;
@@ -63,6 +61,8 @@ protected:
 	UPROPERTY()
 	FVector2D MaxCoords;
 
+	UPROPERTY()
+	TObjectPtr<ACGridTile> ExitTile;
 	UPROPERTY()
 	TArray<ACGridTile*> RoomTiles;
 	UPROPERTY()

@@ -84,7 +84,7 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter)
 {
 	ACGrid* SpawnedGrid = GetWorld()->SpawnActor<ACGrid>(Grid, inGridCenter, FRotator::ZeroRotator);
-	SpawnedGrid->CreateStartRoom();
+	SpawnedGrid->CreateStartRoom(0, 0);
 	
 	//SpawnedGrid->GenerateTiles(inRows, inColumns);
 

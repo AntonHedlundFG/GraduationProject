@@ -1,9 +1,11 @@
 
 #include "Grid/CGrid.h"
 
+#include "CGameState.h"
 #include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
 #include "Net/UnrealNetwork.h"
+#include "Utility/CRandomComponent.h"
 
 
 ACGrid::ACGrid()
@@ -11,31 +13,21 @@ ACGrid::ACGrid()
 	bReplicates = true;
 }
 
-// void ACGrid::GenerateTiles(int inRows, int inColumns)
-// {
-// 	for(int x = 0 ; x < inRows; x++)
-// 	{
-// 		for(int y = 0 ; y < inColumns; y++)
-// 		{
-// 			SpawnTileAtIndex(x, y, StandardTileBP);
-// 		}
-// 	}
-// 	for (auto tile : TileMap)
-// 	{
-// 		tile.Value->GenerateLinks();
-// 	}
-// 	
-// 	GenerateSpawnTiles();
-// }
-
-ACGridRoom* ACGrid::CreateNewRoom(int inStartX, int inStartY)
+ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 	
 	if (Room)
 	{
+		int StartX = 0;
+		int StartY = 0;
+		if (GetLatestRoom())
+		{
+			StartX = GetLatestRoom()->GetExitTile()->GetGridCoords().X;
+			StartY = GetLatestRoom()->GetExitTile()->GetGridCoords().Y + 1;
+		}
 		Room->InitializeValues(this);
-		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(inStartX,inStartY);
+		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(StartX,StartY);
 
 		for (auto tile : RoomTiles)
 		{
@@ -48,15 +40,20 @@ ACGridRoom* ACGrid::CreateNewRoom(int inStartX, int inStartY)
 	return Room;
 }
 
-ACGridRoom* ACGrid::CreateStartRoom()
+ACGridRoom* ACGrid::CreateStartRoom(int inStartX, int inStartY)
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
+
+	if (ACGameState* State = Cast<ACGameState>(GetWorld()->GetGameState()))
+	{
+		State->Random->InitializeFromStart(SeedTest);
+	}
 	
 	if (Room)
 	{
 		Room->InitializeValues(this, 4);
 		Room->SetCustomPlatformDimensions(6, 4);
-		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(5,0, true);
+		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(inStartX,inStartY, true);
 
 		for (auto tile : RoomTiles)
 		{
