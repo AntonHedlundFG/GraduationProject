@@ -19,8 +19,8 @@ class USMoveAction_Jumping : UCMovementAction
         FGameplayTagContainer ActiveTags = UCAttributeComponent::GetAttributes(GetOwningComponent().GetOwner()).ActiveGameplayTags;
         // TODO: Blocking tags
         // Get the tiles that are within the MoveRange and remove the tiles that are within the InnerBlockedRange
-        TSet<ACGridTile> OuterTiles = CGridUtils::FloodFill(inTile, OuterMoveRange, ActiveTags);
-        TSet<ACGridTile> InnerTiles = CGridUtils::FloodFill(inTile, InnerBlockedRange, ActiveTags, false);
+        TSet<ACGridTile> OuterTiles = CGridUtils::FloodFill(inTile, OuterMoveRange, ActiveTags, true);
+        TSet<ACGridTile> InnerTiles = CGridUtils::FloodFill(inTile, InnerBlockedRange, ActiveTags, true);
 
         for (ACGridTile Tile : OuterTiles)
         {
