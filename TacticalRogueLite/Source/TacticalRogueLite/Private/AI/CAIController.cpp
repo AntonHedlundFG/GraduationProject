@@ -136,17 +136,14 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 			FActionPath NewPath = CurrentPath;
 			NewPath.AddToPath(Ability, Tile, Score);
 			
-			// If it's a movement ability, recursively evaluate the next tile
-			if(Ability.AbilityTags.HasAny(MoveAbilitiesTagContainer))
-			{
-				EvalAbilitiesFromTile(Tile, Abilities, BestPaths, NewPath);
-			}
+			EvalAbilitiesFromTile(Tile, Abilities, BestPaths, NewPath);
 			
-			// If it's not a movement ability, path ends here
-			// Try Add the path to the best paths
-			TryAddBestPath(NewPath, BestPaths);
 		}
 	}
+	
+	// Try to add the path to the best paths
+	TryAddBestPath(CurrentPath, BestPaths);
+	
 }
 
 void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths)
