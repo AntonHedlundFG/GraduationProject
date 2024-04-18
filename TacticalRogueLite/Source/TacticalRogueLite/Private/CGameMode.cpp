@@ -24,6 +24,7 @@
 #include "Attributes/CAttributeComponent.h"
 #include "Achievements\CVictoryCondition.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
+#include "Grid/CGridRoom.h"
 #include "Utility/SaveGame/CSaveGame.h"
 
 void ACGameMode::BeginPlay()
@@ -43,11 +44,12 @@ void ACGameMode::BeginPlay()
 	
 	UCSaveGameManager::Get()->LoadGame();
 
-	ACGrid* grid = Spawner->SpawnGrid(FVector::Zero());
-	GameStateRef->GameGrid = grid;
 
 	if (Spawner)
 	{
+		ACGrid* grid = Spawner->SpawnGrid(FVector::Zero());
+		GameStateRef->GameGrid = grid;
+		
 		InitializeHeroUnits(grid);
 	
 		for (const ACUnit* HeroUnit : HeroUnits)
@@ -56,6 +58,18 @@ void ACGameMode::BeginPlay()
 		}
 		
 		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
+
+		// Testing for multiple rooms
+		/*
+		ACGridRoom* NewRoom_1 = grid->CreateNewRoom(3);
+		const TArray<ACUnit*> MoreEnemies_1 = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, NewRoom_1->GetEnemySpawnTiles(), Spawner->EnemyNames);
+		EnemyUnits.Append(MoreEnemies_1);
+		
+		ACGridRoom* NewRoom_2 = grid->CreateNewRoom(2);
+		const TArray<ACUnit*> MoreEnemies_2 = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, NewRoom_2->GetEnemySpawnTiles(), Spawner->EnemyNames);
+		EnemyUnits.Append(MoreEnemies_2);
+		*/
+		
 		for (ACUnit* EnemyUnit : EnemyUnits)
 		{
 			EnemyUnit->ControllingPlayerIndex = 0;

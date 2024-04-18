@@ -21,13 +21,17 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
 	{
 		int StartX = 0;
 		int StartY = 0;
-		if (GetLatestRoom())
+		ACGridRoom* PreviousRoom = GetLatestRoom();
+		if (PreviousRoom)
 		{
-			StartX = GetLatestRoom()->GetExitTile()->GetGridCoords().X;
-			StartY = GetLatestRoom()->GetExitTile()->GetGridCoords().Y + 1;
+			StartX = PreviousRoom->GetExitTile()->GetGridCoords().X;
+			StartY = PreviousRoom->GetExitTile()->GetGridCoords().Y + 1;
 		}
-		Room->InitializeValues(this);
+		Room->InitializeValues(this, inEnemyAmount);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(StartX,StartY);
+
+		if (PreviousRoom)
+			PreviousRoom->GetExitTile()->GenerateLinks();
 
 		for (auto tile : RoomTiles)
 		{
