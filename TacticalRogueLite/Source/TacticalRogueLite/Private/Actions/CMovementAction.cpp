@@ -43,7 +43,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	
 	TArray<ACGridTile*> ReturnTiles;
 	ReturnTiles.Add(inTile);
-	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags))
+	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags, ActionBlockingTags))
 	{
 		ReturnTiles.Add(Tile);
 	}
