@@ -15,10 +15,19 @@ UCSaveGameManager* UCSaveGameManager::Get()
 	return Instance;
 }
 
+UCSaveGame* UCSaveGameManager::CreateNewSave()
+{
+	SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame::StaticClass()));
+	
+	LOG_INFO("New SaveGame Instance Created");
+
+	return SaveGameInstance;
+}
+
 void UCSaveGameManager::SaveGame()
 {
 	if(SaveGameInstance == nullptr) // Create a new Save Game Instance if it doesn't exist
-		SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame::StaticClass()));
+		SaveGameInstance = CreateNewSave();
 
 	TriggerSaveEvent(); // Trigger Save Event on all Savable Objects
 	

@@ -25,6 +25,10 @@ public:
 	{
 		Savables.RemoveSingle(Savable);
 	}
+
+	// Creates New Save Game Instance, Doesn't Save
+	UFUNCTION(BlueprintCallable)
+	UCSaveGame* CreateNewSave();
 	
 	// Save Game
 	UFUNCTION(BlueprintCallable)
