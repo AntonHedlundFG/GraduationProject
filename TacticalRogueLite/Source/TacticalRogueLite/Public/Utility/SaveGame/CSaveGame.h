@@ -15,33 +15,36 @@ class UCSaveGame : public USaveGame
 public:
 	UCSaveGame();
 	// --- Random Component State --- //
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	FRandomStream SavedRandomStream;
 	
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	int64 SavedTicks;
 	
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	int32 SavedTicksSinceSave;
 	
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	int32 SavedTicksAtSave;
 	
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	int32 SavedStartSeed;
 	
-	UPROPERTY(VisibleAnywhere, Category = "RandomComponentState")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "RandomComponentState")
 	int32 SavedCurrentStateSeed;
 
-	// --- Character Select Data --- //
-	UPROPERTY(VisibleAnywhere, Category = "UnitAndItemData")
+	// --- Character And Player Data --- //
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Player Info")
+	int32 PlayerCount;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
 	TArray<FCNamesAndItemsList> NamesAndItems;
 
-	UPROPERTY(VisibleAnywhere, Category = "UnitAndItemData")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
 	TArray<int> ControllingPlayers;
 
 	//All unlocked achievements, used by the Achievement subsystem.
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	FGameplayTagContainer UnlockedAchievements;
 
 };

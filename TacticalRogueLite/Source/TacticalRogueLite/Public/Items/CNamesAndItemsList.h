@@ -3,7 +3,7 @@
 #include "CNamesAndItemsList.generated.h"
 
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FCNamesAndItemsList
 {
 	GENERATED_BODY()

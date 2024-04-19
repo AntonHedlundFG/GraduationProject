@@ -21,8 +21,11 @@ void ACCharacterSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	PlayerCount = UGameplayStatics::GetIntOption(OptionsString, NUMBER_OF_PLAYERS, DefaultPlayerCount);
+	RegisterToSaveManager();
 
+	UCSaveGameManager::Get()->LoadGame();
+
+	
 	StateRef = GetGameState<ACCharacterSelectGameState>();
 	if(StateRef)
 	{
@@ -70,7 +73,6 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	/*
 	*/
 	UCSaveGameManager* SaveManager = UCSaveGameManager::Get();
-	RegisterToSaveManager();
 	SaveManager->SaveGame();
 	UnregisterFromSaveManager();
 	
@@ -114,5 +116,13 @@ void ACCharacterSelectGameMode::OnSave()
 
 void ACCharacterSelectGameMode::OnLoad()
 {
-	
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	{
+		PlayerCount = SaveGame->PlayerCount;
+	}
+	else
+	{
+		LOG_ERROR("Couldn't find Save Game Instance to load Player Count in Character Select Menu");
+	}
 }
