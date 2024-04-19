@@ -16,7 +16,7 @@ class USHealAction: UCTargetableAction
             return TArray<ACGridTile>();	
         }
 
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, Range, ActionTags, false);
+        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, Range, ActionTags, FGameplayTagContainer());
 
         TArray<ACGridTile> ReturnTiles;
         for (ACGridTile Tile : TilesInRange)

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Actions/CAction.h"
+#include "Attributes/Utilities/CAttribute.h"
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "CActionWithTimer.generated.h"
 
@@ -17,6 +18,12 @@ public:
 
 	virtual void StartAction_Implementation(AActor* Instigator) override;
 	virtual void UndoAction_Implementation(AActor* Instigator) override;
+
+	// List of modifiers to apply to attributes when the action is active.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	TArray<FAttributeModification> Modifiers;
+
+	
 
 	//OnTimerFinishes_Implementation can be overridden to change the outcome
 	//of the timer finishing.
@@ -43,7 +50,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
 	EProgressTurnMethod ProgressTurnMethod = EProgressTurnMethod::EPTM_StartOfTurn;
 
+	int32 GetLevel() const { return Level; }
+
 protected:
+
+	int32 Level = 1; //?
 
 	FOnTurnTimerExecute TimerDelegate;
 	FTurnTimerHandle TimerHandle;

@@ -28,19 +28,20 @@ public:
 	UPROPERTY(Transient, BlueprintReadOnly)
 	TArray<UCAction*> InstantiatedActions;
 
-	UPROPERTY(Transient, meta=(Categories="ItemSlot")) //Is ok if transient + category?
+	UPROPERTY(Transient, meta=(Categories="ItemSlot")) 
 	FGameplayTag InventorySlotTag;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FGameplayTagContainer AbilityTags;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //Changed from editdefaults to transient
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FGameplayTagContainer BlockingTags;
 
-	//Used for AI
+	// Considerations for AI to evaluate the ability
 	UPROPERTY(EditDefaultsOnly, Category = "AI") //Will be moved
 	TArray<UCConsideration*> Considerations;
 
+	TSet<ACGridTile*> GetInfluencedTiles(ACGridTile* fromTile);
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 	
@@ -106,8 +107,6 @@ protected:
 	FGameplayTag ActivationTag;
 
 	
-
-	
 public:
 
 	//If true, this was the first action in a chain of events resulting from player input.
@@ -144,7 +143,15 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	void StopAction(AActor* Instigator);
 
-	UFUNCTION(BlueprintCallable, Category = "Action")
+	// Need to be overridden in child classes that can influence more than one tile at a time. (AoE, etc.)
+	// Default implementation just returns the tile the action was started from. (Single target)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
+	TSet<ACGridTile*> GetActionInfluencedTiles(ACGridTile* fromTile);
+
+	UFUNCTION(BlueprintCallable, Category = "Ability")
+	static TSet<ACGridTile*> GetAbilityInfluencedTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetInfluencedTiles(fromTile); }
+
+	UFUNCTION(BlueprintCallable, Category = "Ability")
 	static TArray<ACGridTile*> GetAbilityValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
 	
 	
@@ -159,4 +166,5 @@ public:
 		return true;
 	}
 };
+
 

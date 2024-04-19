@@ -64,9 +64,12 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 	
 
 	TArray<ACGridTile*> ReturnTiles;
-	for (ACGridTile* Tile : inTile->GetNeighbours(false))
+	TArray<ACGridTile*> Neighbours = inTile->GetNeighbours(false);
+	for (int i = 0; i < Neighbours.Num(); ++i)
 	{
-		if (Tile->GetContent() != nullptr && Tile->GetContent()->IsA(ACUnit::StaticClass()))
+		ACGridTile* Tile = Neighbours[i];
+		const ACGridContent* Content = Tile->GetContent();
+		if (Content && Content->IsA(ACUnit::StaticClass()))
 		{
 			ReturnTiles.Add(Tile);
 		}

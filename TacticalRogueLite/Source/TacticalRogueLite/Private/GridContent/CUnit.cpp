@@ -4,8 +4,8 @@
 #include "Attributes/CAttributeComponent.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Items/CInventoryComponent.h"
-#include "Components/SkeletalMeshComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -18,9 +18,10 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 ACUnit::ACUnit()
 {
 	bReplicates = true;
+
+	SceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	RootComponent = SceneComp;
 	
-	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
-	SetRootComponent(SkeletalMesh);
 
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));

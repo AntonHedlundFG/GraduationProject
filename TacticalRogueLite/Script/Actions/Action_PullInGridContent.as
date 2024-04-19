@@ -20,7 +20,7 @@
         ACGridTile StartTile = InstigatorContent.GetTile();
         
         // TODO: BlockingTags
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(StartTile, Range, ActionTags, false);
+        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(StartTile);
 
         for(ACGridTile Tile : TilesInRange)
         {
@@ -35,7 +35,7 @@
         for( ACGridContent Content : ContentInRange)
         {
                 // Pathfind towards StartTile
-                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), StartTile, ActionTags, ActionTags, false);
+                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), StartTile, ActionTags, FGameplayTagContainer());
                 for (int i = 1; i <= MoveTileCount; i++)
                 {
                     if(i >= Path.Num())
@@ -75,5 +75,11 @@
         ContentInRange.Empty();
         
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{Instigator.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
+    }
+
+    UFUNCTION(BlueprintOverride)
+    TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
+    {
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
     }
 }

@@ -1,6 +1,7 @@
 #include "Actions/CActionComponent.h"
 #include "Logging/StructuredLog.h"
 #include "Actions/CAction.h"
+#include "Attributes/Utilities/CAttribute.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
 #include "GridContent/CUnit.h"
@@ -23,6 +24,111 @@ void UCActionComponent::BeginPlay()
 void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+}
+
+bool UCActionComponent::GetAttribute(FGameplayTag InTag, FAttribute& InAttribute)
+{
+	if (!AttributeSet)
+	{
+		LOG_WARNING("AttributeSet is not valid.");
+		return false;
+	}
+	
+	return AttributeSet->GetAttribute(InTag, InAttribute);
+}
+
+bool UCActionComponent::K2_GetAttribute(FGameplayTag AttributeTag, int& CurrentValue, int& BaseValue, int& Additive,
+                                        int& Multiplier)
+{
+	// Create a temporary FAttribute variable to hold the retrieved attribute.
+	FAttribute Attribute;
+
+	// Call the GetAttribute function of the AttributeSet to retrieve the attribute data
+	bool bSuccess = GetAttribute(AttributeTag, Attribute);
+
+	// If attribute retrieval was successful, populate the output parameters with attribute data
+	if (bSuccess)
+	{
+		CurrentValue = Attribute.GetValue();  // Get the current value of the attribute
+		BaseValue = Attribute.BaseValue;      // Get the base value of the attribute
+		Additive = Attribute.Delta;           // Get the additive value of the attribute
+		Multiplier = Attribute.Multiplier;    // Get the multiplier value of the attribute
+	}
+
+	return bSuccess;
+}
+
+int UCActionComponent::ApplyAttributeChange(const FAttributeModification& InAttributeMod, int32 Level)
+{
+	//Applies the attribute, triggers events and allows other attributes to react to the change.
+	//eg. +3 Strength might change the HealthMax too in RPG style.
+	return AttributeSet->ApplyAttributeChange(InAttributeMod, Level);
+}
+
+
+bool UCActionComponent::CanApplyAttributeModifiers(UCActionWithTimer* Effect)
+{
+	for (const FAttributeModification& Mod : Effect->Modifiers)
+	{
+		FAttribute AttributeToMod;
+		GetAttribute(Mod.AttributeTag, AttributeToMod);
+
+		//Only makes sense to check additive modifiers.
+		if (ensureAlways(Mod.ModifierOperation == EAttributeModifierOperation::AddDelta))
+		{
+			if (Mod.GetMagnitude(Effect->GetLevel()) < 0 )
+			{
+				//This assumes attributes can never go below zero when used in this context. eg. for checking if we can apply COST on an action.
+				//We ignore % modifier in this context.
+				int NewValue = AttributeToMod.BaseValue + AttributeToMod.Delta + Mod.GetMagnitude(Effect->GetLevel());
+				if (NewValue < 0)
+				{
+					return false;
+				}
+			}
+		}
+	}
+	// If all modifiers can be applied without causing negative attribute values, return true
+	return true;
+}
+
+void UCActionComponent::AddAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event,
+                                                    bool bCallNow)
+{
+	//Create and add new pair to listen for.
+	new(AttributeChangeTriggers) TPair<FGameplayTag, FAttributeChangedSignature>(AttributeTag, Event);
+
+	//Convenient for Blueprint that may get bound late and want to get the 'initial' state to apply.
+	if (bCallNow)
+	{
+		FAttribute Attribute;
+		//May still be nullptr initally for clients during init.
+		if (AttributeSet)
+		{
+			AttributeSet->GetAttribute(AttributeTag, Attribute);
+		}
+
+		FGameplayTagContainer EmptyContainer;
+
+		Event.Execute(this, this, AttributeTag, Attribute.GetValue(), Attribute.GetValue(), EmptyContainer, EAttributeModifierOperation::Invalid);
+	}
+}
+
+void UCActionComponent::BroadcastAttributeChanged(FGameplayTag InAttributeTag, UCActionComponent* InstigatorComp,
+	int InNewValue, int InDelta, FGameplayTagContainer InContextTags, EAttributeModifierOperation ModOperation)
+{
+	//LOG_INFO("Notify", InAttributeTag.ToString(), "attribute changed");
+
+	//Notify any listeners an attribute changed.
+	for (int32 Index = 0; Index < AttributeChangeTriggers.Num(); Index++)
+	{
+		TPair<FGameplayTag, FAttributeChangedSignature>& SearchPair = AttributeChangeTriggers[Index];
+		if (SearchPair.Key.MatchesTag(InAttributeTag))
+		{
+			//Clients dont have all information available that servers do.
+			SearchPair.Value.ExecuteIfBound(this, InstigatorComp, InAttributeTag, InNewValue, InDelta, InContextTags, ModOperation);
+		}
+	}
 }
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)

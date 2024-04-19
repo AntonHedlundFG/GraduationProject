@@ -15,7 +15,7 @@ void UCAbilityWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (!IsValid(AttachedActor))
 	{
 		RemoveFromParent();
-
+		//TODO: Remove tick, raise event when died.
 		LOG_WARNING("AttachedActor no longer valid, removing Health Widget");
 		return;
 	}

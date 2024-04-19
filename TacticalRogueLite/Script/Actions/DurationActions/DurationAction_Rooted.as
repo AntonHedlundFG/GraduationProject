@@ -5,6 +5,6 @@ class USDurationAction_Rooted : UCActionWithTimer
     {
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Im rooting hehe");
 
-        GetOwningComponent().OnActionStarted.Broadcast(GetOwningComponent(), this);
+        //GetOwningComponent().OnActionStarted.Broadcast(GetOwningComponent(), this);
     }
 }

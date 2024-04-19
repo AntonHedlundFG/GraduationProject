@@ -4,6 +4,8 @@ class USMoveAction_Jumping : UCMovementAction
     int OuterMoveRange = 2;
     UPROPERTY()
     int InnerBlockedRange = 1;
+    UPROPERTY()
+    FGameplayTagContainer BlockingTags;
 
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACGridTile inTile)
@@ -19,12 +21,29 @@ class USMoveAction_Jumping : UCMovementAction
         FGameplayTagContainer ActiveTags = UCAttributeComponent::GetAttributes(GetOwningComponent().GetOwner()).ActiveGameplayTags;
         // TODO: Blocking tags
         // Get the tiles that are within the MoveRange and remove the tiles that are within the InnerBlockedRange
-        TSet<ACGridTile> OuterTiles = CGridUtils::FloodFill(inTile, OuterMoveRange, ActiveTags);
-        TSet<ACGridTile> InnerTiles = CGridUtils::FloodFill(inTile, InnerBlockedRange, ActiveTags, false);
+        TSet<FVector2D> OuterTiles = CGridUtils::FloodFillWithCoordinates(inTile.GetGridCoords(), OuterMoveRange, ActiveTags);
+        TSet<FVector2D> InnerTiles = CGridUtils::FloodFillWithCoordinates(inTile.GetGridCoords(), InnerBlockedRange, ActiveTags);
 
-        for (ACGridTile Tile : OuterTiles)
+        TArray<FVector2D> ReturnTileCoords;
+
+        for (FVector2D Tile : OuterTiles)
         {
             if (!InnerTiles.Contains(Tile))
+            {
+                ReturnTileCoords.Add(Tile);
+            }
+        }
+
+        ACGrid Grid = inTile.GetParentGrid();
+
+        for (FVector2D TileCoords : ReturnTileCoords)
+        {
+            ACGridTile Tile = Grid.GetTileFromCoords(TileCoords);
+            if(!IsValid(Tile)) continue;
+
+            ACGridContent Content = Tile.GetContent();
+            
+            if (!IsValid(Content) || (IsValid(Content) && !UCAttributeComponent::GetAttributes(Content).ActiveGameplayTags.HasAny(BlockingTags)))
             {
                 ReturnTiles.Add(Tile);
             }

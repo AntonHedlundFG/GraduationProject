@@ -13,7 +13,7 @@ class USAttackAction_Ranged : UCAttackAction
             return TArray<ACGridTile>();	
         }
 
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, AttackRange, ActionTags, false);
+        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, AttackRange, ActionTags, FGameplayTagContainer());
 
 
 

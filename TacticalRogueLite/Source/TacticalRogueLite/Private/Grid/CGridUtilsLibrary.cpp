@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Grid/CGridUtilsLibrary.h"
-#include "GridContent/CUnit.h"
 #include "Grid/CGridTile.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
+#include "Grid/CGrid.h"
 
 TArray<FVector2D> UCGridUtilsLibrary::StraightDirections()
 {
@@ -27,8 +27,7 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 	return Directions;
 }
 
-TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,
-	const FGameplayTagContainer& BlockingTags, bool bIncludeTargetInPath /*= true*/)
+TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,	const FGameplayTagContainer& BlockingTags /*= FGameplayTagContainer()*/)
 {
 	TArray<ACGridTile*> OpenSet;
 	TSet<ACGridTile*> ClosedSet;
@@ -54,11 +53,11 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 			return Path;
 		}
 
-		TSet<ACGridTile*> Neighbours = ReachableInSingleStep(MovementTags, CurrentTile);
+		TSet<ACGridTile*> Neighbours = ReachableInSingleStep(CurrentTile, MovementTags, BlockingTags);
 		for (auto neighbour : Neighbours)
 		{
 			if (neighbour == nullptr || ClosedSet.Contains(neighbour)) continue;
-			if (!(neighbour->GetContent() && neighbour->GetContent()->GridContentTags.HasAny(BlockingTags)) || (!bIncludeTargetInPath && neighbour == inTarget))
+			if (!(neighbour->GetContent() && neighbour->GetContent()->GridContentTags.HasAny(BlockingTags)))
 			{
 				OpenSet.Add(neighbour);
 				ClosedSet.Add(neighbour);
@@ -70,16 +69,104 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 	return TArray<ACGridTile*>();
 }
 
-ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart,
-	TArray<ACGridContent*>& ContentArray, FGameplayTagContainer& MovementTags,
-	FGameplayTagContainer& BlockingTags)
+#pragma region FTilePriority
+// Helper struct for A* pathfinding
+struct FTilePriority
+{
+	ACGridTile* Tile;
+	float FCost; // Total cost f = g + h
+
+	FTilePriority(ACGridTile* InTile, float InFCost) : Tile(InTile), FCost(InFCost) {}
+
+	// Operator overloads for priority comparison
+	bool operator>(const FTilePriority& Other) const
+	{
+		return FCost > Other.FCost;
+	}
+	bool operator<(const FTilePriority& Other) const
+	{
+		return FCost < Other.FCost;
+	}
+};
+#pragma endregion
+
+TArray<ACGridTile*> UCGridUtilsLibrary::AStar_Pathfinding(ACGridTile* inStart, ACGridTile* inTarget, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags /*= FGameplayTagContainer()*/)
+{
+    if (!inStart || !inTarget) return {};
+
+    TArray<FTilePriority> OpenSet;
+    TMap<ACGridTile*, ACGridTile*> Parents;
+    TMap<ACGridTile*, float> GCosts;
+    TMap<ACGridTile*, float> FCosts;
+
+    OpenSet.Add(FTilePriority(inStart, 0.0f));
+    Parents.Add(inStart, nullptr);
+    GCosts.Add(inStart, 0.0f);
+    FCosts.Add(inStart, 0.0f);
+
+    while (OpenSet.Num() > 0)
+    {
+        // Sort the array to find the lowest FCost, Get and remove it
+        OpenSet.Sort();
+        FTilePriority Current = OpenSet[0];
+        OpenSet.RemoveAt(0); 
+
+        ACGridTile* CurrentTile = Current.Tile;
+    	
+        if (CurrentTile == inTarget) // Construct the path if we reached the target
+        {
+            TArray<ACGridTile*> Path;
+            while (CurrentTile != nullptr)
+            {
+                Path.Insert(CurrentTile, 0);
+                CurrentTile = Parents[CurrentTile];
+            }
+            return Path; // Return the path
+        }
+
+    	// Get the neighbours with ReachableInSingleStep which returns a set of tiles based on current movement tags
+        TSet<ACGridTile*> Neighbours = ReachableInSingleStep(CurrentTile, MovementTags, BlockingTags); 
+        for (ACGridTile* Neighbour : Neighbours)
+        {
+            if (!Neighbour || Neighbour->GetContent() && Neighbour->GetContent()->GridContentTags.HasAny(BlockingTags))
+                continue;
+
+            float TentativeGCost = GCosts[CurrentTile] + Neighbour->GetCost();
+            float HeuristicCost = GetManhattanDistance(Neighbour, inTarget); // TODO: Look into implementing a better heuristic
+            float TentativeFCost = TentativeGCost + HeuristicCost;
+
+            if (!FCosts.Contains(Neighbour) || TentativeFCost < FCosts[Neighbour])
+            {
+                Parents.Add(Neighbour, CurrentTile);
+                GCosts.Add(Neighbour, TentativeGCost);
+                FCosts.Add(Neighbour, TentativeFCost);
+                OpenSet.Add(FTilePriority(Neighbour, TentativeFCost));
+            }
+        }
+    }
+
+    return TArray<ACGridTile*>(); // Return empty array if no path was found
+}
+
+float UCGridUtilsLibrary::GetManhattanDistance(const ACGridTile* From, const ACGridTile* To)
+{
+	FVector2D FromLocation = From->GetGridCoords();
+	FVector2D ToLocation = To->GetGridCoords();
+
+	// Compute Manhattan distance
+	return FMath::Abs(FromLocation.X - ToLocation.X) + FMath::Abs(FromLocation.Y - ToLocation.Y);
+}
+
+ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TArray<ACGridContent*>& ContentArray, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags)
 {
 	ACGridContent* ClosestContent = nullptr;
 	int32 ClosestDistance = INT32_MAX;
 	// We use a BFS to find the closest content
-	for (ACGridContent* Content : ContentArray)
+	for (int i = 0; i < ContentArray.Num(); ++i)
 	{
-		TArray<ACGridTile*> Path = BFS_Pathfinding(inStart, Content->GetTile(), MovementTags, BlockingTags);
+		ACGridContent* Content = ContentArray[i];
+		ACGridTile* ContentTile = Content->GetTile();
+		TArray<ACGridTile*> Path = AStar_Pathfinding(inStart, ContentTile, MovementTags, BlockingTags);
 		if (Path.Num() < ClosestDistance)
 		{
 			ClosestDistance = Path.Num();
@@ -90,46 +177,13 @@ ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart,
 	return ClosestContent;
 }
 
-/*
-TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(UCItem* inItem, ACGridTile* inStart, int Depth)
-{
-	TArray<ACGridTile*> OpenSet;
-	TArray<ACGridTile*> NextSet;
-	TSet<ACGridTile*> ClosedSet;
-
-	OpenSet.Add(inStart);
-
-	for (int i = 0; i < Depth; i++)
-	{
-		for (ACGridTile* Current : OpenSet)
-		{
-			TArray<ACGridTile*> Neighbours = inItem->GetReachableTiles(Current);
-			for (ACGridTile* Neighbour : Neighbours)
-			{
-				if (!ClosedSet.Contains(Neighbour))
-				{
-					NextSet.Add(Neighbour);
-					ClosedSet.Add(Neighbour);
-				}
-
-			}
-		}
-
-		OpenSet = NextSet;
-
-	}
-
-	return ClosedSet;
-}
-*/
-
-TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, FGameplayTagContainer MovementMethods /* = FGameplayTagContainer()*/, bool BlockedByUnits /* true*/)
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth,  const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/, const FGameplayTagContainer& MovementBlockingTags /*= FGameplayTagContainer()*/)
 {
 	//Default to regular straight movement.
 	FGameplayTagContainer ValidMovements = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
-	MovementMethods = MovementMethods.Filter(ValidMovements);
-	if (MovementMethods.IsEmpty())
-		MovementMethods.AddTag(TAG_Movement_Straight);
+	FGameplayTagContainer FilteredMoveTags = MovementTags.Filter(ValidMovements);
+	if (FilteredMoveTags.IsEmpty())
+		FilteredMoveTags.AddTag(TAG_Movement_Straight);
 
 	TArray<ACGridTile*> OpenSet;
 	OpenSet.Add(inStart);
@@ -140,12 +194,8 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 	{
 		for (ACGridTile* CurrentTile : OpenSet)
 		{
-			for (ACGridTile* Neighbour : ReachableInSingleStep(MovementMethods, CurrentTile))
+			for (ACGridTile* Neighbour : ReachableInSingleStep(CurrentTile, FilteredMoveTags, MovementBlockingTags))
 			{
-				//Can't pass through occupied tiles unless flying.
-				if (!MovementMethods.HasTag(TAG_Movement_Flying) && BlockedByUnits && Neighbour->GetContent() != nullptr)
-					continue;
-
 				if (!ClosedSet.Contains(Neighbour))
 				{
 					ClosedSet.Add(Neighbour);
@@ -157,63 +207,80 @@ TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth, 
 		NextOpenSet.Empty();
 	}
 
-	//Can't land on occupied tiles
-	TSet<ACGridTile*> FinalSet;
-	for (ACGridTile* Tile : ClosedSet)
-	{
-		if (Tile->GetContent() == nullptr || !BlockedByUnits)
-			FinalSet.Add(Tile);
-	}
-
-	return FinalSet;
+	return ClosedSet;
 }
 
-TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(FGameplayTagContainer MovementMethods, ACGridTile* inTile)
+TSet<FVector2D> UCGridUtilsLibrary::FloodFillWithCoordinates(const FVector2D startCoord, int Depth, const FGameplayTagContainer& MovementTags)
 {
-	TSet<ACGridTile*> Neighbours;
-	
-	if (MovementMethods.HasTag(TAG_Movement_Straight))
-	{
-		Neighbours.Append(inTile->GetNeighbours(false));
-	}
-	if (MovementMethods.HasTag(TAG_Movement_Diagonal))
-	{
-		Neighbours.Append(inTile->GetDiagonalLinks());
-	}
-	if (MovementMethods.HasTag(TAG_Movement_Knight))
-	{
-		//We do a 3-step BFS to get all tiles at a distance of 3
-		TArray<ACGridTile*> OpenTiles;
-		OpenTiles.Add(inTile);
-		TArray<ACGridTile*> NextOpenTiles;
-		TSet<ACGridTile*> ClosedTiles;
-		ClosedTiles.Add(inTile);
-		for (int i = 0; i < 3; i++)
-		{
-			NextOpenTiles.Empty();
-			for (ACGridTile* CurrentTile : OpenTiles)
-			{
-				for (ACGridTile* Neighbour : CurrentTile->GetNeighbours())
-				{
-					if (ClosedTiles.Contains(Neighbour))
-						continue;
+	//Default to regular straight movement.
+	FGameplayTagContainer ValidMovements = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
+	FGameplayTagContainer FilteredMoveTags = MovementTags.Filter(ValidMovements);
+	if (FilteredMoveTags.IsEmpty())
+		FilteredMoveTags.AddTag(TAG_Movement_Straight);
 
-					ClosedTiles.Add(Neighbour);
-					NextOpenTiles.Add(Neighbour);
+	TArray<FVector2D> OpenSet;
+	OpenSet.Add(startCoord);
+	TArray<FVector2D> NextOpenSet;
+	TSet<FVector2D> ClosedSet;
+	ClosedSet.Add(startCoord);
+	for (int i = 0; i < Depth; i++)
+	{
+		for (FVector2D CurrentTile : OpenSet)
+		{
+			for (FVector2D Neighbour : GetReachableCoordinates(CurrentTile, FilteredMoveTags))
+			{
+				if (!ClosedSet.Contains(Neighbour))
+				{
+					ClosedSet.Add(Neighbour);
+					NextOpenSet.Add(Neighbour);
 				}
 			}
-			OpenTiles = NextOpenTiles;
 		}
+		OpenSet = NextOpenSet;
+		NextOpenSet.Empty();
+	}
 
-		//Now that we have all tiles at a distance of 3, remove the ones that are in a straight line from
-		//the starting point. This leaves us with the chess knight movement.
-		for (ACGridTile* Tile : NextOpenTiles)
-		{
-			FVector2D CoordsDelta = Tile->GetGridCoords() - inTile->GetGridCoords();
-			if (CoordsDelta.X != 0 && CoordsDelta.Y != 0)
-				Neighbours.Add(Tile);
+	return ClosedSet;
+}
+
+TSet<FVector2D> UCGridUtilsLibrary::GetReachableCoordinates(FVector2D TileCoords, const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/) {
+	TSet<FVector2D> NeighboursCoords;
+
+	if (MovementTags.HasTag(TAG_Movement_Straight)) {
+		NeighboursCoords.Append(ACGrid::GetTileNeighboursCoordinates(TileCoords));
+	}
+	if (MovementTags.HasTag(TAG_Movement_Diagonal)) {
+		NeighboursCoords.Append(ACGrid::GetDiagonalTileNeighboursCoordinates(TileCoords));
+	}
+	if (MovementTags.HasTag(TAG_Movement_Knight)) {
+		TSet<FVector2D> KnightMoves = {
+			FVector2D(1, 2), FVector2D(2, 1), FVector2D(2, -1), FVector2D(1, -2),
+			FVector2D(-1, -2), FVector2D(-2, -1), FVector2D(-2, 1), FVector2D(-1, 2)
+		};
+		for (FVector2D Move : KnightMoves) {
+			NeighboursCoords.Add(TileCoords + Move);
 		}
+	}
+
+	return NeighboursCoords;
+}
+
+
+TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(ACGridTile* inTile, const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& MovementBlockingTags /*= FGameplayTagContainer()*/) {
+	ACGrid* Grid = inTile->GetParentGrid();
+
+	TSet<FVector2D> Coordinates = GetReachableCoordinates(inTile->GetGridCoords(), MovementTags);
+	
+	TSet<ACGridTile*> Neighbours;
+
+	for (FVector2D NeighbourCoords : Coordinates) {
+		ACGridTile* NeighbourTile = Grid->GetTileFromCoords(NeighbourCoords);
+		if (!NeighbourTile) continue;
+		if (NeighbourTile->GetContent() && NeighbourTile->GetContent()->GridContentTags.HasAny(MovementBlockingTags)) continue;
+
+		Neighbours.Add(NeighbourTile);
 	}
 
 	return Neighbours;
 }
+

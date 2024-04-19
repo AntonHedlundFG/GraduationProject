@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Tiles/TileHighlightModes.h"
 #include "GameFramework/Actor.h"
+#include "GridContent/CGridContent.h"
 #include "CGridTile.generated.h"
 
 
@@ -11,7 +12,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlig
 
 
 class UCTileHighlightData;
-class ACGridContent;
 class ACGrid;
 
 UCLASS()
@@ -52,20 +52,22 @@ public:
 	ACGridContent* GetContent() const { return TileContent; }
 	UFUNCTION(BlueprintCallable)
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SetTileHighlightMode(ETileHighlightModes inHighlightMode);
+	UFUNCTION(BlueprintCallable)
+	float GetCost() const { return TileContent ? TileContent->GetCost() : 0; }
 #pragma endregion
 
 protected:
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TObjectPtr<ACGrid> ParentGrid;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TArray<TObjectPtr<ACGridTile>> StraightLinks;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TArray<TObjectPtr<ACGridTile>> DiagonalLinks;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	TObjectPtr<ACGridContent> TileContent;
-	UPROPERTY(Replicated)
+	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	FVector2D GridCoords;
 
 	ETileHighlightModes CurrentHighlightMode = ETileHighlightModes::ETHM_Default;

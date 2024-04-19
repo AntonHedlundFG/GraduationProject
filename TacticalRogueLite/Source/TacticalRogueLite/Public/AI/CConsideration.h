@@ -10,7 +10,7 @@
 class ACGridTile;
 struct FAbility;
 
-UCLASS(BlueprintType)
+UCLASS(Abstract, BlueprintType)
 class UCConsideration : public UDataAsset
 {
 	GENERATED_BODY()
@@ -26,7 +26,7 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Name;
-	UPROPERTY(EditDefaultsOnly)
-	FGameplayTagContainer Tags;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTagContainer ConsiderationTags;
 	
 };
