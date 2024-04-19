@@ -52,7 +52,7 @@ public:
 	ACGridContent* GetContent() const { return TileContent; }
 	UFUNCTION(BlueprintCallable)
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SetTileHighlightMode(ETileHighlightModes inHighlightMode);
 	UFUNCTION(BlueprintCallable)
 	float GetCost() const { return TileContent ? TileContent->GetCost() : 0; }
