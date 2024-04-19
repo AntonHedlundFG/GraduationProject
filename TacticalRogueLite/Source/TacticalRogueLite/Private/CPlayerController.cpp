@@ -9,6 +9,7 @@
 #include "Grid/Tiles/TileHighlightModes.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Grid/CTileHighlightComponent.h"
 
 ACGameState* ACPlayerController::GetGameState()
 {
@@ -99,7 +100,7 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(true);
-		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Reachable);
+		Tile->GetHighlightComponent()->AppendHighlightMode(ETileHighlightModes::ETHM_Reachable);
 	}
 }
 
@@ -163,7 +164,7 @@ void ACPlayerController::CancelAbilityUse()
 	for (ACGridTile* Tile : HighlightedTiles)
 	{
 		Tile->OnHighlightChange.Broadcast(false);
-		Tile->SetTileHighlightMode(ETileHighlightModes::ETHM_Default);
+		Tile->GetHighlightComponent()->RemoveHighlightMode(ETileHighlightModes::ETHM_Reachable);
 	}
 	HighlightedTiles.Empty();
 }

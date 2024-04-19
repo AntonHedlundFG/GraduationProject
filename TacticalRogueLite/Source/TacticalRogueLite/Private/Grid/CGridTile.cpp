@@ -3,11 +3,14 @@
 
 #include "Grid/CGrid.h"
 #include "Grid/CGridUtilsLibrary.h"
+#include "Grid/CTileHighlightComponent.h"
 #include "Net/UnrealNetwork.h"
 
 ACGridTile::ACGridTile()
 {
 	bReplicates = true;
+
+	HighlightComponent = CreateDefaultSubobject<UCHighlightComponent>(TEXT("HighlightComponent"));
 }
 
 void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -58,6 +61,3 @@ TArray<ACGridTile*> ACGridTile::GetNeighbours(bool bIncludeDiagonals)
 
 	return Neighbours;
 }
-
-
-

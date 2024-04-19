@@ -8,6 +8,7 @@
 #include "CGridTile.generated.h"
 
 
+class UCHighlightComponent;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlighted);
 
 
@@ -52,10 +53,10 @@ public:
 	ACGridContent* GetContent() const { return TileContent; }
 	UFUNCTION(BlueprintCallable)
 	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void SetTileHighlightMode(ETileHighlightModes inHighlightMode);
 	UFUNCTION(BlueprintCallable)
 	float GetCost() const { return TileContent ? TileContent->GetCost() : 0; }
+	UFUNCTION(BlueprintCallable)
+	UCHighlightComponent* GetHighlightComponent() const { return HighlightComponent; }
 #pragma endregion
 
 protected:
@@ -70,6 +71,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, Replicated, Category = "Tile Info")
 	FVector2D GridCoords;
 
-	ETileHighlightModes CurrentHighlightMode = ETileHighlightModes::ETHM_Default;
-
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Highlight", meta = (AllowPrivateAccess))
+	UCHighlightComponent* HighlightComponent;
 };
