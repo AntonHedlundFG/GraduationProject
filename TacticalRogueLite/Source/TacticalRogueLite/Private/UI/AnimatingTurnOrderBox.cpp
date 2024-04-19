@@ -71,10 +71,11 @@ int UAnimatingTurnOrderBox::AddWidget(UUserWidget* Widget)
 	ActiveWidgets.Add(Widget);
 	AddChildToCanvas(Widget);
 	UCanvasPanelSlot* PanelSlot = GetPanelSlot(Widget);
+	PanelSlot->SetAutoSize(true);
 	PanelSlot->SetAnchors(ChildAlignment.Anchors);
 	PanelSlot->SetAlignment(ChildAlignment.Alignment);
 	PanelSlot->SetPosition(GetNextPosition());
-	PanelSlot->SetAutoSize(true);
+	
 	return ActiveWidgets.Num()-1;
 }
 
@@ -95,11 +96,15 @@ void UAnimatingTurnOrderBox::UpdateOrder(TArray<int> NewOrder,UObject* Owner)
 		return;
 	}
 
-	TArray<FVector2D> StartPositions;
+ 	TArray<FVector2D> StartPositions;
 	TArray<FVector2D> EndPositions;
 	TArray<UCTurnOrderPortraitWidget*> TurnOrderPortraits;
 	for (auto Child : ActiveWidgets)
 	{
+		if(Child == nullptr)
+		{
+			continue;
+		}
 		StartPositions.Add(GetWidgetCenterLocation(Child));
 		TurnOrderPortraits.Add(Cast<UCTurnOrderPortraitWidget>(Child));
 	}
@@ -111,6 +116,14 @@ void UAnimatingTurnOrderBox::UpdateOrder(TArray<int> NewOrder,UObject* Owner)
 
 	FLerpElementsToPositions* Task = new FLerpElementsToPositions(StartPositions,EndPositions,TurnOrderPortraits,LerpCurve,LerpTime,WaitTimeAfterAnimationFinished);
 	GetWorld()->GetSubsystem<UCCORExecutor>()->AddExecutable(Owner,Task);
+
+	TArray<UUserWidget*> NewWidgetOrder;
+	NewWidgetOrder.Init(nullptr,ActiveWidgets.Num());
+	for(int i = 0; i < ActiveWidgets.Num(); i++)
+	{
+		NewWidgetOrder[NewOrder[i]] = ActiveWidgets[i];
+	}
+	ActiveWidgets = NewWidgetOrder;
 }
 
 FVector2D UAnimatingTurnOrderBox::GetWidgetCenterLocation(UUserWidget* Widget)
@@ -132,11 +145,20 @@ UCanvasPanelSlot* UAnimatingTurnOrderBox::GetPanelSlot(UUserWidget* Widget)
 void UAnimatingTurnOrderBox::InitializeSpacing(TSubclassOf<UUserWidget> Prefab)
 {
 	UWidget* Child = CreateWidget(GetWorld()->GetGameInstance(),Prefab);
-	AddChild(Child);
-	UCanvasPanelSlot* PanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(Child);
-	PanelSlot->SetAutoSize(true);
-	//This is not it, i just dont know how to get the automatic size after its translated
-	FVector2D PanelSize = PanelSlot->GetSize() * 3;
-	WidgetOffset = FVector2D(0,PanelSize.Y);
-	RemoveChild(Child);
+	if(UCTurnOrderPortraitWidget* TurnOrderPortrait = Cast<UCTurnOrderPortraitWidget>(Child))
+	{
+		FVector2D PanelSize = TurnOrderPortrait->GetSize();
+		WidgetOffset = FVector2D(0,PanelSize.Y);
+	}
+	else
+	{
+		AddChild(Child);
+		UCanvasPanelSlot* PanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(Child);
+		PanelSlot->SetAutoSize(true);
+		//This is not it, i just dont know how to get the automatic size after its translated
+		FVector2D PanelSize = PanelSlot->GetSize();
+		WidgetOffset = FVector2D(0,PanelSize.Y);
+		RemoveChild(Child);	
+
+	}
 }

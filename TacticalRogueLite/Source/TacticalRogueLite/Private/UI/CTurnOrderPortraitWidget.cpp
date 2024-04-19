@@ -21,6 +21,16 @@ void UCTurnOrderPortraitWidget::SetPosition(FVector2D ViewportPosition)
 	 PanelSlot->SetPosition(ViewportPosition);
 }
 
+void UCTurnOrderPortraitWidget::SetBackground(FSlateBrush Brush)
+{
+	Background->SetBrush(Brush);
+}
+
+FVector2D UCTurnOrderPortraitWidget::GetSize()
+{
+	return FVector2D(Panel->GetWidthOverride(),Panel->GetHeightOverride());
+}
+
 FVector2D UCTurnOrderPortraitWidget::GetPosition()
 {
 	UCanvasPanelSlot* PanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(this);

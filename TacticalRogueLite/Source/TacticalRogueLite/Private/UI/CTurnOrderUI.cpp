@@ -5,6 +5,8 @@
 
 #include "CGameState.h"
 #include "DiffUtils.h"
+#include "Actions/CActionComponent.h"
+#include "GamePlayTags/SharedGameplayTags.h"
 #include "Utility/Logging/CLogManager.h"
 
 UCTurnOrderPortraitWidget* UCTurnOrderUI::CreatePortraitWidget()
@@ -46,7 +48,7 @@ UCTurnOrderPortraitWidget* UCTurnOrderUI::GetActiveWidget(ACUnit* key)
 	}
 	return nullptr;
 }
-//Im going to write something super hacky 
+//Jesus, jag tror att jag behöver göra en queue för allt det här också, nu kan det vara att man lägger till och tar bort index medans skiten håller på att processas
 void UCTurnOrderUI::UpdateTurnList()
 {
 	TArray<ACUnit*>* NewTurnOrder =  &Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
@@ -55,6 +57,7 @@ void UCTurnOrderUI::UpdateTurnList()
 	TArray<UCTurnOrderPortraitWidget*> PortraitsToAnimateOut;
 	TArray<int> TurnOrder;
 	TurnOrder.Init(0,NewTurnOrder->Num());
+	TArray<int> IndiciesToRemove;
 
 	//Remove all widgets we dont want to be reordered;
 	for(int i = 0; i < LastTurnOrder.Num(); i++)
@@ -66,7 +69,12 @@ void UCTurnOrderUI::UpdateTurnList()
 			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
 			PortraitsToAnimateOut.Add(Widget);
 			TurnOrderBox->RemoveIndex(i);
+			IndiciesToRemove.Add(i);
 		}
+	}
+	for(int index : IndiciesToRemove)
+	{
+		LastTurnOrder.RemoveAt(index);
 	}
 	for (int i = 0; i < NewTurnOrder->Num(); i++)
 	{
@@ -81,11 +89,24 @@ void UCTurnOrderUI::UpdateTurnList()
 			//Save the index in which it was added??
 			int indexItWasAddedTo = TurnOrderBox->AddWidget(Widget);
 			TurnOrder[indexItWasAddedTo] = i;
+			if(Unit->GetActionComp()->ActiveGameplayTags.HasTag(TAG_Unit_IsPlayer))
+			{
+				Widget->SetBackground(PlayerBackgroundBrush);
+			}
+			else
+			{
+				Widget->SetBackground(EnemyBackgroundBrush);
+			}
 		}
-		//We should reorder unit
-		else
+		else if(LastTurnOrder.Contains(Unit))
 		{
-			TurnOrder[LastTurnOrder_UnitToIndex[Unit]] = i;
+			for(int y = 0; y < LastTurnOrder.Num(); y++)
+			{
+				if(LastTurnOrder[y] == Unit)
+				{
+					TurnOrder[y] = i;
+				}
+			}
 		}
 	}
 	if(PortraitsToAnimateOut.Num() > 0)
@@ -101,11 +122,6 @@ void UCTurnOrderUI::UpdateTurnList()
 	
 	TurnOrderBox->UpdateOrder(TurnOrder,this);
 	LastTurnOrder = TArray<ACUnit*>(*NewTurnOrder);
-	LastTurnOrder_UnitToIndex.Empty();
-	for (int i = 0; i < LastTurnOrder.Num(); i++)
-	{
-		LastTurnOrder_UnitToIndex.Add(LastTurnOrder[i],i);
-	}
 }
 
 void UCTurnOrderUI::NativeConstruct()
@@ -125,6 +141,7 @@ void UCTurnOrderUI::EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget)
 	HandleEnqueue(widget);
 	WidgetPool.Enqueue(widget);
 }
+
 #pragma region Executables
 
 FAnimateOutPortraitWidgets_Executable::FAnimateOutPortraitWidgets_Executable(TArray<UCTurnOrderPortraitWidget*> Portraits, UCTurnOrderUI* TurnOrderUI, UAnimatingTurnOrderBox* TurnOrderBox, float WaitTimeAfterCompletion)
@@ -196,4 +213,5 @@ void FAnimationInPortraitWidget_Executable::OnEnd()
 	FExecutable::OnEnd();
 	
 }
+
 #pragma endregion

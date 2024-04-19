@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Image.h"
 #include "Components/RichTextBlock.h"
+#include "Components/SizeBox.h"
 #include "CTurnOrderPortraitWidget.generated.h"
 
 /**
@@ -20,7 +21,9 @@ class TACTICALROGUELITE_API UCTurnOrderPortraitWidget : public UUserWidget
 	UPROPERTY(meta=(BindWidget))
 	UImage* Portrait;
 	UPROPERTY(meta=(BindWidget))
-	UWidget* Panel;
+	USizeBox* Panel;
+	UPROPERTY(meta=(BindWidget))
+	UImage* Background;
 public:
 
 	UPROPERTY( Transient, meta = ( BindWidgetAnim ) )
@@ -31,6 +34,8 @@ public:
 	void SetText(FString Text);
 	void SetPortrait(FSlateBrush Brush);
 	void SetPosition(FVector2D ViewportPosition);
+	void SetBackground(FSlateBrush Brush);
+	FVector2D GetSize();
 	FVector2D GetPosition();
 	void AnimateOut();
 	void AnimateIn();

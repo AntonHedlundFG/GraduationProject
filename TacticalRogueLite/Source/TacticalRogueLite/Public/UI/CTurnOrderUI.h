@@ -27,8 +27,6 @@ class TACTICALROGUELITE_API UCTurnOrderUI : public UUserWidget
 	UCCORExecutor* Executor;
 	UPROPERTY()
 	TArray<ACUnit*> LastTurnOrder;
-	UPROPERTY()
-	TMap<ACUnit*,int> LastTurnOrder_UnitToIndex;
 	UCTurnOrderPortraitWidget* CreatePortraitWidget();
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();
 	void HandleEnqueue(UCTurnOrderPortraitWidget* widget);
@@ -43,8 +41,12 @@ class TACTICALROGUELITE_API UCTurnOrderUI : public UUserWidget
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category= Defaults)
 	TSubclassOf<UCTurnOrderPortraitWidget> PortraitWidget;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category=Defaults)
+	FSlateBrush EnemyBackgroundBrush;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category=Defaults)
+	FSlateBrush PlayerBackgroundBrush;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category= Defaults)
-	int AnimationWaitTime = 0.15f;
+	float AnimationWaitTime = 0.15f;
 	void EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget);
 };
 struct FAnimateOutPortraitWidgets_Executable : public FExecutable
@@ -67,3 +69,4 @@ struct FAnimationInPortraitWidget_Executable: public FExecutable
 	virtual void OnStart() override;
 	virtual void OnEnd() override;
 };
+
