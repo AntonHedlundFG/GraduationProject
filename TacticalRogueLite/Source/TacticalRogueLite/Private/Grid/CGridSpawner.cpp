@@ -68,6 +68,9 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	//Add items
 	for (UCItemData* Item : inEquipment)
 	{
+		if (!Item)
+			continue;
+		
 		if (Inventory->CheckValidEquipmentTag(Item->ItemSlot))
 		{
 			Inventory->TryEquipItem(Item);

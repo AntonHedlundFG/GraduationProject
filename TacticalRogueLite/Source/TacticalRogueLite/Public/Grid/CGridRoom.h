@@ -35,6 +35,11 @@ public:
 
 
 protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	TSubclassOf<ACGridTile> StandardTileBP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	TSubclassOf<ACGridTile> ExitTileBP;
+	
 	//Determines the width and length of area around entrance and exit 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
 	int PlatformWidth = 4;

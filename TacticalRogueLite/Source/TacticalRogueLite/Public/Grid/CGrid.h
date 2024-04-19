@@ -18,8 +18,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings|Testing")
 	int SeedTest = 1993;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	TSubclassOf<ACGridTile> StandardTileBP;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	// TSubclassOf<ACGridTile> StandardTileBP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TSubclassOf<ACGridRoom> RoomBP;
 	
@@ -61,6 +61,6 @@ protected:
 	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
 
 	//Temporary Solution
-	void GenerateSpawnTiles();
+	//void GenerateSpawnTiles();
 
 };

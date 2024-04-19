@@ -145,37 +145,37 @@ TSet<FVector2D> ACGrid::GetDiagonalTileNeighboursCoordinates(FVector2D inCoords)
 //
 //SUPER UGLY, DON'T LOOK!! WILL CHANGE LATER!
 //
-void ACGrid::GenerateSpawnTiles()
-{
-	TArray<FVector2D> HeroSpawns;
-	HeroSpawns.Add(FVector2D(2,1));
-	HeroSpawns.Add(FVector2D(4,1));
-	HeroSpawns.Add(FVector2D(6,1));
-	HeroSpawns.Add(FVector2D(8,1));
-
-	TArray<FVector2D> EnemySpawns;
-	EnemySpawns.Add(FVector2D(2,10));
-	EnemySpawns.Add(FVector2D(4,10));
-	EnemySpawns.Add(FVector2D(6,10));
-	EnemySpawns.Add(FVector2D(8,10));
-	
-	
-	for (auto tile : TileMap)
-	{
-		for (auto coords : HeroSpawns)
-		{
-			if (tile.Key == coords)
-			{
-				HeroSpawnTiles.Add(tile.Value);
-			}
-		}
-
-		for (auto coords : EnemySpawns)
-		{
-			if (tile.Key == coords)
-			{
-				EnemySpawnTiles.Add(tile.Value);
-			}
-		}
-	}
-}
+// void ACGrid::GenerateSpawnTiles()
+// {
+// 	TArray<FVector2D> HeroSpawns;
+// 	HeroSpawns.Add(FVector2D(2,1));
+// 	HeroSpawns.Add(FVector2D(4,1));
+// 	HeroSpawns.Add(FVector2D(6,1));
+// 	HeroSpawns.Add(FVector2D(8,1));
+//
+// 	TArray<FVector2D> EnemySpawns;
+// 	EnemySpawns.Add(FVector2D(2,10));
+// 	EnemySpawns.Add(FVector2D(4,10));
+// 	EnemySpawns.Add(FVector2D(6,10));
+// 	EnemySpawns.Add(FVector2D(8,10));
+// 	
+// 	
+// 	for (auto tile : TileMap)
+// 	{
+// 		for (auto coords : HeroSpawns)
+// 		{
+// 			if (tile.Key == coords)
+// 			{
+// 				HeroSpawnTiles.Add(tile.Value);
+// 			}
+// 		}
+//
+// 		for (auto coords : EnemySpawns)
+// 		{
+// 			if (tile.Key == coords)
+// 			{
+// 				EnemySpawnTiles.Add(tile.Value);
+// 			}
+// 		}
+// 	}
+// }

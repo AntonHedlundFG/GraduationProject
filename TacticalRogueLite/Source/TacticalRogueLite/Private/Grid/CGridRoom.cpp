@@ -78,10 +78,9 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 
 	//Create exit tile
 	const int32 ExitX = RandomComp->GetRandRange(X_Min + PlatformWidth, X_Max - PlatformWidth, false);
-	ExitTile = GameGrid->SpawnTileAtIndex(ExitX, Y_Max + 1, GameGrid->StandardTileBP);
+	ExitTile = GameGrid->SpawnTileAtIndex(ExitX, Y_Max + 1, ExitTileBP);
 	if (ExitTile)
 	{
-		ExitTile->SetTileHighlightMode(ETileHighlightModes::ETHM_Attackable);
 		OutArray.Add(ExitTile);
 	}
 	//Create exit platform
@@ -175,7 +174,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePath(FVector2d inStart, FVector2d inTarget
 			}
 		}
 
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(X_Start, Y_Start, GameGrid->StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(X_Start, Y_Start, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
@@ -253,7 +252,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 		{
 			for(int y = inStartY ; y < (inStartY + PlatformLength); y++)
 			{
-				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, GameGrid->StandardTileBP);
+				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, StandardTileBP);
 				if (Tile)
 				{
 					OutArray.Add(Tile);
@@ -264,7 +263,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 		{
 			for(int y = inStartY ; (inStartY - PlatformLength) < y; y--)
 			{
-				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, GameGrid->StandardTileBP);
+				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, StandardTileBP);
 				if (Tile)
 				{
 					OutArray.Add(Tile);
@@ -291,7 +290,7 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 		if (Coords.Y < MinCoords.Y || Coords.Y > MaxCoords.Y)
 			continue;
 		
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, GameGrid->StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
@@ -311,7 +310,7 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 			if (Coords.Y < MinCoords.Y || Coords.Y > MaxCoords.Y)
 				continue;
 			
-			ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, GameGrid->StandardTileBP);
+			ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, StandardTileBP);
 			if (Tile)
 			{
 				OutArray.Add(Tile);
@@ -398,7 +397,7 @@ TArray<ACGridTile*> ACGridRoom::GeneratePoints(int inPointAmount, FVector2d inSt
 		const FVector2d PointCoords = CreatePoint(X_CoordsArray[i], FVector2d(XMin, YCoords), FVector2d(XMax, YCoords));
 		X_CoordsArray.Add(PointCoords.X);
 
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(PointCoords.X, PointCoords.Y, GameGrid->StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(PointCoords.X, PointCoords.Y, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
