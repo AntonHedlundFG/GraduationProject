@@ -18,8 +18,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings|Testing")
 	int SeedTest = 1993;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	TSubclassOf<ACGridTile> StandardTileBP;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	// TSubclassOf<ACGridTile> StandardTileBP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TSubclassOf<ACGridRoom> RoomBP;
 	
@@ -51,9 +51,9 @@ public:
 	static TSet<FVector2D> GetDiagonalTileNeighboursCoordinates(FVector2D inCoords);
 	
 protected:
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<ACGridTile>> AllTiles;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<ACGridRoom>> AllRooms;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
@@ -61,6 +61,6 @@ protected:
 	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
 
 	//Temporary Solution
-	void GenerateSpawnTiles();
+	//void GenerateSpawnTiles();
 
 };

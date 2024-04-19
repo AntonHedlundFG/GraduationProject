@@ -58,8 +58,10 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	for (auto Index : Characters)
 	{
 		FCNamesAndItemsList Data = StartCharacters->StartCharacterList[Index];
-		FString HeroName = "Hero_";
+
+		FString HeroName = "Hero ";
 		HeroName += FString::FromInt(CharacterNumber);
+		HeroName += "_" + Data.Name;
 		Data.Name = HeroName;
 		CharacterNumber++;
 		SpawnUnitData.Add(Data);

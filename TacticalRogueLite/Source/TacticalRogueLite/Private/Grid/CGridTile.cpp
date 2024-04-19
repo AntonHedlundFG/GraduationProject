@@ -5,6 +5,11 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "Net/UnrealNetwork.h"
 
+ACGridTile::ACGridTile()
+{
+	bReplicates = true;
+}
+
 void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
@@ -13,11 +18,6 @@ void ACGridTile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifeti
 	DOREPLIFETIME(ACGridTile, DiagonalLinks);
 	DOREPLIFETIME(ACGridTile, TileContent);
 	DOREPLIFETIME(ACGridTile, GridCoords);
-}
-
-ACGridTile::ACGridTile()
-{
-	bReplicates = true;
 }
 
 void ACGridTile::Initialize(ACGrid* inParentGrid, FVector2D inCoords)
