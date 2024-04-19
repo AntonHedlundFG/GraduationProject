@@ -106,12 +106,23 @@ ACGridTile* ACGrid::SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> T
 
 ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 {
-	for (auto Element : TileMap)
+	if (GetWorld()->GetNetMode() < NM_Client)
 	{
-		if (Element.Key == inCoords)
-			return Element.Value;
+		for (auto Element : TileMap)
+		{
+			if (Element.Key == inCoords)
+				return Element.Value;
+		}
+		return nullptr;
+	}
+	
+	for (const auto Tile : AllTiles)
+	{
+		if (Tile->GetGridCoords() == inCoords)
+			return Tile;
 	}
 	return nullptr;
+	
 }
 
 TSet<FVector2D> ACGrid::GetTileNeighboursCoordinates(FVector2D inCoords, bool bIncludeDiagonals /*= false*/)
