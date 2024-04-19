@@ -1,13 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "UI/CTurnOrderUI.h"
 
 #include "CGameState.h"
-#include "DiffUtils.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlayTags/SharedGameplayTags.h"
-#include "Utility/Logging/CLogManager.h"
 
 UCTurnOrderPortraitWidget* UCTurnOrderUI::CreatePortraitWidget()
 {
@@ -51,12 +46,22 @@ UCTurnOrderPortraitWidget* UCTurnOrderUI::GetActiveWidget(ACUnit* key)
 //Jesus, jag tror att jag behöver göra en queue för allt det här också, nu kan det vara att man lägger till och tar bort index medans skiten håller på att processas
 void UCTurnOrderUI::UpdateTurnList()
 {
-	TArray<ACUnit*>* NewTurnOrder =  &Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
+	TArray<ACUnit*> NewTurnOrder =  Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
+	
+	//Check if any of the units are nullptr TODO: create a better solution for this
+	for (ACUnit* Unit : NewTurnOrder)
+	{
+		if(Unit == nullptr)
+		{
+			LOG_WARNING("Unit in TurnOrder is nullptr");
+			return;
+		}
+	}
 
 	TArray<UCTurnOrderPortraitWidget*> PortraitsToAnimateIn;
 	TArray<UCTurnOrderPortraitWidget*> PortraitsToAnimateOut;
 	TArray<int> TurnOrder;
-	TurnOrder.Init(0,NewTurnOrder->Num());
+	TurnOrder.Init(0,NewTurnOrder.Num());
 	TArray<int> IndiciesToRemove;
 
 	//Remove all widgets we dont want to be reordered;
@@ -64,7 +69,7 @@ void UCTurnOrderUI::UpdateTurnList()
 	{
 		ACUnit* Unit = (LastTurnOrder)[i];
 
-		if(!NewTurnOrder->Contains(Unit))
+		if(!NewTurnOrder.Contains(Unit))
 		{
 			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
 			PortraitsToAnimateOut.Add(Widget);
@@ -76,9 +81,9 @@ void UCTurnOrderUI::UpdateTurnList()
 	{
 		LastTurnOrder.RemoveAt(index);
 	}
-	for (int i = 0; i < NewTurnOrder->Num(); i++)
+	for (int i = 0; i < NewTurnOrder.Num(); i++)
 	{
-		ACUnit* Unit = (*NewTurnOrder)[i];
+		ACUnit* Unit = (NewTurnOrder)[i];
 		//We should add unit
 		if(!LastTurnOrder.Contains(Unit))
 		{
@@ -121,7 +126,7 @@ void UCTurnOrderUI::UpdateTurnList()
 	}
 	
 	TurnOrderBox->UpdateOrder(TurnOrder,this);
-	LastTurnOrder = TArray<ACUnit*>(*NewTurnOrder);
+	LastTurnOrder = NewTurnOrder;
 }
 
 void UCTurnOrderUI::NativeConstruct()
