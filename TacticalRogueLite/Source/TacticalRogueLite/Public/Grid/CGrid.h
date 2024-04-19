@@ -51,9 +51,9 @@ public:
 	static TSet<FVector2D> GetDiagonalTileNeighboursCoordinates(FVector2D inCoords);
 	
 protected:
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<ACGridTile>> AllTiles;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<ACGridRoom>> AllRooms;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;

@@ -13,6 +13,13 @@ ACGrid::ACGrid()
 	bReplicates = true;
 }
 
+void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACGrid, AllTiles);
+	DOREPLIFETIME(ACGrid, AllRooms);
+}
+
 ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
