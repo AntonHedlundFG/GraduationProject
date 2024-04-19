@@ -26,7 +26,8 @@ void UCAbilityWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (bIsOnScreen)
 	{
 		float Scale = UWidgetLayoutLibrary::GetViewportScale(this);
-
+		
+		
 		ScreenPosition /= Scale;
 
 		if (ParentSizeBox)
