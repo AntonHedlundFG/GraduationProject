@@ -69,5 +69,4 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
-	Super::UndoAction_Implementation(Instigator);
 }
