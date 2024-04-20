@@ -10,6 +10,36 @@
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Grid/CTileHighlightComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
+
+bool ACPlayerController::TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance,
+                                                ACGridTile*& outTile)
+{
+	FHitResult Hit;
+	if(!UKismetSystemLibrary::LineTraceSingle(this, inStart,inStart + Direction * Distance,UEngineTypes::ConvertToTraceType(ECC_Visibility),
+		false,TArray<AActor*>(),EDrawDebugTrace::None,Hit,true))
+	{ return false; } // If the line trace fails, return false
+
+	AActor* HitActor = Hit.GetActor();
+	if(!HitActor) { return false; } // If the line trace hits no Actor , return false
+	
+	if(ACGridTile* Tile = Cast<ACGridTile>(HitActor))
+	{
+		outTile = Tile;
+		return true; // If the line trace hits a GridTile, return true
+	}
+
+	if(ACUnit* Unit = Cast<ACUnit>(HitActor))
+	{
+		if(ACGridTile* UnitTile = Unit->GetTile())
+		{
+			outTile = UnitTile;
+			return true; // If the line trace hits a Unit with a tile, return true
+		}
+	}
+	
+	return false;
+}
 
 ACGameState* ACPlayerController::GetGameState()
 {

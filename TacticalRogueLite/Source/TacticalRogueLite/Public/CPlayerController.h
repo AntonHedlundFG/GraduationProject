@@ -19,6 +19,10 @@ UCLASS()
 class TACTICALROGUELITE_API ACPlayerController : public AOnlinePlayerController
 {
 	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Grid")
+	bool TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance, ACGridTile*& outTile);
 	
 private:
 
