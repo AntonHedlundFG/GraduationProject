@@ -1,5 +1,6 @@
 class ASPlayerPawn : APawn
 {
+    // -- Components -- //
     UPROPERTY(DefaultComponent, RootComponent)
     USceneComponent RootComp;
 
@@ -17,17 +18,34 @@ class ASPlayerPawn : APawn
     UPROPERTY(DefaultComponent, Attach = ArmComp)
     UCameraComponent Camera;
 
+    // Stored reference to avoid casting in Tick 
+    APlayerController LocalPC; 
+
+    // -- Camera Location -- //
+    
+    // The current mouse movement input
+    FVector2D CurrentMouseMoveInput;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", Meta = (ClampMin = 1.0f, ClampMax = 100.0f))
     float CameraMoveSpeed = 10.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", Meta = (ClampMin = 0.01f, ClampMax = 1.0f))
+    float CameraFollowLerpSpeed = 0.3f;
 
     //If we haven't manually moved the camera, our TargetLocation will always equal this targets location
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     AActor FollowTarget;
 
-    //The target location we're currently lerping towards.
-    FVector TargetLocation;
+    // If we should be dragging the camera around
+    UPROPERTY(BlueprintReadWrite)
+    bool bIsDragging = false;
 
-    //Setting this to false by default to avoid in-editor issues. Enable for builds.
+    //The target location we're currently lerping towards.
+    FVector TargetCameraLocation;
+
+    // -- Edge Scrolling -- //
+
+    // Setting this to false by default to avoid in-editor issues. Enable for builds.
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     bool bEdgeOfScreenMouseEnabled = false;
 
@@ -35,22 +53,63 @@ class ASPlayerPawn : APawn
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera")
     int EdgeOfScreenRadius = 50;
 
-    //Stored reference to avoid casting in Tick 
-    APlayerController LocalPC; 
+    // -- Camera Location Limits -- //
 
+    // The limits of the camera targets's location in the XYZ of the world
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    FVector2D CameraXHorizontalLimits = FVector2D(-1000, 1000);
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    FVector2D CameraYHorizontalLimits = FVector2D(-1000, 1000);
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    FVector2D CameraVerticalLimits = FVector2D(-1000, 1000);
 
-    // -- Mouse scroll wheel dragging movement --
+    // -- Camera Rotation --
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", meta = (ClampMin = 0.1f, ClampMax = 2.0f))
-    float DragSpeed = 0.3f;
+    // The target rotation we're currently lerping towards.
+    FRotator TargetCameraRotation;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera", meta = (ClampMin = 0.1f, ClampMax = 5.0f))
-    float MaxDragSpeed = 2.0f;
+    // The speed at which we lerp towards the target rotation
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation")
+    float CameraRotationLerpSpeed = 0.1f;
 
-    bool bIsDragging = false;
-    FVector2D CurrentMouseDrag = FVector2D::ZeroVector;
+    // The speed at which we rotate the target camera rotation based on input
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation")
+    FVector2D CameraRotationSpeed = FVector2D(0.1f, 0.1f);
 
-    // ------------------------------------------
+    // If we should clamp the pitch and yaw of the camera
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation")
+    bool bClampCameraPitch = true;
+
+    // The limits of the camera pitch and yaw
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation", Meta = (EditCondition = "bClampCameraPitch"))
+    FVector2D CameraVerticalRotationLimits = FVector2D(30.0f, 30.0f);
+
+    // If we should clamp the yaw of the camera
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation")
+    bool bClampCameraYaw = true;
+
+    // The limits of the camera yaw
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Rotation", Meta = (EditCondition = "bClampCameraYaw"))
+    FVector2D CameraHorizontalRotationLimits = FVector2D(-30.0f, 30.0f);
+
+    // If we should be rotating the camera
+    UPROPERTY(BlueprintReadWrite)
+    bool bIsRotating = false;
+
+    // -- Camera Zoom --
+
+    // The speed at which we zoom in and out
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Zoom", Meta = (ClampMin = 100.0f, ClampMax = 2000.0f))
+    float CameraZoomSpeed = 100.0f;
+
+    // The limits of the camera zoom (Length of the spring arm)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|Zoom")
+    FVector2D CameraZoomLimits = FVector2D(100.0f, 2000.0f);
+
+    // Target zoom length we're currently lerping towards.
+    float TargetZoom;
+
+    // -- Functions -- //
 
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
@@ -60,10 +119,11 @@ class ASPlayerPawn : APawn
 
         State.OnTurnOrderUpdate.AddUFunction(this, n"OnTurnOrderUpdate");
 
-        TargetLocation = ActorLocation;
-        ActorRotation = FRotator::ZeroRotator;
+        TargetCameraLocation = ActorLocation;
+        TargetZoom = ArmComp.TargetArmLength;
         FollowActiveUnit();
     }
+
     UFUNCTION(BlueprintOverride)
     void EndPlay(EEndPlayReason EndPlayReason)
     {
@@ -75,21 +135,29 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
-        if (bIsDragging)
-            MoveDragMouse();
-        else
-            MoveMouseEdgeOfScreen();
-
-        if (FollowTarget != nullptr)
+        if (bIsDragging) 
         {
-            TargetLocation = FollowTarget.ActorLocation;
+            MoveCameraTarget(FVector2D(CurrentMouseMoveInput.Y, CurrentMouseMoveInput.X));
+        }else{
+            MoveMouseEdgeOfScreen();
         }
-        ActorLocation = Math::Lerp(ActorLocation, TargetLocation, 0.3f);
+
+        ClampCameraTargetInBounds();
+        FollowCameraTarget();
+
+        SetTargetCameraRotation();
+        ClampTargetCameraRotation();
+        ApplyCameraRotation();
+
+        ApplyZoom();
+
+        CurrentMouseMoveInput = FVector2D::ZeroVector; // Reset the mouse input
     }
-    
-    void MoveDragMouse()
+
+    UFUNCTION()
+    void SetMouseMovement(FVector2D inMouseMovement)
     {
-        Move(FVector2D(CurrentMouseDrag.Y, CurrentMouseDrag.X));
+        CurrentMouseMoveInput = inMouseMovement;
     }
 
     void MoveMouseEdgeOfScreen()
@@ -120,16 +188,17 @@ class ASPlayerPawn : APawn
         if (MouseY > ViewY - EdgeOfScreenRadius)
             MouseInput.X = -1;
         
-        Move(MouseInput);
+        MoveCameraTarget(MouseInput);
     }
 
     UFUNCTION(BlueprintCallable, Category = "Input|Camera")
-    void Move(FVector2D inMovement)
+    void MoveCameraTarget(FVector2D inMovement)
     {
         if (inMovement.IsNearlyZero()) return;
 
-        FVector MoveVector = FVector(inMovement.X, inMovement.Y, 0);
-        TargetLocation += MoveVector * CameraMoveSpeed;
+        FVector RotatedVector = FRotator(0, GetActorRotation().Yaw, 0).RotateVector(FVector(inMovement.X, inMovement.Y, 0)); 
+        TargetCameraLocation += RotatedVector * CameraMoveSpeed;
+        
         if (FollowTarget != nullptr)
         {
             FollowTarget = nullptr;
@@ -150,7 +219,7 @@ class ASPlayerPawn : APawn
 
         FollowTarget = State.TurnOrder[0];
         if (FollowTarget != nullptr)
-            TargetLocation = FollowTarget.ActorLocation;
+            TargetCameraLocation = FollowTarget.ActorLocation;
     }
 
     UFUNCTION(BlueprintCallable)
@@ -162,14 +231,79 @@ class ASPlayerPawn : APawn
         if (LocalPC == nullptr) return;
 
         bIsDragging = inbIsDragging;
-        CurrentMouseDrag = FVector2D::ZeroVector;
     }
 
     UFUNCTION(BlueprintCallable)
-    void MouseMovement(FVector2D inMovement)
+    void Zoom(float inZoomAmount)
     {
-        CurrentMouseDrag += inMovement * DragSpeed;
-        if (CurrentMouseDrag.SizeSquared() >= MaxDragSpeed * MaxDragSpeed)
-            CurrentMouseDrag = CurrentMouseDrag.GetSafeNormal() * MaxDragSpeed;
+       TargetZoom = Math::Clamp(ArmComp.TargetArmLength -inZoomAmount * CameraZoomSpeed, CameraZoomLimits.X, CameraZoomLimits.Y);
+    }
+
+    void ApplyZoom()
+    {
+        ArmComp.TargetArmLength = Math::Lerp(ArmComp.TargetArmLength, TargetZoom, CameraFollowLerpSpeed);
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void SetTargetCameraRotation()
+    {
+        if (CurrentMouseMoveInput.IsNearlyZero() || !bIsRotating ) return;
+
+        float Yaw = CurrentMouseMoveInput.X;
+        float Pitch = CurrentMouseMoveInput.Y;
+
+        Yaw = Yaw * CameraRotationSpeed.X;
+        Pitch = Pitch * CameraRotationSpeed.Y;
+
+        TargetCameraRotation = GetActorRotation() + FRotator(Pitch , Yaw, 0);
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void ClampTargetCameraRotation()
+    {
+        if(bClampCameraPitch)
+        {        
+            TargetCameraRotation.Pitch = Math::ClampAngle(TargetCameraRotation.Pitch, -CameraVerticalRotationLimits.Y + 40, CameraVerticalRotationLimits.X + 30); // Magic numbers to to align with the camera
+        }
+        if(bClampCameraYaw)
+        {        
+            TargetCameraRotation.Yaw = Math::Clamp(TargetCameraRotation.Yaw, CameraHorizontalRotationLimits.X, CameraHorizontalRotationLimits.Y);
+        }
+
+        TargetCameraRotation.Roll = 0;
+    }
+
+
+    void ApplyCameraRotation()
+    {
+        FRotator CurrentRotation = GetActorRotation();
+        float Yaw = CurrentRotation.Yaw;
+        float Pitch = CurrentRotation.Pitch;
+
+        float LerpedYaw = Math::Lerp(Yaw, TargetCameraRotation.Yaw, CameraRotationLerpSpeed);
+        float LerpedPitch = Math::Lerp(Pitch, TargetCameraRotation.Pitch, CameraFollowLerpSpeed);
+
+
+        FRotator NewRotation = FRotator(LerpedPitch, LerpedYaw, 0);
+        SetActorRotation(NewRotation);
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void FollowCameraTarget()
+    {      
+        if (FollowTarget != nullptr)
+        {
+            TargetCameraLocation = FollowTarget.ActorLocation;
+        }
+        FVector NewLocation = Math::Lerp(ActorLocation, TargetCameraLocation, CameraFollowLerpSpeed);
+        SetActorLocation(NewLocation);
+    }
+
+    UFUNCTION(BlueprintCallable)
+    void ClampCameraTargetInBounds()
+    {
+        TargetCameraLocation.X = Math::Clamp(TargetCameraLocation.X, CameraXHorizontalLimits.X, CameraXHorizontalLimits.Y);
+        TargetCameraLocation.Y = Math::Clamp(TargetCameraLocation.Y, CameraYHorizontalLimits.X, CameraYHorizontalLimits.Y);
+        TargetCameraLocation.Z = Math::Clamp(TargetCameraLocation.Z, CameraVerticalLimits.X, CameraVerticalLimits.Y);
     }
 }
