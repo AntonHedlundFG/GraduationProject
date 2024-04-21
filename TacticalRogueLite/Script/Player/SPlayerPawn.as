@@ -135,23 +135,27 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
-        if (bIsDragging) 
+        if (bIsRotating) 
         {
+            SetTargetCameraRotation();
+        } else if(bIsDragging)
+        {        
             MoveCameraTarget(FVector2D(CurrentMouseMoveInput.Y, CurrentMouseMoveInput.X));
-        }else{
+        } else
+        {        
             MoveMouseEdgeOfScreen();
         }
 
         ClampCameraTargetInBounds();
-        FollowCameraTarget();
-
-        SetTargetCameraRotation();
         ClampTargetCameraRotation();
-        ApplyCameraRotation();
 
-        ApplyZoom();
+        FollowCameraTarget();
+        FollowCameraRotationTarget();
 
-        CurrentMouseMoveInput = FVector2D::ZeroVector; // Reset the mouse input
+        FollowZoomTarget();
+
+        // Reset the mouse input
+        CurrentMouseMoveInput = FVector2D::ZeroVector; 
     }
 
     UFUNCTION()
@@ -239,7 +243,7 @@ class ASPlayerPawn : APawn
        TargetZoom = Math::Clamp(ArmComp.TargetArmLength -inZoomAmount * CameraZoomSpeed, CameraZoomLimits.X, CameraZoomLimits.Y);
     }
 
-    void ApplyZoom()
+    void FollowZoomTarget()
     {
         ArmComp.TargetArmLength = Math::Lerp(ArmComp.TargetArmLength, TargetZoom, CameraFollowLerpSpeed);
     }
@@ -247,7 +251,7 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintCallable)
     void SetTargetCameraRotation()
     {
-        if (CurrentMouseMoveInput.IsNearlyZero() || !bIsRotating ) return;
+        if (CurrentMouseMoveInput.IsNearlyZero()) return;
 
         float Yaw = CurrentMouseMoveInput.X;
         float Pitch = CurrentMouseMoveInput.Y;
@@ -274,7 +278,7 @@ class ASPlayerPawn : APawn
     }
 
 
-    void ApplyCameraRotation()
+    void FollowCameraRotationTarget()
     {
         FRotator CurrentRotation = GetActorRotation();
         float Yaw = CurrentRotation.Yaw;
