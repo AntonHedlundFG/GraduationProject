@@ -106,11 +106,11 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inEnemyCount, bool 
 	}
 	else
 	{
-		NewRoom = inGrid->CreateNewRoom(inEnemyCount);
+		NewRoom = inGrid->CreateNewRoom();
 	}
 
 	//Spawn enemies and try to update victory condition
-	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(EnemyUnits, NewRoom->GetEnemySpawnTiles(), EnemyNames);
+	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(NewRoom->EnemyUnits, NewRoom->GetEnemySpawnTiles(), EnemyNames);
 	if (GameModeRef)
 	{
 		GameModeRef->AddEnemyUnits(Enemies);

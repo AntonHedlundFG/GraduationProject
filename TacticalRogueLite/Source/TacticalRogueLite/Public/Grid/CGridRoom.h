@@ -21,13 +21,14 @@ class TACTICALROGUELITE_API ACGridRoom : public AActor
 public:	
 	ACGridRoom();
 
-	UPROPERTY()
-	TObjectPtr<ACGrid> GameGrid;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
+	TArray<TSubclassOf<ACUnit>> EnemyUnits;
 
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION(BlueprintCallable)
-	void InitializeValues(ACGrid* inParentGrid, int inEnemyAmount = 4);
+	void Initialize(ACGrid* inParentGrid);
 	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
 	UFUNCTION(BlueprintCallable)
@@ -39,9 +40,9 @@ public:
 
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings")
 	TSubclassOf<ACGridTile> StandardTileBP;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings")
 	TSubclassOf<ACGridTile> ExitTileBP;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
@@ -64,9 +65,6 @@ protected:
 	int LengthVariance = 3;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
 	int RoomPoints = 2;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Enemy Spawn")
-	int EnemyAmount = 4;
 
 	UPROPERTY()
 	FVector2D MinCoords;
@@ -81,6 +79,10 @@ protected:
 	TArray<ACGridTile*> EnemySpawns;
 	UPROPERTY()
 	TArray<ACGridTile*> HeroSpawns;
+
+	///References
+	UPROPERTY()
+	TObjectPtr<ACGrid> GameGrid;
 	UPROPERTY()
 	TObjectPtr<UCRandomComponent> RandomComp;
 	UPROPERTY()

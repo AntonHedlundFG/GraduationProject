@@ -30,15 +30,13 @@ public:
 	TMap<FVector2D,TObjectPtr<ACGridTile>> TileMap;
 
 	UFUNCTION()
-	ACGridRoom* CreateNewRoom(int inEnemyAmount = 4);
+	ACGridRoom* CreateNewRoom();
 	UFUNCTION()
 	ACGridRoom* CreateStartRoom();
 	UFUNCTION()
-	ACGridTile* SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType);
+	ACGridTile* SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()
 	TArray<ACGridTile*> GetHeroSpawnTiles() const { return HeroSpawnTiles; }
-	UFUNCTION()
-	TArray<ACGridTile*> GetEnemySpawnTiles() const { return EnemySpawnTiles; }
 	UFUNCTION(ScriptCallable)
 	ACGridTile* GetTileFromCoords(FVector2D inCoords);
 	UFUNCTION()
@@ -57,6 +55,4 @@ protected:
 	TArray<TObjectPtr<ACGridRoom>> AllRooms;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
-	UPROPERTY()
-	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
 };

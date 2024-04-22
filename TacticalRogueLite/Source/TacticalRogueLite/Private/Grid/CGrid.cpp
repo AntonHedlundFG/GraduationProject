@@ -20,7 +20,7 @@ void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 	DOREPLIFETIME(ACGrid, AllRooms);
 }
 
-ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
+ACGridRoom* ACGrid::CreateNewRoom()
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 	
@@ -34,7 +34,7 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
 			StartX = PreviousRoom->GetExitTile()->GetGridCoords().X;
 			StartY = PreviousRoom->GetExitTile()->GetGridCoords().Y + 1;
 		}
-		Room->InitializeValues(this, inEnemyAmount);
+		Room->Initialize(this);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(StartX,StartY);
 
 		if (PreviousRoom)
@@ -62,7 +62,7 @@ ACGridRoom* ACGrid::CreateStartRoom()
 	
 	if (Room)
 	{
-		Room->InitializeValues(this, 4);
+		Room->Initialize(this);
 		Room->SetCustomPlatformDimensions(6, 4);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(0,0, true);
 
@@ -77,15 +77,10 @@ ACGridRoom* ACGrid::CreateStartRoom()
 	if (!Room->GetHeroSpawnTiles().IsEmpty())
 		HeroSpawnTiles = Room->GetHeroSpawnTiles();
 	
-	EnemySpawnTiles = Room->GetEnemySpawnTiles();
-	
-
-	// GenerateSpawnTiles();
-	
 	return Room;
 }
 
-ACGridTile* ACGrid::SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType)
+ACGridTile* ACGrid::SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType)
 {
 	FVector TilePosition = GetActorLocation();
 	TilePosition.X += inY * NodeInterval;
