@@ -12,3 +12,8 @@ FText UCData::GetTitle_Implementation() const
 {
 	return ItemName;
 }
+
+FText UCData::GetItemName_Implementation() const
+{
+	return ItemName;
+}

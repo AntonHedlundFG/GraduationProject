@@ -42,6 +42,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
 	FText GetDescription() const;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
+	FText GetItemName() const;
 	
 protected:
 	

@@ -3,23 +3,38 @@
 
 #include "UI/CAbilityContainer.h"
 
+#include "Blueprint/WidgetLayoutLibrary.h"
 #include "Items/CInventoryComponent.h"
 #include "Utility/Logging/CLogManager.h"
 
 void UCAbilityContainer::UpdateInfoTarget(FGameplayTag ItemSlot,UWidget* HoveredWidget,ACUnit* CurrentUnit)
 {
-	Panel->SetVisibility(ESlateVisibility::HitTestInvisible);
+	if(HoveredWidget == nullptr || CurrentUnit == nullptr)
+	{
+		return;
+	}
 	UCItemData* ItemData = CurrentUnit->GetInventoryComp()->GetItemInSlot(ItemSlot);
-	//LOG(ELogCategory::LC_Info,"Updated Target To: %s",ItemData->);
+	if(!ItemData)
+	{
+		return;
+	}
+	InfoPanel->SetVisibility(ESlateVisibility::Visible);
+	InfoPanel->SetVisibility(ESlateVisibility::HitTestInvisible);
+	TitleTextBox->SetText(ItemData->GetItemName());
+	DescriptionTextBox->SetText(ItemData->GetDescription());
+	HoverTarget = UWidgetLayoutLibrary::SlotAsCanvasSlot(HoveredWidget);
+	InfoPanelSlot->SetPosition(HoverTarget->GetPosition() + FVector2D(HoverTarget->GetSize().X,-InfoPanelSlot->GetSize().Y));
 }
 
 void UCAbilityContainer::ClearInfoTarget()
 {
-	Panel->SetVisibility(ESlateVisibility::Collapsed);
+	InfoPanel->SetVisibility(ESlateVisibility::Collapsed);
+	HoverTarget = nullptr;
 }
 
 void UCAbilityContainer::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Panel->SetVisibility(ESlateVisibility::Collapsed);
+	InfoPanel->SetVisibility(ESlateVisibility::Collapsed);
+	InfoPanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(InfoPanel);
 }
