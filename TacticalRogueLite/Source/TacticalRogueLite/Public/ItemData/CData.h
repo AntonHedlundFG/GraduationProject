@@ -37,11 +37,11 @@ class TACTICALROGUELITE_API UCData : public UPrimaryDataAsset
 public:
 
 	// //Get item name.
-	// UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
-	// FText GetTitle() const;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
+	FText GetTitle() const;
 	
-	// UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
-	// FText GetDescription() const;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "UI")
+	FText GetDescription() const;
 	
 protected:
 	
