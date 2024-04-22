@@ -21,8 +21,8 @@ ACUnit::ACUnit()
 
 	SceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = SceneComp;
-	
 
+	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
 	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));

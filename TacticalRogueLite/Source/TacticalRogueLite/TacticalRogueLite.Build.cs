@@ -24,6 +24,7 @@ public class TacticalRogueLite : ModuleRules
 			"Slate",
 			"SlateCore",
 			"NetCore",
+			"Paper2D",
 			
 			
 		});
