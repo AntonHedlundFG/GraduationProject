@@ -58,7 +58,7 @@ public:
 	
 	///Spawns a room with enemies
 	UFUNCTION()
-	void SpawnRoomWithEnemies(ACGrid* inGrid, int inEnemyCount = 4, bool bIsStartRoom = false);
+	void SpawnRoomWithEnemies(ACGrid* inGrid, bool bIsStartRoom = false);
 
 	virtual void OnSave() override;
 	virtual void OnLoad() override;

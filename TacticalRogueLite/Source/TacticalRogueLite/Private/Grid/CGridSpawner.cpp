@@ -96,7 +96,7 @@ ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 	return SpawnedGrid;
 }
 
-void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inEnemyCount, bool bIsStartRoom)
+void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, bool bIsStartRoom)
 {
 	//Create start room or regular room
 	ACGridRoom* NewRoom;

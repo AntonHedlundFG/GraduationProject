@@ -37,9 +37,12 @@ public:
 	bool bLoseByCheating = false;
 
 protected:
-
+	UPROPERTY()
 	TSoftObjectPtr<ACGameMode> GameModeRef;
+	UPROPERTY()
 	TSoftObjectPtr<ACGameState> GameStateRef;
+	UPROPERTY()
+	int VictoryConditionLevel = 0;
 
 	
 };

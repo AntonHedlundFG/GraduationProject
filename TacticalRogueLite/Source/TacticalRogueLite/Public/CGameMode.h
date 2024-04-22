@@ -124,10 +124,10 @@ public:
 
 
 protected:
-	//Create grid spawner to handle room and unit spawning
+	///Create grid spawner to handle room and unit spawning
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
-	//Spawn hero units with default items
+	///Spawn hero units with default items
 	UFUNCTION(Category = "Units")
 	void SpawnDefaultHeroUnits(ACGrid* InGrid);
 
@@ -152,7 +152,7 @@ protected:
 public:
 
 	UFUNCTION()
-	UCVictoryCondition* GetVictoryCondition() { return VictoryCondition; }
+	UCVictoryCondition* GetVictoryCondition() const { return VictoryCondition; }
 	UFUNCTION()
 	void SetVictoryCondition(UCVictoryCondition* inVictoryCondition) { VictoryCondition = inVictoryCondition; }
 	
@@ -171,7 +171,14 @@ protected:
 	//Once we have a procedural generation system, it should probably take over this task.
 	UFUNCTION(Category = "Victory Condition")
 	void InitializeVictoryCondition();
-
+	///Handles fulfilling the victory condition in a given room, returns true if entire game is won
+	UFUNCTION(Category = "Victory Condition")
+	bool HandleVictoryConditionMet();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
+	int RoomsUntilWin = 4;
+	UPROPERTY()
+	int CurrentRoom = 1;
+	
 #pragma endregion
 	
 };

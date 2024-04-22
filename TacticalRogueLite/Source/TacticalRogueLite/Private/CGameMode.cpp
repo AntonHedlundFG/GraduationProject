@@ -52,7 +52,7 @@ void ACGameMode::BeginPlay()
 		GameStateRef->GameGrid = grid;
 
 		//Spawn initial room with enemies
-		Spawner->SpawnRoomWithEnemies(grid, 4, true);
+		Spawner->SpawnRoomWithEnemies(grid, true);
 		
 		InitializeHeroUnits(grid);
 		for (const ACUnit* HeroUnit : HeroUnits)
@@ -61,7 +61,7 @@ void ACGameMode::BeginPlay()
 		}
 		
 		// Testing for multiple room
-		//Spawner->SpawnRoomWithEnemies(grid, 3);
+		//Spawner->SpawnRoomWithEnemies(grid);
 		
 	}
 	AllUnits.Append(HeroUnits);
@@ -300,10 +300,12 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	//Check for victory conditions
 	if (VictoryCondition && VictoryCondition->CheckVictoryCondition())
 	{
-		//Temporary implementation.
-		LOG_GAMEPLAY("You've won the game!");
-		GameStateRef->SetGameIsOver(true);
-		return true;
+		if (HandleVictoryConditionMet())
+		{
+			return true;
+		}
+
+		LOG_GAMEPLAY("GameMode TryEndTurn: Players Should Be Rewarded With Items Here!");
 	}
 
 	//Check for loss conditions
@@ -476,4 +478,25 @@ void ACGameMode::InitializeVictoryCondition()
 
 	VictoryCondition = NewObject<UCVictoryCondition>(this, UCVictoryCondition::StaticClass());
 	VictoryCondition->Initialize(this, GameStateRef);
+}
+
+bool ACGameMode::HandleVictoryConditionMet()
+{
+	if (CurrentRoom < RoomsUntilWin)
+	{
+		if (GetGameGrid())
+		{
+			Spawner->SpawnRoomWithEnemies(GetGameGrid());
+			CurrentRoom ++;
+		}
+		else
+		{
+			LOG_ERROR("GameMode HandleVictoryConditionMet: Missing Grid Reference");
+		}
+		return false;
+	}
+
+	LOG_GAMEPLAY("You've won the game!");
+	GameStateRef->SetGameIsOver(true);
+	return true;
 }
