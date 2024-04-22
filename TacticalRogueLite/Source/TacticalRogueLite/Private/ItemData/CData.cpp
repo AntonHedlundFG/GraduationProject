@@ -3,3 +3,12 @@
 
 #include "ItemData/CData.h"
 
+FText UCData::GetDescription_Implementation() const
+{
+	return ItemDescription;
+}
+
+FText UCData::GetTitle_Implementation() const
+{
+	return ItemName;
+}
