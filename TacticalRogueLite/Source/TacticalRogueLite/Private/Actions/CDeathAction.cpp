@@ -5,6 +5,7 @@
 #include "CGameState.h"
 #include "Attributes/CAttributeComponent.h"
 #include "GridContent/CUnit.h"
+#include "Net/UnrealNetwork.h"
 
 void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 {
@@ -35,7 +36,6 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 	DeathTile = AffectedUnit->GetTile();
 
 	AffectedUnit->SetTile(nullptr);
-	AffectedUnit->SetActorLocation(FVector::OneVector * 10000);
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
 	UCLogManager::Log(
@@ -69,4 +69,11 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
+}
+
+void UCDeathAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UCDeathAction, AffectedUnit);
 }

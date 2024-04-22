@@ -139,6 +139,7 @@ void UCTurnOrderUI::NativeConstruct()
 	}
 	TurnOrderBox->InitializeSpacing(PortraitWidget);
 	Executor = GetWorld()->GetSubsystem<UCCORExecutor>();
+	UpdateTurnList();
 }
 
 void UCTurnOrderUI::EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget)
