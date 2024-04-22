@@ -119,11 +119,15 @@ public:
 	TArray<ACUnit*> GetHeroUnits() const { return HeroUnits; }
 	UFUNCTION(BlueprintCallable, Category = "Units")
 	TArray<ACUnit*> GetEnemyUnits() const { return EnemyUnits; }
+	UFUNCTION(BlueprintCallable, Category = "Units")
+	void AddEnemyUnits(TArray<ACUnit*> Enemies);
+
 
 protected:
-
+	//Create grid spawner to handle room and unit spawning
 	UFUNCTION(Category = "Grid|Spawner")
 	ACGridSpawner* CreateSpawner();
+	//Spawn hero units with default items
 	UFUNCTION(Category = "Units")
 	void SpawnDefaultHeroUnits(ACGrid* InGrid);
 
@@ -149,6 +153,9 @@ public:
 
 	UFUNCTION()
 	UCVictoryCondition* GetVictoryCondition() { return VictoryCondition; }
+	UFUNCTION()
+	void SetVictoryCondition(UCVictoryCondition* inVictoryCondition) { VictoryCondition = inVictoryCondition; }
+	
 
 protected:
 

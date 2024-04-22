@@ -2,11 +2,14 @@
 
 #include "Grid/CGridRoom.h"
 
+#include "CGameMode.h"
 #include "CGameState.h"
 #include "Grid/CGrid.h"
 #include "Utility/CRandomComponent.h"
 #include "Grid/CGridTile.h"
 #include "Grid/CGridUtilsLibrary.h"
+#include "Achievements/CVictoryCondition.h"
+#include "Achievements/VictoryConditions/CVictoryCondition_KillEnemies.h"
 #include "Utility/Logging/CLogManager.h"
 
 
@@ -18,7 +21,13 @@ ACGridRoom::ACGridRoom()
 void ACGridRoom::BeginPlay()
 {
 	Super::BeginPlay();
+	ModeRef = Cast<ACGameMode>(GetWorld()->GetAuthGameMode());
 	StateRef = Cast<ACGameState>(GetWorld()->GetGameState());
+	if(!ModeRef)
+	{
+		LOG_WARNING("No Game Mode Reference in Spawned Room");
+	}
+	
 	if(StateRef)
 	{
 		RandomComp = StateRef->Random;
@@ -43,6 +52,23 @@ void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatform
 {
 	PlatformWidth = inPlatformWidth;
 	PlatformLength = inPlatformLength;
+}
+
+bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const
+{
+	if (!ModeRef || !StateRef || inEnemies.Num() <= 0)
+		return false;
+
+	UCVictoryCondition* WinCon = NewObject<UCVictoryCondition>(ModeRef, VictoryCondition);
+	WinCon->Initialize(ModeRef, StateRef);
+	
+	if (UCVictoryCondition_KillEnemies* KillWinCon = Cast<UCVictoryCondition_KillEnemies>(WinCon))
+	{
+		KillWinCon->Enemies = inEnemies;
+		ModeRef->SetVictoryCondition(KillWinCon);
+		return true;
+	}
+	return false;
 }
 
 TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns)

@@ -47,51 +47,27 @@ void ACGameMode::BeginPlay()
 
 	if (Spawner)
 	{
+		//Spawn game grid actor
 		ACGrid* grid = Spawner->SpawnGrid(FVector::Zero());
 		GameStateRef->GameGrid = grid;
+
+		//Spawn initial room with enemies
+		Spawner->SpawnRoomWithEnemies(grid, 4, true);
 		
 		InitializeHeroUnits(grid);
-	
 		for (const ACUnit* HeroUnit : HeroUnits)
 		{
 			HeroUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsPlayer);
 		}
 		
-		EnemyUnits = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, grid->GetEnemySpawnTiles(), Spawner->EnemyNames);
-
-		// Testing for multiple rooms
-		/*
-		ACGridRoom* NewRoom_1 = grid->CreateNewRoom(3);
-		const TArray<ACUnit*> MoreEnemies_1 = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, NewRoom_1->GetEnemySpawnTiles(), Spawner->EnemyNames);
-		EnemyUnits.Append(MoreEnemies_1);
+		// Testing for multiple room
+		//Spawner->SpawnRoomWithEnemies(grid, 3);
 		
-		ACGridRoom* NewRoom_2 = grid->CreateNewRoom(2);
-		const TArray<ACUnit*> MoreEnemies_2 = Spawner->SpawnUnitsFromArray(Spawner->EnemyUnits, NewRoom_2->GetEnemySpawnTiles(), Spawner->EnemyNames);
-		EnemyUnits.Append(MoreEnemies_2);
-		*/
-		
-		for (ACUnit* EnemyUnit : EnemyUnits)
-		{
-			EnemyUnit->ControllingPlayerIndex = 0;
-			EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
-		}
 	}
 	AllUnits.Append(HeroUnits);
 	AllUnits.Append(EnemyUnits);
 	
-	if (DefaultEquipmentData)
-	{
-		for (auto Unit : EnemyUnits)
-		{
-			DefaultEquipmentData->EquipUnit(Unit);
-		}
-	}
-	else
-	{
-		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
-	}
-	
-	InitializeVictoryCondition();
+	//InitializeVictoryCondition();
 	
 	InitializeTurnOrder(AllUnits);
 }
@@ -407,6 +383,29 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 {
 	ACGridSpawner* spawner = GetWorld()->SpawnActor<ACGridSpawner>(SpawnerClass, FVector::Zero(), FRotator::ZeroRotator);
 	return spawner;
+}
+
+void ACGameMode::AddEnemyUnits(TArray<ACUnit*> Enemies)
+{
+	bool bEquipmentValid = true;
+	if (!DefaultEquipmentData)
+	{
+		bEquipmentValid = false;
+		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
+	}
+	
+	for (ACUnit* EnemyUnit : Enemies)
+	{
+		EnemyUnit->ControllingPlayerIndex = 0;
+		EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
+		
+		if (bEquipmentValid)
+		{
+			DefaultEquipmentData->EquipUnit(EnemyUnit);
+		}
+	}
+	
+	EnemyUnits.Append(Enemies);
 }
 
 void ACGameMode::SpawnDefaultHeroUnits(ACGrid* InGrid)

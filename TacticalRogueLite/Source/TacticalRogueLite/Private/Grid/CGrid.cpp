@@ -51,7 +51,7 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyAmount)
 	return Room;
 }
 
-ACGridRoom* ACGrid::CreateStartRoom(int inStartX, int inStartY)
+ACGridRoom* ACGrid::CreateStartRoom()
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 
@@ -64,7 +64,7 @@ ACGridRoom* ACGrid::CreateStartRoom(int inStartX, int inStartY)
 	{
 		Room->InitializeValues(this, 4);
 		Room->SetCustomPlatformDimensions(6, 4);
-		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(inStartX,inStartY, true);
+		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(0,0, true);
 
 		for (auto tile : RoomTiles)
 		{

@@ -32,7 +32,7 @@ public:
 	UFUNCTION()
 	ACGridRoom* CreateNewRoom(int inEnemyAmount = 4);
 	UFUNCTION()
-	ACGridRoom* CreateStartRoom(int inStartX, int inStartY);
+	ACGridRoom* CreateStartRoom();
 	UFUNCTION()
 	ACGridTile* SpawnTileAtIndex(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()
@@ -59,8 +59,4 @@ protected:
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> EnemySpawnTiles;
-
-	//Temporary Solution
-	//void GenerateSpawnTiles();
-
 };

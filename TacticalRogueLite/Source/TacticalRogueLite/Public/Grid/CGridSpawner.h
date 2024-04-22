@@ -6,6 +6,9 @@
 #include "Utility/SaveGame/CSavable.h"
 #include "CGridSpawner.generated.h"
 
+class ACGameMode;
+class UCVictoryCondition;
+class ACGridRoom;
 class ACGrid;
 class ACGridTile;
 class ACUnit;
@@ -51,14 +54,20 @@ public:
 	UFUNCTION()
 	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, TArray<UCItemData*> inEquipment, FString inName);
 	
-	///Spawns a grid actor at a given position, and with the given dimensions
+	///Spawns a grid actor at a given position
 	UFUNCTION()
-	ACGrid* SpawnGrid(FVector inGridCenter);
+	ACGrid* SpawnGrid(FVector inGridCenter) const;
+	
+	///Spawns a room with enemies
+	UFUNCTION()
+	void SpawnRoomWithEnemies(ACGrid* inGrid, int inEnemyCount = 4, bool bIsStartRoom = false);
 
 	virtual void OnSave() override;
 	virtual void OnLoad() override;
 
 protected:
+	TObjectPtr<ACGameMode> GameModeRef;
+	
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
