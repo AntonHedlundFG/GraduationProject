@@ -14,16 +14,16 @@ class TACTICALROGUELITE_API UCMovementAction : public UCTargetableAction
 {
 	GENERATED_BODY()
 	
+public:
+
 	virtual void StartAction_Implementation(AActor* Instigator) override;
 	virtual void UndoAction_Implementation(AActor* Instigator) override;
 	virtual TArray<ACGridTile*> GetValidTargetTiles_Implementation(ACGridTile* inTile) override;
 
-protected:
-
-	UPROPERTY(BlueprintReadWrite)
-	ACGridTile* FromTile;
-
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, Replicated)
 	ACUnit* MovedUnit;
+
+	UPROPERTY(BlueprintReadWrite, Replicated)
+	ACGridTile* FromTile;
 
 };
