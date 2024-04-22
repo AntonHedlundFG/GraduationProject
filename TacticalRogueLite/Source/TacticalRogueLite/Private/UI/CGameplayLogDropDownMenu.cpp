@@ -17,6 +17,7 @@ void UCGameplayLogDropDownMenu::NativeConstruct()
 
 void UCGameplayLogDropDownMenu::UpdateFilter(bool bIsChecked)
 {
+	FilterFlag = 0;
 	if(Gameplay_CheckBox->IsChecked())
 	{
 		SetFilterFlag(EFilterCategory::Gameplay);
