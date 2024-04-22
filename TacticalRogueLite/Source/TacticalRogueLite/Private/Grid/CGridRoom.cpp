@@ -2,11 +2,14 @@
 
 #include "Grid/CGridRoom.h"
 
+#include "CGameMode.h"
 #include "CGameState.h"
 #include "Grid/CGrid.h"
 #include "Utility/CRandomComponent.h"
 #include "Grid/CGridTile.h"
 #include "Grid/CGridUtilsLibrary.h"
+#include "Achievements/CVictoryCondition.h"
+#include "Achievements/VictoryConditions/CVictoryCondition_KillEnemies.h"
 #include "Utility/Logging/CLogManager.h"
 
 
@@ -18,7 +21,13 @@ ACGridRoom::ACGridRoom()
 void ACGridRoom::BeginPlay()
 {
 	Super::BeginPlay();
+	ModeRef = Cast<ACGameMode>(GetWorld()->GetAuthGameMode());
 	StateRef = Cast<ACGameState>(GetWorld()->GetGameState());
+	if(!ModeRef)
+	{
+		LOG_WARNING("No Game Mode Reference in Spawned Room");
+	}
+	
 	if(StateRef)
 	{
 		RandomComp = StateRef->Random;
@@ -33,16 +42,32 @@ void ACGridRoom::BeginPlay()
 	}
 }
 
-void ACGridRoom::InitializeValues(ACGrid* inParentGrid, int inEnemyAmount)
+void ACGridRoom::Initialize(ACGrid* inParentGrid)
 {
 	GameGrid = inParentGrid;
-	EnemyAmount = inEnemyAmount;
 }
 
 void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength)
 {
 	PlatformWidth = inPlatformWidth;
 	PlatformLength = inPlatformLength;
+}
+
+bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const
+{
+	if (!ModeRef || !StateRef || inEnemies.Num() <= 0)
+		return false;
+
+	UCVictoryCondition* WinCon = NewObject<UCVictoryCondition>(ModeRef, VictoryCondition);
+	WinCon->Initialize(ModeRef, StateRef);
+	
+	if (UCVictoryCondition_KillEnemies* KillWinCon = Cast<UCVictoryCondition_KillEnemies>(WinCon))
+	{
+		KillWinCon->Enemies = inEnemies;
+		ModeRef->SetVictoryCondition(KillWinCon);
+		return true;
+	}
+	return false;
 }
 
 TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns)
@@ -78,7 +103,7 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 
 	//Create exit tile
 	const int32 ExitX = RandomComp->GetRandRange(X_Min + PlatformWidth, X_Max - PlatformWidth, false);
-	ExitTile = GameGrid->SpawnTileAtIndex(ExitX, Y_Max + 1, ExitTileBP);
+	ExitTile = GameGrid->SpawnTileAtCoord(ExitX, Y_Max + 1, ExitTileBP);
 	if (ExitTile)
 	{
 		OutArray.Add(ExitTile);
@@ -174,7 +199,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePath(FVector2d inStart, FVector2d inTarget
 			}
 		}
 
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(X_Start, Y_Start, StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtCoord(X_Start, Y_Start, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
@@ -252,7 +277,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 		{
 			for(int y = inStartY ; y < (inStartY + PlatformLength); y++)
 			{
-				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, StandardTileBP);
+				ACGridTile* Tile = GameGrid->SpawnTileAtCoord(x, y, StandardTileBP);
 				if (Tile)
 				{
 					OutArray.Add(Tile);
@@ -263,7 +288,7 @@ TArray<ACGridTile*> ACGridRoom::CreatePlatform(int inMiddleX, int inStartY, bool
 		{
 			for(int y = inStartY ; (inStartY - PlatformLength) < y; y--)
 			{
-				ACGridTile* Tile = GameGrid->SpawnTileAtIndex(x, y, StandardTileBP);
+				ACGridTile* Tile = GameGrid->SpawnTileAtCoord(x, y, StandardTileBP);
 				if (Tile)
 				{
 					OutArray.Add(Tile);
@@ -290,7 +315,7 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 		if (Coords.Y < MinCoords.Y || Coords.Y > MaxCoords.Y)
 			continue;
 		
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtCoord(Coords.X, Coords.Y, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
@@ -310,7 +335,7 @@ TArray<ACGridTile*> ACGridRoom::SpawnNeighbours(FVector2d inTileCoords, bool bIn
 			if (Coords.Y < MinCoords.Y || Coords.Y > MaxCoords.Y)
 				continue;
 			
-			ACGridTile* Tile = GameGrid->SpawnTileAtIndex(Coords.X, Coords.Y, StandardTileBP);
+			ACGridTile* Tile = GameGrid->SpawnTileAtCoord(Coords.X, Coords.Y, StandardTileBP);
 			if (Tile)
 			{
 				OutArray.Add(Tile);
@@ -397,7 +422,7 @@ TArray<ACGridTile*> ACGridRoom::GeneratePoints(int inPointAmount, FVector2d inSt
 		const FVector2d PointCoords = CreatePoint(X_CoordsArray[i], FVector2d(XMin, YCoords), FVector2d(XMax, YCoords));
 		X_CoordsArray.Add(PointCoords.X);
 
-		ACGridTile* Tile = GameGrid->SpawnTileAtIndex(PointCoords.X, PointCoords.Y, StandardTileBP);
+		ACGridTile* Tile = GameGrid->SpawnTileAtCoord(PointCoords.X, PointCoords.Y, StandardTileBP);
 		if (Tile)
 		{
 			OutArray.Add(Tile);
@@ -422,6 +447,7 @@ void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
 void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
 {
 	const int PointAmount = inPoints.Num();
+	const int EnemyAmount = EnemyUnits.Num();
 	
 	TArray<int> Indexes;
 	for (int i = 0; i < PointAmount; i++)

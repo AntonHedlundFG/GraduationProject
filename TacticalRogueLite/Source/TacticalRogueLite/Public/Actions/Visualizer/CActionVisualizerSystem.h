@@ -47,9 +47,18 @@ protected:
 	UFUNCTION()
 	void OnActionListUpdate();
 
-	// The currently ticked visualization.	
+	TQueue<UCActionVisualization*> VisualizationQueue;
+	TQueue<UCActionVisualization*> UndoQueue;
+	TMap<UCAction*, UCActionVisualization*> ActionToVisualMap;
+
+	//Used to make sure they don't fall out of scope.
 	UPROPERTY()
-	TObjectPtr<UCActionVisualization> CurrentVisualization;
+	TArray<UCActionVisualization*> VisualizationList;
+
+	UCActionVisualization* CurrentVisualization;
+	bool bCurrentVisualForward;
+
+	int32 ActionListCurrentIndex = -1;
 	
 	//This should be populated in the editor so both C++ and BP implementations are available.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Actions")

@@ -28,7 +28,9 @@ void ACGridContent::SetTile(ACGridTile* inTile)
 	if (Tile)
 	{
 		Tile->SetContent(this);
-		SetActorLocation(Tile->GetActorLocation() + FVector(0,0,100));
+
+		//Removed this line since we want to handle visual actor locations locally using UCActionVisualization
+		//SetActorLocation(Tile->GetActorLocation() + FVector(0,0,100));
 	}
 }
 

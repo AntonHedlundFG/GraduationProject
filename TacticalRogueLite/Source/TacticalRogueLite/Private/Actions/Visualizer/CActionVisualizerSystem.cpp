@@ -6,6 +6,7 @@
 #include "CGameState.h"
 #include "Utility\Logging\CLogManager.h"
 #include "Actions\CAction.h"
+#include "CUndoAction.h"
 
 UCActionVisualizerSystem::UCActionVisualizerSystem()
 {
@@ -39,15 +40,43 @@ void UCActionVisualizerSystem::EndPlay(EEndPlayReason::Type Reason)
 }
 
 void UCActionVisualizerSystem::OnActionListUpdate()
-{
-	if (GetNetMode() == ENetMode::NM_Client)
-		LOG_INFO("Client: ActionListUpdate in VisualizerSystem");
-	else
-		LOG_INFO("Server: ActionListUpdate in VisualizerSystem");
-	if (!CurrentVisualization)
+{	
+
+	if (GameState->ActionList.IsEmpty())
 	{
-		CurrentVisualization = CreateVisualizationForAction(nullptr);
+		ActionListCurrentIndex = -1;
+		//ActionToVisualMap.Empty();
+		return;
 	}
+
+	while (++ActionListCurrentIndex < GameState->ActionList.Num() && GameState->ActionList[ActionListCurrentIndex])
+	{
+		//Handle undo actions differently since they have to undo other visualizations
+		if (UCUndoAction* Undo = Cast<UCUndoAction>(GameState->ActionList[ActionListCurrentIndex]))
+		{
+			for (TSoftObjectPtr<UCAction> Action : Undo->UndoneActions)
+			{
+				TObjectPtr<UCActionVisualization> Visual = ActionToVisualMap[Action.Get()];
+				if (IsValid(Visual))
+					UndoQueue.Enqueue(Visual);
+			}
+			continue;
+		}
+
+		//Create a visualization for a regular action.
+		UCActionVisualization* Visual = CreateVisualizationForAction(GameState->ActionList[ActionListCurrentIndex]);
+		if (Visual)
+		{
+			VisualizationQueue.Enqueue(Visual);
+			ActionToVisualMap.Add(GameState->ActionList[ActionListCurrentIndex], Visual);
+			VisualizationList.Add(Visual);
+		}
+		
+	}
+	//Counteract last ++
+	ActionListCurrentIndex--;
+
+
 }
 
 UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)
@@ -58,6 +87,7 @@ UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UC
 		{
 			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
 			VisualizationInstance->ParentSystem = this;
+			VisualizationInstance->VisualizedAction = Action;
 			VisualizationInstance->Enter(Action);
 			return VisualizationInstance;
 		}
@@ -71,9 +101,35 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (CurrentVisualization && CurrentVisualization->Tick(DeltaTime))
+	if (IsValid(CurrentVisualization))
 	{
-		CurrentVisualization = nullptr;
+		if (bCurrentVisualForward && !CurrentVisualization->VisualizedAction->bIsUndone)
+		{
+			if (CurrentVisualization->Tick(DeltaTime))
+				CurrentVisualization = nullptr;
+		}
+		else
+		{
+			if (CurrentVisualization->RevertTick(DeltaTime))
+				CurrentVisualization = nullptr;
+		}
+	}
+
+	if (IsValid(CurrentVisualization))
+		return;
+
+	if (!UndoQueue.IsEmpty())
+	{
+		UndoQueue.Dequeue(CurrentVisualization);
+		bCurrentVisualForward = false;
+		return;
+	}
+
+	if (!VisualizationQueue.IsEmpty())
+	{
+		VisualizationQueue.Dequeue(CurrentVisualization);
+		bCurrentVisualForward = !CurrentVisualization->VisualizedAction->bIsUndone;
+		return;
 	}
 }
 

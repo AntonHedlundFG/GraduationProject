@@ -7,6 +7,7 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "Actions/CActionComponent.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Net/UnrealNetwork.h"
 
 void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 {
@@ -49,4 +50,12 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	}
 
 	return ReturnTiles;
+}
+
+void UCMovementAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UCMovementAction, MovedUnit);
+	DOREPLIFETIME(UCMovementAction, FromTile);
 }

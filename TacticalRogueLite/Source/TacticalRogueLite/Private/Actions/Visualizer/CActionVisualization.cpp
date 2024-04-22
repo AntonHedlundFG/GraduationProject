@@ -5,6 +5,10 @@
 #include "Actions\Visualizer\CActionVisualizerSystem.h"
 #include "Utility\Logging\CLogManager.h"
 
+#include "Actions/CMovementAction.h"
+#include "GridContent/CUnit.h"
+#include "Grid/CGridTile.h"
+
 bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 {
 	return true;
@@ -12,30 +16,22 @@ bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 
 void UCActionVisualization::Enter_Implementation(UCAction* FromAction)
 {
-	TimePassed = 0.0f;
 }
 
-void UCActionVisualization::Exit_Implementation(UCAction* FromAction)
+void UCActionVisualization::Exit_Implementation()
 {
 
 }
 
 bool UCActionVisualization::Tick_Implementation(float DeltaTime)
 {
-	
-	TimePassed += DeltaTime;
-	if (TimePassed > 5.0f)
-	{
-		if (ParentSystem->GetNetMode() == ENetMode::NM_Client)
-			LOG_INFO("Client: We've ticked and finished a visualization");
-		else
-			LOG_INFO("Server: We've ticked and finished a visualization");
-		return true;
-	}
-	return false;
+	LOG_INFO("No visualization available for this action");
+
+	return true;
 }
 
 bool UCActionVisualization::RevertTick_Implementation(float DeltaTime)
 {
+	LOG_INFO("No undo visualization available for this action");
 	return true;
 }

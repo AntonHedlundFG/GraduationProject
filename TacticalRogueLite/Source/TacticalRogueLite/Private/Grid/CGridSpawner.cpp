@@ -1,11 +1,14 @@
 
 #include "Grid/CGridSpawner.h"
 
+#include "CGameMode.h"
 #include "Grid/CGrid.h"
+#include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
 #include "Items/CNamesAndItemsList.h"
+#include "Achievements/CVictoryCondition.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -19,6 +22,8 @@ void ACGridSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 	RegisterToSaveManager();
+
+	GameModeRef = Cast<ACGameMode>(GetWorld()->GetAuthGameMode());
 }
 
 void ACGridSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -84,14 +89,36 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	return Unit;
 }
 
-ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter)
+ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 {
 	ACGrid* SpawnedGrid = GetWorld()->SpawnActor<ACGrid>(Grid, inGridCenter, FRotator::ZeroRotator);
-	SpawnedGrid->CreateStartRoom(0, 0);
 	
-	//SpawnedGrid->GenerateTiles(inRows, inColumns);
-
 	return SpawnedGrid;
+}
+
+void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, bool bIsStartRoom)
+{
+	//Create start room or regular room
+	ACGridRoom* NewRoom;
+	if (bIsStartRoom)
+	{
+		NewRoom = inGrid->CreateStartRoom();
+	}
+	else
+	{
+		NewRoom = inGrid->CreateNewRoom();
+	}
+
+	//Spawn enemies and try to update victory condition
+	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(NewRoom->EnemyUnits, NewRoom->GetEnemySpawnTiles(), EnemyNames);
+	if (GameModeRef)
+	{
+		GameModeRef->AddEnemyUnits(Enemies);
+		if (!NewRoom->TryInitializeVictoryCondition(Enemies))
+		{
+			LOG_ERROR("Failed to Update Victory Condition for new Room");
+		}
+	}
 }
 
 void ACGridSpawner::OnSave()
@@ -113,7 +140,7 @@ void ACGridSpawner::OnSave()
 	}
 	else
 	{
-		LOG_ERROR("Could not find Save Game Instance to save Unit Items and Data");
+		LOG_ERROR("GridSpawner OnSave: Could not find Save Game Instance to save Unit Items and Data");
 	}
 }
 
@@ -136,7 +163,7 @@ void ACGridSpawner::OnLoad()
 	}
 	else
 	{
-		LOG_ERROR("Could not find Save Game Instance to load Unit Items and Data");
+		LOG_ERROR("GridSpawner OnLoad: Could not find Save Game Instance to load Unit Items and Data");
 	}
 }
 
