@@ -15,11 +15,7 @@ class TACTICALROGUELITE_API ACGrid : public AActor
 	
 public:	
 	ACGrid();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings|Testing")
-	int SeedTest = 1993;
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	// TSubclassOf<ACGridTile> StandardTileBP;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TSubclassOf<ACGridRoom> RoomBP;
 	

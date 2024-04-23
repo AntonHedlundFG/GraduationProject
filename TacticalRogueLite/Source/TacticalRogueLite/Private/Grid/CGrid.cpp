@@ -54,11 +54,6 @@ ACGridRoom* ACGrid::CreateNewRoom()
 ACGridRoom* ACGrid::CreateStartRoom()
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
-
-	if (ACGameState* State = Cast<ACGameState>(GetWorld()->GetGameState()))
-	{
-		State->Random->InitializeFromStart(SeedTest);
-	}
 	
 	if (Room)
 	{
