@@ -63,6 +63,11 @@ void ACCharacterSelectGameState::OnRep_UpdateReadyStatus(TArray<bool> inArray)
 	CheckReady();
 }
 
+void ACCharacterSelectGameState::OnRep_UpdatePlayerCount(int inCount)
+{
+	PlayerCount = inCount;
+}
+
 void ACCharacterSelectGameState::CheckReady()
 {
 	for (const bool PlayerReady : ReadyInfo)

@@ -73,6 +73,24 @@ int32 UCRandomComponent::GetRandRange(bool bKeepState)
 	return GetRandRange( 0,INT32_MAX - 1, bKeepState);
 }
 
+void UCRandomComponent::SaveSeedValuesToSaveGame()
+{
+	UCSaveGame* SaveGame = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	{
+		SaveGame->SavedRandomStream = RandomStream;
+		SaveGame->SavedStartSeed = StartSeed;
+		SaveGame->SavedCurrentStateSeed = CurrentStateSeed;
+		SaveGame->SavedTicks = Ticks;
+		SaveGame->SavedTicksSinceSave = TicksSinceSave;
+		SaveGame->SavedTicksAtSave = TicksAtSave;
+	}
+	else
+	{
+		LOG_ERROR("Could not find Save Game Instance to save Random State");
+	}
+}
+
 int32 UCRandomComponent::RollBackRandom(int32 inTicks)
 {
 	if (inTicks < 1)
@@ -185,20 +203,7 @@ TArray<int32> UCRandomComponent::PeekAheadArray(const TArray<int32>& inMins, con
 
 void UCRandomComponent::OnSave()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
-	{
-		SaveGame->SavedRandomStream = RandomStream;
-		SaveGame->SavedStartSeed = StartSeed;
-		SaveGame->SavedCurrentStateSeed = CurrentStateSeed;
-		SaveGame->SavedTicks = Ticks;
-		SaveGame->SavedTicksSinceSave = TicksSinceSave;
-		SaveGame->SavedTicksAtSave = TicksAtSave;
-	}
-	else
-	{
-		LOG_ERROR("Could not find Save Game Instance to save Random State");
-	}
+	SaveSeedValuesToSaveGame();
 }
 
 void UCRandomComponent::OnLoad()

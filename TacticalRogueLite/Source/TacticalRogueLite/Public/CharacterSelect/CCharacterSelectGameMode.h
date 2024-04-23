@@ -11,6 +11,7 @@ class UCLevelURLAsset;
 struct FCNamesAndItemsList;
 class ACCharacterSelectGameState;
 class UCStartCharacterData;
+class UCRandomComponent;
 /**
  * 
  */
@@ -37,6 +38,8 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Random")
+	class UCRandomComponent* Random;
 	UPROPERTY()
 	ACCharacterSelectGameState* StateRef;
 	UPROPERTY()

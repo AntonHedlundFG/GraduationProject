@@ -2,6 +2,7 @@
 
 UCSaveGame::UCSaveGame()
 {
+	
 	SavedRandomStream = FRandomStream(000);
 
 	SavedTicks = 0;
@@ -13,6 +14,8 @@ UCSaveGame::UCSaveGame()
 	SavedStartSeed = 0;
 
 	SavedCurrentStateSeed = 0;
+
+	PlayerCount = 1;
 
 	NamesAndItems = TArray<FCNamesAndItemsList>();
 

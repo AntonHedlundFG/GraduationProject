@@ -30,6 +30,10 @@ public:
 	// Generates a random value within 0 and max int32, optionally without advancing the state.
 	int32 GetRandRange(bool bKeepState = true);
 
+	// Saves the current values of the seed to the save game instance.
+	UFUNCTION(BlueprintCallable)
+	void SaveSeedValuesToSaveGame();
+
 	// Rolls back the random stream state by a specified number of ticks.
 	UFUNCTION(BlueprintCallable)
 	int32 RollBackRandom(int32 inTicks = 1);

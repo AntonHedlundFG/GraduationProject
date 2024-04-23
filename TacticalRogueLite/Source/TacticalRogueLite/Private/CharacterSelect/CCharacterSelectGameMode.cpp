@@ -3,18 +3,18 @@
 #include "CharacterSelect/CCharacterSelectGameMode.h"
 
 #include "CLevelURLAsset.h"
-#include "OnlineSubsystemUtils.h"
 #include "CharacterSelect/CCharacterSelectGameState.h"
 #include "CharacterSelect/CStartCharacterData.h"
 #include "Items/CNamesAndItemsList.h"
-#include "Kismet/GameplayStatics.h"
 #include "TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h"
 #include "Utility/Logging/CLogManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
+#include "Utility/CRandomComponent.h"
 
 ACCharacterSelectGameMode::ACCharacterSelectGameMode()
 {
+	Random = CreateDefaultSubobject<UCRandomComponent>(TEXT("Random"));
 }
 
 void ACCharacterSelectGameMode::BeginPlay()
@@ -24,14 +24,20 @@ void ACCharacterSelectGameMode::BeginPlay()
 	RegisterToSaveManager();
 
 	UCSaveGameManager::Get()->LoadGame();
-
+	
+	//Create a random seed
+	const int Seed = FMath::RandRange(0000,9999);
+	Random->InitializeFromStart(Seed);
 	
 	StateRef = GetGameState<ACCharacterSelectGameState>();
 	if(StateRef)
 	{
-		StateRef->PlayerCount = PlayerCount;
+		StateRef->OnRep_UpdatePlayerCount(PlayerCount);
 		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::CreateSaveGameAndStart);
+		StateRef->OnRep_GameModeDone();
 	}
+
+	//Begin-play done !!
 }
 
 void ACCharacterSelectGameMode::CreateSaveGameAndStart()
@@ -95,13 +101,14 @@ void ACCharacterSelectGameMode::OnSave()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		
+		//Save Names and Items	
 		SaveGame->NamesAndItems.Empty();
 		for (auto Data : SpawnUnitData)
 		{
 			SaveGame->NamesAndItems.Add(Data);
 		}
 		
+		//Save controlling player indexes
 		SaveGame->ControllingPlayers.Empty();
 		for (auto Data : ControllingPlayers)
 		{
