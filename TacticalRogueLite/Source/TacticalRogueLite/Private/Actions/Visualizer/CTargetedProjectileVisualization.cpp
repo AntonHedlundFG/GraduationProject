@@ -43,21 +43,24 @@ bool UCTargetedProjectileVisualization::Tick_Implementation(float DeltaTime)
 		FRotator Rotation;
 		CalculateSplinePoint(Location, Rotation);
 
+		bool bIsFinished = false;
+
 		if (!SpawnedProjectile)
-		{
 			SpawnProjectile();
-			if (!SpawnedProjectile)
-				return true; //Something went wrong when spawning, move on.
-		}
 
-		SpawnedProjectile->SetActorLocationAndRotation(Location, Rotation);
+		if (!SpawnedProjectile)
+			bIsFinished = true; //No projectile was spawned, move on.
+		else
+			SpawnedProjectile->SetActorLocationAndRotation(Location, Rotation);
 
-		const bool bIsFinished = DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;
+		//Whether we've finished depends on whether we're ticking forward or backward (do or undo)
+		bIsFinished |= DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;
 
 		if (bIsFinished)
 		{
-			LOG_INFO("We're here");
-			DespawnProjectile();
+			DespawnProjectile(); //We've finished ticking
+			if (DeltaTime > 0.0f)
+				SpawnOnHitEffect(); //We've finished ticking -forward-
 		}
 
 		return bIsFinished;
@@ -93,6 +96,18 @@ void UCTargetedProjectileVisualization::SpawnProjectile()
 
 void UCTargetedProjectileVisualization::DespawnProjectile()
 {
-	GetWorld()->DestroyActor(SpawnedProjectile);
+	if (SpawnedProjectile)
+		GetWorld()->DestroyActor(SpawnedProjectile);
 	SpawnedProjectile = nullptr;
+}
+
+void UCTargetedProjectileVisualization::SpawnOnHitEffect()
+{
+	if (IsValid(OnHitEffectType))
+	{
+		AActor* SpawnedActor = GetWorld()->SpawnActor(OnHitEffectType);
+		SpawnedActor->SetActorLocation(TargetLocation);
+		if (OnHitEffectLifetime > 0.0f)
+			SpawnedActor->SetLifeSpan(OnHitEffectLifetime);
+	}
 }

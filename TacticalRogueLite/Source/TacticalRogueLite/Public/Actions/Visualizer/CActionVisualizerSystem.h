@@ -72,7 +72,10 @@ protected:
 	//the specific action.
 	UCActionVisualization* CreateVisualizationForAction(UCAction* Action);
 
-	
+	//We use this just to make sure we don't start visualizing anything before
+	//everything is initialized properly.
+	float StartAfterSafetyDelay = 1.0f;
+	float SafetyDelay = 0.0f;
 
 		
 };

@@ -28,12 +28,35 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<class UCAction>> AffectedActionTypes;
 
+	/// <summary>
+	/// This is the class of actor that should represent the projectile.
+	/// It is entirely local and its location&rotation will be managed by this class.
+	/// It is despawned by this class at the end of its movement.
+	/// </summary>
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<AActor> ProjectileType;
 
-	//The total duration of the animation.
+	/// <summary>
+	/// This actor will be spawned when the animation finishes its duration
+	/// It's lifetime is set my OnHitEffectLifetime
+	/// Useful for spawning VFX on impact.
+	/// </summary>
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<AActor> OnHitEffectType;
+
+	//Determines lifetime of the actor of type OnHitEffectType.
+	//If 0 or less, no lifetime is set and you have to manage its lifetime elsewhere.
+	UPROPERTY(EditAnywhere)
+	float OnHitEffectLifetime = 0.0f;
+
+	//For each tile distance (100.0f) the projectile travels, its total duration
+	//increases by this much.
 	UPROPERTY(EditAnywhere)
 	float DurationPerTileInSeconds = 0.5f;
+
+	//Height of middle point of curve in relation to distance of attack.
+	UPROPERTY(EditAnywhere)
+	float DistanceToHeightRatio = 0.3f;
 
 	//A speed multiplier which makes the undo animation faster
 	float UndoSpeedMultiplier = 2.0f;
@@ -55,20 +78,14 @@ protected:
 	UPROPERTY()
 	AActor* MovedActor;
 
-	//Cached starting location
 	FVector StartLocation;
-
-	//Cached end location
 	FVector TargetLocation;
-
-	FVector MiddlePoint;
-
-	//Height of middle point of curve in relation to distance of attack.
-	UPROPERTY(EditAnywhere)
-	float DistanceToHeightRatio = 0.3f;
+	//Cached middle location used for spline calculations
+	FVector MiddlePoint;	
 
 	void CalculateSplinePoint(FVector& OutLocation, FRotator& OutRotation);
 	void SpawnProjectile();
 	void DespawnProjectile();
+	void SpawnOnHitEffect();
 	
 };

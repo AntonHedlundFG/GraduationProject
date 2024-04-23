@@ -100,6 +100,12 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (SafetyDelay < StartAfterSafetyDelay)
+	{
+		SafetyDelay += DeltaTime;
+		return;
+	}
+
 	if (IsValid(CurrentVisualization))
 	{
 		if (!CurrentVisualization->bHasBeenEntered)
