@@ -16,7 +16,7 @@ class TACTICALROGUELITE_API UCMovementActionVisualization : public UCActionVisua
 
 	virtual bool CanVisualizeAction_Implementation(UCAction* Action) override;
 	
-	virtual void Enter_Implementation(UCAction* FromAction) override;
+	virtual void Enter_Implementation() override;
 
 	virtual bool Tick_Implementation(float DeltaTime) override;
 	virtual bool RevertTick_Implementation(float DeltaTime) override;

@@ -88,7 +88,6 @@ UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UC
 			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
 			VisualizationInstance->ParentSystem = this;
 			VisualizationInstance->VisualizedAction = Action;
-			VisualizationInstance->Enter(Action);
 			return VisualizationInstance;
 		}
 	}
@@ -103,6 +102,12 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 
 	if (IsValid(CurrentVisualization))
 	{
+		if (!CurrentVisualization->bHasBeenEntered)
+		{
+			CurrentVisualization->Enter();
+			CurrentVisualization->bHasBeenEntered = true;
+		}
+
 		if (bCurrentVisualForward && !CurrentVisualization->VisualizedAction->bIsUndone)
 		{
 			if (CurrentVisualization->Tick(DeltaTime))

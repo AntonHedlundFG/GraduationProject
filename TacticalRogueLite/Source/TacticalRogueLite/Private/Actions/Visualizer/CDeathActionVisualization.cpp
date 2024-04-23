@@ -10,10 +10,10 @@ bool UCDeathActionVisualization::CanVisualizeAction_Implementation(UCAction* Act
 	return Action->IsA(UCDeathAction::StaticClass());
 }
 
-void UCDeathActionVisualization::Enter_Implementation(UCAction* FromAction)
+void UCDeathActionVisualization::Enter_Implementation()
 {
 	TimePassed = 0.0f;
-	DeathAction = Cast<UCDeathAction>(FromAction);
+	DeathAction = Cast<UCDeathAction>(VisualizedAction);
 }
 
 bool UCDeathActionVisualization::Tick_Implementation(float DeltaTime)

@@ -11,10 +11,10 @@ bool UCMovementActionVisualization::CanVisualizeAction_Implementation(UCAction* 
 	return Action->IsA(UCMovementAction::StaticClass());
 }
 
-void UCMovementActionVisualization::Enter_Implementation(UCAction* FromAction)
+void UCMovementActionVisualization::Enter_Implementation()
 {
 	TimePassed = 0.0f;
-	MoveAction = Cast<UCMovementAction>(FromAction);
+	MoveAction = Cast<UCMovementAction>(VisualizedAction);
 }
 
 bool UCMovementActionVisualization::Tick_Implementation(float DeltaTime)

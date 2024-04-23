@@ -34,7 +34,8 @@ protected:
 	// Here we can fetch data about what the action did, like which path a movement action used, 
 	// or how much damage an attack did.
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
-	void Enter(UCAction* FromAction);
+	void Enter();
+	bool bHasBeenEntered = false;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Actions")
 	void Exit();
@@ -53,6 +54,7 @@ protected:
 
 	//Set by the system upon creation.
 	UCActionVisualizerSystem* ParentSystem;
+	//Set by the system upon creation.
 	UCAction* VisualizedAction;
 
 };

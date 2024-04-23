@@ -14,7 +14,7 @@ bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 	return true;
 }
 
-void UCActionVisualization::Enter_Implementation(UCAction* FromAction)
+void UCActionVisualization::Enter_Implementation()
 {
 }
 

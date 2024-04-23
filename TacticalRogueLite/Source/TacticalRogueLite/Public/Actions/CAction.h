@@ -109,6 +109,9 @@ protected:
 	
 public:
 
+	UFUNCTION(BlueprintCallable)
+	UCActionComponent* GetActionComp() { return ActionComp; }
+
 	//If true, this was the first action in a chain of events resulting from player input.
 	//When undoing actions, we iterate backwards in the action history, until we find one where
 	//this is true.
