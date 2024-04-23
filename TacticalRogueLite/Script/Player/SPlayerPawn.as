@@ -109,6 +109,11 @@ class ASPlayerPawn : APawn
     // Target zoom length we're currently lerping towards.
     float TargetZoom;
 
+    UPROPERTY(DefaultComponent)
+    USmoothDynamicsIntegrator LocationIntegrator;
+    UPROPERTY(DefaultComponent)
+    USmoothDynamicsIntegrator RotationIntegrator;
+
     // -- Functions -- //
 
     UFUNCTION(BlueprintOverride)
@@ -116,6 +121,9 @@ class ASPlayerPawn : APawn
     {
         ACGameState State = Cast<ACGameState>(World.GameState);
         if (State == nullptr) return;
+
+        LocationIntegrator.Initialize(GetActorLocation());
+        RotationIntegrator.Initialize(GetActorRotation().Vector());
 
         State.OnTurnOrderUpdate.AddUFunction(this, n"OnTurnOrderUpdate");
 
@@ -149,8 +157,8 @@ class ASPlayerPawn : APawn
         ClampCameraTargetInBounds();
         ClampTargetCameraRotation();
 
-        FollowCameraTarget();
-        FollowCameraRotationTarget();
+        FollowCameraTarget(DeltaSeconds);
+        FollowCameraRotationTarget(DeltaSeconds);
 
         FollowZoomTarget();
 
@@ -259,6 +267,17 @@ class ASPlayerPawn : APawn
         Yaw = Yaw * CameraRotationSpeed.X;
         Pitch = Pitch * CameraRotationSpeed.Y;
 
+        // Wrap around when we go over 180 or below -180
+        if (TargetCameraRotation.Yaw > 180)
+            TargetCameraRotation.Yaw -= 360;
+        if (TargetCameraRotation.Yaw < -180)
+            TargetCameraRotation.Yaw += 360;
+
+        if (TargetCameraRotation.Pitch > 180)
+            TargetCameraRotation.Pitch -= 360; 
+        if (TargetCameraRotation.Pitch < -180)
+            TargetCameraRotation.Pitch += 360;
+
         TargetCameraRotation = GetActorRotation() + FRotator(Pitch , Yaw, 0);
     }
 
@@ -277,8 +296,7 @@ class ASPlayerPawn : APawn
         TargetCameraRotation.Roll = 0;
     }
 
-
-    void FollowCameraRotationTarget()
+    void FollowCameraRotationTarget(float DeltaSeconds)
     {
         FRotator CurrentRotation = GetActorRotation();
         float Yaw = CurrentRotation.Yaw;
@@ -287,19 +305,20 @@ class ASPlayerPawn : APawn
         float LerpedYaw = Math::Lerp(Yaw, TargetCameraRotation.Yaw, CameraRotationLerpSpeed);
         float LerpedPitch = Math::Lerp(Pitch, TargetCameraRotation.Pitch, CameraFollowLerpSpeed);
 
+        FVector NewRotationVector = RotationIntegrator.Update(DeltaSeconds, TargetCameraRotation.Vector(), FVector(0));
+        FRotator NewRotation = NewRotationVector.Rotation();
 
-        FRotator NewRotation = FRotator(LerpedPitch, LerpedYaw, 0);
         SetActorRotation(NewRotation);
     }
 
     UFUNCTION(BlueprintCallable)
-    void FollowCameraTarget()
+    void FollowCameraTarget(float DeltaSeconds)
     {      
         if (FollowTarget != nullptr)
         {
             TargetCameraLocation = FollowTarget.ActorLocation;
         }
-        FVector NewLocation = Math::Lerp(ActorLocation, TargetCameraLocation, CameraFollowLerpSpeed);
+        FVector NewLocation = LocationIntegrator.Update(DeltaSeconds, TargetCameraLocation, FVector(0));
         SetActorLocation(NewLocation);
     }
 
