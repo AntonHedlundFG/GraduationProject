@@ -44,7 +44,10 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	
 	TArray<ACGridTile*> ReturnTiles;
 	ReturnTiles.Add(inTile);
-	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags, ActionBlockingTags))
+
+	FGameplayTag UnitParentTag = FGameplayTag::RequestGameplayTag("Unit");
+	FGameplayTagContainer UnitBlock = UGameplayTagsManager::Get().RequestGameplayTagChildren(UnitParentTag);
+	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags, UnitBlock))
 	{
 		ReturnTiles.Add(Tile);
 	}
