@@ -59,6 +59,7 @@ protected:
 	float DistanceToHeightRatio = 0.3f;
 
 	//A speed multiplier which makes the undo animation faster
+	UPROPERTY(EditAnywhere)
 	float UndoSpeedMultiplier = 2.0f;
 
 	UPROPERTY()
