@@ -38,10 +38,7 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 	AffectedUnit->SetTile(nullptr);
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
-	UCLogManager::Log(
-		ELogCategory::LC_Gameplay,
-		AffectedUnit->GetUnitName().Append(" died.")
-	);
+	LOG_GAMEPLAY("%s died.", *AffectedUnit->GetUnitName());
 
 }
 
@@ -62,10 +59,7 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 		GameState->OnRep_TurnOrder();
 	}
 
-	UCLogManager::Log(
-		ELogCategory::LC_Gameplay,
-		AffectedUnit->GetUnitName().Append(" resurrected.")
-	);
+	LOG_GAMEPLAY("%s resurrected.", *AffectedUnit->GetUnitName());
 
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 

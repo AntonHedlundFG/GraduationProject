@@ -22,15 +22,11 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
-	UCLogManager::Log(
-		ELogCategory::LC_Gameplay,
-		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
-			.Append(" attacked ")
-			.Append(Attacker ? Defender->GetUnitName() : FString("Unknown Unit"))
-			.Append(" for ")
-			.Append(FString::FromInt(DamageAmount))
-			.Append(" damage.")
-	);
+
+	FString AttackerName = Attacker ? Attacker->GetUnitName() : FString("Unknown Unit");
+	FString DefenderName = Defender ? Defender->GetUnitName() : FString("Unknown Unit");
+
+	LOG_GAMEPLAY("%s attacked %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
 }
 
 void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
@@ -40,15 +36,11 @@ void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
-	UCLogManager::Log(
-		ELogCategory::LC_Gameplay,
-		(Attacker ? Attacker->GetUnitName() : FString("Unknown Unit"))
-			.Append(" undid their attack on  ")
-			.Append(Defender ? Defender->GetUnitName() : FString("Unknown Unit"))
-			.Append(" for ")
-			.Append(FString::FromInt(DamageAmount))
-			.Append(" damage.")
-	);
+
+	FString AttackerName = Attacker ? Attacker->GetUnitName() : FString("Unknown Unit");
+	FString DefenderName = Defender ? Defender->GetUnitName() : FString("Unknown Unit");
+
+	LOG_GAMEPLAY("%s undid their attack on %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
 	
 	Super::UndoAction_Implementation(Instigator);
 }
