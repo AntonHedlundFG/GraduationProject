@@ -20,7 +20,7 @@ void ACGrid::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 	DOREPLIFETIME(ACGrid, AllRooms);
 }
 
-ACGridRoom* ACGrid::CreateNewRoom()
+ACGridRoom* ACGrid::CreateNewRoom(int inEnemyCount)
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 	
@@ -34,7 +34,7 @@ ACGridRoom* ACGrid::CreateNewRoom()
 			StartX = PreviousRoom->GetExitTile()->GetGridCoords().X;
 			StartY = PreviousRoom->GetExitTile()->GetGridCoords().Y + 1;
 		}
-		Room->Initialize(this);
+		Room->Initialize(this, inEnemyCount);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(StartX,StartY);
 
 		if (PreviousRoom)
@@ -51,13 +51,13 @@ ACGridRoom* ACGrid::CreateNewRoom()
 	return Room;
 }
 
-ACGridRoom* ACGrid::CreateStartRoom()
+ACGridRoom* ACGrid::CreateStartRoom(int inEnemyCount)
 {
 	TObjectPtr<ACGridRoom> Room = GetWorld()->SpawnActor<ACGridRoom>(RoomBP, GetActorLocation(), FRotator::ZeroRotator);
 	
 	if (Room)
 	{
-		Room->Initialize(this);
+		Room->Initialize(this, inEnemyCount);
 		Room->SetCustomPlatformDimensions(6, 4);
 		TArray<ACGridTile*> RoomTiles = Room->CreateRoom(0,0, true);
 

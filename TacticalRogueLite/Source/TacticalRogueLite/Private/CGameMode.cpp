@@ -52,7 +52,7 @@ void ACGameMode::BeginPlay()
 		GameStateRef->GameGrid = grid;
 
 		//Spawn initial room with enemies
-		Spawner->SpawnRoomWithEnemies(grid, true);
+		Spawner->SpawnRoomWithEnemies(grid, 1, 4, true);
 		
 		InitializeHeroUnits(grid);
 		for (const ACUnit* HeroUnit : HeroUnits)

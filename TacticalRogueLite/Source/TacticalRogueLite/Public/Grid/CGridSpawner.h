@@ -6,6 +6,7 @@
 #include "Utility/SaveGame/CSavable.h"
 #include "CGridSpawner.generated.h"
 
+class ACGameState;
 class ACGameMode;
 class UCVictoryCondition;
 class ACGridRoom;
@@ -13,6 +14,7 @@ class ACGrid;
 class ACGridTile;
 class ACUnit;
 class UCItemData;
+class UCAllEnemiesData;
 struct FCNamesAndItemsList;
 
 
@@ -26,9 +28,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TArray<TSubclassOf<ACUnit>> HeroUnits;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
+	TObjectPtr<UCAllEnemiesData> AllEnemyData;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Grid")
 	TSubclassOf<ACGrid> Grid;
-
+	
 	TArray<FString> HeroNames = {"Hero_1", "Hero_2", "Hero_3", "Hero_4"};
 	TArray<FString> EnemyNames = {"Enemy_1", "Enemy_2", "Enemy_3", "Enemy_4"};
 
@@ -58,13 +63,14 @@ public:
 	
 	///Spawns a room with enemies
 	UFUNCTION()
-	void SpawnRoomWithEnemies(ACGrid* inGrid, bool bIsStartRoom = false);
+	void SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel = 1, int inEnemyCount = 0, bool bIsStartRoom = false);
 
 	virtual void OnSave() override;
 	virtual void OnLoad() override;
 
 protected:
 	TObjectPtr<ACGameMode> GameModeRef;
+	TObjectPtr<ACGameState> GameStateRef;
 	
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

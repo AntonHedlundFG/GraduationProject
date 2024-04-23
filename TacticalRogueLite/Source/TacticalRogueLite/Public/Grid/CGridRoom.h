@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "CGridRoom.generated.h"
 
+class UCAllEnemiesData;
 class ACGameMode;
 class ACGameState;
 class UCRandomComponent;
@@ -22,19 +23,21 @@ public:
 	ACGridRoom();
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
-	TArray<TSubclassOf<ACUnit>> EnemyUnits;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
+	// TArray<TSubclassOf<ACUnit>> EnemyUnits;
 
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION(BlueprintCallable)
-	void Initialize(ACGrid* inParentGrid);
+	void Initialize(ACGrid* inParentGrid, int inEnemyCount = 0);
 	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
+	UFUNCTION(BlueprintCallable)
+	int GetEnemyCount() { return EnemyCount; }
 	ACGridTile* GetExitTile() const { return ExitTile; }
 	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const;
 
@@ -44,6 +47,8 @@ protected:
 	TSubclassOf<ACGridTile> StandardTileBP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings")
 	TSubclassOf<ACGridTile> ExitTileBP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
+	TObjectPtr<UCAllEnemiesData> AllEnemyData;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
 	TSubclassOf<UCVictoryCondition> VictoryCondition;
@@ -65,6 +70,9 @@ protected:
 	int LengthVariance = 3;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
 	int RoomPoints = 2;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
+	int EnemyCount = 4;
 
 	UPROPERTY()
 	FVector2D MinCoords;

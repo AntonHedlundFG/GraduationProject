@@ -26,9 +26,9 @@ public:
 	TMap<FVector2D,TObjectPtr<ACGridTile>> TileMap;
 
 	UFUNCTION()
-	ACGridRoom* CreateNewRoom();
+	ACGridRoom* CreateNewRoom(int inEnemyCount = 0);
 	UFUNCTION()
-	ACGridRoom* CreateStartRoom();
+	ACGridRoom* CreateStartRoom(int inEnemyCount = 0);
 	UFUNCTION()
 	ACGridTile* SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()

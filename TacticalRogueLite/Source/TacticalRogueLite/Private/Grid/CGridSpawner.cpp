@@ -9,6 +9,7 @@
 #include "Items/CInventoryComponent.h"
 #include "Items/CNamesAndItemsList.h"
 #include "Achievements/CVictoryCondition.h"
+#include "GridContent/CAllEnemiesData.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -23,6 +24,7 @@ void ACGridSpawner::BeginPlay()
 	Super::BeginPlay();
 	RegisterToSaveManager();
 
+	GameStateRef = Cast<ACGameState>(GetWorld()->GetGameState());
 	GameModeRef = Cast<ACGameMode>(GetWorld()->GetAuthGameMode());
 }
 
@@ -96,21 +98,41 @@ ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 	return SpawnedGrid;
 }
 
-void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, bool bIsStartRoom)
+void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int inEnemyCount, bool bIsStartRoom)
 {
 	//Create start room or regular room
 	ACGridRoom* NewRoom;
 	if (bIsStartRoom)
 	{
-		NewRoom = inGrid->CreateStartRoom();
+		NewRoom = inGrid->CreateStartRoom(inEnemyCount);
 	}
 	else
 	{
-		NewRoom = inGrid->CreateNewRoom();
+		NewRoom = inGrid->CreateNewRoom(inEnemyCount);
+	}
+
+	TArray<TSubclassOf<ACUnit>> EnemyTypes;
+	for (auto Element : AllEnemyData->EnemyLevelAndType)
+	{
+		if (Element.Key <= inRoomLevel)
+		{
+			EnemyTypes.Add(Element.Value);
+		}
+	}
+	TArray<TSubclassOf<ACUnit>> EnemiesToSpawn;
+	if (GameStateRef)
+	{
+		UCRandomComponent* Random = GameStateRef->Random;
+		
+		for(int i = 0; i < NewRoom->GetEnemyCount(); i++)
+		{
+			const int index = Random->GetRandRange(0, EnemyTypes.Num() - 1);
+			EnemiesToSpawn.Add(EnemyTypes[index]);
+		}
 	}
 
 	//Spawn enemies and try to update victory condition
-	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(NewRoom->EnemyUnits, NewRoom->GetEnemySpawnTiles(), EnemyNames);
+	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(EnemiesToSpawn, NewRoom->GetEnemySpawnTiles(), EnemyNames);
 	if (GameModeRef)
 	{
 		GameModeRef->AddEnemyUnits(Enemies);

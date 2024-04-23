@@ -42,9 +42,11 @@ void ACGridRoom::BeginPlay()
 	}
 }
 
-void ACGridRoom::Initialize(ACGrid* inParentGrid)
+void ACGridRoom::Initialize(ACGrid* inParentGrid, int inEnemyCount)
 {
 	GameGrid = inParentGrid;
+
+	EnemyCount = inEnemyCount > 0 ? inEnemyCount : EnemyCount;
 }
 
 void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength)
@@ -447,7 +449,6 @@ void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
 void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
 {
 	const int PointAmount = inPoints.Num();
-	const int EnemyAmount = EnemyUnits.Num();
 	
 	TArray<int> Indexes;
 	for (int i = 0; i < PointAmount; i++)
@@ -457,7 +458,7 @@ void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGrid
 	
 	for (int i = 0; i < PointAmount; i++)
 	{
-		if (i >= EnemyAmount)
+		if (i >= EnemyCount)
 			return;
 
 		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
@@ -467,9 +468,9 @@ void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGrid
 		EnemySpawns.Add(inPoints[PointIndex]);
 	}
 
-	if (PointAmount < EnemyAmount)
+	if (PointAmount < EnemyCount)
 	{
-		EnemySpawns.Append(GenerateSpawnsOnPlatform(inPlatform, EnemyAmount - PointAmount));
+		EnemySpawns.Append(GenerateSpawnsOnPlatform(inPlatform, EnemyCount - PointAmount));
 	}
 }
 
