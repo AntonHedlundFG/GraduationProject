@@ -17,7 +17,7 @@ public:
 	ACGrid();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
-	TSubclassOf<ACGridRoom> RoomBP;
+	TArray<TSubclassOf<ACGridRoom>> RoomBPs;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	int NodeInterval = 1000;
