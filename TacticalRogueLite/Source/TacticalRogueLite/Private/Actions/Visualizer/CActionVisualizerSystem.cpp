@@ -29,6 +29,8 @@ void UCActionVisualizerSystem::BeginPlay()
 	{
 		AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, Template));
 	}
+	//Add the default implementation last as a catch-all
+	AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, UCActionVisualization::StaticClass()));
 
 	GameState->OnActionListUpdate.AddDynamic(this, &UCActionVisualizerSystem::OnActionListUpdate);
 
