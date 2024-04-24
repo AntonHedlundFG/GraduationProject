@@ -7,7 +7,6 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReadyToStart);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUI);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGameModeBeginPlayDone);
 
 class UCSetControllingPlayerWidget;
 class UCCharacterSelectorWidget;
@@ -26,8 +25,6 @@ public:
 	FReadyToStart OnReadyToStart;
 	UPROPERTY(BlueprintAssignable, Category = "Update UI")
 	FUpdateUI OnUpdateUI;
-	UPROPERTY(BlueprintAssignable, Category = "Update UI")
-	FGameModeBeginPlayDone OnGameModeBeginPlayDone;
 
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	TArray<int> ControllingPlayerIndex;
@@ -53,7 +50,7 @@ public:
 	UFUNCTION()
 	void OnRep_UpdateUI() { OnUpdateUI.Broadcast(); }
 	UFUNCTION()
-	void OnRep_GameModeDone() { OnGameModeBeginPlayDone.Broadcast(); }
+	void SetPlayerCountAndLocks(int inPlayerCount);
 
 
 protected:
