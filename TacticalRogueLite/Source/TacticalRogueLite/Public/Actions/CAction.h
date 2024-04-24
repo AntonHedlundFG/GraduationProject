@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "Attributes/Utilities/CAttribute.h"
 #include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
@@ -108,6 +109,10 @@ protected:
 
 	
 public:
+
+	// List of modifiers to apply to attributes when the action is active.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	TArray<FAttributeModification> Modifiers;
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
