@@ -15,10 +15,10 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 {
 	Super::StartAction_Implementation(Instigator);
 
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
-	OldHealth = Attributes->GetHealth();
+	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
+	// OldHealth = Attributes->GetHealth();
 	
-	UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount); 
+	ActualDamage = UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount, ActionTags); 
 
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
@@ -31,8 +31,10 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 
 void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 {
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
-	Attributes->SetHealth(OldHealth);
+	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
+	// Attributes->SetHealth(OldHealth);
+
+	UCGameplayFunctionLibrary::UndoDamage(Instigator, TargetTile->GetContent(), ActualDamage, ActionTags);
 
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
@@ -71,7 +73,7 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 	
 }
 
-void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth,
+/*void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth,
                                      int Delta)
 {
 	AActor* OwningActor = GetOwningComponent()->GetOwner();
@@ -91,4 +93,4 @@ void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeCompone
 		// Return damage sender...
 		UCGameplayFunctionLibrary::ApplyDamage(OwningActor, InstigatorActor, Delta);
 	}
-}
+}*/
