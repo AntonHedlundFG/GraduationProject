@@ -11,8 +11,10 @@ class ACGrid;
 class ACGameMode;
 
 #pragma region FActionPath
+USTRUCT()
 struct FActionPath
 {
+	GENERATED_BODY()
 private:
 	TArray<TPair<FAbility, ACGridTile*>> Path;
 	TArray<FAbility> UsedAbilities;
@@ -53,7 +55,7 @@ public:
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
-	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
+	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
 	void ExecuteActions(FActionPath BestActions);
 	void UpdateContext();
 	void ExecuteTurn();
@@ -64,7 +66,9 @@ private:
 	UPROPERTY()
 	ACGrid* Grid;
 	UPROPERTY()
-	TMap<FAbility, ACGridTile*> BestActionsMap;
+	TArray<FActionPath> BestPaths;
+	UPROPERTY()
+	int32 EvaluatedPaths;
 	UPROPERTY()
 	ACGameMode* GameMode;
 	UPROPERTY()

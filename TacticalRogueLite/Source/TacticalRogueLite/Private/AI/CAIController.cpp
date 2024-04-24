@@ -2,9 +2,9 @@
 #include "CGameMode.h"
 #include "AI/CConsideration.h"
 #include "Attributes/CAttributeComponent.h"
-#include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridTile.h"
 #include "ItemData/CItemData.h"
+#include "UI/Debug/CAiDebugWindow.h"
 #include "Utility/Logging/CLogManager.h"
 
 void ACAIController::OnTurnChanged()
@@ -89,18 +89,17 @@ float ACAIController::ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGr
 
 FActionPath ACAIController::DecideBestActions()
 {
-	BestActionsMap.Empty();
 	if(!Unit)
 	{
 		return FActionPath();
 	}
 	// Init containers
 	const TArray<FAbility> Abilities = Unit->GetEquippedAbilities();
-	TArray<FActionPath> BestPaths;
 	ACGridTile* UnitTile = Unit->GetTile();
 
 	// Recursively score all possible actions
 	FActionPath InitialPath;
+	EvaluatedPaths = 0;
 	EvalAbilitiesFromTile(UnitTile, Abilities, BestPaths, InitialPath);
 
 	if(BestPaths.Num() == 0)
@@ -111,10 +110,10 @@ FActionPath ACAIController::DecideBestActions()
 	return BestPaths[0];
 }
 
-void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath)
+void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& inBestPaths, FActionPath& CurrentPath)
 {
-	const FGameplayTagContainer MoveAbilitiesTagContainer = UGameplayTagsManager::Get().RequestGameplayTagChildren(TAG_Movement);
-
+	EvaluatedPaths++;
+	
 	// Evaluate all abilities from the current tile
 	for (FAbility Ability : Abilities)
 	{
@@ -136,32 +135,32 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 			FActionPath NewPath = CurrentPath;
 			NewPath.AddToPath(Ability, Tile, Score);
 			
-			EvalAbilitiesFromTile(Tile, Abilities, BestPaths, NewPath);
+			EvalAbilitiesFromTile(Tile, Abilities, inBestPaths, NewPath);
 			
 		}
 	}
 	
 	// Try to add the path to the best paths
-	TryAddBestPath(CurrentPath, BestPaths);
+	TryAddBestPath(CurrentPath, inBestPaths);
 	
 }
 
-void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths)
+void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
 {
 	// Keep only top 5 actions
-	if (BestPaths.Num() < 5 || NewPath.GetScore() > BestPaths.Last().GetScore())
+	if (inBestPaths.Num() < 5 || NewPath.GetScore() > inBestPaths.Last().GetScore())
 	{
-		if(BestPaths.Num() >= 5)
+		if(inBestPaths.Num() >= 5)
 		{
-			FActionPath ActionPath = BestPaths.Top();
+			FActionPath ActionPath = inBestPaths.Top();
 			// LOG_INFO("Removing action with score %f", ActionPath.GetScore());
-			BestPaths.Pop();
+			inBestPaths.Pop();
 		}
-		BestPaths.Add(NewPath);
+		inBestPaths.Add(NewPath);
 	}
 
 	// Ensure best actions are sorted by score
-	BestPaths.Sort([](const FActionPath& A, const FActionPath& B)
+	inBestPaths.Sort([](const FActionPath& A, const FActionPath& B)
 	{
 		return A.GetScore() > B.GetScore();
 	});
@@ -248,5 +247,18 @@ void ACAIController::ExecuteTurn()
 {
 	UpdateContext();
 	const auto actions = DecideBestActions();
+
+#if UE_EDITOR
+	// Debugging
+	FAiDebugInfo Package;
+	Package.Instigator = Unit->GetUnitName();
+	Package.TotalPathsEvaluated = EvaluatedPaths;
+	Package.ActionPaths = BestPaths;
+	
+	UCAiDebugWindow::GetInstance()->AddPackage(Package);
+#endif
+	
+
+	
 	ExecuteActions(actions);
 }
