@@ -19,6 +19,14 @@ class TACTICALROGUELITE_API UCAttributeSet : public UObject
 
 public:
 
+	
+	virtual bool IsSupportedForNetworking() const override
+	{
+		return true;
+	}
+
+	UCAttributeSet();
+
 	virtual void Initialize(UCActionComponent* NewOwner);
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
@@ -78,7 +86,7 @@ protected:
 	UFUNCTION()
 	void OnRep_OwningComp();
 
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 
 	

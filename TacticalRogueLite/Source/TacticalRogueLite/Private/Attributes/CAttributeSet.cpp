@@ -4,6 +4,13 @@
 #include "Attributes/CAttributeSet.h"
 #include "Actions/CActionComponent.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Net/UnrealNetwork.h"
+
+
+UCAttributeSet::UCAttributeSet()
+{
+	
+}
 
 void UCAttributeSet::Initialize(UCActionComponent* NewOwner)
  {
@@ -88,8 +95,27 @@ int UCAttributeSet::ApplyAttributeChange(const FAttributeModification& ModToAppl
 			//Allow game-wide rules to react to attribute changes such as clamping Health to HealthMax or +3 to Strength givinh you more Health as result.
 			PostAttributeChanged(ModToApply, Level);
 
+			//Pass along the real change to event triggers
+			//int ActualDelta = FoundAttribute->GetValue() - OldValue; //@note: disabled actualdelta entirely.
+			//if (ActualDelta == 0)
+			//{
+			//	//Nothing actually changed.
+			//   return ActualDelta;
+			//   
+			//}
+			
+
 			//Notify any listeners an attribute changed.
-			//GetOwningComponent()->BroadCastAttributeChanged(ModToApply.AttributeTag, ModToApply.InstigatorComp.Get(), FoundAttribute->GetValue(), Delta, ModToApply.AddedTags, ModToApply.ModifierOperation);
+			GetOwningComponent()->BroadcastAttributeChanged(ModToApply.AttributeTag, ModToApply.InstigatorComp.Get(), FoundAttribute->GetValue(), Delta, ModToApply.AddedTags, ModToApply.ModifierOperation);
+
+			// for (int32 Index = 0; Index < GetOwningComponent()->AttributeChangeTriggers.Num(); Index++)
+			// {
+			// 	TPair<FGameplayTag, FAttributeChangedSignature>& SearchPair = GetOwningComponent()->AttributeChangeTriggers[Index];
+			// 	if (SearchPair.Key.MatchesTag(ModToApply.AttributeTag))
+			// 	{
+			// 		SearchPair.Value.ExecuteIfBound(GetOwningComponent(), ModToApply.InstigatorComp.Get(), ModToApply.AttributeTag, FoundAttribute)
+			// 	}
+			// }
 
 			return Delta;
  		}
@@ -192,11 +218,22 @@ bool UCAttributeSet::GetAttributeName(FGameplayTag InTag, FName& OutAttributeNam
 void UCAttributeSet::OnRep_OwningComp()
 {
 	//...TODO: Fix
+	
 }
 
 void UCAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	UObject::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UCAttributeSet, Health);
+	DOREPLIFETIME(UCAttributeSet, HealthMax);
+	DOREPLIFETIME(UCAttributeSet, HealthMaxModifier);
+	DOREPLIFETIME(UCAttributeSet, OwningComp);
+
+	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, Health, COND_None, REPNOTIFY_Always);
+	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, HealthMax, COND_None, REPNOTIFY_Always);
+	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, HealthMaxModifier, COND_None, REPNOTIFY_Always);
+	
 
 	//TODO: Fix
 }
@@ -204,7 +241,9 @@ void UCAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 void UCAttributeSet::OnRep_Health(FAttribute OldAttribute)
  {
  	AttributeChangedFromReplication("Attribute.Health", Health, OldAttribute);
+	LOG_INFO("HALLLO!?!");
  }
+
 
 void UCAttributeSet::OnRep_HealthMax(FAttribute OldAttribute)
  {
@@ -220,6 +259,14 @@ void UCAttributeSet::AttributeChangedFromReplication(FName AttributeName, FAttri
 	FAttribute OldAttribute)
 {
 	//TODO: Fix.
+	int CurrentValue = NewAttribute.GetValue();
+	LOG_INFO("ChangedfromRep!?!");
+	int EstimatedMagnitude = CurrentValue - OldAttribute.GetValue();
+
+	FGameplayTag AttributeTag = FGameplayTag::RequestGameplayTag(FName(AttributeName.ToString()));
+	
+	GetOwningComponent()->BroadcastAttributeChanged(AttributeTag, GetOwningComponent(), CurrentValue, EstimatedMagnitude, FGameplayTagContainer(), EAttributeModifierOperation::Invalid); 
+	
 }
 
 

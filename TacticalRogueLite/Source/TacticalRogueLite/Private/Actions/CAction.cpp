@@ -37,18 +37,18 @@ bool UCAction::CanStart_Implementation(AActor* Instigator)
 void UCAction::StartAction_Implementation(AActor* Instigator)
 {
 
-	UCActionComponent* Comp = GetOwningComponent();	
-	Comp->ActiveGameplayTags.AppendTags(ActionTags);
+	UCActionComponent* Comp = GetOwningComponent();
+	if (IsValid(Comp) && !ActionTags.IsEmpty())
+		Comp->ActiveGameplayTags.AppendTags(ActionTags);
 	
 }
 
 
 void UCAction::StopAction_Implementation(AActor* Instigator)
 {
-
 	UCActionComponent* Comp = GetOwningComponent();
-	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
-
+	if (IsValid(Comp) && !ActionTags.IsEmpty())
+		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
 TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
@@ -59,10 +59,12 @@ TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* 
 void UCAction::UndoAction_Implementation(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
-	Comp->ActiveGameplayTags.RemoveTags(ActionTags);
+	if (IsValid(Comp) && !ActionTags.IsEmpty())
+		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 	bIsUndone = true;
 
-	GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
+	if (IsValid(Comp))
+		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
 UWorld* UCAction::GetWorld() const

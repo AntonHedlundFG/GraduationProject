@@ -9,6 +9,8 @@
 
 void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 {
+	Super::StartAction_Implementation(Instigator);
+
 	if (!AffectedUnit)
 	{
 		LOG_WARNING("AffectedUnit has not been set, cannot kill nullptrs");
@@ -62,6 +64,8 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 	LOG_GAMEPLAY("%s resurrected.", *AffectedUnit->GetUnitName());
 
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
+
+	Super::UndoAction_Implementation(Instigator);
 
 }
 
