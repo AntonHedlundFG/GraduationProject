@@ -42,6 +42,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_AttackDamage, "Attribute.AttackDamage");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_CritChance, "Attribute.CritChance");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Armor, "Attribute.Armor");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Health, "Attribute.Health");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_HealthMax, "Attribute.HealthMax");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_ShieldPower, "Attribute.ShieldPower");
 
 // UE_DEFINE_GAMEPLAY_COMMENT() https://www.unrealdirective.com/tip/declare-define-native-gameplay-tags

@@ -1,11 +1,10 @@
 #include "Actions/CActionComponent.h"
-#include "Logging/StructuredLog.h"
 #include "Actions/CAction.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Attributes/CAttributeSet.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
 #include "GridContent/CUnit.h"
-#include "TacticalRogueLite/TacticalRogueLite.h"
 
 
 UCActionComponent::UCActionComponent()
@@ -13,12 +12,24 @@ UCActionComponent::UCActionComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 
 	SetIsReplicatedByDefault(true);
+	
 }
 
 void UCActionComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Server Only
+	if (GetOwner()->HasAuthority())
+	{
+		if (ensure(AttributeClass))
+		{
+			AttributeSet = NewObject<UCAttributeSet>(this, AttributeClass);
+			check(AttributeSet);
+			AttributeSet->Initialize(this);
+			LOG_WARNING("Setup Attributeset!");
+		}
+	}
 }
 
 void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -125,10 +136,20 @@ void UCActionComponent::BroadcastAttributeChanged(FGameplayTag InAttributeTag, U
 		TPair<FGameplayTag, FAttributeChangedSignature>& SearchPair = AttributeChangeTriggers[Index];
 		if (SearchPair.Key.MatchesTag(InAttributeTag))
 		{
-			//Clients dont have all information available that servers do.
+			//Clients don't have all information available that servers do.
 			SearchPair.Value.ExecuteIfBound(this, InstigatorComp, InAttributeTag, InNewValue, InDelta, InContextTags, ModOperation);
 		}
 	}
+}
+
+UCActionComponent* UCActionComponent::GetActionComp(AActor* FromActor)
+{
+	if (FromActor)
+	{
+		return FromActor->FindComponentByClass<UCActionComponent>();
+	}
+
+	return nullptr;
 }
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)
@@ -255,6 +276,8 @@ bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class 
 {
 	bool WroteSomething = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
 
+	WroteSomething |= Channel->ReplicateSubobject(AttributeSet, *Bunch, *RepFlags);
+
 	for (FAbility& Ability : Abilities)
 	{
 		for (UCAction* Action : Ability.InstantiatedActions)
@@ -281,4 +304,5 @@ void UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 
 	DOREPLIFETIME(UCActionComponent, Abilities);
 	DOREPLIFETIME(UCActionComponent, Actions);
+	DOREPLIFETIME(UCActionComponent, AttributeSet);
 }

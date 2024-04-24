@@ -5,13 +5,14 @@
 #include "GameplayTagContainer.h"
 #include "CAction.h"
 #include "CActionWithTimer.h"
-#include "Attributes/CAttributeSet.h"
 #include "Attributes/Utilities/CAttribute.h"
 #include "CActionComponent.generated.h"
 
 //class UCAction;
 
-//Triggers on an attribute change inside Attributeset.
+class UCAttributeSet;
+
+//Triggers on an attribute change inside Attributeset. Difference in value, Contexttags= Whatever you need- Specify who triggered this? Damage.Block? Damage.Crithit? Gives _context_.
 DECLARE_DYNAMIC_DELEGATE_SevenParams(FAttributeChangedSignature, UCActionComponent*, ActionComp, UCActionComponent*, InstigatorComp, FGameplayTag, AttributeTag, int, NewValue, int, Delta, const FGameplayTagContainer&, ContextTags, EAttributeModifierOperation, ModType);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
@@ -32,13 +33,15 @@ enum class EGameplayEventScope : uint8
 };
 
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TACTICALROGUELITE_API UCActionComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
+
+	UFUNCTION(BlueprintCallable, Category = "Actions")
+	static UCActionComponent* GetActionComp(AActor* FromActor);
 
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
@@ -56,7 +59,7 @@ public:
 
 	// UFUNCTION(BlueprintCallable, Category = "Actions")
 	// bool StartActionByName(AActor* Instigator, FGameplayTag ActionName);
-	//
+	
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	bool StopActionByName(AActor* Instigator, FGameplayTag ActionName);
 
@@ -115,28 +118,26 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Attributes", meta =(DisplayName = "Get Attribute"))
 	bool K2_GetAttribute(FGameplayTag AttributeTag, int& CurrentValue, int& BaseValue, int &Additive, int& Multiplier);
 
-	//1
+	
 	//Apply a simple modification to an attribute (eg. change HealthMax or adding Armor value).
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Attributes", meta = (AdvancedDisplay = "Level", Keywords = "Add, Set"))
 	int ApplyAttributeChange(const FAttributeModification& InAttributeMod, int32 Level /*=0*/);
 
-	//1
+	
 	//Check if attributes on Target will remain above or equal to zero if modifiers get applied.
 	bool CanApplyAttributeModifiers(UCActionWithTimer* Effect);
-
-	//1
+	
 	UFUNCTION(BlueprintCallable, Category = "Game|Attributes", meta = (AutoCreateRefTerm = "Event", DisplayName = "Add Attribute Listener", AdvancedDisplay = "bCallNow", Keywords = "Assign, Create"))
 	void AddAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event, bool bCallNow);
-
-	//1
+	
 	//Mapping for attribute change listeners. List of changed triggers. Whenever we make a change to our attributeset, we call "ApplyAttributeChange" on AttributeSet, which will broadcast to anyone whos interested, and also call "BroadcastAttributeChanged" here. 
 	TArray<TPair<FGameplayTag, FAttributeChangedSignature>> AttributeChangeTriggers;
-	//1
+	
 	void BroadcastAttributeChanged(FGameplayTag InAttributeTag, UCActionComponent* InstigatorComp, int InNewValue, int InDelta, FGameplayTagContainer InContextTags, EAttributeModifierOperation ModOperation);
 
 protected:
 
-	//1
+	
 	UPROPERTY(EditDefaultsOnly, NoClear, Category = "Attributes")
 	TSubclassOf<UCAttributeSet> AttributeClass;
 	
