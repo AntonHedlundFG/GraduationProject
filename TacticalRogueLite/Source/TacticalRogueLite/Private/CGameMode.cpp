@@ -26,6 +26,7 @@
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Grid/CGridRoom.h"
 #include "Utility/SaveGame/CSaveGame.h"
+#include "Actions/CResurrectAction.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -169,25 +170,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		ActionStack.Add(NewAction);
 	}
 
-	// Now that the stack is full of actions, start iterating through and executing them.
-	// Note that the stack -CAN- grow during iteration, as triggered actions can be registered
-	// as a result of executed actions.
-	int Iterations = 0;
-	while (!ActionStack.IsEmpty())
-	{
-		UCAction* CurrentAction = ActionStack.Pop();
-		GameStateRef->ActionList.Add(CurrentAction);
-		CurrentAction->StartAction(inUnit);
-		
-		Iterations++;
-		if (Iterations > 1000)
-		{
-			LOG_WARNING("Action Stack tried to execute over 1000 actions. Infinite loop suspected, clearing stack.");
-			ActionStack.Empty();
-			break;
-		}
-	}
-	GameStateRef->OnActionListUpdate.Broadcast();
+	ExecuteActionStack(inUnit);	
 
 	//We update the UndoIndex since we know this action was triggered by player input.
 	NextUndoIndex = GameStateRef->ActionList.Num() - 1;
@@ -352,6 +335,30 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	return true;
 }
 
+void ACGameMode::ExecuteActionStack(AActor* InstigatingActor)
+{
+	// Iterate through and execute action stack.
+	// Note that the stack -CAN- grow during iteration, as triggered actions can be registered
+	// as a result of executed actions.
+	int Iterations = 0;
+	while (!ActionStack.IsEmpty())
+	{
+		UCAction* CurrentAction = ActionStack.Pop();
+		GameStateRef->ActionList.Add(CurrentAction);
+		CurrentAction->StartAction(InstigatingActor);
+
+		Iterations++;
+		if (Iterations > 1000)
+		{
+			LOG_WARNING("Action Stack tried to execute over 1000 actions. Infinite loop suspected, clearing stack.");
+			ActionStack.Empty();
+			break;
+		}
+	}
+
+	GameStateRef->OnActionListUpdate.Broadcast();
+}
+
 void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 {
 	GameStateRef->TurnOrder.Empty();
@@ -489,7 +496,8 @@ bool ACGameMode::HandleVictoryConditionMet()
 		if (GetGameGrid())
 		{
 			Spawner->SpawnRoomWithEnemies(GetGameGrid());
-			CurrentRoom ++;
+			CurrentRoom++;
+			ResurrectAndProgressToNewRoom();
 		}
 		else
 		{
@@ -501,4 +509,24 @@ bool ACGameMode::HandleVictoryConditionMet()
 	LOG_GAMEPLAY("You've won the game!");
 	GameStateRef->SetGameIsOver(true);
 	return true;
+}
+
+void ACGameMode::ResurrectAndProgressToNewRoom()
+{
+	TArray<ACGridTile*> HeroTiles = GetGameGrid()->GetLatestRoom()->GetHeroSpawnTiles();
+	if (HeroUnits.Num() != HeroTiles.Num())
+	{
+		LOG_WARNING("Hero Tiles: %d doesn't match Hero Units: %d", HeroTiles.Num(), HeroUnits.Num());
+		return;
+	}
+
+	for (int i = 0; i < HeroUnits.Num(); i++)
+	{
+		UCResurrectAction* ResurrectAction = NewObject<UCResurrectAction>(this, UCResurrectAction::StaticClass());
+		ResurrectAction->AffectedUnit = HeroUnits[i];
+		ResurrectAction->ResurrectOnTile = HeroTiles[i];
+		RegisterAction(ResurrectAction);
+	}
+
+	ExecuteActionStack();
 }
