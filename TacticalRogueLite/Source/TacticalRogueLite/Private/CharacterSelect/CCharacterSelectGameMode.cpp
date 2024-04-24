@@ -80,12 +80,13 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	*/
 	UCSaveGameManager* SaveManager = UCSaveGameManager::Get();
 	SaveManager->SaveGame();
-	UnregisterFromSaveManager();
 	
 	LOG_INFO("Ready To Start");
 
 	FLevelLoadSettings LevelLoadSettings;
 	LevelLoadSettings.NumberOfPlayers = GetPlayerCount();
+
+	UnregisterFromSaveManager();
 	
 	FString URLString = LevelURLAsset->URLOfLevelByName("GameLevel", LevelLoadSettings);
 	

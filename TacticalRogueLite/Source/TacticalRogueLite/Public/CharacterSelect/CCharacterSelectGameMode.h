@@ -39,7 +39,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Random")
-	class UCRandomComponent* Random;
+	TObjectPtr<UCRandomComponent> Random;
 	UPROPERTY()
 	ACCharacterSelectGameState* StateRef;
 	UPROPERTY()
