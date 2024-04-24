@@ -49,7 +49,7 @@ class USAction_AoEDamage : UCAction
         
         for (int i = 0; i < TargetsArray.Num(); i++)
         {
-            CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage);
+            //CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage); TODO: Newattribute
 
              
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
