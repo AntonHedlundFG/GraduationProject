@@ -25,6 +25,8 @@ void ACGameState::BeginPlay()
 			LogManager->OnServerBroadcastMessage.AddDynamic(this, &ACGameState::Multicast_BroadcastLogMessage);
 		}
 	}
+
+	GetWorld()->SpawnActor(TurnIndicator);
 }
 
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

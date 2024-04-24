@@ -56,6 +56,15 @@ bool ACUnit::IsControlledBy(AController* inController)
 	return PS->PlayerIndex == ControllingPlayerIndex;
 }
 
+bool ACUnit::IsControlledLocally()
+{
+	auto* PC = GetWorld()->GetFirstPlayerController();
+	if (!PC) return false;
+	auto* PS = PC->GetPlayerState<AOnlinePlayerState>();
+	if (!PS) return false;
+	return ControllingPlayerIndex == PS->PlayerIndex;
+}
+
 UCItemData* ACUnit::GetItemDataInSlot(FGameplayTag inSlot)
 {
 	return InventoryComp->GetItemInSlot(inSlot);
