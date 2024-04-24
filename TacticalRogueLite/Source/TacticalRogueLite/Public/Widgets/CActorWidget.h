@@ -28,9 +28,9 @@ public:
 	FString MyNewWidgetName;
 
 	//Set the owning actor so widgets have access to whatever is, broadcasting OnOwningActorChanged event.
-	UFUNCTION(BlueprintCallable, Category = "LODZERO|UI")
+	UFUNCTION(BlueprintCallable, Category = "UI")
 	void SetOwningActor(AActor* NewOwner);
 
-	UPROPERTY(BlueprintAssignable, Category = "LODZERO|UI")
+	UPROPERTY(BlueprintAssignable, Category = "UI")
 	FOnOwningActorChanged OnOwningActorChanged;
 };
