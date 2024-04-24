@@ -49,7 +49,7 @@ FText UCAiDebugWindow::GetFormattedText_Score(const FActionPath& Path)
 FText UCAiDebugWindow::GetFormattedText_PathTarget(FActionPath& Path, int Index)
 {
 	auto PathArr = Path.GetPath();
-	if(Index > PathArr.Num() || Index < 0)
+	if(Index >= PathArr.Num() || Index < 0)
 	{
 		return FText::FromString("Target: IndexOutOfRangeException");
 	}
@@ -68,9 +68,9 @@ FText UCAiDebugWindow::GetFormattedText_PathTarget(FActionPath& Path, int Index)
 FText UCAiDebugWindow::GetFormattedText_PathAbility(FActionPath& Path, int Index)
 {
 	auto PathArr = Path.GetPath();
-	if(Index > PathArr.Num() || Index < 0)
+	if(Index >= PathArr.Num() || Index < 0)
 	{
-		return FText::FromString("Target: IndexOutOfRangeException");
+		return FText::FromString("Slot: IndexOutOfRangeException");
 	}
 	FString AbilityName;
 	try
