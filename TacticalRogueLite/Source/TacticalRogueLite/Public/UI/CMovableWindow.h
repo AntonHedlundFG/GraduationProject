@@ -29,7 +29,8 @@ protected:
 	FVector2D ClampWindowSize(FVector2D vector);
 	FVector2D GetMousePosition();
 	UCanvasPanelSlot* GetCanvasPanelSlot();
-	
+	UFUNCTION(BlueprintCallable)
+	virtual void SetUp();
 public:
 	UPROPERTY(BlueprintReadOnly)
 	bool bIsOpen = false;
@@ -38,9 +39,6 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	FVector2D WindowMaxSize;
-	
-	UFUNCTION(BlueprintCallable)
-	virtual void SetUp();
 
 	UFUNCTION()
 	void UpdatePosition();
@@ -48,6 +46,8 @@ public:
 
 	UFUNCTION()
 	void OnHeaderButtonPressed();
+
+	virtual void NativeConstruct() override;
 
 	UFUNCTION(BlueprintCallable)
 	void Close();

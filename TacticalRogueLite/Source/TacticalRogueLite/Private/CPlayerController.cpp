@@ -41,6 +41,15 @@ bool ACPlayerController::TryLineCastForGridTile(FVector inStart, FVector Directi
 	return false;
 }
 
+bool ACPlayerController::IsWithEditor() const
+{
+#if WITH_EDITOR
+	return true;
+#else
+	return false;
+#endif
+}
+
 ACGameState* ACPlayerController::GetGameState()
 {
 	if (!GameStateRef && GetWorld())

@@ -53,6 +53,12 @@ void UCMovableWindow::OnHeaderButtonPressed()
 	StartMoveTimer();
 }
 
+void UCMovableWindow::NativeConstruct()
+{
+	Super::NativeConstruct();
+	SetUp();
+}
+
 void UCMovableWindow::Close()
 {
 	bIsOpen = false;

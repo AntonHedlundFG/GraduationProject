@@ -23,6 +23,8 @@ class TACTICALROGUELITE_API ACPlayerController : public AOnlinePlayerController
 public:
 	UFUNCTION(BlueprintCallable, Category = "Grid")
 	bool TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance, ACGridTile*& outTile);
+	UFUNCTION(BlueprintCallable)
+	bool IsWithEditor() const;
 	
 private:
 
