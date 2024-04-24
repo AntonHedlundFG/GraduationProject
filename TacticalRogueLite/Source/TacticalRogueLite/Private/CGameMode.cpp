@@ -39,6 +39,8 @@ void ACGameMode::BeginPlay()
 			LOG_WARNING("Wrong Game State class");
 			return;
 		}
+		
+		GameStateRef->Random->RegisterToSaveManager();
 	}
 	Spawner = CreateSpawner();
 	

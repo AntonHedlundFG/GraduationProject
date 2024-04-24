@@ -32,7 +32,7 @@ void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 
 	RandomStream.Initialize(CurrentStateSeed);
 	SaveState();
-	LOG(ELogCategory::LC_Info, "Initializing Random from Start Seed: %d", StartSeed);
+	LOG_INFO("Initializing Random from Start Seed: %d", StartSeed);
 }
 
 int32 UCRandomComponent::GetRandRange(int32 inMin, int32 inMax, bool bKeepState)
@@ -84,6 +84,7 @@ void UCRandomComponent::SaveSeedValuesToSaveGame()
 		SaveGame->SavedTicks = Ticks;
 		SaveGame->SavedTicksSinceSave = TicksSinceSave;
 		SaveGame->SavedTicksAtSave = TicksAtSave;
+		LOG_INFO("Seed Values Saved to Save Game Instance with Start Seed: %d", StartSeed);
 	}
 	else
 	{
@@ -217,6 +218,7 @@ void UCRandomComponent::OnLoad()
 		Ticks = SaveGame->SavedTicks;
 		TicksSinceSave = SaveGame->SavedTicksSinceSave;
 		TicksAtSave = SaveGame->SavedTicksAtSave;
+		LOG_INFO("Seed Values Loaded from Save Game Instance with Start Seed: %d", StartSeed);
 	}
 	else
 	{
