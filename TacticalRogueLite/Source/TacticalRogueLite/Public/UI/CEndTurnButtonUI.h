@@ -17,6 +17,7 @@ class TACTICALROGUELITE_API UCEndTurnButtonUI : public UUserWidget
 {
 	GENERATED_BODY()
 
+	bool bIsOpen = false;
 	UPROPERTY()
 	ACUnit* CurrentUnit;
 	int ItemCharges;
@@ -33,10 +34,8 @@ class TACTICALROGUELITE_API UCEndTurnButtonUI : public UUserWidget
 	ACGameState* GameState;
 	UPROPERTY(meta = (BindWidget))
 	UButton* EndButton;
-	UPROPERTY(meta = (BindWidget))
-	UWidgetAnimation* InAnimation;
-	UPROPERTY(meta = (BindWidget))
-	UWidgetAnimation* OutAnimation;
+	UPROPERTY( Transient, meta = ( BindWidgetAnim ))
+	UWidgetAnimation* FadeInAnimation;
 	void UpdateItemCharges();
 	virtual void NativeConstruct() override;
 };
