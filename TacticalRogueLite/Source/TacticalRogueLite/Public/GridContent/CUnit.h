@@ -51,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsControlledBy(AController* inController);
+
+	UFUNCTION(BlueprintCallable)
+	bool IsControlledLocally();
 	
 	UFUNCTION(BlueprintCallable)
 	UCItemData* GetItemDataInSlot(FGameplayTag inSlot);

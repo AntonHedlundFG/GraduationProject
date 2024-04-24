@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
 #include "GridContent/CUnit.h"
+#include "Units/CTurnIndicator.h"
 #include "CGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnOrderUpdate);
@@ -23,6 +24,9 @@ class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Actions")
 	TObjectPtr<UCActionVisualizerSystem> ActionVisualizerSystem;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TSubclassOf<ACTurnIndicator> TurnIndicator;
 	
 public:
 	ACGameState();
