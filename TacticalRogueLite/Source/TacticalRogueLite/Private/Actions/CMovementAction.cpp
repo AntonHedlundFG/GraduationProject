@@ -23,13 +23,13 @@ void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 }
 void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 {
-	Super::UndoAction_Implementation(Instigator);
-
 	if (!MovedUnit) return;
 
 	MovedUnit->SetTile(FromTile);
 
 	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
+
+	Super::UndoAction_Implementation(Instigator);
 }
 
 TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)

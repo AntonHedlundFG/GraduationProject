@@ -11,8 +11,8 @@
 void UGameMenuWidget::SetUp()
 {
 	Super::SetUp();
-	QuitButton->OnPressed.AddDynamic(this,&UGameMenuWidget::QuitGame);
-	MainMenuButton->OnPressed.AddDynamic(this, &UGameMenuWidget::QuitGame);
+	QuitButton->OnPressed.AddUniqueDynamic(this,&UGameMenuWidget::QuitGame);
+	MainMenuButton->OnPressed.AddUniqueDynamic(this, &UGameMenuWidget::QuitGame);
 }
 
 void UGameMenuWidget::QuitGame()

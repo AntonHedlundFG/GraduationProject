@@ -27,10 +27,9 @@ FVector2D UCMovableWindow::ClampWindowSize(FVector2D vector)
 }
 void UCMovableWindow::SetUp()
 {
-	HeaderButton->OnPressed.AddDynamic(this,&UCMovableWindow::OnHeaderButtonPressed);
-	HeaderButton->OnReleased.AddDynamic(this,&UCMovableWindow::ClearMoveTimer);
-	CloseButton->OnReleased.AddDynamic(this,&UCMovableWindow::Close);
-	WindowMaxSize = UWidgetLayoutLibrary::GetViewportSize(GetWorld());
+	HeaderButton->OnPressed.AddUniqueDynamic(this,&UCMovableWindow::OnHeaderButtonPressed);
+	HeaderButton->OnReleased.AddUniqueDynamic(this,&UCMovableWindow::ClearMoveTimer);
+	CloseButton->OnReleased.AddUniqueDynamic(this,&UCMovableWindow::Close);
 }
 
 void UCMovableWindow::UpdatePosition()
@@ -38,6 +37,7 @@ void UCMovableWindow::UpdatePosition()
 	FVector2D mousePos = GetMousePosition();
 	UCanvasPanelSlot* CanvasPanelSlot = GetCanvasPanelSlot();
 	FVector2D newPosition = mousePos - ClickDifference_Movable;
+	WindowMaxSize = UWidgetLayoutLibrary::GetViewportSize(GetWorld());
 	float x = FMath::Clamp(newPosition.X, 0,WindowMaxSize.X);
 	float y = FMath::Clamp(newPosition.Y, 0,WindowMaxSize.Y);
 	CanvasPanelSlot->SetPosition(FVector2D(x,y));
