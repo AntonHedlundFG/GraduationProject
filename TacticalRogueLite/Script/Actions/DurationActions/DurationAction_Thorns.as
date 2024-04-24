@@ -93,7 +93,7 @@ class USThornsDamageTriggeredAction : UCAction
         UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
         OldHealth = Attributes.GetHealth();
 
-        CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount);
+        //CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount); TODO: Newattribute
 
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }

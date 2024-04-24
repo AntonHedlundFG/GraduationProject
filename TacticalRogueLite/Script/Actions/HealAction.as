@@ -45,7 +45,7 @@ class USHealAction: UCTargetableAction
     {
          UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetTile.GetContent());
          OldHealth = Attributes.GetHealth();
-         CGameplay::ApplyHealing(Instigator,TargetTile.GetContent(),HealAmount);
+         //CGameplay::ApplyHealing(Instigator,TargetTile.GetContent(),HealAmount); //TODO: Newattribute
 
          InsitagorUnit = Cast<ACUnit>(Instigator);
          ACUnit From = InsitagorUnit;

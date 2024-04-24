@@ -44,7 +44,7 @@ class USHealAction_AOE: UCAction
         for(ACUnit Unit : ValidUnits)
         {
             To = Unit;
-            CGameplay::ApplyHealing(Instigator,To,HealAmount);
+            //CGameplay::ApplyHealing(Instigator,To,HealAmount); TODO: Newattribute
             HealedUnits.Add(To);
             OldHealth.Add(To.GetAttributeComp().GetHealth());
             if(From == To)
