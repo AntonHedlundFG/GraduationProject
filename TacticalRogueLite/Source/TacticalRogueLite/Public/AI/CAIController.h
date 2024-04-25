@@ -7,6 +7,7 @@
 #include "Actions/CAction.h"
 #include "CAIController.generated.h"
 
+class ACGameState;
 class ACGrid;
 class ACGameMode;
 
@@ -55,10 +56,12 @@ public:
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
-	void TryAddBestPath(const FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
-	void ExecuteActions(FActionPath BestActions);
+	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
+	void ExecuteActions(FActionPath& BestPath);
 	void UpdateContext();
 	void ExecuteTurn();
+	UFUNCTION()
+	void EndTurn();
 
 private:
 	UPROPERTY()
@@ -71,6 +74,8 @@ private:
 	int32 EvaluatedPaths;
 	UPROPERTY()
 	ACGameMode* GameMode;
+	UPROPERTY()
+	ACGameState* GameState;
 	UPROPERTY()
 	FCAIContext Context;
 };
