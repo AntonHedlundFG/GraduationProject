@@ -2,6 +2,7 @@
 #include "CGameMode.h"
 #include "Actions/Visualizer/CActionVisualizerSystem.h"
 #include "AI/CConsideration.h"
+#include "AI/CHighlightTileAction.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Grid/CGridTile.h"
 #include "ItemData/CItemData.h"
@@ -198,6 +199,14 @@ void ACAIController::ExecuteActions(FActionPath& BestPath)
 			// Execute the top action and remove it from the path
 			FAbility& Ability = Pair.Key;
 			ACGridTile* Tile = Pair.Value;
+
+			// UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
+			// HighlightAction->SetAbilityToHighlight(Ability);
+			// FAbility HighlightAbility;
+			// HighlightAbility.InstantiatedActions.Add(HighlightAction);
+			//
+			// GameMode->TryAbilityUse(this, Unit, HighlightAbility.InventorySlotTag, Tile);
+
 			
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, Tile))
 			{
@@ -251,6 +260,7 @@ void ACAIController::ExecuteTurn()
 	
 	UCAiDebugWindow::GetInstance()->AddPackage(Package);
 #endif
+	
 	if(Actions.GetPath().Num() > 0)
 	{
 		ExecuteActions(Actions);
