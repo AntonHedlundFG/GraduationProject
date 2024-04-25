@@ -45,9 +45,10 @@ public:
 #pragma endregion
 
 UCLASS()
-class ACAIController : public AAIController
+class TACTICALROGUELITE_API ACAIController : public AAIController
 {
 	GENERATED_BODY()
+	
 public:
 	UFUNCTION()
 	void OnTurnChanged();
