@@ -32,9 +32,8 @@ void ACCharacterSelectGameMode::BeginPlay()
 	StateRef = GetGameState<ACCharacterSelectGameState>();
 	if(StateRef)
 	{
-		StateRef->OnRep_UpdatePlayerCount(PlayerCount);
+		StateRef->SetPlayerCountAndLocks(PlayerCount);
 		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::CreateSaveGameAndStart);
-		StateRef->OnRep_GameModeDone();
 	}
 
 	//Begin-play done !!
