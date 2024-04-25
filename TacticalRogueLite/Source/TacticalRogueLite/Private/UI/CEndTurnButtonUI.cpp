@@ -76,6 +76,7 @@ void UCEndTurnButtonUI::ShowEndButton()
 		ReverseAnimation(FadeInAnimation);
 	}
 	PlayAnimation(FadeInAnimation);
+	ShowEndButton_BP();
 }
 
 void UCEndTurnButtonUI::HideEndButton()
@@ -87,6 +88,7 @@ void UCEndTurnButtonUI::HideEndButton()
 		ReverseAnimation(FadeInAnimation);
 	}
 	PlayAnimationReverse(FadeInAnimation);
+	HideEndButton_BP();
 }
 
 void UCEndTurnButtonUI::UpdateItemCharges()
