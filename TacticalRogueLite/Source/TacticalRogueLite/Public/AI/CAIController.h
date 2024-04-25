@@ -78,4 +78,7 @@ private:
 	ACGameState* GameState;
 	UPROPERTY()
 	FCAIContext Context;
+	UPROPERTY()
+	bool bTurnStarted = false;
+
 };

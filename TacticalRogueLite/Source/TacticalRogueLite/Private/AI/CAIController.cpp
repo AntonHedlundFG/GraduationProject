@@ -25,6 +25,8 @@ void ACAIController::OnTurnChanged()
 	}
 	LOG_INFO("AI Controller is taking turn with unit: %s.", *Unit->GetUnitName());
 
+	bTurnStarted = true;
+
 
 	BestPaths.Empty();
 	
@@ -35,9 +37,6 @@ void ACAIController::OnTurnChanged()
 		ExecuteTurn();
 	});
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle1, TimerDel1, 0.1f, false);
-	
-
-	
 }
 
 void ACAIController::BeginPlay()
@@ -252,18 +251,28 @@ void ACAIController::ExecuteTurn()
 	
 	UCAiDebugWindow::GetInstance()->AddPackage(Package);
 #endif
-	
-	ExecuteActions(Actions);
+	if(Actions.GetPath().Num() > 0)
+	{
+		ExecuteActions(Actions);
+	}
+	else
+	{
+		EndTurn();
+	}
 }
 
 void ACAIController::EndTurn()
 {
-	FTimerHandle TimerHandle;
-	FTimerDelegate TimerDel;
-	const float TimerDelay = FMath::RandRange(.7f, 1.5f);
-	TimerDel.BindLambda([this]()
+	if(bTurnStarted)
 	{
-		GameMode->TryEndTurn(this);
-	});
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
+		bTurnStarted = false;
+		FTimerHandle TimerHandle;
+		FTimerDelegate TimerDel;
+		const float TimerDelay = FMath::RandRange(.7f, 1.5f);
+		TimerDel.BindLambda([this]()
+		{
+			GameMode->TryEndTurn(this);
+		});
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, TimerDelay, false);
+	}
 }
