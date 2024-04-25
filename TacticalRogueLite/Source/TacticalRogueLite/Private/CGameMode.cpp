@@ -319,6 +319,14 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		return true;
 	}
 
+	//Transfer all commands this turn into the command history
+	for (UCAction* Action : GameStateRef->ActionList)
+	{
+		GameStateRef->ActionHistory.Add(Action);
+	}
+	GameStateRef->ActionList.Empty();
+	GameStateRef->OnActionListUpdate.Broadcast();
+
 	//Move active unit to back of the line
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
@@ -337,14 +345,6 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	{
 		Subsystem->NextTurn(CurrentUnit, GameStateRef->TurnOrder[0]);
 	}
-
-	//Transfer all commands this turn into the command history
-	for (UCAction* Action : GameStateRef->ActionList)
-	{
-		GameStateRef->ActionHistory.Add(Action);
-	}
-	GameStateRef->ActionList.Empty();
-	GameStateRef->OnActionListUpdate.Broadcast();
 
 	NextUndoIndex = -1;
 
