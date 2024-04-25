@@ -34,6 +34,7 @@ void ACCharacterSelectGameMode::BeginPlay()
 	{
 		StateRef->SetPlayerCountAndLocks(PlayerCount);
 		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::CreateSaveGameAndStart);
+		StateRef->BP_SetupUI();
 	}
 
 	//Begin-play done !!

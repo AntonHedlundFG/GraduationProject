@@ -4,6 +4,7 @@
 
 #include "CharacterSelect/CCharacterSelectGameMode.h"
 #include "Net/UnrealNetwork.h"
+#include "Utility/Logging/CLogManager.h"
 
 
 void ACCharacterSelectGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -14,6 +15,7 @@ void ACCharacterSelectGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 	DOREPLIFETIME(ACCharacterSelectGameState, ControllingPlayerIndex);
 	DOREPLIFETIME(ACCharacterSelectGameState, LockedInfo);
 	DOREPLIFETIME(ACCharacterSelectGameState, ReadyInfo);
+	DOREPLIFETIME(ACCharacterSelectGameState, OnUpdateUI);
 }
 
 ACCharacterSelectGameState::ACCharacterSelectGameState()
@@ -55,6 +57,7 @@ void ACCharacterSelectGameState::OnRep_UpdateReadyStatus(TArray<bool> inArray)
 		ReadyInfo = inArray;
 		OnRep_UpdateUI();
 	}
+	
 	CheckReady();
 }
 
@@ -78,6 +81,7 @@ void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
 			LockedInfo[i] = false;
 		}
 	}
+	OnRep_UpdatePlayerCount(inPlayerCount);
 	OnRep_UpdateControllingPlayers(ControllingPlayerIndex);
 	OnRep_UpdateLocks(LockedInfo);
 }
