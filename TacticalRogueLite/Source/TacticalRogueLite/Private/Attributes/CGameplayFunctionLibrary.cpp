@@ -22,12 +22,12 @@ int UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetA
 		int Amount = DamageAmount / -1;
 	
 		FAttributeModification Modification;
-	
+
+		Modification.InstigatorComp = ActionComp;
 		Modification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
 		Modification.ModifierOperation = EAttributeModifierOperation::AddBase;
 		Modification.Magnitude = Amount;
 		Modification.AddedTags = ContextTags;
-		Modification.InstigatorComp = ActionComp;
 		int ActualDamage = ActionComp->ApplyAttributeChange(Modification, 0);
 		//FMath::Abs(ActualDamage); //?
 		//ActionComp->BroadcastAttributeChanged(Modification.AttributeTag, UCActionComponent::GetActionComp(DamageCauser), )
