@@ -15,8 +15,8 @@ class TACTICALROGUELITE_API UCActionWithTimer : public UCAction
 
 public:
 
-	virtual void StartAction_Implementation(AActor* Instigator) override;
-	virtual void UndoAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction(AActor* Instigator) override;
+	virtual void UndoAction(AActor* Instigator) override;
 
 	
 	//OnTimerFinishes_Implementation can be overridden to change the outcome

@@ -26,29 +26,49 @@ UCActionComponent* UCAction::GetOwningComponent() const
 	return ActionComp;
 }
 
-bool UCAction::CanStart_Implementation(AActor* Instigator)
+bool UCAction::CanStart(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	
-	return !Comp->ActiveGameplayTags.HasAny(ActionBlockingTags);
+	return (!Comp->ActiveGameplayTags.HasAny(ActionBlockingTags) && ReceiveCanStart(Instigator));
 }
 
 
-void UCAction::StartAction_Implementation(AActor* Instigator)
+void UCAction::StartAction(AActor* Instigator)
 {
 
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
 		Comp->ActiveGameplayTags.AppendTags(ActionTags);
-	
+
+	ReceiveStartAction(Instigator);
 }
 
 
-void UCAction::StopAction_Implementation(AActor* Instigator)
+void UCAction::StopAction(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
 		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
+
+	ReceiveStopAction(Instigator);
+}
+
+bool UCAction::ReceiveCanStart_Implementation(AActor* Instigator)
+{
+	return true;
+}
+
+void UCAction::ReceiveStartAction_Implementation(AActor* Instigator)
+{
+}
+
+void UCAction::ReceiveUndoAction_Implementation(AActor* Instigator)
+{
+}
+
+void UCAction::ReceiveStopAction_Implementation(AActor* Instigator)
+{
 }
 
 TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
@@ -56,13 +76,15 @@ TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* 
 	return { fromTile }; // Default implementation, just return the tile the action was started from.
 }
 
-void UCAction::UndoAction_Implementation(AActor* Instigator)
+void UCAction::UndoAction(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
 		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
-	bIsUndone = true;
 
+	ReceiveUndoAction(Instigator);
+
+	bIsUndone = true;
 	if (IsValid(Comp))
 		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }

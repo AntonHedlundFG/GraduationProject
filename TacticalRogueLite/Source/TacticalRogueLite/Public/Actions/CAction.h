@@ -139,17 +139,37 @@ public:
 	FGameplayTag GetActivationTag() const { return ActivationTag; }
 	
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	bool CanStart(AActor* Instigator);
+	UFUNCTION(Category = "Action")
+	virtual bool CanStart(AActor* Instigator);
+
+	UFUNCTION(Category = "Action")
+	virtual void StartAction(AActor* Instigator);
+
+	UFUNCTION(Category = "Action")
+	virtual void UndoAction(AActor* Instigator);
+
+	UFUNCTION(Category = "Action")
+	virtual void StopAction(AActor* Instigator);
+
+#pragma region AngelScript events
+
+	// These are necessary as Super::CanStart() cannot be called from AngelScript.
+	// It's a known issue, and the suggested workaround is this solution, where we
+	// call these Receive-functions from the main functions (CanStart, StartAction, etc)
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void StartAction(AActor* Instigator);
+	bool ReceiveCanStart(AActor* Instigator);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void UndoAction(AActor* Instigator);
+	void ReceiveStartAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Action")
+	void ReceiveUndoAction(AActor* Instigator);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
-	void StopAction(AActor* Instigator);
+	void ReceiveStopAction(AActor* Instigator);
+
+#pragma endregion
 
 	// Need to be overridden in child classes that can influence more than one tile at a time. (AoE, etc.)
 	// Default implementation just returns the tile the action was started from. (Single target)

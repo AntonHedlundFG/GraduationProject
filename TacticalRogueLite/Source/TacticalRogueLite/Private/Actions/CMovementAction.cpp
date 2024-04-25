@@ -9,9 +9,9 @@
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
 
-void UCMovementAction::StartAction_Implementation(AActor* Instigator)
+void UCMovementAction::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	MovedUnit = Cast<ACUnit>(Instigator);
 	if (!MovedUnit) return;
@@ -21,7 +21,7 @@ void UCMovementAction::StartAction_Implementation(AActor* Instigator)
 
 	LOG_GAMEPLAY("%s moved.", *MovedUnit->GetUnitName());
 }
-void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
+void UCMovementAction::UndoAction(AActor* Instigator)
 {
 	if (!MovedUnit) return;
 
@@ -29,7 +29,7 @@ void UCMovementAction::UndoAction_Implementation(AActor* Instigator)
 
 	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
 
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 }
 
 TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)

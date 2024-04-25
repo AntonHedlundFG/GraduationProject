@@ -12,8 +12,8 @@ class TACTICALROGUELITE_API UCAttackAction : public UCTargetableAction
 {
 	GENERATED_BODY()
 
-	virtual void StartAction_Implementation(AActor* Instigator) override;
-	virtual void UndoAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction(AActor* Instigator) override;
+	virtual void UndoAction(AActor* Instigator) override;
 	virtual TArray<ACGridTile*> GetValidTargetTiles_Implementation(ACGridTile* inTile) override;
 
 protected:

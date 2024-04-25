@@ -7,16 +7,16 @@
 
 class UCGameInstance;
 
-void UCAction_Achievement::StartAction_Implementation(AActor* Instigator)
+void UCAction_Achievement::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	
 }
 
-void UCAction_Achievement::StopAction_Implementation(AActor* Instigator)
+void UCAction_Achievement::StopAction(AActor* Instigator)
 {
-	Super::StopAction_Implementation(Instigator);
+	Super::StopAction(Instigator);
 
 	UCGameInstance* GI = GetWorld()->GetGameInstance<UCGameInstance>();
 	UCAchievementSubsystem* Achievements = GI->GetSubsystem<UCAchievementSubsystem>();
@@ -27,7 +27,7 @@ void UCAction_Achievement::StopAction_Implementation(AActor* Instigator)
 		}
 }
 
-void UCAction_Achievement::UndoAction_Implementation(AActor* Instigator)
+void UCAction_Achievement::UndoAction(AActor* Instigator)
 {
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 }

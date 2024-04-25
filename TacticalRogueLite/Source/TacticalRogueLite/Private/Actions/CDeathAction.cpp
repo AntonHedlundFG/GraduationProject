@@ -7,9 +7,9 @@
 #include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
 
-void UCDeathAction::StartAction_Implementation(AActor* Instigator)
+void UCDeathAction::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	if (!AffectedUnit)
 	{
@@ -44,7 +44,7 @@ void UCDeathAction::StartAction_Implementation(AActor* Instigator)
 
 }
 
-void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
+void UCDeathAction::UndoAction(AActor* Instigator)
 {
 
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
@@ -65,7 +65,7 @@ void UCDeathAction::UndoAction_Implementation(AActor* Instigator)
 
 	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 
 }
 
