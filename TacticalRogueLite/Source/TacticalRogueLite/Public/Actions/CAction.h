@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Grid/Tiles/TileHighlightModes.h"
 #include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
@@ -45,6 +46,7 @@ public:
 	TSet<ACGridTile*> GetInfluencedTiles(ACGridTile* fromTile);
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
+	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn);
 	
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
@@ -107,7 +109,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	ETileHighlightModes HighlightMode = ETileHighlightModes::ETHM_NONE;
+
 public:
 
 	// List of modifiers to apply to attributes when the action is active.
@@ -116,6 +120,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
+
+	UFUNCTION()
+	ETileHighlightModes GetHighlightMode() const { return HighlightMode; }
 
 	//If true, this was the first action in a chain of events resulting from player input.
 	//When undoing actions, we iterate backwards in the action history, until we find one where

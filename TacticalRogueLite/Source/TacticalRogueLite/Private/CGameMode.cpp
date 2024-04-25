@@ -1,11 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "CGameMode.h"
 #include "GridContent/CUnit.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
-#include "Grid\CGridTile.h"
+#include "Grid/CGridTile.h"
 #include "CLevelURLAsset.h"
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
@@ -18,13 +17,11 @@
 #include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
-//#include "Settings/LevelEditorPlaySettings.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
-#include "Achievements\CVictoryCondition.h"
+#include "Achievements/CVictoryCondition.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
-#include "Grid/CGridRoom.h"
 #include "Utility/SaveGame/CSaveGame.h"
 
 void ACGameMode::BeginPlay()

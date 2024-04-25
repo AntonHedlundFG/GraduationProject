@@ -63,8 +63,11 @@ private:
 	// Stores the currently active Unit, fetched from the fromt of the turn order
 	// in InitiateAbilityUse().
 	// It's useful to make sure you don't try to initiate an ability, then end turn, 
-	// then finalize. 
+	// then finalize.
+	UPROPERTY()
 	ACUnit* UnitCurrentlyUsingAbility = nullptr;
+	UPROPERTY()
+	ACGridTile* TileCurrentlyTargeted = nullptr;
 
 	TArray<ACGridTile*> HighlightedTiles;
 

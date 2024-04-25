@@ -1,7 +1,7 @@
 
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
-#include "GridContent/CUnit.h"
+#include "Grid/CGridTile.h"
 #include "Actions/CTargetableAction.h"
 //TODO: include project h.file
 #include "Net/UnrealNetwork.h"
@@ -9,6 +9,8 @@
 
 
 //"Inline the generated cpp file into module cpp file to improve compile time because less header parsing is required."
+#include "Grid/CTileHighlightComponent.h"
+
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAction)
 
 void UCAction::OnRep_bIsUndone()
@@ -137,4 +139,28 @@ TArray<ACGridTile*> FAbility::GetValidTargetTiles(ACGridTile* fromTile)
 bool FAbility::IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile)
 {
 	return GetValidTargetTiles(fromTile).Contains(toTile);
+}
+
+void FAbility::ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn)
+{
+	for (const auto Action : InstantiatedActions)
+	{
+		UCTargetableAction* TargetableAction = Cast<UCTargetableAction>(Action);
+		if (TargetableAction)
+		{
+			auto Tiles = TargetableAction->GetValidTargetTiles(fromTile);
+
+			for (const ACGridTile* Tile : Tiles)
+			{
+				const ETileHighlightModes HighlightMode = TargetableAction->GetHighlightMode();
+				if(bHighlightOn)
+				{
+					Tile->GetHighlightComponent()->AppendHighlightMode(HighlightMode);
+				}
+				else{
+					Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
+				}
+			}
+		}
+	}
 }

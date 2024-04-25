@@ -106,20 +106,20 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	}
 
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
-	FAbility OutAbility;
-	if (!ActionComp->TryGetAbility(inTag, OutAbility))
+	FAbility Ability;
+	if (!ActionComp->TryGetAbility(inTag, Ability))
 	{
 		LOG_WARNING("No item in slot, cancelling ability use.");
 		return;
 	}
 
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(UnitCurrentlyUsingAbility);
-	if (!Attributes)
+	UCAttributeComponent* AttributeComponent = UCAttributeComponent::GetAttributes(UnitCurrentlyUsingAbility);
+	if (!AttributeComponent)
 	{
 		LOG_WARNING("No attributes component on unit, cancelling ability use.");
 		return;
 	}
-	if (!Attributes->HasRemainingCharges(inTag))
+	if (!AttributeComponent->HasRemainingCharges(inTag))
 	{
 		LOG_WARNING("No charges remaining for item, cancelling ability use.");
 		return;
@@ -136,15 +136,22 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		return;
 	}
 
-	for (ACGridTile* Tile : HighlightedTiles)
-	{
-		Tile->OnHighlightChange.Broadcast(true);
-		Tile->GetHighlightComponent()->AppendHighlightMode(ETileHighlightModes::ETHM_Reachable);
-	}
+	TileCurrentlyTargeted = UnitCurrentlyUsingAbility->GetTile();
+	ActionComp->ToggleHighlightOnValidTargetTiles(inTag, TileCurrentlyTargeted, true);
+
 }
 
 void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 {
+	// If we have a unit currently using an ability, and a tile currently targeted, we should remove the highlights
+	if(UnitCurrentlyUsingAbility && TileCurrentlyTargeted)
+	{
+		if (UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp())
+		{
+			ActionComp->ToggleHighlightOnValidTargetTiles(TagCurrentlyUsed, TileCurrentlyTargeted, false);
+		}
+	}
+	
 	if (!inTargetTile)
 	{
 		LOG_WARNING("Target Tile nullptr, cancelling ability use.");
@@ -198,14 +205,17 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 
 void ACPlayerController::CancelAbilityUse()
 {
-	ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
-	UnitCurrentlyUsingAbility = nullptr;
-	for (ACGridTile* Tile : HighlightedTiles)
+	if(UnitCurrentlyUsingAbility && TileCurrentlyTargeted)
 	{
-		Tile->OnHighlightChange.Broadcast(false);
-		Tile->GetHighlightComponent()->RemoveHighlightMode(ETileHighlightModes::ETHM_Reachable);
+		if (UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp())
+		{
+			ActionComp->ToggleHighlightOnValidTargetTiles(TagCurrentlyUsed, TileCurrentlyTargeted, false);
+		}
 	}
-	HighlightedTiles.Empty();
+	
+	ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
+	TileCurrentlyTargeted = nullptr;
+	UnitCurrentlyUsingAbility = nullptr;
 }
 
 void ACPlayerController::EndTurn()
