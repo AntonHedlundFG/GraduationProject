@@ -24,6 +24,8 @@ void ACAIController::OnTurnChanged()
 	LOG_INFO("AI Controller is taking turn with unit: %s.", *Unit->GetUnitName());
 
 
+	BestPaths.Empty();
+	
 	FTimerHandle TimerHandle;
 	FTimerDelegate TimerDel;
 	const float TimerDelay = FMath::RandRange(0.7f, 1.5f);
@@ -125,6 +127,7 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 		
 		TArray<ACGridTile*> ReachableTiles = Ability.GetValidTargetTiles(CurrentTile);
 
+		// Evaluate all reachable tiles
 		for (int i = 0; i < ReachableTiles.Num(); ++i)
 		{
 			ACGridTile* Tile = ReachableTiles[i];
@@ -145,7 +148,7 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 	
 }
 
-void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
+void ACAIController::TryAddBestPath(const FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
 {
 	// Keep only top 5 actions
 	if (inBestPaths.Num() < 5 || NewPath.GetScore() > inBestPaths.Last().GetScore())
