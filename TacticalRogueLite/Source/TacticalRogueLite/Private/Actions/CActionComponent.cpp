@@ -22,13 +22,14 @@ void UCActionComponent::BeginPlay()
 	// Server Only
 	if (GetOwner()->HasAuthority())
 	{
-		if (ensure(AttributeClass))
+		if (AttributeClass)
 		{
 			AttributeSet = NewObject<UCAttributeSet>(this, AttributeClass);
 			check(AttributeSet);
 			AttributeSet->Initialize(this);
-			LOG_WARNING("Setup Attributeset!");
+			//LOG_WARNING("Setup Attributeset!");
 		}
+		//LOG_WARNING("No Attributeset!");
 	}
 }
 
