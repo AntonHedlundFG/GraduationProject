@@ -3,9 +3,9 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "GridContent/CEnemyType.h"
 #include "CAllEnemiesData.generated.h"
 
-class ACUnit;
 /**
  * 
  */
@@ -16,6 +16,6 @@ class TACTICALROGUELITE_API UCAllEnemiesData : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, Category = "All Enemies")
-	TMap<int, TSubclassOf<ACUnit>> EnemyLevelAndType;
+	TArray<FCEnemyType> EnemyLevelAndType;
 	
 };

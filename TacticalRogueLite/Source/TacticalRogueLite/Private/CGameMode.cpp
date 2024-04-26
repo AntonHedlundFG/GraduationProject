@@ -396,22 +396,11 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 
 void ACGameMode::AddEnemyUnits(TArray<ACUnit*> Enemies)
 {
-	bool bEquipmentValid = true;
-	if (!DefaultEquipmentData)
-	{
-		bEquipmentValid = false;
-		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
-	}
-	
 	for (ACUnit* EnemyUnit : Enemies)
 	{
 		EnemyUnit->ControllingPlayerIndex = 0;
 		EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
 		
-		if (bEquipmentValid)
-		{
-			DefaultEquipmentData->EquipUnit(EnemyUnit);
-		}
 	}
 	
 	EnemyUnits.Append(Enemies);
