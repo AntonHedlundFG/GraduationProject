@@ -12,6 +12,7 @@
 
 void ACAIController::OnTurnChanged()
 {
+	// Check if it's the AI's turn
 	Grid = GameMode->GetGameGrid();
 	if(Grid == nullptr)
 	{
@@ -26,35 +27,43 @@ void ACAIController::OnTurnChanged()
 	}
 	LOG_INFO("AI Controller is taking turn with unit: %s.", *Unit->GetUnitName());
 
+	// Prepare for AI turn
 	bTurnStarted = true;
-
-
 	BestPaths.Empty();
-	
-	FTimerHandle TimerHandle1;
-	FTimerDelegate TimerDel1;
-	TimerDel1.BindLambda([this]()
+
+	// Start AI thinking and execute turn after a random delay
+	FTimerHandle TimerHandle;
+	FTimerDelegate TimerDel;
+	float ThinkingTimer = FMath::RandRange(.1f, 1.0f);
+	TimerDel.BindLambda([this]()
 	{
-		ExecuteTurn();
+		ExecuteTurn(); 
 	});
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle1, TimerDel1, 0.1f, false);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, ThinkingTimer, false);
 }
 
 void ACAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	// Find Game Mode
+	
+	// Find References
 	GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
 	if(!GameMode)
 	{
 		LOG_ERROR("GameMode is nullptr for %s", *GetName());
 		return;
 	}
+	GameState = GameMode->GetGameState<ACGameState>();
+	if(!GameState)
+	{
+		LOG_ERROR("GameState is nullptr for %s", *GetName());
+		return;
+	}
+	
 	// Subscribe to turn change
 	GameMode->GetGameState<ACGameState>()->OnTurnOrderUpdate.AddDynamic(this, &ACAIController::OnTurnChanged);
 
-	GameState = GameMode->GetGameState<ACGameState>();
-
+	// Subscribe to action visualizer system to know when to end turn
 	UActorComponent* ActionVisualizerSystem = GameState->GetComponentByClass(UCActionVisualizerSystem::StaticClass());
 	if(ActionVisualizerSystem)
 	{
@@ -108,6 +117,7 @@ FActionPath ACAIController::DecideBestActions()
 	{
 		return FActionPath();
 	}
+	
 	// Init containers
 	const TArray<FAbility> Abilities = Unit->GetEquippedAbilities();
 	ACGridTile* UnitTile = Unit->GetTile();
@@ -123,6 +133,7 @@ FActionPath ACAIController::DecideBestActions()
 	}
 
 	// Get a random number between 0 and the number of best paths
+	// TODO: Refine how the AI chooses the best path
 	UCRandomComponent* Random = GameState->Random;
 	const int32 RandomIndex = Random->GetRandRange(0, BestPaths.Num() - 1, false);
 	
@@ -131,7 +142,7 @@ FActionPath ACAIController::DecideBestActions()
 
 void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& inBestPaths, FActionPath& CurrentPath)
 {
-	EvaluatedPaths++;
+	EvaluatedPaths++; // Increment the number of paths evaluated for debugging
 	
 	// Evaluate all abilities from the current tile
 	for (FAbility Ability : Abilities)
@@ -156,29 +167,27 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 			NewPath.AddToPath(Ability, Tile, Score);
 			
 			EvalAbilitiesFromTile(Tile, Abilities, inBestPaths, NewPath);
-			
 		}
 	}
 	
 	// Try to add the path to the best paths
 	TryAddBestPath(CurrentPath, inBestPaths);
-	
 }
 
 void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
 {
+	// Skip paths with no score
 	if(NewPath.GetScore() == 0 || NewPath.GetPath().Num() == 0)
 	{
 		return;
 	}
 	
-	// Keep only top 5 actions
-	if (inBestPaths.Num() < 5 || NewPath.GetScore() > inBestPaths.Last().GetScore())
+	// Keep only top N paths
+	if (inBestPaths.Num() < PathsToKeepCount || NewPath.GetScore() > inBestPaths.Last().GetScore())
 	{
-		if(inBestPaths.Num() >= 5)
+		if(inBestPaths.Num() >= PathsToKeepCount)
 		{
 			FActionPath ActionPath = inBestPaths.Top();
-			// LOG_INFO("Removing action with score %f", ActionPath.GetScore());
 			inBestPaths.Pop();
 		}
 		inBestPaths.Add(NewPath);
@@ -200,15 +209,10 @@ void ACAIController::ExecuteActions(FActionPath& BestPath)
 			FAbility& Ability = Pair.Key;
 			ACGridTile* Tile = Pair.Value;
 
-			// Create a highlight action for the ability
-			UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
-			HighlightAction->SetAbilityToHighlight(Ability);
-			HighlightAction->TargetTile = Tile;
-			const float Duration = FMath::RandRange(.1f, 1.0f);
-			HighlightAction->SetDuration(Duration);
-			// Register the highlight action to allow the visualizer to visualize it before the action is executed
-			GameMode->RegisterAction(HighlightAction);
-			
+			// Register a highlight action for the ability
+			RegisterHighlightAction(Ability, Tile);
+
+			// Try to use the ability
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, Tile))
 			{
 				FString UnitName;
@@ -271,6 +275,18 @@ void ACAIController::ExecuteTurn()
 	{
 		EndTurn();
 	}
+}
+
+void ACAIController::RegisterHighlightAction(FAbility& Ability, ACGridTile* TargetTile)
+{
+	// Create a highlight action for the ability
+	UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
+	HighlightAction->SetAbilityToHighlight(Ability);
+	HighlightAction->TargetTile = TargetTile;
+	const float Duration = FMath::RandRange(.1f, 1.0f);
+	HighlightAction->SetDuration(Duration);
+	// Register the highlight action to allow the visualizer to visualize it before the action is executed
+	GameMode->RegisterAction(HighlightAction);
 }
 
 void ACAIController::EndTurn()

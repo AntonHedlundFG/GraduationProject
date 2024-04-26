@@ -79,6 +79,9 @@ protected:
 	// Execute the AI's turn
 	void ExecuteTurn();
 
+	// Register Highlighting action
+	void RegisterHighlightAction(FAbility& Ability, ACGridTile* TargetTile);
+
 	// End the AI's turn
 	UFUNCTION()
 	void EndTurn();
@@ -100,5 +103,7 @@ private:
 	FCAIContext Context;
 	UPROPERTY()
 	bool bTurnStarted = false;
+	UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess = "true"))
+	int32 PathsToKeepCount = 5;
 
 };
