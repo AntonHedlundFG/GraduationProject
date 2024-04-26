@@ -37,6 +37,15 @@ void UCTargetedProjectileVisualization::Enter_Implementation()
 
 bool UCTargetedProjectileVisualization::Tick_Implementation(float DeltaTime)
 {
+	if (TimePassedBeforeProjectile < DelayBeforeLaunchingProjectile)
+	{
+		TimePassedBeforeProjectile += DeltaTime;
+		DeltaTime = TimePassedBeforeProjectile - DelayBeforeLaunchingProjectile;
+		
+		if (DeltaTime <= 0.0f) 
+			return false;
+	}
+
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
 
 	if (TargetableAction)

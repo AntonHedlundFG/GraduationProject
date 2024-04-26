@@ -62,6 +62,12 @@ protected:
 	UPROPERTY(EditAnywhere)
 	float BeforeLaunchProjectileEffectLifetime = 0.0f;
 
+	//If you want the BeforeLaunchProjectileEffectType actor to play for a duration
+	// before lauching the projectile, use this property.
+	UPROPERTY(EditAnywhere)
+	float DelayBeforeLaunchingProjectile = 0.0f;
+	float TimePassedBeforeProjectile = 0.0f;
+
 	//For each tile distance (100.0f) the projectile travels, its total duration
 	//increases by this much.
 	UPROPERTY(EditAnywhere)
