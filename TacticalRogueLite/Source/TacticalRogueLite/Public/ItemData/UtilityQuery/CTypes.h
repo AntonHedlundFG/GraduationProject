@@ -28,7 +28,7 @@ class UCActionComponent;
 
  	//Use -1 weight for guaranteed drop.
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ItemTable")
- 	float Weight;
+ 	int32 Weight;
 
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quantity")
  	int32 Min;

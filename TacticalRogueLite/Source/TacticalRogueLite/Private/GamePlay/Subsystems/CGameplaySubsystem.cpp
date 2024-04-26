@@ -20,8 +20,8 @@ void UCGameplaySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	//May want this same behavior again once I have fully serialized the game.
 	RandomStream = FRandomStream::FRandomStream(FMath::Rand());
 }
-/*
-bool UCGameplaySubsystem::RollItemTable(UDataTable* Table, TArray<FItemRollResult>& Results,
+
+/*bool UCGameplaySubsystem::RollItemTable(UDataTable* Table, TArray<FItemRollResult>& Results,
                                         FGameplayTagContainer ContextTags, TArray<FPrimaryAssetId> ExcludedIds, TArray<FBucketInfo> Buckets, int32 RollAmount, ERollType ReplacementType)
 {
 	if (Table == nullptr)
@@ -138,7 +138,7 @@ bool UCGameplaySubsystem::RollItemTable(UDataTable* Table, TArray<FItemRollResul
 
 	return Results.Num() > 0;
 }
-
+/*
 
 float UCGameplaySubsystem::ChanceAmount(float Amount, float Percentage, FName FilterID)
 {

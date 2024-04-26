@@ -29,6 +29,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TArray<TSubclassOf<ACUnit>> HeroUnits;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
+	TSubclassOf<ACUnit> EnemyUnit_BP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TObjectPtr<UCAllEnemiesData> AllEnemyData;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Grid")

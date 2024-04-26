@@ -35,6 +35,12 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot_Armor, "ItemSlot.Armor");
 UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot_Trinket, "ItemSlot.Trinket");
 UE_DEFINE_GAMEPLAY_TAG(TAG_ItemSlot_Charm, "ItemSlot.Charm");
 
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class, "Class");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Ranger, "Class.Ranger");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Necromancer, "Class.Necromancer");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Warrior, "Class.Warrior");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Mage, "Class.Mage");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Monk, "Class.Monk");
 
 //UE_DEFINE_GAMEPLAY_TAG(Status_Rooted, "ItemSlot.Boots");
 

@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Grid/Tiles/TileHighlightModes.h"
 #include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
@@ -45,6 +46,7 @@ public:
 	TSet<ACGridTile*> GetInfluencedTiles(ACGridTile* fromTile);
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
+	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn);
 	
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
@@ -107,15 +109,23 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	ETileHighlightModes HighlightMode = ETileHighlightModes::ETHM_NONE;
+
 public:
 
 	// List of modifiers to apply to attributes when the action is active.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	TArray<FAttributeModification> Modifiers;
+	TArray<FAttributeModification> ModifiersAppliedToOwner;
+
+	UPROPERTY()
+	TArray<int> ModifiersActualDeltas;
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
+
+	UFUNCTION()
+	ETileHighlightModes GetHighlightMode() const { return HighlightMode; }
 
 	//If true, this was the first action in a chain of events resulting from player input.
 	//When undoing actions, we iterate backwards in the action history, until we find one where
@@ -139,17 +149,37 @@ public:
 	FGameplayTag GetActivationTag() const { return ActivationTag; }
 	
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	bool CanStart(AActor* Instigator);
+	UFUNCTION(Category = "Action")
+	virtual bool CanStart(AActor* Instigator);
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void StartAction(AActor* Instigator);
+	UFUNCTION(Category = "Action")
+	virtual void StartAction(AActor* Instigator);
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void UndoAction(AActor* Instigator);
+	UFUNCTION(Category = "Action")
+	virtual void UndoAction(AActor* Instigator);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
-	void StopAction(AActor* Instigator);
+	UFUNCTION(Category = "Action")
+	virtual void StopAction(AActor* Instigator);
+
+#pragma region AngelScript events
+
+	// These are necessary as Super::CanStart() cannot be called from AngelScript.
+	// It's a known issue, and the suggested workaround is this solution, where we
+	// call these Receive-functions from the main functions (CanStart, StartAction, etc)
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Can Start"))
+	bool ReceiveCanStart(AActor* Instigator);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Start Action"))
+	void ReceiveStartAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Undo Action"))
+	void ReceiveUndoAction(AActor* Instigator);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Stop Action"))
+	void ReceiveStopAction(AActor* Instigator);
+
+#pragma endregion
 
 	// Need to be overridden in child classes that can influence more than one tile at a time. (AoE, etc.)
 	// Default implementation just returns the tile the action was started from. (Single target)

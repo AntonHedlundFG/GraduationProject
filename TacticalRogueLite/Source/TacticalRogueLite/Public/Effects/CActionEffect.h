@@ -19,9 +19,9 @@ class TACTICALROGUELITE_API UCActionEffect : public UCAction
 public:
 	UCActionEffect();
 	
-	virtual void StartAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction(AActor* Instigator) override;
 
-	virtual void StopAction_Implementation(AActor* Instigator) override;
+	virtual void StopAction(AActor* Instigator) override;
 	
 protected:
 	//TODO: Time not relevant in this project. Turn into 'turns'. 

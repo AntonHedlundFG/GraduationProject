@@ -29,12 +29,23 @@ void UCTargetedProjectileVisualization::Enter_Implementation()
 		const float AttackDistance = FVector::Dist(TargetLocation, StartLocation);
 		MiddlePoint = (TargetLocation + StartLocation) / 2.0f + FVector(0, 0, AttackDistance * DistanceToHeightRatio);
 		Duration = DurationPerTileInSeconds * AttackDistance / 100.0f;
+
+		SpawnLaunchEffect();
 	}
 
 }
 
 bool UCTargetedProjectileVisualization::Tick_Implementation(float DeltaTime)
 {
+	if (TimePassedBeforeProjectile < DelayBeforeLaunchingProjectile)
+	{
+		TimePassedBeforeProjectile += DeltaTime;
+		DeltaTime = TimePassedBeforeProjectile - DelayBeforeLaunchingProjectile;
+		
+		if (DeltaTime <= 0.0f) 
+			return false;
+	}
+
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
 
 	if (TargetableAction)
@@ -109,5 +120,16 @@ void UCTargetedProjectileVisualization::SpawnOnHitEffect()
 		SpawnedActor->SetActorLocation(TargetLocation);
 		if (OnHitEffectLifetime > 0.0f)
 			SpawnedActor->SetLifeSpan(OnHitEffectLifetime);
+	}
+}
+
+void UCTargetedProjectileVisualization::SpawnLaunchEffect()
+{
+	if (IsValid(BeforeLaunchProjectileEffectType))
+	{
+		AActor* SpawnedActor = GetWorld()->SpawnActor(BeforeLaunchProjectileEffectType);
+		SpawnedActor->SetActorLocation(StartLocation);
+		if (OnHitEffectLifetime > 0.0f)
+			SpawnedActor->SetLifeSpan(BeforeLaunchProjectileEffectLifetime);
 	}
 }

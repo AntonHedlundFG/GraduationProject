@@ -9,6 +9,8 @@
 class UCActionVisualization;
 class UCAction;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnVisualizationComplete);
+
 /// <summary>
 /// 
 /// This is a component that needs to be attached to CGameState specifically.
@@ -37,9 +39,15 @@ public:
 	UCActionVisualizerSystem();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	//Triggers the first frame after all visualizations are finished.
+	//Not after each visualization.
+	FOnVisualizationComplete OnVisualizationComplete;
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
+
+	bool bShouldBroadcastVisualizationComplete = false;
 
 	//A simple cached reference.
 	UPROPERTY()
@@ -69,6 +77,8 @@ protected:
 
 	//An index tracker so that we know which action to visualize, and maintain order.
 	int32 ActionListCurrentIndex = -1;
+	int32 ActionHistoryCurrentIndex = -1;
+	int32 LastKnownActionHistorySize = 0;
 	
 	/// <summary>
 	/// This should be populated in the editor so both C++ and BP implementations are available.

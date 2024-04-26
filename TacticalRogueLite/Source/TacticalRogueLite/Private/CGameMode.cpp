@@ -1,11 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "CGameMode.h"
 #include "GridContent/CUnit.h"
 #include "CGameState.h"
 #include "Kismet/GameplayStatics.h"
-#include "Grid\CGridTile.h"
+#include "Grid/CGridTile.h"
 #include "CLevelURLAsset.h"
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
@@ -18,14 +17,14 @@
 #include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
-//#include "Settings/LevelEditorPlaySettings.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 #include "CUndoAction.h"
 #include "Attributes/CAttributeComponent.h"
-#include "Achievements\CVictoryCondition.h"
+#include "Achievements/CVictoryCondition.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
-#include "Grid/CGridRoom.h"
 #include "Utility/SaveGame/CSaveGame.h"
+#include "Actions/CResurrectAction.h"
+#include "Grid/CGridRoom.h"
 
 void ACGameMode::BeginPlay()
 {
@@ -169,25 +168,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		ActionStack.Add(NewAction);
 	}
 
-	// Now that the stack is full of actions, start iterating through and executing them.
-	// Note that the stack -CAN- grow during iteration, as triggered actions can be registered
-	// as a result of executed actions.
-	int Iterations = 0;
-	while (!ActionStack.IsEmpty())
-	{
-		UCAction* CurrentAction = ActionStack.Pop();
-		GameStateRef->ActionList.Add(CurrentAction);
-		CurrentAction->StartAction(inUnit);
-		
-		Iterations++;
-		if (Iterations > 1000)
-		{
-			LOG_WARNING("Action Stack tried to execute over 1000 actions. Infinite loop suspected, clearing stack.");
-			ActionStack.Empty();
-			break;
-		}
-	}
-	GameStateRef->OnActionListUpdate.Broadcast();
+	ExecuteActionStack(inUnit);	
 
 	//We update the UndoIndex since we know this action was triggered by player input.
 	NextUndoIndex = GameStateRef->ActionList.Num() - 1;
@@ -319,6 +300,14 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		return true;
 	}
 
+	//Transfer all commands this turn into the command history
+	for (UCAction* Action : GameStateRef->ActionList)
+	{
+		GameStateRef->ActionHistory.Add(Action);
+	}
+	GameStateRef->ActionList.Empty();
+	GameStateRef->OnActionListUpdate.Broadcast();
+
 	//Move active unit to back of the line
 	GameStateRef->TurnOrder.RemoveAt(0);
 	GameStateRef->TurnOrder.Add(CurrentUnit);
@@ -338,18 +327,34 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		Subsystem->NextTurn(CurrentUnit, GameStateRef->TurnOrder[0]);
 	}
 
-	//Transfer all commands this turn into the command history
-	for (UCAction* Action : GameStateRef->ActionList)
-	{
-		GameStateRef->ActionHistory.Add(Action);
-	}
-	GameStateRef->ActionList.Empty();
-	GameStateRef->OnActionListUpdate.Broadcast();
-
 	NextUndoIndex = -1;
 
 	LOG_GAMEPLAY("Turn ended");
 	return true;
+}
+
+void ACGameMode::ExecuteActionStack(AActor* InstigatingActor)
+{
+	// Iterate through and execute action stack.
+	// Note that the stack -CAN- grow during iteration, as triggered actions can be registered
+	// as a result of executed actions.
+	int Iterations = 0;
+	while (!ActionStack.IsEmpty())
+	{
+		UCAction* CurrentAction = ActionStack.Pop();
+		GameStateRef->ActionList.Add(CurrentAction);
+		CurrentAction->StartAction(InstigatingActor);
+
+		Iterations++;
+		if (Iterations > 1000)
+		{
+			LOG_WARNING("Action Stack tried to execute over 1000 actions. Infinite loop suspected, clearing stack.");
+			ActionStack.Empty();
+			break;
+		}
+	}
+
+	GameStateRef->OnActionListUpdate.Broadcast();
 }
 
 void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
@@ -391,22 +396,11 @@ ACGridSpawner* ACGameMode::CreateSpawner()
 
 void ACGameMode::AddEnemyUnits(TArray<ACUnit*> Enemies)
 {
-	bool bEquipmentValid = true;
-	if (!DefaultEquipmentData)
-	{
-		bEquipmentValid = false;
-		LOG_WARNING("DefaultUnitEquipmentData missing in GameMode");
-	}
-	
 	for (ACUnit* EnemyUnit : Enemies)
 	{
 		EnemyUnit->ControllingPlayerIndex = 0;
 		EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
 		
-		if (bEquipmentValid)
-		{
-			DefaultEquipmentData->EquipUnit(EnemyUnit);
-		}
 	}
 	
 	EnemyUnits.Append(Enemies);
@@ -489,7 +483,8 @@ bool ACGameMode::HandleVictoryConditionMet()
 		if (GetGameGrid())
 		{
 			Spawner->SpawnRoomWithEnemies(GetGameGrid());
-			CurrentRoom ++;
+			CurrentRoom++;
+			ResurrectAndProgressToNewRoom();
 		}
 		else
 		{
@@ -501,4 +496,24 @@ bool ACGameMode::HandleVictoryConditionMet()
 	LOG_GAMEPLAY("You've won the game!");
 	GameStateRef->SetGameIsOver(true);
 	return true;
+}
+
+void ACGameMode::ResurrectAndProgressToNewRoom()
+{
+	TArray<ACGridTile*> HeroTiles = GetGameGrid()->GetLatestRoom()->GetHeroSpawnTiles();
+	if (HeroUnits.Num() != HeroTiles.Num())
+	{
+		LOG_WARNING("Hero Tiles: %d doesn't match Hero Units: %d", HeroTiles.Num(), HeroUnits.Num());
+		return;
+	}
+
+	for (int i = 0; i < HeroUnits.Num(); i++)
+	{
+		UCResurrectAction* ResurrectAction = NewObject<UCResurrectAction>(this, UCResurrectAction::StaticClass());
+		ResurrectAction->AffectedUnit = HeroUnits[i];
+		ResurrectAction->ResurrectOnTile = HeroTiles[i];
+		RegisterAction(ResurrectAction);
+	}
+
+	ExecuteActionStack();
 }

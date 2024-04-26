@@ -49,21 +49,21 @@ public:
 	 	return Value;
 	 }
 
-	
+	//Eg. 4 Armor.
 	UPROPERTY(EditDefaultsOnly, SaveGame, BlueprintReadWrite)
 	int BaseValue;
 
-	//Delta added to BaseValue.
+	//Delta added to BaseValue. Eg. An helmet gives you +2.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (AdvancedDisplay))
 	int Delta;
 
-	//Buffs/Debuffs.
+	//Buffs/Debuffs. Eg. 10 % bonus thanks to some charm.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (AdvancedDisplay))
 	int Multiplier;
 
 	//Should automatically clamp total value to zero (individual stored base/delta can still be negative).
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AdvancedDisplay))
-	bool bClampToZero;	
+	bool bClampToZero;
 	
 };
 
@@ -115,6 +115,7 @@ public:
 	{
 		ModifierOperation = EAttributeModifierOperation::AddDelta;
 		Magnitude = 0;
+		bIsUndo = false;
 	}
 
 	int GetMagnitude(int32 Level = 0)const
@@ -149,6 +150,10 @@ public:
 	//Optional curve, sampled on X-axis at the "Level" of the effect owning this mod. Then multiplied by magnitude.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	FRuntimeFloatCurve Curve;
+
+	//Is this modification part of an undo. //TODO: public?
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AdvancedDisplay))
+	bool bIsUndo;
 	
 };
 

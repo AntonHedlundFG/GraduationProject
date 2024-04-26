@@ -13,9 +13,9 @@ UCActionEffect::UCActionEffect()
 
 }
 
-void UCActionEffect::StartAction_Implementation(AActor* Instigator)
+void UCActionEffect::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	if (DurationInTurns > 0)
 	{
@@ -25,10 +25,10 @@ void UCActionEffect::StartAction_Implementation(AActor* Instigator)
 
 }
 
-void UCActionEffect::StopAction_Implementation(AActor* Instigator)
+void UCActionEffect::StopAction(AActor* Instigator)
 {
 
-	Super::StopAction_Implementation(Instigator);
+	Super::StopAction(Instigator);
 
 }
 

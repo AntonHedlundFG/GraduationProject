@@ -51,6 +51,9 @@ public:
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
+	void RegisterAction(UCAction* NewAction);
+
+	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void RemoveAction(UCAction* ActionToRemove);
 
 	//Returns first occurrence of action matching the class provided #1#.
@@ -74,6 +77,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void ToggleHighlightOnValidTargetTiles(FGameplayTag itemSlot, ACGridTile* Tile, bool bHighlightOn);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool IsValidTargetTile(FGameplayTag ItemSlot, class ACGridTile* TargetTile);

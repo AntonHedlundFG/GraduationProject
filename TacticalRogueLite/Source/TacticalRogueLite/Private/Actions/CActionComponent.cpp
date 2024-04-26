@@ -22,13 +22,14 @@ void UCActionComponent::BeginPlay()
 	// Server Only
 	if (GetOwner()->HasAuthority())
 	{
-		if (ensure(AttributeClass))
+		if (AttributeClass)
 		{
 			AttributeSet = NewObject<UCAttributeSet>(this, AttributeClass);
 			check(AttributeSet);
 			AttributeSet->Initialize(this);
-			LOG_WARNING("Setup Attributeset!");
+			//LOG_WARNING("Setup Attributeset!");
 		}
+		//LOG_WARNING("No Attributeset!");
 	}
 }
 
@@ -79,7 +80,7 @@ int UCActionComponent::ApplyAttributeChange(const FAttributeModification& InAttr
 
 bool UCActionComponent::CanApplyAttributeModifiers(UCActionWithTimer* Effect)
 {
-	for (const FAttributeModification& Mod : Effect->Modifiers)
+	for (const FAttributeModification& Mod : Effect->ModifiersAppliedToOwner)
 	{
 		FAttribute AttributeToMod;
 		GetAttribute(Mod.AttributeTag, AttributeToMod);
@@ -179,7 +180,13 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	}
 }
 
-void UCActionComponent::RemoveAction(UCAction* ActionToRemove)
+void UCActionComponent::RegisterAction(UCAction* NewAction)
+{
+	if (!NewAction) return;
+	Actions.Add(NewAction);
+}
+
+void UCActionComponent::RemoveAction(UCAction* ActionToRemove) //TODO: Maybe impl remove action. 
 {
 	if (!ensure(ActionToRemove)) //&& !ActionToRemove->IsRunning()). == Checking if theres active timer.
 	{
@@ -265,6 +272,16 @@ TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot
 		return TArray<ACGridTile*>();
 
 	return OutAbility.GetValidTargetTiles(Owner->GetTile());
+}
+
+void UCActionComponent::ToggleHighlightOnValidTargetTiles(FGameplayTag itemSlot, ACGridTile* Tile, bool bHighlightOn)
+{
+	ACUnit* Owner = Cast<ACUnit>(GetOwner());
+	FAbility Ability;
+	if (!TryGetAbility(itemSlot, Ability) || !Owner)
+		return;
+
+	Ability.ToggleHighlightTilesInRange(Tile, bHighlightOn);
 }
 
 bool UCActionComponent::IsValidTargetTile(FGameplayTag ItemSlot, ACGridTile* TargetTile)

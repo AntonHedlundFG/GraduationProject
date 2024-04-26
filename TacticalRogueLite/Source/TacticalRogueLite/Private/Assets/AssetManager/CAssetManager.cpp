@@ -23,7 +23,8 @@ UCAssetManager& UCAssetManager::Get()
 	}
 	else
 	{
-		LOG_WARNING("Invalid AssetManager in DefaultEngine.ini, must be CAssetManager!");
+		UE_LOG(LogTemp, Fatal, TEXT("Invalid AssetManager in DefaultEngine.ini, must be CAssetManager!"));
+		//LOG_WARNING("Invalid AssetManager in DefaultEngine.ini, must be CAssetManager!");
 		return *NewObject<UCAssetManager>(); //Never calls this.
 	}
 }

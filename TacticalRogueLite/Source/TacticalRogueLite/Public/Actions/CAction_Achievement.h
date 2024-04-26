@@ -14,7 +14,7 @@ class TACTICALROGUELITE_API UCAction_Achievement : public UCAction
 
 public:
 
-	virtual void StartAction_Implementation(AActor* Instigator) override;
-	virtual void StopAction_Implementation(AActor* Instigator) override;
-	virtual void UndoAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction(AActor* Instigator) override;
+	virtual void StopAction(AActor* Instigator) override;
+	virtual void UndoAction(AActor* Instigator) override;
 };

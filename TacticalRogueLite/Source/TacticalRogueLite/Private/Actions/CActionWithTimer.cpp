@@ -6,9 +6,9 @@
 #include "Actions/CActionComponent.h"
 #include "GridContent/CUnit.h"
 
-void UCActionWithTimer::StartAction_Implementation(AActor* Instigator)
+void UCActionWithTimer::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	if (!AffectedUnit)
 		AffectedUnit = Cast<ACUnit>(Instigator);
@@ -19,7 +19,7 @@ void UCActionWithTimer::StartAction_Implementation(AActor* Instigator)
 	
 }
 
-void UCActionWithTimer::UndoAction_Implementation(AActor* Instigator)
+void UCActionWithTimer::UndoAction(AActor* Instigator)
 {
 	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
 	if (Subsystem)
@@ -27,7 +27,7 @@ void UCActionWithTimer::UndoAction_Implementation(AActor* Instigator)
 
 	LOG_INFO("Clearing a timer");
 
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 
 	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 }

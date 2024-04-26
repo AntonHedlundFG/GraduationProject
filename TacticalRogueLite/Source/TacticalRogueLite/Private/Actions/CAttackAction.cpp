@@ -11,9 +11,9 @@
 #include "GridContent/CUnit.h"
 #include "Kismet/GameplayStatics.h"
 
-void UCAttackAction::StartAction_Implementation(AActor* Instigator)
+void UCAttackAction::StartAction(AActor* Instigator)
 {
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	// OldHealth = Attributes->GetHealth();
@@ -29,7 +29,7 @@ void UCAttackAction::StartAction_Implementation(AActor* Instigator)
 	LOG_GAMEPLAY("%s attacked %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
 }
 
-void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
+void UCAttackAction::UndoAction(AActor* Instigator)
 {
 	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	// Attributes->SetHealth(OldHealth);
@@ -44,7 +44,7 @@ void UCAttackAction::UndoAction_Implementation(AActor* Instigator)
 
 	LOG_GAMEPLAY("%s undid their attack on %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
 	
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 }
 
 TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
@@ -72,25 +72,3 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 	return ReturnTiles;
 	
 }
-
-/*void UCAttackAction::OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth,
-                                     int Delta)
-{
-	AActor* OwningActor = GetOwningComponent()->GetOwner();
-
-	// Damage Only
-	if (Delta < 0 && OwningActor != InstigatorActor)
-	{
-		
-		if (Delta == 0)
-		{
-			return;
-		}
-
-		// Flip to positive, so we don't end up healing ourselves when passed into damage
-		Delta = FMath::Abs(Delta);
-
-		// Return damage sender...
-		UCGameplayFunctionLibrary::ApplyDamage(OwningActor, InstigatorActor, Delta);
-	}
-}*/

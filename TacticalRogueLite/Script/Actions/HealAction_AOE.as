@@ -10,71 +10,83 @@ class USHealAction_AOE: UCAction
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
-        UCActionComponent ActionComponent = GetOwningComponent();
-        if(ActionComponent == nullptr)
-        {
-            return;
-        }
-        InsigatorUnit = Cast<ACUnit>(Instigator);
-        ACGridTile startTile = InsigatorUnit.GetTile();
-        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(startTile);
-        TArray<ACUnit> ValidUnits;
+        // UCActionComponent ActionComponent = GetOwningComponent();
+        // if(ActionComponent == nullptr)
+        // {
+        //     return;
+        // }
+        // InsigatorUnit = Cast<ACUnit>(Instigator);
+        // ACGridTile startTile = InsigatorUnit.GetTile();
+        // TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(startTile);
+        // TArray<ACUnit> ValidUnits;
 
-        for(auto Tile :TilesInRange)
-        {
-            ACGridContent Content = Tile.GetContent();
-            if(Content == nullptr)
-                continue;
+        // for(auto Tile :TilesInRange)
+        // {
+        //     ACGridContent Content = Tile.GetContent();
+        //     if(Content == nullptr)
+        //         continue;
 
-            ACUnit Unit = Cast<ACUnit>(Content);
-            if(IsValid(Unit))
-            {           
-                 FGameplayTag TeamTag = (ActionComponent.ActiveGameplayTags.HasTag(GameplayTags::Unit_IsEnemy)) ? 
-                                        GameplayTags::Unit_IsEnemy : GameplayTags::Unit_IsPlayer;
-                if(IsValid(Unit) && Unit.GetActionComp().ActiveGameplayTags.HasTag(TeamTag))
-                {
-                     ValidUnits.Add(Unit);
-                }
-            }
-        }
+        //     ACUnit Unit = Cast<ACUnit>(Content);
+        //     if(IsValid(Unit))
+        //     {           
+        //          FGameplayTag TeamTag = (ActionComponent.ActiveGameplayTags.HasTag(GameplayTags::Unit_IsEnemy)) ? 
+        //                                 GameplayTags::Unit_IsEnemy : GameplayTags::Unit_IsPlayer;
+        //         if(IsValid(Unit) && Unit.GetActionComp().ActiveGameplayTags.HasTag(TeamTag))
+        //         {
+        //              ValidUnits.Add(Unit);
+        //         }
+        //     }
+        // }
 
-        ACUnit From = Cast<ACUnit>(Instigator);
-        ACUnit To;
+        // ACUnit From = Cast<ACUnit>(Instigator);
+        // ACUnit To;
         
-        for(ACUnit Unit : ValidUnits)
-        {
-            To = Unit;
-            //CGameplay::ApplyHealing(Instigator,To,HealAmount); TODO: Newattribute
-            HealedUnits.Add(To);
-            OldHealth.Add(To.GetAttributeComp().GetHealth());
-            if(From == To)
-            {
-                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
-            }
-            else
-            {
-                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
-            }
-        }
+        // for(ACUnit Unit : ValidUnits)
+        // {
+        //     To = Unit;
+        //     //Should be moved to baseclass. 
+        //     //for(FAttributeModification Modification : Modifiers)
+            
+        //        // Unit.GetActionComp().ApplyAttributeChange(Modification, 0);
+            
+            
+        //     //CGameplay::ApplyHealing(Instigator,To,HealAmount); TODO: Newattribute
+        //     HealedUnits.Add(To);
+        //     //OldHealth.Add(To.GetAttributeComp().GetHealth());
+        //     if(From == To)
+        //     {
+        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
+        //     }
+        //     else
+        //     {
+        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
+        //     }
+        // }
     }
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
-        ACUnit From = InsigatorUnit;
-        ACUnit To;
-        for(int i = HealedUnits.Num()-1; i >= 0; i--)
-        {
-            To = HealedUnits[i];
-            HealedUnits[i].GetAttributeComp().SetHealth(OldHealth[i]);
-            if(From == To)
-            {
-                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> healing on self.");
-            }
-            else
-            {
-                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> on {To.GetUnitName()}.");
-            }
-        }
+        // ACUnit From = InsigatorUnit;
+        // ACUnit To;
+        // for(int i = HealedUnits.Num()-1; i >= 0; i--)
+        // {
+        //     To = HealedUnits[i];
+        //     //for (FAttributeModification Modification : Modifiers)
+            
+        //       //  CGameplay::ApplyDamage(From, To, HealAmount, ActionTags);
+        //         //HealedUnits[i].GetActionComp().ApplyAttributeChange(Modification, 0);
+            
+        //     //HealedUnits[i].GetAttributeComp().SetHealth(OldHealth[i]);
+            
+        //     if(From == To)
+        //     {
+        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> healing on self.");
+        //     }
+        //     else
+        //     {
+        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> on {To.GetUnitName()}.");
+        //     }
+        // }
     }
 
     UFUNCTION(BlueprintOverride)
