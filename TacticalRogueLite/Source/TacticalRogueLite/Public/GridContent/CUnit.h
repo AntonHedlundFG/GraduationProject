@@ -10,6 +10,7 @@ struct FAbility;
 class UCActionComponent;
 class UCAttributeComponent;
 class UCInventoryComponent;
+class UPaperSpriteComponent;
 class UCItem;
 class ACGridTile;
 enum class EItemSlots : uint8;
@@ -24,6 +25,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
 	USceneComponent* SceneComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
+	TObjectPtr<UPaperSpriteComponent> SpriteComp;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UCAttributeComponent> AttributeComp;
@@ -47,7 +51,7 @@ public:
 	void SetUnitName(FString inName) { UnitName = inName; }
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void SetAppearance(UPaperSprite* Sprite);
+	void OnRep_SetAppearance(UPaperSprite* Sprite);
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)

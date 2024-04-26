@@ -56,5 +56,7 @@ protected:
 
 	virtual void OnSave() override;
 	virtual void OnLoad() override;
+
+	FString GetNameOfPlayerIndex(int32 Index);
 	
 };

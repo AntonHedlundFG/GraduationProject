@@ -3,9 +3,11 @@
 #include "Net/UnrealNetwork.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Actions/CActionComponent.h"
+#include "AI/CAIController.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Items/CInventoryComponent.h"
+#include "PaperSpriteComponent.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -21,6 +23,8 @@ ACUnit::ACUnit()
 
 	SceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = SceneComp;
+	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSpriteComponent"));
+	SpriteComp->SetupAttachment(RootComponent);
 
 	
 	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent")); //TODO: Old Attr Cleanup

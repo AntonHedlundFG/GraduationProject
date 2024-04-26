@@ -111,6 +111,15 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 		NewRoom = inGrid->CreateNewRoom(inEnemyCount);
 	}
 	const int EnemyAmount = NewRoom->GetEnemyCount();
+
+	//Check that we have enemy data to use for spawning
+	if (!AllEnemyData)
+	{
+		LOG_ERROR("GridSpawner SpawnRoomWithEnemies: Missing Enemy Data Asset, Can't Spawn Enemies");
+		return;
+	}
+
+	//Get valid enemies to spawn based on room level
 	TArray<FCEnemyType> PossibleEnemyTypes;
 	for (auto Element : AllEnemyData->EnemyLevelAndType)
 	{
@@ -120,13 +129,15 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 		}
 	}
 
+	//If there are no valid enemies, spawn nothing
 	if (PossibleEnemyTypes.Num() <= 0)
 	{
 		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Couldn't find viable enemies to spawn");
 		return;
 	}
 
-	//Spawn enemies of random allowed types; equip items and set name, set sprite.
+	//Spawn enemies of random valid types; equip items, set name, and set sprite.
+	//If no GameState found; issue warning, spawn first valid enemy type.
 	TArray<ACUnit*> Enemies;
 	if (GameStateRef)
 	{
@@ -134,26 +145,26 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 		
 		for(int i = 0; i < EnemyAmount; i++)
 		{
-			const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1);
+			const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1, false);
 
 			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[index].Items, PossibleEnemyTypes[index].Name);
-			Enemy->SetAppearance(PossibleEnemyTypes[index].Sprite);
+			Enemy->OnRep_SetAppearance(PossibleEnemyTypes[index].Sprite);
 			Enemies.Add(Enemy);
 		}
 	}
 	else
 	{
 		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Missing Game State reference, trying to spawn default units");
-
 		for(int i = 0; i < EnemyAmount; i++)
 		{
 			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[0].Items, PossibleEnemyTypes[0].Name);
-			Enemy->SetAppearance(PossibleEnemyTypes[0].Sprite);
+			Enemy->OnRep_SetAppearance(PossibleEnemyTypes[0].Sprite);
 			Enemies.Add(Enemy);
 		}
 		
 	}
-	
+
+	//Add enemies to GameMode array.
 	if (GameModeRef)
 	{
 		GameModeRef->AddEnemyUnits(Enemies);
