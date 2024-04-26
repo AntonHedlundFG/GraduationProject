@@ -19,21 +19,17 @@ class TACTICALROGUELITE_API UCHighlightTilesVisualization : public UCActionVisua
 	virtual bool Tick_Implementation(float DeltaTime) override;
 	virtual bool RevertTick_Implementation(float DeltaTime) override;
 
+	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn);
+	void SetDuration(float inDuration) { Duration = inDuration; }
+	
 	// Used to determine where in the animation we are.
 	float TimePassed = 0.0f;
 
 	// The total duration of the movement.
-	float Duration = 1.0f;
+	float Duration;
 
 	// A reference to the cast version of the action
 	UPROPERTY()
 	UCHighlightTileAction* HighLightAction;
-
-	// The tiles that are being highlighted
-	UPROPERTY()
-	TArray<ACGridTile*> HighlightedTiles;
-
-
-
 	
 };

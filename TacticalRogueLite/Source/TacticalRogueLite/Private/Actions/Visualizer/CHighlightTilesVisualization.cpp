@@ -1,5 +1,4 @@
 ﻿#include "Actions/Visualizer/CHighlightTilesVisualization.h"
-
 #include "AI/CHighlightTileAction.h"
 #include "Grid/CGridTile.h"
 #include "Grid/CTileHighlightComponent.h"
@@ -13,13 +12,8 @@ void UCHighlightTilesVisualization::Enter_Implementation()
 {
 	TimePassed = 0.0f;
 	HighLightAction = Cast<UCHighlightTileAction>(VisualizedAction);
-
-	HighlightedTiles = HighLightAction->GetValidTargetTiles(HighLightAction->TargetTile);
-
-	for (ACGridTile* HighlightedTile : HighlightedTiles)
-	{
-		HighlightedTile->GetHighlightComponent()->AppendHighlightMode(HighLightAction->GetHighlightMode());
-	}
+	
+	ToggleHighlightTilesInRange(HighLightAction->TargetTile, true);
 }
 
 bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
@@ -31,10 +25,7 @@ bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
 	if(TimePassed >= Duration)
 	{
 		// Remove the highlight from the tiles
-		for (ACGridTile* HighlightedTile : HighlightedTiles)
-		{
-			HighlightedTile->GetHighlightComponent()->RemoveHighlightMode(HighLightAction->GetHighlightMode());
-		}
+		ToggleHighlightTilesInRange(HighLightAction->TargetTile, false);
 		
 		return true;
 	}
@@ -47,4 +38,31 @@ bool UCHighlightTilesVisualization::RevertTick_Implementation(float DeltaTime)
 {
 	// No revert functionality for this visualization.
 	return true;
+}
+
+void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn)
+{
+	FAbility& Ability = HighLightAction->GetAbility();
+
+	// Loop over all Actions in the ability and toggle them with their respective highlightmode
+	for (auto Action : Ability.InstantiatedActions)
+	{
+		UCTargetableAction* TargetableAction = Cast<UCTargetableAction>(Action);
+		if (TargetableAction)
+		{
+			auto Tiles = TargetableAction->GetValidTargetTiles(fromTile);
+
+			for (const ACGridTile* Tile : Tiles)
+			{
+				const ETileHighlightModes HighlightMode = TargetableAction->GetHighlightMode();
+				if(bHighlightOn)
+				{
+					Tile->GetHighlightComponent()->AppendHighlightMode(HighlightMode);
+				}
+				else{
+					Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
+				}
+			}
+		}
+	}
 }

@@ -200,13 +200,14 @@ void ACAIController::ExecuteActions(FActionPath& BestPath)
 			FAbility& Ability = Pair.Key;
 			ACGridTile* Tile = Pair.Value;
 
-			// UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
-			// HighlightAction->SetAbilityToHighlight(Ability);
-			// FAbility HighlightAbility;
-			// HighlightAbility.InstantiatedActions.Add(HighlightAction);
-			//
-			// GameMode->TryAbilityUse(this, Unit, HighlightAbility.InventorySlotTag, Tile);
-
+			// Create a highlight action for the ability
+			UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
+			HighlightAction->SetAbilityToHighlight(Ability);
+			HighlightAction->TargetTile = Tile;
+			const float Duration = FMath::RandRange(.1f, 1.0f);
+			HighlightAction->SetDuration(Duration);
+			// Register the highlight action to allow the visualizer to visualize it before the action is executed
+			GameMode->RegisterAction(HighlightAction);
 			
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, Tile))
 			{
@@ -251,8 +252,8 @@ void ACAIController::ExecuteTurn()
 	UpdateContext();
 	FActionPath Actions = DecideBestActions();
 
+	// Send Paths and their Score to editor UI for Debugging
 #if UE_EDITOR
-	// Debugging
 	FAiDebugInfo Package;
 	Package.Instigator = Unit->GetUnitName();
 	Package.TotalPathsEvaluated = EvaluatedPaths;
@@ -260,7 +261,8 @@ void ACAIController::ExecuteTurn()
 	
 	UCAiDebugWindow::GetInstance()->AddPackage(Package);
 #endif
-	
+
+	// Execute the actions
 	if(Actions.GetPath().Num() > 0)
 	{
 		ExecuteActions(Actions);
