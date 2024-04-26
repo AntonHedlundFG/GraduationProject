@@ -38,16 +38,29 @@ protected:
 
 	/// <summary>
 	/// This actor will be spawned when the animation finishes its duration
-	/// It's lifetime is set my OnHitEffectLifetime
+	/// It's lifetime is set by OnHitEffectLifetime
 	/// Useful for spawning VFX on impact.
 	/// </summary>
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<AActor> OnHitEffectType;
 
+	/// <summary>
+	/// This actor will be spawned before the projectile is spawned (if there is one.)
+	/// It's lifetime is set by BeforeLaunchProjectileEffectLifetime
+	/// Useful for spawning VFX on the ability's user.
+	/// </summary>
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<AActor> BeforeLaunchProjectileEffectType;
+
 	//Determines lifetime of the actor of type OnHitEffectType.
 	//If 0 or less, no lifetime is set and you have to manage its lifetime elsewhere.
 	UPROPERTY(EditAnywhere)
 	float OnHitEffectLifetime = 0.0f;
+
+	//Determines lifetime of the actor of type BeforeLaunchProjectileEffectType.
+	//If 0 or less, no lifetime is set and you have to manage its lifetime elsewhere.
+	UPROPERTY(EditAnywhere)
+	float BeforeLaunchProjectileEffectLifetime = 0.0f;
 
 	//For each tile distance (100.0f) the projectile travels, its total duration
 	//increases by this much.
@@ -88,5 +101,6 @@ protected:
 	void SpawnProjectile();
 	void DespawnProjectile();
 	void SpawnOnHitEffect();
+	void SpawnLaunchEffect();
 	
 };

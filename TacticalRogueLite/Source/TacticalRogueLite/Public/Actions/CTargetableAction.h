@@ -27,6 +27,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	TArray<FAttributeModification> ModifiersAppliedToTarget;
 
+	class UCActionComponent* TargetActionComponent;
+
 	UFUNCTION(BlueprintNativeEvent)
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile);
 
