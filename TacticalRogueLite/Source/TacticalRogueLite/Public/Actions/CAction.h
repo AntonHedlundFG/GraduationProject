@@ -164,16 +164,16 @@ public:
 	// It's a known issue, and the suggested workaround is this solution, where we
 	// call these Receive-functions from the main functions (CanStart, StartAction, etc)
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Can Start"))
 	bool ReceiveCanStart(AActor* Instigator);
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Start Action"))
 	void ReceiveStartAction(AActor* Instigator);
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Undo Action"))
 	void ReceiveUndoAction(AActor* Instigator);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "Stop Action"))
 	void ReceiveStopAction(AActor* Instigator);
 
 #pragma endregion
