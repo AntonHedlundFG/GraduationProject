@@ -2,11 +2,60 @@
 
 
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
+#include "GamePlay/Subsystems/CItemRollingSubSystem.h"
+
+#include "Engine/AssetManager.h"
+#include "Engine/StreamableManager.h"
+#include "ItemData/CItemData.h"
 #include "Utility/CRandomComponent.h"
 #include "Utility/Logging/CLogManager.h"
 
+void UCItemRollingSubSystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	//Fetch all achievements through Asset Manager.
+	Manager = UCAssetManager::GetIfInitialized();
+	GameState = GetWorld()->GetGameState<ACGameState>();
+	if (Manager)
+	{
+		TArray<FPrimaryAssetId> AssetList;
+		const FPrimaryAssetType AssetType("Item");
+
+		Manager->GetPrimaryAssetIdList(AssetType, AssetList);
+
+		TArray<FName> Bundles;
+		Bundles.Add("UI");
+
+		//Different syntax, creating a delegate via CreateUObject and passing
+		//in the parameters we want to use once loading has completed several frames or seconds later.
+		//In this case the AssetList. 
+		FStreamableDelegate Delegate = FStreamableDelegate::CreateUObject(
+			this, &UCItemRollingSubSystem::OnItemsLoaded, AssetList);
+
+		//Requests the load in Asset Manager on the AssetList and passes in the Delegate we just created.
+		Manager->LoadPrimaryAssets(AssetList, Bundles, Delegate);
+	}
+}
+
+void UCItemRollingSubSystem::OnItemsLoaded(TArray<FPrimaryAssetId> LoadedAssets)
+{
+	if (Manager)
+	{
+		for (FPrimaryAssetId Id : LoadedAssets)
+		{
+			UCItemData* Item = Cast<UCItemData>(Manager->GetPrimaryAssetObject(Id));
+			if (Item == nullptr)
+			{
+				continue;
+			}
+			LoadedItemDatas.Add(Id, Item);
+		}
+	}
+}
+
 bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollResult>& Results,
-                                           FGameplayTagContainer ContextTags, TArray<FPrimaryAssetId> ExcludedIds, TArray<FBucketInfo> Buckets,
+                                           FGameplayTagContainer ContextTags, TArray<FPrimaryAssetId> ExcludedIds,
+                                           TArray<FBucketInfo> Buckets,
                                            int32 RollAmount, ERollType ReplacementType)
 {
 	if (Table == nullptr)
@@ -21,12 +70,13 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 	ensureAlways(Items.Num() > 0);
 	//The filtered random id to avoid rolling numbers too similar in sequence.
 	//const FName FilterID = Table->GetFName();
-	
+
 	//First pass to handle all "always drop" items (does not consume RollAmount).
 	for (FItemTableRow* Row : Items)
 	{
 		//ItemId may be null by design, less than 0 weight means guaranteed drop.
-		if (Row->Weight >= 0.0f || !Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId))
+		if (Row->Weight >= 0.0f || !Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.
+			Contains(Row->ItemId))
 		{
 			continue;
 		}
@@ -125,10 +175,16 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 
 int32 UCItemRollingSubSystem::GetRand(int32 Min, int32 Max)
 {
-	if(!GameState)
+	if (!GameState)
 	{
 		GameState = Cast<ACGameState>(GetWorld()->GetGameState());
-		if(!GameState){return 0;}
+		if (!GameState) { return 0; }
 	}
-	return GameState->Random->GetRandRange(Min,Max,false);
+	return GameState->Random->GetRandRange(Min, Max, false);
+}
+
+UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
+{
+	if (LoadedItemDatas.Contains(ID)) { return LoadedItemDatas[ID]; }
+	return nullptr;
 }

@@ -63,7 +63,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data")
 	FPrimaryAssetType ItemType;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data",meta = (AssetBundles = "UI"))
 	EItemQuality Quality;
 
 	// Maximum amount allowed in the stack. 0 = unlimited.

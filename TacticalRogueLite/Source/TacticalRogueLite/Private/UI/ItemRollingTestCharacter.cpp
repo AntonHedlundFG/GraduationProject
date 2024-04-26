@@ -21,26 +21,6 @@ void AItemRollingTestCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//Fetch all achievements through Asset Manager.
-	if (UAssetManager* Manager = UAssetManager::GetIfInitialized())
-	{
-		TArray<FPrimaryAssetId> AssetList;
-		const FPrimaryAssetType AssetType("Achievement");
-		
-		Manager->GetPrimaryAssetIdList(AssetType, AssetList);
-
-		TArray<FName> Bundles;
-		Bundles.Add("Actions");
-		
-		//Different syntax, creating a delegate via CreateUObject and passing
-		//in the parameters we want to use once loading has completed several frames or seconds later.
-		//In this case the AssetList. 
-		FStreamableDelegate Delegate = FStreamableDelegate::CreateUObject(this, &AItemRollingTestCharacter::OnItemLoaded, AssetList);
-
-		//Requests the load in Asset Manager on the AssetList and passes in the Delegate we just created.
-		Manager->LoadPrimaryAssets(AssetList, Bundles, Delegate);
-	}
-	
 }
 
 // Called every frame
@@ -60,22 +40,19 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Monk")));
 	Bucket.Add(FBucketInfo());
 	RollingSubSystem->RollItemTable(LootTable,RollResults,RequireTags,ExcludeIDs,Bucket,5,ERollType::WithoutReplacement);
-
-	auto Manager = UAssetManager::GetIfInitialized();
-	if(Manager)
-	{
+	
 		for(auto Result : RollResults)
 		{
-			UCItemData* Data = Cast<UCItemData>(Manager->GetPrimaryAssetObject(Result.ItemID));
+			UCItemData* Data = RollingSubSystem->GetItem(Result.ItemID);
 			if(Data)
 			{
-				LOG(ELogCategory::LC_Info,"Rolled Item: %s",*Data->GetItemName().ToString());	
+				LOG(ELogCategory::LC_Gameplay,"Rolled Item: %s",*Data->GetItemName().ToString());	
 			}
 		}	
-	}
 }
 
 void AItemRollingTestCharacter::OnItemLoaded(TArray<FPrimaryAssetId> LoadedAssets)
 {
+	
 }
 
