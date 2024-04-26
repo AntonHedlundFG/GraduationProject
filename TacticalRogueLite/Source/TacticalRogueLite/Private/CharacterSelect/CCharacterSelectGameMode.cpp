@@ -11,6 +11,8 @@
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 #include "Utility/CRandomComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 
 ACCharacterSelectGameMode::ACCharacterSelectGameMode()
 {
@@ -68,10 +70,18 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	{
 		FCNamesAndItemsList Data = StartCharacters->StartCharacterList[Index];
 
-		FString HeroName = "Hero ";
-		HeroName += FString::FromInt(CharacterNumber);
-		HeroName += "_" + Data.Name;
-		Data.Name = HeroName;
+		FString PlayerName = GetNameOfPlayerIndex(ControllingPlayers[Index]);
+		if (!PlayerName.IsEmpty())
+		{
+			Data.Name = PlayerName;
+		}
+		else
+		{
+			FString HeroName = "Hero ";
+			HeroName += FString::FromInt(CharacterNumber);
+			HeroName += "_" + Data.Name;
+			Data.Name = HeroName;
+		}
 		CharacterNumber++;
 		SpawnUnitData.Add(Data);
 	}
@@ -133,4 +143,17 @@ void ACCharacterSelectGameMode::OnLoad()
 	{
 		LOG_ERROR("Couldn't find Save Game Instance to load Player Count in Character Select Menu");
 	}
+}
+
+FString ACCharacterSelectGameMode::GetNameOfPlayerIndex(int32 Index)
+{
+	int NumPlayerStates = UGameplayStatics::GetNumPlayerStates(this);
+	for (int i = 0; i < NumPlayerStates; i++)
+	{
+		AOnlinePlayerState* PS = Cast<AOnlinePlayerState>(UGameplayStatics::GetPlayerState(this, i));
+		if (Index != PS->PlayerIndex) continue;
+
+		return PS->GetPlayerName();
+	}
+	return FString();
 }
