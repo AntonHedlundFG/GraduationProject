@@ -100,7 +100,7 @@ ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 
 void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int inEnemyCount, bool bIsStartRoom)
 {
-	//Create start room or regular room
+	//Create start room or regular room, update camera bounds
 	ACGridRoom* NewRoom;
 	if (bIsStartRoom)
 	{

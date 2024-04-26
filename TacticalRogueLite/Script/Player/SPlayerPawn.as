@@ -1,5 +1,7 @@
 class ASPlayerPawn : APawn
 {
+    default bReplicates = true;
+    
     // -- Components -- //
     UPROPERTY(DefaultComponent, RootComponent)
     USceneComponent RootComp;
@@ -56,9 +58,9 @@ class ASPlayerPawn : APawn
     // -- Camera Location Limits -- //
 
     // The limits of the camera targets's location in the XYZ of the world
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Input|Camera|LocationLimits")
     FVector2D CameraXHorizontalLimits = FVector2D(-1000, 1000);
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Input|Camera|LocationLimits")
     FVector2D CameraYHorizontalLimits = FVector2D(-1000, 1000);
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
     FVector2D CameraVerticalLimits = FVector2D(-1000, 1000);
@@ -279,6 +281,13 @@ class ASPlayerPawn : APawn
             TargetCameraRotation.Pitch += 360;
 
         TargetCameraRotation = GetActorRotation() + FRotator(Pitch , Yaw, 0);
+    }
+    
+    UFUNCTION(BlueprintCallable)
+    void UpdateCameraXYLimits(FVector2D inXVector, FVector2D inYVector)
+    {
+        CameraXHorizontalLimits = inXVector;
+        CameraYHorizontalLimits = inYVector;
     }
 
     UFUNCTION(BlueprintCallable)

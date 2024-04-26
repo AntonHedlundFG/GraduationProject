@@ -43,11 +43,14 @@ public:
 	static TSet<FVector2D> GetTileNeighboursCoordinates(FVector2D inCoords, bool bIncludeDiagonals = false);
 	UFUNCTION()
 	static TSet<FVector2D> GetDiagonalTileNeighboursCoordinates(FVector2D inCoords);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnNewRoomSpawned();
 	
 protected:
-	UPROPERTY(Replicated)
+	UPROPERTY(BlueprintReadOnly, Replicated)
 	TArray<TObjectPtr<ACGridTile>> AllTiles;
-	UPROPERTY(Replicated)
+	UPROPERTY(BlueprintReadOnly,Replicated)
 	TArray<TObjectPtr<ACGridRoom>> AllRooms;
 	UPROPERTY()
 	TArray<TObjectPtr<ACGridTile>> HeroSpawnTiles;
