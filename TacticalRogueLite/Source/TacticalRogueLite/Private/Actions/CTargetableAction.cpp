@@ -18,18 +18,19 @@ void UCTargetableAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProper
 void UCTargetableAction::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
-
-	UCActionComponent* ActionComponent = TargetTile->GetContent()->GetComponentByClass<UCActionComponent>();
-
-	if (ActionComponent)
+	
+	ACGridContent* TargetContent = TargetTile->GetContent();
+	if(!TargetContent) return;
+	
+	UCActionComponent* ActionComponent = TargetContent->GetComponentByClass<UCActionComponent>();
+	if (!ActionComponent) return;
+	
+	for (FAttributeModification& Mod : ModifiersAppliedToTarget)
 	{
-		for (FAttributeModification& Mod : ModifiersAppliedToTarget)
-		{
-			Mod.InstigatorComp = ActionComponent;
-			int ActualDelta = ActionComponent->ApplyAttributeChange(Mod, 0);
-			ModifiersActualDeltas.Add(ActualDelta);
-			LOG_INFO("ActualDelta: %d" ,ActualDelta);
-		}
+		Mod.InstigatorComp = ActionComponent;
+		int ActualDelta = ActionComponent->ApplyAttributeChange(Mod, 0);
+		ModifiersActualDeltas.Add(ActualDelta);
+		LOG_INFO("ActualDelta: %d" ,ActualDelta);
 	}
 }
 
