@@ -59,6 +59,16 @@ bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBu
 	return WroteSomething;
 }
 
+void ACGameState::OnRep_ActionList()
+{
+	if (!ActionList.IsEmpty() && !ActionList.Last())
+		return;
+	if (!ActionHistory.IsEmpty() && !ActionHistory.Last())
+		return;
+
+	OnActionListUpdate.Broadcast();
+}
+
 void ACGameState::Multicast_BroadcastLogMessage_Implementation(ELogCategory Category, const FString& Message)
 {
 	LOG(Category, "%s", *Message);

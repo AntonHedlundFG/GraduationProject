@@ -110,29 +110,50 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	{
 		NewRoom = inGrid->CreateNewRoom(inEnemyCount);
 	}
-
-	TArray<TSubclassOf<ACUnit>> EnemyTypes;
+	const int EnemyAmount = NewRoom->GetEnemyCount();
+	TArray<FCEnemyType> PossibleEnemyTypes;
 	for (auto Element : AllEnemyData->EnemyLevelAndType)
 	{
-		if (Element.Key <= inRoomLevel)
+		if (Element.Level <= inRoomLevel)
 		{
-			EnemyTypes.Add(Element.Value);
+			PossibleEnemyTypes.Add(Element);
 		}
 	}
-	TArray<TSubclassOf<ACUnit>> EnemiesToSpawn;
+
+	if (PossibleEnemyTypes.Num() <= 0)
+	{
+		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Couldn't find viable enemies to spawn");
+		return;
+	}
+
+	//Spawn enemies of random allowed types; equip items and set name, set sprite.
+	TArray<ACUnit*> Enemies;
 	if (GameStateRef)
 	{
 		UCRandomComponent* Random = GameStateRef->Random;
 		
-		for(int i = 0; i < NewRoom->GetEnemyCount(); i++)
+		for(int i = 0; i < EnemyAmount; i++)
 		{
-			const int index = Random->GetRandRange(0, EnemyTypes.Num() - 1);
-			EnemiesToSpawn.Add(EnemyTypes[index]);
+			const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1);
+
+			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[index].Items, PossibleEnemyTypes[index].Name);
+			Enemy->SetAppearance(PossibleEnemyTypes[index].Sprite);
+			Enemies.Add(Enemy);
 		}
 	}
+	else
+	{
+		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Missing Game State reference, trying to spawn default units");
 
-	//Spawn enemies and try to update victory condition
-	const TArray<ACUnit*> Enemies = SpawnUnitsFromArray(EnemiesToSpawn, NewRoom->GetEnemySpawnTiles(), EnemyNames);
+		for(int i = 0; i < EnemyAmount; i++)
+		{
+			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[0].Items, PossibleEnemyTypes[0].Name);
+			Enemy->SetAppearance(PossibleEnemyTypes[0].Sprite);
+			Enemies.Add(Enemy);
+		}
+		
+	}
+	
 	if (GameModeRef)
 	{
 		GameModeRef->AddEnemyUnits(Enemies);

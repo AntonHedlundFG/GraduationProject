@@ -12,7 +12,7 @@ class USAction_AoEDamage : UCAction
 
 	UPROPERTY()
 	TArray<ACUnit> TargetsArray;
-    TArray<int> HealthArray;
+    //TArray<int> HealthArray;
 
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
@@ -37,19 +37,19 @@ class USAction_AoEDamage : UCAction
                     continue;
 
                 TargetsArray.Add(TargetUnit);
-                HealthArray.Add(TargetUnit.AttributeComp.GetHealth());
+                //HealthArray.Add(TargetUnit.AttributeComp.GetHealth());
             }
         }
 
-        if(TargetsArray.Num() != HealthArray.Num())
+        if(TargetsArray.Num() < 0)
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Error, "Error in aquiring targets for AoE action");
+            UCLogManager::BlueprintLog(ELogCategory::LC_Error, "No targets in Targetsarray");
             return;
         }
         
         for (int i = 0; i < TargetsArray.Num(); i++)
         {
-            //CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage); TODO: Newattribute
+            CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage, ActionTags); 
 
              
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
@@ -61,7 +61,8 @@ class USAction_AoEDamage : UCAction
     {
         for (int i = TargetsArray.Num() - 1; i >= 0; i--)
         {
-            TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]);
+            CGameplay::UndoDamage(AttackingUnit, TargetsArray[i], -Damage, ActionTags);
+            //TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]); TODO: Cleanup Old Attr
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Damage} </> damage on {TargetsArray[i].GetUnitName()}.");
         }
     }

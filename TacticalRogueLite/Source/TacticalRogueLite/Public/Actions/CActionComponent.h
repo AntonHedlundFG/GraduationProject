@@ -51,6 +51,9 @@ public:
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
+	void RegisterAction(UCAction* NewAction);
+
+	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void RemoveAction(UCAction* ActionToRemove);
 
 	//Returns first occurrence of action matching the class provided #1#.

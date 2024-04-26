@@ -79,7 +79,7 @@ int UCActionComponent::ApplyAttributeChange(const FAttributeModification& InAttr
 
 bool UCActionComponent::CanApplyAttributeModifiers(UCActionWithTimer* Effect)
 {
-	for (const FAttributeModification& Mod : Effect->Modifiers)
+	for (const FAttributeModification& Mod : Effect->ModifiersAppliedToOwner)
 	{
 		FAttribute AttributeToMod;
 		GetAttribute(Mod.AttributeTag, AttributeToMod);
@@ -179,7 +179,13 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	}
 }
 
-void UCActionComponent::RemoveAction(UCAction* ActionToRemove)
+void UCActionComponent::RegisterAction(UCAction* NewAction)
+{
+	if (!NewAction) return;
+	Actions.Add(NewAction);
+}
+
+void UCActionComponent::RemoveAction(UCAction* ActionToRemove) //TODO: Maybe impl remove action. 
 {
 	if (!ensure(ActionToRemove)) //&& !ActionToRemove->IsRunning()). == Checking if theres active timer.
 	{

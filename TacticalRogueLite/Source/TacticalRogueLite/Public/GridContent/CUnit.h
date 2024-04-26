@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CUnit.generated.h"
 
+class UPaperSprite;
 struct FAbility;
 class UCActionComponent;
 class UCAttributeComponent;
@@ -44,6 +45,9 @@ public:
 	FString GetUnitName() { return UnitName; }
 	UFUNCTION(BlueprintCallable)
 	void SetUnitName(FString inName) { UnitName = inName; }
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetAppearance(UPaperSprite* Sprite);
 
 	// This determines who can control this unit. 0 means AI
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated)

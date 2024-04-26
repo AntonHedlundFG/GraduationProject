@@ -44,9 +44,15 @@ class USHealAction_AOE: UCAction
         for(ACUnit Unit : ValidUnits)
         {
             To = Unit;
+            //Should be moved to baseclass. 
+            //for(FAttributeModification Modification : Modifiers)
+            
+               // Unit.GetActionComp().ApplyAttributeChange(Modification, 0);
+            
+            
             //CGameplay::ApplyHealing(Instigator,To,HealAmount); TODO: Newattribute
             HealedUnits.Add(To);
-            OldHealth.Add(To.GetAttributeComp().GetHealth());
+            //OldHealth.Add(To.GetAttributeComp().GetHealth());
             if(From == To)
             {
                  UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
@@ -65,7 +71,13 @@ class USHealAction_AOE: UCAction
         for(int i = HealedUnits.Num()-1; i >= 0; i--)
         {
             To = HealedUnits[i];
-            HealedUnits[i].GetAttributeComp().SetHealth(OldHealth[i]);
+            //for (FAttributeModification Modification : Modifiers)
+            
+              //  CGameplay::ApplyDamage(From, To, HealAmount, ActionTags);
+                //HealedUnits[i].GetActionComp().ApplyAttributeChange(Modification, 0);
+            
+            //HealedUnits[i].GetAttributeComp().SetHealth(OldHealth[i]);
+            
             if(From == To)
             {
                  UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> healing on self.");

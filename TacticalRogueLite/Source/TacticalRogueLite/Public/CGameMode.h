@@ -101,6 +101,8 @@ protected:
 	UPROPERTY()
 	int NextUndoIndex = -1;
 
+	void ExecuteActionStack(AActor* InstigatingActor = nullptr);
+
 #pragma endregion
 
 
@@ -178,6 +180,8 @@ protected:
 	int RoomsUntilWin = 4;
 	UPROPERTY()
 	int CurrentRoom = 1;
+
+	void ResurrectAndProgressToNewRoom();
 	
 #pragma endregion
 	
