@@ -22,13 +22,13 @@ void UCTargetableAction::StartAction(AActor* Instigator)
 	ACGridContent* TargetContent = TargetTile->GetContent();
 	if(!TargetContent) return;
 	
-	UCActionComponent* ActionComponent = TargetContent->GetComponentByClass<UCActionComponent>();
-	if (!ActionComponent) return;
+	TargetActionComponent = TargetContent->GetComponentByClass<UCActionComponent>();
+	if (!TargetActionComponent) return;
 	
 	for (FAttributeModification& Mod : ModifiersAppliedToTarget)
 	{
-		Mod.InstigatorComp = ActionComponent;
-		int ActualDelta = ActionComponent->ApplyAttributeChange(Mod, 0);
+		Mod.InstigatorComp = TargetActionComponent;
+		int ActualDelta = TargetActionComponent->ApplyAttributeChange(Mod, 0);
 		ModifiersActualDeltas.Add(ActualDelta);
 		LOG_INFO("ActualDelta: %d" ,ActualDelta);
 	}
@@ -38,17 +38,15 @@ void UCTargetableAction::UndoAction(AActor* Instigator)
 {
 	Super::UndoAction(Instigator);
 
-	UCActionComponent* ActionComponent = TargetTile->GetContent()->GetComponentByClass<UCActionComponent>();
-
-	if (ActionComponent)
+	if (TargetActionComponent)
 	{
 		for (int i = 0; i < ModifiersAppliedToTarget.Num(); i++)
 		{
 			FAttributeModification Mod = ModifiersAppliedToTarget[i];
-			Mod.InstigatorComp = ActionComponent;
+			Mod.InstigatorComp = TargetActionComponent;
 			Mod.bIsUndo = true;
 			Mod.Magnitude = -ModifiersActualDeltas[i];
-			ActionComponent->ApplyAttributeChange(Mod, 0);
+			TargetActionComponent->ApplyAttributeChange(Mod, 0);
 		}
 	}
 }
