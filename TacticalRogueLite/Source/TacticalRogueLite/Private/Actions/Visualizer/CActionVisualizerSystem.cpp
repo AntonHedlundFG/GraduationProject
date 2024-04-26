@@ -175,6 +175,7 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 	{
 		UndoQueue.Dequeue(CurrentVisualization);
 		bCurrentVisualForward = false;
+		bShouldBroadcastVisualizationComplete = true;
 		return;
 	}
 
@@ -182,7 +183,15 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 	{
 		VisualizationQueue.Dequeue(CurrentVisualization);
 		bCurrentVisualForward = !CurrentVisualization->VisualizedAction->bIsUndone;
+		bShouldBroadcastVisualizationComplete = true;
 		return;
+	}
+
+	//Only broadcast the first frame after visualization is complete. Then wait for a new visualization to happen.
+	if (bShouldBroadcastVisualizationComplete)
+	{
+		OnVisualizationComplete.Broadcast();
+		bShouldBroadcastVisualizationComplete = false;
 	}
 }
 

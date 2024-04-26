@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Actions/CAction.h"
-#include "Attributes/Utilities/CAttribute.h"
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "CActionWithTimer.generated.h"
 
@@ -16,15 +15,10 @@ class TACTICALROGUELITE_API UCActionWithTimer : public UCAction
 
 public:
 
-	virtual void StartAction_Implementation(AActor* Instigator) override;
-	virtual void UndoAction_Implementation(AActor* Instigator) override;
-
-	// List of modifiers to apply to attributes when the action is active.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	TArray<FAttributeModification> Modifiers;
+	virtual void StartAction(AActor* Instigator) override;
+	virtual void UndoAction(AActor* Instigator) override;
 
 	
-
 	//OnTimerFinishes_Implementation can be overridden to change the outcome
 	//of the timer finishing.
 	UFUNCTION(BlueprintNativeEvent, Category = "Action")

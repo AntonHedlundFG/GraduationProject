@@ -3,6 +3,7 @@
 UE_DEFINE_GAMEPLAY_TAG(TAG_Unit, "Unit");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Unit_IsPlayer, "Unit.IsPlayer");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Unit_IsEnemy, "Unit.IsEnemy");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Unit_Killed, "Unit.Killed");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action, "Action");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Attacking, "Action.Attacking");

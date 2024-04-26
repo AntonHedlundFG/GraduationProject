@@ -13,6 +13,10 @@
 
 void UCEndTurnButtonUI::OnTurnUpdated()
 {
+	if(bIsOpen)
+	{
+		HideEndButton();
+	}
 	ACUnit* Unit;
 	try
 	{
@@ -45,7 +49,9 @@ void UCEndTurnButtonUI::OnTurnUpdated()
 
 void UCEndTurnButtonUI::EndTurn()
 {
+	if(!CurrentUnit){return;}
 	CurrentUnit->GetAttributeComp()->OnItemChargesChanged.RemoveDynamic(this,&UCEndTurnButtonUI::OnChargesChanged);
+	Cast<ACPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(),0))->EndTurn();
 }
 
 void UCEndTurnButtonUI::OnChargesChanged()
@@ -63,30 +69,36 @@ void UCEndTurnButtonUI::OnChargesChanged()
 }
 void UCEndTurnButtonUI::ShowEndButton()
 {
-	if(IsAnimationPlaying(InAnimation) && !IsAnimationPlayingForward(InAnimation))
+	bIsOpen = true;
+	SetVisibility(ESlateVisibility::Visible);
+	if(IsAnimationPlaying(FadeInAnimation) && !IsAnimationPlayingForward(FadeInAnimation))
 	{
-		ReverseAnimation(InAnimation);
+		ReverseAnimation(FadeInAnimation);
 	}
-	PlayAnimation(InAnimation);
+	PlayAnimation(FadeInAnimation);
+	ShowEndButton_BP();
 }
 
 void UCEndTurnButtonUI::HideEndButton()
 {
-	if(IsAnimationPlaying(InAnimation) && IsAnimationPlayingForward(InAnimation))
+	bIsOpen = false;
+	SetVisibility(ESlateVisibility::HitTestInvisible);
+	if(IsAnimationPlaying(FadeInAnimation) && IsAnimationPlayingForward(FadeInAnimation))
 	{
-		ReverseAnimation(InAnimation);
+		ReverseAnimation(FadeInAnimation);
 	}
-	PlayAnimationReverse(InAnimation);
+	PlayAnimationReverse(FadeInAnimation);
+	HideEndButton_BP();
 }
 
 void UCEndTurnButtonUI::UpdateItemCharges()
 {
 	if(CurrentUnit == nullptr){return;}
 	ItemCharges = 0;
-	ItemCharges = CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Armor);
-	ItemCharges = CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Trinket);
-	ItemCharges = CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Boots);
-	ItemCharges = CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Weapon);
+	ItemCharges += CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Armor);
+	ItemCharges += CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Trinket);
+	ItemCharges += CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Boots);
+	ItemCharges += CurrentUnit->GetRemainingCharges(TAG_ItemSlot_Weapon);
 }
 
 void UCEndTurnButtonUI::NativeConstruct()

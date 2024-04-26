@@ -7,12 +7,15 @@
 #include "Actions/CAction.h"
 #include "CAIController.generated.h"
 
+class ACGameState;
 class ACGrid;
 class ACGameMode;
 
 #pragma region FActionPath
+USTRUCT()
 struct FActionPath
 {
+	GENERATED_BODY()
 private:
 	TArray<TPair<FAbility, ACGridTile*>> Path;
 	TArray<FAbility> UsedAbilities;
@@ -42,9 +45,10 @@ public:
 #pragma endregion
 
 UCLASS()
-class ACAIController : public AAIController
+class TACTICALROGUELITE_API ACAIController : public AAIController
 {
 	GENERATED_BODY()
+	
 public:
 	UFUNCTION()
 	void OnTurnChanged();
@@ -53,10 +57,12 @@ public:
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
 	FActionPath DecideBestActions();
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
-	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& BestPaths);
-	void ExecuteActions(FActionPath BestActions);
+	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
+	void ExecuteActions(FActionPath& BestPath);
 	void UpdateContext();
 	void ExecuteTurn();
+	UFUNCTION()
+	void EndTurn();
 
 private:
 	UPROPERTY()
@@ -64,9 +70,16 @@ private:
 	UPROPERTY()
 	ACGrid* Grid;
 	UPROPERTY()
-	TMap<FAbility, ACGridTile*> BestActionsMap;
+	TArray<FActionPath> BestPaths;
+	UPROPERTY()
+	int32 EvaluatedPaths;
 	UPROPERTY()
 	ACGameMode* GameMode;
 	UPROPERTY()
+	ACGameState* GameState;
+	UPROPERTY()
 	FCAIContext Context;
+	UPROPERTY()
+	bool bTurnStarted = false;
+
 };

@@ -2,10 +2,10 @@
 #include "Math/UnrealMathUtility.h"
 
 USmoothDynamicsIntegrator::USmoothDynamicsIntegrator()
-	:	K1(0), K2(0), K3(0),
-		ResponseFrequency(1.0f), 
-		ResponseDamping(1.0f),
-		ResponseUnderShoot(0.0f),
+	:	ResponseFrequency(1.0f), ResponseDamping(1.0f), ResponseUnderShoot(0.0f),
+		K1(0), 
+		K2(0),
+		K3(0),
 		X0(FVector::ZeroVector)
 {
 }

@@ -28,6 +28,9 @@ void UCHighlightComponent::UpdateHighlight()
 	constexpr uint8 Max =  static_cast<uint8>(ETileHighlightModes::ETHM_MAX);
 	uint8 HighlightValue = 256 - Max; // 256 is the max value for custom depth stencil
 	HighlightValue +=  static_cast<uint8>(HighlightModes.Top());
-	HighlightedComponent->CustomDepthStencilValue = HighlightValue;
-	HighlightedComponent->MarkRenderStateDirty();
+	if (HighlightedComponent)
+	{
+		HighlightedComponent->CustomDepthStencilValue = HighlightValue;
+		HighlightedComponent->MarkRenderStateDirty();
+	}
 }

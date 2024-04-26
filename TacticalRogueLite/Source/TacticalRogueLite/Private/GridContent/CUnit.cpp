@@ -23,7 +23,7 @@ ACUnit::ACUnit()
 	RootComponent = SceneComp;
 
 	
-	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent"));
+	AttributeComp = CreateDefaultSubobject<UCAttributeComponent>(TEXT("AttributeComponent")); //TODO: Old Attr Cleanup
 	InventoryComp = CreateDefaultSubobject<UCInventoryComponent>(TEXT("InventoryComponent"));
 	ActionComp = CreateDefaultSubobject<UCActionComponent>(TEXT("ActionComponent"));
 }

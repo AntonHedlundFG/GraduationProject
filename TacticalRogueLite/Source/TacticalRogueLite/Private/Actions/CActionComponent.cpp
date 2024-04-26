@@ -267,6 +267,16 @@ TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot
 	return OutAbility.GetValidTargetTiles(Owner->GetTile());
 }
 
+void UCActionComponent::ToggleHighlightOnValidTargetTiles(FGameplayTag itemSlot, ACGridTile* Tile, bool bHighlightOn)
+{
+	ACUnit* Owner = Cast<ACUnit>(GetOwner());
+	FAbility Ability;
+	if (!TryGetAbility(itemSlot, Ability) || !Owner)
+		return;
+
+	Ability.ToggleHighlightTilesInRange(Tile, bHighlightOn);
+}
+
 bool UCActionComponent::IsValidTargetTile(FGameplayTag ItemSlot, ACGridTile* TargetTile)
 {
 	return GetValidTargetTiles(ItemSlot).Contains(TargetTile);

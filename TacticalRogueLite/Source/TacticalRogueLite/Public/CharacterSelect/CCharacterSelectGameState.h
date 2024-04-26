@@ -5,9 +5,9 @@
 #include "GameFramework/GameStateBase.h"
 #include "CCharacterSelectGameState.generated.h"
 
+class UCCharacterSelectMenuWidget;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReadyToStart);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUI);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGameModeBeginPlayDone);
 
 class UCSetControllingPlayerWidget;
 class UCCharacterSelectorWidget;
@@ -22,12 +22,10 @@ class TACTICALROGUELITE_API ACCharacterSelectGameState : public AGameStateBase
 public:
 	ACCharacterSelectGameState();
 
-	UPROPERTY(BlueprintAssignable, Category = "Update UI")
+	UPROPERTY(BlueprintAssignable, Category = "UI|Update")
 	FReadyToStart OnReadyToStart;
-	UPROPERTY(BlueprintAssignable, Category = "Update UI")
+	UPROPERTY(BlueprintAssignable, Replicated, Category = "UI|Update")
 	FUpdateUI OnUpdateUI;
-	UPROPERTY(BlueprintAssignable, Category = "Update UI")
-	FGameModeBeginPlayDone OnGameModeBeginPlayDone;
 
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	TArray<int> ControllingPlayerIndex;
@@ -50,13 +48,20 @@ public:
 	void OnRep_UpdateReadyStatus(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
 	void OnRep_UpdatePlayerCount(int inCount);
+	UFUNCTION(BlueprintCallable)
+	void OnRep_UpdateUI() const { OnUpdateUI.Broadcast(); }
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_SetupUI();
 	UFUNCTION()
-	void OnRep_UpdateUI() { OnUpdateUI.Broadcast(); }
-	UFUNCTION()
-	void OnRep_GameModeDone() { OnGameModeBeginPlayDone.Broadcast(); }
+	void SetPlayerCountAndLocks(int inPlayerCount);
 
 
 protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TObjectPtr<UCCharacterSelectMenuWidget> MenuWidget;
+
+	UFUNCTION()
 	void CheckReady();
 	
 };

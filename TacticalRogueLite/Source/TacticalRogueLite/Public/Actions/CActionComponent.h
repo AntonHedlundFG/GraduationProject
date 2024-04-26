@@ -76,6 +76,9 @@ public:
 	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void ToggleHighlightOnValidTargetTiles(FGameplayTag itemSlot, ACGridTile* Tile, bool bHighlightOn);
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool IsValidTargetTile(FGameplayTag ItemSlot, class ACGridTile* TargetTile);
 
 	UCActionComponent();
