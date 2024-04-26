@@ -16,12 +16,12 @@ class USAttackAction_Root : UCAttackAction
 	}
 
    
-    UCActionComponent ActionComp = UCActionComponent::Get(TargetTile.GetContent());
+    UCActionComponent ActionComponent = UCActionComponent::Get(TargetTile.GetContent());
 
-    check(ActionComp != nullptr);
+    check(ActionComponent != nullptr);
 	
 	// Check if player already has action class.
-	if (ActionComp.GetAction(ActionToGrant) != nullptr)
+	if (ActionComponent.GetAction(ActionToGrant) != nullptr)
 	
 	{
 		UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Rootingeffect is already on the target unit.");
@@ -29,7 +29,7 @@ class USAttackAction_Root : UCAttackAction
 	}
 
     //Apply effect.
-	ActionComp.AddAction(TargetTile.GetContent(), ActionToGrant);
+	ActionComponent.AddAction(TargetTile.GetContent(), ActionToGrant);
     UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Added effect rooted to unit");
 	
 	}
@@ -37,17 +37,17 @@ class USAttackAction_Root : UCAttackAction
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
-         UCActionComponent ActionComp = UCActionComponent::Get(TargetTile.GetContent());
+         UCActionComponent ActionComponent = UCActionComponent::Get(TargetTile.GetContent());
 
-        check(ActionComp != nullptr);
+        check(ActionComponent != nullptr);
 
-        if (ActionComp.GetAction(ActionToGrant) == nullptr)
+        if (ActionComponent.GetAction(ActionToGrant) == nullptr)
         {
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "ActionToGrant is not in ActionComp");
             return;
         }
       
-        ActionComp.RemoveAction(ActionComp.GetAction(ActionToGrant));
+        ActionComponent.RemoveAction(ActionComponent.GetAction(ActionToGrant));
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Successfully removed rooting effect");
        
     }
