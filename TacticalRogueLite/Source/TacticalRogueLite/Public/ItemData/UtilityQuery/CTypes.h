@@ -129,14 +129,13 @@ USTRUCT(BlueprintType)
 struct FBucketInfo
 {
 	GENERATED_BODY()
-
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName BucketName;
 
 	//Max times this bucket can be picked. Use 0 to ignore an entire Group for even more control.
-	//(0=IgnoredBucket, -1=UnlimitedReplacement).
+	//(0=Ignored Bucket,1= Use One Time, -1= Unlimited Replacement).
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 MaxOccurance;
 
@@ -172,6 +171,15 @@ public:
 		}
 
 		return 0.0f;
+	}
+
+	bool Ignored()
+	{
+		if(TimesSelected < MaxOccurance)
+		{
+			return false;
+		}
+		return true;
 	}
 	int32 TimesSelected;
 };

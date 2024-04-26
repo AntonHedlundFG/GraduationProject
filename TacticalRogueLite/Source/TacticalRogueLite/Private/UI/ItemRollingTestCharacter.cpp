@@ -35,11 +35,10 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 	UCItemRollingSubSystem* RollingSubSystem = GetWorld()->GetGameInstance()->GetSubsystem<UCItemRollingSubSystem>();
 	TArray<FItemRollResult> RollResults;
 	TArray<FPrimaryAssetId> ExcludeIDs;
-	TArray<FBucketInfo> Bucket;
 	FGameplayTagContainer RequireTags;
 	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Monk")));
-	Bucket.Add(FBucketInfo());
-	RollingSubSystem->RollItemTable(LootTable,RollResults,RequireTags,ExcludeIDs,Bucket,5,ERollType::WithoutReplacement);
+	if(Buckets.IsEmpty()){Buckets.Add(FBucketInfo());}
+	RollingSubSystem->RollItemTable(LootTable,RollResults,RequireTags,ExcludeIDs,Buckets,6,ERollType::WithoutReplacement);
 	
 		for(auto Result : RollResults)
 		{

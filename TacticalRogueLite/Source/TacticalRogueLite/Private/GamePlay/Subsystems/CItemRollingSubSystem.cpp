@@ -75,8 +75,7 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 	for (FItemTableRow* Row : Items)
 	{
 		//ItemId may be null by design, less than 0 weight means guaranteed drop.
-		if (Row->Weight >= 0.0f || !Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.
-			Contains(Row->ItemId))
+		if (Row->Weight >= 0.0f || !Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId))
 		{
 			continue;
 		}
@@ -97,15 +96,28 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 	{
 		float TotalWeight = 0;
 		float CurrWeight = 0;
+
+		for (FBucketInfo& Bucket : Buckets)
+		{
+			TotalWeight += Bucket.BucketWeight();
+		}
+		
 		float SelectedWeight = GetRand(0.0f, TotalWeight);
 		FName SelectedBucket = "Default";
 
 		for (FBucketInfo& Bucket : Buckets)
 		{
+			if(Bucket.Ignored())
+			{
+				continue;
+			}
 			CurrWeight += Bucket.BucketWeight();
+			
 			if (SelectedWeight <= CurrWeight)
 			{
 				SelectedBucket = Bucket.BucketName;
+				Bucket.TimesSelected++;
+				break;
 			}
 		}
 
@@ -113,7 +125,7 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 		TotalWeight = 0;
 		for (FItemTableRow* Row : Items)
 		{
-			if (ExcludedIds.Contains(Row->ItemId))
+			if (!Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId))
 			{
 				//Skip excluded item.
 				continue;
@@ -133,7 +145,7 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 		CurrWeight = 0;
 		for (FItemTableRow* Row : Items)
 		{
-			if (ExcludedIds.Contains(Row->ItemId))
+			if (!Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId) || Row->bIgnored)
 			{
 				//Skip excluded item.
 				continue;
@@ -168,6 +180,10 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 	for (FItemTableRow* Row : Items)
 	{
 		Row->bIgnored = false;
+	}
+	for (FBucketInfo& Bucket : Buckets)
+	{
+		Bucket.TimesSelected = 0;
 	}
 
 	return Results.Num() > 0;
