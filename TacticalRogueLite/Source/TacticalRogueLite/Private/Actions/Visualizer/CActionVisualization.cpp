@@ -17,12 +17,7 @@ bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 
 void UCActionVisualization::Enter_Implementation()
 {
-	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 	
-	for (ACUnit* Unit : GameState->TurnOrder)
-	{
-		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0,0,100));
-	}
 }
 
 void UCActionVisualization::Exit_Implementation()
@@ -34,11 +29,26 @@ bool UCActionVisualization::Tick_Implementation(float DeltaTime)
 {
 	LOG_INFO("No visualization available for this action");
 
+	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
+
+	for (ACUnit* Unit : GameState->TurnOrder)
+	{
+		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0, 0, 100));
+	}
+
 	return true;
 }
 
 bool UCActionVisualization::RevertTick_Implementation(float DeltaTime)
 {
 	LOG_INFO("No undo visualization available for this action");
+
+	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
+
+	for (ACUnit* Unit : GameState->TurnOrder)
+	{
+		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0, 0, 100));
+	}
+
 	return true;
 }
