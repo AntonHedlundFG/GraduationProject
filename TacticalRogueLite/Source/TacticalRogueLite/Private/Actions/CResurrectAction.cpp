@@ -7,11 +7,11 @@
 #include "CGameState.h"
 #include "Attributes/CAttributeComponent.h"
 
-void UCResurrectAction::StartAction_Implementation(AActor* Instigator)
+void UCResurrectAction::StartAction(AActor* Instigator)
 {
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 	if (!GameState || !AffectedUnit || !AffectedUnit->GetAttributeComp() || !ResurrectOnTile) return;
-	Super::StartAction_Implementation(Instigator);
+	Super::StartAction(Instigator);
 
 	PreviousTile = AffectedUnit->GetTile();
 	AffectedUnit->SetTile(ResurrectOnTile);
@@ -21,13 +21,17 @@ void UCResurrectAction::StartAction_Implementation(AActor* Instigator)
 	{
 		GameState->TurnOrder.Add(AffectedUnit);
 		AffectedUnit->GetAttributeComp()->SetHealth(1);
+		LOG_GAMEPLAY("%s returns from the dead.", *AffectedUnit->GetUnitName());
+	}
+	else
+	{
+		LOG_GAMEPLAY("%s moved on to the next room.", *AffectedUnit->GetUnitName());
 	}
 
-	LOG_GAMEPLAY("%s moved on to the next room.", *AffectedUnit->GetUnitName());
 
 }
 
-void UCResurrectAction::UndoAction_Implementation(AActor* Instigator)
+void UCResurrectAction::UndoAction(AActor* Instigator)
 {
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 	if (!GameState || !AffectedUnit || AffectedUnit->GetAttributeComp() || !ResurrectOnTile) return;
@@ -42,7 +46,7 @@ void UCResurrectAction::UndoAction_Implementation(AActor* Instigator)
 
 	LOG_GAMEPLAY("%s moved back.", *AffectedUnit->GetUnitName());
 
-	Super::UndoAction_Implementation(Instigator);
+	Super::UndoAction(Instigator);
 }
 
 void UCResurrectAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const

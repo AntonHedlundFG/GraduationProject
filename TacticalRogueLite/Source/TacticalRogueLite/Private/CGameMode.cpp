@@ -24,6 +24,7 @@
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Actions/CResurrectAction.h"
+#include "Grid/CGridRoom.h"
 
 void ACGameMode::BeginPlay()
 {

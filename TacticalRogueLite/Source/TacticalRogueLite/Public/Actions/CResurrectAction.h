@@ -19,8 +19,8 @@ class TACTICALROGUELITE_API UCResurrectAction : public UCAction
 
 public:
 
-	virtual void StartAction_Implementation(AActor* Instigator) override;
-	virtual void UndoAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction(AActor* Instigator) override;
+	virtual void UndoAction(AActor* Instigator) override;
 
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	ACUnit* AffectedUnit;

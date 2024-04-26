@@ -24,7 +24,7 @@ class TACTICALROGUELITE_API UCResurrectVisualization : public UCActionVisualizat
 	float TimePassed = 0.0f;
 
 	//The total duration of the animation.
-	float Duration = 1.0f;
+	float Duration = 0.2f;
 
 	//A reference to the cast version of the action
 	UPROPERTY()
