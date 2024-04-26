@@ -55,7 +55,7 @@ public:
 	TArray<UCAction*> ActionList;
 
 	// History of all executed actions of previous turns
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Actions")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_ActionList, Category = "Actions")
 	TArray<UCAction*> ActionHistory;
 
 	UPROPERTY(BlueprintAssignable)
@@ -66,7 +66,7 @@ public:
 protected:
 
 	UFUNCTION()
-	void OnRep_ActionList() { OnActionListUpdate.Broadcast(); }
+	void OnRep_ActionList();
 
 	//Logs a message on all clients if called on server. On client, only logs locally.
 	UFUNCTION(NetMulticast, Reliable)

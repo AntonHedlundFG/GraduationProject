@@ -139,10 +139,11 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	
 
 	//Create Hero Spawns
+	HeroSpawns.Append(GenerateSpawnsOnPlatform(StartArea, 4));
+	/*
 	if (bWithHeroSpawns)
 	{
-		HeroSpawns.Append(GenerateSpawnsOnPlatform(StartArea, 4));
-	}
+	}*/
 
 	GenerateEnemySpawns(GeneratedPoints, ExitArea);
 	

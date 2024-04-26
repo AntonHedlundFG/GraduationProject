@@ -77,6 +77,8 @@ protected:
 
 	//An index tracker so that we know which action to visualize, and maintain order.
 	int32 ActionListCurrentIndex = -1;
+	int32 ActionHistoryCurrentIndex = -1;
+	int32 LastKnownActionHistorySize = 0;
 	
 	/// <summary>
 	/// This should be populated in the editor so both C++ and BP implementations are available.
