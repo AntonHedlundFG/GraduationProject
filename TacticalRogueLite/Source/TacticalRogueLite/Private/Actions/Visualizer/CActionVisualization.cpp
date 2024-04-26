@@ -8,6 +8,7 @@
 #include "Actions/CMovementAction.h"
 #include "GridContent/CUnit.h"
 #include "Grid/CGridTile.h"
+#include "CGameState.h"
 
 bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 {
@@ -16,6 +17,12 @@ bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 
 void UCActionVisualization::Enter_Implementation()
 {
+	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
+	
+	for (ACUnit* Unit : GameState->TurnOrder)
+	{
+		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0,0,100));
+	}
 }
 
 void UCActionVisualization::Exit_Implementation()
