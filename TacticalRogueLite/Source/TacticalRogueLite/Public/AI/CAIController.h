@@ -49,18 +49,37 @@ class TACTICALROGUELITE_API ACAIController : public AAIController
 {
 	GENERATED_BODY()
 	
-public:
-	UFUNCTION()
-	void OnTurnChanged();
+protected:
 	virtual void BeginPlay() override;
 
+	// Check if it is the AI's turn
+	// If it is, Execute its turn
+	UFUNCTION()
+	void OnTurnChanged();
+
+	// Score passed ability based on its considerations at the target tile
 	float ScoreAction(FAbility& Ability, ACGridTile* StartTile, ACGridTile* TargetTile);
+	
+	// Evaluate scored actions and decide which ones to use
 	FActionPath DecideBestActions();
+
+	// Loop through all abilities
+	// Recursively evaluate all possible paths
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
+
+	// Try to add the path to the best paths
 	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
+
+	// Execute the best path of abilities
 	void ExecuteActions(FActionPath& BestPath);
+
+	// Update the AI context
 	void UpdateContext();
+
+	// Execute the AI's turn
 	void ExecuteTurn();
+
+	// End the AI's turn
 	UFUNCTION()
 	void EndTurn();
 
