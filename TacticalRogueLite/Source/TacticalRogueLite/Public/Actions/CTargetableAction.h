@@ -13,9 +13,19 @@ class TACTICALROGUELITE_API UCTargetableAction : public UCAction
 {
 	GENERATED_BODY()
 
+protected:
+
+	virtual void StartAction(AActor* Instigator) override;
+
+	virtual void UndoAction(AActor* Instigator) override;
+
 public:
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	ACGridTile* TargetTile;
+
+	// List of modifiers to apply to attributes when the action is active.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	TArray<FAttributeModification> ModifiersAppliedToTarget;
 
 	UFUNCTION(BlueprintNativeEvent)
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile);

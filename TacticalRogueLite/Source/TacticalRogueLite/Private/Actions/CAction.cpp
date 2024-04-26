@@ -21,6 +21,11 @@ void UCAction::OnRep_bIsUndone()
 void UCAction::Initialize(UCActionComponent* NewActionComp)
 {
 	ActionComp = NewActionComp;
+	
+	if (ActionComp)
+	{
+		ActionComp->RegisterAction(this);
+	}
 }
 
 UCActionComponent* UCAction::GetOwningComponent() const
@@ -38,7 +43,11 @@ bool UCAction::CanStart(AActor* Instigator)
 
 void UCAction::StartAction(AActor* Instigator)
 {
-
+	for (FAttributeModification& Mod : ModifiersAppliedToOwner)
+	{
+		int ActualDelta = GetOwningComponent()->ApplyAttributeChange(Mod, 0);
+		ModifiersActualDeltas.Add(ActualDelta);
+	}
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
 		Comp->ActiveGameplayTags.AppendTags(ActionTags);
@@ -85,6 +94,14 @@ void UCAction::UndoAction(AActor* Instigator)
 		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 
 	ReceiveUndoAction(Instigator);
+
+	for (int i = 0; i < ModifiersAppliedToOwner.Num(); i++)
+	{
+		FAttributeModification Mod = ModifiersAppliedToOwner[i];
+		Mod.bIsUndo = true;
+		Mod.Magnitude = -ModifiersActualDeltas[i];
+		GetOwningComponent()->ApplyAttributeChange(Mod, 0);
+	}
 
 	bIsUndone = true;
 	if (IsValid(Comp))

@@ -116,7 +116,10 @@ public:
 
 	// List of modifiers to apply to attributes when the action is active.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	TArray<FAttributeModification> Modifiers;
+	TArray<FAttributeModification> ModifiersAppliedToOwner;
+
+	UPROPERTY()
+	TArray<int> ModifiersActualDeltas;
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
