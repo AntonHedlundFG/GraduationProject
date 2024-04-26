@@ -38,7 +38,12 @@ public:
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
 	UFUNCTION(BlueprintCallable)
 	int GetEnemyCount() { return EnemyCount; }
+	UFUNCTION(BlueprintCallable)
 	ACGridTile* GetExitTile() const { return ExitTile; }
+	UFUNCTION(BlueprintCallable)
+	FVector2D GetRoomXBounds() { return FVector2D(X_Min, X_Max); }
+	UFUNCTION(BlueprintCallable)
+	FVector2D GetRoomYBounds() { return FVector2D(Y_Min, Y_Max); }
 	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const;
 
 
@@ -73,6 +78,16 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
 	int EnemyCount = 4;
+
+	//Room bounds
+	UPROPERTY(BlueprintReadOnly, Category = "Room Settings|Bounds")
+	int32 X_Min;
+	UPROPERTY(BlueprintReadOnly, Category = "Room Settings|Bounds")
+	int32 X_Max;
+	UPROPERTY(BlueprintReadOnly, Category = "Room Settings|Bounds")
+	int32 Y_Min;
+	UPROPERTY(BlueprintReadOnly, Category = "Room Settings|Bounds")
+	int32 Y_Max;
 
 	UPROPERTY()
 	FVector2D MinCoords;

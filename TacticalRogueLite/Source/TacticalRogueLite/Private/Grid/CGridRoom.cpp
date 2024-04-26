@@ -90,10 +90,10 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 		RoomMaxWidth += PlatformWidth * 2;
 
 	//Set Room Bounds
-	const int32 X_Min = RandomComp->GetRandRange(inStartX - RoomMaxWidth + PlatformWidth, inStartX + PlatformWidth, false);
-	const int32 X_Max = RandomComp->GetRandRange(X_Min + RoomMaxWidth - WidthVariance, X_Min + RoomMaxWidth, false);
-	const int32 Y_Min = inStartY;
-	const int32 Y_Max = RandomComp->GetRandRange(Y_Min + RoomMaxLength - LengthVariance, Y_Min + RoomMaxLength, false);
+	X_Min = RandomComp->GetRandRange(inStartX - RoomMaxWidth + PlatformWidth, inStartX + PlatformWidth, false);
+	X_Max = RandomComp->GetRandRange(X_Min + RoomMaxWidth - WidthVariance, X_Min + RoomMaxWidth, false);
+	Y_Min = inStartY;
+	Y_Max = RandomComp->GetRandRange(Y_Min + RoomMaxLength - LengthVariance, Y_Min + RoomMaxLength, false);
 
 	MinCoords = FVector2d(X_Min, Y_Min);
 	MaxCoords = FVector2d(X_Max, Y_Max);

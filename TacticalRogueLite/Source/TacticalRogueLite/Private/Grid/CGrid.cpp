@@ -45,6 +45,8 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyCount)
 			tile->GenerateLinks();
 		}
 
+
+		OnNewRoomSpawned();
 		AllRooms.Add(Room);
 	}
 	
@@ -66,6 +68,7 @@ ACGridRoom* ACGrid::CreateStartRoom(int inEnemyCount)
 			tile->GenerateLinks();
 		}
 
+		OnNewRoomSpawned();
 		AllRooms.Add(Room);
 	}
 
