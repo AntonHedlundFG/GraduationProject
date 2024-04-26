@@ -115,6 +115,7 @@ public:
 	{
 		ModifierOperation = EAttributeModifierOperation::AddDelta;
 		Magnitude = 0;
+		bIsUndo = false;
 	}
 
 	int GetMagnitude(int32 Level = 0)const
