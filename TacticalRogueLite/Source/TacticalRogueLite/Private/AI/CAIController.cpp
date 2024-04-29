@@ -134,6 +134,18 @@ FActionPath ACAIController::DecideBestActions()
 
 	// Get a random number between 0 and the number of best paths
 	// TODO: Refine how the AI chooses the best path
+
+	// Remove paths too far from the best path
+	float BestScore = BestPaths[0].GetScore();
+	float Threshold = 0.1f;
+	for (int i = BestPaths.Num() - 1; i >= 0; --i)
+	{
+		if(BestPaths[i].GetScore() < BestScore - Threshold)
+		{
+			BestPaths.RemoveAt(i);
+		}
+	}
+	
 	UCRandomComponent* Random = GameState->Random;
 	const int32 RandomIndex = Random->GetRandRange(0, BestPaths.Num() - 1, false);
 	
