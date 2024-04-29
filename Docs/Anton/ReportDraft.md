@@ -16,8 +16,7 @@ The personal goals I set for my project were:
 - Gaining experience in a team with several programmers, as it is going to be a very important aspect of working within the industry, and in our previous Game Projects at FutureGames I have only worked in teams of 2-3 programmers.
 - Solidifying my skills in networked gameplay, which has been one of the areas of development I've enjoyed the most, as well as the skill I believe has made me stand out the most among potential internship companies.
 
-As I wanted to work in a team, I was in touch with a few of my co-students who were also interested in a team project within Unreal Engine. We ended up with a team of 5 students; Me, Johan Brandt, Erik Lund, Alice Kamil and Theo Sandén.
-[Me](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), [Johan Brandt](https://www.johanbrandt.com/), [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/)
+As I wanted to work in a team, I was in touch with a few of my co-students who were also interested in a team project within Unreal Engine. We ended up with a team of 5 students; [Me](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), [Johan Brandt](https://www.johanbrandt.com/), [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/)
 
 ## Project Startup
 ### Goals, team and individual
