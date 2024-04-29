@@ -13,7 +13,7 @@ void UCHighlightTilesVisualization::Enter_Implementation()
 	TimePassed = 0.0f;
 	HighLightAction = Cast<UCHighlightTileAction>(VisualizedAction);
 	
-	ToggleHighlightTilesInRange(HighLightAction->TargetTile, true);
+	ToggleHighlightTilesInRange(true);
 }
 
 bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
@@ -21,11 +21,16 @@ bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
 	// Updates the current time frame of the animation
 	TimePassed = TimePassed + DeltaTime;
 
+	if(HighLightAction->GetDuration() - TimePassed < 0.1f)
+	{
+		HighLightAction->TargetTile->GetHighlightComponent()->AppendHighlightMode(ETileHighlightModes::ETHM_Hovered);
+	}
+
 	// If the time passed is greater than the duration, we're done.
-	if(TimePassed >= Duration)
+	if(TimePassed >= HighLightAction->GetDuration())
 	{
 		// Remove the highlight from the tiles
-		ToggleHighlightTilesInRange(HighLightAction->TargetTile, false);
+		ToggleHighlightTilesInRange(false);
 		
 		return true;
 	}
@@ -40,29 +45,21 @@ bool UCHighlightTilesVisualization::RevertTick_Implementation(float DeltaTime)
 	return true;
 }
 
-void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn)
+void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(bool bHighlightOn)
 {
-	FAbility& Ability = HighLightAction->GetAbility();
-
-	// Loop over all Actions in the ability and toggle them with their respective highlightmode
-	for (auto Action : Ability.InstantiatedActions)
+	TArray<ACGridTile*>& Tiles = HighLightAction->GetAffectedTiles();
+	TArray<ETileHighlightModes>& HighlightModes = HighLightAction->GetHighlightModes();
+	for (int i = 0; i < Tiles.Num(); ++i)
 	{
-		UCTargetableAction* TargetableAction = Cast<UCTargetableAction>(Action);
-		if (TargetableAction)
+		const ETileHighlightModes HighlightMode = HighlightModes[i];
+		const ACGridTile* Tile = Tiles[i];
+		if(bHighlightOn)
 		{
-			auto Tiles = TargetableAction->GetValidTargetTiles(fromTile);
-
-			for (const ACGridTile* Tile : Tiles)
-			{
-				const ETileHighlightModes HighlightMode = TargetableAction->GetHighlightMode();
-				if(bHighlightOn)
-				{
-					Tile->GetHighlightComponent()->AppendHighlightMode(HighlightMode);
-				}
-				else{
-					Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
-				}
-			}
+			Tile->GetHighlightComponent()->AppendHighlightMode(HighlightMode);
+		}
+		else{
+			Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
+			HighLightAction->TargetTile->GetHighlightComponent()->RemoveHighlightMode(ETileHighlightModes::ETHM_Hovered);
 		}
 	}
 }
