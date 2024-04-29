@@ -64,6 +64,8 @@ class ASPlayerPawn : APawn
     FVector2D CameraYHorizontalLimits = FVector2D(-1000, 1000);
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
     FVector2D CameraVerticalLimits = FVector2D(-1000, 1000);
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input|Camera|LocationLimits")
+    float CameraBoundsMargin = 100.0f;
 
     // -- Camera Rotation --
 
@@ -334,8 +336,8 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintCallable)
     void ClampCameraTargetInBounds()
     {
-        TargetCameraLocation.X = Math::Clamp(TargetCameraLocation.X, CameraXHorizontalLimits.X, CameraXHorizontalLimits.Y);
-        TargetCameraLocation.Y = Math::Clamp(TargetCameraLocation.Y, CameraYHorizontalLimits.X, CameraYHorizontalLimits.Y);
-        TargetCameraLocation.Z = Math::Clamp(TargetCameraLocation.Z, CameraVerticalLimits.X, CameraVerticalLimits.Y);
+        TargetCameraLocation.X = Math::Clamp(TargetCameraLocation.X, CameraXHorizontalLimits.X - CameraBoundsMargin, CameraXHorizontalLimits.Y + CameraBoundsMargin);
+        TargetCameraLocation.Y = Math::Clamp(TargetCameraLocation.Y, CameraYHorizontalLimits.X - CameraBoundsMargin, CameraYHorizontalLimits.Y + CameraBoundsMargin);
+        TargetCameraLocation.Z = Math::Clamp(TargetCameraLocation.Z, CameraVerticalLimits.X - CameraBoundsMargin, CameraVerticalLimits.Y + CameraBoundsMargin);
     }
 }
