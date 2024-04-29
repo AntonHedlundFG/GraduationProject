@@ -47,7 +47,7 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyCount)
 
 
 		AllRooms.Add(Room);
-		OnNewRoomSpawned();
+		OnLevelUpdated();
 	}
 	
 	return Room;
@@ -69,7 +69,7 @@ ACGridRoom* ACGrid::CreateStartRoom(int inEnemyCount)
 		}
 
 		AllRooms.Add(Room);
-		OnNewRoomSpawned();
+		OnLevelUpdated();
 	}
 
 	if (!Room->GetHeroSpawnTiles().IsEmpty())

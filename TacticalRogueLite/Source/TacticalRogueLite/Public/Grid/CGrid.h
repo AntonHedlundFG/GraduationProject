@@ -44,10 +44,11 @@ public:
 	UFUNCTION()
 	static TSet<FVector2D> GetDiagonalTileNeighboursCoordinates(FVector2D inCoords);
 
+	//Called when rooms are added or removed.
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnNewRoomSpawned();
+	void OnLevelUpdated();
 
-	//Used to update camera bounds when rooms are spawned/removed.
+	//Used to update camera bounds when rooms are added or removed.
 	UFUNCTION(BlueprintPure)
 	void GetLevelBounds(FVector2D& outXBounds, FVector2D& outYBounds); 
 	
