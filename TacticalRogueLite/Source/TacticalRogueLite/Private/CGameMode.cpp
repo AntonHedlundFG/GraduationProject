@@ -146,8 +146,9 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		LOG_WARNING("Not enough charges remaining on item");
 		return false;
 	}
-	
 
+
+	TArray<UCAction*> TempActionStack;
 	// Create instances of each action in the used ability, and add them to the stack in reverse order
 	for (int i = OutAbility.Actions.Num() - 1; i >= 0; i--)
 	{
@@ -165,8 +166,10 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		{
 			Targetable->TargetTile = inTargetTile;
 		}
-		ActionStack.Add(NewAction);
+		TempActionStack.Add(NewAction);
 	}
+	TempActionStack.Append(ActionStack);
+	ActionStack = TempActionStack;
 
 	ExecuteActionStack(inUnit);	
 
