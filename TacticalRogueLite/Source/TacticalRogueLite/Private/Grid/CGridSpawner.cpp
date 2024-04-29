@@ -8,7 +8,6 @@
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
 #include "Items/CNamesAndItemsList.h"
-#include "Achievements/CVictoryCondition.h"
 #include "GridContent/CAllEnemiesData.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
@@ -136,43 +135,45 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 		return;
 	}
 
+	//If no GameState found; issue warning, spawn no enemies.
+	if (!GameStateRef)
+	{
+		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Missing Game State reference, can't spawn new units");
+		return;
+	}
+	//If no GameState found; issue warning, spawn no enemies.
+	if (!GameModeRef)
+	{
+		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Missing Game Mode reference, can't spawn new units");
+		return;
+	}
+	
 	//Spawn enemies of random valid types; equip items, set name, and set sprite.
-	//If no GameState found; issue warning, spawn first valid enemy type.
 	TArray<ACUnit*> Enemies;
-	if (GameStateRef)
+	UCRandomComponent* Random = GameStateRef->Random;
+	for(int i = 0; i < EnemyAmount; i++)
 	{
-		UCRandomComponent* Random = GameStateRef->Random;
-		
-		for(int i = 0; i < EnemyAmount; i++)
-		{
-			const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1, false);
+		const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1, false);
 
-			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[index].Items, PossibleEnemyTypes[index].Name);
-			Enemy->OnRep_SetAppearance(PossibleEnemyTypes[index].Sprite);
-			Enemies.Add(Enemy);
-		}
+		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[index].Items, PossibleEnemyTypes[index].Name);
+		Enemy->OnRep_SetAppearance(PossibleEnemyTypes[index].Sprite);
+		Enemies.Add(Enemy);
 	}
-	else
+	
+	//If this is not the starting room, add the new enemies to the back of the turn order list.
+	if (!bIsStartRoom)
 	{
-		LOG_WARNING("GridSpawner SpawnRoomWithEnemies: Missing Game State reference, trying to spawn default units");
-		for(int i = 0; i < EnemyAmount; i++)
-		{
-			ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[0].Items, PossibleEnemyTypes[0].Name);
-			Enemy->OnRep_SetAppearance(PossibleEnemyTypes[0].Sprite);
-			Enemies.Add(Enemy);
-		}
-		
+		GameStateRef->TurnOrder.Append(Enemies);
+		GameStateRef->OnRep_TurnOrder();
 	}
-
+	
 	//Add enemies to GameMode array.
-	if (GameModeRef)
+	GameModeRef->AddEnemyUnits(Enemies);
+	if (!NewRoom->TryInitializeVictoryCondition(Enemies))
 	{
-		GameModeRef->AddEnemyUnits(Enemies);
-		if (!NewRoom->TryInitializeVictoryCondition(Enemies))
-		{
-			LOG_ERROR("Failed to Update Victory Condition for new Room");
-		}
+		LOG_ERROR("Failed to Update Victory Condition for newly spawned Room");
 	}
+	
 }
 
 void ACGridSpawner::OnSave()
