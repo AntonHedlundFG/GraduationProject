@@ -7,7 +7,7 @@ Teamwork: GitHub, Jira.
 
 Details: 10 weeks, 5 programmers.
 
-## Introduction [TODO: Link to everyone's portfolio]
+## Introduction
 This is a report regarding a ten week long graduation project at FutureGames Stockholm. The project took place from rom April 18th to May 24th, 2024.
 
 The personal goals I set for my project were:
@@ -17,6 +17,7 @@ The personal goals I set for my project were:
 - Solidifying my skills in networked gameplay, which has been one of the areas of development I've enjoyed the most, as well as the skill I believe has made me stand out the most among potential internship companies.
 
 As I wanted to work in a team, I was in touch with a few of my co-students who were also interested in a team project within Unreal Engine. We ended up with a team of 5 students; Me, Johan Brandt, Erik Lund, Alice Kamil and Theo Sandén.
+[Me](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), [Johan Brandt](https://www.johanbrandt.com/), [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/)
 
 ## Project Startup
 ### Goals, team and individual
@@ -30,7 +31,7 @@ Very early in our team's discussions, we decided on making a tactical game, some
 - Using Unreal Engine's GameplayTag system for programming gameplay
 - A unit system where hero units and enemies function identically, so that the AI interacts with the game as a player would. This would build the foundation to potentially introduce "mind-control" effects for both AI and player
 
-### Style guide [TODO: Link to naming conventions]
+### [Style guide](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Docs/Naming%20Conventions/README.md)
 Before work started on any code, we sat down and decided on a few basic principles for how to style our code consistently across the team.
 
 For example, since we were going to use C++ and AngelScript side-by-side, we decided to name any class implemented natively in C++ with a C following the default Unreal naming convention (i.e. ACMyActor or UCMyObject.) For classes implemented in AngelScript, we instead used an S (ASMyActor, USMyObject). 
@@ -49,7 +50,7 @@ As part of the first few days of the project being spent on planning our work an
 9. Polish
 10. Presentation & Report writing
 
-## Mentors [TODO: Ask mentors if I can include their names in report, as well as if they want me to link to their websites or mention anything]
+## Mentors [TODO: Ask mentors if they want me to link to their websites or mention anything]
 As the school provided a budget for one hour of mentoring per student per week, we decided as a group to reach out to two mentors to divide our weekly five hours between.
 ### Marc Zaku
 Marc was our teacher in the Programming Design Patterns course. Since our game was going to be a very logic-heavy game we needed our core game architecture to be solid, and because of this we believed Marc would be able to do an excellent job as a mentor for the team. 
@@ -60,11 +61,11 @@ Ian had mentored our class in a much earlier course on C++, and has plenty of ex
 
 This is a weekly summary of my work on the project. I will not go into details about the work other team members did, that information can be found in their respective reports.
 
-## Week 1, Starting Up [TODO: Add pictures of the whiteboard from week 1]
+## Week 1, Starting Up
 Much of the first week was spent on various planning meetings including the whole team. The output of these meetings was mostly to align the team members' understanding of the project as a whole, but also a couple of images of whiteboard writings outlining our planned work. Most of the information detailed in [Project Startup](#project-startup) was generated during these meetings.
 
-![DayOneWhiteboard1](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteboard_1.jpg)
-![DayOneWhiteboard2](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteboard_2.jpg)
+![DayOneWhiteBoard1](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_1.jpg)
+![DayOneWhiteBoard2](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_2.jpg)
 
 This week we set up the actual development environment, generating the Unreal project, setting up our GitHub repository, and making sure the entire team had downloaded the AngelScript version of Unreal as developed by Hazelight.
 
