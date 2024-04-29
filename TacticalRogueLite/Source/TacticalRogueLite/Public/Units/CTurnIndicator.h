@@ -52,4 +52,6 @@ protected:
 	bool bAnimatingForward = true;
 	bool bEnableAnimation = false;
 	
+	void SetUnitShaderActive(ACUnit* InUnit, bool bInIsActive);
+
 };

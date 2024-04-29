@@ -4,6 +4,7 @@
 #include "Units/CTurnIndicator.h"
 #include "GridContent/CUnit.h"
 #include "CGameState.h"
+#include "PaperSpriteComponent.h"
 
 // Sets default values
 ACTurnIndicator::ACTurnIndicator()
@@ -37,10 +38,11 @@ void ACTurnIndicator::Tick(float DeltaTime)
 	//A new turn has started
 	if (FollowingUnit != CurrentUnit)
 	{
+		SetUnitShaderActive(FollowingUnit, false);
 		FollowingUnit = CurrentUnit;
 		ResetAnimation();
 		bEnableAnimation = FollowingUnit->IsControlledLocally(); //Only animate during my turn
-		
+		SetUnitShaderActive(FollowingUnit, bEnableAnimation);
 		SetActorHiddenInGame(!bVisibleWhileNotYourTurn && !bEnableAnimation);
 	}
 
@@ -74,4 +76,12 @@ FVector ACTurnIndicator::TickAnimation(float DeltaTime)
 void ACTurnIndicator::ResetAnimation()
 {
 	CurrentAnimationTime = 0.0f;
+}
+
+void ACTurnIndicator::SetUnitShaderActive(ACUnit* InUnit, bool bInIsActive)
+{
+	if (!InUnit) return;
+	UPaperSpriteComponent* Sprite = InUnit->GetComponentByClass<UPaperSpriteComponent>();
+	if (Sprite)
+		Sprite->SetScalarParameterValueOnMaterials(FName("bIsCurrentUnit"), bInIsActive ? 1.0f : 0.0f);
 }
