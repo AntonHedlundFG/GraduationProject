@@ -1,11 +1,9 @@
 
 #include "Grid/CGrid.h"
 
-#include "CGameState.h"
 #include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
 #include "Net/UnrealNetwork.h"
-#include "Utility/CRandomComponent.h"
 
 
 ACGrid::ACGrid()

@@ -43,7 +43,7 @@ protected:
 	TObjectPtr<class ACGameState> GameStateRef;
 
 	UPROPERTY()
-	class ACUnit* FollowingUnit;
+	class ACUnit* FollowingUnit = nullptr;
 
 	//Ticks the animation forward and returns the current additional offset
 	FVector TickAnimation(float DeltaTime);

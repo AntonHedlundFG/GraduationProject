@@ -192,7 +192,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Ability")
 	static TArray<ACGridTile*> GetAbilityValidTargetTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetValidTargetTiles(fromTile); }
 	
-	
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	static void ToggleHighlightTilesInRange(FAbility Ability, ACGridTile* fromTile, bool bHighlightOn);
+
 	virtual UWorld* GetWorld() const override;
 
 	FGameplayTagContainer GetActionTags() const { return ActionTags; }

@@ -6,7 +6,6 @@
 #include "Components/Image.h"
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
 
-class UCGameInstance;
 
 
 void UCAction_RollItem::StartAction(AActor* Instigator)

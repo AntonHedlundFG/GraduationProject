@@ -108,6 +108,12 @@ void UCAction::UndoAction(AActor* Instigator)
 		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
+void UCAction::ToggleHighlightTilesInRange(FAbility Ability, ACGridTile* fromTile, bool bHighlightOn)
+{
+	if (IsValid(Ability))
+		Ability.ToggleHighlightTilesInRange(fromTile, bHighlightOn);
+}
+
 UWorld* UCAction::GetWorld() const
 {
 	if (GetOwningComponent())

@@ -8,6 +8,11 @@
 #include "GameplayTagContainer.h"
 #include "CPlayerController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityInitiated);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUsed);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnEnded);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUndidAbility);
+
 class ACUnit;
 class ACGridTile;
 class ACGameState;
@@ -39,15 +44,24 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void UndoAbility();
 
+	UPROPERTY(BlueprintAssignable, Category = "Abilities")
+	FOnUndidAbility OnUndidAbility;
+
 	// This should be called when the player STARTS using an ability, by using a keybind
 	// or UI button.
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void InitiateAbilityUse(FGameplayTag inTag);
 
+	UPROPERTY(BlueprintAssignable, Category = "Abilities")
+	FOnAbilityInitiated OnAbilityInitiated;
+
 	// This should be called when a player targets a tile after having used an ability
 	// through InitiateAbilityUse. This function makes the actual server RPC.
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void FinalizeAbilityUse(ACGridTile* inTargetTile);
+
+	UPROPERTY(BlueprintAssignable, Category = "Abilities")
+	FOnAbilityUsed OnAbilityUsed;
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void CancelAbilityUse();
@@ -55,7 +69,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Turn Order")
 	void EndTurn();
 
-private:
+	UPROPERTY(BlueprintAssignable, Category = "Abilities")
+	FOnTurnEnded OnTurnEnded;
+
+protected:
 
 	// Stores the currently used itemslot designated in InitiateAbilityUse()
 	EItemSlots ItemSlotCurrentlyUsed = EItemSlots::EIS_None;
@@ -64,7 +81,7 @@ private:
 	// in InitiateAbilityUse().
 	// It's useful to make sure you don't try to initiate an ability, then end turn, 
 	// then finalize.
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category = "Abilities")
 	ACUnit* UnitCurrentlyUsingAbility = nullptr;
 	UPROPERTY()
 	ACGridTile* TileCurrentlyTargeted = nullptr;

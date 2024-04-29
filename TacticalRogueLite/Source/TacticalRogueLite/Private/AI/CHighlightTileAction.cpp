@@ -2,13 +2,25 @@
 #include "Grid/CGridTile.h"
 #include "Net/UnrealNetwork.h"
 
-TArray<ACGridTile*> UCHighlightTileAction::GetValidTargetTiles_Implementation(ACGridTile* inTile)
+void UCHighlightTileAction::StartAction(AActor* Instigator)
 {
-	if(IsValid(AbilityToHighlight))
+	Super::StartAction(Instigator);
+	
+	// Loop over all Actions in the ability and toggle them with their respective highlightmode
+	for (auto Action : AbilityToHighlight.InstantiatedActions)
 	{
-		return AbilityToHighlight.GetValidTargetTiles(inTile);
+		UCTargetableAction* TargetableAction = Cast<UCTargetableAction>(Action);
+		if (TargetableAction)
+		{
+			auto Tiles = TargetableAction->GetValidTargetTiles(FromTile);
+
+			for (ACGridTile* Tile : Tiles)
+			{
+				AffectedTiles.Add(Tile);
+				HighlightModes.Add(TargetableAction->GetHighlightMode());
+			}
+		}
 	}
-	return TArray<ACGridTile*>();
 }
 
 void UCHighlightTileAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -16,4 +28,8 @@ void UCHighlightTileAction::GetLifetimeReplicatedProps(TArray<class FLifetimePro
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(UCHighlightTileAction, AbilityToHighlight);
+	DOREPLIFETIME(UCHighlightTileAction, FromTile);
+	DOREPLIFETIME(UCHighlightTileAction, HighlightDuration);
+	DOREPLIFETIME(UCHighlightTileAction, AffectedTiles);
+	DOREPLIFETIME(UCHighlightTileAction, HighlightModes);
 }

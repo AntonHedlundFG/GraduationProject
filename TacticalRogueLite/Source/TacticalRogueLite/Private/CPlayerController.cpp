@@ -69,6 +69,8 @@ void ACPlayerController::UndoAbility()
 		return;
 	}
 
+	OnUndidAbility.Broadcast();
+
 	Server_TryUndo();
 }
 
@@ -126,6 +128,8 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	}
 
 	TagCurrentlyUsed = inTag;
+
+	OnAbilityInitiated.Broadcast();
 
 	HighlightedTiles = ActionComp->GetValidTargetTiles(inTag);
 
@@ -198,6 +202,8 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		CancelAbilityUse();
 		return;
 	}
+
+	OnAbilityUsed.Broadcast();
 	
 	Server_UseObject(UnitCurrentlyUsingAbility, TagCurrentlyUsed, inTargetTile);
 	CancelAbilityUse();
@@ -232,6 +238,7 @@ void ACPlayerController::EndTurn()
 		LOG_INFO("Game is already over");
 		return;
 	}
+	OnTurnEnded.Broadcast();
 	Server_TryEndTurn();
 }
 

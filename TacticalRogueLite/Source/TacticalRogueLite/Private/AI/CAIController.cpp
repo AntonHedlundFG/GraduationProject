@@ -134,6 +134,18 @@ FActionPath ACAIController::DecideBestActions()
 
 	// Get a random number between 0 and the number of best paths
 	// TODO: Refine how the AI chooses the best path
+
+	// Remove paths too far from the best path
+	float BestScore = BestPaths[0].GetScore();
+	float Threshold = 0.1f;
+	for (int i = BestPaths.Num() - 1; i >= 0; --i)
+	{
+		if(BestPaths[i].GetScore() < BestScore - Threshold)
+		{
+			BestPaths.RemoveAt(i);
+		}
+	}
+	
 	UCRandomComponent* Random = GameState->Random;
 	const int32 RandomIndex = Random->GetRandRange(0, BestPaths.Num() - 1, false);
 	
@@ -207,13 +219,13 @@ void ACAIController::ExecuteActions(FActionPath& BestPath)
 		{
 			// Execute the top action and remove it from the path
 			FAbility& Ability = Pair.Key;
-			ACGridTile* Tile = Pair.Value;
+			ACGridTile* TargetTile = Pair.Value;
 
 			// Register a highlight action for the ability
-			RegisterHighlightAction(Ability, Tile);
+			RegisterHighlightAction(Ability, Unit->GetTile(), TargetTile);
 
 			// Try to use the ability
-			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, Tile))
+			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, TargetTile))
 			{
 				FString UnitName;
 				if(Unit)
@@ -277,12 +289,13 @@ void ACAIController::ExecuteTurn()
 	}
 }
 
-void ACAIController::RegisterHighlightAction(FAbility& Ability, ACGridTile* TargetTile)
+void ACAIController::RegisterHighlightAction(const FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile)
 {
 	// Create a highlight action for the ability
 	UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
 	HighlightAction->SetAbilityToHighlight(Ability);
 	HighlightAction->TargetTile = TargetTile;
+	HighlightAction->SetFromTile(FromTile);
 	const float Duration = FMath::RandRange(.1f, 1.0f);
 	HighlightAction->SetDuration(Duration);
 	// Register the highlight action to allow the visualizer to visualize it before the action is executed
