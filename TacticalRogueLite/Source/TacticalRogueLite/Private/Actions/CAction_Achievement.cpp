@@ -10,7 +10,6 @@ class UCGameInstance;
 void UCAction_Achievement::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
-
 	
 }
 

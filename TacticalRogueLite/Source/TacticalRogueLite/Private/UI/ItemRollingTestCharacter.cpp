@@ -37,7 +37,7 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 	TArray<FPrimaryAssetId> ExcludeIDs;
 	FGameplayTagContainer RequireTags;
 	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Monk")));
-	if(Buckets.IsEmpty()){Buckets.Add(FBucketInfo());}
+	/*if(Buckets.IsEmpty()){Buckets.Add(FBucketInfo());}
 	RollingSubSystem->RollItemTable(LootTable,RollResults,RequireTags,ExcludeIDs,Buckets,6,ERollType::WithoutReplacement);
 	
 		for(auto Result : RollResults)
@@ -47,7 +47,8 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 			{
 				LOG(ELogCategory::LC_Gameplay,"Rolled Item: %s",*Data->GetItemName().ToString());	
 			}
-		}	
+		}
+	*/
 }
 
 void AItemRollingTestCharacter::OnItemLoaded(TArray<FPrimaryAssetId> LoadedAssets)
