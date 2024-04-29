@@ -1,11 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "CGameInstance.h"
 #include "Actions/CAction_RollItem.h"
+#include "CGameInstance.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
 
-class UCGameInstance;
 
 void UCAction_RollItem::StartAction(AActor* Instigator)
 {
