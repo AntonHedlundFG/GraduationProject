@@ -46,8 +46,8 @@ ACGridRoom* ACGrid::CreateNewRoom(int inEnemyCount)
 		}
 
 
-		OnNewRoomSpawned();
 		AllRooms.Add(Room);
+		OnNewRoomSpawned();
 	}
 	
 	return Room;
@@ -68,8 +68,8 @@ ACGridRoom* ACGrid::CreateStartRoom(int inEnemyCount)
 			tile->GenerateLinks();
 		}
 
-		OnNewRoomSpawned();
 		AllRooms.Add(Room);
+		OnNewRoomSpawned();
 	}
 
 	if (!Room->GetHeroSpawnTiles().IsEmpty())
@@ -153,40 +153,33 @@ TSet<FVector2D> ACGrid::GetDiagonalTileNeighboursCoordinates(FVector2D inCoords)
 	return Neighbours;	
 }
 
-//
-//SUPER UGLY, DON'T LOOK!! WILL CHANGE LATER!
-//
-// void ACGrid::GenerateSpawnTiles()
-// {
-// 	TArray<FVector2D> HeroSpawns;
-// 	HeroSpawns.Add(FVector2D(2,1));
-// 	HeroSpawns.Add(FVector2D(4,1));
-// 	HeroSpawns.Add(FVector2D(6,1));
-// 	HeroSpawns.Add(FVector2D(8,1));
-//
-// 	TArray<FVector2D> EnemySpawns;
-// 	EnemySpawns.Add(FVector2D(2,10));
-// 	EnemySpawns.Add(FVector2D(4,10));
-// 	EnemySpawns.Add(FVector2D(6,10));
-// 	EnemySpawns.Add(FVector2D(8,10));
-// 	
-// 	
-// 	for (auto tile : TileMap)
-// 	{
-// 		for (auto coords : HeroSpawns)
-// 		{
-// 			if (tile.Key == coords)
-// 			{
-// 				HeroSpawnTiles.Add(tile.Value);
-// 			}
-// 		}
-//
-// 		for (auto coords : EnemySpawns)
-// 		{
-// 			if (tile.Key == coords)
-// 			{
-// 				EnemySpawnTiles.Add(tile.Value);
-// 			}
-// 		}
-// 	}
-// }
+void ACGrid::GetLevelBounds(FVector2D& outXBounds, FVector2D& outYBounds)
+{
+	int XMin = INT_MAX;
+	int XMax = INT_MIN;
+	int YMin = INT_MAX;
+	int YMax = INT_MIN;
+
+	for (const auto Room : AllRooms)
+	{
+		const int RoomXMin = Room->GetRoomXBounds().X;
+		const int RoomXMax = Room->GetRoomXBounds().Y;
+		const int RoomYMin = Room->GetRoomYBounds().X;
+		const int RoomYMax = Room->GetRoomYBounds().Y;
+		
+		if (RoomXMin < XMin)
+			XMin = RoomXMin;
+		if (RoomXMax > XMax)
+			XMax = RoomXMax;
+
+		if (RoomYMin < YMin)
+			YMin = RoomYMin;
+		if (RoomYMax > YMax)
+			YMax = RoomYMax;
+	}
+
+	//X and Y are flipped because the grid uses a conventional XY coordinate system (X = right, Y = forward/up)
+	//While the camera has X as forward and Y as right (Unreal standard).
+	outXBounds = FVector2D(YMin, YMax) * NodeInterval;
+	outYBounds = FVector2D(XMin, XMax) * NodeInterval;
+}

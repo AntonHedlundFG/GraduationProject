@@ -46,6 +46,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnNewRoomSpawned();
+
+	//Used to update camera bounds when rooms are spawned/removed.
+	UFUNCTION(BlueprintPure)
+	void GetLevelBounds(FVector2D& outXBounds, FVector2D& outYBounds); 
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Replicated)
