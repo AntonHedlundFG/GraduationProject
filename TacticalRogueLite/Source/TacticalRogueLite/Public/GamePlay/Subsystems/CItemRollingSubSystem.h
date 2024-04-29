@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CGameState.h"
 #include "ItemData/CItemData.h"
 #include "ItemData/UtilityQuery/CTypes.h"
 #include "Subsystems/GameInstanceSubsystem.h"
@@ -36,7 +35,10 @@ protected:
 public:
 
 	UFUNCTION(BlueprintPure, Category = "Items", meta =(DisplayName = "Roll Items"))
-	bool RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount);
+	TArray<UCItemData*> RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount);
+
+	//GetAllUnits();
+	
 
 	UPROPERTY(BlueprintAssignable, Category = "Items")
 	FOnItemsRolled OnItemsRolled;

@@ -2,10 +2,8 @@
 
 
 #include "UI/CAbilityContainer.h"
-
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Items/CInventoryComponent.h"
-#include "Utility/Logging/CLogManager.h"
 
 void UCAbilityContainer::UpdateInfoTarget(FGameplayTag ItemSlot,UWidget* HoveredWidget,ACUnit* CurrentUnit)
 {

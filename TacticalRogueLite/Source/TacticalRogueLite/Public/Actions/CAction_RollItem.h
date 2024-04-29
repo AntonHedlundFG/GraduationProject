@@ -6,12 +6,18 @@
 #include "Actions/CAction.h"
 #include "CAction_RollItem.generated.h"
 
+class UCItemData;
 struct FBucketInfo;
 
 UCLASS()
 class TACTICALROGUELITE_API UCAction_RollItem : public UCAction
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY()
+	TArray<UCItemData*> Items;
 
 public:
 	//What DataTable to use when rolling items.

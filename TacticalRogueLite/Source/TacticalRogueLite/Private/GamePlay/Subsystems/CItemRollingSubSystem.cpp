@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
+
+#include "CGameState.h"
 #include "Engine/AssetManager.h"
 #include "Engine/StreamableManager.h"
 #include "ItemData/CItemData.h"
@@ -202,7 +204,7 @@ UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
 	return nullptr;
 }
 
-bool UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
+TArray<UCItemData> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
 {
 	TArray<FItemRollResult> RollResults;
 	TArray<FPrimaryAssetId> ExcludeIDs; //TODO: ?
@@ -220,7 +222,6 @@ bool UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer 
 			ReturnItems.Add(Data);
 		}
 	}
-	OnItemsRolled.Broadcast(ReturnItems);
 	
-	return true; //TODO: ?
+	return ReturnItems;
 }
