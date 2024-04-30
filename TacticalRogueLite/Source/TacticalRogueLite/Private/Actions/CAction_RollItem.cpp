@@ -9,11 +9,7 @@
 
 void UCAction_RollItem::OnRep_RepData()
 {
-	if (RepData.bIsRunning)
-	{
-		StartAction(RepData.Instigator);
-	}
-	else
+	if (!RepData.bIsRunning)
 	{
 		StopAction(RepData.Instigator);
 	}
@@ -33,36 +29,24 @@ void UCAction_RollItem::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
 
-	Items.Empty(); //?
+	RepData.bIsRunning = true;
+	RepData.Instigator = Instigator;
 
+	
 	UCGameInstance* GI = GetWorld()->GetGameInstance<UCGameInstance>();
 	UCItemRollingSubSystem* RollingSubSystem = GI->GetSubsystem<UCItemRollingSubSystem>();
 
 	if (RollingSubSystem)
 	{
 		Items = RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, Buckets, RollAmount);
-		
-			//Replicate ItemDatas + "Done"
-			//List<Items>.
-			//VizualizeAction->GetOwningComponent();
-			//Skriv en vizualise, i den-> Enter->UpdateInfo(
-			//Widget.UpdateInfo(ItemDatas, ActionComp);
-
-
-			//Viz- Enter: Open widget
-			//Exit: "Close" Widget
-
-			//Click-> PS->EquipSelected(Action,Item)->InventoryComp->EquipItem. "Set Action.Equipped to done"
-			//
-			
-		
 	}
-	
 }
 
 void UCAction_RollItem::StopAction(AActor* Instigator)
 {
 	Super::StopAction(Instigator);
+	
+	RepData.bIsRunning = false;
 }
 
 void UCAction_RollItem::UndoAction(AActor* Instigator)

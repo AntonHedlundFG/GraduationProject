@@ -20,6 +20,7 @@ protected:
 	virtual void Enter_Implementation() override;
 	virtual bool Tick_Implementation(float DeltaTime) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Associated Action")
+	UPROPERTY(EditDefaultsOnly, Category = "Associated Action") //?
 	class UCAction_RollItem* ActionClass;
+	
 };

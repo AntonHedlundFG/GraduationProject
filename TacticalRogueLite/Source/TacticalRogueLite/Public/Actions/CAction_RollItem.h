@@ -44,12 +44,6 @@ protected:
 	UPROPERTY(Replicated)
 	TArray<UCItemData*> Items;
 
-public:
-
-	UFUNCTION(BlueprintCallable, Category = "Action")
-	bool IsRunning() const;
-
-	TArray<UCItemData*> GetItems();
 	//What DataTable to use when rolling items.
 	UPROPERTY(EditDefaultsOnly, Category = "LootTable")
 	UDataTable* LootTable;
@@ -60,11 +54,17 @@ public:
 	//Amount of items to retrieve.
 	UPROPERTY(EditDefaultsOnly, Category = "LootTable")
 	int RollAmount = 3;
+	
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+public:
 
 	virtual void StartAction(AActor* Instigator) override;
 	virtual void StopAction(AActor* Instigator) override;
 	virtual void UndoAction(AActor* Instigator) override;
 
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	bool IsRunning() const;
+
+	TArray<UCItemData*> GetItems();
 };
