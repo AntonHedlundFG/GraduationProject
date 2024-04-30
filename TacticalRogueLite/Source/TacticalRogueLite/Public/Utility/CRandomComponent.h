@@ -22,13 +22,13 @@ public:
 
 	// Generates a random value within a specified range, optionally without advancing the state.
 	UFUNCTION(BlueprintCallable)
-	int32 GetRandRange(int32 inMin, int32 inMax, bool bKeepState = true);
+	int32 GetRandRange(int32 inMin, int32 inMax, bool bKeepState);
 
 	// Generates a random value within 0 to inMax, optionally without advancing the state
-	int32 GetRandRange(int32 inMax, bool bKeepState = true);
+	int32 GetRandRange(int32 inMax, bool bKeepState);
 
 	// Generates a random value within 0 and max int32, optionally without advancing the state.
-	int32 GetRandRange(bool bKeepState = true);
+	int32 GetRandRange(bool bKeepState);
 
 	// Saves the current values of the seed to the save game instance.
 	UFUNCTION(BlueprintCallable)
