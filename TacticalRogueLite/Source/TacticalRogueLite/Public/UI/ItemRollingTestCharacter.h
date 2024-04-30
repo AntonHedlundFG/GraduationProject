@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CItemSelectionWindow.h"
 #include "GameFramework/Actor.h"
 #include "ItemData/UtilityQuery/CTypes.h"
 #include "ItemRollingTestCharacter.generated.h"
@@ -13,6 +14,10 @@ class TACTICALROGUELITE_API AItemRollingTestCharacter : public AActor
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere)
 	UDataTable* LootTable;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCItemSelectionWindow> ItemSelectionWindowWidget;
+	UPROPERTY()
+	UCItemSelectionWindow* ItemSelectionWindow;
 	UPROPERTY(EditAnywhere)
 	TArray<FBucketInfo> Buckets;
 public:	
@@ -28,6 +33,4 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable)
 	void DebugGetItemFromRoll();
-	UFUNCTION()
-	void OnItemLoaded(TArray<FPrimaryAssetId> LoadedAssets);
 };
