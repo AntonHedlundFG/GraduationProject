@@ -13,8 +13,6 @@ bool URollItemActionVisualization::CanVisualizeAction_Implementation(UCAction* A
 void URollItemActionVisualization::Enter_Implementation()
 {
 	Super::Enter_Implementation();
-
-	if (!ensure(ActionClass)) return;
 	
 	ActionClass = Cast<UCAction_RollItem>(VisualizedAction);
 	
@@ -33,6 +31,14 @@ void URollItemActionVisualization::Enter_Implementation()
 
 bool URollItemActionVisualization::Tick_Implementation(float DeltaTime)
 {
-	return Super::Tick_Implementation(DeltaTime);
+	
+	if (!ActionClass->IsRunning())
+	{
+		//Cleanup widget?
+		
+		return true;
+	}
+
+	return false;
 	
 }

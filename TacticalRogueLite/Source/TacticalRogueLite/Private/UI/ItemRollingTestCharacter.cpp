@@ -11,23 +11,20 @@
 // Sets default values
 AItemRollingTestCharacter::AItemRollingTestCharacter()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
 void AItemRollingTestCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AItemRollingTestCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AItemRollingTestCharacter::DebugGetItemFromRoll()
@@ -37,22 +34,23 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 	TArray<FPrimaryAssetId> ExcludeIDs;
 	FGameplayTagContainer RequireTags;
 	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Monk")));
-	/*if(Buckets.IsEmpty()){Buckets.Add(FBucketInfo());}
-	RollingSubSystem->RollItemTable(LootTable,RollResults,RequireTags,ExcludeIDs,Buckets,6,ERollType::WithoutReplacement);
-	
-		for(auto Result : RollResults)
-		{
-			UCItemData* Data = RollingSubSystem->GetItem(Result.ItemID);
-			if(Data)
-			{
-				LOG(ELogCategory::LC_Gameplay,"Rolled Item: %s",*Data->GetItemName().ToString());	
-			}
-		}
-	*/
-}
+	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Mage")));
+	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Warrior")));
+	RequireTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Class.Ranger")));
+	if (Buckets.IsEmpty()) { Buckets.Add(FBucketInfo()); }
+	RollingSubSystem->RollItemTable(LootTable, RollResults, RequireTags, ExcludeIDs, Buckets, 6,
+	                                ERollType::WithoutReplacement);
 
-void AItemRollingTestCharacter::OnItemLoaded(TArray<FPrimaryAssetId> LoadedAssets)
-{
-	
-}
-
+	TArray<UCItemData*> ItemData;
+	for (auto Result : RollResults)
+	{
+		ItemData.Add(RollingSubSystem->GetItem(Result.ItemID));
+	}
+	if(ItemSelectionWindow == nullptr)
+	{
+		ItemSelectionWindow = CreateWidget<UCItemSelectionWindow>(GetWorld(),ItemSelectionWindowWidget);
+		ItemSelectionWindow->AddToViewport();
+		ItemSelectionWindow->SetVisibility(ESlateVisibility::Visible);
+	}
+	//ItemSelectionWindow->UpdateInfo(ItemData,true);
+}	

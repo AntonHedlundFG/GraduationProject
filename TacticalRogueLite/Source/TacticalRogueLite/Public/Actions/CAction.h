@@ -14,7 +14,9 @@ class UWorld;
 class UCActionComponent;
 class ACGridTile;
 
-
+//Getter Setter Ability 
+//Add the tags
+//Variable range
 
 #pragma region FAbility struct
 
@@ -24,6 +26,10 @@ struct FAbility
 	GENERATED_USTRUCT_BODY()
 
 public:
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	FGameplayTagContainer AbilityTags;
+	
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
 
@@ -32,13 +38,7 @@ public:
 
 	UPROPERTY(Transient, meta=(Categories="ItemSlot")) 
 	FGameplayTag InventorySlotTag;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
-	FGameplayTagContainer AbilityTags;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
-	FGameplayTagContainer BlockingTags;
-
+	
 	// Considerations for AI to evaluate the ability
 	UPROPERTY(EditDefaultsOnly, Category = "AI") //Will be moved
 	TArray<UCConsideration*> Considerations;
@@ -51,6 +51,13 @@ public:
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
 	}
+
+protected:
+	
+	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	FGameplayTagContainer BlockingTags;
 
 };
 

@@ -40,14 +40,17 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 		return TArray<ACGridTile*>();	
 	}
 
-	FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
+	//FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
+	FGameplayTagContainer& MovementTags = GetOwningComponent()->ActiveGameplayTags;
 	
 	TArray<ACGridTile*> ReturnTiles;
-	ReturnTiles.Add(inTile);
+	//ReturnTiles.Add(inTile);
 
-	FGameplayTag UnitParentTag = FGameplayTag::RequestGameplayTag("Unit");
-	FGameplayTagContainer UnitBlock = UGameplayTagsManager::Get().RequestGameplayTagChildren(UnitParentTag);
-	for (ACGridTile* Tile : UCGridUtilsLibrary::FloodFill(inTile, 2, Tags, UnitBlock))
+	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, 2, MovementTags, ActionBlockingTags);
+	
+	Tiles.Remove(inTile);
+	
+	for (ACGridTile* Tile : Tiles)
 	{
 		ReturnTiles.Add(Tile);
 	}

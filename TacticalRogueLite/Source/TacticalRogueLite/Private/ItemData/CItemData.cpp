@@ -14,14 +14,14 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 	if (Attributes)
 	{
 		Attributes->AddMaxCharges(ItemSlot, 1);
-		Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
+		//Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
 	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
 
 	if (ActionComp)
 	{
-		//ActionComp->ActiveGameplayTags.AppendTags(OwnedTags);
+		ActionComp->ActiveGameplayTags.AppendTags(OwnedTags);
 		Ability.InventorySlotTag = ItemSlot;
 		ActionComp->AddAbility(Ability);
 	}
@@ -33,7 +33,7 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 	if (Attributes)
 	{
 		Attributes->RemoveMaxCharges(ItemSlot, 1);
-		Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
+		//Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
 	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
@@ -41,7 +41,7 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 	if (ActionComp)
 	{
 		//Append the items ownedtags to the ActionComp.
-		//ActionComp->ActiveGameplayTags.RemoveTags(OwnedTags);
+		ActionComp->ActiveGameplayTags.RemoveTags(OwnedTags);
 		ActionComp->RemoveAbility(ItemSlot);
 	}
 }
