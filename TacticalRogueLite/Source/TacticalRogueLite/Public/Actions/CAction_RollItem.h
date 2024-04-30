@@ -9,6 +9,25 @@
 class UCItemData;
 struct FBucketInfo;
 
+USTRUCT()
+struct FActionRepData
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY()
+	bool bIsRunning;
+
+	UPROPERTY()
+	TObjectPtr<AActor> Instigator;
+
+	FActionRepData()
+	{
+		bIsRunning = false;
+	}
+};
+
 UCLASS()
 class TACTICALROGUELITE_API UCAction_RollItem : public UCAction
 {
@@ -16,10 +35,21 @@ class TACTICALROGUELITE_API UCAction_RollItem : public UCAction
 
 protected:
 
-	UPROPERTY()
+	UPROPERTY(ReplicatedUsing="OnRep_RepData")
+	FActionRepData RepData;
+
+	UFUNCTION()
+	void OnRep_RepData();
+	
+	UPROPERTY(Replicated)
 	TArray<UCItemData*> Items;
 
 public:
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	bool IsRunning() const;
+
+	TArray<UCItemData*> GetItems();
 	//What DataTable to use when rolling items.
 	UPROPERTY(EditDefaultsOnly, Category = "LootTable")
 	UDataTable* LootTable;

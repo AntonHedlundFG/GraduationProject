@@ -37,9 +37,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Items", meta =(DisplayName = "Roll Items"))
 	TArray<UCItemData*> RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount);
 
-	//GetAllUnits();
-	
-
 	UPROPERTY(BlueprintAssignable, Category = "Items")
 	FOnItemsRolled OnItemsRolled;
 	

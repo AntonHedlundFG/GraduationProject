@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Actions/Visualizer/CMovementActionVisualization.h"
 #include "Actions/CMovementAction.h"
 #include "Grid/CGridTile.h"

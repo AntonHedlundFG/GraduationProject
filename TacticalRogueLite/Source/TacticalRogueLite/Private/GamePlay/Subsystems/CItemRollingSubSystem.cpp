@@ -204,7 +204,7 @@ UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
 	return nullptr;
 }
 
-TArray<UCItemData> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
+TArray<UCItemData*> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
 {
 	TArray<FItemRollResult> RollResults;
 	TArray<FPrimaryAssetId> ExcludeIDs; //TODO: ?

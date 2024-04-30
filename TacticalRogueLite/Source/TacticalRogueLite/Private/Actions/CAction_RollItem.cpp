@@ -3,10 +3,30 @@
 #include "Actions/CAction_RollItem.h"
 #include "CGameInstance.h"
 #include "Actions/CActionComponent.h"
-#include "Components/Image.h"
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
 
 
+void UCAction_RollItem::OnRep_RepData()
+{
+	if (RepData.bIsRunning)
+	{
+		StartAction(RepData.Instigator);
+	}
+	else
+	{
+		StopAction(RepData.Instigator);
+	}
+}
+
+bool UCAction_RollItem::IsRunning() const
+{
+	return RepData.bIsRunning;
+}
+
+TArray<UCItemData*> UCAction_RollItem::GetItems()
+{
+	return Items;
+}
 
 void UCAction_RollItem::StartAction(AActor* Instigator)
 {
@@ -21,6 +41,7 @@ void UCAction_RollItem::StartAction(AActor* Instigator)
 	{
 		Items = RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, Buckets, RollAmount);
 		
+			//Replicate ItemDatas + "Done"
 			//List<Items>.
 			//VizualizeAction->GetOwningComponent();
 			//Skriv en vizualise, i den-> Enter->UpdateInfo(

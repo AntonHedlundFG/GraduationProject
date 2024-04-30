@@ -6,9 +6,6 @@
 #include "Actions/Visualizer/CActionVisualization.h"
 #include "CMovementActionVisualization.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class TACTICALROGUELITE_API UCMovementActionVisualization : public UCActionVisualization
 {
