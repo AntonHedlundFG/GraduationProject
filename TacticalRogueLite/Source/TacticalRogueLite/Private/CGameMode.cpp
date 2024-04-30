@@ -283,6 +283,9 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		return false;
 	}
 
+	// Execute all actions stored on the stack, if there are any left over, before ending the turn
+	ExecuteActionStack();
+
 	//Check for victory conditions
 	if (VictoryCondition && VictoryCondition->CheckVictoryCondition())
 	{
