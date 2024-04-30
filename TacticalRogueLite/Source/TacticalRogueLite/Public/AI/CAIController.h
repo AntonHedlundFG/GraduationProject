@@ -80,7 +80,7 @@ protected:
 	void ExecuteTurn();
 
 	// Register Highlighting action
-	void RegisterHighlightAction(const FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile);
+	void RegisterHighlightAction(FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile);
 
 	// End the AI's turn
 	UFUNCTION()

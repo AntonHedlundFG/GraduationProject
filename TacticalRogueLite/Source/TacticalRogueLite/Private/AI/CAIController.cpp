@@ -290,8 +290,15 @@ void ACAIController::ExecuteTurn()
 	}
 }
 
-void ACAIController::RegisterHighlightAction(const FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile)
+void ACAIController::RegisterHighlightAction(FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile)
 {
+	// Check if the ability can be used
+	if(!Ability.IsValidTargetTile(FromTile, TargetTile))
+	{
+		LOG_INFO("Ability %s cannot be used on tile %s", *Ability.InventorySlotTag.ToString(), *TargetTile->GetName());
+		return;
+	}
+	
 	// Create a highlight action for the ability
 	UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
 	HighlightAction->SetAbilityToHighlight(Ability);
@@ -299,6 +306,7 @@ void ACAIController::RegisterHighlightAction(const FAbility& Ability, ACGridTile
 	HighlightAction->SetFromTile(FromTile);
 	const float Duration = FMath::RandRange(.1f, 1.0f); // Let visualizer check game speed
 	HighlightAction->SetDuration(Duration);
+	
 	// Register the highlight action to allow the visualizer to visualize it before the action is executed
 	GameMode->RegisterAction(HighlightAction);
 }
