@@ -23,7 +23,7 @@ int UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetA
 	
 		FAttributeModification Modification;
 
-		Modification.InstigatorComp = ActionComp;
+		Modification.InstigatorComp = DamageCauser->GetComponentByClass<UCActionComponent>();
 		Modification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
 		Modification.ModifierOperation = EAttributeModifierOperation::AddBase;
 		Modification.Magnitude = Amount;

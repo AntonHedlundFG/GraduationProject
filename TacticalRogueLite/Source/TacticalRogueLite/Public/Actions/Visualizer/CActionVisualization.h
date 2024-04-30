@@ -53,8 +53,10 @@ protected:
 	bool RevertTick(float DeltaTime);
 
 	//Set by the system upon creation.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	UCActionVisualizerSystem* ParentSystem;
 	//Set by the system upon creation.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	UCAction* VisualizedAction;
 
 };

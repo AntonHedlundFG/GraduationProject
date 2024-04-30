@@ -8,6 +8,8 @@ class USDurationAction_Thorns : UCActionWithTimer
     UPROPERTY(Replicated)
     bool bCanThornsAtRange = false;
 
+    FAttributeChangedSignature Signature;
+
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
@@ -15,42 +17,33 @@ class USDurationAction_Thorns : UCActionWithTimer
             AffectedUnit = Cast<ACUnit>(Instigator);
         
         //Enable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"OnHealthChanged");
+        //AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"OnHealthChanged");
+        
+        Signature.BindUFunction(this, n"OnHealthChanged");
+        
+        AffectedUnit.ActionComp.AddAttributeChangedListener(GameplayTags::Attribute_Health, Signature, false);
         
         BindTimer();
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} gained thorns.");
     }
 
-    UFUNCTION(BlueprintOverride)
-    void UndoAction(AActor Instigator)
-    {
-        //Disable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"OnHealthChanged");
-        
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} lost thorns.");
-    }
-
-    UFUNCTION(BlueprintOverride)
-    void OnTimerFinishes(ACUnit inAffectedUnit)
-    {
-        //Disable thorns
-        AffectedUnit.AttributeComp.OnHealthChanged.Unbind(this, n"OnHealthChanged");
-
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
-    }
-
     UFUNCTION()
-    private void OnHealthChanged(AActor InstigatorActor, UCAttributeComponent OwningComp, int NewValue,
-                               int Delta)
+    private void OnHealthChanged(UCActionComponent ActionComponent,
+                                         UCActionComponent InstigatorComponent, FGameplayTag AttributeTag,
+                                         int NewValue, int Delta,
+                                         const FGameplayTagContainer&in ContextTags,
+                                         EAttributeModifierOperation ModType)
     {
-        ACUnit Attacker = Cast<ACUnit>(InstigatorActor);
+        ACUnit Attacker = Cast<ACUnit>(InstigatorComponent.GetOwner());
         if (Attacker == nullptr) return;
-        ACUnit Defender = Cast<ACUnit>(OwningComp.GetOwner());
+        ACUnit Defender = Cast<ACUnit>(ActionComponent.GetOwner());
         if (Defender == nullptr) return;
 
     
         //If we can only thorns in melee, make sure we are in melee range of attacker.
-        if (!bCanThornsAtRange && !Defender.GetTile().GetNeighbours(false).Contains(Attacker.GetTile())) return;
+        auto NeighbourTiles = Defender.GetTile().GetNeighbours(false);
+        auto AttackerTile = Attacker.GetTile();
+        if (!bCanThornsAtRange && !NeighbourTiles.Contains(AttackerTile)) return;
 
         ACGameMode GameMode = Cast<ACGameMode>(Gameplay::GetGameMode());
         if (GameMode == nullptr) return;
@@ -62,6 +55,23 @@ class USDurationAction_Thorns : UCActionWithTimer
         ThornsAction.TargetUnit = Attacker;
         ThornsAction.ThornsSource = Defender;
         GameMode.RegisterAction(ThornsAction);
+
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void UndoAction(AActor Instigator)
+    {
+        AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
+
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} lost thorns.");
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void OnTimerFinishes(ACUnit inAffectedUnit)
+    {
+        AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
+
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
     }
 
 
@@ -108,3 +118,52 @@ class USThornsDamageTriggeredAction : UCAction
     }
 }
 
+UCLASS(Abstract)
+class USThornsDamageVisualization : UCActionVisualization
+{
+    UPROPERTY(NotVisible)
+    USThornsDamageTriggeredAction ThornsAction;
+
+    //The actor spawned by this visualization. It will be spawned ON the character with thorns, and its Forward direction will be pointing towards the attacker.
+    UPROPERTY()
+    TSubclassOf<AActor> VisualEffectActor;
+
+    //If set to more than 0.0f, the spawned actor will have this lifespan. Otherwise, you have to manage lifespan separately.
+    UPROPERTY()
+    float VisualEffectLifespan = 0.0f;
+    
+    UFUNCTION(BlueprintOverride)
+    bool CanVisualizeAction(UCAction Action)
+    {
+        return Action.IsA(USThornsDamageTriggeredAction::StaticClass());
+    }
+    UFUNCTION(BlueprintOverride)
+    void Enter()
+    {
+        if (!VisualEffectActor.IsValid()) return;
+        ThornsAction = Cast<USThornsDamageTriggeredAction>(VisualizedAction);
+        if (!IsValid(ThornsAction) || !IsValid(ThornsAction.ThornsSource) || !IsValid(ThornsAction.TargetUnit)) return;
+        
+        FVector Forward = ThornsAction.TargetUnit.GetActorLocation() - ThornsAction.ThornsSource.GetActorLocation();
+        Forward.Normalize();
+        FVector Up = FVector::UpVector;
+        FVector Right = Forward.CrossProduct(Up);
+        Up = Right.CrossProduct(Forward); //Shouldn't be necessary since the units should be on the same XY plane, but I do this anyway for safety.
+        FRotator Rotation = FRotator::MakeFromAxes(Forward, Right, Up);
+        
+        AActor SpawnedActor = SpawnActor(VisualEffectActor, ThornsAction.ThornsSource.GetActorLocation(), Rotation);
+        if (VisualEffectLifespan > 0.0f)
+            SpawnedActor.SetLifeSpan(VisualEffectLifespan);
+    }
+    UFUNCTION(BlueprintOverride)
+    bool Tick(float DeltaTime)
+    {
+        return true;   
+    }
+    UFUNCTION(BlueprintOverride)
+    bool RevertTick(float DeltaTime)
+    {
+        return true;
+    }
+
+}

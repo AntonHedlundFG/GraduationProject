@@ -126,6 +126,18 @@ void UCActionComponent::AddAttributeChangedListener(FGameplayTag AttributeTag, c
 	}
 }
 
+void UCActionComponent::RemoveAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event)
+{
+	for (int i = 0; i < AttributeChangeTriggers.Num(); i++)
+	{
+		if (AttributeChangeTriggers[i].Value == Event && AttributeChangeTriggers[i].Key == AttributeTag)
+		{
+			AttributeChangeTriggers.RemoveAtSwap(i);
+			i--; 
+		}
+	}
+}
+
 void UCActionComponent::BroadcastAttributeChanged(FGameplayTag InAttributeTag, UCActionComponent* InstigatorComp,
 	int InNewValue, int InDelta, FGameplayTagContainer InContextTags, EAttributeModifierOperation ModOperation)
 {

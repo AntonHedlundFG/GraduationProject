@@ -136,6 +136,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game|Attributes", meta = (AutoCreateRefTerm = "Event", DisplayName = "Add Attribute Listener", AdvancedDisplay = "bCallNow", Keywords = "Assign, Create"))
 	void AddAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event, bool bCallNow);
 	
+	UFUNCTION(BlueprintCallable, Category = "Game|Attributes", meta = (AutoCreateRefTerm = "Event", DisplayName = "Remove Attribute Listener"))
+	void RemoveAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event);
+
 	//Mapping for attribute change listeners. List of changed triggers. Whenever we make a change to our attributeset, we call "ApplyAttributeChange" on AttributeSet, which will broadcast to anyone whos interested, and also call "BroadcastAttributeChanged" here. 
 	TArray<TPair<FGameplayTag, FAttributeChangedSignature>> AttributeChangeTriggers;
 	
