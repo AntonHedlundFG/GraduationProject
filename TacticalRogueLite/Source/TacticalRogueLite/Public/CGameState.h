@@ -32,6 +32,8 @@ public:
 	ACGameState();
 	virtual void BeginPlay() override;
 
+	float GetGameSpeed() const { return GameSpeed; }
+
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
 
@@ -72,6 +74,11 @@ protected:
 	UFUNCTION(NetMulticast, Reliable)
 	void Multicast_BroadcastLogMessage(ELogCategory Category, const FString& Message);
 
+	// This is the speed at which the visualizer will play back actions and AI will spend thinking etc.
+	// Should not be replicated. Set for each client individually.
+	UPROPERTY(EditAnywhere, Category = "Gameplay", meta = (ClampMin = 0.1f, ClampMax = 10.0f))
+	float GameSpeed = 1.0f;
+	
 #pragma region Victory Condition
 
 public:

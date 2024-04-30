@@ -117,8 +117,6 @@ void UCActionVisualizerSystem::OnActionListUpdate()
 	}
 	//Counteract last ++
 	ActionListCurrentIndex--;
-
-
 }
 
 UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)
@@ -158,12 +156,12 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 
 		if (bCurrentVisualForward && !CurrentVisualization->VisualizedAction->bIsUndone)
 		{
-			if (CurrentVisualization->Tick(DeltaTime))
+			if (CurrentVisualization->Tick(DeltaTime * GameState->GetGameSpeed()))
 				CurrentVisualization = nullptr;
 		}
 		else
 		{
-			if (CurrentVisualization->RevertTick(DeltaTime))
+			if (CurrentVisualization->RevertTick(DeltaTime * GameState->GetGameSpeed()))
 				CurrentVisualization = nullptr;
 		}
 	}

@@ -17,6 +17,9 @@ ACGameState::ACGameState()
 void ACGameState::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	// Make sure to set GameSpeed above 0 as to not freeze the game
+	GameSpeed = FMath::Max(GameSpeed, 0.1f);
 
 	if (UCLogManager* LogManager = UCLogManager::Get())
 	{
@@ -27,6 +30,7 @@ void ACGameState::BeginPlay()
 	}
 
 	GetWorld()->SpawnActor(TurnIndicator);
+
 }
 
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

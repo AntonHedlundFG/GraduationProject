@@ -34,7 +34,8 @@ void ACAIController::OnTurnChanged()
 	// Start AI thinking and execute turn after a random delay
 	FTimerHandle TimerHandle;
 	FTimerDelegate TimerDel;
-	float ThinkingTimer = FMath::RandRange(.1f, 1.0f);
+	float GameSpeedMultiplier = 1 / GameState->GetGameSpeed();
+	float ThinkingTimer = FMath::RandRange(.1f, 1.0f) * GameSpeedMultiplier;
 	TimerDel.BindLambda([this]()
 	{
 		ExecuteTurn(); 
@@ -296,7 +297,7 @@ void ACAIController::RegisterHighlightAction(const FAbility& Ability, ACGridTile
 	HighlightAction->SetAbilityToHighlight(Ability);
 	HighlightAction->TargetTile = TargetTile;
 	HighlightAction->SetFromTile(FromTile);
-	const float Duration = FMath::RandRange(.1f, 1.0f);
+	const float Duration = FMath::RandRange(.1f, 1.0f); // Let visualizer check game speed
 	HighlightAction->SetDuration(Duration);
 	// Register the highlight action to allow the visualizer to visualize it before the action is executed
 	GameMode->RegisterAction(HighlightAction);
@@ -309,7 +310,8 @@ void ACAIController::EndTurn()
 		bTurnStarted = false;
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDel;
-		const float TimerDelay = FMath::RandRange(.7f, 1.5f);
+		float GameSpeedMultiplier = 1 / GameState->GetGameSpeed();
+		const float TimerDelay = FMath::RandRange(.7f, 1.5f) * GameSpeedMultiplier;
 		TimerDel.BindLambda([this]()
 		{
 			GameMode->TryEndTurn(this);
