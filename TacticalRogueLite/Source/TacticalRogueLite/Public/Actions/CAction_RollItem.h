@@ -64,5 +64,7 @@ public:
 	virtual void StartAction(AActor* Instigator) override;
 	virtual void StopAction(AActor* Instigator) override;
 	virtual void UndoAction(AActor* Instigator) override;
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 };

@@ -4,6 +4,7 @@
 #include "CGameInstance.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
+#include "Net/UnrealNetwork.h"
 
 
 void UCAction_RollItem::OnRep_RepData()
@@ -67,4 +68,12 @@ void UCAction_RollItem::StopAction(AActor* Instigator)
 void UCAction_RollItem::UndoAction(AActor* Instigator)
 {
 	Super::UndoAction(Instigator);
+}
+
+void UCAction_RollItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UCAction_RollItem, RepData);
+	DOREPLIFETIME(UCAction_RollItem, Items);
 }
