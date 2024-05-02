@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "GridContent/CEnemyType.h"
+#include "GridContent/UnitDataAssets/CEnemyType.h"
 #include "CAllEnemiesData.generated.h"
 
 /**

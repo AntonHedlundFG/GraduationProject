@@ -15,6 +15,8 @@ void ACUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACUnit, ControllingPlayerIndex);
 	DOREPLIFETIME(ACUnit, UnitName);
+	DOREPLIFETIME(ACUnit, Sprite);
+
 }
 
 ACUnit::ACUnit()
@@ -47,6 +49,12 @@ void ACUnit::EndPlay(EEndPlayReason::Type Reason)
 
 	// if (GetNetMode() <= ENetMode::NM_ListenServer && IsValid(AttributeComp))
 	// 	AttributeComp->OnHealthChanged.RemoveDynamic(this, &ACUnit::OnHealthChanged);
+}
+
+
+void ACUnit::OnRep_Sprite()
+{
+	SpriteComp->SetSprite(Sprite);
 }
 
 bool ACUnit::IsControlledBy(AController* inController)
@@ -94,6 +102,12 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 		}
 	}
 	return Abilities;
+}
+
+void ACUnit::SetSprite(UPaperSprite* inSprite)
+{
+	Sprite = inSprite;
+	OnRep_Sprite();
 }
 
 bool ACUnit::HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount)

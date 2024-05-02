@@ -1,21 +1,19 @@
 ﻿#pragma once
-#include "PaperSprite.h"
-#include "CEnemyType.generated.h"
+#include "CUnitSpawnDetails.generated.h"
 
 class UCItemData;
+class UPaperSprite;
 
 USTRUCT(BlueprintType)
-struct FCEnemyType
+struct FCUnitSpawnDetails
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category = "Character Details")
-	int Level;
+public:
 	UPROPERTY(EditAnywhere, Category = "Character Details")
 	FString Name;
 	UPROPERTY(EditAnywhere, Category = "Character Details")
 	TObjectPtr<UPaperSprite> Sprite;
 	UPROPERTY(EditAnywhere, Category = "Character Details")
 	TArray<UCItemData*> Items;
-	
 };

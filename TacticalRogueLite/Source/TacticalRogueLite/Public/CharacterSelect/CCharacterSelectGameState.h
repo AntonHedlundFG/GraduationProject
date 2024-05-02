@@ -27,34 +27,35 @@ public:
 	UPROPERTY(BlueprintAssignable, Replicated, Category = "UI|Update")
 	FUpdateUI OnUpdateUI;
 
-	UPROPERTY(BlueprintReadWrite, Replicated)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_ControllingPlayerIndex)
 	TArray<int> ControllingPlayerIndex;
-	UPROPERTY(BlueprintReadWrite, Replicated)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_CharacterIndexes)
 	TArray<int> CharacterIndexes;
-	UPROPERTY(BlueprintReadWrite, Replicated)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_LockedInfo)
 	TArray<bool> LockedInfo;
-	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_UpdateUI)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_ReadyInfo)
 	TArray<bool> ReadyInfo;
-	UPROPERTY(BlueprintReadWrite, Replicated)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_PlayerCount)
 	int PlayerCount;
 
 	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdateControllingPlayers(TArray<int> inArray);
+	void UpdateControllingPlayers(TArray<int> inArray);
 	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdateCharacters(TArray<int> inArray);
+	void UpdateCharacters(TArray<int> inArray);
 	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdateLocks(TArray<bool> inArray);
+	void UpdateLocks(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdateReadyStatus(TArray<bool> inArray);
+	void UpdateReadyStatus(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdatePlayerCount(int inCount);
-	UFUNCTION(BlueprintCallable)
-	void OnRep_UpdateUI() const { OnUpdateUI.Broadcast(); }
+	void UpdatePlayerCount(int inCount);
+	// UFUNCTION(BlueprintCallable)
+	// void OnRep_UpdateUI() const { OnUpdateUI.Broadcast(); }
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_SetupUI();
 	UFUNCTION()
 	void SetPlayerCountAndLocks(int inPlayerCount);
+
 
 
 protected:
@@ -63,5 +64,15 @@ protected:
 
 	UFUNCTION()
 	void CheckReady();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void OnRep_ControllingPlayerIndex();
+	UFUNCTION(BlueprintCallable)
+	void OnRep_CharacterIndexes();
+	UFUNCTION(BlueprintCallable)
+	void OnRep_LockedInfo();
+	UFUNCTION(BlueprintCallable)
+	void OnRep_ReadyInfo() const { OnUpdateUI.Broadcast(); }
+	UFUNCTION(BlueprintCallable)
+	void OnRep_PlayerCount();
 };

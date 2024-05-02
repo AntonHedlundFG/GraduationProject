@@ -57,7 +57,8 @@ public:
 
 	///Spawns a unit on a given tile, also tries to name the unit and add items to it.
 	UFUNCTION()
-	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, TArray<UCItemData*> inEquipment, FString inName);
+	// ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, TArray<UCItemData*> inEquipment, FString inName);
+	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCNamesAndItemsList SpawnDetails);
 	
 	///Spawns a grid actor at a given position
 	UFUNCTION()

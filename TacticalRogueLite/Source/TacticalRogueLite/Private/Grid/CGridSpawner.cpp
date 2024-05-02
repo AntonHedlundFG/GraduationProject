@@ -8,7 +8,7 @@
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
 #include "Items/CNamesAndItemsList.h"
-#include "GridContent/CAllEnemiesData.h"
+#include "GridContent/UnitDataAssets/CAllEnemiesData.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -62,17 +62,27 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 }
 
 ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-	TArray<UCItemData*> inEquipment, FString inName)
+	FCNamesAndItemsList SpawnDetails)
 {
-	ACUnit* Unit = SpawnUnit(inUnitType, inSpawnTile);
+	FTransform SpawnTransform = FTransform();
+	FVector SpawnPosition = inSpawnTile->GetActorLocation();
+	SpawnPosition.Z += 100;
+	SpawnTransform.SetLocation(SpawnPosition);
+
+	const TObjectPtr<ACUnit> Unit = GetWorld()->SpawnActorDeferred<ACUnit>(inUnitType, SpawnTransform, this);
+	
 	UCInventoryComponent* Inventory = Unit->GetInventoryComp();
 
 	//Try name unit
-	if (!inName.IsEmpty())
-		Unit->SetUnitName(inName);
+	if (!SpawnDetails.Name.IsEmpty())
+		Unit->SetUnitName(SpawnDetails.Name);
 
+	//Try set sprite
+	if (SpawnDetails.Sprite)
+		Unit->SetSprite(SpawnDetails.Sprite);
+	
 	//Add items
-	for (UCItemData* Item : inEquipment)
+	for (UCItemData* Item : SpawnDetails.Items)
 	{
 		if (!Item)
 			continue;
@@ -87,8 +97,41 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 		}
 	}
 
+	Unit->FinishSpawning(SpawnTransform);
+	inSpawnTile->SetContent(Unit);
+	Unit->SetTile(inSpawnTile);
+	
 	return Unit;
 }
+
+// ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
+// 	TArray<UCItemData*> inEquipment, FString inName)
+// {
+// 	ACUnit* Unit = SpawnUnit(inUnitType, inSpawnTile);
+// 	UCInventoryComponent* Inventory = Unit->GetInventoryComp();
+//
+// 	//Try name unit
+// 	if (!inName.IsEmpty())
+// 		Unit->SetUnitName(inName);
+//
+// 	//Add items
+// 	for (UCItemData* Item : inEquipment)
+// 	{
+// 		if (!Item)
+// 			continue;
+// 		
+// 		if (Inventory->CheckValidEquipmentTag(Item->ItemSlot))
+// 		{
+// 			Inventory->TryEquipItem(Item);
+// 		}
+// 		else
+// 		{
+// 			Inventory->AddItem(Item);
+// 		}
+// 	}
+//
+// 	return Unit;
+// }
 
 ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 {
@@ -155,8 +198,10 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	{
 		const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1, false);
 
-		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], PossibleEnemyTypes[index].Items, PossibleEnemyTypes[index].Name);
-		Enemy->OnRep_SetAppearance(PossibleEnemyTypes[index].Sprite);
+		const FCNamesAndItemsList EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
+
+		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails);
+		// Enemy->OnRep_SetAppearance(EnemyDetails.Sprite);
 		Enemies.Add(Enemy);
 	}
 	

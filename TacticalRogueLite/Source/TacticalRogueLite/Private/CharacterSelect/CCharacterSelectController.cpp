@@ -17,7 +17,7 @@ void ACCharacterSelectController::Server_UpdateReady_Implementation(int InWidget
 		TArray<bool> ReadyArray = StateRef->ReadyInfo;
 		ReadyArray[InWidgetIndex] = InReadyStatus;
 
-		StateRef->OnRep_UpdateReadyStatus(ReadyArray);
+		StateRef->UpdateReadyStatus(ReadyArray);
 	}
 }
 
@@ -28,7 +28,7 @@ void ACCharacterSelectController::Server_UpdatePlayerIndex_Implementation(int In
 		TArray<int> Players = StateRef->ControllingPlayerIndex;
 		Players[InWidgetIndex] = InPlayerIndex;
 
-		StateRef->OnRep_UpdateControllingPlayers(Players);
+		StateRef->UpdateControllingPlayers(Players);
 	}
 }
 
@@ -40,7 +40,7 @@ void ACCharacterSelectController::Server_UpdateCharacterIndex_Implementation(int
 		Characters[InWidgetIndex] = InCharacterIndex;
 
 		StateRef->CharacterIndexes = Characters;
-		StateRef->OnRep_UpdateCharacters(Characters);
+		StateRef->UpdateCharacters(Characters);
 	}
 }
 

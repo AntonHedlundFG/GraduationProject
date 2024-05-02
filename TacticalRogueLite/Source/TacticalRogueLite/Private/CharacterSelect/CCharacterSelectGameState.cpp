@@ -26,44 +26,50 @@ ACCharacterSelectGameState::ACCharacterSelectGameState()
 	ReadyInfo = TArray{false, false, false, false};
 }
 
-void ACCharacterSelectGameState::OnRep_UpdateControllingPlayers(TArray<int> inArray)
+void ACCharacterSelectGameState::UpdateControllingPlayers(TArray<int> inArray)
 {
 	if (inArray.Num() == ControllingPlayerIndex.Num())
 	{
 		ControllingPlayerIndex = inArray;
 	}
+
+	OnRep_ControllingPlayerIndex();
 }
 
-void ACCharacterSelectGameState::OnRep_UpdateCharacters(TArray<int> inArray)
+void ACCharacterSelectGameState::UpdateCharacters(TArray<int> inArray)
 {
 	if (inArray.Num() == ControllingPlayerIndex.Num())
 	{
 		CharacterIndexes = inArray;
 	}
+	
+	OnRep_CharacterIndexes();
 }
 
-void ACCharacterSelectGameState::OnRep_UpdateLocks(TArray<bool> inArray)
+void ACCharacterSelectGameState::UpdateLocks(TArray<bool> inArray)
 {
 	if (inArray.Num() == LockedInfo.Num())
 	{
 		LockedInfo = inArray;
 	}
+	OnRep_LockedInfo();
 }
 
-void ACCharacterSelectGameState::OnRep_UpdateReadyStatus(TArray<bool> inArray)
+void ACCharacterSelectGameState::UpdateReadyStatus(TArray<bool> inArray)
 {
 	if (inArray.Num() == ReadyInfo.Num())
 	{
 		ReadyInfo = inArray;
-		OnRep_UpdateUI();
+		OnRep_ReadyInfo();
 	}
 	
 	CheckReady();
 }
 
-void ACCharacterSelectGameState::OnRep_UpdatePlayerCount(int inCount)
+void ACCharacterSelectGameState::UpdatePlayerCount(int inCount)
 {
 	PlayerCount = inCount;
+	OnRep_PlayerCount();
 }
 
 void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
@@ -81,9 +87,9 @@ void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
 			LockedInfo[i] = false;
 		}
 	}
-	OnRep_UpdatePlayerCount(inPlayerCount);
-	OnRep_UpdateControllingPlayers(ControllingPlayerIndex);
-	OnRep_UpdateLocks(LockedInfo);
+	UpdatePlayerCount(inPlayerCount);
+	UpdateControllingPlayers(ControllingPlayerIndex);
+	UpdateLocks(LockedInfo);
 }
 
 void ACCharacterSelectGameState::CheckReady()
@@ -95,5 +101,25 @@ void ACCharacterSelectGameState::CheckReady()
 	}
 	
 	OnReadyToStart.Broadcast();
+}
+
+void ACCharacterSelectGameState::OnRep_ControllingPlayerIndex()
+{
+	
+}
+
+void ACCharacterSelectGameState::OnRep_CharacterIndexes()
+{
+	
+}
+
+void ACCharacterSelectGameState::OnRep_LockedInfo()
+{
+	
+}
+
+void ACCharacterSelectGameState::OnRep_PlayerCount()
+{
+	
 }
 

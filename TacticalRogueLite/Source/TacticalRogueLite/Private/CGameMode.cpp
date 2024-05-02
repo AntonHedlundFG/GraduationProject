@@ -467,8 +467,7 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 		if (i >= Spawner->NamesAndItemList.Num() || i >= SpawnTiles.Num())
 			break;
 		
-		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i],
-							Spawner->NamesAndItemList[i].Items, Spawner->NamesAndItemList[i].Name);
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->NamesAndItemList[i]);
 
 		if (i < Spawner->ControllingPlayers.Num())
 		{
