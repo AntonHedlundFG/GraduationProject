@@ -3,6 +3,7 @@
 #include "CharacterSelect/CCharacterSelectGameState.h"
 
 #include "CharacterSelect/CCharacterSelectGameMode.h"
+#include "CharacterSelect/CCharacterSelectMenuWidget.h"
 #include "Net/UnrealNetwork.h"
 #include "Utility/Logging/CLogManager.h"
 
@@ -105,21 +106,25 @@ void ACCharacterSelectGameState::CheckReady()
 
 void ACCharacterSelectGameState::OnRep_ControllingPlayerIndex()
 {
-	
+	if (MenuWidget)
+		MenuWidget->UpdateControllingPlayers(ControllingPlayerIndex);
 }
 
 void ACCharacterSelectGameState::OnRep_CharacterIndexes()
 {
-	
+	if (MenuWidget)
+		MenuWidget->UpdateCharacters(CharacterIndexes);
 }
 
 void ACCharacterSelectGameState::OnRep_LockedInfo()
 {
-	
+	if (MenuWidget)
+		MenuWidget->UpdateLocks(LockedInfo);
 }
 
 void ACCharacterSelectGameState::OnRep_PlayerCount()
 {
-	
+	if (MenuWidget)	
+		MenuWidget->UpdateReadyStatus(ReadyInfo);
 }
 

@@ -19,9 +19,12 @@ class TACTICALROGUELITE_API UCCharacterSelectorWidget : public UUserWidget
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
 	int WidgetIndex;
-	
-	// UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
-	// int CharacterIndex;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Ready Status")
+	bool bIsReadyToStart = false;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
+	int CharacterTypeIndex;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Starting Characters")
 	TObjectPtr<UCStartCharacterData> StartCharacters;
