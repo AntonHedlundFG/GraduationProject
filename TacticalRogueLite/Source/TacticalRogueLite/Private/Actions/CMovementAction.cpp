@@ -8,6 +8,7 @@
 #include "Actions/CActionComponent.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCMovementAction::StartAction(AActor* Instigator)
 {

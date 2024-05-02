@@ -6,6 +6,7 @@
 #include "GridContent/CUnit.h"
 #include "CGameState.h"
 #include "Attributes/CAttributeComponent.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCResurrectAction::StartAction(AActor* Instigator)
 {

@@ -7,6 +7,7 @@
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCTargetableAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {

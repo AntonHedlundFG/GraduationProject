@@ -10,6 +10,7 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Kismet/GameplayStatics.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCAttackAction::StartAction(AActor* Instigator)
 {

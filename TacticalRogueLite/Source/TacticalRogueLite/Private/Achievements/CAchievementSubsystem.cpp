@@ -8,6 +8,7 @@
 #include "CGameState.h"
 #include "CGameInstance.h"
 #include "ItemData/CData_Achievement.h"
+#include "Utility/Logging/CLogManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
 
 

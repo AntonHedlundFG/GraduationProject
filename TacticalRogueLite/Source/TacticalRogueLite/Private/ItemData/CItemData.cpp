@@ -14,7 +14,6 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 	if (Attributes)
 	{
 		Attributes->AddMaxCharges(ItemSlot, 1);
-		//Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
 	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
@@ -33,7 +32,6 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 	if (Attributes)
 	{
 		Attributes->RemoveMaxCharges(ItemSlot, 1);
-		//Attributes->ActiveGameplayTags.RemoveTags(OwnedTags);
 	}
 
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
