@@ -5,6 +5,8 @@
 #include "Actions/CActionComponent.h"
 #include "Attributes/Utilities/CAttribute.h"
 #include "Net/UnrealNetwork.h"
+#include "CGameMode.h"
+#include "Actions\CDeathAction.h"
 
 
 UCAttributeSet::UCAttributeSet()
@@ -138,7 +140,7 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 		//Clamp the change to health.
 		Health.BaseValue = FMath::Clamp(Health.BaseValue, 0, HealthMax.GetValue() * HealthMaxModifier.GetValue());
 
-		if (Health.BaseValue == 0)
+		if (Health.BaseValue == 0 && AppliedMod.Magnitude != 0 && !AppliedMod.bIsUndo)
 		{
 			FGameplayTag DeathTag = FGameplayTag::RequestGameplayTag("Unit.Killed");
 			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags;
@@ -148,6 +150,16 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 			// {
 			// 	OwningComp->AddGameplayTag(DeathTag);
 			// }
+			
+
+			ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+			if (GameMode)
+			{
+				UCDeathAction* DeathAction = NewObject<UCDeathAction>(GetOuter(), UCDeathAction::StaticClass());
+				DeathAction->AffectedUnit = Cast<ACUnit>(GetOwningComponent()->GetOwner());
+				GameMode->RegisterAction(DeathAction);
+			}
+
 		}
 	}
 	if (AppliedMod.AttributeTag == FGameplayTag::RequestGameplayTag("Attribute.HealthMax"))

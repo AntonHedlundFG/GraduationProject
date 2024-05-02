@@ -17,7 +17,7 @@ void UCDeathAction::StartAction(AActor* Instigator)
 		return;
 	}
 
-	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
+	ACGameState* GameState = AffectedUnit->GetWorld()->GetGameState<ACGameState>();
 	if (!GameState)
 	{
 		LOG_WARNING("No GameState reference available");
@@ -47,10 +47,16 @@ void UCDeathAction::StartAction(AActor* Instigator)
 void UCDeathAction::UndoAction(AActor* Instigator)
 {
 
-	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
-	if (!AffectedUnit || !GameState)
+	if (!AffectedUnit)
 	{
-		LOG_WARNING("Lacking unit or state reference for undoing death");
+		LOG_WARNING("Lacking unit reference for undoing death");
+		return;
+	}
+	
+	ACGameState* GameState = AffectedUnit->GetWorld()->GetGameState<ACGameState>();
+	if (!GameState)
+	{
+		LOG_WARNING("Lacking gamestate reference for undoing death");
 		return;
 	}
 
