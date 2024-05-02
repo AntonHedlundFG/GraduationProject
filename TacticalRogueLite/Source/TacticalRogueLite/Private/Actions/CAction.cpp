@@ -3,13 +3,12 @@
 #include "Actions/CActionComponent.h"
 #include "Grid/CGridTile.h"
 #include "Actions/CTargetableAction.h"
-//TODO: include project h.file
 #include "Net/UnrealNetwork.h"
-
+#include "Grid/CTileHighlightComponent.h"
 
 
 //"Inline the generated cpp file into module cpp file to improve compile time because less header parsing is required."
-#include "Grid/CTileHighlightComponent.h"
+#include "Utility/Logging/CLogManager.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAction)
 
@@ -65,23 +64,6 @@ void UCAction::StopAction(AActor* Instigator)
 	ReceiveStopAction(Instigator);
 }
 
-bool UCAction::ReceiveCanStart_Implementation(AActor* Instigator)
-{
-	return true;
-}
-
-void UCAction::ReceiveStartAction_Implementation(AActor* Instigator)
-{
-}
-
-void UCAction::ReceiveUndoAction_Implementation(AActor* Instigator)
-{
-}
-
-void UCAction::ReceiveStopAction_Implementation(AActor* Instigator)
-{
-}
-
 TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
 {
 	return { fromTile }; // Default implementation, just return the tile the action was started from.
@@ -108,6 +90,32 @@ void UCAction::UndoAction(AActor* Instigator)
 		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
+bool UCAction::ReceiveCanStart_Implementation(AActor* Instigator)
+{
+	return true;
+}
+
+void UCAction::ReceiveStartAction_Implementation(AActor* Instigator)
+{
+}
+
+void UCAction::ReceiveUndoAction_Implementation(AActor* Instigator)
+{
+}
+
+void UCAction::ReceiveStopAction_Implementation(AActor* Instigator)
+{
+}
+
+void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// DOREPLIFETIME(UCAction, RepData);
+	DOREPLIFETIME(UCAction, ActionComp);
+	DOREPLIFETIME(UCAction, bIsUndone);
+}
+
 void UCAction::ToggleHighlightTilesInRange(FAbility Ability, ACGridTile* fromTile, bool bHighlightOn)
 {
 	if (IsValid(Ability))
@@ -123,16 +131,6 @@ UWorld* UCAction::GetWorld() const
 		return Actor->GetWorld();
 
 	return nullptr;
-}
-
-
-void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	// DOREPLIFETIME(UCAction, RepData);
-	DOREPLIFETIME(UCAction, ActionComp);
-	DOREPLIFETIME(UCAction, bIsUndone);
 }
 
 TSet<ACGridTile*> FAbility::GetInfluencedTiles(ACGridTile* fromTile)

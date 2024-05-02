@@ -152,7 +152,6 @@ bool UCAttributeComponent::IsBaseMovement() const
 	return CurrentMovement == BaseMovement;
 }
 
-
 void UCAttributeComponent::MulticastHealthChanged_Implementation(AActor* InstigatorActor, int NewHealth, int Delta)
 {
 	OnHealthChanged.Broadcast(InstigatorActor, this, NewHealth, Delta);

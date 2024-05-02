@@ -5,7 +5,6 @@
 #include "GameplayTagContainer.h"
 #include "Attributes/Utilities/CAttribute.h"
 #include "Grid/Tiles/TileHighlightModes.h"
-#include "Utility/Logging/CLogManager.h"
 #include "CAction.generated.h"
 
 class UCConsideration;
@@ -15,8 +14,8 @@ class UCActionComponent;
 class ACGridTile;
 
 //Getter Setter Ability 
-//Add the tags
-//Variable range
+//Add the tags 
+//Variable range 
 
 #pragma region FAbility struct
 
@@ -54,8 +53,6 @@ public:
 
 protected:
 	
-	
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FGameplayTagContainer BlockingTags;
 
