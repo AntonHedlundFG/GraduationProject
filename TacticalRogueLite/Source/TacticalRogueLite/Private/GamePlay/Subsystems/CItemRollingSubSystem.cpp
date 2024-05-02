@@ -90,20 +90,43 @@ int32 RollAmount, ERollType ReplacementType)
 
 	for (int32 i = 0; i < RollAmount; i++)
 	{
+		//set ignored buckets
+		for (auto& Bucket : Buckets)
+		{
+			//This should be replaced for Bucket.IsIgnored();
+			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
+			{
+				continue;
+			}
+			if(ReplacementType == ERollType::WithoutReplacement)
+			{
+				if(!Bucket.HasItems(Items,ContextTags,ExcludedIds))
+				{
+					Bucket.bIsIgnore_Internal = true;
+				}
+			}
+		}
+		
 		float TotalWeight = 0;
 		float CurrWeight = 0;
 
-		for (FBucketInfo& Bucket : Buckets)
+		for (FBucketInfo Bucket : Buckets)
 		{
+			//This should be replaced for Bucket.IsIgnored();
+			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
+			{
+				continue;
+			}
 			TotalWeight += Bucket.BucketWeight();
 		}
 		
 		float SelectedWeight = GetRand(0.0f, TotalWeight);
 		FName SelectedBucket = "Default";
 
-		for (FBucketInfo& Bucket : Buckets)
+		for (auto& Bucket : Buckets)
 		{
-			if(Bucket.Ignored())
+			//This should be replaced for Bucket.IsIgnored();
+			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
 			{
 				continue;
 			}
@@ -121,7 +144,7 @@ int32 RollAmount, ERollType ReplacementType)
 		TotalWeight = 0;
 		for (FItemTableRow* Row : Items)
 		{
-			if (!Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId))
+			if (!Row->ItemId.IsValid() || !Row->MatchesTags(ContextTags) || ExcludedIds.Contains(Row->ItemId) || Row->bIgnored)
 			{
 				//Skip excluded item.
 				continue;
@@ -180,6 +203,7 @@ int32 RollAmount, ERollType ReplacementType)
 	for (FBucketInfo& Bucket : Buckets)
 	{
 		Bucket.TimesSelected = 0;
+		Bucket.bIsIgnore_Internal = false;
 	}
 
 	return Results.Num() > 0;
@@ -201,6 +225,7 @@ UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
 	if (LoadedItemDatas.Contains(ID)) { return LoadedItemDatas[ID]; }
 	return nullptr;
 }
+
 
 TArray<UCItemData*> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
 {

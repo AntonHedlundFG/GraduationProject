@@ -253,13 +253,20 @@ void UCActionComponent::AddAbility(FAbility Ability)
 
 void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
 {
+	bool bHasAbilityToRemove = false;
+	FAbility AbilityToRemove;
 	for (FAbility& Ability : Abilities)
 	{
 		if (Ability.InventorySlotTag == ItemSlot)
 		{
-			Abilities.Remove(Ability); // Remove the ability from the array leaving it out of scope
-			return;
+			AbilityToRemove = Ability;
+			bHasAbilityToRemove = true;
+			break;
 		}
+	}
+	if(bHasAbilityToRemove)
+	{
+		Abilities.Remove(AbilityToRemove);
 	}
 }
 

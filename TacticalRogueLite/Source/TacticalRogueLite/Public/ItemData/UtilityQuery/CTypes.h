@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "Curves/CurveFloat.h"
 #include "Engine/DataTable.h"
+#include "Utility/Logging/CLogManager.h"
 #include "CTypes.generated.h"
 
 
@@ -151,8 +152,8 @@ public:
 		BucketName = "Default";
 		MaxOccurance = 1;
 		Weight = 10.0f;
-
 		TimesSelected = 0;
+		bIsIgnore_Internal = false;
 	}
 
 	//Internal use...
@@ -172,21 +173,28 @@ public:
 
 		return 0.0f;
 	}
-
-	bool Ignored()
+	/*bool Ignored()
 	{
-		if(TimesSelected < MaxOccurance)
+		LOG(ELogCategory::LC_Warning, "bIsIgnored_Internal: %s", *((bIsIgnore_Internal)?FString("True"):FString("False")));
+		if(TimesSelected >= MaxOccurance || bIsIgnore_Internal)
 		{
-			return false;
+			return true;
 		}
-		return true;
-	}
-	int32 TimesSelected;
-};
+		return false;
+	}*/
 
-UCLASS()
-class TACTICALROGUELITE_API UCTypes : public UDataTable
-{
-	GENERATED_BODY()
-	
+	bool HasItems(TArray<FItemTableRow*> ItemRows, FGameplayTagContainer& ContextTags,TArray<FPrimaryAssetId> ExcludedIds)
+	{
+		for (auto Item : ItemRows)
+		{
+			if(ExcludedIds.Contains(Item->ItemId)){continue;}
+			if(Item->GetItemWeight(ContextTags,BucketName)>0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	bool bIsIgnore_Internal;
+	int32 TimesSelected;
 };
