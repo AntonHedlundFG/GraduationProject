@@ -1,0 +1,7 @@
+7BF2BE -> Heal bg
+FDD025 -> Heal Yellow
+d32a37 -> Fire bg
+ffb516 -> Fire yellow
+35231F -> Armor bg
+6E6E86 -> Weapon bg
+020d10 -> Movement bg
