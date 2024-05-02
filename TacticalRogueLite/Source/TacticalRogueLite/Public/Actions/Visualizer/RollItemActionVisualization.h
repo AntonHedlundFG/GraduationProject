@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Actions/Visualizer/CActionVisualization.h"
+#include "UI/CItemSelectionWindow.h"
 #include "RollItemActionVisualization.generated.h"
 
 class UCActorWidget;
@@ -14,13 +15,17 @@ class TACTICALROGUELITE_API URollItemActionVisualization : public UCActionVisual
 	GENERATED_BODY()
 protected:
 
-	UCActorWidget* Widget;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCItemSelectionWindow> WidgetClass;
+	UPROPERTY()
+	UCItemSelectionWindow* ItemSelectionWindow;
 	
 	virtual bool CanVisualizeAction_Implementation(UCAction* Action) override;
 	virtual void Enter_Implementation() override;
 	virtual bool Tick_Implementation(float DeltaTime) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Associated Action") //?
+	UPROPERTY() //?
 	class UCAction_RollItem* ActionClass;
 	
+	void OnItemSelectedCallback(UCItemData* SelectedItem);
 };

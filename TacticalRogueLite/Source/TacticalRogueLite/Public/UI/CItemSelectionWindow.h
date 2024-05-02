@@ -8,14 +8,15 @@
 #include "Components/ScrollBox.h"
 #include "CItemSelectionWindow.generated.h"
 
-/**
- * 
- */
+class UCAction_RollItem;
+class UCItemData;
+
+
 UCLASS()
 class TACTICALROGUELITE_API UCItemSelectionWindow : public UUserWidget
 {
 	GENERATED_BODY()
-	bool bIsOwner = false;
+	bool bOwner = false;
 	UPROPERTY()
 	TArray<UCItemSelectionButton*> ActiveItemSelectionWidgets;
 	UPROPERTY(meta = (BindWidget))
@@ -26,7 +27,7 @@ class TACTICALROGUELITE_API UCItemSelectionWindow : public UUserWidget
 	void OnItemSelected(UCItemData* SelectedItem);
 	void ClearScrollBox();
 public:
-	void UpdateInfo(const UCAction& Action,TArray<UCItemData*> Items,bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
+	void UpdateInfo(const UCAction_RollItem& Action, TArray<UCItemData*> Items, bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
 	void Open();
 	void Close();
 };

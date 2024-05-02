@@ -70,7 +70,7 @@ public:
 	// It is preferable to use RegisterAction, so that the caller can have
 	// control over object creation, and call inAction->Initialize()
 	UFUNCTION(BlueprintCallable, Category = "Abilities|Commands")
-	void RegisterActionOfClass(TSubclassOf<UCAction> inActionClass);
+	UCAction* RegisterActionOfClass(TSubclassOf<UCAction> inActionClass);
 
 	/** Should be called by a controller (AI or Player) to attempt an ability use.
 	* @param Controller - The source of the ability activation
@@ -158,7 +158,9 @@ public:
 	UFUNCTION()
 	void SetVictoryCondition(UCVictoryCondition* inVictoryCondition) { VictoryCondition = inVictoryCondition; }
 	
-
+	UPROPERTY(EditDefaultsOnly, Category = "Rolling Item Class")
+	TSubclassOf<UCAction> RollItemClass;
+	
 protected:
 
 	//This class represents the victory (and loss) conditions. 

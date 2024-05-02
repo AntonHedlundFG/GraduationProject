@@ -1,9 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "GamePlay/Subsystems/CItemRollingSubSystem.h"
 #include "GamePlay/Subsystems/CItemRollingSubSystem.h"
 
+#include "CGameState.h"
 #include "Engine/AssetManager.h"
 #include "Engine/StreamableManager.h"
 #include "ItemData/CItemData.h"
@@ -13,10 +10,9 @@
 void UCItemRollingSubSystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	//Fetch all achievements through Asset Manager.
-	Manager = UCAssetManager::GetIfInitialized();
-	GameState = GetWorld()->GetGameState<ACGameState>();
-	if (Manager)
+	
+	//Fetch all items through Asset Manager.
+	if (UAssetManager* Manager = UCAssetManager::GetIfInitialized())
 	{
 		TArray<FPrimaryAssetId> AssetList;
 		const FPrimaryAssetType AssetType("Item");
@@ -39,7 +35,7 @@ void UCItemRollingSubSystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCItemRollingSubSystem::OnItemsLoaded(TArray<FPrimaryAssetId> LoadedAssets)
 {
-	if (Manager)
+	if (UAssetManager* Manager = UCAssetManager::GetIfInitialized())
 	{
 		for (FPrimaryAssetId Id : LoadedAssets)
 		{
@@ -54,9 +50,9 @@ void UCItemRollingSubSystem::OnItemsLoaded(TArray<FPrimaryAssetId> LoadedAssets)
 }
 
 bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollResult>& Results,
-                                           FGameplayTagContainer ContextTags, TArray<FPrimaryAssetId> ExcludedIds,
-                                           TArray<FBucketInfo> Buckets,
-                                           int32 RollAmount, ERollType ReplacementType)
+FGameplayTagContainer ContextTags, TArray<FPrimaryAssetId> ExcludedIds,
+TArray<FBucketInfo> Buckets,
+int32 RollAmount, ERollType ReplacementType)
 {
 	if (Table == nullptr)
 	{
@@ -191,19 +187,39 @@ bool UCItemRollingSubSystem::RollItemTable(UDataTable* Table, TArray<FItemRollRe
 
 int32 UCItemRollingSubSystem::GetRand(int32 Min, int32 Max)
 {
-	
-	if (!GameState)
+	if (ACGameState* GS = GetWorld()->GetGameState<ACGameState>())
 	{
-		GameState = Cast<ACGameState>(GetWorld()->GetGameState());
-		if (!GameState) { return 0; }
+		return GS->Random->GetRandRange(Min, Max, false);
 	}
 	
-	int32 Rand = GameState->Random->GetRandRange(Min, Max, false);
-	return Rand;
+	LOG_WARNING("Cant find Gamestate, returning 0 in GetRand!");
+	return 0;
 }
 
 UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
 {
 	if (LoadedItemDatas.Contains(ID)) { return LoadedItemDatas[ID]; }
 	return nullptr;
+}
+
+TArray<UCItemData*> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
+{
+	TArray<FItemRollResult> RollResults;
+	TArray<FPrimaryAssetId> ExcludeIDs; //TODO: ?
+	if(BucketInfo.IsEmpty()) { BucketInfo.Add(FBucketInfo()); }
+	
+	RollItemTable(Table, RollResults, ContextTags, ExcludeIDs, BucketInfo, RollAmount, ERollType::WithoutReplacement);
+
+	TArray<UCItemData*> ReturnItems;
+	
+	for(auto Result : RollResults)
+	{
+		UCItemData* Data = GetItem(Result.ItemID);
+		if(Data)
+		{
+			ReturnItems.Add(Data);
+		}
+	}
+	
+	return ReturnItems;
 }

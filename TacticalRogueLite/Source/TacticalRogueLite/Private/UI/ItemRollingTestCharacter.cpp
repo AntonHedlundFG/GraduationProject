@@ -29,7 +29,7 @@ void AItemRollingTestCharacter::Tick(float DeltaTime)
 
 void AItemRollingTestCharacter::DebugGetItemFromRoll()
 {
-	UCItemRollingSubSystem* RollingSubSystem = GetWorld()->GetGameInstance()->GetSubsystem<UCItemRollingSubSystem>();
+	/*UCItemRollingSubSystem* RollingSubSystem = GetWorld()->GetGameInstance()->GetSubsystem<UCItemRollingSubSystem>();
 	TArray<FItemRollResult> RollResults;
 	TArray<FPrimaryAssetId> ExcludeIDs;
 	FGameplayTagContainer RequireTags;
@@ -52,5 +52,5 @@ void AItemRollingTestCharacter::DebugGetItemFromRoll()
 		ItemSelectionWindow->AddToViewport();
 		ItemSelectionWindow->SetVisibility(ESlateVisibility::Visible);
 	}
-	//ItemSelectionWindow->UpdateInfo(ItemData,true);
+	//ItemSelectionWindow->UpdateInfo(ItemData,true);*/
 }	

@@ -6,6 +6,8 @@
 #include "Items\ItemSlots.h"
 #include "TacticalRogueLite\OnlineSystem\Public\OnlinePlayerController.h"
 #include "GameplayTagContainer.h"
+#include "Actions/CAction_RollItem.h"
+#include "UI/CItemSelectionButton.h"
 #include "CPlayerController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityInitiated);
@@ -102,12 +104,16 @@ protected:
 	*/
 	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
 	void Server_UseObject(ACUnit* inUnit, FGameplayTag inTag, ACGridTile* inTargetTile);
-
+	
 	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
 	void Server_TryUndo();
 
 	UFUNCTION(Server, Reliable, Category = "Abilities")
 	void Server_TryEndTurn();
+	
+public:
+	UFUNCTION(Server, Reliable, Category = "Abilities|Commands")
+	void Server_EquipItem(ACUnit* inUnit, UCItemData* Item,UCAction_RollItem* Action);
 
 #pragma endregion
 

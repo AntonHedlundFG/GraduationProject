@@ -1,9 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Actions/Visualizer/RollItemActionVisualization.h"
+
+#include "CPlayerController.h"
+#include "Actions/CActionComponent.h"
 #include "Actions/CAction_RollItem.h"
 #include "Widgets/CActorWidget.h"
 #include "ItemData/CItemData.h"
+#include "Kismet/GameplayStatics.h"
 
 bool URollItemActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
 {
@@ -21,10 +25,14 @@ void URollItemActionVisualization::Enter_Implementation()
 	UCActionComponent* ActionComponent = ActionClass->GetActionComp();
 	if(ActionComponent)
 	{
-		if(ensure(Widget))
+		if(ensure(WidgetClass))
 		{
-			//Init Widget...?
-			//Widget->UpdateInfo(Items, ActionComponent);
+			ACUnit* Unit = Cast<ACUnit>(ActionClass->GetActionComp()->GetOuter());
+			bool bIsOwning = Unit->IsControlledBy(UGameplayStatics::GetPlayerController(GetWorld(),0));
+			ItemSelectionWindow = CreateWidget<UCItemSelectionWindow>(GetWorld(),WidgetClass);
+			ItemSelectionWindow->AddToViewport();
+			ItemSelectionWindow->UpdateInfo(*ActionClass,Items, bIsOwning,[this](UCItemData* ItemData){OnItemSelectedCallback(ItemData);});
+			ItemSelectionWindow->Open();
 		}
 	}
 }
@@ -34,11 +42,18 @@ bool URollItemActionVisualization::Tick_Implementation(float DeltaTime)
 	
 	if (!ActionClass->IsRunning())
 	{
-		//Cleanup widget?
-		
 		return true;
 	}
 
 	return false;
 	
+}
+
+void URollItemActionVisualization::OnItemSelectedCallback(UCItemData* SelectedItem)
+{
+	ACPlayerController* PlayerController = Cast<ACPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(),0));
+	ACUnit* Unit = Cast<ACUnit>(ActionClass->GetActionComp()->GetOuter());
+	PlayerController->Server_EquipItem(Unit,SelectedItem,ActionClass);
+	ItemSelectionWindow->Close();
+	ItemSelectionWindow->RemoveFromParent();
 }

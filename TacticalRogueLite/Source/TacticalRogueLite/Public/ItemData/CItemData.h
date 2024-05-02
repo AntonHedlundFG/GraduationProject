@@ -45,7 +45,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ability", meta = (AssetBundles = "Abilities"))
 	FAbility Ability;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "ItemSlot", meta=(Categories="ItemSlot"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "ItemSlot", meta=(Categories="ItemSlot"), meta = (AssetBundles = "UI"))
 	FGameplayTag ItemSlot;
 	
 	UFUNCTION(BlueprintPure)

@@ -44,7 +44,6 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	FGameplayTagContainer& MovementTags = GetOwningComponent()->ActiveGameplayTags;
 	
 	TArray<ACGridTile*> ReturnTiles;
-	//ReturnTiles.Add(inTile);
 
 	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, 2, MovementTags, ActionBlockingTags);
 	

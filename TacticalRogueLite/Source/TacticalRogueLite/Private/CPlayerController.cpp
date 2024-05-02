@@ -10,6 +10,7 @@
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Grid/CTileHighlightComponent.h"
+#include "Items/CInventoryComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 bool ACPlayerController::TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance,
@@ -240,6 +241,13 @@ void ACPlayerController::EndTurn()
 	}
 	OnTurnEnded.Broadcast();
 	Server_TryEndTurn();
+}
+
+void ACPlayerController::Server_EquipItem_Implementation(ACUnit* inUnit, UCItemData* Item, UCAction_RollItem* Action)
+{
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>();
+	inUnit->GetInventoryComp()->TryEquipItem(Item);
+	Action->StopAction(this);
 }
 
 #pragma endregion

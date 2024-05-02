@@ -67,4 +67,5 @@ public:
 	bool IsRunning() const;
 
 	TArray<UCItemData*> GetItems();
+	TObjectPtr<AActor> GetInstigator(){return RepData.Instigator;}
 };

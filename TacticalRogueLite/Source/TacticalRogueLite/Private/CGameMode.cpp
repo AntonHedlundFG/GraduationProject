@@ -9,6 +9,7 @@
 #include "Grid/CGrid.h"
 #include "Grid/CGridSpawner.h"
 #include "Utility/Logging/CLogManager.h"
+#include "Actions/CAction_RollItem.h"
 #include "Utility/TurnTimer/CTurnTimerSubsystem.h"
 #include "Actions/CAction.h"
 #include "Actions/CActionComponent.h"
@@ -78,10 +79,11 @@ void ACGameMode::RegisterAction(UCAction* inAction)
 	ActionStack.Add(inAction);
 }
 
-void ACGameMode::RegisterActionOfClass(TSubclassOf<UCAction> inActionClass)
+UCAction* ACGameMode::RegisterActionOfClass(TSubclassOf<UCAction> inActionClass)
 {
 	UCAction* NewAction = NewObject<UCAction>(this, inActionClass);
 	ActionStack.Add(NewAction);
+	return NewAction;
 }
 
 bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGameplayTag inItemSlotTag, ACGridTile* inTargetTile)
@@ -293,7 +295,16 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		{
 			return true;
 		}
-
+		for (auto Unit : HeroUnits)
+		{
+			if (RollItemClass)
+			{
+				
+				UCAction* Action = RegisterActionOfClass(RollItemClass);
+				Action->Initialize(Unit->GetActionComp());
+			}
+		}
+		ExecuteActionStack();
 		LOG_GAMEPLAY("GameMode TryEndTurn: Players Should Be Rewarded With Items Here!");
 	}
 

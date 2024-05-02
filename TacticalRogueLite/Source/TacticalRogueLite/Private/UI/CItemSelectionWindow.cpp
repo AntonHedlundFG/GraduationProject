@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "UI/CItemSelectionWindow.h"
 
-void UCItemSelectionWindow::UpdateInfo(const UCAction& Action,TArray<UCItemData*> Items,bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack = nullptr)
+
+void UCItemSelectionWindow::UpdateInfo(const UCAction_RollItem& Action,TArray<UCItemData*> Items,bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack = nullptr)
 {
-	this->bIsOwner = bIsOwner;
+	this->bOwner = bIsOwner;
 	OnItemSelectedCallBack = CallBack;
 	ClearScrollBox();
 	for(auto data : Items)
@@ -28,7 +28,7 @@ void UCItemSelectionWindow::OnItemSelected(UCItemData* SelectedItem)
 	OnItemSelectedCallBack(SelectedItem);
 	OnItemSelectedCallBack = nullptr;
 	ClearScrollBox();
-	bIsOwner = false;
+	bOwner = false;
 }
 
 void UCItemSelectionWindow::ClearScrollBox()
@@ -42,7 +42,7 @@ void UCItemSelectionWindow::ClearScrollBox()
 }
 void UCItemSelectionWindow::Open()
 {
-	SetVisibility(bIsOwner?ESlateVisibility::Visible:ESlateVisibility::HitTestInvisible);
+	SetVisibility(bOwner?ESlateVisibility::Visible:ESlateVisibility::HitTestInvisible);
 }
 
 void UCItemSelectionWindow::Close()
