@@ -18,7 +18,7 @@ class USAttackAction_Ranged : UCAttackAction
         int Base = 0;
         int Add = 0;
         int Multi = 0;
-        GetOwningComponent().K2_GetAttribute(FGameplayTag::RequestGameplayTag(n"Attribute.AttackRange"), Current, Base, Add, Multi);
+        GetOwningComponent().GetAttribute(FGameplayTag::RequestGameplayTag(n"Attribute.AttackRange"), Current, Base, Add, Multi);
 
         TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, Current, ActionTags, FGameplayTagContainer());
 
