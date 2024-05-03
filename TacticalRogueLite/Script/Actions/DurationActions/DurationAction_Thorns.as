@@ -98,23 +98,24 @@ class USThornsDamageTriggeredAction : UCAction
     UPROPERTY(Replicated)
     ACUnit ThornsSource;
 
+    UPROPERTY()
+    int ActualDamage;
+
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
-        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
-        OldHealth = Attributes.GetHealth();
+        FGameplayTagContainer ContextTags;
+        ActualDamage = CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
-        //CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount); TODO: Newattribute
-
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {-ActualDamage} thorns damage from {ThornsSource.UnitName}.");
     }
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
-        UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetUnit);
-        Attributes.SetHealth(OldHealth);
+        FGameplayTagContainer ContextTags;
+        CGameplay::UndoDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {-ActualDamage} thorns damage from {ThornsSource.UnitName}.");
     }
 }
 
