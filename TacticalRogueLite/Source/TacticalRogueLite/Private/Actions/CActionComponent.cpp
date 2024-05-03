@@ -11,25 +11,9 @@
 UCActionComponent::UCActionComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
-
 	bWantsInitializeComponent = true;
-
-	//AttributeSet = CreateDefaultSubobject<UCAttributeSet>(TEXT("AttributeSet"));
-
+	
 	SetIsReplicatedByDefault(true);
-	
-}
-
-void UCActionComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
-void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
 }
 
 void UCActionComponent::InitializeComponent()

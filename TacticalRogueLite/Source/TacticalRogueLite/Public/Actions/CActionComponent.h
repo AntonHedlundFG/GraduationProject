@@ -120,10 +120,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated)
 	TArray<FAbility> Abilities;
-	
-	virtual void BeginPlay() override;
-
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	virtual void InitializeComponent() override;
 

@@ -41,12 +41,13 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 		return TArray<ACGridTile*>();	
 	}
 
-	//FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
+	FAttribute Attribute;
+	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.MovementRange"), Attribute);
 	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
 	
 	TArray<ACGridTile*> ReturnTiles;
 
-	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, 2, MovementTags, ActionBlockingTags);
+	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, Attribute.BaseValue, MovementTags, ActionBlockingTags);
 	
 	Tiles.Remove(inTile);
 	
