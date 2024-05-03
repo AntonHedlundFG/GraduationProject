@@ -157,6 +157,15 @@ public:
 	
 };
 
+USTRUCT(BlueprintType)
+struct FAttributeModifications
+{
+	GENERATED_BODY()
+	
+public:
+	UPROPERTY(BlueprintReadWrite)
+	TArray<FAttributeModification> Modifications;
+};
 
 
 

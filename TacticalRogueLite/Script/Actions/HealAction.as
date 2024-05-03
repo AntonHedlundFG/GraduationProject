@@ -33,9 +33,9 @@ class USHealAction : UCTargetableAction
 
             if (IsValid(Unit))
             {           
-                 FGameplayTag TeamTag = (ActionComponent.ActiveGameplayTags.HasTag(GameplayTags::Unit_IsEnemy)) ? 
+                 FGameplayTag TeamTag = (ActionComponent.HasTag(GameplayTags::Unit_IsEnemy)) ? 
                                         GameplayTags::Unit_IsEnemy : GameplayTags::Unit_IsPlayer;
-                if(IsValid(Unit) && Unit.GetActionComp().ActiveGameplayTags.HasTag(TeamTag))
+                if(IsValid(Unit) && Unit.GetActionComp().HasTag(TeamTag))
                 {
                      ReturnTiles.Add(Tile);
                 }
@@ -80,7 +80,7 @@ class USHealAction : UCTargetableAction
         //Attributes.SetHealth(OldHealth);
         ACUnit From = InsitagorUnit;
         ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
-        CGameplay::UndoDamage(From, To, ActualHeal, ActionTags);
+        //CGameplay::UndoDamage(From, To, ActualHeal, ActionTags);
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Undid <Green>{HealAmount}</> healing on {To.GetUnitName()}.");
     }
 }

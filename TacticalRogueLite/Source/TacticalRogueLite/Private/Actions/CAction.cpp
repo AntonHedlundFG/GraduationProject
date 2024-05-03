@@ -49,7 +49,6 @@ void UCAction::StartAction(AActor* Instigator)
 	}
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
-		Comp->ActiveGameplayTags.AppendTags(ActionTags);
 
 	ReceiveStartAction(Instigator);
 }
@@ -59,7 +58,6 @@ void UCAction::StopAction(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
-		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 
 	ReceiveStopAction(Instigator);
 }
@@ -73,7 +71,6 @@ void UCAction::UndoAction(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
 	if (IsValid(Comp) && !ActionTags.IsEmpty())
-		Comp->ActiveGameplayTags.RemoveTags(ActionTags);
 
 	ReceiveUndoAction(Instigator);
 

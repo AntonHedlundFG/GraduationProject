@@ -105,3 +105,44 @@ void FGameplayTagStackContainer::PostReplicatedChange(const TArrayView<int32> Ch
     if (ChangedIndices.Num() > 0)
         OnStackChanged.Broadcast();
 }
+
+void FGameplayTagStackContainer::AppendTag(FGameplayTag Tag)
+{
+    AddStackCount(Tag, 1);
+}
+
+void FGameplayTagStackContainer::AppendTags(FGameplayTagContainer Tags)
+{
+    for (FGameplayTag Tag : Tags)
+        AddStackCount(Tag, 1);
+}
+
+void FGameplayTagStackContainer::RemoveTag(FGameplayTag Tag)
+{
+    RemoveStackCount(Tag, 1);
+}
+
+void FGameplayTagStackContainer::RemoveTags(FGameplayTagContainer Tags)
+{
+    for (FGameplayTag Tag : Tags)
+        RemoveStackCount(Tag, 1);
+}
+
+bool FGameplayTagStackContainer::HasAny(FGameplayTagContainer Tags)
+{
+    for (FGameplayTag Tag : Tags)
+        if (TagCountMap.Contains(Tag) && TagCountMap[Tag] > 0)
+            return true;
+
+    return false;
+}
+
+FGameplayTagContainer FGameplayTagStackContainer::GetContainerWithoutStacks()
+{
+    FGameplayTagContainer NewContainer;
+    for (auto& TagPair : TagCountMap)
+    {
+        NewContainer.AddTag(TagPair.Key);
+    }
+    return NewContainer;
+}

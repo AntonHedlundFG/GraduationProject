@@ -42,7 +42,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	}
 
 	//FGameplayTagContainer& Tags = UCAttributeComponent::GetAttributes(GetOwningComponent()->GetOwner())->ActiveGameplayTags;
-	FGameplayTagContainer& MovementTags = GetOwningComponent()->ActiveGameplayTags;
+	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
 	
 	TArray<ACGridTile*> ReturnTiles;
 

@@ -5,18 +5,18 @@
 #include "Actions/CDeathAction.h"
 #include "GridContent/CUnit.h"
 
-bool UCDeathActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool UCDeathActionVisualization::CanVisualizeAction(UCAction* Action)
 {
 	return Action->IsA(UCDeathAction::StaticClass());
 }
 
-void UCDeathActionVisualization::Enter_Implementation()
+void UCDeathActionVisualization::Enter()
 {
 	TimePassed = 0.0f;
 	DeathAction = Cast<UCDeathAction>(VisualizedAction);
 }
 
-bool UCDeathActionVisualization::Tick_Implementation(float DeltaTime)
+bool UCDeathActionVisualization::Tick(float DeltaTime)
 {
 	// Updates the current time frame of the animation
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
@@ -58,7 +58,7 @@ bool UCDeathActionVisualization::Tick_Implementation(float DeltaTime)
 	return false;
 }
 
-bool UCDeathActionVisualization::RevertTick_Implementation(float DeltaTime)
+bool UCDeathActionVisualization::RevertTick(float DeltaTime)
 {
-	return Tick_Implementation(-DeltaTime * UndoSpeed);
+	return Tick(-DeltaTime * UndoSpeed);
 }

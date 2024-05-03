@@ -7,10 +7,17 @@
 #include "Net/UnrealNetwork.h"
 #include "CGameMode.h"
 #include "Actions\CDeathAction.h"
+#include "Utility/Logging/CLogManager.h"
 
 
 UCAttributeSet::UCAttributeSet()
 {
+	Health = 2; //TODO: Items apply health. 
+	HealthMax = 2;
+	AttackDamage = 0;
+	AttackRange = 0;
+	MovementRange = 0;
+	Armor = 0;
 	
 }
 
@@ -24,6 +31,17 @@ void UCAttributeSet::Initialize(UCActionComponent* NewOwner)
 UCActionComponent* UCAttributeSet::GetOwningComponent() const
 {
 	return OwningComp;
+}
+
+UWorld* UCAttributeSet::GetWorld() const
+{
+	if (GetOwningComponent())
+		return GetOwningComponent()->GetWorld();
+
+	if (AActor* Actor = Cast<AActor>(GetOuter()))
+		return Actor->GetWorld();
+
+	return nullptr;
 }
 
 
@@ -60,6 +78,11 @@ int UCAttributeSet::ApplyAttributeChange(const FAttributeModification& ModToAppl
 			FAttribute* FoundAttribute = Prop->ContainerPtrToValuePtr<FAttribute>(this);
 			const int OldValue = FoundAttribute->GetValue();
 			const int Delta = ModToApply.GetMagnitude(Level);
+
+			//Lösa tankar om hur man eventuellt kan hantera armor
+			//If AttributeTag == Health
+			//	ArmorDamage = FMath::Min(Armor, ModToApply.Magnitude);
+			// ModToApply.Magnitude -= ArmorDamage;
 
 			//Apply the basic modification of attribute.
 			switch (ModToApply.ModifierOperation)
@@ -143,7 +166,7 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 		if (Health.BaseValue == 0 && AppliedMod.Magnitude != 0 && !AppliedMod.bIsUndo)
 		{
 			FGameplayTag DeathTag = FGameplayTag::RequestGameplayTag("Unit.Killed");
-			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags;
+			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags.GetContainerWithoutStacks();
 
 			//*Revival isnt implemented here. Anyone reviving by adding health should consider this and handle the death tag itself.
 			// if (!OwnedTags.HasTag(DeathTag))
@@ -240,6 +263,10 @@ void UCAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 	DOREPLIFETIME(UCAttributeSet, Health);
 	DOREPLIFETIME(UCAttributeSet, HealthMax);
 	DOREPLIFETIME(UCAttributeSet, HealthMaxModifier);
+	DOREPLIFETIME(UCAttributeSet, AttackDamage);
+	DOREPLIFETIME(UCAttributeSet, AttackRange);
+	DOREPLIFETIME(UCAttributeSet, Armor);
+	DOREPLIFETIME(UCAttributeSet, MovementRange);
 	DOREPLIFETIME(UCAttributeSet, OwningComp);
 
 	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, Health, COND_None, REPNOTIFY_Always);
@@ -253,18 +280,36 @@ void UCAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 void UCAttributeSet::OnRep_Health(FAttribute OldAttribute)
  {
  	AttributeChangedFromReplication("Attribute.Health", Health, OldAttribute);
-	LOG_INFO("HALLLO!?!");
- }
-
-
-void UCAttributeSet::OnRep_HealthMax(FAttribute OldAttribute)
- {
- 	AttributeChangedFromReplication("Attribute.HealthMax", HealthMax, OldAttribute);
  }
 
 void UCAttributeSet::OnRep_HealthModifier(FAttribute OldAttribute)
 {
 	AttributeChangedFromReplication("Attribute.HealthModifier", HealthMaxModifier, OldAttribute);
+}
+
+void UCAttributeSet::OnRep_HealthMax(FAttribute OldAttribute)
+{
+	AttributeChangedFromReplication("Attribute.HealthMax", HealthMax, OldAttribute);
+}
+
+void UCAttributeSet::OnRep_AttackDamage(FAttribute OldAttribute)
+{
+	AttributeChangedFromReplication("Attribute.AttackDamage", AttackDamage, OldAttribute);
+}
+
+void UCAttributeSet::OnRep_AttackRange(FAttribute OldAttribute)
+{
+	AttributeChangedFromReplication("Attribute.AttackRange", AttackRange, OldAttribute);
+}
+
+void UCAttributeSet::OnRep_Armor(FAttribute OldAttribute)
+{
+	AttributeChangedFromReplication("Attribute.Armor", Armor, OldAttribute);
+}
+
+void UCAttributeSet::OnRep_MovementRange(FAttribute OldAttribute)
+{
+	AttributeChangedFromReplication("Attribute.MovementRange", MovementRange, OldAttribute);
 }
 
 void UCAttributeSet::AttributeChangedFromReplication(FName AttributeName, FAttribute NewAttribute,

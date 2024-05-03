@@ -4,7 +4,8 @@
 #include "Achievements/CVictoryCondition.h"
 #include "CGameState.h"
 #include "CGameMode.h"
-#include "Attributes\CAttributeComponent.h"
+#include "Actions/CActionComponent.h"
+#include "Attributes/Utilities/CAttribute.h"
 
 void UCVictoryCondition::Initialize(ACGameMode* inGameMode, ACGameState* inGameState)
 {
@@ -21,9 +22,14 @@ bool UCVictoryCondition::CheckVictoryCondition()
 
 	for (auto* Unit : GameModeRef->GetEnemyUnits())
 	{
-		UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(Unit);
-		if (Attributes->GetHealth() > 0)
-			return false;
+		FAttribute Health;
+		if (Unit->GetActionComp()->GetAttribute(FGameplayTag::RequestGameplayTag(FName("Attribute.Health")), Health))
+		{
+			if (Health.BaseValue > 0)
+			{
+				return false;
+			}
+		}
 	}
 	return true;
 }
@@ -37,9 +43,14 @@ bool UCVictoryCondition::CheckLossCondition()
 
 	for (auto* Unit : GameModeRef->GetHeroUnits())
 	{
-		UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(Unit);
-		if (Attributes->GetHealth() > 0)
-			return false;
+		FAttribute Health;
+		if (Unit->GetActionComp()->GetAttribute(FGameplayTag::RequestGameplayTag(FName("Attribute.Health")), Health))
+		{
+			if (Health.BaseValue > 0)
+			{
+				return false;
+			}
+		}
 	}
 	return true;
 }

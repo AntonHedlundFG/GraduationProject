@@ -23,26 +23,10 @@ protected:
 	
 	UPROPERTY()
 	ACUnit* TargetUnit;
+
+
+private:
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Damage")
-	int DamageAmount = 1;
-	
-	int ActualDamage = 0;
-
-	// // List of modifiers to apply to attributes when the action is active.
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	// FAttributeModification& Modifier;
-	//
-	// //Attribute tag to modify.
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	// FGameplayTag TagToModify;
-	//
-	// //Attribute to modify?
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	// FAttribute& OldAttributeValue;
-
-	int OldHealth;
-
-	// UFUNCTION()
-	// void OnHealthChanged(AActor* InstigatorActor, UCAttributeComponent* OwningComp, int NewHealth, int Delta);
+	UPROPERTY()
+	FAttributeModifications ReturnModifications;
 };

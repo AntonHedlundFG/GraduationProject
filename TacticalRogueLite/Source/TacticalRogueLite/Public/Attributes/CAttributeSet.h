@@ -56,8 +56,36 @@ public:
 	UPROPERTY(EditAnywhere, SaveGame, ReplicatedUsing=OnRep_HealthModifier, BlueprintReadOnly, Category = "Attributes")
 	FAttribute HealthMaxModifier;
 
+	//Current Health value, clamped between 0 and (HealthMax * HealthMaxModifier).?
+	UPROPERTY(EditAnywhere, SaveGame, ReplicatedUsing=OnRep_AttackDamage, BlueprintReadOnly, Category = "Attributes")
+	FAttribute AttackDamage;
+
+	//Maximum Health including any flat modification, can be _changed_ by upgrades and buffs.
+	UPROPERTY(EditAnywhere, SaveGame, ReplicatedUsing=OnRep_AttackRange, BlueprintReadOnly, Category = "Attributes")
+	FAttribute AttackRange;
+
+	//Percentage modifier for maximum health used by _temporary_ upgrades and buffs.
+	UPROPERTY(EditAnywhere, SaveGame, ReplicatedUsing=OnRep_MovementRange, BlueprintReadOnly, Category = "Attributes")
+	FAttribute MovementRange;
+
+	//Percentage modifier for maximum health used by _temporary_ upgrades and buffs.
+	UPROPERTY(EditAnywhere, SaveGame, ReplicatedUsing=OnRep_Armor, BlueprintReadOnly, Category = "Attributes")
+	FAttribute Armor;
+
 	UFUNCTION()
 	void OnRep_Health(FAttribute OldAttribute);
+	
+	UFUNCTION()
+	void OnRep_AttackDamage(FAttribute OldAttribute);
+
+	UFUNCTION()
+	void OnRep_AttackRange(FAttribute OldAttribute);
+
+	UFUNCTION()
+	void OnRep_Armor(FAttribute OldAttribute);
+
+	UFUNCTION()
+	void OnRep_MovementRange(FAttribute OldAttribute);
 	
 	UFUNCTION()
 	void OnRep_HealthMax(FAttribute OldAttribute);
@@ -73,6 +101,8 @@ public:
 	//UWorld* GetWorld() const override;
 
 protected:
+	
+	virtual UWorld* GetWorld() const override;
 
 	//Returns current value of the attribute.
 	UFUNCTION(BlueprintPure, Category = "AttributeSet")

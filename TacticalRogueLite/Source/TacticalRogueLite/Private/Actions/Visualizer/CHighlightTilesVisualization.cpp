@@ -3,12 +3,12 @@
 #include "Grid/CGridTile.h"
 #include "Grid/CTileHighlightComponent.h"
 
-bool UCHighlightTilesVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool UCHighlightTilesVisualization::CanVisualizeAction(UCAction* Action)
 {
 	return Action->IsA(UCHighlightTileAction::StaticClass());
 }
 
-void UCHighlightTilesVisualization::Enter_Implementation()
+void UCHighlightTilesVisualization::Enter()
 {
 	TimePassed = 0.0f;
 	HighLightAction = Cast<UCHighlightTileAction>(VisualizedAction);
@@ -16,7 +16,7 @@ void UCHighlightTilesVisualization::Enter_Implementation()
 	ToggleHighlightTilesInRange(true);
 }
 
-bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
+bool UCHighlightTilesVisualization::Tick(float DeltaTime)
 {
 	// Updates the current time frame of the animation
 	TimePassed = TimePassed + DeltaTime;
@@ -39,7 +39,7 @@ bool UCHighlightTilesVisualization::Tick_Implementation(float DeltaTime)
 }
 
 
-bool UCHighlightTilesVisualization::RevertTick_Implementation(float DeltaTime)
+bool UCHighlightTilesVisualization::RevertTick(float DeltaTime)
 {
 	// No revert functionality for this visualization.
 	return true;

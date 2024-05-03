@@ -8,7 +8,7 @@
 #include "Grid\CGridTile.h"
 #include "Actions\CActionComponent.h"
 
-bool UCTargetedProjectileVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool UCTargetedProjectileVisualization::CanVisualizeAction(UCAction* Action)
 {
 	for (TSubclassOf<UCAction> ActionType : AffectedActionTypes)
 	{
@@ -18,7 +18,7 @@ bool UCTargetedProjectileVisualization::CanVisualizeAction_Implementation(UCActi
 	return false;
 }
 
-void UCTargetedProjectileVisualization::Enter_Implementation()
+void UCTargetedProjectileVisualization::Enter()
 {
 	TimePassed = 0.0f;
 	TargetableAction = Cast<UCTargetableAction>(VisualizedAction);
@@ -35,7 +35,7 @@ void UCTargetedProjectileVisualization::Enter_Implementation()
 
 }
 
-bool UCTargetedProjectileVisualization::Tick_Implementation(float DeltaTime)
+bool UCTargetedProjectileVisualization::Tick(float DeltaTime)
 {
 	if (TimePassedBeforeProjectile < DelayBeforeLaunchingProjectile)
 	{
@@ -80,9 +80,9 @@ bool UCTargetedProjectileVisualization::Tick_Implementation(float DeltaTime)
 	return false;
 }
 
-bool UCTargetedProjectileVisualization::RevertTick_Implementation(float DeltaTime)
+bool UCTargetedProjectileVisualization::RevertTick(float DeltaTime)
 {
-	return Tick_Implementation(-DeltaTime * UndoSpeedMultiplier);
+	return Tick(-DeltaTime * UndoSpeedMultiplier);
 }
 
 void UCTargetedProjectileVisualization::CalculateSplinePoint(FVector& OutLocation, FRotator& OutRotation)

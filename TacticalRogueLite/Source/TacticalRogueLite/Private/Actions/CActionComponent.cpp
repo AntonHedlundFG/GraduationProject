@@ -5,11 +5,16 @@
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
 #include "GridContent/CUnit.h"
+#include "Utility/Logging/CLogManager.h"
 
 
 UCActionComponent::UCActionComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
+
+	bWantsInitializeComponent = true;
+
+	//AttributeSet = CreateDefaultSubobject<UCAttributeSet>(TEXT("AttributeSet"));
 
 	SetIsReplicatedByDefault(true);
 	
@@ -18,8 +23,19 @@ UCActionComponent::UCActionComponent()
 void UCActionComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+}
 
-	// Server Only
+
+void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+}
+
+void UCActionComponent::InitializeComponent()
+{
+	Super::InitializeComponent();
+	
 	if (GetOwner()->HasAuthority())
 	{
 		if (AttributeClass)
@@ -31,11 +47,6 @@ void UCActionComponent::BeginPlay()
 		}
 		//LOG_WARNING("No Attributeset!");
 	}
-}
-
-void UCActionComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
 }
 
 bool UCActionComponent::GetAttribute(FGameplayTag InTag, FAttribute& InAttribute)
@@ -74,7 +85,10 @@ int UCActionComponent::ApplyAttributeChange(const FAttributeModification& InAttr
 {
 	//Applies the attribute, triggers events and allows other attributes to react to the change.
 	//eg. +3 Strength might change the HealthMax too in RPG style.
-	return AttributeSet->ApplyAttributeChange(InAttributeMod, Level);
+	if (AttributeSet)
+		return AttributeSet->ApplyAttributeChange(InAttributeMod, Level);
+	else
+		return 0;
 }
 
 

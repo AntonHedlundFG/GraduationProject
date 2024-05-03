@@ -4,10 +4,8 @@
 #include "Actions/CAttackAction.h"
 
 #include "Actions/CActionComponent.h"
-#include "Attributes/CAttributeComponent.h"
 #include "Attributes/CGameplayFunctionLibrary.h"
 #include "Grid/CGridTile.h"
-#include "Grid/CGridUtilsLibrary.h"
 #include "GridContent/CUnit.h"
 #include "Kismet/GameplayStatics.h"
 #include "Utility/Logging/CLogManager.h"
@@ -18,16 +16,18 @@ void UCAttackAction::StartAction(AActor* Instigator)
 
 	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	// OldHealth = Attributes->GetHealth();
-	
-	ActualDamage = UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), DamageAmount, ActionTags); 
+
+	FAttribute Attribute;
+	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.AttackDamage"), Attribute);
+	ReturnModifications = UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), Attribute.BaseValue, ActionTags); 
 
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
-
+	
 	FString AttackerName = Attacker ? Attacker->GetUnitName() : FString("Unknown Unit");
 	FString DefenderName = Defender ? Defender->GetUnitName() : FString("Unknown Unit");
 
-	LOG_GAMEPLAY("%s attacked %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
+	LOG_GAMEPLAY("%s attacked %s for %d damage.", *AttackerName, *DefenderName, Attribute.BaseValue);
 }
 
 void UCAttackAction::UndoAction(AActor* Instigator)
@@ -35,15 +35,17 @@ void UCAttackAction::UndoAction(AActor* Instigator)
 	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
 	// Attributes->SetHealth(OldHealth);
 
-	UCGameplayFunctionLibrary::UndoDamage(Instigator, TargetTile->GetContent(), ActualDamage, ActionTags);
-
 	ACUnit* Attacker = Cast<ACUnit>(Instigator);
 	ACUnit* Defender = Cast<ACUnit>(TargetTile->GetContent());
 
-	FString AttackerName = Attacker ? Attacker->GetUnitName() : FString("Unknown Unit");
-	FString DefenderName = Defender ? Defender->GetUnitName() : FString("Unknown Unit");
-
-	LOG_GAMEPLAY("%s undid their attack on %s for %d damage.", *AttackerName, *DefenderName, DamageAmount);
+	for (FAttributeModification Mod : ReturnModifications.Modifications)
+	{
+		Defender->GetActionComp()->ApplyAttributeChange(Mod, 0);
+		FString AttackerName = Attacker ? Attacker->GetUnitName() : FString("Unknown Unit");
+		FString DefenderName = Defender ? Defender->GetUnitName() : FString("Unknown Unit");
+		
+		LOG_GAMEPLAY("%s undid their attack on %s for %d damage.", *AttackerName, *DefenderName, Mod.Magnitude);
+	}
 	
 	Super::UndoAction(Instigator);
 }
@@ -57,7 +59,6 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 		return TArray<ACGridTile*>();	
 	}
 	
-
 	TArray<ACGridTile*> ReturnTiles;
 	TArray<ACGridTile*> Neighbours = inTile->GetNeighbours(false);
 	for (int i = 0; i < Neighbours.Num(); ++i)
