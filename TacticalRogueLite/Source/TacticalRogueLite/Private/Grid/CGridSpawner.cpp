@@ -35,13 +35,13 @@ void ACGridSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
 }
 
 
-TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames)
+TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames, FGameplayTag inTeamTag)
 {
 	TArray<ACUnit*> Units;
 	for (int i = 0 ; i < inSpawnTiles.Num() ; i ++)
 	{
 		if (i >= inUnits.Num()) break;
-		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i]);
+		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i], inTeamTag);
 		if(i < inNames.Num())
 			Unit->SetUnitName(inNames[i]);
 			
