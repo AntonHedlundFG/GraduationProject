@@ -47,22 +47,10 @@ class USHealAction : UCTargetableAction
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
-         //UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetTile.GetContent());
-         //OldHealth = Attributes.GetHealth();
-         //CGameplay::ApplyHealing(Instigator,TargetTile.GetContent(),HealAmount); //TODO: Newattribute
-
 
          InsitagorUnit = Cast<ACUnit>(Instigator);
          ACUnit From = InsitagorUnit;
          ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
-
-        //for (FAttributeModification Modification : Modifiers)
-        
-           //ActualHeal = CGameplay::ApplyDamage(From,To, -HealAmount, ActionTags);
-           //ActualHeal = To.GetActionComp().ApplyAttributeChange(Modification, 0); 
-           
-    
-         
 
         if(From == To)
         {
@@ -76,11 +64,8 @@ class USHealAction : UCTargetableAction
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
-        //UCAttributeComponent Attributes = UCAttributeComponent::GetAttributes(TargetTile.GetContent());
-        //Attributes.SetHealth(OldHealth);
         ACUnit From = InsitagorUnit;
         ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
-        //CGameplay::UndoDamage(From, To, ActualHeal, ActionTags);
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Undid <Green>{HealAmount}</> healing on {To.GetUnitName()}.");
     }
 }
