@@ -101,21 +101,27 @@ class USThornsDamageTriggeredAction : UCAction
     UPROPERTY()
     int ActualDamage;
 
+    UPROPERTY()
+    FAttributeModifications UndoMods;
+
+
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
         FGameplayTagContainer ContextTags;
-        ActualDamage = CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
+        UndoMods = CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {-ActualDamage} thorns damage from {ThornsSource.UnitName}.");
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
         FGameplayTagContainer ContextTags;
-        CGameplay::UndoDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {-ActualDamage} thorns damage from {ThornsSource.UnitName}.");
+        for (FAttributeModification& Mod : UndoMods.Modifications)
+            TargetUnit.ActionComp.ApplyAttributeChange(Mod, 0);
+
+        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }
 }
 
