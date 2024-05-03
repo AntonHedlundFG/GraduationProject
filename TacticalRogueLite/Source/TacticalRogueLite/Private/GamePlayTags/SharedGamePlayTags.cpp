@@ -46,10 +46,12 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Monk, "Class.Monk");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute, "Attribute");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_AttackDamage, "Attribute.AttackDamage");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_AttackRange, "Attribute.AttackRange");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_CritChance, "Attribute.CritChance");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Armor, "Attribute.Armor");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Health, "Attribute.Health");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_HealthMax, "Attribute.HealthMax");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_ShieldPower, "Attribute.ShieldPower");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_MovementRange, "Attribute.MovementRange");
 
 // UE_DEFINE_GAMEPLAY_COMMENT() https://www.unrealdirective.com/tip/declare-define-native-gameplay-tags
