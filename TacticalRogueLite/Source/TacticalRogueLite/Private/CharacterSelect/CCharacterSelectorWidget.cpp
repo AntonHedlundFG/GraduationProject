@@ -31,7 +31,7 @@ void UCCharacterSelectorWidget::DecreaseIndex()
 {
 	if (!CanInteract() || GameState->ReadyInfo[WidgetIndex])
 		return;
-
+	
 	if (!Controller)
 		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
 	
@@ -45,6 +45,7 @@ void UCCharacterSelectorWidget::DecreaseIndex()
 		Controller->Server_UpdateCharacterIndex(WidgetIndex, CharacterIndex);
 	}
 }
+
 
 void UCCharacterSelectorWidget::ToggleReady()
 {
