@@ -12,6 +12,7 @@ class USAction_AoEDamage : UCAction
 
 	UPROPERTY()
 	TArray<ACUnit> TargetsArray;
+    TArray<FAttributeModifications> UndoDamageList;
     //TArray<int> HealthArray;
 
     UFUNCTION(BlueprintOverride)
@@ -49,7 +50,8 @@ class USAction_AoEDamage : UCAction
         
         for (int i = 0; i < TargetsArray.Num(); i++)
         {
-            CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage, ActionTags); 
+    
+            UndoDamageList.Add(CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage, ActionTags)); 
 
              
             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
@@ -61,9 +63,16 @@ class USAction_AoEDamage : UCAction
     {
         for (int i = TargetsArray.Num() - 1; i >= 0; i--)
         {
-            CGameplay::UndoDamage(AttackingUnit, TargetsArray[i], -Damage, ActionTags);
+           //CGameplay::UndoDamage(AttackingUnit, TargetsArray[i], -Damage, ActionTags);
+
+           for (FAttributeModification& Mod : UndoDamageList[i].Modifications)
+           {
+                TargetsArray[i].ActionComp.ApplyAttributeChange(Mod, 0);
+                UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Mod.Magnitude} </> damage on {TargetsArray[i].GetUnitName()}.");
+           }
+           
             //TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]); TODO: Cleanup Old Attr
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Damage} </> damage on {TargetsArray[i].GetUnitName()}.");
+            
         }
     }
 

@@ -13,6 +13,8 @@ void UCActionWithTimer::StartAction(AActor* Instigator)
 	if (!AffectedUnit)
 		AffectedUnit = Cast<ACUnit>(Instigator);
 
+	GetOwningComponent()->ActiveGameplayTags.AppendTags(ActionTags);
+
 
 	GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
 
@@ -30,6 +32,7 @@ void UCActionWithTimer::UndoAction(AActor* Instigator)
 	Super::UndoAction(Instigator);
 
 	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
 void UCActionWithTimer::BindTimer()
@@ -44,4 +47,5 @@ void UCActionWithTimer::BindTimer()
 void UCActionWithTimer::OnTimerFinishes_Implementation(ACUnit* inAffectedUnit)
 {
 	LOG_WARNING("An unassigned timer has finished");
+	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 }

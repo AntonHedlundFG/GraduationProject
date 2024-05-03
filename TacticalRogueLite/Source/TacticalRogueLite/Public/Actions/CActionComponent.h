@@ -6,6 +6,7 @@
 #include "CAction.h"
 #include "CActionWithTimer.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Attributes/Utilities/CAttributeUtilities.h"
 #include "CActionComponent.generated.h"
 
 //class UCAction;
@@ -45,7 +46,22 @@ public:
 
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
-	FGameplayTagContainer ActiveGameplayTags;
+	FGameplayTagStackContainer ActiveGameplayTags;
+
+	/* 
+	* Returns true if we have a one or more of the tag in the stack.
+	*/
+	UFUNCTION(BlueprintCallable)
+	bool HasTag(FGameplayTag Tag) const
+	{
+		return ActiveGameplayTags.HasTag(Tag);
+	}
+
+	UFUNCTION(BlueprintCallable)
+	bool HasAny(FGameplayTagContainer Tags)
+	{
+		return ActiveGameplayTags.HasAny(Tags);
+	}
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
@@ -109,13 +125,15 @@ protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	virtual void InitializeComponent() override;
+
 public:
 	
 	// -- Attributes -- //
 	
 	//Attribute set for things like Health, HealthMax...
-	UPROPERTY(Replicated)
-	UCAttributeSet* AttributeSet;
+	UPROPERTY(VisibleAnywhere, Replicated)
+	TObjectPtr<UCAttributeSet> AttributeSet;
 
 	bool GetAttribute(FGameplayTag InTag, FAttribute& InAttribute);
 	
@@ -145,7 +163,6 @@ public:
 	void BroadcastAttributeChanged(FGameplayTag InAttributeTag, UCActionComponent* InstigatorComp, int InNewValue, int InDelta, FGameplayTagContainer InContextTags, EAttributeModifierOperation ModOperation);
 
 protected:
-
 	
 	UPROPERTY(EditDefaultsOnly, NoClear, Category = "Attributes")
 	TSubclassOf<UCAttributeSet> AttributeClass;

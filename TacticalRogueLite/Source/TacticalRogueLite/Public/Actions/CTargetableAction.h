@@ -6,6 +6,7 @@
 #include "Actions/CAction.h"
 #include "CTargetableAction.generated.h"
 
+class UCActionComponent;
 class ACUnit;
 
 UCLASS()
@@ -27,7 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	TArray<FAttributeModification> ModifiersAppliedToTarget;
 
-	class UCActionComponent* TargetActionComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	UCActionComponent* TargetActionComponent;
 
 	UFUNCTION(BlueprintNativeEvent)
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile);

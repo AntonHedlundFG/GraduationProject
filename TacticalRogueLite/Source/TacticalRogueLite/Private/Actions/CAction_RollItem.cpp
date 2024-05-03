@@ -38,7 +38,7 @@ void UCAction_RollItem::StartAction(AActor* Instigator)
 
 	if (RollingSubSystem)
 	{
-		Items = RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, Buckets, RollAmount);
+		Items = RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks(), Buckets, RollAmount);
 	}
 }
 

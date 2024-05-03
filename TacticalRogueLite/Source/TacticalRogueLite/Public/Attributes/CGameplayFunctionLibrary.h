@@ -22,10 +22,10 @@ private:
 	public:
 
 		UFUNCTION(BlueprintCallable, Category = "Gameplay")
-		static int ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags);
+		static FAttributeModifications ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags);
 
-		UFUNCTION(BlueprintCallable,Category="Gameplay")
-		static bool UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags);
+		//UFUNCTION(BlueprintCallable,Category="Gameplay")
+		//static bool UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags);
 		// UFUNCTION(BlueprintPure, Category = "PSO Caching")
 		// static int32 GetRemainingBundledPSOs();
 

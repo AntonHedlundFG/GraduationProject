@@ -20,7 +20,7 @@ class USValidTargetsInRangeConsideration : UCConsideration
             if (TargetUnit == nullptr) continue;
             if(TargetUnit == Context.CurrentUnit) continue;
 
-            if (!TargetUnit.ActionComp.ActiveGameplayTags.HasAny(ConsiderationTags)) continue;
+            if (!TargetUnit.ActionComp.HasAny(ConsiderationTags)) continue;
 
             Score += (1.0f / TargetTiles.Num());
         }

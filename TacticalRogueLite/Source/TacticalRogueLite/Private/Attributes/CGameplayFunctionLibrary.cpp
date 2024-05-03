@@ -7,7 +7,7 @@
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CGameplayFunctionLibrary)
 
 
-int UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags)
+FAttributeModifications UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags)
 {
 	// UCAttributeComponent* AttributeComp = UCAttributeComponent::GetAttributes(TargetActor);
 	// if (AttributeComp)
@@ -19,24 +19,53 @@ int UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetA
 	//if (UCActionComponent* ActionComp = UCActionComponent::GetActionComp(TargetActor))
 	if (ActionComp)
 	{
-		int Amount = DamageAmount / -1;
-	
-		FAttributeModification Modification;
+		FAttribute ArmorAttribute;
+		ActionComp->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.Armor"),ArmorAttribute);
 
-		Modification.InstigatorComp = DamageCauser->GetComponentByClass<UCActionComponent>();
-		Modification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
-		Modification.ModifierOperation = EAttributeModifierOperation::AddBase;
-		Modification.Magnitude = Amount;
-		Modification.AddedTags = ContextTags;
-		int ActualDamage = ActionComp->ApplyAttributeChange(Modification, 0);
+		int DamageToArmor = FMath::Min(ArmorAttribute.BaseValue, DamageAmount);
+		int DamageToHealth = DamageAmount - DamageToArmor;
+	
+		FAttributeModification HealthModification;
+		FAttributeModification ArmorModification;
+
+		HealthModification.InstigatorComp = DamageCauser->GetComponentByClass<UCActionComponent>();
+		HealthModification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
+		HealthModification.ModifierOperation = EAttributeModifierOperation::AddBase;
+		HealthModification.Magnitude = -DamageToHealth;
+
+		ArmorModification.InstigatorComp = DamageCauser->GetComponentByClass<UCActionComponent>();
+		ArmorModification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Armor");
+		ArmorModification.ModifierOperation = EAttributeModifierOperation::AddBase;
+		ArmorModification.Magnitude = -DamageToArmor;
+
+		FAttributeModifications ReturnUndoModifications;
+		
+		if (DamageToArmor > 0)
+		{
+			ActionComp->ApplyAttributeChange(ArmorModification, 0);
+			FAttributeModification ReturnUndoArmorMod = ArmorModification;
+			ReturnUndoArmorMod.Magnitude = -ReturnUndoArmorMod.Magnitude;
+			ReturnUndoArmorMod.bIsUndo = true;
+			ReturnUndoModifications.Modifications.Add(ReturnUndoArmorMod);
+		}
+		if (DamageToHealth > 0)
+		{
+			ActionComp->ApplyAttributeChange(HealthModification, 0);
+			FAttributeModification ReturnUndoHealthMod = HealthModification;
+			ReturnUndoHealthMod.Magnitude = -ReturnUndoHealthMod.Magnitude;
+			ReturnUndoHealthMod.bIsUndo = true;
+			ReturnUndoModifications.Modifications.Add(ReturnUndoHealthMod);
+		}
+		
+		//Modification.AddedTags = ContextTags;
 		//FMath::Abs(ActualDamage); //?
 		//ActionComp->BroadcastAttributeChanged(Modification.AttributeTag, UCActionComponent::GetActionComp(DamageCauser), )
-		return ActualDamage;
+		return ReturnUndoModifications;
 	}
 
-	return 0;
+	return FAttributeModifications();
 }
-
+/* Commenting this out since we want to use the returned array of FAttributeModifications for undoing damage...
 bool UCGameplayFunctionLibrary::UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags)
 {
 	// UCAttributeComponent* AttributeComp = UCAttributeComponent::GetAttributes(Target);
@@ -55,14 +84,14 @@ bool UCGameplayFunctionLibrary::UndoDamage(AActor* InstigatorActor, AActor* Targ
 		Modification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
 		Modification.ModifierOperation = EAttributeModifierOperation::AddBase;
 		Modification.Magnitude = -Amount;
-		Modification.AddedTags = ContextTags;
+		//Modification.AddedTags = ContextTags;
 		ActionComp->ApplyAttributeChange(Modification, 0);
 		return true;
 	}
 	
 	return false;
 }
-
+*/
 // int32 USGameplayFunctionLibrary::GetRemainingBundledPSOs()
 // {
 // 	// Counts Bundled PSOs remaining, exposed for UI access
