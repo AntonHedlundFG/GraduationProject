@@ -20,9 +20,9 @@ protected:
 	UPROPERTY()
 	UCItemSelectionWindow* ItemSelectionWindow;
 	
-	virtual bool CanVisualizeAction_Implementation(UCAction* Action) override;
-	virtual void Enter_Implementation() override;
-	virtual bool Tick_Implementation(float DeltaTime) override;
+	virtual bool CanVisualizeAction(UCAction* Action) override;
+	virtual void Enter() override;
+	virtual bool Tick(float DeltaTime) override;
 
 	UPROPERTY() //?
 	class UCAction_RollItem* ActionClass;
