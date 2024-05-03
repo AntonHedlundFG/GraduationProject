@@ -77,7 +77,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem)
 
 	AddItem(inItem);
 	
-	//OnItemChanged.Broadcast(this, inItem);
+	OnItemChanged.Broadcast(this, inItem);
 	
 	return true;
 }
