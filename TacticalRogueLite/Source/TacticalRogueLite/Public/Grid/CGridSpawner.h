@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "Utility/SaveGame/CSavable.h"
 #include "CGridSpawner.generated.h"
@@ -15,6 +16,7 @@ class ACGridTile;
 class ACUnit;
 class UCItemData;
 class UCAllEnemiesData;
+struct FGameplayTag;
 struct FCUnitSpawnDetails;
 
 
@@ -53,12 +55,12 @@ public:
 	
 	///Spawns a unit on a given tile.
 	UFUNCTION()
-	ACUnit* SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile);
+	ACUnit* SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag = FGameplayTag::RequestGameplayTag("Unit.IsEnemy"));
 
 	///Spawns a unit on a given tile, also tries to name the unit and add items to it.
 	UFUNCTION()
 	// ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, TArray<UCItemData*> inEquipment, FString inName);
-	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails);
+	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag = FGameplayTag::RequestGameplayTag("Unit.IsPlayer"));
 	
 	///Spawns a grid actor at a given position
 	UFUNCTION()

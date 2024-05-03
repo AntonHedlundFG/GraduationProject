@@ -2,6 +2,7 @@
 #include "Grid/CGridSpawner.h"
 
 #include "CGameMode.h"
+#include "Actions/CActionComponent.h"
 #include "Grid/CGrid.h"
 #include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
@@ -50,11 +51,15 @@ TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> i
 	return Units;
 }
 
-ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile)
+ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag)
 {
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
 	SpawnPosition.Z += 100;
 	TObjectPtr<ACUnit> Unit = GetWorld()->SpawnActor<ACUnit>(inUnitType, SpawnPosition , FRotator::ZeroRotator);
+	
+	//Give Team Tag
+	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
+	
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
 
@@ -62,7 +67,7 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 }
 
 ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-	FCUnitSpawnDetails SpawnDetails)
+	FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag)
 {
 	FTransform SpawnTransform = FTransform();
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
@@ -97,6 +102,9 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 		}
 	}
 
+	//Give Team Tag
+	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
+	
 	Unit->FinishSpawning(SpawnTransform);
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
@@ -173,7 +181,7 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 
 		const FCUnitSpawnDetails EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
 
-		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails);
+		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails, FGameplayTag::RequestGameplayTag("Unit.IsEnemy"));
 		// Enemy->OnRep_SetAppearance(EnemyDetails.Sprite);
 		Enemies.Add(Enemy);
 	}
