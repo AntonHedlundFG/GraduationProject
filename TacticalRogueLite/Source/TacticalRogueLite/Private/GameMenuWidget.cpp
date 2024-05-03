@@ -12,7 +12,9 @@ void UGameMenuWidget::SetUp()
 {
 	Super::SetUp();
 	QuitButton->OnPressed.AddUniqueDynamic(this,&UGameMenuWidget::QuitGame);
-	MainMenuButton->OnPressed.AddUniqueDynamic(this, &UGameMenuWidget::QuitGame);
+	MainMenuButton->OnPressed.AddUniqueDynamic(this, &UGameMenuWidget::GoToMainMenu);
+	bIsOpen = false;
+	MainCanvas->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UGameMenuWidget::QuitGame()

@@ -35,8 +35,10 @@ class USCombatLogWidget: UCResizableWindow
         //Since the log is initialized before the filter, We have to set the filter here, before it can be updated;
         LogFilter |= UCGameplayLogDropDownMenu::GetFilterFlag(ELogCategory::LC_Gameplay);
         ClearLog();
+        bIsOpen = true;
        // AddMessage(UCCombatLogger::Format(ECombatLogCategory::COMBAT,"Combat Logger Initialized."));
     }
+
 
     UFUNCTION(BlueprintCallable)
     void AddMessage(FString msg)

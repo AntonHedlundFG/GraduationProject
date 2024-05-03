@@ -12,6 +12,7 @@
 #include "GridContent/UnitDataAssets/CUnitSpawnDetails.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
+#include "Utility/Logging/CLogManager.h"
 
 ACGridSpawner::ACGridSpawner()
 {
@@ -86,6 +87,8 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	if (SpawnDetails.Sprite)
 		Unit->SetSprite(SpawnDetails.Sprite);
 	
+	Unit->FinishSpawning(SpawnTransform);
+
 	//Add items
 	for (UCItemData* Item : SpawnDetails.Items)
 	{
@@ -105,7 +108,6 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	//Give Team Tag
 	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
 	
-	Unit->FinishSpawning(SpawnTransform);
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
 	

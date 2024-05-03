@@ -80,3 +80,16 @@ void UCMovableWindow::Open()
 	MainCanvas->SetVisibility(ESlateVisibility::Visible);
 	OnWindowOpen.Broadcast();
 }
+
+void UCMovableWindow::Toggle()
+{
+	if(bIsOpen)
+	{
+		Close();
+	}
+	else
+	{
+		Open();
+	}
+}
+
