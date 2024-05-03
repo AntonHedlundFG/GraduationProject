@@ -7,11 +7,27 @@
 
 void UCDefaultUnitEquipment::EquipUnit(ACUnit* unit)
 {
-	for (const auto Item : DefaultEquipment)
+	for (UCItemData* Item : DefaultEquipment)
 	{
-		const bool bEquipped = unit->GetInventoryComp()->TryEquipItem(Item);
+		if (!Item)
+		{
+			LOG_WARNING("Null Default Item");
+			continue;
+		}
 		
-		if(!bEquipped)
-			LOG_WARNING("Invalid Default Item");
+		UCInventoryComponent* Inventory = unit->GetInventoryComp();
+		if (Inventory->CheckValidEquipmentTag(Item->ItemSlot))
+		{
+			const bool bEquipped = Inventory->TryEquipItem(Item);
+			if (!bEquipped)
+			{
+				LOG_WARNING("DefaultEquipment: Couldn't equip item");
+			}
+		}
+		else
+		{
+			Inventory->AddItem(Item);
+		}
+		
 	}
 }
