@@ -38,8 +38,7 @@ void ACCharacterSelectController::Server_UpdateCharacterIndex_Implementation(int
 	{
 		TArray<int> Characters = StateRef->CharacterIndexes;
 		Characters[InWidgetIndex] = InCharacterIndex;
-
-		StateRef->CharacterIndexes = Characters;
+		
 		StateRef->UpdateCharacters(Characters);
 	}
 }

@@ -9,7 +9,7 @@ bool UCVictoryCondition_KillEnemies::CheckVictoryCondition()
 	if (!GameModeRef)
 		return false;
 
-	//if (bWonByCheating) return true;
+	if (bWonByCheating) return true;
 	
 	FAttribute Health;
 	FGameplayTag HealthTag = FGameplayTag::RequestGameplayTag(FName("Attribute.Health"));

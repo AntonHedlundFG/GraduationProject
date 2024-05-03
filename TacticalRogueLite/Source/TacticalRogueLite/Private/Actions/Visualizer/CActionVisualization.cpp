@@ -10,22 +10,50 @@
 #include "Grid/CGridTile.h"
 #include "CGameState.h"
 
-bool UCActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool UCActionVisualization::CanVisualizeAction(UCAction* Action)
+{
+	return ReceiveCanVisualizeAction(Action);
+}
+
+void UCActionVisualization::Enter()
+{
+	ReceiveEnter();
+}
+
+void UCActionVisualization::Exit()
+{
+	ReceiveExit();
+}
+
+bool UCActionVisualization::Tick(float DeltaTime)
+{
+	return ReceiveTick(DeltaTime);
+}
+
+bool UCActionVisualization::RevertTick(float DeltaTime)
+{
+	return ReceiveRevertTick(DeltaTime);
+}
+
+bool UCActionVisualization::ReceiveCanVisualizeAction_Implementation(UCAction* Action)
 {
 	return true;
 }
-
-void UCActionVisualization::Enter_Implementation()
+bool UCActionVisualization::ReceiveRevertTick_Implementation(float DeltaTime)
 {
-	
+	LOG_INFO("No undo visualization available for this action");
+
+	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
+
+	for (ACUnit* Unit : GameState->TurnOrder)
+	{
+		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0, 0, 100));
+	}
+
+	return true;
 }
 
-void UCActionVisualization::Exit_Implementation()
-{
-
-}
-
-bool UCActionVisualization::Tick_Implementation(float DeltaTime)
+bool UCActionVisualization::ReceiveTick_Implementation(float DeltaTime)
 {
 	LOG_INFO("No visualization available for this action");
 
@@ -39,16 +67,10 @@ bool UCActionVisualization::Tick_Implementation(float DeltaTime)
 	return true;
 }
 
-bool UCActionVisualization::RevertTick_Implementation(float DeltaTime)
+void UCActionVisualization::ReceiveExit_Implementation()
 {
-	LOG_INFO("No undo visualization available for this action");
+}
 
-	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
-
-	for (ACUnit* Unit : GameState->TurnOrder)
-	{
-		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation() + FVector(0, 0, 100));
-	}
-
-	return true;
+void UCActionVisualization::ReceiveEnter_Implementation()
+{
 }

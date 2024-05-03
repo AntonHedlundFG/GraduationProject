@@ -1,0 +1,22 @@
+Unit Design Philosophy
+
+Cleric:
+A mixture of healing/support/and Meele/Range focused abilites, nothing to powerfull damage wise unless its cleric specific
+
+Monk:
+Has a mixture of strong meele focused abilities/utility, also has a few support/minor healing abilities
+
+Warrior:
+Strong focus on meele abilites, also has access to better armor abilities, TANKS
+
+Ranger:
+Strong ranged attacks (not spells), focuses on moveability and utility
+
+Mage:
+Strong spellcaster with limited movement
+
+Necromancer: 
+Shares ability pool with some of the mage abilities, mainly fire, but also has a focus on spells that damages and heals self, 
+Uses selfish means to achieve victory. Think, puts curses on enemies. Summons?
+
+ 

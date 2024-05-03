@@ -61,9 +61,9 @@ void ACCharacterSelectGameState::UpdateReadyStatus(TArray<bool> inArray)
 	if (inArray.Num() == ReadyInfo.Num())
 	{
 		ReadyInfo = inArray;
-		OnRep_ReadyInfo();
 	}
 	
+	OnRep_ReadyInfo();
 	CheckReady();
 }
 
@@ -122,9 +122,10 @@ void ACCharacterSelectGameState::OnRep_LockedInfo()
 		MenuWidget->UpdateLocks(LockedInfo);
 }
 
-void ACCharacterSelectGameState::OnRep_PlayerCount()
+void ACCharacterSelectGameState::OnRep_ReadyInfo()
 {
 	if (MenuWidget)	
 		MenuWidget->UpdateReadyStatus(ReadyInfo);
 }
+
 

@@ -5,18 +5,18 @@
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 
-bool UCMovementActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool UCMovementActionVisualization::CanVisualizeAction(UCAction* Action)
 {
 	return Action->IsA(UCMovementAction::StaticClass());
 }
 
-void UCMovementActionVisualization::Enter_Implementation()
+void UCMovementActionVisualization::Enter()
 {
 	TimePassed = 0.0f;
 	MoveAction = Cast<UCMovementAction>(VisualizedAction);
 }
 
-bool UCMovementActionVisualization::Tick_Implementation(float DeltaTime)
+bool UCMovementActionVisualization::Tick(float DeltaTime)
 {
 	// Updates the current time frame of the animation
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
@@ -43,7 +43,7 @@ bool UCMovementActionVisualization::Tick_Implementation(float DeltaTime)
 	return false;
 }
 
-bool UCMovementActionVisualization::RevertTick_Implementation(float DeltaTime)
+bool UCMovementActionVisualization::RevertTick(float DeltaTime)
 {
-	return Tick_Implementation(-DeltaTime * UndoSpeed);
+	return Tick(-DeltaTime * UndoSpeed);
 }

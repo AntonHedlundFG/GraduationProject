@@ -24,15 +24,19 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite, Category = "Controlling Player")
 	bool bIsLocked = false;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Controlling Player")
-	int ControllingPlayerIndex;
 	
 	UFUNCTION(BlueprintCallable)
 	void IncreaseIndex();
 
 	UFUNCTION(BlueprintCallable)
 	void DecreaseIndex();
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateLockVisuals(bool inIsLocked);
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateControllingPlayerVisuals(int inPlayerIndex);
+	
 	
 protected:
 	UPROPERTY()

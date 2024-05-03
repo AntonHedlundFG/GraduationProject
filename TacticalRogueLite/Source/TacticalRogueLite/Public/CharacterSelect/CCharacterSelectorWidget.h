@@ -5,6 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "CCharacterSelectorWidget.generated.h"
 
+struct FCNamesAndItemsList;
 class ACCharacterSelectGameState;
 class ACCharacterSelectController;
 class UCStartCharacterData;
@@ -20,12 +21,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
 	int WidgetIndex;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Ready Status")
-	bool bIsReadyToStart = false;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
-	int CharacterTypeIndex;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Starting Characters")
 	TObjectPtr<UCStartCharacterData> StartCharacters;
 
@@ -34,6 +29,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DecreaseIndex();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateCurrentCharacterVisuals(int inCharacterIndex);
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateReadyVisuals(bool inIsReady);
 
 	UFUNCTION(BlueprintCallable)
 	void ToggleReady();

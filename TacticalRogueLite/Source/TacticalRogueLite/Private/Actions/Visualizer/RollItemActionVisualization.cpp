@@ -9,14 +9,14 @@
 #include "ItemData/CItemData.h"
 #include "Kismet/GameplayStatics.h"
 
-bool URollItemActionVisualization::CanVisualizeAction_Implementation(UCAction* Action)
+bool URollItemActionVisualization::CanVisualizeAction(UCAction* Action)
 {
 	return Action->IsA(UCAction_RollItem::StaticClass());
 }
 
-void URollItemActionVisualization::Enter_Implementation()
+void URollItemActionVisualization::Enter()
 {
-	Super::Enter_Implementation();
+	Super::Enter();
 	
 	ActionClass = Cast<UCAction_RollItem>(VisualizedAction);
 	
@@ -37,7 +37,7 @@ void URollItemActionVisualization::Enter_Implementation()
 	}
 }
 
-bool URollItemActionVisualization::Tick_Implementation(float DeltaTime)
+bool URollItemActionVisualization::Tick(float DeltaTime)
 {
 	
 	if (!ActionClass->IsRunning())

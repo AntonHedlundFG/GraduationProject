@@ -12,10 +12,10 @@ class TACTICALROGUELITE_API UCHighlightTilesVisualization : public UCActionVisua
 {
 	GENERATED_BODY()
 	
-	virtual bool CanVisualizeAction_Implementation(UCAction* Action) override;
-	virtual void Enter_Implementation() override;
-	virtual bool Tick_Implementation(float DeltaTime) override;
-	virtual bool RevertTick_Implementation(float DeltaTime) override;
+	virtual bool CanVisualizeAction(UCAction* Action) override;
+	virtual void Enter() override;
+	virtual bool Tick(float DeltaTime) override;
+	virtual bool RevertTick(float DeltaTime) override;
 
 	void ToggleHighlightTilesInRange(bool bHighlightOn);
 	

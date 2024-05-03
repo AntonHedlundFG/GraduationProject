@@ -48,8 +48,6 @@ public:
 	void UpdateReadyStatus(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
 	void UpdatePlayerCount(int inCount);
-	// UFUNCTION(BlueprintCallable)
-	// void OnRep_UpdateUI() const { OnUpdateUI.Broadcast(); }
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_SetupUI();
@@ -72,7 +70,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnRep_LockedInfo();
 	UFUNCTION(BlueprintCallable)
-	void OnRep_ReadyInfo() const { OnUpdateUI.Broadcast(); }
+	void OnRep_ReadyInfo();
 	UFUNCTION(BlueprintCallable)
-	void OnRep_PlayerCount();
+	void OnRep_PlayerCount() const { OnUpdateUI.Broadcast(); }
 };
