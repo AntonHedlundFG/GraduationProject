@@ -32,7 +32,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	virtual void SetUp();
 public:
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	bool bIsOpen = false;
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	FVector2D WindowMinSize = FVector2D(200,200);
@@ -53,6 +53,8 @@ public:
 	void Close();
 	UFUNCTION(BlueprintCallable)
 	void Open();
+	UFUNCTION(BlueprintCallable)
+	void Toggle();
 	UPROPERTY(meta=(BindWidget))
 	UButton* HeaderButton;
 	UPROPERTY(meta=(BindWidget))

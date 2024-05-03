@@ -3,6 +3,7 @@
 #include "CGameState.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlayTags/SharedGameplayTags.h"
+#include "Utility/Logging/CLogManager.h"
 
 UCTurnOrderPortraitWidget* UCTurnOrderUI::CreatePortraitWidget()
 {
@@ -94,7 +95,7 @@ void UCTurnOrderUI::UpdateTurnList()
 			//Save the index in which it was added??
 			int indexItWasAddedTo = TurnOrderBox->AddWidget(Widget);
 			TurnOrder[indexItWasAddedTo] = i;
-			if(Unit->GetActionComp()->ActiveGameplayTags.HasTag(TAG_Unit_IsPlayer))
+			if(Unit->GetActionComp()->HasTag(TAG_Unit_IsPlayer))
 			{
 				Widget->SetBackground(PlayerBackgroundBrush);
 			}
