@@ -53,4 +53,8 @@ public:
 	{
 		return ItemSlot;
 	}
+
+	//Modifications that takes effect when u equip the item.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attributes", meta = (AssetBundles = "Attributes"))
+	TArray<FAttributeModification> AttributeModifications;
 };

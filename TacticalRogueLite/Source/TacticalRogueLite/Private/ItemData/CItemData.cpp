@@ -2,7 +2,6 @@
 
 
 #include "ItemData/CItemData.h"
-
 #include "Actions/CActionComponent.h"
 #include "GridContent/CUnit.h"
 #include "Attributes/CAttributeComponent.h"
@@ -23,6 +22,12 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 		ActionComp->ActiveGameplayTags.AppendTags(OwnedTags);
 		Ability.InventorySlotTag = ItemSlot;
 		ActionComp->AddAbility(Ability);
+
+		for (FAttributeModification Mod : AttributeModifications)
+		{
+			Mod.InstigatorComp = ActionComp;
+			ActionComp->ApplyAttributeChange(Mod, 0);
+		}
 	}
 }
 
@@ -41,6 +46,12 @@ void UCItemData::UnequipOnUnit(ACUnit* inUnit)
 		//Append the items ownedtags to the ActionComp.
 		ActionComp->ActiveGameplayTags.RemoveTags(OwnedTags);
 		ActionComp->RemoveAbility(ItemSlot);
+
+		for (FAttributeModification Mod : AttributeModifications)
+		{
+			Mod.Magnitude = -Mod.Magnitude;
+			ActionComp->ApplyAttributeChange(Mod, 0);
+		}
 	}
 }
 

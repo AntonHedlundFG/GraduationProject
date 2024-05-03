@@ -79,6 +79,26 @@ public:
      * Removes count from the tag's stack.
      */
     void RemoveStackCount(FGameplayTag Tag, int32 Count);
+
+    /*
+     * Adds 1 count of this tag
+     */
+    void AppendTag(FGameplayTag Tag);
+
+    /*
+    * Adds 1 count of each tag in this container
+    */
+    void AppendTags(FGameplayTagContainer Tags);
+
+    /*
+     * Removes 1 count of this tag
+     */
+    void RemoveTag(FGameplayTag Tag);
+
+    /*
+    * Removes 1 count of each tag in this container
+    */
+    void RemoveTags(FGameplayTagContainer Tags);
      
     /* 
      * Returns true if we have a one or more of the tag in the stack.
@@ -87,7 +107,11 @@ public:
     {
         return TagCountMap.Contains(Tag);
     }
-     
+
+	bool HasAny(FGameplayTagContainer Tags);
+
+	FGameplayTagContainer GetContainerWithoutStacks();
+	
     /*
      * Returns the amount of the stack we have for the supplied tag.
      */
