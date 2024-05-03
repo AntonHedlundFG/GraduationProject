@@ -7,14 +7,14 @@
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
-#include "Items/CNamesAndItemsList.h"
 #include "GridContent/UnitDataAssets/CAllEnemiesData.h"
+#include "GridContent/UnitDataAssets/CUnitSpawnDetails.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
 ACGridSpawner::ACGridSpawner()
 {
-	NamesAndItemList = TArray<FCNamesAndItemsList>();
+	SpawnData = TArray<FCUnitSpawnDetails>();
 	ControllingPlayers = TArray<int>();
 }
 
@@ -62,7 +62,7 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 }
 
 ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-	FCNamesAndItemsList SpawnDetails)
+	FCUnitSpawnDetails SpawnDetails)
 {
 	FTransform SpawnTransform = FTransform();
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
@@ -104,34 +104,7 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	return Unit;
 }
 
-// ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-// 	TArray<UCItemData*> inEquipment, FString inName)
-// {
-// 	ACUnit* Unit = SpawnUnit(inUnitType, inSpawnTile);
-// 	UCInventoryComponent* Inventory = Unit->GetInventoryComp();
-//
-// 	//Try name unit
-// 	if (!inName.IsEmpty())
-// 		Unit->SetUnitName(inName);
-//
-// 	//Add items
-// 	for (UCItemData* Item : inEquipment)
-// 	{
-// 		if (!Item)
-// 			continue;
-// 		
-// 		if (Inventory->CheckValidEquipmentTag(Item->ItemSlot))
-// 		{
-// 			Inventory->TryEquipItem(Item);
-// 		}
-// 		else
-// 		{
-// 			Inventory->AddItem(Item);
-// 		}
-// 	}
-//
-// 	return Unit;
-// }
+
 
 ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
 {
@@ -198,7 +171,7 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	{
 		const int index = Random->GetRandRange(0, PossibleEnemyTypes.Num() - 1, false);
 
-		const FCNamesAndItemsList EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
+		const FCUnitSpawnDetails EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
 
 		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails);
 		// Enemy->OnRep_SetAppearance(EnemyDetails.Sprite);
@@ -227,7 +200,7 @@ void ACGridSpawner::OnSave()
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		SaveGame->NamesAndItems.Empty();
-		for (auto Data : NamesAndItemList)
+		for (auto Data : SpawnData)
 		{
 			SaveGame->NamesAndItems.Add(Data);
 		}
@@ -249,10 +222,10 @@ void ACGridSpawner::OnLoad()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		NamesAndItemList.Empty();
+		SpawnData.Empty();
 		for (auto Data : SaveGame->NamesAndItems)
 		{
-			NamesAndItemList.Add(Data);
+			SpawnData.Add(Data);
 		}
 		
 		ControllingPlayers.Empty();

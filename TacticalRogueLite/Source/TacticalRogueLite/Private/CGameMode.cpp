@@ -15,7 +15,6 @@
 #include "Actions/CActionComponent.h"
 #include "Actions/CTargetableAction.h"
 #include "Items/CDefaultUnitEquipment.h"
-#include "Items/CNamesAndItemsList.h"
 #include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerState.h"
 #include "Utility/CRandomComponent.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
@@ -453,7 +452,7 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 		return;
 	}
 	
-	if (Spawner->NamesAndItemList.Num() != HeroUnitsNum)
+	if (Spawner->SpawnData.Num() != HeroUnitsNum)
 	{
 		SpawnDefaultHeroUnits(InGrid);
 		return;
@@ -464,10 +463,10 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 	TArray<ACGridTile*> SpawnTiles = InGrid->GetHeroSpawnTiles();
 	for(int8 i = 0; i < HeroUnitsNum ; i++)
 	{
-		if (i >= Spawner->NamesAndItemList.Num() || i >= SpawnTiles.Num())
+		if (i >= Spawner->SpawnData.Num() || i >= SpawnTiles.Num())
 			break;
 		
-		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->NamesAndItemList[i]);
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->SpawnData[i]);
 
 		if (i < Spawner->ControllingPlayers.Num())
 		{

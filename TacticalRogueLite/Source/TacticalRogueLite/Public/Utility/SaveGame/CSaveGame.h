@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
-#include "Items/CNamesAndItemsList.h"
+#include "GridContent/UnitDataAssets/CUnitSpawnDetails.h"
 #include "GameplayTagContainer.h"
 #include "CSaveGame.generated.h"
 
@@ -38,7 +38,7 @@ public:
 	int32 PlayerCount;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
-	TArray<FCNamesAndItemsList> NamesAndItems;
+	TArray<FCUnitSpawnDetails> NamesAndItems;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
 	TArray<int> ControllingPlayers;

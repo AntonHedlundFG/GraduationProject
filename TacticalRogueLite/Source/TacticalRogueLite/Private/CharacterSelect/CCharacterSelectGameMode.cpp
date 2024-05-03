@@ -5,7 +5,7 @@
 #include "CLevelURLAsset.h"
 #include "CharacterSelect/CCharacterSelectGameState.h"
 #include "CharacterSelect/CStartCharacterData.h"
-#include "Items/CNamesAndItemsList.h"
+#include "GridContent/UnitDataAssets/CUnitSpawnDetails.h"
 #include "TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h"
 #include "Utility/Logging/CLogManager.h"
 #include "Utility/SaveGame/CSaveGame.h"
@@ -68,7 +68,7 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	
 	for (auto Index : Characters)
 	{
-		FCNamesAndItemsList Data = StartCharacters->StartCharacterList[Index];
+		FCUnitSpawnDetails Data = StartCharacters->StartCharacterList[Index];
 
 		FString PlayerName = GetNameOfPlayerIndex(ControllingPlayers[Index]);
 		if (!PlayerName.IsEmpty())

@@ -8,7 +8,7 @@
 
 
 class UCLevelURLAsset;
-struct FCNamesAndItemsList;
+struct FCUnitSpawnDetails;
 class ACCharacterSelectGameState;
 class UCStartCharacterData;
 class UCRandomComponent;
@@ -47,7 +47,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCStartCharacterData> StartCharacters;
 	UPROPERTY()
-	TArray<FCNamesAndItemsList> SpawnUnitData;
+	TArray<FCUnitSpawnDetails> SpawnUnitData;
 	UPROPERTY()
 	TArray<int> ControllingPlayers;
 

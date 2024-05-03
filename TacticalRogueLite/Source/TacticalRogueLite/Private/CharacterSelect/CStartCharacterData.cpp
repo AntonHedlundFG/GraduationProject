@@ -2,7 +2,7 @@
 
 #include "CharacterSelect/CStartCharacterData.h"
 
-#include "Items/CNamesAndItemsList.h"
+#include "GridContent/UnitDataAssets/CUnitSpawnDetails.h"
 #include "Utility/Logging/CLogManager.h"
 
 FString UCStartCharacterData::GetCharacterType(int index)

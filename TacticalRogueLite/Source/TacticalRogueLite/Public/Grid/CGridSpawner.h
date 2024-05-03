@@ -15,7 +15,7 @@ class ACGridTile;
 class ACUnit;
 class UCItemData;
 class UCAllEnemiesData;
-struct FCNamesAndItemsList;
+struct FCUnitSpawnDetails;
 
 
 UCLASS()
@@ -40,7 +40,7 @@ public:
 	TArray<FString> EnemyNames = {"Enemy_1", "Enemy_2", "Enemy_3", "Enemy_4"};
 
 	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
-	TArray<FCNamesAndItemsList> NamesAndItemList;
+	TArray<FCUnitSpawnDetails> SpawnData;
 	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
 	TArray<int> ControllingPlayers;
 	UPROPERTY(VisibleAnywhere, Category = "SpawnData")
@@ -58,7 +58,7 @@ public:
 	///Spawns a unit on a given tile, also tries to name the unit and add items to it.
 	UFUNCTION()
 	// ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, TArray<UCItemData*> inEquipment, FString inName);
-	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCNamesAndItemsList SpawnDetails);
+	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails);
 	
 	///Spawns a grid actor at a given position
 	UFUNCTION()

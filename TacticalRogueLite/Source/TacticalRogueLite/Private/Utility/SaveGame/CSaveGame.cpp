@@ -17,7 +17,7 @@ UCSaveGame::UCSaveGame()
 
 	PlayerCount = 1;
 
-	NamesAndItems = TArray<FCNamesAndItemsList>();
+	NamesAndItems = TArray<FCUnitSpawnDetails>();
 
 	ControllingPlayers = TArray<int>();
 	

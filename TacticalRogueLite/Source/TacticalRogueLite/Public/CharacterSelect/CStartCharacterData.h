@@ -6,7 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "CStartCharacterData.generated.h"
 
-struct FCNamesAndItemsList;
+struct FCUnitSpawnDetails;
 class UCItemData;
 /**
  * 
@@ -18,7 +18,7 @@ class TACTICALROGUELITE_API UCStartCharacterData : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, Category = "Start Characters")
-	TArray<FCNamesAndItemsList> StartCharacterList;
+	TArray<FCUnitSpawnDetails> StartCharacterList;
 
 	UFUNCTION(BlueprintCallable, Category = "Start Characters")
 	FString GetCharacterType(int index);

@@ -5,7 +5,6 @@
 #include "Blueprint/UserWidget.h"
 #include "CCharacterSelectorWidget.generated.h"
 
-struct FCNamesAndItemsList;
 class ACCharacterSelectGameState;
 class ACCharacterSelectController;
 class UCStartCharacterData;
