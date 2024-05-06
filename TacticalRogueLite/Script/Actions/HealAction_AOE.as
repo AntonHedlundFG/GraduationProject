@@ -34,11 +34,11 @@ class USHealAction_AOE : UCAction
 
             ACUnit TargetUnit = Cast<ACUnit>(Content);
 
-            if (IsValid(TargetUnit))
+            FGameplayTag Tag = TargetUnit.GetTeam();
+            if (IsValid(TargetUnit) && Tag.MatchesTag(GameplayTags::Unit_IsPlayer))
             {
                 if(TargetUnit == AttackingUnit && !bCanHealSelf)
                     continue;
-
                 TargetsArray.Add(TargetUnit);
             }
         }

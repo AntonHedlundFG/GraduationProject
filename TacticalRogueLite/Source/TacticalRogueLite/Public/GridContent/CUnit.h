@@ -43,6 +43,9 @@ protected:
 
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Units")
 	FString UnitName = FString();
+
+	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Units")
+	FGameplayTag TeamTag;
 	
 public:
 	ACUnit();
@@ -50,6 +53,10 @@ public:
 	virtual void EndPlay(EEndPlayReason::Type Reason) override;
 	UFUNCTION(BlueprintCallable)
 	FString GetUnitName() { return UnitName; }
+	UFUNCTION(BlueprintCallable)
+	FGameplayTag GetTeam() { return TeamTag; }
+	UFUNCTION(BlueprintCallable)
+	void SetTeam(FGameplayTag inTag) { TeamTag = inTag; }
 	UFUNCTION(BlueprintCallable)
 	void SetUnitName(FString inName) { UnitName = inName; }
 
