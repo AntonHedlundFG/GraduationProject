@@ -19,6 +19,9 @@ protected:
 	virtual void StartAction(AActor* Instigator) override;
 
 	virtual void UndoAction(AActor* Instigator) override;
+	
+	UPROPERTY(BlueprintReadWrite, meta = (EditCondition = false))
+	UCActionComponent* TargetActionComponent;
 
 public:
 	UPROPERTY(BlueprintReadWrite, Replicated)
@@ -27,10 +30,7 @@ public:
 	// List of modifiers to apply to attributes when the action is active.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	TArray<FAttributeModification> ModifiersAppliedToTarget;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-	UCActionComponent* TargetActionComponent;
-
+	
 	UFUNCTION(BlueprintNativeEvent)
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* inTile);
 
@@ -47,10 +47,6 @@ public:
 
 #pragma region AngelScript overridables
 
-protected:
-	
-	// UFUNCTION(BlueprintImplementableEvent)
-	// TArray<ACGridTile*> ReceiveGetValidTargetTiles(ACGridTile* inUnit);
 
 #pragma endregion
 };

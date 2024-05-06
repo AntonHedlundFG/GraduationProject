@@ -1,97 +1,92 @@
-class USHealAction_AOE: UCAction
+class USHealAction_AOE : UCAction
 {
-    UPROPERTY(BlueprintReadWrite)
-    int Range;
-    UPROPERTY(BlueprintReadWrite)
-    int HealAmount;
-    ACUnit InsigatorUnit;
-    TArray<ACUnit> HealedUnits;
-    TArray<int> OldHealth;
+    UPROPERTY()
+    int Range = 1;
+
+
+    // List of modifiers to apply to attributes when the action is active.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	TArray<FAttributeModification> ModifiersAppliedToTarget;
+
+    UPROPERTY()
+    bool bCanHealSelf = true;
+
+	private ACUnit AttackingUnit; //TODO: Hide
+    private TArray<ACUnit> TargetsArray;
+    private TArray<int> ModifiersTargetActualDeltas;
+
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
-        // UCActionComponent ActionComponent = GetOwningComponent();
-        // if(ActionComponent == nullptr)
-        // {
-        //     return;
-        // }
-        // InsigatorUnit = Cast<ACUnit>(Instigator);
-        // ACGridTile startTile = InsigatorUnit.GetTile();
-        // TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(startTile);
-        // TArray<ACUnit> ValidUnits;
-
-        // for(auto Tile :TilesInRange)
-        // {
-        //     ACGridContent Content = Tile.GetContent();
-        //     if(Content == nullptr)
-        //         continue;
-
-        //     ACUnit Unit = Cast<ACUnit>(Content);
-        //     if(IsValid(Unit))
-        //     {           
-        //          FGameplayTag TeamTag = (ActionComponent.ActiveGameplayTags.HasTag(GameplayTags::Unit_IsEnemy)) ? 
-        //                                 GameplayTags::Unit_IsEnemy : GameplayTags::Unit_IsPlayer;
-        //         if(IsValid(Unit) && Unit.GetActionComp().ActiveGameplayTags.HasTag(TeamTag))
-        //         {
-        //              ValidUnits.Add(Unit);
-        //         }
-        //     }
-        // }
-
-        // ACUnit From = Cast<ACUnit>(Instigator);
-        // ACUnit To;
         
-        // for(ACUnit Unit : ValidUnits)
-        // {
-        //     To = Unit;
-        //     //Should be moved to baseclass. 
-        //     //for(FAttributeModification Modification : Modifiers)
-            
-        //        // Unit.GetActionComp().ApplyAttributeChange(Modification, 0);
-            
-            
-        //     //CGameplay::ApplyHealing(Instigator,To,HealAmount); TODO: Newattribute
-        //     HealedUnits.Add(To);
-        //     //OldHealth.Add(To.GetAttributeComp().GetHealth());
-        //     if(From == To)
-        //     {
-        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
-        //     }
-        //     else
-        //     {
-        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
-        //     }
-        // }
+         AttackingUnit = Cast<ACUnit>(Instigator);
+        if(!IsValid(AttackingUnit))
+            return;
+
+
+        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(AttackingUnit.GetTile());
+
+        for (ACGridTile Tile : TilesInRange)
+        {
+            ACGridContent Content = Tile.GetContent();
+            if(Content == nullptr)
+                continue;
+
+            ACUnit TargetUnit = Cast<ACUnit>(Content);
+
+            if (IsValid(TargetUnit))
+            {
+                if(TargetUnit == AttackingUnit && !bCanHealSelf)
+                    continue;
+
+                TargetsArray.Add(TargetUnit);
+            }
+        }
+
+         if(TargetsArray.Num() < 0)
+        {
+            UCLogManager::BlueprintLog(ELogCategory::LC_Error, "No targets in Targetsarray");
+            return;
+        }
+        
+        for (int i = 0; i < TargetsArray.Num(); i++)
+        {
+            for (FAttributeModification& Mod : ModifiersAppliedToTarget)
+            {
+                UCActionComponent TargetActionComp = TargetsArray[i].GetActionComp();
+	            if (TargetActionComp == nullptr) continue;
+
+                Mod.InstigatorComp = TargetActionComp;
+                int ActualDelta = TargetActionComp.ApplyAttributeChange(Mod, 0);
+                ModifiersTargetActualDeltas.Add(ActualDelta);
+                UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} healed {TargetsArray[i].GetUnitName()} for <Green> {ActualDelta} </> health.");
+            }
+        }  
     }
+
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
     {
-        // ACUnit From = InsigatorUnit;
-        // ACUnit To;
-        // for(int i = HealedUnits.Num()-1; i >= 0; i--)
-        // {
-        //     To = HealedUnits[i];
-        //     //for (FAttributeModification Modification : Modifiers)
-            
-        //       //  CGameplay::ApplyDamage(From, To, HealAmount, ActionTags);
-        //         //HealedUnits[i].GetActionComp().ApplyAttributeChange(Modification, 0);
-            
-        //     //HealedUnits[i].GetAttributeComp().SetHealth(OldHealth[i]);
-            
-        //     if(From == To)
-        //     {
-        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> healing on self.");
-        //     }
-        //     else
-        //     {
-        //          UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} undid <Green>{HealAmount}</> on {To.GetUnitName()}.");
-        //     }
-        // }
-    }
+         for (int i = TargetsArray.Num() - 1; i >= 0; i--)
+        {
+		    for (int j = 0; j < ModifiersAppliedToTarget.Num(); j++)
+		    {
+                UCActionComponent TargetActionComp = TargetsArray[i].GetActionComp();
+	            if (TargetActionComp == nullptr) continue;
+			    FAttributeModification Mod = ModifiersAppliedToTarget[j];
+			    Mod.InstigatorComp = TargetActionComp;
+			    Mod.bIsUndo = true;
+			    Mod.Magnitude = -ModifiersTargetActualDeltas[j];
+			    TargetActionComp.ApplyAttributeChange(Mod, 0);
 
+                UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Green> {Mod.Magnitude} </> healing on {TargetsArray[i].GetUnitName()}.");
+           }
+		}
+	}
+                
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
+        return CGridUtils::FloodFill(fromTile, Range, ActionTags, FGameplayTagContainer());
     }
 }

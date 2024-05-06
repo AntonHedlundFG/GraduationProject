@@ -13,7 +13,6 @@ class USAction_AoEDamage : UCAction
 	UPROPERTY()
 	TArray<ACUnit> TargetsArray;
     TArray<FAttributeModifications> UndoDamageList;
-    //TArray<int> HealthArray;
 
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
@@ -32,13 +31,12 @@ class USAction_AoEDamage : UCAction
 
             ACUnit TargetUnit = Cast<ACUnit>(Content);
 
-            if (IsValid(TargetUnit) && IsValid(TargetUnit.AttributeComp))
+            if (IsValid(TargetUnit))
             {
                 if(TargetUnit == AttackingUnit && !bCanDamageSelf)
                     continue;
 
                 TargetsArray.Add(TargetUnit);
-                //HealthArray.Add(TargetUnit.AttributeComp.GetHealth());
             }
         }
 
@@ -63,16 +61,11 @@ class USAction_AoEDamage : UCAction
     {
         for (int i = TargetsArray.Num() - 1; i >= 0; i--)
         {
-           //CGameplay::UndoDamage(AttackingUnit, TargetsArray[i], -Damage, ActionTags);
-
            for (FAttributeModification& Mod : UndoDamageList[i].Modifications)
            {
                 TargetsArray[i].ActionComp.ApplyAttributeChange(Mod, 0);
                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Mod.Magnitude} </> damage on {TargetsArray[i].GetUnitName()}.");
            }
-           
-            //TargetsArray[i].GetAttributeComp().SetHealth(HealthArray[i]); TODO: Cleanup Old Attr
-            
         }
     }
 

@@ -122,7 +122,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	TArray<FAttributeModification> ModifiersAppliedToOwner;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, meta = (EditCondition = false))
 	TArray<int> ModifiersActualDeltas;
 
 	UFUNCTION(BlueprintCallable)

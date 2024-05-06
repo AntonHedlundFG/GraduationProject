@@ -123,6 +123,7 @@ class USThornsDamageTriggeredAction : UCAction
 
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }
+    
 }
 
 UCLASS(Abstract)

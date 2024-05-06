@@ -151,8 +151,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	FRuntimeFloatCurve Curve;
 
-	//Is this modification part of an undo. //TODO: public?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AdvancedDisplay))
+	//EditDefaultsOnly, BlueprintReadOnly, meta = (AdvancedDisplay)
+	//Is this modification part of an undo.
+	UPROPERTY(BlueprintReadWrite, meta = (EditCondition = false))
 	bool bIsUndo;
 	
 };
