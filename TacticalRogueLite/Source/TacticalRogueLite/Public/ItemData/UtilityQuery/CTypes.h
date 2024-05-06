@@ -44,11 +44,12 @@ class UCActionComponent;
  	//Item is excluded when the roll includes this tag.
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Tags")
  	FGameplayTagContainer BlockedTags;
-
+ 	//Items that will be weighted more if tag is included
+ 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Tags")
+ 	FGameplayTagContainer ExtraWeightTags;
  	//Experimental. https://zhuanlan.zhihu.com/p/666639858. "A set of tags that can be queried to see if they meet specific conditions".
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category= "Tags")
  	FGameplayTagQuery TagQuery;
-
  	//Optional Bucket to use when rolling. Groups togheter items and turn rolling into 2 phases (roll bucket, roll item within bucket).
  	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Advanced")
  	FName BucketName;
@@ -56,8 +57,8 @@ class UCActionComponent;
  	//Runtime toggle for rolling without replacement.
  	bool bIgnored;
 
- 	//Total weight, can be zero if excluded from roll.
- 	float GetItemWeight(const FGameplayTagContainer& ContextTags, const FName& InBucket)
+ 	//Total weight, can be zero if excluded from roll. 
+ 	float GetItemWeight(const FGameplayTagContainer& ContextTags, const FName& InBucket, float ExtraWeightMultiplier = 0)
  	{
  		if (bIgnored)
  		{
@@ -72,6 +73,15 @@ class UCActionComponent;
  		if (Weight < 0.0f || !MatchesTags(ContextTags))
  		{
  			//Exclude guaranteed drops.
+ 			return 0.0f;
+ 		}
+ 		if(ExtraWeightTags.HasAny(ContextTags))
+ 		{
+ 			return Weight + ExtraWeightMultiplier * Weight;
+ 		}
+ 		//If ExtraWeightMultiplier == -1 then only extra weighted items will be picked
+ 		if(ExtraWeightMultiplier == -1)
+ 		{
  			return 0.0f;
  		}
  		return Weight;

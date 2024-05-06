@@ -151,7 +151,7 @@ int32 RollAmount, ERollType ReplacementType)
 			}
 
 			//Ignores the guaranteed drops with < 0.0f weight.
-			TotalWeight += Row->GetItemWeight(ContextTags, SelectedBucket);
+			TotalWeight += Row->GetItemWeight(ContextTags, SelectedBucket,ExtraWeightMultiplier);
 		}
 
 		//No more items available (maybe from w/o replacement).
@@ -170,7 +170,7 @@ int32 RollAmount, ERollType ReplacementType)
 				continue;
 			}
 
-			CurrWeight += Row->GetItemWeight(ContextTags, SelectedBucket);
+			CurrWeight += Row->GetItemWeight(ContextTags, SelectedBucket,ExtraWeightMultiplier);
 			if (SelectedWeight <= CurrWeight)
 			{
 				//Item can be "null" which means nothing dropped by design.

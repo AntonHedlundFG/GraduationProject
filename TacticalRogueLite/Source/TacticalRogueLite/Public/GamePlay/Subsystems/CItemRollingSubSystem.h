@@ -17,6 +17,7 @@ class TACTICALROGUELITE_API UCItemRollingSubSystem : public UGameInstanceSubsyst
 {
 	GENERATED_BODY()
 
+	float ExtraWeightMultiplier = 2;
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 protected:
