@@ -24,22 +24,16 @@ void UCMovementAction::StartAction(AActor* Instigator)
 	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
 
 	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, ActionBlockingTags);
-	if (!Path.IsEmpty())
-	{
-		MovedUnit->SetTile(TargetTile);
-		LOG_GAMEPLAY("%s moved %d steps.", *MovedUnit->GetUnitName(), Path.Num() - 1);
-	}
+	MovedUnit->SetTile(TargetTile);
+	LOG_GAMEPLAY("%s moved", *MovedUnit->GetUnitName(), Path.Num() - 1);
 
 }
 void UCMovementAction::UndoAction(AActor* Instigator)
 {
 	if (!MovedUnit) return;
 
-	if (!Path.IsEmpty())
-	{
-		MovedUnit->SetTile(FromTile);
-		LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
-	}
+	MovedUnit->SetTile(FromTile);
+	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
 
 	Super::UndoAction(Instigator);
 }

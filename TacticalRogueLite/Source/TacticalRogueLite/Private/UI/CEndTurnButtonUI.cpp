@@ -107,4 +107,5 @@ void UCEndTurnButtonUI::NativeConstruct()
 	GameState = Cast<ACGameState>(GetWorld()->GetGameState());
 	GameState->OnTurnOrderUpdate.AddUniqueDynamic(this, &UCEndTurnButtonUI::OnTurnUpdated);
 	EndButton->OnClicked.AddUniqueDynamic(this,&UCEndTurnButtonUI::EndTurn);
+	HideEndButton();
 }
