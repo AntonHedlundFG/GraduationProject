@@ -339,4 +339,5 @@ void UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME(UCActionComponent, Abilities);
 	DOREPLIFETIME(UCActionComponent, Actions);
 	DOREPLIFETIME(UCActionComponent, AttributeSet);
+	DOREPLIFETIME(UCActionComponent, ActiveGameplayTags);
 }

@@ -45,7 +45,7 @@ public:
 	static UCActionComponent* GetActionComp(AActor* FromActor);
 
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tags")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Tags")
 	FGameplayTagStackContainer ActiveGameplayTags;
 
 	/* 
