@@ -8,6 +8,8 @@
 #include "GameplayTagsManager.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
 #include "Achievements/CVictoryCondition.h"
+#include "Actions/CActionComponent.h"
+#include "Attributes/Utilities/CAttribute.h"
 
 
 // Sets default values for this component's properties
@@ -60,10 +62,14 @@ void UCCheatingComponent::SetManyItemCharges(bool bEnabled)
 
 void UCCheatingComponent::GainBigHealth()
 {
+	FAttributeModification MaxMod;
+	MaxMod.AttributeTag = FGameplayTag::RequestGameplayTag(FName("Attribute.HealthMax"));
+	MaxMod.Magnitude = 10;
+	MaxMod.ModifierOperation = EAttributeModifierOperation::AddBase;
+
 	for (auto* Unit : GameMode->GetHeroUnits())
 	{
-		UCAttributeComponent* Attributes = Unit->GetAttributeComp();
-		Attributes->SetHealth(BigHealthAmount);
+		Unit->GetActionComp()->ApplyAttributeChange(MaxMod, 0);
 	}
 }
 
