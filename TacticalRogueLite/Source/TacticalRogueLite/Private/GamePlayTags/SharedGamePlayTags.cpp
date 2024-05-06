@@ -41,8 +41,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Necromancer, "Class.Necromancer");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Warrior, "Class.Warrior");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Mage, "Class.Mage");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Monk, "Class.Monk");
-
-//UE_DEFINE_GAMEPLAY_TAG(Status_Rooted, "ItemSlot.Boots");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Class_Cleric, "Class.Cleric");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute, "Attribute");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_AttackDamage, "Attribute.AttackDamage");

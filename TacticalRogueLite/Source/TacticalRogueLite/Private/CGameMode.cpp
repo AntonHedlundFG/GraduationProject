@@ -466,7 +466,7 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 		if (i >= Spawner->SpawnData.Num() || i >= SpawnTiles.Num())
 			break;
 		
-		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->SpawnData[i], FGameplayTag::RequestGameplayTag("Unit.IsPlayer"), FGameplayTagContainer(FGameplayTag::RequestGameplayTag("")));
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->SpawnData[i], FGameplayTag::RequestGameplayTag("Unit.IsPlayer"), TemporaryClassContainer);
 
 		if (i < Spawner->ControllingPlayers.Num())
 		{

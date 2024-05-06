@@ -66,11 +66,11 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	SpawnUnitData.Empty();
 	int CharacterNumber = 1;
 	
-	for (auto Index : Characters)
+	for (int i = 0; i < Characters.Num(); i++)
 	{
-		FCUnitSpawnDetails Data = StartCharacters->StartCharacterList[Index];
+		FCUnitSpawnDetails Data = StartCharacters->StartCharacterList[Characters[i]];
 
-		FString PlayerName = GetNameOfPlayerIndex(ControllingPlayers[Index]);
+		FString PlayerName = GetNameOfPlayerIndex(ControllingPlayers[i]);
 		if (!PlayerName.IsEmpty())
 		{
 			Data.Name = PlayerName;
