@@ -208,11 +208,17 @@ Other features implemented this week:
 
 ## Week 7
 
-I started this week by writing the first draft for the first half of this project report, including the introductions and the weekly diary. 
+I started this week by writing the first draft for the first half of this project report, including the introductions and the weekly diary.
 
+At this point, most of the major systems are already in place and the focus of our development was on improving the existing ones and adding content.
 
+A major overhaul was done to our Attribute system to allow the items' actions to fetch relevant values from the unit's AttributeSet via it's AttributeComponent, instead of storing the values in the actions themselves. For example, instead of the BasicMeleeWeapon dealing 2 damage, it now grants the player +2 to "Attribute.WeaponDamage" while equipped, and then uses that Attribute to determine damage. The same applies to "Attribute.MovementRange" and "Attribute.AttackRange". This approach is a lighter version of how UnrealEngine's GameplayAbilitySystem handles Attributes.
+
+After the shift to the new Attribute system, many Actions no longer worked, as they relied on the old system. The rest of the week was spent updating these Actions' implementations to the new system.
 
 ## Week 8
+
+
 
 ## Week 9
 
