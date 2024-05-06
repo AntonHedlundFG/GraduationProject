@@ -18,17 +18,28 @@ void UCMovementAction::StartAction(AActor* Instigator)
 	if (!MovedUnit) return;
 
 	FromTile = MovedUnit->GetTile();
-	MovedUnit->SetTile(TargetTile);
 
-	LOG_GAMEPLAY("%s moved.", *MovedUnit->GetUnitName());
+	FAttribute Attribute;
+	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.MovementRange"), Attribute);
+	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
+
+	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, ActionBlockingTags);
+	if (!Path.IsEmpty())
+	{
+		MovedUnit->SetTile(TargetTile);
+		LOG_GAMEPLAY("%s moved %d steps.", *MovedUnit->GetUnitName(), Path.Num() - 1);
+	}
+
 }
 void UCMovementAction::UndoAction(AActor* Instigator)
 {
 	if (!MovedUnit) return;
 
-	MovedUnit->SetTile(FromTile);
-
-	LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
+	if (!Path.IsEmpty())
+	{
+		MovedUnit->SetTile(FromTile);
+		LOG_GAMEPLAY("%s returned.", *MovedUnit->GetUnitName());
+	}
 
 	Super::UndoAction(Instigator);
 }
@@ -65,4 +76,5 @@ void UCMovementAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty
 
 	DOREPLIFETIME(UCMovementAction, MovedUnit);
 	DOREPLIFETIME(UCMovementAction, FromTile);
+	DOREPLIFETIME(UCMovementAction, Path);
 }

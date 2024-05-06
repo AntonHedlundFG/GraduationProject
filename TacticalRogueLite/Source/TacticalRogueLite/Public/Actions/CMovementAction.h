@@ -26,4 +26,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	ACGridTile* FromTile;
 
+	//The path the unit takes for it's movement.
+	//Includes starting tile and goal tile.
+	UPROPERTY(BlueprintReadOnly, Replicated)
+	TArray<ACGridTile*> Path;
+
 };

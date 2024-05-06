@@ -3,7 +3,7 @@
 
     // Properties
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float Duration = 0.3f;
+    float Duration = 1.0f;
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float UndoSpeedMultiplier = 1.5f;
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
