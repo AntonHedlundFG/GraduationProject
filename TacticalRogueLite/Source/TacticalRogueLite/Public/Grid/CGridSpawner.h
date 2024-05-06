@@ -51,15 +51,15 @@ public:
 	///Spawns units on tiles given by array
 	///Tries to name units using array of strings, pass empty array to skip naming
 	UFUNCTION()
-	TArray<ACUnit*> SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames, FGameplayTag inTeamTag);
+	TArray<ACUnit*> SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag);
 	
 	///Spawns a unit on a given tile.
 	UFUNCTION()
-	ACUnit* SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag);
+	ACUnit* SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag);
 
 	///Spawns a unit on a given tile, also tries to name the unit and add items to it.
 	UFUNCTION()
-	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag);
+	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag);
 	
 	///Spawns a grid actor at a given position
 	UFUNCTION()

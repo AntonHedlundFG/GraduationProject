@@ -36,13 +36,13 @@ void ACGridSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
 }
 
 
-TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames, FGameplayTag inTeamTag)
+TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> inUnits, TArray<ACGridTile*> inSpawnTiles, TArray<FString> inNames, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag) //TODO: ClassContainer will be moved to character selection.
 {
 	TArray<ACUnit*> Units;
 	for (int i = 0 ; i < inSpawnTiles.Num() ; i ++)
 	{
 		if (i >= inUnits.Num()) break;
-		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i], inTeamTag);
+		ACUnit* Unit = SpawnUnit(inUnits[i], inSpawnTiles[i], inTeamTag, inClassTag);
 		if(i < inNames.Num())
 			Unit->SetUnitName(inNames[i]);
 			
@@ -52,7 +52,7 @@ TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> i
 	return Units;
 }
 
-ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag)
+ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag) //TODO: ClassContainer will be moved to character selection.
 {
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
 	SpawnPosition.Z += 100;
@@ -60,6 +60,7 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 	
 	//Give Team Tag
 	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
+	Unit->GetActionComp()->ActiveGameplayTags.AppendTags(inClassTag); //TODO: ClassContainer will be moved to character selection.
 	
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
@@ -68,7 +69,7 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 }
 
 ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-	FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag)
+	FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag) //TODO: ClassContainer will be moved to character selection.
 {
 	FTransform SpawnTransform = FTransform();
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
@@ -107,6 +108,8 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 
 	//Give Team Tag
 	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
+	
+	Unit->GetActionComp()->ActiveGameplayTags.AppendTags(inClassTag);
 	
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
@@ -183,7 +186,7 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 
 		const FCUnitSpawnDetails EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
 
-		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails, FGameplayTag::RequestGameplayTag("Unit.IsEnemy"));
+		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails, FGameplayTag::RequestGameplayTag("Unit.IsEnemy"), FGameplayTagContainer(FGameplayTag::RequestGameplayTag("Class.Monk")));
 		// Enemy->OnRep_SetAppearance(EnemyDetails.Sprite);
 		Enemies.Add(Enemy);
 	}

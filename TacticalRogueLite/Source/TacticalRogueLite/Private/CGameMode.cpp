@@ -426,7 +426,7 @@ void ACGameMode::SpawnDefaultHeroUnits(ACGrid* InGrid)
 {
 	if (DefaultEquipmentData)
 	{
-		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, InGrid->GetHeroSpawnTiles(), Spawner->HeroNames, FGameplayTag::RequestGameplayTag("Unit.IsPlayer"));
+		HeroUnits = Spawner->SpawnUnitsFromArray(Spawner->HeroUnits, InGrid->GetHeroSpawnTiles(), Spawner->HeroNames, FGameplayTag::RequestGameplayTag("Unit.IsPlayer"), TemporaryClassContainer);
 
 		for (auto Unit : HeroUnits)
 		{
@@ -457,7 +457,7 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 		SpawnDefaultHeroUnits(InGrid);
 		return;
 	}
-	
+		
 	HeroUnits = TArray<ACUnit*>();
 
 	TArray<ACGridTile*> SpawnTiles = InGrid->GetHeroSpawnTiles();
@@ -466,7 +466,7 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 		if (i >= Spawner->SpawnData.Num() || i >= SpawnTiles.Num())
 			break;
 		
-		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->SpawnData[i], FGameplayTag::RequestGameplayTag("Unit.IsPlayer"));
+		ACUnit* Unit = Spawner->SpawnAndInitializeUnit(Spawner->HeroUnits[i], SpawnTiles[i], Spawner->SpawnData[i], FGameplayTag::RequestGameplayTag("Unit.IsPlayer"), FGameplayTagContainer(FGameplayTag::RequestGameplayTag("")));
 
 		if (i < Spawner->ControllingPlayers.Num())
 		{

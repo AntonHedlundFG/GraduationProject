@@ -56,6 +56,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<ACGameState> GameStateRef;
 
+	UPROPERTY(EditAnywhere) //TODO: Will be moved to character selection.
+	FGameplayTagContainer TemporaryClassContainer;
+
 
 #pragma region Actions & Abilities
 
