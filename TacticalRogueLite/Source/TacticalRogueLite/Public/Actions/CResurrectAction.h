@@ -33,5 +33,20 @@ public:
 
 	UPROPERTY(Replicated)
 	int PreviousHealth;
+
+protected:
+
+	//Should ResurrectPercentageHealth be used over ResurrectFlatHealth
+	// to determine minimum health after resurrection?
+	UPROPERTY(EditDefaultsOnly, Category = "Resurrection")
+	bool bUsePercentage;
+
+	//Minimum health as percentage of MaxHealth after resurrection
+	UPROPERTY(EditDefaultsOnly, Category = "Resurrection", meta = (ClampMin = 0.0f, ClampMax = 1.0f, EditCondition = "bUsePercentage"))
+	float ResurrectPercentageHealth = 0.5f;
+
+	//Minimum health as flat value after resurrection
+	UPROPERTY(EditDefaultsOnly, Category = "Resurrection", meta = (ClampMin = 1, ClampMax = 5, EditCondition = "!bUsePercentage"))
+	int ResurrectFlatHealth = 1;
 	
 };

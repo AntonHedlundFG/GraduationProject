@@ -6,6 +6,7 @@
 #include "CGameState.h"
 #include "Items\ItemSlots.h"
 #include "TacticalRogueLite\OnlineSystem\Public\OnlineGameMode.h"
+#include "Actions/CResurrectAction.h"
 #include "CGameMode.generated.h"
 
 class UCSavedUnitAndItemData;
@@ -105,6 +106,9 @@ protected:
 	int NextUndoIndex = -1;
 
 	void ExecuteActionStack(AActor* InstigatingActor = nullptr);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Resurrection")
+	TSubclassOf<UCResurrectAction> ResurrectType;
 
 #pragma endregion
 

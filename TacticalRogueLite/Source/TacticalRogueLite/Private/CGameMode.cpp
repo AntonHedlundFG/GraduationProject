@@ -524,7 +524,12 @@ void ACGameMode::ResurrectAndProgressToNewRoom()
 
 	for (int i = 0; i < HeroUnits.Num(); i++)
 	{
-		UCResurrectAction* ResurrectAction = NewObject<UCResurrectAction>(this, UCResurrectAction::StaticClass());
+		UCResurrectAction* ResurrectAction;
+		if (IsValid(ResurrectType))
+			ResurrectAction = NewObject<UCResurrectAction>(this, ResurrectType);
+		else
+			ResurrectAction = NewObject<UCResurrectAction>(this, UCResurrectAction::StaticClass());
+
 		ResurrectAction->AffectedUnit = HeroUnits[i];
 		ResurrectAction->ResurrectOnTile = HeroTiles[i];
 		RegisterAction(ResurrectAction);

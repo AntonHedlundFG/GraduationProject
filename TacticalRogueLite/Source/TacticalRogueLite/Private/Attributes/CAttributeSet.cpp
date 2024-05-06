@@ -112,7 +112,7 @@ int UCAttributeSet::ApplyAttributeChange(const FAttributeModification& ModToAppl
 				FoundAttribute->BaseValue = Delta;
 				if (FoundAttribute->bClampToZero)
 				{
-					FoundAttribute->Multiplier = FMath::Max(FoundAttribute->BaseValue, 0);
+					FoundAttribute->BaseValue = FMath::Max(FoundAttribute->BaseValue, 0);
 				}
 				break;
 			}
