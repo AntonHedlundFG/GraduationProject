@@ -38,7 +38,7 @@ public:
 	int32 PlayerCount;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
-	TArray<FCUnitSpawnDetails> NamesAndItems;
+	TArray<FCUnitSpawnDetails> UnitDetails;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitAndItemData")
 	TArray<int> ControllingPlayers;

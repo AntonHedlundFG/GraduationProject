@@ -212,10 +212,10 @@ void ACGridSpawner::OnSave()
 	UCSaveGame* SaveGame = nullptr;
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
-		SaveGame->NamesAndItems.Empty();
+		SaveGame->UnitDetails.Empty();
 		for (auto Data : SpawnData)
 		{
-			SaveGame->NamesAndItems.Add(Data);
+			SaveGame->UnitDetails.Add(Data);
 		}
 		
 		SaveGame->ControllingPlayers.Empty();
@@ -236,7 +236,7 @@ void ACGridSpawner::OnLoad()
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		SpawnData.Empty();
-		for (auto Data : SaveGame->NamesAndItems)
+		for (auto Data : SaveGame->UnitDetails)
 		{
 			SpawnData.Add(Data);
 		}

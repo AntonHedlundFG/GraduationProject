@@ -113,10 +113,10 @@ void ACCharacterSelectGameMode::OnSave()
 	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
 	{
 		//Save Names and Items	
-		SaveGame->NamesAndItems.Empty();
+		SaveGame->UnitDetails.Empty();
 		for (auto Data : SpawnUnitData)
 		{
-			SaveGame->NamesAndItems.Add(Data);
+			SaveGame->UnitDetails.Add(Data);
 		}
 		
 		//Save controlling player indexes
