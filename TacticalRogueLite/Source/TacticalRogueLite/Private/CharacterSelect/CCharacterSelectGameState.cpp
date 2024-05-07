@@ -17,6 +17,7 @@ void ACCharacterSelectGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 	DOREPLIFETIME(ACCharacterSelectGameState, LockedInfo);
 	DOREPLIFETIME(ACCharacterSelectGameState, ReadyInfo);
 	DOREPLIFETIME(ACCharacterSelectGameState, OnUpdateUI);
+	DOREPLIFETIME(ACCharacterSelectGameState, SpriteIndexes);
 }
 
 ACCharacterSelectGameState::ACCharacterSelectGameState()
