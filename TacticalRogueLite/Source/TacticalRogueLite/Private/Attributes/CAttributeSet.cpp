@@ -7,6 +7,7 @@
 #include "Net/UnrealNetwork.h"
 #include "CGameMode.h"
 #include "Actions\CDeathAction.h"
+#include "Actions\CResurrectAction.h"
 #include "Utility/Logging/CLogManager.h"
 
 
@@ -165,9 +166,9 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 
 		if (Health.BaseValue == 0 && AppliedMod.Magnitude != 0 && !AppliedMod.bIsUndo)
 		{
-			FGameplayTag DeathTag = FGameplayTag::RequestGameplayTag("Unit.Killed");
+			FGameplayTag ImmuneTag = FGameplayTag::RequestGameplayTag("Status.Silenced"); //TODO: Rework
 			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags.GetContainerWithoutStacks();
-
+			
 			//*Revival isnt implemented here. Anyone reviving by adding health should consider this and handle the death tag itself.
 			// if (!OwnedTags.HasTag(DeathTag))
 			// {
@@ -182,7 +183,6 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 				DeathAction->AffectedUnit = Cast<ACUnit>(GetOwningComponent()->GetOwner());
 				GameMode->RegisterAction(DeathAction);
 			}
-
 		}
 	}
 	if (AppliedMod.AttributeTag == FGameplayTag::RequestGameplayTag("Attribute.HealthMax"))
@@ -272,9 +272,7 @@ void UCAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, Health, COND_None, REPNOTIFY_Always);
 	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, HealthMax, COND_None, REPNOTIFY_Always);
 	// DOREPLIFETIME_CONDITION_NOTIFY(UCAttributeSet, HealthMaxModifier, COND_None, REPNOTIFY_Always);
-	
 
-	//TODO: Fix
 }
 
 void UCAttributeSet::OnRep_Health(FAttribute OldAttribute)
@@ -317,7 +315,6 @@ void UCAttributeSet::AttributeChangedFromReplication(FName AttributeName, FAttri
 {
 	//TODO: Fix.
 	int CurrentValue = NewAttribute.GetValue();
-	LOG_INFO("ChangedfromRep!?!");
 	int EstimatedMagnitude = CurrentValue - OldAttribute.GetValue();
 
 	FGameplayTag AttributeTag = FGameplayTag::RequestGameplayTag(FName(AttributeName.ToString()));

@@ -62,6 +62,11 @@ public:
 	{
 		return ActiveGameplayTags.HasAny(Tags);
 	}
+	UFUNCTION(BlueprintCallable)
+	void AppendTag(FGameplayTag Tag)
+	{
+		ActiveGameplayTags.AppendTag(Tag);
+	}
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
@@ -72,7 +77,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void RemoveAction(UCAction* ActionToRemove);
 
-	//Returns first occurrence of action matching the class provided #1#.
+	//Returns first occurrence of action matching the class provided.
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	UCAction* GetAction(TSubclassOf<UCAction> ActionClass) const;
 

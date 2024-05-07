@@ -26,7 +26,7 @@ struct FAbility
 
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (EditCondition = false)) 
 	FGameplayTagContainer AbilityTags;
 	
 	UPROPERTY(EditAnywhere)
