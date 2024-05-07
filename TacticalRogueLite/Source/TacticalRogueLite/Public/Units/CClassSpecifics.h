@@ -3,8 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "PaperSprite.h"
+#include "ItemData/CItemData.h"
 #include "CClassSpecifics.generated.h"
 
 /**
@@ -17,4 +19,10 @@ class TACTICALROGUELITE_API UCClassSpecifics : public UDataAsset
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TArray<UPaperSprite*> ClassSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FString ClassName;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FGameplayTag ClassTag;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TArray<UCItemData*> Items;
 };

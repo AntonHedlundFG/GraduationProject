@@ -21,6 +21,8 @@ public:
 	void Server_UpdatePlayerIndex(int InWidgetIndex, int InPlayerIndex);
 	UFUNCTION(Server, Reliable)
 	void Server_UpdateCharacterIndex(int InWidgetIndex, int InCharacterIndex);
+	UFUNCTION(Server,Reliable)
+	void Server_UpdateSpriteIndex(int InWidgetIndex, int InSpriteIndex);
 
 protected:
 	UPROPERTY()

@@ -34,6 +34,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateCharacters(TArray<int> inArray);
 	UFUNCTION(BlueprintCallable)
+	void UpdateSprites(TArray<int> inArray);
+	UFUNCTION(BlueprintCallable)
 	void UpdateLocks(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
 	void UpdateReadyStatus(TArray<bool> inArray);

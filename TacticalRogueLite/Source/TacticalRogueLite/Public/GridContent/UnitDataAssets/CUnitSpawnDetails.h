@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "GameplayTagContainer.h"
 #include "CUnitSpawnDetails.generated.h"
 
 class UCItemData;
@@ -12,6 +13,8 @@ struct FCUnitSpawnDetails
 public:
 	UPROPERTY(EditAnywhere, Category = "Character Details")
 	FString Name;
+	UPROPERTY(EditAnywhere, Category = "Character Details")
+	FGameplayTag ClassTag;
 	UPROPERTY(EditAnywhere, Category = "Character Details")
 	TObjectPtr<UPaperSprite> Sprite;
 	UPROPERTY(EditAnywhere, Category = "Character Details")

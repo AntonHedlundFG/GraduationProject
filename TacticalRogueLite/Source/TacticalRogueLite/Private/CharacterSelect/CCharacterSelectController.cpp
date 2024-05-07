@@ -4,6 +4,17 @@
 
 #include "CharacterSelect/CCharacterSelectGameState.h"
 
+void ACCharacterSelectController::Server_UpdateSpriteIndex_Implementation(int InWidgetIndex, int InSpriteIndex)
+{
+	if (StateRef)
+	{
+		TArray<int> Sprites = StateRef->SpriteIndexes;
+		//Den här, sprites är icke initialized
+		Sprites[InWidgetIndex] = InSpriteIndex;
+		StateRef->UpdateSprites(Sprites);
+	}
+}
+
 void ACCharacterSelectController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -38,7 +49,6 @@ void ACCharacterSelectController::Server_UpdateCharacterIndex_Implementation(int
 	{
 		TArray<int> Characters = StateRef->CharacterIndexes;
 		Characters[InWidgetIndex] = InCharacterIndex;
-		
 		StateRef->UpdateCharacters(Characters);
 	}
 }

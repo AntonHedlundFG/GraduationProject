@@ -39,7 +39,19 @@ void UCCharacterSelectMenuWidget::UpdateCharacters(TArray<int> inArray)
 	for (int i = 0; i < CharacterSelectorsArray.Num(); i ++)
 	{
 		if (UCCharacterSelectorWidget* Widget = Cast<UCCharacterSelectorWidget>(CharacterSelectorsArray[i]))
-			Widget->UpdateCurrentCharacterVisuals(inArray[i]);
+			Widget->UpdateCurrentCharacterVisuals(inArray[i],StateRef->SpriteIndexes[i]);
+	}
+}
+
+void UCCharacterSelectMenuWidget::UpdateSprites(TArray<int> inArray)
+{
+	if (!StateRef)
+		return;
+	
+	for (int i = 0; i < CharacterSelectorsArray.Num(); i ++)
+	{
+		if (UCCharacterSelectorWidget* Widget = Cast<UCCharacterSelectorWidget>(CharacterSelectorsArray[i]))
+			Widget->UpdateCurrentCharacterVisuals(StateRef->CharacterIndexes[i],inArray[i]);
 	}
 }
 

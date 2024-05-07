@@ -55,7 +55,6 @@ TArray<ACUnit*> ACGridSpawner::SpawnUnitsFromArray(TArray<TSubclassOf<ACUnit>> i
 ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag) //TODO: ClassContainer will be moved to character selection.
 {
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
-	SpawnPosition.Z += 100;
 	TObjectPtr<ACUnit> Unit = GetWorld()->SpawnActor<ACUnit>(inUnitType, SpawnPosition , FRotator::ZeroRotator);
 	
 	//Give Team Tag
@@ -74,7 +73,6 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 {
 	FTransform SpawnTransform = FTransform();
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
-	SpawnPosition.Z += 100;
 	SpawnTransform.SetLocation(SpawnPosition);
 
 	const TObjectPtr<ACUnit> Unit = GetWorld()->SpawnActorDeferred<ACUnit>(inUnitType, SpawnTransform, this);

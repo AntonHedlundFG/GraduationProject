@@ -16,6 +16,7 @@ class TACTICALROGUELITE_API UCCharacterSelectorWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+	int CurrentSelectedSpriteIndex = 0;
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Starting Characters")
 	int WidgetIndex;
@@ -30,7 +31,7 @@ public:
 	void DecreaseIndex();
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateCurrentCharacterVisuals(int inCharacterIndex);
+	void UpdateCurrentCharacterVisuals(int inCharacterIndex, int SelectedSpriteIndex = 0);
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateReadyVisuals(bool inIsReady);
@@ -40,6 +41,9 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	bool CanInteract();
+
+	UFUNCTION(BlueprintCallable)
+	void StepSpriteIndex(int i);
 
 protected:
 	UPROPERTY()

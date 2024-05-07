@@ -23,6 +23,7 @@ ACCharacterSelectGameState::ACCharacterSelectGameState()
 {
 	ControllingPlayerIndex = TArray{1,1,1,1};
 	CharacterIndexes = TArray{0,0,0,0};
+	SpriteIndexes = TArray{0,0,0,0};
 	LockedInfo = TArray{false, false, false, false};
 	ReadyInfo = TArray{false, false, false, false};
 }
@@ -71,6 +72,12 @@ void ACCharacterSelectGameState::UpdatePlayerCount(int inCount)
 {
 	PlayerCount = inCount;
 	OnRep_PlayerCount();
+}
+
+void ACCharacterSelectGameState::UpdateSprites(TArray<int> inArray)
+{
+	SpriteIndexes = inArray;
+	OnRep_SpriteIndexes();
 }
 
 void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
@@ -126,6 +133,12 @@ void ACCharacterSelectGameState::OnRep_ReadyInfo()
 {
 	if (MenuWidget)	
 		MenuWidget->UpdateReadyStatus(ReadyInfo);
+}
+
+void ACCharacterSelectGameState::OnRep_SpriteIndexes()
+{
+	if (MenuWidget)	
+		MenuWidget->UpdateSprites(SpriteIndexes);
 }
 
 

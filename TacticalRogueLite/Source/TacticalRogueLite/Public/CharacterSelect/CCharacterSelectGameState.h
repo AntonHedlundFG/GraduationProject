@@ -31,6 +31,8 @@ public:
 	TArray<int> ControllingPlayerIndex;
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_CharacterIndexes)
 	TArray<int> CharacterIndexes;
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_SpriteIndexes)
+	TArray<int> SpriteIndexes;
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_LockedInfo)
 	TArray<bool> LockedInfo;
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_ReadyInfo)
@@ -48,6 +50,8 @@ public:
 	void UpdateReadyStatus(TArray<bool> inArray);
 	UFUNCTION(BlueprintCallable)
 	void UpdatePlayerCount(int inCount);
+	UFUNCTION(BlueprintCallable)
+	void UpdateSprites(TArray<int> inArray);
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_SetupUI();
@@ -71,6 +75,8 @@ protected:
 	void OnRep_LockedInfo();
 	UFUNCTION(BlueprintCallable)
 	void OnRep_ReadyInfo();
+	UFUNCTION(BlueprintCallable)
+	void OnRep_SpriteIndexes();
 	UFUNCTION(BlueprintCallable)
 	void OnRep_PlayerCount() const { OnUpdateUI.Broadcast(); }
 };

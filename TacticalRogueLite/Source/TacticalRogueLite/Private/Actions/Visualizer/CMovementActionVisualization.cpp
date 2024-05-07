@@ -27,7 +27,7 @@ bool UCMovementActionVisualization::Tick(float DeltaTime)
 	if (MoveAction && MoveAction->MovedUnit)
 	{
 		// Update position based on the "alpha value", TimePassed / Duration.
-		FVector Loc = LocationInPathAtTime(TimePassed) + FVector(0, 0, 100);
+		FVector Loc = LocationInPathAtTime(TimePassed);
 		MoveAction->MovedUnit->SetActorLocation(Loc);
 
 		//Different true conditions based on whether we're going forward or backward.

@@ -23,6 +23,7 @@ void UCCharacterSelectorWidget::IncreaseIndex()
 		if (CharacterIndex >= StartCharacters->StartCharacterList.Num())
 			CharacterIndex = 0;
 
+		Controller->Server_UpdateSpriteIndex(WidgetIndex,0);
 		Controller->Server_UpdateCharacterIndex(WidgetIndex, CharacterIndex);
 	}
 }
@@ -42,6 +43,7 @@ void UCCharacterSelectorWidget::DecreaseIndex()
 		if (CharacterIndex < 0 )
 			CharacterIndex = StartCharacters->StartCharacterList.Num() - 1;
 
+		Controller->Server_UpdateSpriteIndex(WidgetIndex,0);
 		Controller->Server_UpdateCharacterIndex(WidgetIndex, CharacterIndex);
 	}
 }
@@ -76,4 +78,21 @@ bool UCCharacterSelectorWidget::CanInteract()
 	}
 
 	return false;
+}
+
+void UCCharacterSelectorWidget::StepSpriteIndex(int i)
+{
+	if (!Controller)
+		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
+	if (!GameState)
+		GameState = Cast<ACCharacterSelectGameState>(GetWorld()->GetGameState());
+	
+	if (Controller && GameState)
+	{
+		int CharacterIndex = GameState->CharacterIndexes[WidgetIndex];
+		int Direction = (i >= 0)? 1: -1;
+		int Translation = GameState->SpriteIndexes[WidgetIndex] + Direction;
+		CurrentSelectedSpriteIndex = (Translation <0)? StartCharacters->GetSpriteListLength(CharacterIndex)-1:(Translation >= StartCharacters->GetSpriteListLength(CharacterIndex))? 0:Translation;
+		Controller->Server_UpdateSpriteIndex(WidgetIndex,CurrentSelectedSpriteIndex);
+	}
 }
