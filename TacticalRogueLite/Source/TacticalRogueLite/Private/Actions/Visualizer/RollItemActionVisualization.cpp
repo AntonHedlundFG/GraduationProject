@@ -8,6 +8,7 @@
 #include "Widgets/CActorWidget.h"
 #include "ItemData/CItemData.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 
 bool URollItemActionVisualization::CanVisualizeAction(UCAction* Action)
 {
@@ -28,11 +29,15 @@ void URollItemActionVisualization::Enter()
 		if(ensure(WidgetClass))
 		{
 			ACUnit* Unit = Cast<ACUnit>(ActionClass->GetActionComp()->GetOuter());
-			bool bIsOwning = Unit->IsControlledLocally(); //IsControlledBy(UGameplayStatics::GetPlayerController(GetWorld(),0));
-			ItemSelectionWindow = CreateWidget<UCItemSelectionWindow>(GetWorld(),WidgetClass);
-			ItemSelectionWindow->AddToViewport();
-			ItemSelectionWindow->UpdateInfo(*ActionClass,Items, bIsOwning,[this](UCItemData* ItemData){OnItemSelectedCallback(ItemData);});
-			ItemSelectionWindow->Open();
+			if (Unit)
+			{
+				bool bIsOwning = Unit->IsControlledLocally(); //IsControlledBy(UGameplayStatics::GetPlayerController(GetWorld(),0));
+				ItemSelectionWindow = CreateWidget<UCItemSelectionWindow>(GetWorld(),WidgetClass);
+				ItemSelectionWindow->AddToViewport();
+				ItemSelectionWindow->UpdateInfo(*ActionClass,Items, bIsOwning,[this](UCItemData* ItemData){OnItemSelectedCallback(ItemData);});
+				ItemSelectionWindow->Open();
+			}
+			
 		}
 	}
 }
@@ -57,3 +62,12 @@ void URollItemActionVisualization::OnItemSelectedCallback(UCItemData* SelectedIt
 	ItemSelectionWindow->Close();
 	ItemSelectionWindow->RemoveFromParent();
 }
+
+void URollItemActionVisualization::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	
+	DOREPLIFETIME(URollItemActionVisualization, ActionClass);
+
+}
+

@@ -24,10 +24,16 @@ protected:
 	virtual void Enter() override;
 	virtual bool Tick(float DeltaTime) override;
 
-	UPROPERTY() //?
+	UPROPERTY(Replicated) //?
 	class UCAction_RollItem* ActionClass;
 	
 	void OnItemSelectedCallback(UCItemData* SelectedItem);
+	
+
+	virtual bool IsSupportedForNetworking() const override
+	{
+		return true;
+	}
 
 	
 };
