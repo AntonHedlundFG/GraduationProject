@@ -28,7 +28,7 @@ void URollItemActionVisualization::Enter()
 		if(ensure(WidgetClass))
 		{
 			ACUnit* Unit = Cast<ACUnit>(ActionClass->GetActionComp()->GetOuter());
-			bool bIsOwning = Unit->IsControlledBy(UGameplayStatics::GetPlayerController(GetWorld(),0));
+			bool bIsOwning = Unit->IsControlledLocally(); //IsControlledBy(UGameplayStatics::GetPlayerController(GetWorld(),0));
 			ItemSelectionWindow = CreateWidget<UCItemSelectionWindow>(GetWorld(),WidgetClass);
 			ItemSelectionWindow->AddToViewport();
 			ItemSelectionWindow->UpdateInfo(*ActionClass,Items, bIsOwning,[this](UCItemData* ItemData){OnItemSelectedCallback(ItemData);});

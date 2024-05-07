@@ -28,4 +28,6 @@ protected:
 	class UCAction_RollItem* ActionClass;
 	
 	void OnItemSelectedCallback(UCItemData* SelectedItem);
+
+	
 };
