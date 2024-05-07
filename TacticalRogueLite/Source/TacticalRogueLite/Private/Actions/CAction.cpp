@@ -47,8 +47,6 @@ void UCAction::StartAction(AActor* Instigator)
 		int ActualDelta = GetOwningComponent()->ApplyAttributeChange(Mod, 0);
 		ModifiersActualDeltas.Add(ActualDelta);
 	}
-	UCActionComponent* Comp = GetOwningComponent();
-	if (IsValid(Comp)) //&& !ActionTags.IsEmpty().
 
 	ReceiveStartAction(Instigator);
 }
@@ -56,9 +54,6 @@ void UCAction::StartAction(AActor* Instigator)
 
 void UCAction::StopAction(AActor* Instigator)
 {
-	UCActionComponent* Comp = GetOwningComponent();
-	if (IsValid(Comp) && !ActionTags.IsEmpty())
-
 	ReceiveStopAction(Instigator);
 }
 
