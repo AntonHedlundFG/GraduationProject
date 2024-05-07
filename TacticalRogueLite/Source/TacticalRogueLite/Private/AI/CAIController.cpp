@@ -187,12 +187,12 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 	TryAddBestPath(CurrentPath, inBestPaths);
 }
 
-void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
+bool ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
 {
 	// Skip paths with no score
 	if(NewPath.GetScore() == 0 || NewPath.GetPath().Num() == 0)
 	{
-		return;
+		return false;
 	}
 	
 	// Keep only top N paths
@@ -211,7 +211,10 @@ void ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& i
 	{
 		return A.GetScore() > B.GetScore();
 	});
+
+	return true;
 }
+
 void ACAIController::ExecuteActions(FActionPath& BestPath)
 {
 	if(GameMode)
@@ -222,8 +225,17 @@ void ACAIController::ExecuteActions(FActionPath& BestPath)
 			FAbility& Ability = Pair.Key;
 			ACGridTile* TargetTile = Pair.Value;
 
+			UCHighlightTileAction* HighlightAction = ConstructHighlightAction(Ability, Unit->GetTile(), TargetTile);
 			// Register a highlight action for the ability
-			RegisterHighlightAction(Ability, Unit->GetTile(), TargetTile);
+			if(HighlightAction)
+			{
+				// Register the highlight action to allow the visualizer to visualize it before the action is executed
+				GameMode->RegisterAction(HighlightAction);
+			}
+			else
+			{
+				LOG_ERROR("Highlight Action is nullptr for %s", *GetName());
+			}
 
 			// Try to use the ability
 			if(!GameMode->TryAbilityUse(this, Unit, Ability.InventorySlotTag, TargetTile))
@@ -290,25 +302,32 @@ void ACAIController::ExecuteTurn()
 	}
 }
 
-void ACAIController::RegisterHighlightAction(FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile)
+UCHighlightTileAction* ACAIController::ConstructHighlightAction(FAbility& Ability, ACGridTile* FromTile,
+                                                                ACGridTile* TargetTile)
 {
 	// Check if the ability can be used
 	if(!Ability.IsValidTargetTile(FromTile, TargetTile))
 	{
 		LOG_INFO("Ability %s cannot be used on tile %s", *Ability.InventorySlotTag.ToString(), *TargetTile->GetName());
-		return;
+		return nullptr;
 	}
 	
 	// Create a highlight action for the ability
 	UCHighlightTileAction* HighlightAction = NewObject<UCHighlightTileAction>(this);
+
+	if(!HighlightAction)
+	{
+		LOG_ERROR("Highlight Action is nullptr for %s", *GetName());
+		return nullptr;
+	}
+	
 	HighlightAction->SetAbilityToHighlight(Ability);
 	HighlightAction->TargetTile = TargetTile;
 	HighlightAction->SetFromTile(FromTile);
 	const float Duration = FMath::RandRange(.1f, 1.0f); // Let visualizer check game speed
 	HighlightAction->SetDuration(Duration);
-	
-	// Register the highlight action to allow the visualizer to visualize it before the action is executed
-	GameMode->RegisterAction(HighlightAction);
+
+	return HighlightAction;
 }
 
 void ACAIController::EndTurn()

@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "CAIContext.h"
+#include "CHighlightTileAction.h"
 #include "GridContent/CUnit.h"
 #include "Actions/CAction.h"
 #include "CAIController.generated.h"
@@ -17,12 +18,12 @@ struct FActionPath
 {
 	GENERATED_BODY()
 private:
-	TArray<TPair<FAbility, ACGridTile*>> Path;
+	TArray<TPair<FAbility, TObjectPtr<ACGridTile>>> Path;
 	TArray<FAbility> UsedAbilities;
 	float TotalScore = 0;
 	
 public:
-	TArray<TPair<FAbility, ACGridTile*>>& GetPath() { return Path; }
+	TArray<TPair<FAbility, TObjectPtr<ACGridTile>>>& GetPath() { return Path; }
 	
 	void AddToPath(FAbility& inPath, ACGridTile* inTile, float inScore)
 	{
@@ -68,7 +69,7 @@ protected:
 	void EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& BestPaths, FActionPath& CurrentPath);
 
 	// Try to add the path to the best paths
-	void TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
+	bool TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths);
 
 	// Execute the best path of abilities
 	void ExecuteActions(FActionPath& BestPath);
@@ -80,7 +81,7 @@ protected:
 	void ExecuteTurn();
 
 	// Register Highlighting action
-	void RegisterHighlightAction(FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile);
+	UCHighlightTileAction* ConstructHighlightAction(FAbility& Ability, ACGridTile* FromTile, ACGridTile* TargetTile);
 
 	// End the AI's turn
 	UFUNCTION()
@@ -88,21 +89,22 @@ protected:
 
 private:
 	UPROPERTY()
-	ACUnit* Unit;
+	TObjectPtr<ACUnit> Unit;
 	UPROPERTY()
-	ACGrid* Grid;
+	TObjectPtr<ACGrid> Grid;
 	UPROPERTY()
 	TArray<FActionPath> BestPaths;
 	UPROPERTY()
 	int32 EvaluatedPaths;
 	UPROPERTY()
-	ACGameMode* GameMode;
+	TObjectPtr<ACGameMode> GameMode;
 	UPROPERTY()
-	ACGameState* GameState;
+	TObjectPtr<ACGameState> GameState;
 	UPROPERTY()
 	FCAIContext Context;
 	UPROPERTY()
 	bool bTurnStarted = false;
+	
 	UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess = "true"))
 	int32 PathsToKeepCount = 5;
 
