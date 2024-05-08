@@ -10,6 +10,7 @@
 #include "Grid/CGridUtilsLibrary.h"
 #include "Achievements/CVictoryCondition.h"
 #include "Achievements/VictoryConditions/CVictoryCondition_KillEnemies.h"
+#include "Achievements/VictoryConditions/CVictoryCondition_PickUpKey.h"
 #include "Utility/Logging/CLogManager.h"
 
 
@@ -55,20 +56,40 @@ void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatform
 	PlatformLength = inPlatformLength;
 }
 
-bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const
+bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray<ACPickUp*> inKeys) const
 {
 	if (!ModeRef || !StateRef || inEnemies.Num() <= 0)
 		return false;
 
-	UCVictoryCondition* WinCon = NewObject<UCVictoryCondition>(ModeRef, VictoryCondition);
-	WinCon->Initialize(ModeRef, StateRef);
+	UCVictoryCondition_KillEnemies* KillWinCon;
+	UCVictoryCondition_PickUpKey* KeyWinCon;
 	
-	if (UCVictoryCondition_KillEnemies* KillWinCon = Cast<UCVictoryCondition_KillEnemies>(WinCon))
+	switch (RoomWinCon)
 	{
-		KillWinCon->Enemies = inEnemies;
-		ModeRef->SetVictoryCondition(KillWinCon);
-		return true;
+		case EVictoryConditions::EVC_KillEnemies:
+			KillWinCon = NewObject<UCVictoryCondition_KillEnemies>(ModeRef, KillVictoryCondition);
+			if (KillWinCon)
+			{
+				KillWinCon->Initialize(ModeRef, StateRef);
+				KillWinCon->Enemies = inEnemies;
+				ModeRef->SetVictoryCondition(KillWinCon);
+				return true;
+			}
+			break;
+		case EVictoryConditions::EVC_PickUpKeys:
+			KeyWinCon = NewObject<UCVictoryCondition_PickUpKey>(ModeRef, KeyVictoryCondition);
+			if (KeyWinCon)
+			{
+				KeyWinCon->Initialize(ModeRef, StateRef);
+				KeyWinCon->Keys = inKeys;
+				ModeRef->SetVictoryCondition(KeyWinCon);
+				return true;
+			}
+			break;
+		default:
+			break;
 	}
+
 	return false;
 }
 

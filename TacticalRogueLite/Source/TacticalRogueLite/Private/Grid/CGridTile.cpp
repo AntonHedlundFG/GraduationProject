@@ -61,3 +61,14 @@ TArray<ACGridTile*> ACGridTile::GetNeighbours(bool bIncludeDiagonals)
 
 	return Neighbours;
 }
+
+void ACGridTile::SetContent(ACGridContent* inContent)
+{
+	if (TileContent)
+		OnContentExit.Broadcast(TileContent);
+	
+	TileContent = inContent;
+	
+	if (inContent)	
+		OnContentEnter.Broadcast(inContent);
+}

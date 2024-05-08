@@ -7,6 +7,7 @@
 #include "Utility/SaveGame/CSavable.h"
 #include "CGridSpawner.generated.h"
 
+class ACPickUp;
 class ACGameState;
 class ACGameMode;
 class UCVictoryCondition;
@@ -32,6 +33,8 @@ public:
 	TArray<TSubclassOf<ACUnit>> HeroUnits;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TSubclassOf<ACUnit> EnemyUnit_BP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|PickUps")
+	TSubclassOf<ACPickUp> KeyPickUp_BP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TObjectPtr<UCAllEnemiesData> AllEnemyData;
 	

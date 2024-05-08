@@ -38,6 +38,10 @@ protected:
 	
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-	
+
+	UFUNCTION()
+	virtual void HandleOnTileEnter(ACGridContent* inEnterContent) {}
+	UFUNCTION()
+	virtual void HandleOnTileExit(ACGridContent* inExitContent) {}
 
 };

@@ -21,6 +21,8 @@ void ACGridContent::SetTile(ACGridTile* inTile)
 	if (Tile)
 	{
 		Tile->SetContent(nullptr);
+		Tile->OnContentEnter.RemoveDynamic(this, &ACGridContent::HandleOnTileEnter);
+		Tile->OnContentEnter.RemoveDynamic(this, &ACGridContent::HandleOnTileExit);
 	}
 
 	Tile = inTile;
@@ -28,6 +30,8 @@ void ACGridContent::SetTile(ACGridTile* inTile)
 	if (Tile)
 	{
 		Tile->SetContent(this);
+		Tile->OnContentEnter.AddUniqueDynamic(this, &ACGridContent::HandleOnTileEnter);
+		Tile->OnContentEnter.AddUniqueDynamic(this, &ACGridContent::HandleOnTileExit);
 
 		//Removed this line since we want to handle visual actor locations locally using UCActionVisualization
 		//SetActorLocation(Tile->GetActorLocation() + FVector(0,0,100));

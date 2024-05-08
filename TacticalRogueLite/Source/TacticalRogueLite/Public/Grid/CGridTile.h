@@ -10,6 +10,10 @@
 
 class UCHighlightComponent;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHighlightChange, bool, bIsHighlighted);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnContentEnter, ACGridContent*, GridContent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnContentExit, ACGridContent*, GridContent);
+
+
 
 
 class UCTileHighlightData;
@@ -27,6 +31,10 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnHighlightChange OnHighlightChange;
 
+	UPROPERTY()
+	FOnContentEnter OnContentEnter;
+	UPROPERTY()
+	FOnContentExit OnContentExit; 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Tile Settings")
 	TObjectPtr<UCTileHighlightData> HighlightData;
@@ -52,7 +60,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	ACGridContent* GetContent() const { return TileContent; }
 	UFUNCTION(BlueprintCallable)
-	void SetContent(ACGridContent* inContent) { TileContent = inContent; }
+	void SetContent(ACGridContent* inContent);
 	UFUNCTION(BlueprintCallable)
 	float GetCost() const { return TileContent ? TileContent->GetCost() : 0; }
 	UFUNCTION(BlueprintCallable)

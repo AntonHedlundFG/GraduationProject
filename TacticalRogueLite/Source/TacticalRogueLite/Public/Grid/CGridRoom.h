@@ -2,9 +2,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Achievements/VictoryConditions/VictoryConditions.h"
 #include "GameFramework/Actor.h"
 #include "CGridRoom.generated.h"
 
+enum class EVictoryConditions : uint8;
+class UCVictoryCondition_PickUpKey;
+class UCVictoryCondition_KillEnemies;
+class ACPickUp;
 class UCAllEnemiesData;
 class ACGameMode;
 class ACGameState;
@@ -23,8 +28,9 @@ public:
 	ACGridRoom();
 
 
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
-	// TArray<TSubclassOf<ACUnit>> EnemyUnits;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|VictoryCondition")
+	EVictoryConditions RoomWinCon = EVictoryConditions::EVC_KillEnemies;
+	
 
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
@@ -44,7 +50,7 @@ public:
 	FVector2D GetRoomXBounds() { return FVector2D(X_Min, X_Max); }
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetRoomYBounds() { return FVector2D(Y_Min, Y_Max); }
-	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies) const;
+	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies = TArray<ACUnit*>(), TArray<ACPickUp*> inKeys = TArray<ACPickUp*>()) const;
 
 
 protected:
@@ -56,7 +62,9 @@ protected:
 	TObjectPtr<UCAllEnemiesData> AllEnemyData;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
-	TSubclassOf<UCVictoryCondition> VictoryCondition;
+	TSubclassOf<UCVictoryCondition_KillEnemies> KillVictoryCondition;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
+	TSubclassOf<UCVictoryCondition_PickUpKey> KeyVictoryCondition;
 	
 	//Determines the width and length of area around entrance and exit 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Entrance and Exit")
