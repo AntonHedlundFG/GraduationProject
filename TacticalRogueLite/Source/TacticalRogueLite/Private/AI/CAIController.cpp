@@ -5,7 +5,6 @@
 #include "AI/CHighlightTileAction.h"
 #include "Attributes/CAttributeComponent.h"
 #include "Grid/CGridTile.h"
-#include "ItemData/CItemData.h"
 #include "UI/Debug/CAiDebugWindow.h"
 #include "Utility/CRandomComponent.h"
 #include "Utility/Logging/CLogManager.h"
@@ -20,7 +19,7 @@ void ACAIController::OnTurnChanged()
 		return;
 	}
 	Unit = GameState->TurnOrder[0];
-	if(Unit->ControllingPlayerIndex != 0) // AI Controller index is 0
+	if(!Unit || Unit->ControllingPlayerIndex != 0) // AI Controller index is 0
 	{
 		Unit = nullptr;
 		return;
@@ -255,25 +254,7 @@ void ACAIController::UpdateContext()
 {
 	Context.CurrentUnit = Unit;
 	Context.PlayerUnits = GameMode->GetHeroUnits();
-
-	// TODO: Remove dead units from the context and add new when spawned based on event instead?
-	for (int i = Context.PlayerUnits.Num() - 1; i >= 0; --i)
-	{
-		const ACUnit* HeroUnit = Context.PlayerUnits[i];
-		if(HeroUnit == nullptr || !HeroUnit->GetAttributeComp()->IsAlive())
-		{
-			Context.PlayerUnits.RemoveAt(i);
-		}
-	}
 	Context.AIUnits = GameMode->GetEnemyUnits();
-	for (int i = Context.AIUnits.Num() - 1; i >= 0; --i)
-	{
-		const ACUnit* AIUnit = Context.AIUnits[i];
-		if(AIUnit == nullptr || !AIUnit->GetAttributeComp()->IsAlive())
-		{
-			Context.AIUnits.RemoveAt(i);
-		}
-	}
 }
 
 void ACAIController::ExecuteTurn()

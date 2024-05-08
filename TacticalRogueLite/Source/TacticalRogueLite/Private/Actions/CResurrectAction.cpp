@@ -60,7 +60,6 @@ void UCResurrectAction::UndoAction(AActor* Instigator)
 
 	if (PreviousHealth < 1)
 	{
-		AffectedUnit->GetAttributeComp()->SetHealth(PreviousHealth);
 		GameState->TurnOrder.RemoveSingle(AffectedUnit);
 	}
 

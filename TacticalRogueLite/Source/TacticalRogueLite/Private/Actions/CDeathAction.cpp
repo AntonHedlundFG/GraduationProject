@@ -1,11 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Actions/CDeathAction.h"
 #include "CGameState.h"
-#include "Attributes/CAttributeComponent.h"
 #include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCDeathAction::StartAction(AActor* Instigator)
 {
@@ -38,8 +35,7 @@ void UCDeathAction::StartAction(AActor* Instigator)
 	DeathTile = AffectedUnit->GetTile();
 
 	AffectedUnit->SetTile(nullptr);
-	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
-
+	
 	LOG_GAMEPLAY("%s died.", *AffectedUnit->GetUnitName());
 
 }
@@ -68,8 +64,6 @@ void UCDeathAction::UndoAction(AActor* Instigator)
 	}
 
 	LOG_GAMEPLAY("%s resurrected.", *AffectedUnit->GetUnitName());
-
-	AffectedUnit->GetAttributeComp()->SetIsPendingKill(false);
 
 	Super::UndoAction(Instigator);
 

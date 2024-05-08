@@ -7,9 +7,6 @@
 #include "Utilities/CAttributeUtilities.h"
 #include "CAttributeComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewHealth, int, Delta);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, UCAttributeComponent*, OwningComp, int, NewRage, int, Delta);
-
 //Säga till visualeffectcomp att något har ändrats(repl relaterat)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActiveGamePlayTagsChanged);
 //Alternative: Share the same signature with generic names.
@@ -40,99 +37,10 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnActiveGamePlayTagsChanged OnActiveGamePlayTagsChanged;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes", meta = (DisplayName = "IsAlive"))
-	static bool IsActorAlive(AActor* Actor);
-
+	
 	UCAttributeComponent();
 
-
-protected:
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
-	int CurrentHealth;
-	
-	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Attributes")
-	bool bIsPendingKill;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, ReplicatedUsing=OnRep_CurrentHealth, Category = "Attributes")
-	int CurrentMovement;
-
-	UFUNCTION()
-	void OnRep_CurrentHealth()
-	{
-		//Handle visual stuff based on CurrentHealth
-	}
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
-	int BaseHealth;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
-	int BaseMovement;
-
-	/*Resource used to power certain Actions*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
-	float Rage;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Category = "Attributes")
-	float RageMax;
-
-	//UPROPERTY(ReplicatedUsing="")
-	//bool bIsAlive;
-
-	UFUNCTION(NetMulticast, Reliable) //NOTE: could mark as unreliable once moving the 'state' out of character(eg. once its cosmetic only).
-	void MulticastHealthChanged(AActor* InstigatorActor, int NewHealth, int Delta);
-
-
 public:
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool Kill(AActor* InstigatorActor);
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	void SetIsPendingKill(const bool bPendingKill) { bIsPendingKill = bPendingKill; }
-	
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool IsAlive() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool IsFullHealth() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	int GetHealth() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	void SetHealth(int NewHealth);
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	int GetBaseHealth() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	float GetHealthPercent() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	int GetMovement() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	void SetMovement(int NewMovement);
-
-	//Set permanent upgrades.??
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	void SetBaseMovement(int NewBaseMovement);
-
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool IsBaseMovement() const;
-
-	UPROPERTY(BlueprintAssignable, Category = "Attributes")
-	FOnAttributeChanged OnHealthChanged;
-
-	UPROPERTY(BlueprintAssignable, Category = "Attributes")
-	FOnAttributeChanged OnMovementChanged;
-
-	//Passing in the difference we want applied. Return if the change actually succeeded.
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
-	bool ApplyHealthChange(AActor* InstigatorActor, int Delta);
-
 	UPROPERTY(Replicated)
 	FGameplayTagStackContainer GameplayStats;
 
