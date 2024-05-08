@@ -17,7 +17,7 @@ void UCHighlightTileAction::StartAction(AActor* Instigator)
 			for (ACGridTile* Tile : Tiles)
 			{
 				AffectedTiles.Add(Tile);
-				HighlightModes.Add(TargetableAction->GetHighlightMode());
+				HighlightModes.Add(TargetableAction->GetTargetHighlightMode());
 			}
 		}
 	}

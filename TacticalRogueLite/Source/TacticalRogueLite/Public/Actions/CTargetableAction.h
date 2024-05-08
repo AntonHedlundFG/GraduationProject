@@ -41,6 +41,15 @@ public:
 
 	bool IsTileReachable(ACGridTile* fromTile, ACGridTile* toTile) 
 	{ return GetValidTargetTiles(fromTile).Contains(toTile); }
+	
+	UFUNCTION()
+	ETileHighlightModes GetTargetHighlightMode() const { return TargetHighlightMode; }
+
+protected:
+	
+	// Highlight that will show on the tiles that can be targeted by the action.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	ETileHighlightModes TargetHighlightMode = ETileHighlightModes::ETHM_NONE;
 
 #pragma endregion
 

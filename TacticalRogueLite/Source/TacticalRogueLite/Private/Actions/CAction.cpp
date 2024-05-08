@@ -154,24 +154,49 @@ bool FAbility::IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile)
 	return GetValidTargetTiles(fromTile).Contains(toTile);
 }
 
-void FAbility::ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn)
+void FAbility::ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn, bool bToggleAffected /*= true*/)
 {
 	for (const auto Action : InstantiatedActions)
 	{
 		UCTargetableAction* TargetableAction = Cast<UCTargetableAction>(Action);
+		TSet<ACGridTile*> InfluencedTiles;
+
 		if (TargetableAction)
 		{
-			auto Tiles = TargetableAction->GetValidTargetTiles(fromTile);
-
-			for (const ACGridTile* Tile : Tiles)
+			TArray<ACGridTile*> Tiles = TargetableAction->GetValidTargetTiles(fromTile);
+			const ETileHighlightModes TargetedHighlightMode = TargetableAction->GetTargetHighlightMode();
+			
+			for (ACGridTile* Tile : Tiles)
 			{
-				const ETileHighlightModes HighlightMode = TargetableAction->GetHighlightMode();
 				if(bHighlightOn)
 				{
-					Tile->GetHighlightComponent()->AppendHighlightMode(HighlightMode);
+					Tile->GetHighlightComponent()->AppendHighlightMode(TargetedHighlightMode);
 				}
 				else{
-					Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
+					Tile->GetHighlightComponent()->RemoveHighlightMode(TargetedHighlightMode);
+				}
+				if (bToggleAffected)
+				{
+					InfluencedTiles.Append(TargetableAction->GetActionInfluencedTiles(Tile));
+				}
+			}
+		}
+		else
+		{
+			InfluencedTiles = Action->GetActionInfluencedTiles(fromTile);
+		}
+		
+		if(bToggleAffected)
+		{
+			const ETileHighlightModes AffectedHighlightMode = Action->GetAffectedHighlightMode();
+			for (ACGridTile* Tile : InfluencedTiles)
+			{
+				if(bHighlightOn)
+				{
+					Tile->GetHighlightComponent()->AppendHighlightMode(AffectedHighlightMode);
+				}
+				else{
+					Tile->GetHighlightComponent()->RemoveHighlightMode(AffectedHighlightMode);
 				}
 			}
 		}

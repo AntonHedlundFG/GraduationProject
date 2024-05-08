@@ -45,7 +45,7 @@ public:
 	TSet<ACGridTile*> GetInfluencedTiles(ACGridTile* fromTile);
 	TArray<ACGridTile*> GetValidTargetTiles(ACGridTile* fromTile);
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
-	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn);
+	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn, bool bToggleAffected = true);
 	
 	bool operator==(const FAbility& Other) const {
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
@@ -113,9 +113,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
+	// Highlight that will show on the tiles affected by the action.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	ETileHighlightModes HighlightMode = ETileHighlightModes::ETHM_NONE;
-
+	ETileHighlightModes AffectedHighlightMode = ETileHighlightModes::ETHM_NONE;
+	
 public:
 
 	// List of modifiers to apply to attributes when the action is active.
@@ -129,7 +130,7 @@ public:
 	UCActionComponent* GetActionComp() { return ActionComp; }
 
 	UFUNCTION()
-	ETileHighlightModes GetHighlightMode() const { return HighlightMode; }
+	ETileHighlightModes GetAffectedHighlightMode() const { return AffectedHighlightMode; }
 
 	//If true, this was the first action in a chain of events resulting from player input.
 	//When undoing actions, we iterate backwards in the action history, until we find one where
