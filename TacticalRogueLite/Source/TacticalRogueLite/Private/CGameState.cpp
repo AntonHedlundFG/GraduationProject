@@ -65,9 +65,9 @@ bool ACGameState::ReplicateSubobjects(class UActorChannel* Channel, class FOutBu
 
 void ACGameState::OnRep_ActionList()
 {
-	if (!ActionList.IsEmpty() && !ActionList.Last())
+	if (!ActionList.IsEmpty() && !IsValid(ActionList[ActionList.Num()-1]))
 		return;
-	if (!ActionHistory.IsEmpty() && !ActionHistory.Last())
+	if (!ActionHistory.IsEmpty() && !IsValid(ActionHistory[ActionHistory.Num()-1]))
 		return;
 
 	OnActionListUpdate.Broadcast();

@@ -43,58 +43,14 @@ void UCActionVisualizerSystem::EndPlay(EEndPlayReason::Type Reason)
 
 void UCActionVisualizerSystem::OnActionListUpdate()
 {	
-	bool bIsClient = GetNetMode() == ENetMode::NM_Client;
-
-	if (bIsClient)
-	{
-		LOG_INFO("Breakpointing here");
-	}
-
-	if (GameState->ActionList.IsEmpty())
-	{
-		//Wait for the history to replicate.
-		if (LastKnownActionHistorySize == GameState->ActionHistory.Num() || !GameState->ActionHistory.Last())
-			return;
-		LastKnownActionHistorySize = GameState->ActionHistory.Num();
-
-
-		//Here we make sure there aren't actions in the History that were never replicated as part of the List
-		ActionHistoryCurrentIndex += ActionListCurrentIndex + 1; //skip actions that were already visualized as part of the ActionList.
-		while (++ActionHistoryCurrentIndex < GameState->ActionHistory.Num() && GameState->ActionHistory[ActionHistoryCurrentIndex])
-		{
-			//Handle undo actions differently since they have to undo other visualizations
-			if (UCUndoAction* Undo = Cast<UCUndoAction>(GameState->ActionHistory[ActionHistoryCurrentIndex]))
-			{
-				for (TSoftObjectPtr<UCAction> Action : Undo->UndoneActions)
-				{
-					TObjectPtr<UCActionVisualization> Visual = ActionToVisualMap[Action.Get()];
-					if (IsValid(Visual))
-						UndoQueue.Enqueue(Visual);
-				}
-				continue;
-			}
-
-			//Create a visualization for a regular action.
-			UCActionVisualization* Visual = CreateVisualizationForAction(GameState->ActionHistory[ActionHistoryCurrentIndex]);
-			if (Visual)
-			{
-				VisualizationQueue.Enqueue(Visual);
-				ActionToVisualMap.Add(GameState->ActionHistory[ActionHistoryCurrentIndex], Visual);
-				VisualizationList.Add(Visual);
-			}
-		}
-
-
-		ActionHistoryCurrentIndex--;
-		ActionListCurrentIndex = -1;
-		//ActionToVisualMap.Empty();
+	TArray<UCAction*> ActionList = GameState->ActionHistory;
+	ActionList.Append(GameState->ActionList);
+	if (ActionList.IsEmpty())
 		return;
-	}
 
-	while (++ActionListCurrentIndex < GameState->ActionList.Num() && GameState->ActionList[ActionListCurrentIndex])
+	while (++ActionListCurrentIndex < ActionList.Num() && IsValid(ActionList[ActionListCurrentIndex]))
 	{
-		//Handle undo actions differently since they have to undo other visualizations
-		if (UCUndoAction* Undo = Cast<UCUndoAction>(GameState->ActionList[ActionListCurrentIndex]))
+		if (UCUndoAction* Undo = Cast<UCUndoAction>(ActionList[ActionListCurrentIndex]))
 		{
 			for (TSoftObjectPtr<UCAction> Action : Undo->UndoneActions)
 			{
@@ -106,17 +62,17 @@ void UCActionVisualizerSystem::OnActionListUpdate()
 		}
 
 		//Create a visualization for a regular action.
-		UCActionVisualization* Visual = CreateVisualizationForAction(GameState->ActionList[ActionListCurrentIndex]);
+		UCActionVisualization* Visual = CreateVisualizationForAction(ActionList[ActionListCurrentIndex]);
 		if (Visual)
 		{
 			VisualizationQueue.Enqueue(Visual);
-			ActionToVisualMap.Add(GameState->ActionList[ActionListCurrentIndex], Visual);
+			ActionToVisualMap.Add(ActionList[ActionListCurrentIndex], Visual);
 			VisualizationList.Add(Visual);
 		}
-		
 	}
-	//Counteract last ++
+
 	ActionListCurrentIndex--;
+	return;
 }
 
 UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)

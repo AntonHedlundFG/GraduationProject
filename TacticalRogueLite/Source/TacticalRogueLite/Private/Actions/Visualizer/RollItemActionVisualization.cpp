@@ -47,6 +47,11 @@ bool URollItemActionVisualization::Tick(float DeltaTime)
 	
 	if (!ActionClass->IsRunning())
 	{
+		if (ItemSelectionWindow)
+		{
+			ItemSelectionWindow->Close();
+			ItemSelectionWindow->RemoveFromParent();
+		}
 		return true;
 	}
 
@@ -59,15 +64,4 @@ void URollItemActionVisualization::OnItemSelectedCallback(UCItemData* SelectedIt
 	ACPlayerController* PlayerController = Cast<ACPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(),0));
 	ACUnit* Unit = Cast<ACUnit>(ActionClass->GetActionComp()->GetOuter());
 	PlayerController->Server_EquipItem(Unit,SelectedItem,ActionClass);
-	ItemSelectionWindow->Close();
-	ItemSelectionWindow->RemoveFromParent();
 }
-
-void URollItemActionVisualization::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	
-	DOREPLIFETIME(URollItemActionVisualization, ActionClass);
-
-}
-

@@ -35,11 +35,11 @@ bool UCResurrectVisualization::Tick(float DeltaTime)
 		if (TimePassed < Duration / 2.0f)
 		{
 			if (ResurrectAction->PreviousTile)
-				ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->PreviousTile->GetActorLocation() + FVector(0, 0, 100));
+				ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->PreviousTile->GetActorLocation());
 		}
 		else
 		{
-			ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation() + FVector(0, 0, 100));
+			ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation());
 		}
 
 		return DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;

@@ -24,7 +24,7 @@ public:
 
 	FActionRepData()
 	{
-		bIsRunning = false;
+		bIsRunning = true;
 	}
 };
 

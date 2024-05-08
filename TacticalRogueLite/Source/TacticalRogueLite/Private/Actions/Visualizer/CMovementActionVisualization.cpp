@@ -21,11 +21,12 @@ void UCMovementActionVisualization::Enter()
 
 bool UCMovementActionVisualization::Tick(float DeltaTime)
 {
-	// Updates the current time frame of the animation
-	TimePassed = FMath::Max(TimePassed + DeltaTime, 0.0f);
 
-	if (MoveAction && MoveAction->MovedUnit)
+	if (MoveAction && MoveAction->MovedUnit && !MoveAction->Path.IsEmpty())
 	{
+		// Updates the current time frame of the animation
+		TimePassed = FMath::Max(TimePassed + DeltaTime, 0.0f);
+
 		// Update position based on the "alpha value", TimePassed / Duration.
 		FVector Loc = LocationInPathAtTime(TimePassed);
 		MoveAction->MovedUnit->SetActorLocation(Loc);
