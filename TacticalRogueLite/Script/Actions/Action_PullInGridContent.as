@@ -1,4 +1,4 @@
-﻿class USAction_PullInUnit : UCAction
+﻿class USAction_PullInGridContent : UCAction
 {
     UPROPERTY()
     int Range = 2;
@@ -7,6 +7,7 @@
 
     TMap<ACGridContent, ACGridTile> ContentToStartTileMap;
     TArray<ACGridContent> ContentInRange;
+    ACGridTile TargetTile;
 
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
@@ -17,11 +18,11 @@
             UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "PullInUnit Action found no OwningComponent");
             return;
         }
-        ACGridTile StartTile = InstigatorContent.GetTile();
+        TargetTile = InstigatorContent.GetTile();
         
-        // TODO: BlockingTags
-        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(StartTile);
+        TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(TargetTile);
 
+        // Save all units in range and their original tiles for undo
         for(ACGridTile Tile : TilesInRange)
         {
             ACGridContent TileContent = Cast<ACGridContent>(Tile.GetContent());
@@ -32,10 +33,11 @@
             }
         }
 
+        // Move units towards the instigator
         for( ACGridContent Content : ContentInRange)
         {
                 // Pathfind towards StartTile
-                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), StartTile, ActionTags, FGameplayTagContainer());
+                auto Path = CGridUtils::BFS_Pathfinding(Content.GetTile(), TargetTile, ActionTags, ActionBlockingTags);
                 for (int i = 1; i <= MoveTileCount; i++)
                 {
                     if(i >= Path.Num())
@@ -80,6 +82,6 @@
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
+        return CGridUtils::FloodFill( fromTile, Range, ActionTags, ActionBlockingTags);
     }
 }
