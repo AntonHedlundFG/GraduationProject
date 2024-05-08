@@ -51,8 +51,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	ETileHighlightModes TargetHighlightMode = ETileHighlightModes::ETHM_NONE;
 
-#pragma endregion
-
 
 #pragma region AngelScript overridables
 
