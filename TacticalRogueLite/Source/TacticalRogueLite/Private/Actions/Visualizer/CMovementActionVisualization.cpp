@@ -3,6 +3,8 @@
 #include "Actions/Visualizer/CMovementActionVisualization.h"
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
+#include "CGameState.h"
+#include "Actions\Visualizer\CActionVisualizerSystem.h"
 #include "Utility/Logging/CLogManager.h"
 
 bool UCMovementActionVisualization::CanVisualizeAction(UCAction* Action)
@@ -22,8 +24,27 @@ void UCMovementActionVisualization::Enter()
 bool UCMovementActionVisualization::Tick(float DeltaTime)
 {
 
-	if (MoveAction && MoveAction->MovedUnit && !MoveAction->Path.IsEmpty())
+	if (MoveAction && MoveAction->MovedUnit)
 	{
+		if (MoveAction->Path.IsEmpty())
+		{
+			//Here we time out after a few seconds if no path is ever received
+			CurrentDurationWithMissingPath += DeltaTime;
+			if (CurrentDurationWithMissingPath >= TimeOutDurationForMissingPath)
+			{
+				LOG_WARNING("Timing out after %d seconds without path for visualized movement action", TimeOutDurationForMissingPath);
+				if (IsValid(ParentSystem))
+				{
+					ACGameState* GameState = ParentSystem->GetWorld()->GetGameState<ACGameState>();
+					for (ACUnit* Unit : GameState->TurnOrder)
+					{
+						Unit->SetActorLocation(Unit->GetTile()->GetActorLocation());
+					}
+				}
+				return true;
+			}
+		}
+
 		// Updates the current time frame of the animation
 		TimePassed = FMath::Max(TimePassed + DeltaTime, 0.0f);
 

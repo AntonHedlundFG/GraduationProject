@@ -55,4 +55,9 @@ protected:
 
 	FVector LocationInPathAtTime(float Time);
 
+	//If the visualized MovementAction doesn't provide a path to travel
+	//the visualization times out after this long
+	UPROPERTY(EditDefaultsOnly, Category = "Visualization")
+	float TimeOutDurationForMissingPath = 5.0f;
+	float CurrentDurationWithMissingPath = 0.0f;
 };
