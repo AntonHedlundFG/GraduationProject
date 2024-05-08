@@ -14,11 +14,21 @@ class USTargetHealthPercentConsideration : UCConsideration
             return 0; 
         }
 
-        float UnitHealthPercentage = Unit.GetAttributeComp().GetHealthPercent();
-
-        float FinalScore = Curve.GetFloatValue(UnitHealthPercentage);
+        FGameplayTag HealthTag = GameplayTags::Attribute_Health;
+        FGameplayTag MaxHealthTag = GameplayTags::Attribute_HealthMax;
         
-        //UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} - Average Health Percentage: {AverageHealthPercentage} - Num Units: {NumUnits}");
+        int CurrentValue, BaseValue, Additive, Multiplier;
+        int MaxCurrentValue, MaxBaseValue, MaxAdditive, MaxMultiplier;
+
+        float FinalScore = 0;
+        if(Unit.GetActionComp().GetAttribute(HealthTag, CurrentValue, BaseValue, Additive, Multiplier) &&
+            Unit.GetActionComp().GetAttribute(MaxHealthTag, MaxCurrentValue, MaxBaseValue, MaxAdditive, MaxMultiplier))
+        {
+            float healthPercentage = float(BaseValue) / float(MaxBaseValue);
+            FinalScore = Curve.GetFloatValue(healthPercentage);
+            // UCLogManager::BlueprintLog(ELogCategory::LC_Info, f"Final Score: {FinalScore} - Average Health Percentage: {healthPercentage}");
+        }
+        
 
         return FinalScore;
     }
