@@ -8,6 +8,8 @@
     float UndoSpeedMultiplier = 1.5f;
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<ANiagaraActor> VortexPullSystemClass;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float RelativeTileSize = 0.17f;
     
 
     // State
@@ -19,12 +21,6 @@
     ANiagaraActor VortexPullSystem;
     FVector Offset;
     float Size;
-
-    UFUNCTION(BlueprintOverride)
-    bool CanVisualizeAction(UCAction inAction)
-    {
-        return inAction.IsA(USAction_PullInGridContent::StaticClass());
-    }
 
     UFUNCTION(BlueprintOverride)
     void Enter()
@@ -62,8 +58,7 @@
         Offset = FVector::ZeroVector;
         Offset.Z = ContentInRange[0].GetActorLocation().Z - ContentInRange[0].GetTile().GetActorLocation().Z;
 
-        const float TileSize = 0.17f; // Size of one tile
-        Size = Action.Range * 2 * TileSize + TileSize;
+        Size = Action.Range * 2 * RelativeTileSize + RelativeTileSize;
 
         // Spawn niagara system actor
         VortexPullSystem = Cast<ANiagaraActor>(SpawnActor(VortexPullSystemClass, TargetTile.GetActorLocation() + Offset, FRotator::ZeroRotator));

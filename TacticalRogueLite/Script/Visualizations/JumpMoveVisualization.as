@@ -18,12 +18,6 @@
     AActor Actor;
 
     UFUNCTION(BlueprintOverride)
-    bool CanVisualizeAction(UCAction Action)
-    {
-        return Action.IsA(USMoveAction_Jumping::StaticClass());
-    }
-
-    UFUNCTION(BlueprintOverride)
     void Enter()
     {
         TimePassed = 0;
@@ -40,7 +34,7 @@
         {
             return;
         }
-        StartLocation = Actor.GetActorLocation();
+        StartLocation = JumpAction.FromTile.GetActorLocation();
         ActorOffset =  StartLocation - JumpAction.FromTile.GetActorLocation();
         EndLocation = JumpAction.TargetTile.GetActorLocation() + ActorOffset;
     }
