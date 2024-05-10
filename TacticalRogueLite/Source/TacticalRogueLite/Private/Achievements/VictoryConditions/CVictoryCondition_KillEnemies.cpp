@@ -4,6 +4,11 @@
 #include "CGameMode.h"
 #include "Actions/CActionComponent.h"
 
+UCVictoryCondition_KillEnemies::UCVictoryCondition_KillEnemies()
+{
+	ConditionText = "Kill all enemy units in the room!";
+}
+
 bool UCVictoryCondition_KillEnemies::CheckVictoryCondition()
 {
 	if (!GameModeRef)

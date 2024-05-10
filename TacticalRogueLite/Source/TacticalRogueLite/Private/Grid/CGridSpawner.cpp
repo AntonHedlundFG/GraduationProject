@@ -141,13 +141,23 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 {
 	//Create start room or regular room, update camera bounds
 	ACGridRoom* NewRoom;
+
+	//Decide on a random objective for the room.
+	EVictoryConditions RoomWinCon = EVictoryConditions::EVC_KillEnemies;
+	if (GameStateRef && GameStateRef->Random)
+	{
+		uint8 WinConInt = GameStateRef->Random->GetRandRange(1, static_cast<int32>(EVictoryConditions::EVC_MAX) - 1, false);
+		RoomWinCon = static_cast<EVictoryConditions>(WinConInt);
+	}
+
+	//Spawn the room.
 	if (bIsStartRoom)
 	{
-		NewRoom = inGrid->CreateStartRoom(1, EVictoryConditions::EVC_PickUpKeys);
+		NewRoom = inGrid->CreateStartRoom(inEnemyCount, RoomWinCon);
 	}
 	else
 	{
-		NewRoom = inGrid->CreateNewRoom(inEnemyCount);
+		NewRoom = inGrid->CreateNewRoom(inEnemyCount, RoomWinCon);
 	}
 	const int EnemyAmount = NewRoom->GetEnemyCount();
 

@@ -15,8 +15,8 @@ class TACTICALROGUELITE_API UCVictoryCondition_KillEnemies : public UCVictoryCon
 	GENERATED_BODY()
 
 public:
+	UCVictoryCondition_KillEnemies();
+	
 	virtual bool CheckVictoryCondition() override;
-
-	UPROPERTY()
-	TArray<ACUnit*> Enemies;
+	
 };

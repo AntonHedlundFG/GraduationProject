@@ -4,6 +4,12 @@
 #include "CGameMode.h"
 #include "Grid/CGridRoom.h"
 #include "GridContent/CPickUp.h"
+#include "Utility/Logging/CLogManager.h"
+
+UCVictoryCondition_PickUpKey::UCVictoryCondition_PickUpKey()
+{
+	ConditionText = "Grab all the keys and move to the exit!";
+}
 
 bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 {
@@ -22,6 +28,7 @@ bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 	{
 		if (Unit->GetTile() == ParentRoom->GetExitTile())
 		{
+			LOG_GAMEPLAY("VictoryCondition PickUpKeys: Remaining enemies should maybe be killed here?");
 			return true;
 		}
 	}
