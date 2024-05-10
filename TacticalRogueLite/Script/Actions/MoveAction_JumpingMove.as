@@ -45,11 +45,7 @@ class USMoveAction_Jumping : UCMovementAction
 
             ACGridContent Content = Tile.GetContent();
 
-            FGameplayTagContainer UnitBlock;
-            UnitBlock.AddTag(FGameplayTag::RequestGameplayTag(n"Unit.IsPlayer"));
-            UnitBlock.AddTag(FGameplayTag::RequestGameplayTag(n"Unit.IsEnemy"));
-            
-            if (!IsValid(Content) || !UCAttributeComponent::GetAttributes(Content).ActiveGameplayTags.HasAny(UnitBlock))
+            if (!IsValid(Content) || !Content.GetGameplayTags().HasAny(BlockingTags))
             {
                 ReturnTiles.Add(Tile);
             }
