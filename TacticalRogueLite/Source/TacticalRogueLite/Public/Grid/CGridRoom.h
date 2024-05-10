@@ -54,7 +54,7 @@ public:
 	FVector2D GetRoomXBounds() { return FVector2D(X_Min, X_Max); }
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetRoomYBounds() { return FVector2D(Y_Min, Y_Max); }
-	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies = TArray<ACUnit*>(), TArray<ACPickUp*> inKeys = TArray<ACPickUp*>()) const;
+	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies = TArray<ACUnit*>(), TArray<ACPickUp*> inPickUps = TArray<ACPickUp*>()) const;
 
 
 protected:

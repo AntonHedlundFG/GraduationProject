@@ -77,7 +77,7 @@ void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatform
 	PlatformLength = inPlatformLength;
 }
 
-bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray<ACPickUp*> inKeys) const
+bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray<ACPickUp*> inPickUps) const
 {
 	if (!ModeRef || !StateRef || inEnemies.Num() <= 0)
 		return false;
@@ -102,7 +102,8 @@ bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray
 			if (KeyWinCon)
 			{
 				KeyWinCon->Initialize(ModeRef, StateRef, this);
-				KeyWinCon->Keys = inKeys;
+				KeyWinCon->Enemies = inEnemies;
+				KeyWinCon->Keys = inPickUps;
 				ModeRef->SetVictoryCondition(KeyWinCon);
 				return true;
 			}

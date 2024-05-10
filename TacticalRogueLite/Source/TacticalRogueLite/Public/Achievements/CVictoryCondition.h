@@ -40,6 +40,9 @@ public:
 	bool bWonByCheating = false;
 	bool bLoseByCheating = false;
 
+	UPROPERTY()
+	TArray<ACUnit*> Enemies;
+
 protected:
 	UPROPERTY()
 	TSoftObjectPtr<ACGameMode> GameModeRef;
@@ -47,6 +50,8 @@ protected:
 	TSoftObjectPtr<ACGameState> GameStateRef;
 	UPROPERTY()
 	TSoftObjectPtr<ACGridRoom> ParentRoom;
+
+
 	
 	UPROPERTY()
 	FString ConditionText;
