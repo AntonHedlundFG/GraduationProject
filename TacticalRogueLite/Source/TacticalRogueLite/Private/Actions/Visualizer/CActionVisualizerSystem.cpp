@@ -25,12 +25,13 @@ void UCActionVisualizerSystem::BeginPlay()
 		return;
 	}
 
+	//Add the default implementation last as a catch-all at the top
+	AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, UCActionVisualization::StaticClass()));
+	
 	for (auto Template : AllAvailableVisualizationTemplates)
 	{
 		AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, Template));
 	}
-	//Add the default implementation last as a catch-all
-	AllAvailableVisualizationInstances.Add(NewObject<UCActionVisualization>(this, UCActionVisualization::StaticClass()));
 
 	GameState->OnActionListUpdate.AddDynamic(this, &UCActionVisualizerSystem::OnActionListUpdate);
 
@@ -77,8 +78,9 @@ void UCActionVisualizerSystem::OnActionListUpdate()
 
 UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UCAction* Action)
 {
-	for (UCActionVisualization* Visualization : AllAvailableVisualizationInstances)
+	for (int i = AllAvailableVisualizationInstances.Num() - 1; i >= 0; --i)
 	{
+		UCActionVisualization* Visualization = AllAvailableVisualizationInstances[i];
 		if (Visualization && Visualization->CanVisualizeAction(Action))
 		{
 			UCActionVisualization* VisualizationInstance = DuplicateObject<UCActionVisualization>(Visualization, this);
@@ -87,6 +89,7 @@ UCActionVisualization* UCActionVisualizerSystem::CreateVisualizationForAction(UC
 			return VisualizationInstance;
 		}
 	}
+
 	LOG_WARNING("No available visualization template for this type of action");
 	return nullptr;
 }
