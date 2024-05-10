@@ -14,12 +14,16 @@ class USAction_AoEDamage : UCAction
 	TArray<ACUnit> TargetsArray;
     TArray<FAttributeModifications> UndoDamageList;
 
+    ACGridTile StartTile;
+
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
         AttackingUnit = Cast<ACUnit>(Instigator);
         if(!IsValid(AttackingUnit))
             return;
+
+        StartTile = AttackingUnit.GetTile();
 
         TSet<ACGridTile> TilesInRange = GetActionInfluencedTiles(AttackingUnit.GetTile());
 
