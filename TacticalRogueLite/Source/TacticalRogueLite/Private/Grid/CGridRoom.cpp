@@ -507,7 +507,7 @@ void ACGridRoom::GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridT
 		for (int i = 0; i < PointAmount; i++)
 		{
 			if (i >= KeyCount)
-				return;
+				break;
 
 			const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
 			const int PointIndex = Indexes[X];
@@ -522,7 +522,7 @@ void ACGridRoom::GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridT
 	for (int i = 0; i < PointAmount; i++)
 	{
 		if (i >= EnemyCount)
-			return;
+			break;
 
 		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
 		const int PointIndex = Indexes[X];
