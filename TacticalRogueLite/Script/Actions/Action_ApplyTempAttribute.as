@@ -6,7 +6,6 @@ class USAction_ApplyTempAttribute: UCActionWithTimer
     {
         if (AffectedUnit == nullptr)
         AffectedUnit = Cast<ACUnit>(Instigator);
-        BindTimer();
     }
 
     UFUNCTION(BlueprintOverride)

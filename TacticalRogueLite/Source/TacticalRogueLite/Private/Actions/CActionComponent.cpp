@@ -1,10 +1,13 @@
 #include "Actions/CActionComponent.h"
+
+#include "CGameMode.h"
 #include "Actions/CAction.h"
 #include "Attributes/Utilities/CAttribute.h"
 #include "Attributes/CAttributeSet.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
 #include "GridContent/CUnit.h"
+#include "Kismet/GameplayStatics.h"
 #include "Utility/Logging/CLogManager.h"
 
 
@@ -177,23 +180,30 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 		return;
 	}
 
-	UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
+	//UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>(); //TODO:?
+	if (!ensure(GameMode))
+	{
+		return;
+	}
+	
+	UCAction* NewAction = GameMode->RegisterActionOfClass(ActionClass);
 	check(NewAction);
 
 	NewAction->Initialize(this);
 
-	Actions.Add(NewAction);
+	//Actions.Add(NewAction); RegisterAction does this alr..
 
-	if (ensure(NewAction->CanStart(Instigator)))
-	{
-		NewAction->StartAction(Instigator);
-	}
+	// if (ensure(NewAction->CanStart(Instigator))) //Eventuellt till charms..
+	// {
+	// 	NewAction->StartAction(Instigator);
+	// }
 }
 
 void UCActionComponent::RegisterAction(UCAction* NewAction)
 {
 	if (!NewAction) return;
-	Actions.Add(NewAction);
+	Actions.Add(NewAction); //Remove? TODO:
 }
 
 void UCActionComponent::RemoveAction(UCAction* ActionToRemove) //TODO: Maybe impl remove action. 
@@ -202,7 +212,7 @@ void UCActionComponent::RemoveAction(UCAction* ActionToRemove) //TODO: Maybe imp
 	{
 		return;
 	}
-
+	
 	Actions.Remove(ActionToRemove);
 }
 
@@ -241,8 +251,10 @@ void UCActionComponent::AddAbility(FAbility Ability)
 	{
 		UCAction* NewInstancedAction = NewObject<UCAction>(GetOwner(), ActionClass);
 		NewInstancedAction->Initialize(this);
-		
-		Ability.AbilityTags.AppendTags(NewInstancedAction->GetActionTags());
+
+		FGameplayTagContainer Tags = NewInstancedAction->GetActionTags();
+		Ability.AbilityTags.AppendTags(Tags);
+		ActiveGameplayTags.AppendTags(Tags);
 		
 		Ability.InstantiatedActions.Add(NewInstancedAction);
 	}
@@ -264,6 +276,7 @@ void UCActionComponent::RemoveAbility(FGameplayTag ItemSlot)
 	}
 	if(bHasAbilityToRemove)
 	{
+		ActiveGameplayTags.RemoveTags(AbilityToRemove.AbilityTags); //TODO: Lösning
 		Abilities.Remove(AbilityToRemove);
 	}
 }

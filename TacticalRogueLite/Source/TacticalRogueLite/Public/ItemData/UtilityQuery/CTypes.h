@@ -6,9 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "Curves/CurveFloat.h"
 #include "Engine/DataTable.h"
-#include "Utility/Logging/CLogManager.h"
 #include "CTypes.generated.h"
-
 
 class UCActionComponent;
 
@@ -183,15 +181,6 @@ public:
 
 		return 0.0f;
 	}
-	/*bool Ignored()
-	{
-		LOG(ELogCategory::LC_Warning, "bIsIgnored_Internal: %s", *((bIsIgnore_Internal)?FString("True"):FString("False")));
-		if(TimesSelected >= MaxOccurance || bIsIgnore_Internal)
-		{
-			return true;
-		}
-		return false;
-	}*/
 
 	bool HasItems(TArray<FItemTableRow*> ItemRows, FGameplayTagContainer& ContextTags,TArray<FPrimaryAssetId> ExcludedIds)
 	{

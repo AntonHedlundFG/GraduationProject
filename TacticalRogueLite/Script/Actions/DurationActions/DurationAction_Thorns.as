@@ -13,8 +13,8 @@ class USDurationAction_Thorns : UCActionWithTimer
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
     {
-        if (AffectedUnit == nullptr)
-            AffectedUnit = Cast<ACUnit>(Instigator);
+        
+        AffectedUnit = Cast<ACUnit>(Instigator);
         
         //Enable thorns
         //AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"OnHealthChanged");
@@ -22,8 +22,7 @@ class USDurationAction_Thorns : UCActionWithTimer
         Signature.BindUFunction(this, n"OnHealthChanged");
         
         AffectedUnit.ActionComp.AddAttributeChangedListener(GameplayTags::Attribute_Health, Signature, false);
-        
-        BindTimer();
+    
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} gained thorns.");
     }
 

@@ -78,7 +78,7 @@ public:
     /*
      * Removes count from the tag's stack.
      */
-    void RemoveStackCount(FGameplayTag Tag, int32 Count);
+    void RemoveStackCount(const FGameplayTag& Tag, int32 Count);
 
     /*
      * Adds 1 count of this tag
@@ -88,7 +88,7 @@ public:
     /*
     * Adds 1 count of each tag in this container
     */
-    void AppendTags(FGameplayTagContainer Tags);
+    void AppendTags(FGameplayTagContainer& Tags);
 
     /*
      * Removes 1 count of this tag
@@ -98,7 +98,7 @@ public:
     /*
     * Removes 1 count of each tag in this container
     */
-    void RemoveTags(FGameplayTagContainer Tags);
+    void RemoveTags(FGameplayTagContainer& Tags);
      
     /* 
      * Returns true if we have a one or more of the tag in the stack.

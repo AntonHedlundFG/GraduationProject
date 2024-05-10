@@ -44,7 +44,7 @@ void FGameplayTagStackContainer::AddStackCount(FGameplayTag Tag, int32 Count)
     }
 }
  
-void FGameplayTagStackContainer::RemoveStackCount(FGameplayTag Tag, int32 Count)
+void FGameplayTagStackContainer::RemoveStackCount(const FGameplayTag& Tag, int32 Count)
 {
     if (Count > 0)
     {
@@ -111,7 +111,7 @@ void FGameplayTagStackContainer::AppendTag(FGameplayTag Tag)
     AddStackCount(Tag, 1);
 }
 
-void FGameplayTagStackContainer::AppendTags(FGameplayTagContainer Tags)
+void FGameplayTagStackContainer::AppendTags(FGameplayTagContainer& Tags)
 {
     for (FGameplayTag Tag : Tags)
         AddStackCount(Tag, 1);
@@ -122,9 +122,9 @@ void FGameplayTagStackContainer::RemoveTag(FGameplayTag Tag)
     RemoveStackCount(Tag, 1);
 }
 
-void FGameplayTagStackContainer::RemoveTags(FGameplayTagContainer Tags)
+void FGameplayTagStackContainer::RemoveTags(FGameplayTagContainer& Tags)
 {
-    for (FGameplayTag Tag : Tags)
+    for (const FGameplayTag& Tag : Tags)
         RemoveStackCount(Tag, 1);
 }
 

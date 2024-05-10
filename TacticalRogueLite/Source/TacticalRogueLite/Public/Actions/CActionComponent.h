@@ -67,6 +67,21 @@ public:
 	{
 		ActiveGameplayTags.AppendTag(Tag);
 	}
+	UFUNCTION(BlueprintCallable)
+	void AppendTags(FGameplayTagContainer Tags)
+	{
+		ActiveGameplayTags.AppendTags(Tags);
+	}
+	UFUNCTION(BlueprintCallable)
+	void RemoveTag(FGameplayTag Tag)
+	{
+		ActiveGameplayTags.RemoveTag(Tag);
+	}
+	UFUNCTION(BlueprintCallable)
+	void RemoveTags(FGameplayTagContainer Tags)
+	{
+		ActiveGameplayTags.RemoveTags(Tags);
+	}
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);

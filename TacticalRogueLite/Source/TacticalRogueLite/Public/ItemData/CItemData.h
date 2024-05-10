@@ -17,6 +17,8 @@ class TACTICALROGUELITE_API UCItemData : public UCData
 {
 	GENERATED_BODY()
 
+protected:
+	
 	UCItemData()
 	{
 		ItemType = UCAssetManager::ItemType;
@@ -47,6 +49,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "ItemSlot", meta=(Categories="ItemSlot"), meta = (AssetBundles = "UI"))
 	FGameplayTag ItemSlot;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "Item")
+	uint8 bCanBeStacked : 1;
 	
 	UFUNCTION(BlueprintPure)
 	FGameplayTag GetItemSlotTag() const

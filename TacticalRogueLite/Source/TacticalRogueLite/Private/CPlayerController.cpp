@@ -12,6 +12,7 @@
 #include "Grid/CTileHighlightComponent.h"
 #include "Items/CInventoryComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Utility/Logging/CLogManager.h"
 
 bool ACPlayerController::TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance,
                                                 ACGridTile*& outTile)
@@ -204,6 +205,14 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		return;
 	}
 
+	FAbility OutAbility;
+	ActionComp->TryGetAbility(TagCurrentlyUsed, OutAbility);
+	if (ActionComp->ActiveGameplayTags.HasAny(OutAbility.BlockingTags))
+	{
+		LOG_WARNING("Units ActionComponent contains blocking tags from Ability");
+		return;
+	}
+	
 	OnAbilityUsed.Broadcast();
 	
 	Server_UseObject(UnitCurrentlyUsingAbility, TagCurrentlyUsed, inTargetTile);

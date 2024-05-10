@@ -130,9 +130,15 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 
 	FAbility OutAbility;
 	ActionComponent->TryGetAbility(inItemSlotTag, OutAbility);
-	if (!OutAbility.IsValidTargetTile(inUnit->GetTile(), inTargetTile))
+	if (!OutAbility.IsValidTargetTile(inUnit->GetTile(), inTargetTile))//ActionComp inte har blockingtags) Playercontroller, här och UI. 
 	{
 		LOG_WARNING("Target tile is not valid for this item slot");
+		return false;
+	}
+
+	if (ActionComponent->ActiveGameplayTags.HasAny(OutAbility.BlockingTags))
+	{
+		LOG_WARNING("Units ActionComponent contains blocking tags from Ability");
 		return false;
 	}
 
@@ -360,6 +366,8 @@ void ACGameMode::ExecuteActionStack(AActor* InstigatingActor)
 		UCAction* CurrentAction = ActionStack.Pop();
 		GameStateRef->ActionList.Add(CurrentAction);
 		CurrentAction->StartAction(InstigatingActor);
+		
+		
 
 		Iterations++;
 		if (Iterations > 1000)
