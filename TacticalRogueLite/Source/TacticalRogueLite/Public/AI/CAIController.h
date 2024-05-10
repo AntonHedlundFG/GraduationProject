@@ -42,6 +42,24 @@ public:
 		if(Path.Num() == 0)	{ return 0; } // No score if no path
 		return TotalScore; /// Path.Num(); // TODO: This is a very simple scoring system, we should look into improving this
 	}
+
+	bool IsValid()
+	{
+		if(GetScore() == 0 || Path.Num() == 0)
+		{
+			return false;
+		}
+
+		for (auto Pair : Path)
+		{
+			if(!Pair.Value)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 };
 #pragma endregion
 

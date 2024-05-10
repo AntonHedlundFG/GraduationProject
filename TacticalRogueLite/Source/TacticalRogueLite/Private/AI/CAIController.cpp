@@ -189,7 +189,7 @@ void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbil
 bool ACAIController::TryAddBestPath(FActionPath& NewPath, TArray<FActionPath>& inBestPaths)
 {
 	// Skip paths with no score
-	if(NewPath.GetScore() == 0 || NewPath.GetPath().Num() == 0)
+	if(!NewPath.IsValid())
 	{
 		return false;
 	}
