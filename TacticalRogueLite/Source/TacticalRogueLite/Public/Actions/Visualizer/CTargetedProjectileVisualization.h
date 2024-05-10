@@ -23,9 +23,6 @@ public:
 
 protected:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<class UCAction>> AffectedActionTypes;
-
 	/// <summary>
 	/// This is the class of actor that should represent the projectile.
 	/// It is entirely local and its location&rotation will be managed by this class.
