@@ -7,13 +7,6 @@
 #include "Actions\Visualizer\CActionVisualizerSystem.h"
 #include "Utility/Logging/CLogManager.h"
 
-bool UCMovementActionVisualization::CanVisualizeAction(UCAction* Action)
-{
-	return IsValid(VisualizedClass) 
-		? Action->IsA(VisualizedClass) 
-		: Action->IsA(UCMovementAction::StaticClass());
-}
-
 void UCMovementActionVisualization::Enter()
 {
 	TimePassed = 0.0f;
@@ -32,7 +25,7 @@ bool UCMovementActionVisualization::Tick(float DeltaTime)
 			CurrentDurationWithMissingPath += DeltaTime;
 			if (CurrentDurationWithMissingPath >= TimeOutDurationForMissingPath)
 			{
-				LOG_WARNING("Timing out after %d seconds without path for visualized movement action", TimeOutDurationForMissingPath);
+				LOG_WARNING("Timing out after %f seconds without path for visualized movement action", TimeOutDurationForMissingPath);
 				if (IsValid(ParentSystem))
 				{
 					ACGameState* GameState = ParentSystem->GetWorld()->GetGameState<ACGameState>();

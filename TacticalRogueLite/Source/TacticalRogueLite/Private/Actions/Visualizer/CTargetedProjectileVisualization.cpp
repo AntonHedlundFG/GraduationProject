@@ -8,16 +8,6 @@
 #include "Grid\CGridTile.h"
 #include "Actions\CActionComponent.h"
 
-bool UCTargetedProjectileVisualization::CanVisualizeAction(UCAction* Action)
-{
-	for (TSubclassOf<UCAction> ActionType : AffectedActionTypes)
-	{
-		if (Action->IsA(ActionType))
-			return true;
-	}
-	return false;
-}
-
 void UCTargetedProjectileVisualization::Enter()
 {
 	TimePassed = 0.0f;

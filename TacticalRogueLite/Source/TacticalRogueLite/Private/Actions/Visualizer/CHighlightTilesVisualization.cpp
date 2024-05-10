@@ -3,11 +3,6 @@
 #include "Grid/CGridTile.h"
 #include "Grid/CTileHighlightComponent.h"
 
-bool UCHighlightTilesVisualization::CanVisualizeAction(UCAction* Action)
-{
-	return Action->IsA(UCHighlightTileAction::StaticClass());
-}
-
 void UCHighlightTilesVisualization::Enter()
 {
 	TimePassed = 0.0f;
@@ -47,6 +42,7 @@ bool UCHighlightTilesVisualization::RevertTick(float DeltaTime)
 
 void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(bool bHighlightOn)
 {
+	if(!HighLightAction) return;
 	TArray<ACGridTile*>& Tiles = HighLightAction->GetAffectedTiles();
 	TArray<ETileHighlightModes>& HighlightModes = HighLightAction->GetHighlightModes();
 	for (int i = 0; i < Tiles.Num(); ++i)

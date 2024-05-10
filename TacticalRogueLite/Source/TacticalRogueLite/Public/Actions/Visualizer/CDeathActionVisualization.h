@@ -14,8 +14,6 @@ class TACTICALROGUELITE_API UCDeathActionVisualization : public UCActionVisualiz
 {
 	GENERATED_BODY()
 	
-	virtual bool CanVisualizeAction(UCAction* Action) override;
-
 	virtual void Enter() override;
 
 	virtual bool Tick(float DeltaTime) override;

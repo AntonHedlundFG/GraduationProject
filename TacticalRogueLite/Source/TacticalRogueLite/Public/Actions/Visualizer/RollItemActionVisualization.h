@@ -20,7 +20,6 @@ protected:
 	UPROPERTY()
 	UCItemSelectionWindow* ItemSelectionWindow;
 	
-	virtual bool CanVisualizeAction(UCAction* Action) override;
 	virtual void Enter() override;
 	virtual bool Tick(float DeltaTime) override;
 

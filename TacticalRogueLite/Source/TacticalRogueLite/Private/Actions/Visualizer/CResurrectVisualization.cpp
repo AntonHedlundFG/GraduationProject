@@ -6,15 +6,10 @@
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 
-bool UCResurrectVisualization::CanVisualizeAction(UCAction* Action)
-{
-	return Action->IsA(UCResurrectAction::StaticClass());
-}
-
 void UCResurrectVisualization::Enter()
 {
 	TimePassed = 0.0f;
-	ResurrectAction = Cast<UCResurrectAction>(VisualizedAction);
+  	ResurrectAction = Cast<UCResurrectAction>(VisualizedAction);
 }
 
 bool UCResurrectVisualization::Tick(float DeltaTime)
@@ -22,27 +17,33 @@ bool UCResurrectVisualization::Tick(float DeltaTime)
 	// Updates the current time frame of the animation
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
 
-	if (ResurrectAction && ResurrectAction->AffectedUnit)
+	if (ResurrectAction)
 	{
-
-		float AlphaValue = 2.0f * TimePassed / Duration;
-		if (AlphaValue > 1.0f)
-			AlphaValue = (2.0f - AlphaValue);
-		// Update position based on the "alpha value", TimePassed / Duration.
-		FVector NewScale = FMath::Lerp(StartingScale, TargetScale, AlphaValue);
-		ResurrectAction->AffectedUnit->SetActorScale3D(NewScale);
-
-		if (TimePassed < Duration / 2.0f)
+		if(ResurrectAction->AffectedUnit)
 		{
-			if (ResurrectAction->PreviousTile)
-				ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->PreviousTile->GetActorLocation());
-		}
-		else
-		{
-			ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation());
-		}
+			float AlphaValue = 2.0f * TimePassed / Duration;
+				if (AlphaValue > 1.0f)
+					AlphaValue = (2.0f - AlphaValue);
+				// Update position based on the "alpha value", TimePassed / Duration.
+				FVector NewScale = FMath::Lerp(StartingScale, TargetScale, AlphaValue);
+				ResurrectAction->AffectedUnit->SetActorScale3D(NewScale);
 
-		return DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;
+				if (TimePassed < Duration / 2.0f)
+				{
+					if (ResurrectAction->PreviousTile)
+						ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->PreviousTile->GetActorLocation());
+				}
+				else
+				{
+					ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation());
+				}
+
+				return DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;
+		}
+	}
+	else
+	{
+		return  true;
 	}
 
 	return false;

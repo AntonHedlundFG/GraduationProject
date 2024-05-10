@@ -10,11 +10,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
 
-bool URollItemActionVisualization::CanVisualizeAction(UCAction* Action)
-{
-	return Action->IsA(UCAction_RollItem::StaticClass());
-}
-
 void URollItemActionVisualization::Enter()
 {
 	Super::Enter();

@@ -10,9 +10,17 @@
 #include "Grid/CGridTile.h"
 #include "CGameState.h"
 
-bool UCActionVisualization::CanVisualizeAction(UCAction* Action)
+bool UCActionVisualization::CanVisualizeAction(const UCAction* Action)
 {
-	return ReceiveCanVisualizeAction(Action);
+	if(VisualizedActionTypes.Num() == 0) return true;
+	
+	for (TSubclassOf<UCAction> ActionType : VisualizedActionTypes)
+	{
+		if (Action->IsA(ActionType))
+			return true;
+	}
+	
+	return false;
 }
 
 void UCActionVisualization::Enter()

@@ -13,8 +13,6 @@ UCLASS()
 class TACTICALROGUELITE_API UCResurrectVisualization : public UCActionVisualization
 {
 	GENERATED_BODY()
-	virtual bool CanVisualizeAction(UCAction* Action) override;
-
 	virtual void Enter() override;
 
 	virtual bool Tick(float DeltaTime) override;

@@ -12,7 +12,6 @@ class TACTICALROGUELITE_API UCHighlightTilesVisualization : public UCActionVisua
 {
 	GENERATED_BODY()
 	
-	virtual bool CanVisualizeAction(UCAction* Action) override;
 	virtual void Enter() override;
 	virtual bool Tick(float DeltaTime) override;
 	virtual bool RevertTick(float DeltaTime) override;
@@ -24,6 +23,6 @@ class TACTICALROGUELITE_API UCHighlightTilesVisualization : public UCActionVisua
 
 	// A reference to the cast version of the action
 	UPROPERTY()
-	UCHighlightTileAction* HighLightAction;
+	TObjectPtr<UCHighlightTileAction> HighLightAction;
 	
 };

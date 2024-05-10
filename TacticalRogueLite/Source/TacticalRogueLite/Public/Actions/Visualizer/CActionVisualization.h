@@ -57,6 +57,8 @@ protected:
 	//Set by the system upon creation.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actions")
 	UCAction* VisualizedAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Actions")
+	TArray<TSubclassOf<UCAction>> VisualizedActionTypes;
 
 
 #pragma region AngelScript events

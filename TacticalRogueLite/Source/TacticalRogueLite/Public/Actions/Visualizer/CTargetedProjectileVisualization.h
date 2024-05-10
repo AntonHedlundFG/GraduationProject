@@ -16,8 +16,6 @@ class TACTICALROGUELITE_API UCTargetedProjectileVisualization : public UCActionV
 
 public:
 
-	virtual bool CanVisualizeAction(UCAction* Action) override;
-
 	virtual void Enter() override;
 
 	virtual bool Tick(float DeltaTime) override;

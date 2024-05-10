@@ -5,6 +5,8 @@
 void UCHighlightTileAction::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
+	AffectedTiles.Empty();
+	HighlightModes.Empty();
 	
 	// Loop over all Actions in the ability and toggle them with their respective highlightmode
 	for (auto Action : AbilityToHighlight.InstantiatedActions)

@@ -5,11 +5,6 @@
 #include "Actions/CDeathAction.h"
 #include "GridContent/CUnit.h"
 
-bool UCDeathActionVisualization::CanVisualizeAction(UCAction* Action)
-{
-	return Action->IsA(UCDeathAction::StaticClass());
-}
-
 void UCDeathActionVisualization::Enter()
 {
 	TimePassed = 0.0f;

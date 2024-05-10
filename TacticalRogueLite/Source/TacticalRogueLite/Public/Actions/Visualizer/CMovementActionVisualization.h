@@ -13,8 +13,6 @@ class TACTICALROGUELITE_API UCMovementActionVisualization : public UCActionVisua
 	GENERATED_BODY()
 
 public:
-
-	virtual bool CanVisualizeAction(UCAction* Action) override;
 	
 	virtual void Enter() override;
 
