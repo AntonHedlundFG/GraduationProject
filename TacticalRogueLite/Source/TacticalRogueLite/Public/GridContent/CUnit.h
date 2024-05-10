@@ -94,6 +94,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetSprite(UPaperSprite* inSprite);
 
+	virtual FGameplayTagContainer GetGameplayTags() override;
+
 	
 	// ----------------------------------------------------------------
 	

@@ -21,7 +21,7 @@ void UCMovementAction::StartAction(AActor* Instigator)
 
 	FAttribute Attribute;
 	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.MovementRange"), Attribute);
-	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
+	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags;
 
 	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, ActionBlockingTags);
 	MovedUnit->SetTile(TargetTile);
@@ -48,7 +48,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 
 	FAttribute Attribute;
 	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.MovementRange"), Attribute);
-	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags.GetContainerWithoutStacks();
+	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags;
 	
 	TArray<ACGridTile*> ReturnTiles;
 

@@ -3,7 +3,7 @@ class USMoveAction_Jumping : UCMovementAction
     UPROPERTY()
     int RangeTowardsMid = 1;
     UPROPERTY()
-    FGameplayTagContainer BlockingTags;
+    FGameplayTagContainer MovementBlockingTags;
 
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACGridTile inTile)
@@ -20,7 +20,7 @@ class USMoveAction_Jumping : UCMovementAction
         GetOwningComponent().GetAttribute(MovementRangeTag, CurrentValue, BaseValue, Additive, Multiplier);
 
         // Get the active tags of the character for MoveRange calculation
-        FGameplayTagContainer ActiveTags = UCAttributeComponent::GetAttributes(GetOwningComponent().GetOwner()).ActiveGameplayTags;
+        FGameplayTagContainer ActiveTags = CGameplay::ToGameplayTagContainer(GetOwningComponent().ActiveGameplayTags);
         // TODO: Blocking tags
         // Get the tiles that are within the MoveRange and remove the tiles that are within the InnerBlockedRange
         TSet<FVector2D> OuterTiles = CGridUtils::FloodFillWithCoordinates(inTile.GetGridCoords(), BaseValue, ActiveTags);
@@ -45,7 +45,7 @@ class USMoveAction_Jumping : UCMovementAction
 
             ACGridContent Content = Tile.GetContent();
 
-            if (!IsValid(Content) || !Content.GetGameplayTags().HasAny(BlockingTags))
+            if (!IsValid(Content) || !Content.GetGameplayTags().HasAny(MovementBlockingTags))
             {
                 ReturnTiles.Add(Tile);
             }

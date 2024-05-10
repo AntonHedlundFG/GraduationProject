@@ -1,9 +1,8 @@
 
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
-#include "Actions/CDeathAction.h"
-#include "CGameMode.h"
 #include "GamePlayTags/SharedGamePlayTags.h"
+
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv
 
@@ -38,7 +37,6 @@ void UCAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(UCAttributeComponent, ActiveGameplayTags);
 	DOREPLIFETIME(UCAttributeComponent, MaxItemCharges);
 	DOREPLIFETIME(UCAttributeComponent, UsedItemCharges);
 	DOREPLIFETIME(UCAttributeComponent, GameplayStats);

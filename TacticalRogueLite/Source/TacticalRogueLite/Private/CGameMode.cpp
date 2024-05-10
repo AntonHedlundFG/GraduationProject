@@ -56,9 +56,9 @@ void ACGameMode::BeginPlay()
 		Spawner->SpawnRoomWithEnemies(grid, 1, 4, true);
 		
 		InitializeHeroUnits(grid);
-		for (const ACUnit* HeroUnit : HeroUnits)
+		for ( ACUnit* HeroUnit : HeroUnits)
 		{
-			HeroUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsPlayer);
+			HeroUnit->GetGameplayTags().AddTag(TAG_Unit_IsPlayer);
 		}
 		
 		// Testing for multiple room
@@ -423,7 +423,7 @@ void ACGameMode::AddEnemyUnits(TArray<ACUnit*> Enemies)
 	for (ACUnit* EnemyUnit : Enemies)
 	{
 		EnemyUnit->ControllingPlayerIndex = 0;
-		EnemyUnit->GetAttributeComp()->ActiveGameplayTags.AddTag(TAG_Unit_IsEnemy);
+		EnemyUnit->GetGameplayTags().AddTag(TAG_Unit_IsEnemy);
 		
 	}
 	

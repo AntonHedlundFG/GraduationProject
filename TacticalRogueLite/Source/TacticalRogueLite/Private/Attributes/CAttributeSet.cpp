@@ -167,7 +167,7 @@ void UCAttributeSet::PostAttributeChanged_Implementation(const FAttributeModific
 		if (Health.BaseValue == 0 && AppliedMod.Magnitude != 0 && !AppliedMod.bIsUndo)
 		{
 			FGameplayTag ImmuneTag = FGameplayTag::RequestGameplayTag("Status.Silenced"); //TODO: Rework
-			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags.GetContainerWithoutStacks();
+			FGameplayTagContainer OwnedTags = OwningComp->ActiveGameplayTags;
 			
 			//*Revival isnt implemented here. Anyone reviving by adding health should consider this and handle the death tag itself.
 			// if (!OwnedTags.HasTag(DeathTag))

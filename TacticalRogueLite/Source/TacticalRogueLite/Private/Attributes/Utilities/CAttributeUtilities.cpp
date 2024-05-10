@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Attributes/Utilities/CAttributeUtilities.h"
-#include "Containers/ArrayView.h"
 
 /**
 *		-Declare a UPROPERTY of your FExampleArray (step 2) type.
@@ -137,12 +136,3 @@ bool FGameplayTagStackContainer::HasAny(FGameplayTagContainer Tags)
     return false;
 }
 
-FGameplayTagContainer FGameplayTagStackContainer::GetContainerWithoutStacks()
-{
-    FGameplayTagContainer NewContainer;
-    for (auto& TagPair : TagCountMap)
-    {
-        NewContainer.AddTag(TagPair.Key);
-    }
-    return NewContainer;
-}

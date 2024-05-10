@@ -5,9 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "Actions/CActionComponent.h"
 #include "CGameplayFunctionLibrary.generated.h"
 
+struct FGameplayTagStackContainer;
+struct FAttributeModifications;
 
 UCLASS()
 class TACTICALROGUELITE_API UCGameplayFunctionLibrary : public UBlueprintFunctionLibrary
@@ -21,13 +22,16 @@ private:
 
 	public:
 
-		UFUNCTION(BlueprintCallable, Category = "Gameplay")
-		static FAttributeModifications ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	static FAttributeModifications ApplyDamage(AActor* DamageCauser, AActor* TargetActor, int DamageAmount, FGameplayTagContainer ContextTags);
 
-		//UFUNCTION(BlueprintCallable,Category="Gameplay")
-		//static bool UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags);
-		// UFUNCTION(BlueprintPure, Category = "PSO Caching")
-		// static int32 GetRemainingBundledPSOs();
+	UFUNCTION(BlueprintPure, Category = "FGameplayStackContainer")
+	static FGameplayTagContainer ToGameplayTagContainer( const FGameplayTagStackContainer& StackedContainer);
+	
+	//UFUNCTION(BlueprintCallable,Category="Gameplay")
+	//static bool UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags);
+	// UFUNCTION(BlueprintPure, Category = "PSO Caching")
+	// static int32 GetRemainingBundledPSOs();
 
 	};
 

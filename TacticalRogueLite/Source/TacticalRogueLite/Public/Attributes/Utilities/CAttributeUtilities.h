@@ -5,6 +5,7 @@
 #include "GameplayTagContainer.h"
 #include "Containers/ArrayView.h"
 #include "Net/Serialization/FastArraySerializer.h"
+#include "Containers/ArrayView.h"
 #include "CAttributeUtilities.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStackChanged);
@@ -110,9 +111,17 @@ public:
 
 	bool HasAny(FGameplayTagContainer Tags);
 
-	FGameplayTagContainer GetContainerWithoutStacks();
-	
-    /*
+	operator FGameplayTagContainer()
+	{
+		FGameplayTagContainer NewContainer;
+		for (const auto& TagPair : TagCountMap)
+		{
+			NewContainer.AddTag(TagPair.Key);
+		}
+		return NewContainer;
+	}
+
+	/*
      * Returns the amount of the stack we have for the supplied tag.
      */
     int32 GetStackCount(FGameplayTag Tag) const
@@ -123,6 +132,7 @@ public:
     UPROPERTY()
     FOnStackChanged OnStackChanged;
 
+	TMap<FGameplayTag, int32> GetTagCountMap() const { return TagCountMap; }
      
  
 private:

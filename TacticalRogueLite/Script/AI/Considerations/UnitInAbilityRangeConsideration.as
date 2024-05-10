@@ -10,7 +10,7 @@
         ACUnit Unit = Cast<ACUnit>(Content);
         if(!IsValid(Unit)) return 0;
 
-        if(Unit.GetAttributeComp().ActiveGameplayTags.HasAny(ConsiderationTags))
+        if(Unit.GetGameplayTags().HasAny(ConsiderationTags))
         {
             return 1.0f;
         }

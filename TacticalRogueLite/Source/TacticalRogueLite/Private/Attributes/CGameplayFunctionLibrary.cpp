@@ -65,6 +65,17 @@ FAttributeModifications UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCau
 
 	return FAttributeModifications();
 }
+
+FGameplayTagContainer UCGameplayFunctionLibrary::ToGameplayTagContainer( const FGameplayTagStackContainer& StackedContainer )
+{
+	FGameplayTagContainer NewContainer;
+	for ( const auto& TagPair : StackedContainer.GetTagCountMap() )
+	{
+		NewContainer.AddTag(TagPair.Key);
+	}
+	return NewContainer;
+}
+
 /* Commenting this out since we want to use the returned array of FAttributeModifications for undoing damage...
 bool UCGameplayFunctionLibrary::UndoDamage(AActor* InstigatorActor, AActor* TargetActor, int Amount, FGameplayTagContainer ContextTags)
 {

@@ -25,19 +25,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	static UCAttributeComponent* GetAttributes(AActor* FromActor);
 
-	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicatedusing = OnRep_ActiveGameplayTags, Category = "Tags")
-	FGameplayTagContainer ActiveGameplayTags;
-
-	UFUNCTION()
-	void OnRep_ActiveGameplayTags()
-	{
-		OnActiveGamePlayTagsChanged.Broadcast();
-	}
-
-	UPROPERTY(BlueprintAssignable)
-	FOnActiveGamePlayTagsChanged OnActiveGamePlayTagsChanged;
-	
 	UCAttributeComponent();
 
 public:

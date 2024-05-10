@@ -111,6 +111,11 @@ void ACUnit::SetSprite(UPaperSprite* inSprite)
 	OnRep_Sprite();
 }
 
+FGameplayTagContainer ACUnit::GetGameplayTags()
+{
+	return GridContentTags;
+}
+
 bool ACUnit::HasRemainingCharges(FGameplayTag ItemSlot, int32 Amount)
 {
 	return AttributeComp->HasRemainingCharges(ItemSlot, Amount);
