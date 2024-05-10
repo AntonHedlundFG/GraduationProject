@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CPickUp.generated.h"
 
+class ACUnit;
 class UPaperSpriteComponent;
 
 UCLASS()
@@ -30,4 +31,7 @@ protected:
 	
 	virtual void HandleOnTileEnter(ACGridContent* inEnterContent) override;
 	virtual void HandleOnTileExit(ACGridContent* inExitContent) override;
+
+	UFUNCTION()
+	virtual void GrantPickUpToUnit(ACUnit* inUnit) {}
 };

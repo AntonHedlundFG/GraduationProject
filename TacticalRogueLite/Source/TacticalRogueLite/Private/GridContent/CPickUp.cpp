@@ -22,7 +22,11 @@ void ACPickUp::HandleOnTileEnter(ACGridContent* inEnterContent)
 	{
 		Tile = nullptr;
 		bIsPickedUp = true;
+		GrantPickUpToUnit(inUnit);
+		SetActorLocation(FVector(0,0,-9999));
+		SpriteComp->SetSprite(nullptr);
 	}
+
 }
 
 void ACPickUp::HandleOnTileExit(ACGridContent* inExitContent)
