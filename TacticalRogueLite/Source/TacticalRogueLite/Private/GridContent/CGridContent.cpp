@@ -38,6 +38,11 @@ void ACGridContent::SetTile(ACGridTile* inTile)
 	}
 }
 
+FGameplayTagContainer ACGridContent::GetGameplayTags()
+{
+	return GridContentTags;
+}
+
 void ACGridContent::BeginPlay()
 {
 	Super::BeginPlay();

@@ -26,13 +26,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid|Content")
 	float GetCost() const { return Cost; }
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
-	FGameplayTagContainer GridContentTags;
+	virtual FGameplayTagContainer GetGameplayTags();
+
 	
 protected:
 	UPROPERTY(Replicated, BlueprintReadOnly)
 	TObjectPtr<ACGridTile> Tile;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
+	FGameplayTagContainer GridContentTags;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Grid|Content")
 	float Cost = 0;
 	

@@ -57,7 +57,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, con
 		for (auto neighbour : Neighbours)
 		{
 			if (neighbour == nullptr || ClosedSet.Contains(neighbour)) continue;
-			if (!(neighbour->GetContent() && neighbour->GetContent()->GridContentTags.HasAny(BlockingTags)))
+			if (!(neighbour->GetContent() && neighbour->GetContent()->GetGameplayTags().HasAny(BlockingTags)))
 			{
 				OpenSet.Add(neighbour);
 				ClosedSet.Add(neighbour);
@@ -128,7 +128,7 @@ TArray<ACGridTile*> UCGridUtilsLibrary::AStar_Pathfinding(ACGridTile* inStart, A
         TSet<ACGridTile*> Neighbours = ReachableInSingleStep(CurrentTile, MovementTags, BlockingTags); 
         for (ACGridTile* Neighbour : Neighbours)
         {
-            if (!Neighbour || Neighbour->GetContent() && Neighbour->GetContent()->GridContentTags.HasAny(BlockingTags))
+            if (!Neighbour || Neighbour->GetContent() && Neighbour->GetContent()->GetGameplayTags().HasAny(BlockingTags))
                 continue;
 
             float TentativeGCost = GCosts[CurrentTile] + Neighbour->GetCost();
@@ -276,7 +276,7 @@ TSet<ACGridTile*> UCGridUtilsLibrary::ReachableInSingleStep(ACGridTile* inTile, 
 	for (FVector2D NeighbourCoords : Coordinates) {
 		ACGridTile* NeighbourTile = Grid->GetTileFromCoords(NeighbourCoords);
 		if (!NeighbourTile) continue;
-		if (NeighbourTile->GetContent() && NeighbourTile->GetContent()->GridContentTags.HasAny(MovementBlockingTags)) continue;
+		if (NeighbourTile->GetContent() && NeighbourTile->GetContent()->GetGameplayTags().HasAny(MovementBlockingTags)) continue;
 
 		Neighbours.Add(NeighbourTile);
 	}
