@@ -1,5 +1,4 @@
 #include "Actions/CActionComponent.h"
-
 #include "CGameMode.h"
 #include "Actions/CAction.h"
 #include "Attributes/Utilities/CAttribute.h"

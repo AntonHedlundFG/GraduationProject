@@ -73,7 +73,7 @@ public:
 		ActiveGameplayTags.AppendTags(Tags);
 	}
 	UFUNCTION(BlueprintCallable)
-	void RemoveTag(FGameplayTag Tag)
+	void RemoveTag(FGameplayTag& Tag)
 	{
 		ActiveGameplayTags.RemoveTag(Tag);
 	}

@@ -10,10 +10,9 @@ void UCActionWithTimer::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
 
-	if (GetOwningComponent() && !AffectedUnit)
-	{
-		AffectedUnit = Cast<ACUnit>(GetOwningComponent()->GetOwner());
-	}
+	ensure(GetOwningComponent());
+	
+	AffectedUnit = Cast<ACUnit>(GetOwningComponent()->GetOwner());
 	
 	GetOwningComponent()->ActiveGameplayTags.AppendTags(ActionTags);
 	GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
