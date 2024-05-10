@@ -6,6 +6,7 @@
 #include "Grid/CGrid.h"
 #include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
+#include "GridContent/CPickUp.h"
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
 #include "GridContent/UnitDataAssets/CAllEnemiesData.h"
@@ -116,6 +117,17 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	return Unit;
 }
 
+ACPickUp* ACGridSpawner::SpawnPickUp(TSubclassOf<ACPickUp> inPickUpType, ACGridTile* inSpawnTile,
+	FGameplayTagContainer inTags)
+{
+	const FVector SpawnPosition = inSpawnTile->GetActorLocation();
+	TObjectPtr<ACPickUp> PickUp = GetWorld()->SpawnActor<ACPickUp>(inPickUpType, SpawnPosition , FRotator::ZeroRotator);
+	
+	inSpawnTile->SetContent(PickUp);
+	PickUp->SetTile(inSpawnTile);
+
+	return PickUp;
+}
 
 
 ACGrid* ACGridSpawner::SpawnGrid(FVector inGridCenter) const
@@ -131,7 +143,7 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	ACGridRoom* NewRoom;
 	if (bIsStartRoom)
 	{
-		NewRoom = inGrid->CreateStartRoom(inEnemyCount);
+		NewRoom = inGrid->CreateStartRoom(1, EVictoryConditions::EVC_PickUpKeys);
 	}
 	else
 	{
@@ -199,7 +211,21 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	
 	//Add enemies to GameMode array.
 	GameModeRef->AddEnemyUnits(Enemies);
-	if (!NewRoom->TryInitializeVictoryCondition(Enemies))
+
+	//Initialize Room WinCon and pass it to GameMode.
+	TArray<ACPickUp*> Keys = TArray<ACPickUp*>();
+	if (NewRoom->GetVictoryCondition() == EVictoryConditions::EVC_PickUpKeys)
+	{
+		
+		for (auto Tile : NewRoom->GetKeySpawnTiles())
+		{
+			ACPickUp* Key = SpawnPickUp(KeyPickUp_BP, Tile);
+
+			if (Key)
+				Keys.Add(Key);
+		}
+	}
+	if (!NewRoom->TryInitializeVictoryCondition(Enemies, Keys))
 	{
 		LOG_ERROR("Failed to Update Victory Condition for newly spawned Room");
 	}

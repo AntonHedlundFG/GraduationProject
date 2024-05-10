@@ -6,11 +6,13 @@
 #include "CGameMode.h"
 #include "Actions/CActionComponent.h"
 #include "Attributes/Utilities/CAttribute.h"
+#include "Grid/CGridRoom.h"
 
-void UCVictoryCondition::Initialize(ACGameMode* inGameMode, ACGameState* inGameState)
+void UCVictoryCondition::Initialize(const ACGameMode* inGameMode, const ACGameState* inGameState, const ACGridRoom* inRoom)
 {
 	GameModeRef = inGameMode;
 	GameStateRef = inGameState;
+	ParentRoom = inRoom;
 }
 
 bool UCVictoryCondition::CheckVictoryCondition()

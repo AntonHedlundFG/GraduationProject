@@ -2,11 +2,12 @@
 
 #include "Achievements/VictoryConditions/CVictoryCondition_PickUpKey.h"
 #include "CGameMode.h"
+#include "Grid/CGridRoom.h"
 #include "GridContent/CPickUp.h"
 
 bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 {
-	if (!GameModeRef)
+	if (!GameModeRef || !ParentRoom)
 		return false;
 
 	if (bWonByCheating) return true;
@@ -17,5 +18,13 @@ bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 			return false;
 	}
 
-	return true;
+	for (auto* Unit : GameModeRef->GetHeroUnits())
+	{
+		if (Unit->GetTile() == ParentRoom->GetExitTile())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

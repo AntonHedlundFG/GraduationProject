@@ -180,8 +180,9 @@ protected:
 
 	//This is run in BeginPlay to assign relevant references to the victory condition.
 	//Once we have a procedural generation system, it should probably take over this task.
-	UFUNCTION(Category = "Victory Condition")
-	void InitializeVictoryCondition();
+	// UFUNCTION(Category = "Victory Condition")
+	// void InitializeVictoryCondition();
+	
 	///Handles fulfilling the victory condition in a given room, returns true if entire game is won
 	UFUNCTION(Category = "Victory Condition")
 	bool HandleVictoryConditionMet();

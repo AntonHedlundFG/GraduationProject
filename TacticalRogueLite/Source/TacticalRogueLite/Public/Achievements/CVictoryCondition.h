@@ -8,6 +8,7 @@
 
 class ACGameMode;
 class ACGameState;
+class ACGridRoom;
 
 /** This object, or a child of it, should be created by the level generation
  * and assigned to the CGameMode. At the end of each turn, the GameMode will
@@ -21,7 +22,7 @@ class TACTICALROGUELITE_API UCVictoryCondition : public UObject
 
 public:
 
-	void Initialize(ACGameMode* inGameMode, ACGameState* inGameState);
+	void Initialize(const ACGameMode* inGameMode, const ACGameState* inGameState, const ACGridRoom* inRoom);
 	
 	//This function should check the game state and determine whether the players
 	//have reached the conditions required to complete the objective.
@@ -41,6 +42,8 @@ protected:
 	TSoftObjectPtr<ACGameMode> GameModeRef;
 	UPROPERTY()
 	TSoftObjectPtr<ACGameState> GameStateRef;
+	UPROPERTY()
+	TSoftObjectPtr<ACGridRoom> ParentRoom;
 	UPROPERTY()
 	int VictoryConditionLevel = 0;
 

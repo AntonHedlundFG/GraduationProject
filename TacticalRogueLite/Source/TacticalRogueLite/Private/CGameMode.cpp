@@ -481,15 +481,15 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 	}
 }
 
-void ACGameMode::InitializeVictoryCondition()
-{
-
-	//This is a temporary implementation that should probably be handled by a 
-	//procedural generation system.
-
-	VictoryCondition = NewObject<UCVictoryCondition>(this, UCVictoryCondition::StaticClass());
-	VictoryCondition->Initialize(this, GameStateRef);
-}
+// void ACGameMode::InitializeVictoryCondition()
+// {
+//
+// 	//This is a temporary implementation that should probably be handled by a 
+// 	//procedural generation system.
+//
+// 	VictoryCondition = NewObject<UCVictoryCondition>(this, UCVictoryCondition::StaticClass());
+// 	VictoryCondition->Initialize(this, GameStateRef);
+// }
 
 bool ACGameMode::HandleVictoryConditionMet()
 {

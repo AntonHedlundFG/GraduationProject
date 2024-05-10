@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION(BlueprintCallable)
-	void Initialize(ACGrid* inParentGrid, int inEnemyCount = 0);
+	void Initialize(ACGrid* inParentGrid, int inEnemyCount = 0, EVictoryConditions inWinCon = EVictoryConditions::EVC_KillEnemies);
 	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
 	UFUNCTION(BlueprintCallable)
@@ -43,9 +43,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }
 	UFUNCTION(BlueprintCallable)
+	TArray<ACGridTile*> GetKeySpawnTiles() { return KeySpawns; }
+	UFUNCTION(BlueprintCallable)
 	int GetEnemyCount() { return EnemyCount; }
 	UFUNCTION(BlueprintCallable)
 	ACGridTile* GetExitTile() const { return ExitTile; }
+	UFUNCTION(BlueprintCallable)
+	EVictoryConditions GetVictoryCondition() const { return RoomWinCon; }
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetRoomXBounds() { return FVector2D(X_Min, X_Max); }
 	UFUNCTION(BlueprintCallable)
@@ -84,8 +88,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Room Generation")
 	int RoomPoints = 2;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Units")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Spawns")
 	int EnemyCount = 4;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings|Spawns")
+	int MaxKeyCount = 2;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Room Settings|Spawns")
+	int KeyCount = 0;
 
 	//Room bounds
 	UPROPERTY(BlueprintReadOnly, Category = "Room Settings|Bounds")
@@ -110,6 +118,8 @@ protected:
 	TArray<ACGridTile*> EnemySpawns;
 	UPROPERTY()
 	TArray<ACGridTile*> HeroSpawns;
+	UPROPERTY()
+	TArray<ACGridTile*> KeySpawns;
 
 	///References
 	UPROPERTY()
@@ -138,7 +148,7 @@ protected:
 	void IncrementTowardsTarget(int32& inValue, int32 inTarget);
 
 	///Tries to spawn enemies on room points, else spawns on exit platform
-	void GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
+	void GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
 	TArray<ACGridTile*> GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const;
 
 };

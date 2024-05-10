@@ -5,6 +5,7 @@
 #include "GridContent/CGridContent.h"
 #include "CPickUp.generated.h"
 
+class UPaperSpriteComponent;
 
 UCLASS()
 class TACTICALROGUELITE_API ACPickUp : public ACGridContent
@@ -12,10 +13,18 @@ class TACTICALROGUELITE_API ACPickUp : public ACGridContent
 	GENERATED_BODY()
 
 public:
+	ACPickUp();
+	
 	UFUNCTION()
 	bool IsPickedUp() const { return bIsPickedUp; }
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
+	USceneComponent* SceneComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
+	TObjectPtr<UPaperSpriteComponent> SpriteComp;
+	
 	UPROPERTY()
 	bool bIsPickedUp = false;
 	

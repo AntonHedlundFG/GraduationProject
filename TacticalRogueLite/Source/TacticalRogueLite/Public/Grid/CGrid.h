@@ -2,9 +2,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Achievements/VictoryConditions/VictoryConditions.h"
 #include "GameFramework/Actor.h"
 #include "CGrid.generated.h"
 
+enum class EVictoryConditions : uint8;
 class ACGridRoom;
 class ACGridTile;
 
@@ -26,9 +28,9 @@ public:
 	TMap<FVector2D,TObjectPtr<ACGridTile>> TileMap;
 
 	UFUNCTION()
-	ACGridRoom* CreateNewRoom(int inEnemyCount = 0);
+	ACGridRoom* CreateNewRoom(int inEnemyCount = 0, EVictoryConditions inRoomWinCon = EVictoryConditions::EVC_KillEnemies);
 	UFUNCTION()
-	ACGridRoom* CreateStartRoom(int inEnemyCount = 0);
+	ACGridRoom* CreateStartRoom(int inEnemyCount = 0, EVictoryConditions inRoomWinCon = EVictoryConditions::EVC_KillEnemies);
 	UFUNCTION()
 	ACGridTile* SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()

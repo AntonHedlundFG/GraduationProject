@@ -1,7 +1,18 @@
 
 #include "GridContent/CPickUp.h"
 
+#include "PaperSpriteComponent.h"
 #include "GridContent/CUnit.h"
+
+ACPickUp::ACPickUp()
+{
+	bReplicates = true;
+
+	SceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	RootComponent = SceneComp;
+	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSpriteComponent"));
+	SpriteComp->SetupAttachment(RootComponent);
+}
 
 void ACPickUp::HandleOnTileEnter(ACGridContent* inEnterContent)
 {

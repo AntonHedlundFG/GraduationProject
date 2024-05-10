@@ -43,11 +43,32 @@ void ACGridRoom::BeginPlay()
 	}
 }
 
-void ACGridRoom::Initialize(ACGrid* inParentGrid, int inEnemyCount)
+void ACGridRoom::Initialize(ACGrid* inParentGrid, int inEnemyCount, EVictoryConditions inWinCon)
 {
 	GameGrid = inParentGrid;
 
 	EnemyCount = inEnemyCount > 0 ? inEnemyCount : EnemyCount;
+
+	if (!StateRef)
+	{
+		StateRef == GetWorld()->GetGameState();
+		
+		if (StateRef)
+		{
+			RandomComp = StateRef->Random;
+		}
+	}
+
+	if (inWinCon == EVictoryConditions::EVC_PickUpKeys && RandomComp)
+	{
+		RoomWinCon = inWinCon;
+		const int Keys = RandomComp->GetRandRange(1, MaxKeyCount, false);
+		KeyCount = Keys;
+	}
+	else
+	{
+		RoomWinCon = EVictoryConditions::EVC_KillEnemies;
+	}
 }
 
 void ACGridRoom::SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength)
@@ -70,7 +91,7 @@ bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray
 			KillWinCon = NewObject<UCVictoryCondition_KillEnemies>(ModeRef, KillVictoryCondition);
 			if (KillWinCon)
 			{
-				KillWinCon->Initialize(ModeRef, StateRef);
+				KillWinCon->Initialize(ModeRef, StateRef, this);
 				KillWinCon->Enemies = inEnemies;
 				ModeRef->SetVictoryCondition(KillWinCon);
 				return true;
@@ -80,7 +101,7 @@ bool ACGridRoom::TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies, TArray
 			KeyWinCon = NewObject<UCVictoryCondition_PickUpKey>(ModeRef, KeyVictoryCondition);
 			if (KeyWinCon)
 			{
-				KeyWinCon->Initialize(ModeRef, StateRef);
+				KeyWinCon->Initialize(ModeRef, StateRef, this);
 				KeyWinCon->Keys = inKeys;
 				ModeRef->SetVictoryCondition(KeyWinCon);
 				return true;
@@ -166,7 +187,7 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	{
 	}*/
 
-	GenerateEnemySpawns(GeneratedPoints, ExitArea);
+	GenerateSpawnTiles(GeneratedPoints, ExitArea);
 	
 	RoomTiles = OutArray;
 	
@@ -468,14 +489,34 @@ void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
 	}
 }
 
-void ACGridRoom::GenerateEnemySpawns(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
+void ACGridRoom::GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
 {
-	const int PointAmount = inPoints.Num();
+
+	const bool bIsKeyRoom = RoomWinCon == EVictoryConditions::EVC_PickUpKeys;
 	
+	int PointAmount = inPoints.Num();
+
 	TArray<int> Indexes;
 	for (int i = 0; i < PointAmount; i++)
 	{
 		Indexes.Add(i);
+	}
+
+	if (bIsKeyRoom)
+	{
+		for (int i = 0; i < PointAmount; i++)
+		{
+			if (i >= KeyCount)
+				return;
+
+			const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
+			const int PointIndex = Indexes[X];
+			Indexes.RemoveAt(X);
+		
+			KeySpawns.Add(inPoints[PointIndex]);
+		}
+
+		PointAmount = Indexes.Num();
 	}
 	
 	for (int i = 0; i < PointAmount; i++)
