@@ -15,6 +15,8 @@ class TACTICALROGUELITE_API UCVictoryCondition_PickUpKey : public UCVictoryCondi
 	GENERATED_BODY()
 
 public:
+	UCVictoryCondition_PickUpKey();
+	
 	virtual bool CheckVictoryCondition() override;
 
 	UPROPERTY()

@@ -5,6 +5,11 @@
 #include "Grid/CGridRoom.h"
 #include "GridContent/CPickUp.h"
 
+UCVictoryCondition_PickUpKey::UCVictoryCondition_PickUpKey()
+{
+	ConditionText = "Grab all the keys and move to the exit!";
+}
+
 bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 {
 	if (!GameModeRef || !ParentRoom)

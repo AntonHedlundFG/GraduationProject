@@ -8,6 +8,11 @@
 #include "Attributes/Utilities/CAttribute.h"
 #include "Grid/CGridRoom.h"
 
+UCVictoryCondition::UCVictoryCondition()
+{
+	ConditionText = "BaseVictoryCondition";
+}
+
 void UCVictoryCondition::Initialize(const ACGameMode* inGameMode, const ACGameState* inGameState, const ACGridRoom* inRoom)
 {
 	GameModeRef = inGameMode;

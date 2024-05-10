@@ -21,8 +21,11 @@ class TACTICALROGUELITE_API UCVictoryCondition : public UObject
 	GENERATED_BODY()
 
 public:
+	UCVictoryCondition();
 
 	void Initialize(const ACGameMode* inGameMode, const ACGameState* inGameState, const ACGridRoom* inRoom);
+
+	FString GetConditionText() const { return ConditionText; }
 	
 	//This function should check the game state and determine whether the players
 	//have reached the conditions required to complete the objective.
@@ -44,6 +47,9 @@ protected:
 	TSoftObjectPtr<ACGameState> GameStateRef;
 	UPROPERTY()
 	TSoftObjectPtr<ACGridRoom> ParentRoom;
+	
+	UPROPERTY()
+	FString ConditionText;
 	UPROPERTY()
 	int VictoryConditionLevel = 0;
 
