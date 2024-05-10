@@ -5,3 +5,4 @@ ffb516 -> Fire yellow
 1B1A21 -> Armor bg
 6E6E86 -> Weapon bg
 020d10 -> Movement bg
+8834FF -> Charm Color
