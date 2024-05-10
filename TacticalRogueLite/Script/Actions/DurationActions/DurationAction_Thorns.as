@@ -39,6 +39,8 @@ class USDurationAction_Thorns : UCActionWithTimer
         ACUnit Defender = Cast<ACUnit>(ActionComponent.GetOwner());
         if (Defender == nullptr) return;
 
+        if (Delta >= 0)
+            return;
     
         //If we can only thorns in melee, make sure we are in melee range of attacker.
         auto NeighbourTiles = Defender.GetTile().GetNeighbours(false);

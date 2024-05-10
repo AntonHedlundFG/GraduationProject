@@ -65,7 +65,6 @@ TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* 
 void UCAction::UndoAction(AActor* Instigator)
 {
 	UCActionComponent* Comp = GetOwningComponent();
-	if (IsValid(Comp) && !ActionTags.IsEmpty())
 
 	ReceiveUndoAction(Instigator);
 
