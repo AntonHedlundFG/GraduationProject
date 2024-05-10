@@ -28,7 +28,7 @@ protected:
 	//It's likely that this function will simply be:
 	// return Action->IsA(UCSomeActionImplementation::StaticClass()); 
 	UFUNCTION(Category = "Actions")
-	virtual bool CanVisualizeAction(UCAction* Action);
+	virtual bool CanVisualizeAction(const UCAction* Action);
 
 	// This will be called by the VisualizerSystem when this visualization is created.
 	// Here we can fetch data about what the action did, like which path a movement action used, 
