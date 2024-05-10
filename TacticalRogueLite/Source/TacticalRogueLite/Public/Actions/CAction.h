@@ -28,6 +28,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (EditCondition = false)) 
 	FGameplayTagContainer AbilityTags;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	FGameplayTagContainer BlockingTags;
 	
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UCAction>> Actions;
@@ -47,14 +50,10 @@ public:
 	bool IsValidTargetTile(ACGridTile* fromTile, ACGridTile* toTile);
 	void ToggleHighlightTilesInRange(ACGridTile* fromTile, bool bHighlightOn, bool bToggleAffected = true);
 	
-	bool operator==(const FAbility& Other) const {
+	bool operator==(const FAbility& Other) const
+	{
 		return Actions == Other.Actions && InventorySlotTag == Other.InventorySlotTag;
 	}
-
-protected:
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
-	FGameplayTagContainer BlockingTags;
 
 };
 
