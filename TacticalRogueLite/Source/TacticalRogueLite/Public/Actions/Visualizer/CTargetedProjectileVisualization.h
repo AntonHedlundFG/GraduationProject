@@ -54,6 +54,8 @@ protected:
 	//If 0 or less, no lifetime is set and you have to manage its lifetime elsewhere.
 	UPROPERTY(EditAnywhere)
 	float OnHitEffectLifetime = 0.0f;
+	UPROPERTY(EditAnywhere)
+	FVector TargetLocationOffset;
 
 	//Determines lifetime of the actor of type BeforeLaunchProjectileEffectType.
 	//If 0 or less, no lifetime is set and you have to manage its lifetime elsewhere.

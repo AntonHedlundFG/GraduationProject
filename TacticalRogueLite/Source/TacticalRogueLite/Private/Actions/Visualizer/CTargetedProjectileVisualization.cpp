@@ -14,7 +14,7 @@ void UCTargetedProjectileVisualization::Enter()
 	TargetableAction = Cast<UCTargetableAction>(VisualizedAction);
 	if (TargetableAction)
 	{
-		TargetLocation = TargetableAction->TargetTile->GetActorLocation() + FVector(0, 0, 100);
+		TargetLocation = TargetableAction->TargetTile->GetActorLocation() + TargetLocationOffset;
 		StartLocation = TargetableAction->GetActionComp()->GetOwner()->GetActorLocation();
 		const float AttackDistance = FVector::Dist(TargetLocation, StartLocation);
 		MiddlePoint = (TargetLocation + StartLocation) / 2.0f + FVector(0, 0, AttackDistance * DistanceToHeightRatio);

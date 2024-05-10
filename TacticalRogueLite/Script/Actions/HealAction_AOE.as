@@ -11,8 +11,8 @@ class USHealAction_AOE : UCAction
     UPROPERTY()
     bool bCanHealSelf = true;
 
-	private ACUnit AttackingUnit; //TODO: Hide
-    private TArray<ACUnit> TargetsArray;
+	ACUnit AttackingUnit; //TODO: Hide
+    TArray<ACUnit> TargetsArray;
     private TArray<int> ModifiersTargetActualDeltas;
 
     UFUNCTION(BlueprintOverride)

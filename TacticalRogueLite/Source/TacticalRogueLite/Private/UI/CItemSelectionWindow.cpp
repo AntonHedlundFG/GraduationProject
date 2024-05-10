@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UI/CItemSelectionWindow.h"
+#include "Actions/CActionComponent.h"
 
 
-void UCItemSelectionWindow::UpdateInfo(const UCAction_RollItem& Action,TArray<UCItemData*> Items,bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack = nullptr)
+void UCItemSelectionWindow::UpdateInfo(UCAction_RollItem& Action,TArray<UCItemData*> Items,bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack = nullptr)
 {
 	this->bOwner = bIsOwner;
 	OnItemSelectedCallBack = CallBack;
@@ -21,6 +22,8 @@ void UCItemSelectionWindow::UpdateInfo(const UCAction_RollItem& Action,TArray<UC
 		ActiveItemSelectionWidgets.Add(Button);
 		ScrollBox->AddChild(Button);
 	}
+	ACUnit* Unit = Cast<ACUnit>(Action.GetActionComp()->GetOuter());
+	Inventory->UpdateInfo(Unit);
 }
 
 void UCItemSelectionWindow::OnItemSelected(UCItemData* SelectedItem)

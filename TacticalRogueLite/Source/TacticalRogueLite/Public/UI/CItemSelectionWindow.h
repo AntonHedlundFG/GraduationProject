@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CInventoryWindow.h"
 #include "CItemSelectionButton.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ScrollBox.h"
@@ -21,13 +22,15 @@ class TACTICALROGUELITE_API UCItemSelectionWindow : public UUserWidget
 	TArray<UCItemSelectionButton*> ActiveItemSelectionWidgets;
 	UPROPERTY(meta = (BindWidget))
 	UScrollBox* ScrollBox;
+	UPROPERTY(meta = (BindWidget))
+	UCInventoryWindow* Inventory;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCItemSelectionButton> ItemSelectionButtonWidget;
 	TFunction<void(UCItemData* ItemData)> OnItemSelectedCallBack;
 	void OnItemSelected(UCItemData* SelectedItem);
 	void ClearScrollBox();
 public:
-	void UpdateInfo(const UCAction_RollItem& Action, TArray<UCItemData*> Items, bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
+	void UpdateInfo(UCAction_RollItem& Action, TArray<UCItemData*> Items, bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
 	void Open();
 	void Close();
 };
