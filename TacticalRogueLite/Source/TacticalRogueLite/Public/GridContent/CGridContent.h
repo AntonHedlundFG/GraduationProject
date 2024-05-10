@@ -26,6 +26,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid|Content")
 	float GetCost() const { return Cost; }
 
+	UFUNCTION(BlueprintCallable, Category = "Grid|Content")
 	virtual FGameplayTagContainer GetGameplayTags();
 
 	
