@@ -9,6 +9,7 @@
 class ACGameMode;
 class ACGameState;
 class ACGridRoom;
+class ACUnit;
 
 /** This object, or a child of it, should be created by the level generation
  * and assigned to the CGameMode. At the end of each turn, the GameMode will

@@ -26,18 +26,7 @@ bool UCVictoryCondition::CheckVictoryCondition()
 		return false;
 
 	if (bWonByCheating) return true;
-
-	for (auto* Unit : GameModeRef->GetEnemyUnits())
-	{
-		FAttribute Health;
-		if (Unit->GetActionComp()->GetAttribute(FGameplayTag::RequestGameplayTag(FName("Attribute.Health")), Health))
-		{
-			if (Health.BaseValue > 0)
-			{
-				return false;
-			}
-		}
-	}
+	
 	return true;
 }
 

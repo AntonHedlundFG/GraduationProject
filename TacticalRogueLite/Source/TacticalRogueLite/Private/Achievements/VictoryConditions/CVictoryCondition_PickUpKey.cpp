@@ -2,9 +2,11 @@
 
 #include "Achievements/VictoryConditions/CVictoryCondition_PickUpKey.h"
 #include "CGameMode.h"
+#include "Actions/CActionComponent.h"
+#include "Actions/CDeathAction.h"
 #include "Grid/CGridRoom.h"
 #include "GridContent/CPickUp.h"
-#include "Utility/Logging/CLogManager.h"
+#include "GridContent/CUnit.h"
 
 UCVictoryCondition_PickUpKey::UCVictoryCondition_PickUpKey()
 {
@@ -28,7 +30,14 @@ bool UCVictoryCondition_PickUpKey::CheckVictoryCondition()
 	{
 		if (Unit->GetTile() == ParentRoom->GetExitTile())
 		{
-			LOG_GAMEPLAY("VictoryCondition PickUpKeys: Remaining enemies should maybe be killed here?");
+			for (auto Enemy : Enemies)
+			{
+				UCDeathAction* DeathAction = NewObject<UCDeathAction>(Enemy, UCDeathAction::StaticClass());
+				DeathAction->AffectedUnit = Enemy;
+				
+				GameModeRef->RegisterAction(DeathAction);
+			}
+			
 			return true;
 		}
 	}
