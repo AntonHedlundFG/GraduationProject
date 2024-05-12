@@ -24,9 +24,7 @@ protected:
 	UPROPERTY()
 	ACUnit* TargetUnit;
 
-
-private:
-	
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	FAttributeModifications ReturnModifications;
+	
 };
