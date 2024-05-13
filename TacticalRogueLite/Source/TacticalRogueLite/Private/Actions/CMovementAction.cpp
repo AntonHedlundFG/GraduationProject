@@ -23,7 +23,7 @@ void UCMovementAction::StartAction(AActor* Instigator)
 	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.MovementRange"), Attribute);
 	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags;
 
-	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, ActionBlockingTags);
+	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, MovementBlockingTags);
 	MovedUnit->SetTile(TargetTile);
 	LOG_GAMEPLAY("%s moved", *MovedUnit->GetUnitName(), Path.Num() - 1);
 
@@ -52,7 +52,7 @@ TArray<ACGridTile*> UCMovementAction::GetValidTargetTiles_Implementation(ACGridT
 	
 	TArray<ACGridTile*> ReturnTiles;
 
-	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, Attribute.BaseValue, MovementTags, ActionBlockingTags);
+	TSet<ACGridTile*> Tiles = UCGridUtilsLibrary::FloodFill(inTile, Attribute.BaseValue, MovementTags, MovementBlockingTags);
 	
 	Tiles.Remove(inTile);
 	

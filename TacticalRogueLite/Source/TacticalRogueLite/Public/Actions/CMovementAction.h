@@ -31,4 +31,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Replicated)
 	TArray<ACGridTile*> Path;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	FGameplayTagContainer MovementBlockingTags;
+
 };
