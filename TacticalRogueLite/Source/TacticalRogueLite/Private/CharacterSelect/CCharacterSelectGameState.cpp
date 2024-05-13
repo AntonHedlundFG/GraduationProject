@@ -116,7 +116,7 @@ void ACCharacterSelectGameState::CheckReady()
 
 	//In Solo mode, we start when ANY button is pressed. 
 	//In group mode, all buttons must be pressed.
-	if (bAllReady || (PlayerCount == 1 && bAnyReady))
+	if (bAllReady || (PlayerCount <= 1 && bAnyReady))
 		OnReadyToStart.Broadcast();
 	
 }
