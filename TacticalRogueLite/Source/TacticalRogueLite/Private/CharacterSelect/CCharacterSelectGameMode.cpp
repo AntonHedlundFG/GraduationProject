@@ -143,6 +143,7 @@ void ACCharacterSelectGameMode::OnLoad()
 	}
 	else
 	{
+		PlayerCount = 1; //Assume solo play when there's no saved game from the lobby.
 		LOG_ERROR("Couldn't find Save Game Instance to load Player Count in Character Select Menu");
 	}
 }

@@ -103,19 +103,22 @@ void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
 
 void ACCharacterSelectGameState::CheckReady()
 {
+	bool bAnyReady = false;
+	bool bAllReady = true;
 	
 	for (const bool PlayerReady : ReadyInfo)
 	{
-		//When playing solo, only 1 ready button needs to be pressed
-		if (PlayerCount == 1 && PlayerReady)
-			break;
-
-		//In group, all ready buttons must be pressed.
-		if (PlayerReady == false)
-			return;
+		if (PlayerReady)
+			bAnyReady = true;
+		else
+			bAllReady = false;
 	}
+
+	//In Solo mode, we start when ANY button is pressed. 
+	//In group mode, all buttons must be pressed.
+	if (bAllReady || (PlayerCount == 1 && bAnyReady))
+		OnReadyToStart.Broadcast();
 	
-	OnReadyToStart.Broadcast();
 }
 
 void ACCharacterSelectGameState::OnRep_ControllingPlayerIndex()
