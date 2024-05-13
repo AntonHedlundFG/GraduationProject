@@ -25,13 +25,24 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
 	TObjectPtr<UPaperSpriteComponent> SpriteComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_Sprite, Category = "PickUp|SpriteMesh")
+	TObjectPtr<UPaperSprite> Sprite;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_Location, Category = "PickUp|WorldLocation")
+	FVector Location;
 	
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	bool bIsPickedUp = false;
-	
+
 	virtual void HandleOnTileEnter(ACGridContent* inEnterContent) override;
 	virtual void HandleOnTileExit(ACGridContent* inExitContent) override;
 
 	UFUNCTION()
 	virtual void GrantPickUpToUnit(ACUnit* inUnit) {}
+
+	UFUNCTION()
+	void OnRep_Sprite();
+	UFUNCTION()
+	void OnRep_Location();
 };
