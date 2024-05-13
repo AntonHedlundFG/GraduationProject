@@ -41,13 +41,12 @@ void UCSaveGameManager::LoadGame()
 	{
 		SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::LoadGameFromSlot(SaveSlot, UserIndex));
 		LOG_INFO("SaveGame Loaded");
+		TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
 	}
 	else
 	{
-		LOG_WARNING("No SaveGame Found When Loading");
-		
+		LOG_INFO("No SaveGame Found When Loading");	
 	}
-	TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
 }
 
 

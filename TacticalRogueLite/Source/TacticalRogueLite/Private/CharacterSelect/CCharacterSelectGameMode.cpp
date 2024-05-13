@@ -42,6 +42,11 @@ void ACCharacterSelectGameMode::BeginPlay()
 	//Begin-play done !!
 }
 
+void ACCharacterSelectGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	UnregisterFromSaveManager();
+}
+
 void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 {
 	if (!StartCharacters)
