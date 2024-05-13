@@ -37,4 +37,6 @@ class TACTICALROGUELITE_API UCInventoryWindow : public UUserWidget
 public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateInfo(ACUnit* Unit);
+	UFUNCTION(BlueprintCallable)
+	FString GetClassAsString(ACUnit* Unit);
 };

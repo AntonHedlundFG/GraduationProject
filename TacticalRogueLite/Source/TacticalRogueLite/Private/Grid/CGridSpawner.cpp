@@ -70,7 +70,7 @@ ACUnit* ACGridSpawner::SpawnUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inS
 }
 
 ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile,
-	FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag) //TODO: ClassContainer will be moved to character selection.
+	FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag) 
 {
 	FTransform SpawnTransform = FTransform();
 	FVector SpawnPosition = inSpawnTile->GetActorLocation();
@@ -87,6 +87,7 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	//Try set sprite
 	if (SpawnDetails.Sprite)
 		Unit->SetSprite(SpawnDetails.Sprite);
+		
 	
 	Unit->FinishSpawning(SpawnTransform);
 
@@ -109,7 +110,8 @@ ACUnit* ACGridSpawner::SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, AC
 	//Give Team Tag
 	Unit->SetTeam(inTeamTag); //This is one single tag on the unit itself for easier checking in targetable tiles etc.
 	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(inTeamTag);
-	Unit->GetActionComp()->ActiveGameplayTags.AppendTags(inClassTag);
+	Unit->GetActionComp()->ActiveGameplayTags.AppendTag(SpawnDetails.ClassTag);
+
 	
 	inSpawnTile->SetContent(Unit);
 	Unit->SetTile(inSpawnTile);
@@ -207,7 +209,7 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 
 		const FCUnitSpawnDetails EnemyDetails = PossibleEnemyTypes[index].CharacterDetails;
 
-		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails, FGameplayTag::RequestGameplayTag("Unit.IsEnemy"), FGameplayTagContainer(FGameplayTag::RequestGameplayTag("Class.Monk"))); //TODO: Needs refactoring.
+		ACUnit* Enemy = SpawnAndInitializeUnit(EnemyUnit_BP, NewRoom->GetEnemySpawnTiles()[i], EnemyDetails, FGameplayTag::RequestGameplayTag("Unit.IsEnemy"));
 		// Enemy->OnRep_SetAppearance(EnemyDetails.Sprite);
 		Enemies.Add(Enemy);
 	}
