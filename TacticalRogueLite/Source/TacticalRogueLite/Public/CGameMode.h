@@ -163,7 +163,7 @@ public:
 	UFUNCTION()
 	UCVictoryCondition* GetVictoryCondition() const { return VictoryCondition; }
 	UFUNCTION()
-	void SetVictoryCondition(UCVictoryCondition* inVictoryCondition) { VictoryCondition = inVictoryCondition; }
+	void SetVictoryCondition(UCVictoryCondition* inVictoryCondition);
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Rolling Item Class")
 	TSubclassOf<UCAction> RollItemClass;

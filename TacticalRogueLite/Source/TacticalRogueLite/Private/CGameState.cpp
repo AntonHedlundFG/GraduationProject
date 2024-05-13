@@ -40,6 +40,7 @@ void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	DOREPLIFETIME(ACGameState, Random);
 	DOREPLIFETIME(ACGameState, ActionList);
 	DOREPLIFETIME(ACGameState, ActionHistory);
+	DOREPLIFETIME(ACGameState, WinConText);
 	DOREPLIFETIME(ACGameState, bGameIsOver);
 }
 
@@ -84,4 +85,10 @@ void ACGameState::SetGameIsOver(bool inbGameIsOver)
 
 	bGameIsOver = inbGameIsOver;
 	OnGameIsOver.Broadcast();
+}
+
+void ACGameState::OnRep_WinConText()
+{
+	if (WinConWidget)
+		WinConWidget->UpdateWinConText(WinConText);
 }

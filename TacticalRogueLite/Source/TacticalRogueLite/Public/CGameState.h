@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Achievements/VictoryConditions/CWinConWidget.h"
 #include "GameFramework/GameStateBase.h"
 #include "GridContent/CUnit.h"
 #include "Units/CTurnIndicator.h"
@@ -14,6 +15,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameIsOver);
 
 class ACGrid;
 class UCAction;
+class UCWinConWidget;
 class UCActionVisualizerSystem;
 
 UCLASS()
@@ -82,6 +84,11 @@ protected:
 #pragma region Victory Condition
 
 public:
+	UFUNCTION(BlueprintPure)
+	FString GetWinConText() { return WinConText; }
+
+	UFUNCTION()
+	void SetWinConText(FString inText) { WinConText = inText; OnRep_WinConText(); }
 
 	UFUNCTION()
 	void SetGameIsOver(bool inbGameIsOver);
@@ -90,9 +97,17 @@ public:
 	bool IsGameOver() { return bGameIsOver; }
 
 protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
+	TObjectPtr<UCWinConWidget> WinConWidget;
+	
+	UPROPERTY(ReplicatedUsing = OnRep_WinConText, VisibleAnywhere, Category = "Victory Condition")
+	FString WinConText;
 
 	UPROPERTY(ReplicatedUsing = OnRep_bGameIsOver, VisibleAnywhere, Category = "Victory Condition")
 	bool bGameIsOver;
+	
+	UFUNCTION(BlueprintCallable)
+	void OnRep_WinConText();
 
 	UFUNCTION()
 	void OnRep_bGameIsOver() { OnGameIsOver.Broadcast(); }

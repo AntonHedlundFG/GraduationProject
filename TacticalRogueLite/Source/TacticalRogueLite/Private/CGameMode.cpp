@@ -499,6 +499,16 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 // 	VictoryCondition->Initialize(this, GameStateRef);
 // }
 
+void ACGameMode::SetVictoryCondition(UCVictoryCondition* inVictoryCondition)
+{
+	VictoryCondition = inVictoryCondition;
+
+	if (VictoryCondition && GameStateRef)
+	{
+		GameStateRef->SetWinConText(VictoryCondition->GetConditionText());
+	}
+}
+
 bool ACGameMode::HandleVictoryConditionMet()
 {
 	if (CurrentRoom < RoomsUntilWin)
