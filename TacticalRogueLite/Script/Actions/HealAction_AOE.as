@@ -69,14 +69,17 @@ class USHealAction_AOE : UCAction
     {
          for (int i = TargetsArray.Num() - 1; i >= 0; i--)
         {
-		    for (int j = 0; j < ModifiersAppliedToTarget.Num(); j++)
+		    for (int j = ModifiersAppliedToTarget.Num() - 1; j >= 0; j--)
 		    {
                 UCActionComponent TargetActionComp = TargetsArray[i].GetActionComp();
 	            if (TargetActionComp == nullptr) continue;
+                
 			    FAttributeModification Mod = ModifiersAppliedToTarget[j];
 			    Mod.InstigatorComp = TargetActionComp;
 			    Mod.bIsUndo = true;
-			    Mod.Magnitude = -ModifiersTargetActualDeltas[j];
+                int ActualDelta = ModifiersTargetActualDeltas.Last();
+                ModifiersTargetActualDeltas.RemoveAt(ModifiersTargetActualDeltas.Num() - 1);
+			    Mod.Magnitude = -ActualDelta;
 			    TargetActionComp.ApplyAttributeChange(Mod, 0);
 
                 UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Green> {Mod.Magnitude} </> healing on {TargetsArray[i].GetUnitName()}.");
