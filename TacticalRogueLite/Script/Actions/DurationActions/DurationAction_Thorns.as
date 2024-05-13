@@ -33,6 +33,7 @@ class USDurationAction_Thorns : UCActionWithTimer
                                          const FGameplayTagContainer&in ContextTags,
                                          EAttributeModifierOperation ModType)
     {
+        if (!IsValid(ActionComponent) || !IsValid(InstigatorComponent)) return;
         ACUnit Attacker = Cast<ACUnit>(InstigatorComponent.GetOwner());
         if (Attacker == nullptr) return;
         ACUnit Defender = Cast<ACUnit>(ActionComponent.GetOwner());
