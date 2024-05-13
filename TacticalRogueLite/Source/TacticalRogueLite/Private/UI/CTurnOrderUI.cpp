@@ -22,7 +22,12 @@ UCTurnOrderPortraitWidget* UCTurnOrderUI::DeQueuePortraitWidget()
 		WidgetPool.Enqueue(CreatePortraitWidget());
 	}
 	UCTurnOrderPortraitWidget* Widget;
-	WidgetPool.Dequeue(Widget);
+	//TODO:Ensure that the widget queue doesnt contain nullptrs
+	do
+	{
+		WidgetPool.Dequeue(Widget);
+	}while(Widget == nullptr);
+	
 	HandleDequeue(Widget);
 	return Widget;
 }
@@ -85,6 +90,7 @@ void UCTurnOrderUI::UpdateTurnList()
 	for (int i = 0; i < NewTurnOrder.Num(); i++)
 	{
 		ACUnit* Unit = (NewTurnOrder)[i];
+		//Add null check to unit
 		//We should add unit
 		if(!LastTurnOrder.Contains(Unit))
 		{

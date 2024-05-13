@@ -217,7 +217,12 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 	//If this is not the starting room, add the new enemies to the back of the turn order list.
 	if (!bIsStartRoom)
 	{
-		GameStateRef->TurnOrder.Append(Enemies);
+		for (ACUnit* Enemy : Enemies)
+		{
+			//Insert each enemy randomly into the turn order, but not at the front of the queue.
+			const int RandomTurnOrderIndex = FMath::RandRange(1, GameStateRef->TurnOrder.Num());
+			GameStateRef->TurnOrder.Insert(Enemy, RandomTurnOrderIndex);
+		}
 		GameStateRef->OnRep_TurnOrder();
 	}
 	

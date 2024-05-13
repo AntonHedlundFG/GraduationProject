@@ -2,8 +2,6 @@ class USMoveAction_Jumping : UCMovementAction
 {
     UPROPERTY()
     int RangeTowardsMid = 1;
-    UPROPERTY()
-    FGameplayTagContainer MovementBlockingTags;
 
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACGridTile inTile)

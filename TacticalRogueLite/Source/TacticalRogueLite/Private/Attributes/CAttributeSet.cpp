@@ -143,7 +143,7 @@ int UCAttributeSet::ApplyAttributeChange(const FAttributeModification& ModToAppl
 			// 	}
 			// }
 
-			return Delta;
+			return FoundAttribute->GetValue() - OldValue;
  		}
  	}
 
