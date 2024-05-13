@@ -34,7 +34,10 @@ public:
 	ACGameState();
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintPure, Category = "Visualization")
 	float GetGameSpeed() const { return GameSpeed; }
+	UFUNCTION(BlueprintCallable, Category = "Visualization")
+	void SetGameSpeed(float NewSpeed);
 
 	UFUNCTION(BlueprintCallable)
 	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }

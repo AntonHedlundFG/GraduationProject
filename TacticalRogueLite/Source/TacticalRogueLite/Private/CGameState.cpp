@@ -33,6 +33,11 @@ void ACGameState::BeginPlay()
 
 }
 
+void ACGameState::SetGameSpeed(float NewSpeed)
+{
+	GameSpeed = FMath::Clamp(NewSpeed, 0.1f, 10.0f);
+}
+
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
