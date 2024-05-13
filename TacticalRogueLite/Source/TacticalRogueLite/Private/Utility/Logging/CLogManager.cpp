@@ -26,7 +26,7 @@ void UCLogManager::ShutDown()
 
 void UCLogManager::BlueprintLog(ELogCategory Category, const FString& Message)
 {
-	const FString LogMessage = FString::Printf(TEXT("[Blueprint] %s"), *Message);
+	const FString LogMessage = FString::Printf(TEXT("%s"), *Message);
 	LogFromServer(Category, LogMessage);
 }
 
