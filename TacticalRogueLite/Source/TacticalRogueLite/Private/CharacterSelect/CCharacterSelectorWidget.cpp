@@ -82,6 +82,9 @@ bool UCCharacterSelectorWidget::CanInteract()
 
 void UCCharacterSelectorWidget::StepSpriteIndex(int i)
 {
+	if (!CanInteract())
+		return;
+
 	if (!Controller)
 		Controller = Cast<ACCharacterSelectController>(GetWorld()->GetFirstPlayerController());
 	if (!GameState)
