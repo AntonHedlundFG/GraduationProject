@@ -42,7 +42,8 @@ void UCResurrectAction::StartAction(AActor* Instigator)
 
 	if (!GameState->TurnOrder.Contains(AffectedUnit))
 	{
-		GameState->TurnOrder.Add(AffectedUnit);
+		const int RandomTurnOrderIndex = FMath::RandRange(1, GameState->TurnOrder.Num());
+		GameState->TurnOrder.Insert(AffectedUnit, RandomTurnOrderIndex);
 		LOG_GAMEPLAY("%s returns from the dead.", *AffectedUnit->GetUnitName());
 	}
 	else
