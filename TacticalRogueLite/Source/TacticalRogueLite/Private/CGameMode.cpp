@@ -310,7 +310,6 @@ bool ACGameMode::TryEndTurn(AController* inController)
 			}
 		}
 		ExecuteActionStack();
-		LOG_GAMEPLAY("GameMode TryEndTurn: Players Should Be Rewarded With Items Here!");
 	}
 
 	//Check for loss conditions
