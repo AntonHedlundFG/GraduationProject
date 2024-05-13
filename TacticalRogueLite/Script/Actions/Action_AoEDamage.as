@@ -10,6 +10,9 @@ class USAction_AoEDamage : UCAction
     UPROPERTY()
 	ACUnit AttackingUnit;
 
+    UPROPERTY()
+    FGameplayTagContainer BlockingTags;
+
 	UPROPERTY()
 	TArray<ACUnit> TargetsArray;
     TArray<FAttributeModifications> UndoDamageList;
@@ -37,7 +40,7 @@ class USAction_AoEDamage : UCAction
 
             if (IsValid(TargetUnit))
             {
-                if(TargetUnit == AttackingUnit && !bCanDamageSelf)
+                if( TargetUnit == AttackingUnit )
                     continue;
 
                 TargetsArray.Add(TargetUnit);
@@ -76,6 +79,10 @@ class USAction_AoEDamage : UCAction
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, FGameplayTagContainer());
+        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill( fromTile, Range, ActionTags, BlockingTags);
+        if(!bCanDamageSelf)
+            TilesInRange.Remove(fromTile);
+
+        return TilesInRange;
     }
 }
