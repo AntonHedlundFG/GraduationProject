@@ -43,11 +43,12 @@
         ContentInRange = Action.ContentInRange;
         ContentToStartTileMap = Action.ContentToStartTileMap;
 
+        /* This should not be required since the effect can play without targets.
         if(ContentInRange.Num() == 0)
         {
             UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "No content in range for VortexPullVisualization");
             return;
-        }
+        }*/
 
         if(ContentInRange.Num() != ContentToStartTileMap.Num())
         {
@@ -55,13 +56,10 @@
             return;
         }
 
-        Offset = FVector::ZeroVector;
-        Offset.Z = ContentInRange[0].GetActorLocation().Z - ContentInRange[0].GetTile().GetActorLocation().Z;
-
         Size = Action.Range * 2 * RelativeTileSize + RelativeTileSize;
 
         // Spawn niagara system actor
-        VortexPullSystem = Cast<ANiagaraActor>(SpawnActor(VortexPullSystemClass, TargetTile.GetActorLocation() + Offset, FRotator::ZeroRotator));
+        VortexPullSystem = Cast<ANiagaraActor>(SpawnActor(VortexPullSystemClass, TargetTile.GetActorLocation(), FRotator::ZeroRotator));
 
         if(IsValid(VortexPullSystem))
         {
