@@ -103,8 +103,14 @@ void ACCharacterSelectGameState::SetPlayerCountAndLocks(int inPlayerCount)
 
 void ACCharacterSelectGameState::CheckReady()
 {
+	
 	for (const bool PlayerReady : ReadyInfo)
 	{
+		//When playing solo, only 1 ready button needs to be pressed
+		if (PlayerCount == 1 && PlayerReady)
+			break;
+
+		//In group, all ready buttons must be pressed.
 		if (PlayerReady == false)
 			return;
 	}
