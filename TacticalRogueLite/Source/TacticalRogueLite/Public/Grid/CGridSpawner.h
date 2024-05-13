@@ -62,7 +62,7 @@ public:
 
 	///Spawns a unit on a given tile, also tries to name the unit and add items to it.
 	UFUNCTION()
-	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag, FGameplayTagContainer inClassTag);
+	ACUnit* SpawnAndInitializeUnit(TSubclassOf<ACUnit> inUnitType, ACGridTile* inSpawnTile, FCUnitSpawnDetails SpawnDetails, FGameplayTag inTeamTag);
 
 	UFUNCTION()
 	ACPickUp* SpawnPickUp(TSubclassOf<ACPickUp> inPickUpType, ACGridTile* inSpawnTile, FGameplayTagContainer inTags = FGameplayTagContainer());

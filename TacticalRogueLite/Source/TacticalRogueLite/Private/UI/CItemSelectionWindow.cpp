@@ -24,6 +24,8 @@ void UCItemSelectionWindow::UpdateInfo(UCAction_RollItem& Action,TArray<UCItemDa
 	}
 	ACUnit* Unit = Cast<ACUnit>(Action.GetActionComp()->GetOuter());
 	Inventory->UpdateInfo(Unit);
+
+	UpdateInfo_BP(bIsOwner);
 }
 
 void UCItemSelectionWindow::OnItemSelected(UCItemData* SelectedItem)

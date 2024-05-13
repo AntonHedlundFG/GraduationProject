@@ -7,6 +7,7 @@
 #include "CItemSelectionButton.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ScrollBox.h"
+#include "GridContent/CUnit.h"
 #include "CItemSelectionWindow.generated.h"
 
 class UCAction_RollItem;
@@ -31,6 +32,8 @@ class TACTICALROGUELITE_API UCItemSelectionWindow : public UUserWidget
 	void ClearScrollBox();
 public:
 	void UpdateInfo(UCAction_RollItem& Action, TArray<UCItemData*> Items, bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
+	UFUNCTION(BlueprintImplementableEvent, Category = "CPP")
+	void UpdateInfo_BP(bool bIsOwner);
 	void Open();
 	void Close();
 };
