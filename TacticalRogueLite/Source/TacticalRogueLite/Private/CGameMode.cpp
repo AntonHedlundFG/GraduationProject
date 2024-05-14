@@ -514,8 +514,8 @@ bool ACGameMode::HandleVictoryConditionMet()
 	{
 		if (GetGameGrid())
 		{
-			Spawner->SpawnRoomWithEnemies(GetGameGrid());
 			CurrentRoom++;
+			Spawner->SpawnRoomWithEnemies(GetGameGrid(), CurrentRoom, DefaultEnemyAmount + (CurrentRoom - 1));
 			ResurrectAndProgressToNewRoom();
 		}
 		else

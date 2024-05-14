@@ -16,7 +16,7 @@ class USHealAction_AOE_Visualization : UCActionVisualization
 
     TSet<ACUnit> UnitsAlreadyProcessed;
 
-    USHealAction_AOE HealAction;
+    UCHealAction_AOE HealAction;
 
     TArray<ACUnit> Targets;
     ACUnit Instigator;
@@ -24,7 +24,7 @@ class USHealAction_AOE_Visualization : UCActionVisualization
     UFUNCTION(BlueprintOverride)
     void Enter()
     {
-        HealAction = Cast<USHealAction_AOE>(VisualizedAction);
+        HealAction = Cast<UCHealAction_AOE>(VisualizedAction);
         Targets = HealAction.TargetsArray;
         Instigator = HealAction.AttackingUnit;
         AActor AoeEffectActor = SpawnActor(AOEEffect,Instigator.GetActorLocation(),FRotator::ZeroRotator);

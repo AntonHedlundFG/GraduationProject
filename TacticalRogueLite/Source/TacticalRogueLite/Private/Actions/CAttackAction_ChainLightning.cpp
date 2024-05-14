@@ -81,6 +81,7 @@ void UCAttackAction_ChainLightning::UndoAction(AActor* Instigator)
             LOG_GAMEPLAY("%s undid <Red> %d </> damage on %s.", *AttackingUnit->GetUnitName(), Mod.Magnitude, *UnitsHit[i]->GetUnitName());
         }
     }
+    Super::UndoAction(Instigator);
 }
 
 TArray<ACGridTile*> UCAttackAction_ChainLightning::GetTargetsInRange(ACGridTile* inTile, int Range)
