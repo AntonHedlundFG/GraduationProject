@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "CCheatingComponent.generated.h"
@@ -14,15 +13,13 @@ class TACTICALROGUELITE_API UCCheatingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	UCCheatingComponent();
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 protected:
+#if !UE_BUILD_SHIPPING
+
 	virtual void BeginPlay() override;
+#endif
 	ACGameMode* GameMode;
 	ACGameState* GameState;
-
 
 #pragma region Many Item Charges
 
