@@ -23,7 +23,7 @@ void ACGameState::BeginPlay()
 
 	if (UCLogManager* LogManager = UCLogManager::Get())
 	{
-		if (GetNetMode() == ENetMode::NM_ListenServer)
+		if (GetNetMode() <= ENetMode::NM_ListenServer)
 		{
 			LogManager->OnServerBroadcastMessage.AddDynamic(this, &ACGameState::Multicast_BroadcastLogMessage);
 		}
