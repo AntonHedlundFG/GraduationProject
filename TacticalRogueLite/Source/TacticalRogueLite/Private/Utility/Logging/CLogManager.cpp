@@ -23,14 +23,7 @@ void UCLogManager::ShutDown()
 	LogManager::ShutDown();
 }
 
-
-void UCLogManager::BlueprintLog(ELogCategory Category, const FString& Message)
-{
-	const FString LogMessage = FString::Printf(TEXT("%s"), *Message);
-	LogFromServer(Category, LogMessage);
-}
-
-void UCLogManager::Log(ELogCategory Category, const FString& Message)
+void UCLogManager::Log(const ELogCategory Category, const FString& Message)
 {
 	// Convert the enum to string and prepend to the message
 	const FString LogMessage = FString::Printf(TEXT("%s %s"), *ToString(Category), *Message);
@@ -62,7 +55,7 @@ void UCLogManager::Log(ELogCategory Category, const FString& Message)
 	
 }
 
-void UCLogManager::LogFromServer(ELogCategory Category, const FString& Message)
+void UCLogManager::LogFromServer(const ELogCategory Category, const FString& Message)
 {
 	if (Get())
 		Get()->OnServerBroadcastMessage.Broadcast(Category, Message);
@@ -82,7 +75,7 @@ TArray<FString> UCLogManager::GetAllLogEntries()
 	return LogEntries;
 }
 
-TArray<FString> UCLogManager::GetAllLogEntriesByCategory(ELogCategory Category)
+TArray<FString> UCLogManager::GetAllLogEntriesByCategory(const ELogCategory Category)
 {
 	TArray<FString> LogEntries = GetAllLogEntries();
 	TArray<FString> FilteredEntries;

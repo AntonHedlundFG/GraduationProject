@@ -23,7 +23,7 @@ class USDurationAction_Thorns : UCActionWithTimer
         
         AffectedUnit.ActionComp.AddAttributeChangedListener(GameplayTags::Attribute_Health, Signature, false);
     
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} gained thorns.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} gained thorns.");
     }
 
     UFUNCTION()
@@ -65,7 +65,7 @@ class USDurationAction_Thorns : UCActionWithTimer
     {
         AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} lost thorns.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} lost thorns.");
     }
 
     UFUNCTION(BlueprintOverride)
@@ -73,7 +73,7 @@ class USDurationAction_Thorns : UCActionWithTimer
     {
         AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
     }
 
 
@@ -114,7 +114,7 @@ class USThornsDamageTriggeredAction : UCAction
         ContextTags.AddTag(GameplayTags::Action_Thorns);
         UndoMods = CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }
     UFUNCTION(BlueprintOverride)
     void UndoAction(AActor Instigator)
@@ -124,7 +124,7 @@ class USThornsDamageTriggeredAction : UCAction
         for (FAttributeModification& Mod : UndoMods.Modifications)
             TargetUnit.ActionComp.ApplyAttributeChange(Mod, 0);
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} undid taking {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
     }
     
 }

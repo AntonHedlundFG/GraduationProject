@@ -24,13 +24,13 @@ class USAttackAction_Root : UCAttackAction
 	if (ActionComponent.GetAction(ActionToGrant) != nullptr)
 	
 	{
-		UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"Rootingeffect is already on the target unit.");
+		CLogManager::Log(ELogCategory::LC_Gameplay, f"Rootingeffect is already on the target unit.");
 		return;
 	}
 
     //Apply effect.
 	ActionComponent.AddAction(TargetTile.GetContent(), ActionToGrant);
-    UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"Added effect rooted to unit");
+    CLogManager::Log(ELogCategory::LC_Gameplay, f"Added effect rooted to unit");
 	
 	}
 
@@ -43,12 +43,12 @@ class USAttackAction_Root : UCAttackAction
 
         if (ActionComponent.GetAction(ActionToGrant) == nullptr)
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"ActionToGrant is not in ActionComp");
+            CLogManager::Log(ELogCategory::LC_Gameplay, f"ActionToGrant is not in ActionComp");
             return;
         }
       
         ActionComponent.RemoveAction(ActionComponent.GetAction(ActionToGrant));
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"Successfully removed rooting effect");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"Successfully removed rooting effect");
        
     }
 }

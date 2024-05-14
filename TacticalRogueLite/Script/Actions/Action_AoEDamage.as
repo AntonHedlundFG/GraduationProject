@@ -50,7 +50,7 @@ class USAction_AoEDamage : UCAction
 
         if(TargetsArray.Num() < 0)
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Error, "No targets in Targetsarray");
+            CLogManager::Log(ELogCategory::LC_Error, "No targets in Targetsarray");
             return;
         }
         
@@ -60,7 +60,7 @@ class USAction_AoEDamage : UCAction
             UndoDamageList.Add(CGameplay::ApplyDamage(AttackingUnit, TargetsArray[i], Damage, ActionTags)); 
 
              
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
+            CLogManager::Log(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} damaged {TargetsArray[i].GetUnitName()} for <Red> {Damage} </> damage.");
         }
     }
 
@@ -72,7 +72,7 @@ class USAction_AoEDamage : UCAction
            for (FAttributeModification& Mod : UndoDamageList[i].Modifications)
            {
                 TargetsArray[i].ActionComp.ApplyAttributeChange(Mod, 0);
-                UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Mod.Magnitude} </> damage on {TargetsArray[i].GetUnitName()}.");
+                CLogManager::Log(ELogCategory::LC_Gameplay, f"{AttackingUnit.GetUnitName()} undid <Red> {Mod.Magnitude} </> damage on {TargetsArray[i].GetUnitName()}.");
            }
         }
     }

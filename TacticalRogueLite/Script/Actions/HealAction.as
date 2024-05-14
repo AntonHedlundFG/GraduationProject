@@ -16,7 +16,7 @@ class USHealAction : UCTargetableAction
         UCActionComponent ActionComponent = GetOwningComponent();
         if (ActionComponent == nullptr)
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
+            CLogManager::Log(ELogCategory::LC_Gameplay, "GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
             return TArray<ACGridTile>();	
         }
 
@@ -54,11 +54,11 @@ class USHealAction : UCTargetableAction
 
         if(From == To)
         {
-             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
+             CLogManager::Log(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed self for <Green>{HealAmount}</>.");
         }
         else
         {
-             UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
+             CLogManager::Log(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Healed {To.GetUnitName()} for <Green>{HealAmount}</>.");
         }
     }
     UFUNCTION(BlueprintOverride)
@@ -66,6 +66,6 @@ class USHealAction : UCTargetableAction
     {
         ACUnit From = InsitagorUnit;
         ACUnit To = Cast<ACUnit>(TargetTile.GetContent());
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Undid <Green>{HealAmount}</> healing on {To.GetUnitName()}.");
+        CLogManager::Log(ELogCategory::LC_Gameplay,f"{From.GetUnitName()} Undid <Green>{HealAmount}</> healing on {To.GetUnitName()}.");
     }
 }

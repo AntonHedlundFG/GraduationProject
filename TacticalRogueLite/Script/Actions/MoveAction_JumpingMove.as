@@ -9,7 +9,7 @@ class USMoveAction_Jumping : UCMovementAction
         TArray<ACGridTile> ReturnTiles;
         if(!IsValid(GetOwningComponent()))
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "MoveAction_JumpingMove: Owning component is valid");
+            CLogManager::Log(ELogCategory::LC_Warning, "MoveAction_JumpingMove: Owning component is valid");
             return ReturnTiles;
         }
 

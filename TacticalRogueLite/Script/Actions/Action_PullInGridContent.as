@@ -20,7 +20,7 @@
         ACGridContent InstigatorContent = Cast<ACGridContent>(Instigator);
         if(!IsValid(InstigatorContent))
         { 
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "PullInUnit Action found no OwningComponent");
+            CLogManager::Log(ELogCategory::LC_Warning, "PullInUnit Action found no OwningComponent");
             return;
         }
         TargetTile = InstigatorContent.GetTile();
@@ -61,7 +61,7 @@
                 }
         }
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{InstigatorContent.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{InstigatorContent.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
 
     }
 
@@ -81,7 +81,7 @@
         //ContentStartTiles.Empty();
         //ContentInRange.Empty();
         
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{Instigator.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{Instigator.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
     }
 
     UFUNCTION(BlueprintOverride)

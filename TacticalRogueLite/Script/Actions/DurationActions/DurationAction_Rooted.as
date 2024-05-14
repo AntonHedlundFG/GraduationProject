@@ -12,7 +12,7 @@ class USDurationAction_Rooted : UCActionWithTimer
         ActionComponent.AppendTags(ActionTags);
         
         BindTimer();
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Im rooted");
+        CLogManager::Log(ELogCategory::LC_Gameplay, "Im rooted");
     }
 
     UFUNCTION(BlueprintOverride)
@@ -32,6 +32,6 @@ class USDurationAction_Rooted : UCActionWithTimer
         check(ActionComponent != nullptr);
 
         ActionComponent.RemoveTags(ActionTags);
-         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, "Im not rooted");
+        CLogManager::Log(ELogCategory::LC_Gameplay, "Im not rooted");
     }
 }

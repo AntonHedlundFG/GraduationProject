@@ -43,16 +43,9 @@
         ContentInRange = Action.ContentInRange;
         ContentStartTiles = Action.ContentStartTiles;
 
-        /* This should not be required since the effect can play without targets.
-        if(ContentInRange.Num() == 0)
-        {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "No content in range for VortexPullVisualization");
-            return;
-        }*/
-
         if(ContentInRange.Num() != ContentStartTiles.Num())
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "ContentInRange and ContentToStartTileMap have different sizes for VortexPullVisualization");
+            CLogManager::Log(ELogCategory::LC_Warning, "ContentInRange and ContentToStartTileMap have different sizes for VortexPullVisualization");
             return;
         }
 
