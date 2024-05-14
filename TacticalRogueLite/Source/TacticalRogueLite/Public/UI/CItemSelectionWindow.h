@@ -25,6 +25,8 @@ class TACTICALROGUELITE_API UCItemSelectionWindow : public UUserWidget
 	UScrollBox* ScrollBox;
 	UPROPERTY(meta = (BindWidget))
 	UCInventoryWindow* Inventory;
+	UPROPERTY(meta = (BindWidget))
+	UButton* SkipItemButton;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCItemSelectionButton> ItemSelectionButtonWidget;
 	TFunction<void(UCItemData* ItemData)> OnItemSelectedCallBack;
@@ -34,6 +36,8 @@ public:
 	void UpdateInfo(UCAction_RollItem& Action, TArray<UCItemData*> Items, bool bIsOwner, TFunction<void(UCItemData* ItemData)>CallBack);
 	UFUNCTION(BlueprintImplementableEvent, Category = "CPP")
 	void UpdateInfo_BP(bool bIsOwner);
+	UFUNCTION()
+	void SkipItem();
 	void Open();
 	void Close();
 };

@@ -24,12 +24,26 @@ void UCItemSelectionWindow::UpdateInfo(UCAction_RollItem& Action,TArray<UCItemDa
 	}
 	ACUnit* Unit = Cast<ACUnit>(Action.GetActionComp()->GetOuter());
 	Inventory->UpdateInfo(Unit);
-
+	
 	UpdateInfo_BP(bIsOwner);
+
+	if(bIsOwner)
+	{
+		SkipItemButton->SetVisibility(ESlateVisibility::Visible);
+		SkipItemButton->OnClicked.AddUniqueDynamic(this,&UCItemSelectionWindow::SkipItem);
+	}
+	else
+	{
+		SkipItemButton->SetVisibility(ESlateVisibility::Hidden);
+	}
 }
 
 void UCItemSelectionWindow::OnItemSelected(UCItemData* SelectedItem)
 {
+	if(OnItemSelectedCallBack == nullptr)
+	{
+		return;
+	}
 	OnItemSelectedCallBack(SelectedItem);
 	OnItemSelectedCallBack = nullptr;
 	ClearScrollBox();
@@ -45,6 +59,12 @@ void UCItemSelectionWindow::ClearScrollBox()
 	}
 	ActiveItemSelectionWidgets.Empty();
 }
+
+void UCItemSelectionWindow::SkipItem()
+{
+	OnItemSelected(nullptr);
+}
+
 void UCItemSelectionWindow::Open()
 {
 	SetVisibility(bOwner?ESlateVisibility::Visible:ESlateVisibility::HitTestInvisible);
