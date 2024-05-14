@@ -18,6 +18,8 @@ public:
 	
 	UFUNCTION()
 	bool IsPickedUp() const { return bIsPickedUp; }
+	UFUNCTION()
+	virtual void RemoveFromBoard();
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
@@ -40,7 +42,7 @@ protected:
 
 	UFUNCTION()
 	virtual void GrantPickUpToUnit(ACUnit* inUnit) {}
-
+	
 	UFUNCTION()
 	void OnRep_Sprite();
 	UFUNCTION()

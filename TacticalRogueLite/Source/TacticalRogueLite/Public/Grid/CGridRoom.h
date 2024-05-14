@@ -40,6 +40,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
 	UFUNCTION(BlueprintCallable)
+	TArray<ACGridTile*> GetAllRoomTiles() { return RoomTiles; }
+	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetEnemySpawnTiles() { return EnemySpawns; }
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetHeroSpawnTiles() { return HeroSpawns; }

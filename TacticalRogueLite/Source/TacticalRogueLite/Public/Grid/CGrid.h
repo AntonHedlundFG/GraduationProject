@@ -20,7 +20,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TArray<TSubclassOf<ACGridRoom>> RoomBPs;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	int MaximumRooms = 2;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	int NodeInterval = 1000;
 	
@@ -31,6 +33,8 @@ public:
 	ACGridRoom* CreateNewRoom(int inEnemyCount = 0, EVictoryConditions inRoomWinCon = EVictoryConditions::EVC_KillEnemies);
 	UFUNCTION()
 	ACGridRoom* CreateStartRoom(int inEnemyCount = 0, EVictoryConditions inRoomWinCon = EVictoryConditions::EVC_KillEnemies);
+	UFUNCTION()
+	void DestroyOldRooms(ACGameMode* inModeRef);
 	UFUNCTION()
 	ACGridTile* SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType);
 	UFUNCTION()
