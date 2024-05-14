@@ -37,8 +37,12 @@ public:
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION(BlueprintCallable)
 	void Initialize(ACGrid* inParentGrid, int inEnemyCount = 0, EVictoryConditions inWinCon = EVictoryConditions::EVC_KillEnemies);
+	UFUNCTION()
+	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies = TArray<ACUnit*>(), TArray<ACPickUp*> inPickUps = TArray<ACPickUp*>()) const;
 	UFUNCTION(BlueprintCallable)
 	void SetCustomPlatformDimensions(int inPlatformWidth, int inPlatformLength);
+
+#pragma region GetterFunctions
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> GetAllRoomTiles() { return RoomTiles; }
 	UFUNCTION(BlueprintCallable)
@@ -52,13 +56,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	ACGridTile* GetExitTile() const { return ExitTile; }
 	UFUNCTION(BlueprintCallable)
+	ACGridTile* GetEntranceTile() const { return EntranceTile; }
+	UFUNCTION(BlueprintCallable)
 	EVictoryConditions GetVictoryCondition() const { return RoomWinCon; }
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetRoomXBounds() { return FVector2D(X_Min, X_Max); }
 	UFUNCTION(BlueprintCallable)
 	FVector2D GetRoomYBounds() { return FVector2D(Y_Min, Y_Max); }
-	bool TryInitializeVictoryCondition(TArray<ACUnit*> inEnemies = TArray<ACUnit*>(), TArray<ACPickUp*> inPickUps = TArray<ACPickUp*>()) const;
-
+#pragma endregion
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room Settings")
@@ -116,6 +121,8 @@ protected:
 	//Tiles
 	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TObjectPtr<ACGridTile> ExitTile;
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
+	TObjectPtr<ACGridTile> EntranceTile;
 	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TArray<ACGridTile*> RoomTiles;
 	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
