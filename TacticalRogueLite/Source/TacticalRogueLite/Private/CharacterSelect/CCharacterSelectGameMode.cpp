@@ -77,18 +77,17 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 		Data.Sprite = StartCharacters->GetCharacterSprite(Characters[i],StateRef->SpriteIndexes[i]);
 		Data.Items = StartCharacters->GetCharacterItems(Characters[i]);
 		Data.ClassTag = StartCharacters->GetCharacterTag(Characters[i]);
+		FString HeroName = "Hero" + FString::FromInt(CharacterNumber) + ": ";
 		FString PlayerName = GetNameOfPlayerIndex(ControllingPlayers[i]);
-		if (!PlayerName.IsEmpty())
+		if (!PlayerName.IsEmpty() && GetNetMode() > NM_Standalone)
 		{
-			Data.Name = PlayerName;
+			HeroName += PlayerName;
 		}
 		else
 		{
-			FString HeroName = "Hero ";
-			HeroName += FString::FromInt(CharacterNumber);
-			HeroName += "_" + Data.Name;
-			Data.Name = HeroName;
+			HeroName +=StartCharacters->GetCharacterType(Characters[i]);
 		}
+		Data.Name = HeroName;
 		CharacterNumber++;
 		SpawnUnitData.Add(Data);
 	}
