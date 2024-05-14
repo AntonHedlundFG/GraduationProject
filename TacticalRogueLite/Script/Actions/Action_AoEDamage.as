@@ -17,6 +17,7 @@ class USAction_AoEDamage : UCAction
 	TArray<ACUnit> TargetsArray;
     TArray<FAttributeModifications> UndoDamageList;
 
+    UPROPERTY()
     ACGridTile StartTile;
 
     UFUNCTION(BlueprintOverride)

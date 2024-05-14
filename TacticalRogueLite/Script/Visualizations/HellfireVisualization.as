@@ -14,7 +14,6 @@ class USHellFireVisualization : UCActionVisualization
     USAction_AoEDamage Action;
     float TimePassed = 0;
     ACGridTile TargetTile;
-    FVector Offset;
     float Size;
 
     UFUNCTION(BlueprintOverride)
@@ -28,20 +27,26 @@ class USHellFireVisualization : UCActionVisualization
             return;
         }
 
-        TargetTile = Action.StartTile;
+        auto OwningComp = Action.GetOwningComponent();
+        if (IsValid(OwningComp))
+        {
+            auto OwningUnit = Cast<ACUnit>(OwningComp.GetOwner());
+            if (IsValid(OwningUnit))
+            {
+                TargetTile = OwningUnit.GetTile();
+            }
+        }
 
         if(!IsValid(TargetTile))
         {
+            
             return;
         }
-
-        Offset = FVector::ZeroVector;
-        Offset.Z = Action.AttackingUnit.GetActorLocation().Z - Action.AttackingUnit.GetTile().GetActorLocation().Z;
 
         Size = Action.Range * 2 * RelativeTileSize + RelativeTileSize;
 
         // Spawn niagara system actor
-        ANiagaraActor InstancedNiagaraSystem = Cast<ANiagaraActor>(SpawnActor(BlastNiagaraSystemClass, TargetTile.GetActorLocation() + Offset, FRotator::ZeroRotator));
+        ANiagaraActor InstancedNiagaraSystem = Cast<ANiagaraActor>(SpawnActor(BlastNiagaraSystemClass, TargetTile.GetActorLocation(), FRotator::ZeroRotator));
 
         if(IsValid(InstancedNiagaraSystem))
         {

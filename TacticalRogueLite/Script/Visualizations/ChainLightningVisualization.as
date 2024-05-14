@@ -17,7 +17,7 @@
 
     // State
     float TotalDuration;
-    USAttackAction_ChainLightning Action;
+    UCAttackAction_ChainLightning Action;
     float TimePassed = 0;
     TArray<ACUnit> Targets;
 
@@ -27,7 +27,7 @@
     UFUNCTION(BlueprintOverride)
     void Enter()
     {
-        Action = Cast<USAttackAction_ChainLightning>(VisualizedAction);
+        Action = Cast<UCAttackAction_ChainLightning>(VisualizedAction);
         Targets = Action.UnitsHit;
         TotalDuration = DurationPerBounce * Targets.Num();
 
