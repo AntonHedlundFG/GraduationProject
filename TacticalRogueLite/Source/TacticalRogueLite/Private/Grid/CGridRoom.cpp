@@ -164,31 +164,32 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	//Generate room points and spawn paths between them
 	const TArray<ACGridTile*> GeneratedPoints = GeneratePoints(RoomPoints, StartCoords, FVector2d(X_Min, Y_Min + PlatformLength), FVector2d(X_Max, Y_Max - PlatformLength));
 	OutArray.Append(GeneratedPoints);
+	TArray<ACGridTile*> RoomPointNeighbours;
+	//Spawn neighbouring tiles around room points
+	for (const auto Tile : GeneratedPoints)
+	{
+		RoomPointNeighbours.Append(SpawnNeighbours(Tile->GetGridCoords(), true));
+	}
+	OutArray.Append(RoomPointNeighbours);
+	//If no points, create path from start to exit
 	if (GeneratedPoints.Num() < 1)
 	{
 		const TArray<ACGridTile*> StartToEnd = CreatePath(StartCoords, TargetCoords, true);
 		OutArray.Append(StartToEnd);
 	}
-	//if no points make a path from start to exit
+	//else create paths between start, exit, and all points
 	else
 	{
 		OutArray.Append(CreatePathsBetweenPoints(StartCoords, TargetCoords, GeneratedPoints));
-	}
-	//Spawn neighbouring tiles around room points
-	for (const auto Tile : GeneratedPoints)
-	{
-		OutArray.Append(SpawnNeighbours(Tile->GetGridCoords(), true));
 	}
 	
 
 	//Create Hero Spawns
 	HeroSpawns.Append(GenerateSpawnsOnPlatform(StartArea, 4));
-	/*
-	if (bWithHeroSpawns)
-	{
-	}*/
 
-	GenerateSpawnTiles(GeneratedPoints, ExitArea);
+	//Create Spawns for PickUps and Enemies
+	GeneratePickUpSpawnTiles(GeneratedPoints);
+	GenerateEnemySpawnTiles(RoomPointNeighbours, ExitArea);
 	
 	RoomTiles = OutArray;
 	
@@ -490,35 +491,56 @@ void ACGridRoom::IncrementTowardsTarget(int32& inValue, int32 inTarget)
 	}
 }
 
-void ACGridRoom::GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
+void ACGridRoom::GeneratePickUpSpawnTiles(TArray<ACGridTile*> inPoints)
 {
-
-	const bool bIsKeyRoom = RoomWinCon == EVictoryConditions::EVC_PickUpKeys;
-	
-	int PointAmount = inPoints.Num();
-
+	const int PointAmount = inPoints.Num();
 	TArray<int> Indexes;
 	for (int i = 0; i < PointAmount; i++)
 	{
 		Indexes.Add(i);
 	}
 
-	if (bIsKeyRoom)
+	for (int i = 0; i < PointAmount; i++)
 	{
-		for (int i = 0; i < PointAmount; i++)
-		{
-			if (i >= KeyCount)
-				break;
+		if (i >= KeyCount)
+			break;
 
-			const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
-			const int PointIndex = Indexes[X];
-			Indexes.RemoveAt(X);
+		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
+		const int PointIndex = Indexes[X];
+		KeySpawns.Add(inPoints[PointIndex]);
 		
-			KeySpawns.Add(inPoints[PointIndex]);
-		}
-
-		PointAmount = Indexes.Num();
+		Indexes.RemoveAt(X);
 	}
+}
+
+void ACGridRoom::GenerateEnemySpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform)
+{
+
+	const bool bIsKeyRoom = RoomWinCon == EVictoryConditions::EVC_PickUpKeys;
+	
+	int PointAmount = inPoints.Num();
+	TArray<int> Indexes;
+	for (int i = 0; i < PointAmount; i++)
+	{
+		Indexes.Add(i);
+	}
+
+	// if (bIsKeyRoom)
+	// {
+	// 	for (int i = 0; i < PointAmount; i++)
+	// 	{
+	// 		if (i >= KeyCount)
+	// 			break;
+	//
+	// 		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
+	// 		const int PointIndex = Indexes[X];
+	// 		KeySpawns.Add(inPoints[PointIndex]);
+	// 	
+	// 		Indexes.RemoveAt(X);
+	// 	}
+	//
+	// 	PointAmount = Indexes.Num();
+	// }
 	
 	for (int i = 0; i < PointAmount; i++)
 	{
@@ -527,9 +549,9 @@ void ACGridRoom::GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridT
 
 		const int X = RandomComp->GetRandRange(0, Indexes.Num() -1, false);
 		const int PointIndex = Indexes[X];
-		Indexes.RemoveAt(X);
-		
 		EnemySpawns.Add(inPoints[PointIndex]);
+		
+		Indexes.RemoveAt(X);
 	}
 
 	if (PointAmount < EnemyCount)

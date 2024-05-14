@@ -32,6 +32,7 @@ public:
 	EVictoryConditions RoomWinCon = EVictoryConditions::EVC_KillEnemies;
 	
 
+	//This is the function that creates the room, all the tiles, spawn points etc.
 	UFUNCTION(BlueprintCallable)
 	TArray<ACGridTile*> CreateRoom(int inStartX, int inStartY, bool bWithHeroSpawns = false);
 	UFUNCTION(BlueprintCallable)
@@ -110,15 +111,16 @@ protected:
 	UPROPERTY()
 	FVector2D MaxCoords;
 
-	UPROPERTY()
+	//Tiles
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TObjectPtr<ACGridTile> ExitTile;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TArray<ACGridTile*> RoomTiles;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TArray<ACGridTile*> EnemySpawns;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TArray<ACGridTile*> HeroSpawns;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Room Tiles")
 	TArray<ACGridTile*> KeySpawns;
 
 	///References
@@ -147,8 +149,11 @@ protected:
 	TArray<ACGridTile*> SpawnNeighbours(FVector2d inTileCoords, bool bIncludeDiagonals) const;
 	void IncrementTowardsTarget(int32& inValue, int32 inTarget);
 
+	//Generates spawn points for pickups
+	void GeneratePickUpSpawnTiles(TArray<ACGridTile*> inPoints);
+	
 	///Tries to spawn enemies on room points, else spawns on exit platform
-	void GenerateSpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
+	void GenerateEnemySpawnTiles(TArray<ACGridTile*> inPoints, TArray<ACGridTile*> inPlatform);
 	TArray<ACGridTile*> GenerateSpawnsOnPlatform(TArray<ACGridTile*> inPlatformTiles, int inSpawnAmount) const;
 
 };

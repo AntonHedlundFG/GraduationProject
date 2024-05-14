@@ -188,6 +188,8 @@ protected:
 	bool HandleVictoryConditionMet();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
 	int RoomsUntilWin = 4;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Units")
+	int DefaultEnemyAmount = 4;
 	UPROPERTY()
 	int CurrentRoom = 1;
 
