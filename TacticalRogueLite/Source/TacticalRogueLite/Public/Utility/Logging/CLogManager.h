@@ -64,21 +64,18 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnNewLogEntry, ELogCategory, Categ
 // FLogger wrapper for access through Blueprints and C++
 // *
 UCLASS(BlueprintType)
-class UCLogManager : public UObject
+class TACTICALROGUELITE_API UCLogManager : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	// Blueprint-accessible logging function
-	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Log"))
-	static void BlueprintLog(ELogCategory Category = ELogCategory::LC_Info, const FString& Message = TEXT(""));
-
 	// Log a message with a category
-	static void Log(ELogCategory Category, const FString& Message);
-
+	UFUNCTION(Category = "Logging", meta = (DisplayName = "Log"))
+	static void Log(const ELogCategory Category, const FString& Message);
+	
 	// Attempts to log a message on ALL clients and server. If called on a client
 	// message is only logged locally on that client.
-	static void LogFromServer(ELogCategory Category, const FString& Message);
+	static void LogFromServer(const ELogCategory Category, const FString& Message);
 
 	// Read all log entries from the log file
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log"))
@@ -86,7 +83,7 @@ public:
 
 	// Read all log entries from the selected category from the log file 
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Read Log By Category"))
-	static TArray<FString> GetAllLogEntriesByCategory(ELogCategory Category);
+	static TArray<FString> GetAllLogEntriesByCategory(const ELogCategory Category);
 
 	// Get a log by its ID
 	UFUNCTION(BlueprintCallable, Category = "Logging", meta = (DisplayName = "Get Recent Log Entry"))
@@ -116,4 +113,17 @@ private:
 	static UCLogManager* Instance;
 };
 
+UCLASS()
+class TACTICALROGUELITE_API UCLogManagerLibrary : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
 
+public:
+	// Blueprint-accessible logging function
+	UFUNCTION( BlueprintCallable, Category = "Logging", meta = (DisplayName = "Log") )
+	static void Log(const ELogCategory Category, const FString& Message)
+	{
+		UCLogManager::Log(Category, Message);
+	}
+
+};

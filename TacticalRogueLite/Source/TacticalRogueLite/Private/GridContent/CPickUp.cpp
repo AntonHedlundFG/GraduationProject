@@ -36,14 +36,8 @@ void ACPickUp::HandleOnTileEnter(ACGridContent* inEnterContent)
 		if (inUnit->GetActionComp()->ActiveGameplayTags.HasTag(FGameplayTag::RequestGameplayTag(FName("Unit.IsEnemy"))))
 			return;
 			
-		Tile = nullptr;
-		bIsPickedUp = true;
 		GrantPickUpToUnit(inUnit);
-		
-		Sprite = nullptr;
-		Location = FVector(0,0,-9999);
-		OnRep_Sprite();
-		OnRep_Location();
+		RemoveFromBoard();
 	}
 
 }
@@ -60,6 +54,17 @@ void ACPickUp::HandleOnTileExit(ACGridContent* inExitContent)
 			Tile->SetContent(this);
 		}
 	}
+}
+
+void ACPickUp::RemoveFromBoard()
+{
+	Tile = nullptr;
+	bIsPickedUp = true;
+		
+	Sprite = nullptr;
+	Location = FVector(0,0,-9999);
+	OnRep_Sprite();
+	OnRep_Location();
 }
 
 void ACPickUp::OnRep_Sprite()

@@ -15,8 +15,8 @@
     // State
     USAction_PullInGridContent Action;
     float TimePassed = 0;
-    TMap<ACGridContent, ACGridTile> ContentToStartTileMap;
     TArray<ACGridContent> ContentInRange;
+    TArray<ACGridTile> ContentStartTiles;
     ACGridTile TargetTile;
     ANiagaraActor VortexPullSystem;
     FVector Offset;
@@ -41,18 +41,11 @@
         }
 
         ContentInRange = Action.ContentInRange;
-        ContentToStartTileMap = Action.ContentToStartTileMap;
+        ContentStartTiles = Action.ContentStartTiles;
 
-        /* This should not be required since the effect can play without targets.
-        if(ContentInRange.Num() == 0)
+        if(ContentInRange.Num() != ContentStartTiles.Num())
         {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "No content in range for VortexPullVisualization");
-            return;
-        }*/
-
-        if(ContentInRange.Num() != ContentToStartTileMap.Num())
-        {
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "ContentInRange and ContentToStartTileMap have different sizes for VortexPullVisualization");
+            CLogManager::Log(ELogCategory::LC_Warning, "ContentInRange and ContentToStartTileMap have different sizes for VortexPullVisualization");
             return;
         }
 
@@ -80,11 +73,12 @@
             return false;
         }
 
-        for (ACGridContent Content : ContentInRange)
+        for (int i = 0; i < ContentInRange.Num(); i++)
         {
+            ACGridContent Content = ContentInRange[i];
             if(IsValid(Content))
             {
-                ACGridTile StartTile = ContentToStartTileMap[Content];
+                ACGridTile StartTile = ContentStartTiles[i];
 
                 if(IsValid(StartTile))
                 {
@@ -102,9 +96,9 @@
         if( DeltaTime >= 0 ? TimePassed >= Duration : TimePassed <= 0 ){
 
             // Set start tile to new tile for Undo
-            for ( auto& pair : ContentToStartTileMap )
-            { 
-                pair.Value = pair.Key.GetTile();
+            for (int i = 0; i < ContentInRange.Num(); i++)
+            {
+                ContentStartTiles[i] = ContentInRange[i].GetTile();
             }
             TimePassed = 0;
             return true;

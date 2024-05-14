@@ -5,8 +5,13 @@
     UPROPERTY()
     int MoveTileCount = 1;
 
-    TMap<ACGridContent, ACGridTile> ContentToStartTileMap;
+    UPROPERTY(Replicated)
     TArray<ACGridContent> ContentInRange;
+
+    UPROPERTY(Replicated)
+    TArray<ACGridTile> ContentStartTiles;
+    
+    UPROPERTY(Replicated)
     ACGridTile TargetTile;
 
     UFUNCTION(BlueprintOverride)
@@ -15,7 +20,7 @@
         ACGridContent InstigatorContent = Cast<ACGridContent>(Instigator);
         if(!IsValid(InstigatorContent))
         { 
-            UCLogManager::BlueprintLog(ELogCategory::LC_Warning, "PullInUnit Action found no OwningComponent");
+            CLogManager::Log(ELogCategory::LC_Warning, "PullInUnit Action found no OwningComponent");
             return;
         }
         TargetTile = InstigatorContent.GetTile();
@@ -29,7 +34,7 @@
             if(IsValid(TileContent) && TileContent != InstigatorContent && TileContent.GridContentTags.HasAny(ActionTags))
             {
                 ContentInRange.Add(TileContent);
-                ContentToStartTileMap.Add(TileContent, TileContent.GetTile());
+                ContentStartTiles.Add(TileContent.GetTile());
             }
         }
 
@@ -56,7 +61,7 @@
                 }
         }
 
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{InstigatorContent.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{InstigatorContent.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
 
     }
 
@@ -69,14 +74,14 @@
             ACGridContent Content = ContentInRange[i];
             if(IsValid(Content) && IsValid(Content.GetTile()))
             {
-                Content.SetTile(ContentToStartTileMap[Content]);
+                Content.SetTile(ContentStartTiles[i]);
             }
         }
         
-        ContentToStartTileMap.Empty();
-        ContentInRange.Empty();
+        //ContentStartTiles.Empty();
+        //ContentInRange.Empty();
         
-        UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{Instigator.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
+        CLogManager::Log(ELogCategory::LC_Gameplay, f"{Instigator.GetName()} pulled in units in range {Range} by {MoveTileCount} tiles.");
     }
 
     UFUNCTION(BlueprintOverride)

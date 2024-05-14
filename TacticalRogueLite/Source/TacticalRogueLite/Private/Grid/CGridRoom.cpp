@@ -141,8 +141,11 @@ TArray<ACGridTile*> ACGridRoom::CreateRoom(int inStartX, int inStartY, bool bWit
 	MinCoords = FVector2d(X_Min, Y_Min);
 	MaxCoords = FVector2d(X_Max, Y_Max);
 
-	//Create entrance platform
-	TArray<ACGridTile*> StartArea = CreatePlatform(inStartX, inStartY, true);
+	//Create first tile and entrance platform
+	TArray<ACGridTile*> StartArea;
+	EntranceTile = GameGrid->SpawnTileAtCoord(inStartX, inStartY, StandardTileBP);
+	StartArea.Add(EntranceTile);
+	StartArea.Append(CreatePlatform(inStartX, inStartY, true));
 	OutArray.Append(StartArea);
 	
 

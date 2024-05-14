@@ -1,8 +1,12 @@
 
 #include "Grid/CGrid.h"
 
+#include "CGameMode.h"
+#include "Actions/CDeathAction.h"
 #include "Grid/CGridRoom.h"
 #include "Grid/CGridTile.h"
+#include "GridContent/CPickUp.h"
+#include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
 
 
@@ -74,6 +78,57 @@ ACGridRoom* ACGrid::CreateStartRoom(int inEnemyCount, EVictoryConditions inRoomW
 		HeroSpawnTiles = Room->GetHeroSpawnTiles();
 	
 	return Room;
+}
+
+void ACGrid::DestroyOldRooms(ACGameMode* inModeRef)
+{
+	if (AllRooms.IsEmpty())
+		return;
+
+	const int RoomsToDestroy = AllRooms.Num() - MaximumRooms;
+	for (int i = 0; i < RoomsToDestroy; i++)
+	{
+		ACGridRoom* Room = AllRooms[i];
+	
+		for (auto Tile : Room->GetAllRoomTiles())
+		{
+			// Kill/Destroy any content occupying the tile
+			if (ACGridContent* Content = Tile->GetContent())
+			{
+				if (ACUnit* Unit = Cast<ACUnit>(Content))
+				{
+					UCDeathAction* DeathAction = NewObject<UCDeathAction>(Unit, UCDeathAction::StaticClass());
+					DeathAction->AffectedUnit = Unit;
+					inModeRef->RegisterAction(DeathAction);
+				}
+				else if (ACPickUp* PickUp = Cast<ACPickUp>(Content))
+				{
+					PickUp->RemoveFromBoard();
+				}
+				else
+				{
+					Content->Destroy();
+				}
+			}
+
+			//Remove tile from all arrays
+			TileMap.Remove(Tile->GetGridCoords());
+			AllTiles.Remove(Tile);
+			//Destroy tile
+			Tile->Destroy();
+		}
+		
+		//Update links for next room entrance tile, then remove room from array and destroy it.
+		if (AllRooms[i + 1])
+		{
+			AllRooms[i + 1]->GetEntranceTile()->GenerateLinks();
+		}
+		AllRooms.Remove(Room);
+		Room->Destroy();
+	}
+
+	//Broadcast update level
+	OnLevelUpdated();
 }
 
 ACGridTile* ACGrid::SpawnTileAtCoord(int inX, int inY, TSubclassOf<ACGridTile> TileType)

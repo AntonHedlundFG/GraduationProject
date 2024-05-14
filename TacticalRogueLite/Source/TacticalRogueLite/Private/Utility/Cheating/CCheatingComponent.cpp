@@ -11,17 +11,7 @@
 #include "Actions/CActionComponent.h"
 #include "Attributes/Utilities/CAttribute.h"
 
-
-// Sets default values for this component's properties
-UCCheatingComponent::UCCheatingComponent()
-{
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
-}
-
+#if !UE_BUILD_SHIPPING
 
 // Called when the game starts
 void UCCheatingComponent::BeginPlay()
@@ -34,17 +24,12 @@ void UCCheatingComponent::BeginPlay()
 	SetManyItemCharges(bStartWithManyItemCharges);
 }
 
-
-// Called every frame
-void UCCheatingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
+#endif
 
 void UCCheatingComponent::SetManyItemCharges(bool bEnabled)
 {
+#if !UE_BUILD_SHIPPING
+
 	if (bHasManyItemCharges == bEnabled) return;
 
 	bHasManyItemCharges = bEnabled;
@@ -58,10 +43,12 @@ void UCCheatingComponent::SetManyItemCharges(bool bEnabled)
 			Attributes->AddMaxCharges(ItemSlot, ChargesToAdd);
 		}
 	}
+#endif
 }
 
 void UCCheatingComponent::GainBigHealth()
 {
+#if !UE_BUILD_SHIPPING
 	FAttributeModification MaxMod;
 	MaxMod.AttributeTag = FGameplayTag::RequestGameplayTag(FName("Attribute.HealthMax"));
 	MaxMod.Magnitude = 10;
@@ -71,19 +58,26 @@ void UCCheatingComponent::GainBigHealth()
 	{
 		Unit->GetActionComp()->ApplyAttributeChange(MaxMod, 0);
 	}
+#endif
 }
 
 void UCCheatingComponent::WinThisTurn()
 {
+#if !UE_BUILD_SHIPPING
 	auto* VictoryCondition = GameMode->GetVictoryCondition();
 	if (VictoryCondition)
 		VictoryCondition->bWonByCheating = true;
+
+#endif
 }
 
 void UCCheatingComponent::LoseThisTurn()
 {
+#if !UE_BUILD_SHIPPING
+
 	auto* VictoryCondition = GameMode->GetVictoryCondition();
 	if (VictoryCondition)
 		VictoryCondition->bLoseByCheating = true;
-}
 
+#endif
+}

@@ -32,11 +32,13 @@ FAttributeModifications UCGameplayFunctionLibrary::ApplyDamage(AActor* DamageCau
 		HealthModification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Health");
 		HealthModification.ModifierOperation = EAttributeModifierOperation::AddBase;
 		HealthModification.Magnitude = -DamageToHealth;
+		HealthModification.AddedTags = ContextTags;
 
 		ArmorModification.InstigatorComp = DamageCauser->GetComponentByClass<UCActionComponent>();
 		ArmorModification.AttributeTag = FGameplayTag::RequestGameplayTag("Attribute.Armor");
 		ArmorModification.ModifierOperation = EAttributeModifierOperation::AddBase;
 		ArmorModification.Magnitude = -DamageToArmor;
+		ArmorModification.AddedTags = ContextTags;
 
 		FAttributeModifications ReturnUndoModifications;
 		
