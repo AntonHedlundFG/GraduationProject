@@ -72,7 +72,10 @@ int UAnimatingTurnOrderBox::AddWidget(UUserWidget* Widget)
 	AddChildToCanvas(Widget);
 	UCanvasPanelSlot* PanelSlot = GetPanelSlot(Widget);
 	PanelSlot->SetAutoSize(true);
+	ChildAlignment.Anchors.Minimum = {1,0};
+	ChildAlignment.Anchors.Maximum = {1,0};
 	PanelSlot->SetAnchors(ChildAlignment.Anchors);
+	ChildAlignment.Alignment = {1,0};
 	PanelSlot->SetAlignment(ChildAlignment.Alignment);
 	PanelSlot->SetPosition(GetNextPosition());
 	
