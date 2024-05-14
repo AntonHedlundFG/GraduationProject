@@ -11,6 +11,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Action_CursorSelect, "Action.CursorSelect");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Moving, "Action.Moving");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_DefaultAttack, "Action.DefaultAttack");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Rooted, "Action.Rooted");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Action_Thorns, "Action.Thorns");
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype, "AbilityType");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Abilitytype_Offensive, "AbilityType.Offensive");

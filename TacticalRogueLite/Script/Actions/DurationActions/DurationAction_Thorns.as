@@ -39,7 +39,7 @@ class USDurationAction_Thorns : UCActionWithTimer
         ACUnit Defender = Cast<ACUnit>(ActionComponent.GetOwner());
         if (Defender == nullptr) return;
 
-        if (Delta >= 0)
+        if (Delta >= 0 || ContextTags.HasTag(GameplayTags::Action_Thorns))
             return;
     
         //If we can only thorns in melee, make sure we are in melee range of attacker.
@@ -111,6 +111,7 @@ class USThornsDamageTriggeredAction : UCAction
     void StartAction(AActor Instigator)
     {
         FGameplayTagContainer ContextTags;
+        ContextTags.AddTag(GameplayTags::Action_Thorns);
         UndoMods = CGameplay::ApplyDamage(ThornsSource, TargetUnit, DamageAmount, ContextTags);
 
         UCLogManager::BlueprintLog(ELogCategory::LC_Gameplay, f"{TargetUnit.UnitName} took {DamageAmount} thorns damage from {ThornsSource.UnitName}.");
