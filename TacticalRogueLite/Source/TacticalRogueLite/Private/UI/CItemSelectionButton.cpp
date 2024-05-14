@@ -22,6 +22,10 @@ void UCItemSelectionButton::UpdateInfo(UCItemData* Item)
 	Name->SetText(Item->GetItemName());
 	Description->SetText(Item->GetDescription());
 	Button->OnClicked.AddUniqueDynamic(this,&UCItemSelectionButton::OnButtonClicked);
+	FString UnwantedBits = "ItemSlot.";
+	FString SlotName = Item->GetItemSlotTag().ToString();
+	SlotName.RemoveFromStart(UnwantedBits);
+	SlotText->SetText(FText::FromString("Slot: " + SlotName));
 }
 
 void UCItemSelectionButton::BindDelegateOnItemSelected(TFunction<void(UCItemData* ItemData)> Callback)

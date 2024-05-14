@@ -25,6 +25,8 @@ class TACTICALROGUELITE_API UCItemSelectionButton : public UUserWidget
 	UPROPERTY(meta =(BindWidget))
 	UTextBlock* Description;
 	UPROPERTY(meta =(BindWidget))
+	UTextBlock* SlotText;
+	UPROPERTY(meta =(BindWidget))
 	UImage* Icon;
 	UPROPERTY(EditAnywhere)
 	FSlateBrush DefaultIconBrush;
