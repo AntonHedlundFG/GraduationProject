@@ -88,7 +88,7 @@ void ACGrid::DestroyOldRooms(ACGameMode* inModeRef)
 	const int RoomsToDestroy = AllRooms.Num() - MaximumRooms;
 	for (int i = 0; i < RoomsToDestroy; i++)
 	{
-		ACGridRoom* Room = AllRooms[0];
+		ACGridRoom* Room = AllRooms[i];
 	
 		for (auto Tile : Room->GetAllRoomTiles())
 		{
@@ -117,8 +117,14 @@ void ACGrid::DestroyOldRooms(ACGameMode* inModeRef)
 			//Destroy tile
 			Tile->Destroy();
 		}
-		//Remove room from array
+		
+		//Update links for next room entrance tile, then remove room from array and destroy it.
+		if (AllRooms[i + 1])
+		{
+			AllRooms[i + 1]->GetEntranceTile()->GenerateLinks();
+		}
 		AllRooms.Remove(Room);
+		Room->Destroy();
 	}
 
 	//Broadcast update level
