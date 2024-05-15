@@ -39,7 +39,6 @@ void URollItemActionVisualization::Enter()
 
 bool URollItemActionVisualization::Tick(float DeltaTime)
 {
-	
 	if (!ActionClass->IsRunning())
 	{
 		if (ItemSelectionWindow)

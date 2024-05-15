@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Actions/CAction.h"
+#include "ItemData/UtilityQuery/CTypes.h"
 #include "CAction_RollItem.generated.h"
 
 class UCItemData;
-struct FBucketInfo;
 
 /*USTRUCT()
 struct FActionRepData
@@ -38,7 +38,7 @@ protected:
 	// UPROPERTY(ReplicatedUsing="OnRep_RepData")
 	// FActionRepData RepData;
 
-	// UFUNCTION()
+	//UFUNCTION()
 	virtual void OnRep_RepData() override;
 	
 	UPROPERTY(Replicated)
@@ -48,8 +48,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "LootTable")
 	UDataTable* LootTable;
 	//What "category" to roll on. Charms/Defaults. TODO: Explain.
-	UPROPERTY(EditDefaultsOnly, Category = "LootTable", DisplayName = "Loot Category")
+	UPROPERTY(EditDefaultsOnly, Category = "LootTable", DisplayName = "Item Buckets")
 	TArray<FBucketInfo> Buckets;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LootTable", DisplayName = "Charm Bucket")
+	FBucketInfo CharmBucket;
 
 	//Amount of items to retrieve.
 	UPROPERTY(EditDefaultsOnly, Category = "LootTable")

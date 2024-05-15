@@ -22,7 +22,7 @@ void UCInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCInventoryComponent, Armor);
 	DOREPLIFETIME(UCInventoryComponent, Trinket);
 	DOREPLIFETIME(UCInventoryComponent, AllItems);
-	DOREPLIFETIME(UCInventoryComponent, Slots);
+	DOREPLIFETIME(UCInventoryComponent, CharmSlots);
 }
 
 TArray<UCItemData*> UCInventoryComponent::GetEquippedItems() const
@@ -58,7 +58,6 @@ UCItemData* UCInventoryComponent::GetItemInSlot(FGameplayTag inSlot)
 
 bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added to "all items"- list atm, also needs: Events to update UI etc
 {
-	int AddedQuantity = 0;
 	
 	if(inItem == nullptr)
 	{
@@ -70,58 +69,39 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 	//If the added item is a charm.
 	if(inItem->ItemSlot == FGameplayTag::RequestGameplayTag("ItemSlot.Charm")) //Temp solution..
 	{
-		int32 RemainingQuantity = 2; //Change.
-		if (inItem->bCanBeStacked)
+		//Do we already own the item?
+		FSlot FoundSlot;
+		if (DoesItemExist(inItem, FoundSlot))
 		{
-			//Do we already own the item?
-			FSlot FoundSlot;
-			if (DoesItemExist(inItem, FoundSlot))
+			if (inItem->bCanBeStacked)
 			{
 				//Can it be stacked?
 				const bool bCanStack = !FoundSlot.IsOnMaxStackSize() && FoundSlot.ItemInstance == inItem; //Second redudant?
 				if (bCanStack)
 				{
-					const int32 MissingStackQuantity = FoundSlot.GetMissingStackQuantity();
+					const int32 MissingStackQuantity = FoundSlot.GetMissingStackQuantity(); //Remaining 2. 
 
-					if (RemainingQuantity <= MissingStackQuantity)
+					//If we have space to append an item.
+					if (MissingStackQuantity > 0)
 					{
 						//Rules to not be able to equip items? Blocked tags..?
 							
-						FoundSlot.UpdateQuantity(MissingStackQuantity);
-						AddedQuantity += MissingStackQuantity;
-						RemainingQuantity -= MissingStackQuantity;
-
-						return true; //true..
+						FoundSlot.UpdateQuantity();
+						AddItem(inItem); //? TODO: how will actions behave when stacked?
+						//NotifyInventoryItemAdded(Item, AddedQuantity); //Add new instance??? 
+						//NotifyInventoryUpdated();
+						
+						return true;
 					}
 				}
 			}
-			//If new item.
-			if (RemainingQuantity > inItem->MaxStackSize)
-			{
-				//Create new slot for item.
-				FSlot NewSlot = FSlot(inItem, inItem->MaxStackSize, this);
-				Slots.Add(NewSlot);
-
-				AddedQuantity += inItem->MaxStackSize;
-				RemainingQuantity -= inItem->MaxStackSize;
-
-				return true;
-			}
 		}
-		//If cannot be stacked..
-		if (RemainingQuantity > 0)
+		else
 		{
-			//Create instance..?
-
-			const FSlot NewSlot = FSlot(inItem, 1, this);
-			Slots.Add(NewSlot);
-
-			AddedQuantity += 1;
-			RemainingQuantity -= 1;
-
-			//Update events..
-
-			return true;
+			//Create new slot for item.
+			FSlot NewSlot = FSlot(inItem, inItem->MaxStackSize, this);
+			CharmSlots.Add(NewSlot);
+			AddItem(inItem);
 		}
 	}
 		
@@ -217,7 +197,7 @@ bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 
 bool UCInventoryComponent::DoesItemExist(const UCItemData* Item, FSlot& OutSlot)
 {
-	for (FSlot& Slot : Slots)
+	for (FSlot& Slot : CharmSlots)
 	{
 		if (Slot.ItemInstance == Item)
 		{
@@ -307,8 +287,10 @@ void FSlot::SetQuantity(const int32 InQuantity)
 	}
 }
 
-void FSlot::UpdateQuantity(const int32 InQuantity)
+void FSlot::UpdateQuantity()
 {
+	int32 InQuantity = 1;
+	
 	if (ItemInstance == nullptr)
 	{
 		return;

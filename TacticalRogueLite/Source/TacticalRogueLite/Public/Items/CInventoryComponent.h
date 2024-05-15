@@ -59,7 +59,7 @@ struct TACTICALROGUELITE_API FSlot
 	int32 GetMissingStackQuantity() const;
 
 	void SetQuantity(int32 InQuantity);
-	void UpdateQuantity(int32 InQuantity);
+	void UpdateQuantity();
 
 	bool IsEmpty() const;
 	bool IsOccupied() const;
@@ -150,7 +150,7 @@ protected:
 
 	//List of all slots. 
 	UPROPERTY(BlueprintReadWrite, Category = "Inventory", Replicated)
-	TArray<FSlot> Slots;
+	TArray<FSlot> CharmSlots;
 
 #pragma endregion CharmItem Charges
 	

@@ -36,7 +36,7 @@ protected:
 public:
 
 	UFUNCTION(BlueprintPure, Category = "Items", meta =(DisplayName = "Roll Items"))
-	TArray<UCItemData*> RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount);
+	TArray<UCItemData*> RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount, ERollType RollType);
 
 	UPROPERTY(BlueprintAssignable, Category = "Items")
 	FOnItemsRolled OnItemsRolled;

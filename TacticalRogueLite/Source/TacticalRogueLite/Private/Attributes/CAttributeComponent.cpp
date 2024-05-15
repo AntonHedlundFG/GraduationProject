@@ -1,7 +1,6 @@
 
 #include "Attributes/CAttributeComponent.h"
 #include "Net/UnrealNetwork.h"
-#include "GamePlayTags/SharedGamePlayTags.h"
 
 //variablar onrep istället
 //viktigt att replikera till clienterna- tags osv

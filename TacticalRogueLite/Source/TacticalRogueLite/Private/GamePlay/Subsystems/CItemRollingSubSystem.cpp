@@ -94,7 +94,7 @@ int32 RollAmount, ERollType ReplacementType)
 		for (auto& Bucket : Buckets)
 		{
 			//This should be replaced for Bucket.IsIgnored();
-			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
+			if(((Bucket.TimesSelected >= Bucket.MaxOccurance) && Bucket.MaxOccurance != -1)|| Bucket.bIsIgnore_Internal)
 			{
 				continue;
 			}
@@ -113,7 +113,7 @@ int32 RollAmount, ERollType ReplacementType)
 		for (FBucketInfo Bucket : Buckets)
 		{
 			//This should be replaced for Bucket.IsIgnored();
-			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
+			if(((Bucket.TimesSelected >= Bucket.MaxOccurance) && Bucket.MaxOccurance != -1) || Bucket.bIsIgnore_Internal)
 			{
 				continue;
 			}
@@ -126,7 +126,7 @@ int32 RollAmount, ERollType ReplacementType)
 		for (auto& Bucket : Buckets)
 		{
 			//This should be replaced for Bucket.IsIgnored();
-			if((Bucket.TimesSelected >= Bucket.MaxOccurance) || Bucket.bIsIgnore_Internal)
+			if(((Bucket.TimesSelected >= Bucket.MaxOccurance) && Bucket.MaxOccurance != -1) || Bucket.bIsIgnore_Internal)
 			{
 				continue;
 			}
@@ -227,13 +227,13 @@ UCItemData* UCItemRollingSubSystem::GetItem(const FPrimaryAssetId& ID)
 }
 
 
-TArray<UCItemData*> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount)
+TArray<UCItemData*> UCItemRollingSubSystem::RollItems(UDataTable* Table, FGameplayTagContainer ContextTags, TArray<FBucketInfo> BucketInfo, int RollAmount,ERollType RollType)
 {
 	TArray<FItemRollResult> RollResults;
 	TArray<FPrimaryAssetId> ExcludeIDs; //TODO: ?
 	if(BucketInfo.IsEmpty()) { BucketInfo.Add(FBucketInfo()); }
 	
-	RollItemTable(Table, RollResults, ContextTags, ExcludeIDs, BucketInfo, RollAmount, ERollType::WithoutReplacement);
+	RollItemTable(Table, RollResults, ContextTags, ExcludeIDs, BucketInfo, RollAmount,RollType);
 
 	TArray<UCItemData*> ReturnItems;
 	

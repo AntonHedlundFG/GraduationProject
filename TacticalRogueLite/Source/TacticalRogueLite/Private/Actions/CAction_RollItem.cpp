@@ -33,7 +33,10 @@ void UCAction_RollItem::StartAction(AActor* Instigator)
 
 	if (RollingSubSystem)
 	{
-		Items = RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, Buckets, RollAmount);
+		TArray<UCItemData*> ItemDatas;
+		ItemDatas.Append(RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, Buckets, RollAmount,ERollType::WithoutReplacement));
+		ItemDatas.Append(RollingSubSystem->RollItems(LootTable, GetOwningComponent()->ActiveGameplayTags, {CharmBucket}, 2,ERollType::WithoutReplacement)); //Charms.
+		Items = ItemDatas;
 	}
 }
 

@@ -15,10 +15,6 @@ class TACTICALROGUELITE_API UCGameplayFunctionLibrary : public UBlueprintFunctio
 {
 	GENERATED_BODY()
 
-private:
-	
-	// UPROPERTY()
-	// int Amount = 0;
 
 	public:
 
