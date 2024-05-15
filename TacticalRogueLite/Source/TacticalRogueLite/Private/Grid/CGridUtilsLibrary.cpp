@@ -177,6 +177,66 @@ ACGridContent* UCGridUtilsLibrary::GetClosestGridContent(ACGridTile* inStart, TA
 	return ClosestContent;
 }
 
+int32 UCGridUtilsLibrary::GetAStarPathFindingDistance(ACGridTile* inStart, ACGridTile* inTarget,
+	const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags)
+{
+	return AStar_Pathfinding(inStart, inTarget, MovementTags, BlockingTags).Num();
+}
+
+int32 UCGridUtilsLibrary::GetBFSPathFindingDistance(ACGridTile* inStart, ACGridTile* inTarget,
+	const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags)
+{
+	return BFS_Pathfinding(inStart, inTarget, MovementTags, BlockingTags).Num();
+}
+
+void UCGridUtilsLibrary::GetProximityScore( ACGridTile* inStart, const TArray<ACGridTile*>& inTargets,
+	const FGameplayTagContainer& MovementTags, const FGameplayTagContainer& BlockingTags,
+	TMap<ACGridTile*, float>& outScores)
+{
+	// Get distances to all targets
+	for (ACGridTile* Target : inTargets)
+	{
+		int32 Distance = GetAStarPathFindingDistance(inStart, Target, MovementTags, BlockingTags);
+		outScores.Add(Target, Distance);
+	}
+
+	// Ensure all targets are in the map even if there are no paths to them
+	for ( int i = 0; i < inTargets.Num(); i++)
+	{
+		ACGridTile* Target = inTargets[i];
+		// If the target is not in the map, add it with a max possible distance
+		if (!outScores.Contains(Target))
+		{
+			outScores.Add(Target, INT32_MAX);
+			continue;
+		}
+		// Ensure no division by zero
+		if(outScores[Target] == 0)
+		{
+			outScores[Target] = INT32_MAX;
+		}
+	}
+
+	// Calculate the proximity score (Inverse of distance)
+	for (auto& Pair : outScores)
+	{
+		Pair.Value = 1.0f / Pair.Value;
+	}
+
+	// Normalize the scores between 0 and 1
+	float MaxScore = 0.0f;
+	for (auto& Pair : outScores)
+	{
+		MaxScore = FMath::Max(MaxScore, Pair.Value);
+	}
+
+	for (auto& Pair : outScores)
+	{
+		Pair.Value /= MaxScore;
+	}
+	
+}
+
 TSet<ACGridTile*> UCGridUtilsLibrary::FloodFill(ACGridTile* inStart, int Depth,  const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/, const FGameplayTagContainer& MovementBlockingTags /*= FGameplayTagContainer()*/)
 {
 	//Default to regular straight movement.
