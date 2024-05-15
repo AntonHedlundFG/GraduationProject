@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
-#include "Assets/AssetManager/CAssetManager.h"
 #include "CData.generated.h"
 
 class UCAction;
@@ -69,14 +68,20 @@ public:
 	// Maximum amount allowed in the stack. 0 = unlimited.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data")
 	int32 StackLimit;
-
-	//Actions assigned to Item. Can be used to grant abilities(in ItemData) or actions when this item is active/equipped or to simply run item specific functions.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "ActionsToGrantInstantlyWhenEquipped", meta = (AssetBundles = "Actions"))
-	TArray<TSoftClassPtr<UCAction>> ActionClasses;
-
+	
 	//Tags to decorate the item. Can be used to set up categories, types, filters or one-off tags for very specific items. (Asset Registry Searchable).
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, AssetRegistrySearchable, Category = "Data")
 	FGameplayTagContainer OwnedTags;
+
+	//Actions assigned to Item. Can be used to add eventlisteners, eg. action "thorns", or actions when this item is active/equipped, or to simply run item specific functions.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (DisplayName = "ActionsToGrantInstantlyWhenEquipped" , AssetBundles = "Actions"))
+	TArray<TSubclassOf<UCAction>> InstantActions;
+
+	//
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AssetBundles = "Actions"))
+	TArray<TSoftClassPtr<UCAction>> ActionClasses;
+
+	//TArray<TSoftClassPtr<UCAction>> ActionClasses; for retrieving soft-refs loaded by assetmanager. TSubclassOf<UCAction> ActionClass = SoftClass.Get();
 	
 	UCData() {};
 	

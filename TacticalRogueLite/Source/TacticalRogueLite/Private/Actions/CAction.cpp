@@ -12,6 +12,39 @@
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAction)
 
+void UCAction::OnRep_RepData()
+{
+	if (RepData.bIsRunning)
+	{
+		StartAction(RepData.Instigator);
+	}
+	else
+	{
+		StopAction(RepData.Instigator);
+	}
+}
+
+bool UCAction::IsRunning() const
+{
+	return RepData.bIsRunning;
+}
+
+bool UCAction::CanStart(AActor* Instigator)
+{
+	if (IsRunning())
+	{
+		return false;
+	}
+	
+	UCActionComponent* Comp = GetOwningComponent();
+	
+	if (Comp->ActiveGameplayTags.HasAny(ActionBlockingTags) && ReceiveCanStart(Instigator))
+	{
+		return false;
+	}
+	return true;
+}
+
 void UCAction::OnRep_bIsUndone()
 {
 	LOG_INFO("Action undone");
@@ -32,16 +65,11 @@ UCActionComponent* UCAction::GetOwningComponent() const
 	return ActionComp;
 }
 
-bool UCAction::CanStart(AActor* Instigator)
-{
-	UCActionComponent* Comp = GetOwningComponent();
-	
-	return (!Comp->ActiveGameplayTags.HasAny(ActionBlockingTags) && ReceiveCanStart(Instigator));
-}
-
-
 void UCAction::StartAction(AActor* Instigator)
 {
+	RepData.bIsRunning = true;
+	RepData.Instigator = Instigator;
+	
 	for (FAttributeModification& Mod : ModifiersAppliedToOwner)
 	{
 		int ActualDelta = GetOwningComponent()->ApplyAttributeChange(Mod, 0);
@@ -54,12 +82,10 @@ void UCAction::StartAction(AActor* Instigator)
 
 void UCAction::StopAction(AActor* Instigator)
 {
-	ReceiveStopAction(Instigator);
-}
 
-TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
-{
-	return { fromTile }; // Default implementation, just return the tile the action was started from.
+	RepData.bIsRunning = false;
+	
+	ReceiveStopAction(Instigator);
 }
 
 void UCAction::UndoAction(AActor* Instigator)
@@ -77,8 +103,16 @@ void UCAction::UndoAction(AActor* Instigator)
 	}
 
 	bIsUndone = true;
+	
 	if (IsValid(Comp))
+	{
 		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
+	}
+}
+
+TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
+{
+	return { fromTile }; // Default implementation, just return the tile the action was started from.
 }
 
 bool UCAction::ReceiveCanStart_Implementation(AActor* Instigator)
@@ -88,14 +122,17 @@ bool UCAction::ReceiveCanStart_Implementation(AActor* Instigator)
 
 void UCAction::ReceiveStartAction_Implementation(AActor* Instigator)
 {
+	
 }
 
 void UCAction::ReceiveUndoAction_Implementation(AActor* Instigator)
 {
+	
 }
 
 void UCAction::ReceiveStopAction_Implementation(AActor* Instigator)
 {
+	
 }
 
 void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -104,15 +141,21 @@ void UCAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 
 	DOREPLIFETIME(UCAction, ActionComp);
 	DOREPLIFETIME(UCAction, bIsUndone);
-
-	if (GetClass()->ScriptTypePtr != nullptr)
+	DOREPLIFETIME(UCAction, RepData);
+	
+	//Do this to replicate as properties.
+	if (GetClass()->ScriptTypePtr != nullptr) 
+	{
 		GetClass()->GetLifetimeScriptReplicationList(OutLifetimeProps);
+	}
 }
 
 void UCAction::ToggleHighlightTilesInRange(FAbility Ability, ACGridTile* fromTile, bool bHighlightOn)
 {
 	if (IsValid(Ability))
+	{
 		Ability.ToggleHighlightTilesInRange(fromTile, bHighlightOn);
+	}
 }
 
 UWorld* UCAction::GetWorld() const

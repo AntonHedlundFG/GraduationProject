@@ -9,7 +9,7 @@
 class UCItemData;
 struct FBucketInfo;
 
-USTRUCT()
+/*USTRUCT()
 struct FActionRepData
 {
 	GENERATED_BODY()
@@ -26,7 +26,7 @@ public:
 	{
 		bIsRunning = true;
 	}
-};
+}*/;
 
 UCLASS()
 class TACTICALROGUELITE_API UCAction_RollItem : public UCAction
@@ -35,11 +35,11 @@ class TACTICALROGUELITE_API UCAction_RollItem : public UCAction
 
 protected:
 
-	UPROPERTY(ReplicatedUsing="OnRep_RepData")
-	FActionRepData RepData;
+	// UPROPERTY(ReplicatedUsing="OnRep_RepData")
+	// FActionRepData RepData;
 
-	UFUNCTION()
-	void OnRep_RepData();
+	// UFUNCTION()
+	// void OnRep_RepData();
 	
 	UPROPERTY(Replicated)
 	TArray<UCItemData*> Items;
@@ -63,9 +63,9 @@ public:
 	virtual void StopAction(AActor* Instigator) override;
 	virtual void UndoAction(AActor* Instigator) override;
 
-	UFUNCTION(BlueprintCallable, Category = "Action")
-	bool IsRunning() const;
+	// UFUNCTION(BlueprintCallable, Category = "Action")
+	// bool IsRunning() const;
 
 	TArray<UCItemData*> GetItems();
-	TObjectPtr<AActor> GetInstigator(){return RepData.Instigator;}
+	TObjectPtr<AActor> GetInstigator(){ return RepData.Instigator; }
 };

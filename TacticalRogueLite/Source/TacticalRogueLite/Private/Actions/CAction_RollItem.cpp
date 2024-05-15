@@ -7,18 +7,13 @@
 #include "Net/UnrealNetwork.h"
 
 
-void UCAction_RollItem::OnRep_RepData()
-{
-	if (!RepData.bIsRunning)
-	{
-		StopAction(RepData.Instigator);
-	}
-}
-
-bool UCAction_RollItem::IsRunning() const
-{
-	return RepData.bIsRunning;
-}
+// void UCAction_RollItem::OnRep_RepData() //Override? 
+// {
+// 	if (!RepData.bIsRunning)
+// 	{
+// 		StopAction(RepData.Instigator);
+// 	}
+// }
 
 TArray<UCItemData*> UCAction_RollItem::GetItems()
 {
@@ -29,8 +24,8 @@ void UCAction_RollItem::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
 
-	RepData.bIsRunning = true;
-	RepData.Instigator = Instigator;
+	// RepData.bIsRunning = true;
+	// RepData.Instigator = Instigator;
 
 	
 	UCGameInstance* GI = GetWorld()->GetGameInstance<UCGameInstance>();
@@ -46,7 +41,7 @@ void UCAction_RollItem::StopAction(AActor* Instigator)
 {
 	Super::StopAction(Instigator);
 	
-	RepData.bIsRunning = false;
+	// RepData.bIsRunning = false;
 }
 
 void UCAction_RollItem::UndoAction(AActor* Instigator)
@@ -58,6 +53,6 @@ void UCAction_RollItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(UCAction_RollItem, RepData);
+	//DOREPLIFETIME(UCAction_RollItem, RepData);
 	DOREPLIFETIME(UCAction_RollItem, Items);
 }

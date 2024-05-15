@@ -6,6 +6,7 @@
 #include "CoreMinimal.h"
 #include "ItemData/CData.h"
 #include "Actions/CAction.h"
+#include "Assets/AssetManager/CAssetManager.h"
 #include "Engine/DataAsset.h"
 #include "CItemData.generated.h"
 
@@ -52,6 +53,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "Item")
 	uint8 bCanBeStacked : 1;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true, ClampMin = 2, UIMin = 2), Category = "Item")
+	int32 MaxStackSize;
 	
 	UFUNCTION(BlueprintPure)
 	FGameplayTag GetItemSlotTag() const
@@ -62,4 +66,6 @@ public:
 	//Modifications that takes effect when u equip the item.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attributes", meta = (AssetBundles = "Attributes"))
 	TArray<FAttributeModification> AttributeModifications;
+
+	
 };

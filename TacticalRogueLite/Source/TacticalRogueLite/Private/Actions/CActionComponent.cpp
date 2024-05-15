@@ -34,7 +34,6 @@ void UCActionComponent::InitializeComponent()
 		//LOG_WARNING("No Attributeset!");
 	}
 }
-
 bool UCActionComponent::GetAttribute(FGameplayTag InTag, FAttribute& InAttribute)
 {
 	if (!AttributeSet)
@@ -185,18 +184,19 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	{
 		return;
 	}
-	
-	UCAction* NewAction = GameMode->RegisterActionOfClass(ActionClass);
+
+	UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
 	check(NewAction);
-
+	
 	NewAction->Initialize(this);
+	
+	if (NewAction->IsAutoStart() && ensure(NewAction->CanStart(Instigator))) //Eventuellt till charms.. 
+	 {
+	 	NewAction->StartAction(Instigator);
+		return;
+	 }
 
-	//Actions.Add(NewAction); RegisterAction does this alr..
-
-	// if (ensure(NewAction->CanStart(Instigator))) //Eventuellt till charms..
-	// {
-	// 	NewAction->StartAction(Instigator);
-	// }
+	GameMode->RegisterAction(NewAction);
 }
 
 void UCActionComponent::RegisterAction(UCAction* NewAction)

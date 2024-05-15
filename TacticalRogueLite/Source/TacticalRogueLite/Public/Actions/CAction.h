@@ -13,9 +13,6 @@ class UWorld;
 class UCActionComponent;
 class ACGridTile;
 
-//Getter Setter Ability 
-//Add the tags 
-//Variable range 
 
 #pragma region FAbility struct
 
@@ -84,6 +81,27 @@ inline uint32 GetTypeHash(const FAbility& Ability)
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnActionCompleted);
 
+
+USTRUCT()
+struct FActionRepData
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY()
+	bool bIsRunning;
+
+	UPROPERTY()
+	TObjectPtr<AActor> Instigator;
+
+	FActionRepData()
+	{
+		bIsRunning = true; //TODO: originally false but is set to not mess up any previously impl actions.
+	}
+};
+
+
 UCLASS(Blueprintable)
 class TACTICALROGUELITE_API UCAction : public UObject
 {
@@ -112,6 +130,16 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 
+	//Start immediately when added to an action component. 
+	UPROPERTY(EditDefaultsOnly, Category = "Action")
+	bool bAutoStart;
+
+	UPROPERTY(ReplicatedUsing="OnRep_RepData")
+	FActionRepData RepData;
+
+	UFUNCTION()
+	void OnRep_RepData();
+
 	// Highlight that will show on the tiles affected by the action.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	ETileHighlightModes AffectedHighlightMode = ETileHighlightModes::ETHM_NONE;
@@ -128,21 +156,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
 
-	UFUNCTION()
-	ETileHighlightModes GetAffectedHighlightMode() const { return AffectedHighlightMode; }
-
-	//If true, this was the first action in a chain of events resulting from player input.
-	//When undoing actions, we iterate backwards in the action history, until we find one where
-	//this is true.
-	UPROPERTY()
-	bool bIsUserIncited = false;
-
-	//Used to keep track of item charges
-	UPROPERTY()
-	FGameplayTag UserIncitedItemSlot;
-
-	UPROPERTY(ReplicatedUsing=OnRep_bIsUndone)
-	bool bIsUndone = false;
+	UFUNCTION(BlueprintPure)
+	bool IsAutoStart() const
+	{
+		return bAutoStart;
+	}
+	
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	bool IsRunning() const;
 
 	UFUNCTION()
 	void OnRep_bIsUndone();
@@ -164,6 +185,22 @@ public:
 
 	UFUNCTION(Category = "Action")
 	virtual void StopAction(AActor* Instigator);
+
+	
+
+	//If true, this was the first action in a chain of events resulting from player input.
+	//When undoing actions, we iterate backwards in the action history, until we find one where
+	//this is true.
+	UPROPERTY()
+	bool bIsUserIncited = false;
+
+	//Used to keep track of item charges
+	UPROPERTY()
+	FGameplayTag UserIncitedItemSlot;
+
+	UPROPERTY(ReplicatedUsing=OnRep_bIsUndone)
+	bool bIsUndone = false;
+
 
 #pragma region AngelScript events
 
@@ -190,6 +227,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Action")
 	TSet<ACGridTile*> GetActionInfluencedTiles(ACGridTile* fromTile);
 
+	UFUNCTION()
+	ETileHighlightModes GetAffectedHighlightMode() const { return AffectedHighlightMode; }
+	
 	UFUNCTION(BlueprintCallable, Category = "Ability")
 	static TSet<ACGridTile*> GetAbilityInfluencedTiles(FAbility& Ability, ACGridTile* fromTile) { return Ability.GetInfluencedTiles(fromTile); }
 
