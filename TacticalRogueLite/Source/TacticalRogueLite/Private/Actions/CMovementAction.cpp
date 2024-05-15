@@ -24,8 +24,11 @@ void UCMovementAction::StartAction(AActor* Instigator)
 	FGameplayTagContainer MovementTags = GetOwningComponent()->ActiveGameplayTags;
 
 	Path = UCGridUtilsLibrary::BFS_Pathfinding(FromTile, TargetTile, MovementTags, MovementBlockingTags);
-	MovedUnit->SetTile(TargetTile);
-	LOG_GAMEPLAY("%s moved", *MovedUnit->GetUnitName(), Path.Num() - 1);
+	if (IsValid(TargetTile))
+	{
+		MovedUnit->SetTile(TargetTile);
+		LOG_GAMEPLAY("%s moved", *MovedUnit->GetUnitName(), Path.Num() - 1);
+	}	
 
 }
 void UCMovementAction::UndoAction(AActor* Instigator)
