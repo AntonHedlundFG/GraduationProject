@@ -52,7 +52,7 @@ UCTurnOrderPortraitWidget* UCTurnOrderUI::GetActiveWidget(ACUnit* key)
 //Jesus, jag tror att jag behöver göra en queue för allt det här också, nu kan det vara att man lägger till och tar bort index medans skiten håller på att processas
 void UCTurnOrderUI::UpdateTurnList()
 {
-	TArray<ACUnit*> NewTurnOrder =  Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
+	TArray<ACUnit*> NewTurnOrder = GetWorld()->GetGameState<ACGameState>()->GetCurrentTurnOrder(true);
 	
 	//Check if any of the units are nullptr TODO: create a better solution for this
 	for (ACUnit* Unit : NewTurnOrder)
@@ -89,13 +89,16 @@ void UCTurnOrderUI::UpdateTurnList()
 	}
 	for (int i = 0; i < NewTurnOrder.Num(); i++)
 	{
-		ACUnit* Unit = (NewTurnOrder)[i];
+		ACUnit* Unit = NewTurnOrder[i];
+		if (!IsValid(Unit)) continue;
 		//Add null check to unit
 		//We should add unit
 		if(!LastTurnOrder.Contains(Unit))
 		{
 			UCTurnOrderPortraitWidget* Widget = DeQueuePortraitWidget();
-			Widget->SetText(Unit->GetUnitName());
+			if (!IsValid(Widget)) continue;
+			FString UnitName = Unit->GetUnitName();
+			Widget->SetText(UnitName.IsEmpty() ? FString("Unknown") : UnitName);
 			ActivePortraits.Add(Unit,Widget);
 			PortraitsToAnimateIn.Add(Widget);
 			//Save the index in which it was added??

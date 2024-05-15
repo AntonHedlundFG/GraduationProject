@@ -89,7 +89,7 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		LOG_INFO("Game is already over");
 		return;
 	}
-	if (GetGameState()->TurnOrder.Num() == 0)
+	if (!IsValid(GetGameState()->GetCurrentUnit()))
 	{
 		LOG_WARNING("No valid unit at front of turn order, cancelling ability use.");
 		return;
@@ -100,7 +100,7 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 		return;
 	}
 	
-	UnitCurrentlyUsingAbility = GetGameState()->TurnOrder[0];
+	UnitCurrentlyUsingAbility = GetGameState()->GetCurrentUnit();
 
 	AOnlinePlayerState* PS = GetPlayerState<AOnlinePlayerState>();
 	if (!PS || PS->PlayerIndex != UnitCurrentlyUsingAbility->ControllingPlayerIndex)
@@ -184,7 +184,7 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 		LOG_INFO("Game is already over");
 		return;
 	}
-	if (GetGameState()->TurnOrder.Num() == 0 || GetGameState()->TurnOrder[0] != UnitCurrentlyUsingAbility)
+	if (GetGameState()->GetCurrentUnit() != UnitCurrentlyUsingAbility)
 	{
 		LOG_WARNING("No valid unit at front of turn order, cancelling ability use.");
 		CancelAbilityUse();

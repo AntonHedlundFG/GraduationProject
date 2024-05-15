@@ -20,7 +20,7 @@ void UCEndTurnButtonUI::OnTurnUpdated()
 	ACUnit* Unit;
 	try
 	{
-		Unit = GameState->TurnOrder[0];	
+		Unit = GameState->GetCurrentUnit();	
 	}
 	catch (...)
 	{

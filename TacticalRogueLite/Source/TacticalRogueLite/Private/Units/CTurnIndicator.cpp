@@ -30,9 +30,9 @@ void ACTurnIndicator::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (!IsValid(GameStateRef) || GameStateRef->TurnOrder.IsEmpty()) return;
+	if (!IsValid(GameStateRef)) return;
 	
-	ACUnit* CurrentUnit = GameStateRef->TurnOrder[0];
+	ACUnit* CurrentUnit = GameStateRef->GetCurrentUnit();
 	if (!IsValid(CurrentUnit)) return;
 
 	//A new turn has started

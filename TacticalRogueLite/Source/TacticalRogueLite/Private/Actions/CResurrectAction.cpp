@@ -40,10 +40,11 @@ void UCResurrectAction::StartAction(AActor* Instigator)
 		AffectedUnit->GetActionComp()->ApplyAttributeChange(HealthMod, 0);
 	}
 
-	if (!GameState->TurnOrder.Contains(AffectedUnit))
+	TArray<ACUnit*> CurrentTurnOrder = GameState->GetCurrentTurnOrder();
+	if (!CurrentTurnOrder.Contains(AffectedUnit))
 	{
-		const int RandomTurnOrderIndex = FMath::RandRange(1, GameState->TurnOrder.Num());
-		GameState->TurnOrder.Insert(AffectedUnit, RandomTurnOrderIndex);
+		const int RandomTurnOrderIndex = FMath::RandRange(0, CurrentTurnOrder.Num() - 1);
+		GameState->AddUnitToOrder(AffectedUnit, RandomTurnOrderIndex);
 		LOG_GAMEPLAY("%s returns from the dead.", *AffectedUnit->GetUnitName());
 	}
 	else
@@ -61,7 +62,7 @@ void UCResurrectAction::UndoAction(AActor* Instigator)
 
 	if (PreviousHealth < 1)
 	{
-		GameState->TurnOrder.RemoveSingle(AffectedUnit);
+		GameState->RemoveUnitFromOrder(AffectedUnit);
 	}
 
 	AffectedUnit->SetTile(PreviousTile);
