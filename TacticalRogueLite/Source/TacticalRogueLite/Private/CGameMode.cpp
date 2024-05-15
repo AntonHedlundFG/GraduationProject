@@ -510,25 +510,20 @@ void ACGameMode::SetVictoryCondition(UCVictoryCondition* inVictoryCondition)
 
 bool ACGameMode::HandleVictoryConditionMet()
 {
-	if (CurrentRoom < RoomsUntilWin)
+	if (GetGameGrid() && Spawner)
 	{
-		if (GetGameGrid() && Spawner)
-		{
-			CurrentRoom++;
-			Spawner->SpawnRoomWithEnemies(GetGameGrid(), CurrentRoom, DefaultEnemyAmount + (CurrentRoom - 1));
-			ResurrectAndProgressToNewRoom();
-			GetGameGrid()->DestroyOldRooms(this);
-		}
-		else
-		{
-			LOG_ERROR("GameMode HandleVictoryConditionMet: Missing Grid or Spawner Reference");
-		}
-		return false;
+		CurrentRoom++;
+		Spawner->SpawnRoomWithEnemies(GetGameGrid(), CurrentRoom, DefaultEnemyAmount + (CurrentRoom - 1));
+		ResurrectAndProgressToNewRoom();
+		GetGameGrid()->DestroyOldRooms(this);
 	}
-
-	LOG_GAMEPLAY("You've won the game!");
-	GameStateRef->SetGameIsOver(true);
-	return true;
+	else
+	{
+		LOG_ERROR("GameMode HandleVictoryConditionMet: Missing Grid or Spawner Reference");
+		GameStateRef->SetGameIsOver(true);
+		return true;
+	}
+	return false;
 }
 
 void ACGameMode::ResurrectAndProgressToNewRoom()
