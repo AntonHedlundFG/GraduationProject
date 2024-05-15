@@ -6,7 +6,7 @@
 #include "Attributes/CAttributeComponent.h"
 
 
-void UCItemData::EquipOnUnit(ACUnit* inUnit)
+void UCItemData::EquipOnUnit(ACUnit* inUnit) //TODO: Handle stacking for actioneffects?
 {
 	
 	UCActionComponent* ActionComp = inUnit->GetActionComp();
@@ -27,6 +27,7 @@ void UCItemData::EquipOnUnit(ACUnit* inUnit)
 			{
 				return;
 			}
+			//TODO: Change to softrefs and loadsynchronous?
 			//Add and start(if thats the case)all "lose" actions this charm is holding. 
 			for (TSubclassOf<UCAction> Action : InstantActions) //all the actions in this list should be true.
 			{

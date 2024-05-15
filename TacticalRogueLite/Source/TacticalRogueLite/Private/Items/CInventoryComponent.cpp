@@ -69,7 +69,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 
 	//If the added item is a charm.
 	if(inItem->ItemSlot == FGameplayTag::RequestGameplayTag("ItemSlot.Charm")) //Temp solution..
-		{
+	{
 		int32 RemainingQuantity = 2; //Change.
 		if (inItem->bCanBeStacked)
 		{
@@ -96,7 +96,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 				}
 			}
 			//If new item.
-			if (RemainingQuantity >= inItem->MaxStackSize)
+			if (RemainingQuantity > inItem->MaxStackSize)
 			{
 				//Create new slot for item.
 				FSlot NewSlot = FSlot(inItem, inItem->MaxStackSize, this);
@@ -123,6 +123,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 
 			return true;
 		}
+	}
 		
 		if (!CheckValidEquipmentTag(SlotTag))
 		{
@@ -145,9 +146,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 		OnItemChanged.Broadcast(this, inItem);
 	
 		return true;
-		}
 	
-	return false;
 }
 
 void UCInventoryComponent::UnEquipItem(FGameplayTag inSlot) //Charms need to be able to be unequipped.

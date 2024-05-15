@@ -155,7 +155,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCActionComponent* GetActionComp() { return ActionComp; }
-
+	
 	UFUNCTION(BlueprintPure)
 	bool IsAutoStart() const
 	{
@@ -169,11 +169,7 @@ public:
 	void OnRep_bIsUndone();
 
 	void Initialize(UCActionComponent* NewActionComp);
-
-	UFUNCTION(BlueprintCallable)
-	FGameplayTag GetActivationTag() const { return ActivationTag; }
 	
-
 	UFUNCTION(Category = "Action")
 	virtual bool CanStart(AActor* Instigator);
 
@@ -244,6 +240,8 @@ public:
 	FGameplayTagContainer GetActionTags() const { return ActionTags; }
 
 	FGameplayTagContainer GetBlockedTags() const { return ActionBlockingTags; }
+	
+	FGameplayTag GetActivationTag() const { return ActivationTag; }
 
 	virtual bool IsSupportedForNetworking() const override
 	{

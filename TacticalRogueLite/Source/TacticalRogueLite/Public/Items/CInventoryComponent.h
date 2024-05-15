@@ -149,7 +149,7 @@ protected:
 	// void K2_OnInventoryItemUsed(UItem* Item, int32 Quantity);
 
 	//List of all slots. 
-	UPROPERTY(BlueprintReadOnly, Category = "Inventory", Replicated)
+	UPROPERTY(BlueprintReadWrite, Category = "Inventory", Replicated)
 	TArray<FSlot> Slots;
 
 #pragma endregion CharmItem Charges
