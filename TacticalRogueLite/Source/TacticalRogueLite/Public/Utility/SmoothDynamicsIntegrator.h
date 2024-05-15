@@ -20,6 +20,8 @@ public:
 	float ResponseDamping;
 	UPROPERTY(EditAnywhere)
 	float ResponseUnderShoot;
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
+	float TMax;
 
 private:
 	FVector Previous;

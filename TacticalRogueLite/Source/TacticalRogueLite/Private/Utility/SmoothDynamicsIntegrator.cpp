@@ -2,11 +2,11 @@
 #include "Math/UnrealMathUtility.h"
 
 USmoothDynamicsIntegrator::USmoothDynamicsIntegrator()
-	:	ResponseFrequency(1.0f), ResponseDamping(1.0f), ResponseUnderShoot(0.0f),
-		K1(0), 
-		K2(0),
-		K3(0),
-		X0(FVector::ZeroVector)
+	: ResponseFrequency(1.0f), ResponseDamping(1.0f), ResponseUnderShoot(0.0f), TMax(1.0f),
+	  K1(0),
+	  K2(0),
+	  K3(0),
+	  X0(FVector::ZeroVector)
 {
 }
 
@@ -25,6 +25,7 @@ void USmoothDynamicsIntegrator::Initialize(const FVector& InitialPosition)
 
 FVector USmoothDynamicsIntegrator::Update(float DeltaTime, const FVector& TargetPosition, FVector Velocity)
 {
+	DeltaTime = FMath::Clamp(DeltaTime, 0.0001f, TMax);
 	if (Velocity.IsZero())
 	{
 		Velocity = (TargetPosition - Previous) / DeltaTime;
