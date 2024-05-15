@@ -194,8 +194,8 @@ void ACTurnOrderUIManager::BeginPlay()
 void ACTurnOrderUIManager::UpdateTurnList()
 {
 	UE_LOG(LogTemp,Warning,TEXT("UpdateTurnList Called"));
-	TArray<ACUnit*>* NewTurnOrder =  &Cast<ACGameState>(GetWorld()->GetGameState())->TurnOrder;
-	if(NewTurnOrder->Num() == 0 && LastTurnOrder.Num() == 0){return;}
+	TArray<ACUnit*> NewTurnOrder = GetWorld()->GetGameState<ACGameState>()->GetCurrentTurnOrder(true);
+	if(NewTurnOrder.Num() == 0 && LastTurnOrder.Num() == 0){return;}
 	
 	TArray<UCTurnOrderPortraitWidget*> WidgetsToAdd;
 	TArray<FVector2D> AddPositions;
@@ -203,11 +203,11 @@ void ACTurnOrderUIManager::UpdateTurnList()
 	TArray<UCTurnOrderPortraitWidget*> WidgetsToMove;
 	TArray<FVector2D> MovePositions;
 
-	TArray<FVector2D> NewPositions = CalculateViewportPositions(NewTurnOrder->Num());
+	TArray<FVector2D> NewPositions = CalculateViewportPositions(NewTurnOrder.Num());
 
-	TArray<ACUnit*> UnitQueue = TArray<ACUnit*>(*NewTurnOrder);
+	TArray<ACUnit*> UnitQueue = TArray<ACUnit*>(NewTurnOrder);
 
-	for(int i = 0; i < NewTurnOrder->Num(); i++)
+	for(int i = 0; i < NewTurnOrder.Num(); i++)
 	{
 		ACUnit* Unit = UnitQueue[0];
 		UnitQueue.RemoveAt(0);
@@ -249,7 +249,7 @@ void ACTurnOrderUIManager::UpdateTurnList()
 
 	for(ACUnit* Unit: LastTurnOrder)
 	{
-		if(!NewTurnOrder->Contains(Unit))
+		if(!NewTurnOrder.Contains(Unit))
 		{
 			UCTurnOrderPortraitWidget* Widget = GetActiveWidget(Unit);
 			if(Widget != nullptr)
@@ -282,7 +282,7 @@ void ACTurnOrderUIManager::UpdateTurnList()
 		FTurnOrderAnimationTask_Add* AddTask = new FTurnOrderAnimationTask_Add(WidgetsToAdd,AddPositions,AnimationWaitTime,AnimationTimeOffset);
 		Executor->AddExecutable(this,AddTask);
 	}
-	LastTurnOrder = TArray<ACUnit*>(*NewTurnOrder);
+	LastTurnOrder = TArray<ACUnit*>(NewTurnOrder);
 }
 
 UCTurnOrderPortraitWidget* ACTurnOrderUIManager::CreatePortraitWidget()

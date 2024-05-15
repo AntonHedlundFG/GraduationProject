@@ -29,7 +29,7 @@ bool UCMovementActionVisualization::Tick(float DeltaTime)
 				if (IsValid(ParentSystem))
 				{
 					ACGameState* GameState = ParentSystem->GetWorld()->GetGameState<ACGameState>();
-					for (ACUnit* Unit : GameState->TurnOrder)
+					for (ACUnit* Unit : GameState->GetCurrentTurnOrder(true))
 					{
 						Unit->SetActorLocation(Unit->GetTile()->GetActorLocation());
 					}

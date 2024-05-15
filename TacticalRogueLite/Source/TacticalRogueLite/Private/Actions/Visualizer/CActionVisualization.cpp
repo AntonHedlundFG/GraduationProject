@@ -53,7 +53,7 @@ bool UCActionVisualization::ReceiveRevertTick_Implementation(float DeltaTime)
 
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 
-	for (ACUnit* Unit : GameState->TurnOrder)
+	for (ACUnit* Unit : GameState->GetCurrentTurnOrder(true))
 	{
 		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation());
 	}
@@ -67,7 +67,7 @@ bool UCActionVisualization::ReceiveTick_Implementation(float DeltaTime)
 
 	ACGameState* GameState = GetWorld()->GetGameState<ACGameState>();
 
-	for (ACUnit* Unit : GameState->TurnOrder)
+	for (ACUnit* Unit : GameState->GetCurrentTurnOrder(true))
 	{
 		Unit->SetActorLocation(Unit->GetTile()->GetActorLocation());
 	}

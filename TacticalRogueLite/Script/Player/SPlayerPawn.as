@@ -231,9 +231,9 @@ class ASPlayerPawn : APawn
     void FollowActiveUnit()
     {
         ACGameState State = Cast<ACGameState>(World.GameState);
-        if (State == nullptr || State.TurnOrder.Num() == 0) return;
+        if (State == nullptr || !IsValid(State.GetCurrentUnit())) return;
 
-        FollowTarget = State.TurnOrder[0];
+        FollowTarget = State.GetCurrentUnit();
         if (FollowTarget != nullptr)
             TargetCameraLocation = FollowTarget.ActorLocation;
     }

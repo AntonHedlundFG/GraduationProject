@@ -18,7 +18,7 @@ void ACAIController::OnTurnChanged()
 		LOG_ERROR("Grid is nullptr for %s", *GetName());
 		return;
 	}
-	Unit = GameState->TurnOrder[0];
+	Unit = GameState->GetCurrentUnit();
 	if(!Unit || Unit->ControllingPlayerIndex != 0) // AI Controller index is 0
 	{
 		Unit = nullptr;

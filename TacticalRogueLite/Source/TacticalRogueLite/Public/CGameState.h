@@ -26,9 +26,6 @@ class TACTICALROGUELITE_API ACGameState : public AGameStateBase
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Actions")
 	TObjectPtr<UCActionVisualizerSystem> ActionVisualizerSystem;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	TSubclassOf<ACTurnIndicator> TurnIndicator;
 	
 public:
 	ACGameState();
@@ -38,18 +35,6 @@ public:
 	float GetGameSpeed() const { return GameSpeed; }
 	UFUNCTION(BlueprintCallable, Category = "Visualization")
 	void SetGameSpeed(float NewSpeed);
-
-	UFUNCTION(BlueprintCallable)
-	void AddUnitToOrder(ACUnit* inUnit) { TurnOrder.Add(inUnit); }
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
-	TArray<ACUnit*> TurnOrder;
-
-	UFUNCTION()
-	void OnRep_TurnOrder() { OnTurnOrderUpdate.Broadcast(); }
-
-	UPROPERTY(BlueprintAssignable, Category = "Turn Order");
-	FOnTurnOrderUpdate OnTurnOrderUpdate;
 
 	UPROPERTY(Replicated, BlueprintReadOnly, Category = "Random")
 	class UCRandomComponent* Random;
@@ -117,6 +102,65 @@ protected:
 
 	UPROPERTY(BlueprintAssignable, Category = "Victory Condition")
 	FOnGameIsOver OnGameIsOver;
+
+#pragma endregion
+
+#pragma region Turn Order
+
+public:
+
+	/// <summary>
+	/// Adds a unit to the turn order
+	/// </summary>
+	/// <param name="inUnit">The unit to add</param>
+	/// <param name="Index">Optional index to insert unit into turn order. 
+	/// 0 means first in line, 
+	/// -1 is the current unit - should only be used to for example 
+	/// undo a death of the active unit</param>
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	void AddUnitToOrder(ACUnit* inUnit, int32 Index = -2);
+
+	//If the unit is the current unit, it will only be removed once the turn ends.
+	//Returns the index of the removed unit. Index is -1 if it was the current unit.
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	int32 RemoveUnitFromOrder(ACUnit* inUnit);
+
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	ACUnit* GetCurrentUnit() { return CurrentUnit; }
+
+	//Only includes current unit at front of array if bIncludeCurrentUnit = true
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	TArray<ACUnit*> GetCurrentTurnOrder(bool bIncludeCurrentUnit = true);
+
+	UFUNCTION(BlueprintCallable, Category = "Turn Order")
+	void ProgressToNextTurn();
+
+	UFUNCTION()
+	void ClearTurnOrder();
+
+	//Triggers whenver a unit is removed/added from the turn order, or when the turn ends.
+	UPROPERTY(BlueprintAssignable, Category = "Turn Order");
+	FOnTurnOrderUpdate OnTurnOrderUpdate;
+
+protected:
+
+	//Not using ReplicatedUsing on this for now since TurnOrder should always change at the same time as this one.
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
+	ACUnit* CurrentUnit;
+
+	//Queue containing any unit in turn order who is not the CurrentUnit
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_TurnOrder, Category = "Turn Order")
+	TArray<ACUnit*> TurnOrder;
+	
+	//Used when CurrentUnit is "RemoveUnitFromOrder"
+	UPROPERTY()
+	bool bDoNotAddCurrentBackIntoQueue = false;
+
+	UFUNCTION()
+	void OnRep_TurnOrder() { OnTurnOrderUpdate.Broadcast(); }
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Turn Order")
+	TSubclassOf<ACTurnIndicator> TurnIndicator;
 
 #pragma endregion
 

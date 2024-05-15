@@ -41,6 +41,7 @@ void ACGameState::SetGameSpeed(float NewSpeed)
 void ACGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACGameState, CurrentUnit);
 	DOREPLIFETIME(ACGameState, TurnOrder);
 	DOREPLIFETIME(ACGameState, Random);
 	DOREPLIFETIME(ACGameState, ActionList);
@@ -97,3 +98,87 @@ void ACGameState::OnRep_WinConText()
 	if (WinConWidget)
 		WinConWidget->UpdateWinConText(WinConText);
 }
+
+#pragma region Turn Order
+
+void ACGameState::AddUnitToOrder(ACUnit* inUnit, int32 Index)
+{
+	if (GetNetMode() == ENetMode::NM_Client) return;
+
+	if (Index < -1 || Index > TurnOrder.Num())
+	{
+		TurnOrder.Add(inUnit);
+		return;
+	}
+	
+	//This should mean someone is undoing the death of the current unit.
+	if (Index == -1 && inUnit == CurrentUnit)
+	{
+		bDoNotAddCurrentBackIntoQueue = false;
+		return;
+	}
+
+	TurnOrder.Insert(inUnit, Index);
+	OnRep_TurnOrder();
+}
+
+int32 ACGameState::RemoveUnitFromOrder(ACUnit* inUnit)
+{
+	if (GetNetMode() == ENetMode::NM_Client) return -2;
+
+	if (inUnit == CurrentUnit)
+	{
+		bDoNotAddCurrentBackIntoQueue = true;
+		return -1;
+	}
+	int32 Index = TurnOrder.Find(inUnit);
+	if (Index == INDEX_NONE) 
+		Index = -2;
+	else
+	{
+		TurnOrder.RemoveSingle(inUnit);
+		OnRep_TurnOrder();
+	}
+	return Index;
+}
+
+TArray<ACUnit*> ACGameState::GetCurrentTurnOrder(bool bIncludeCurrentUnit)
+{
+	if (!bIncludeCurrentUnit)
+	{
+		return TurnOrder;
+	}
+	TArray<ACUnit*> OrderWithCurrent;
+	OrderWithCurrent.Add(CurrentUnit);
+	OrderWithCurrent.Append(TurnOrder);
+	return OrderWithCurrent;
+}
+
+void ACGameState::ProgressToNextTurn()
+{
+	if (GetNetMode() == ENetMode::NM_Client) return;
+
+	if (bDoNotAddCurrentBackIntoQueue)
+	{
+		bDoNotAddCurrentBackIntoQueue = false;
+	}
+	else
+	{
+		if (IsValid(CurrentUnit))
+			TurnOrder.Add(CurrentUnit);
+	}
+
+	CurrentUnit = TurnOrder[0];
+	TurnOrder.RemoveAt(0);
+
+	OnRep_TurnOrder();
+}
+
+void ACGameState::ClearTurnOrder()
+{
+	CurrentUnit = nullptr;
+	TurnOrder.Empty();
+	OnRep_TurnOrder();
+}
+
+#pragma endregion

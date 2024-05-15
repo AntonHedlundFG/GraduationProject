@@ -103,13 +103,13 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 		return false;
 	}
 
-	if (GameStateRef->TurnOrder.IsEmpty())
+	if (!IsValid(GameStateRef->GetCurrentUnit()))
 	{
 		LOG_WARNING("There are no units in the turn order");
 		return false;
 	}
 
-	if (GameStateRef->TurnOrder[0] != inUnit)
+	if (GameStateRef->GetCurrentUnit() != inUnit)
 	{
 		LOG_WARNING("Unit is not first in the turn order");
 		return false;
@@ -188,7 +188,7 @@ bool ACGameMode::TryAbilityUse(AController* inController, ACUnit* inUnit, FGamep
 
 bool ACGameMode::TryUndo(AController* inController)
 {
-	if (!GameStateRef || !GameStateRef->TurnOrder[0])
+	if (!GameStateRef || !IsValid(GameStateRef->GetCurrentUnit()))
 	{
 		LOG_WARNING("No valid unit at front of game state turn order");
 		return false;
@@ -200,7 +200,7 @@ bool ACGameMode::TryUndo(AController* inController)
 		return false;
 	}
 
-	uint8 PlayerIndex = GameStateRef->TurnOrder[0]->ControllingPlayerIndex;
+	uint8 PlayerIndex = GameStateRef->GetCurrentUnit()->ControllingPlayerIndex;
 	AOnlinePlayerState* PlayerState = inController->GetPlayerState<AOnlinePlayerState>();
 	if (!PlayerState || PlayerState->PlayerIndex != PlayerIndex)
 	{
@@ -220,7 +220,7 @@ bool ACGameMode::TryUndo(AController* inController)
 		NextUndoIndex--;
 		if (CurrentAction->bIsUserIncited)
 		{
-			UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
+			UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->GetCurrentUnit());
 			if (Attributes)
 			{
 				Attributes->TryUndoSpendCharge(CurrentAction->UserIncitedItemSlot);
@@ -277,13 +277,13 @@ bool ACGameMode::TryEndTurn(AController* inController)
 		return false;
 	}
 
-	if (GameStateRef->TurnOrder.IsEmpty())
+	ACUnit* CurrentUnit = GameStateRef->GetCurrentUnit();
+	if (!IsValid(CurrentUnit))
 	{
-		LOG_WARNING("There are no units in the turn order");
+		LOG_WARNING("There is no CurrentUnit");
 		return false;
 	}
 
-	ACUnit* CurrentUnit = GameStateRef->TurnOrder[0];
 	if (!CurrentUnit->IsControlledBy(inController))
 	{
 		LOG_WARNING("Controller does not manage current unit");
@@ -329,15 +329,15 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	GameStateRef->ActionList.Empty();
 	GameStateRef->OnActionListUpdate.Broadcast();
 
-	//Move active unit to back of the line
-	GameStateRef->TurnOrder.RemoveAt(0);
-	GameStateRef->TurnOrder.Add(CurrentUnit);
-	GameStateRef->OnRep_TurnOrder();
+	//Move next unit to front of turn order
+	ACUnit* PreviousUnit = CurrentUnit;
+	GameStateRef->ProgressToNextTurn();
+	CurrentUnit = GameStateRef->GetCurrentUnit();
 
-	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(GameStateRef->TurnOrder[0]);
+	UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(CurrentUnit);
 	if (Attributes)
 	{
-		LOG_INFO("Resetting spent charges on %s", *GameStateRef->TurnOrder[0]->GetUnitName());
+		LOG_INFO("Resetting spent charges on %s", *CurrentUnit->GetUnitName());
 		Attributes->ResetSpentCharges();
 	}
 
@@ -345,7 +345,7 @@ bool ACGameMode::TryEndTurn(AController* inController)
 	auto* Subsystem = GetWorld()->GetSubsystem<UCTurnTimerSubsystem>();
 	if (Subsystem)
 	{
-		Subsystem->NextTurn(CurrentUnit, GameStateRef->TurnOrder[0]);
+		Subsystem->NextTurn(PreviousUnit, CurrentUnit);
 	}
 
 	NextUndoIndex = -1;
@@ -381,9 +381,8 @@ void ACGameMode::ExecuteActionStack(AActor* InstigatingActor)
 }
 
 void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
-{
-	GameStateRef->TurnOrder.Empty();
-	
+{	
+	GameStateRef->ClearTurnOrder();
 	TArray<ACUnit*> UnitsRemaining = Units;
 	while (UnitsRemaining.Num() > 0)
 	{
@@ -391,7 +390,7 @@ void ACGameMode::InitializeTurnOrder(const TArray<ACUnit*>& Units)
 		GameStateRef->AddUnitToOrder(UnitsRemaining[RandomIndex]);
 		UnitsRemaining.RemoveAtSwap(RandomIndex);
 	}
-	GameStateRef->OnRep_TurnOrder();
+	GameStateRef->ProgressToNextTurn();
 }
 
 void ACGameMode::ApplyPlayerCount(const TArray<ACUnit*>& Units)

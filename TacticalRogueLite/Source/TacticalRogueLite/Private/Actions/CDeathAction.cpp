@@ -21,15 +21,12 @@ void UCDeathAction::StartAction(AActor* Instigator)
 		return;
 	}
 
-	DeathTurnOrderIndex = GameState->TurnOrder.Find(AffectedUnit);
-	if (DeathTurnOrderIndex == INDEX_NONE)
+	
+
+	DeathTurnOrderIndex = GameState->RemoveUnitFromOrder(AffectedUnit);
+	if (DeathTurnOrderIndex == -2)
 	{
 		LOG_WARNING("Unit was not in turn order");
-	}
-	else
-	{
-		GameState->TurnOrder.RemoveAt(DeathTurnOrderIndex);
-		GameState->OnRep_TurnOrder();
 	}
 
 	DeathTile = AffectedUnit->GetTile();
@@ -57,11 +54,10 @@ void UCDeathAction::UndoAction(AActor* Instigator)
 	}
 
 	AffectedUnit->SetTile(DeathTile);
-	if (DeathTurnOrderIndex != INDEX_NONE)
-	{
-		GameState->TurnOrder.Insert(AffectedUnit, DeathTurnOrderIndex);
-		GameState->OnRep_TurnOrder();
-	}
+	if (DeathTurnOrderIndex > -2)
+		GameState->AddUnitToOrder(AffectedUnit, DeathTurnOrderIndex);
+	else
+		LOG_WARNING("Trying to resurrect unit that wasn't in queue");
 
 	LOG_GAMEPLAY("%s resurrected.", *AffectedUnit->GetUnitName());
 
