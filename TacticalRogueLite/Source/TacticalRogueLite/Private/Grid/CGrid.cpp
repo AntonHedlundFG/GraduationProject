@@ -171,6 +171,7 @@ ACGridTile* ACGrid::GetTileFromCoords(FVector2D inCoords)
 	
 	for (const auto Tile : AllTiles)
 	{
+		if (!IsValid(Tile)) continue;
 		if (Tile->GetGridCoords() == inCoords)
 			return Tile;
 	}

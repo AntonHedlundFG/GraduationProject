@@ -138,7 +138,7 @@ protected:
 	FActionRepData RepData;
 
 	UFUNCTION()
-	void OnRep_RepData();
+	virtual void OnRep_RepData() {}
 
 	// Highlight that will show on the tiles affected by the action.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

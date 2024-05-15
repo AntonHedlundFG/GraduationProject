@@ -39,7 +39,7 @@ protected:
 	// FActionRepData RepData;
 
 	// UFUNCTION()
-	// void OnRep_RepData();
+	virtual void OnRep_RepData() override;
 	
 	UPROPERTY(Replicated)
 	TArray<UCItemData*> Items;

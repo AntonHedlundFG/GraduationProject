@@ -12,18 +12,6 @@
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CAction)
 
-void UCAction::OnRep_RepData()
-{
-	if (RepData.bIsRunning)
-	{
-		StartAction(RepData.Instigator);
-	}
-	else
-	{
-		StopAction(RepData.Instigator);
-	}
-}
-
 bool UCAction::IsRunning() const
 {
 	return RepData.bIsRunning;
@@ -67,6 +55,9 @@ UCActionComponent* UCAction::GetOwningComponent() const
 
 void UCAction::StartAction(AActor* Instigator)
 {
+	if (GetWorld()->GetNetMode() == ENetMode::NM_Client)
+		LOG_WARNING("This should not execute on a client");
+
 	RepData.bIsRunning = true;
 	RepData.Instigator = Instigator;
 	

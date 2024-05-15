@@ -49,6 +49,14 @@ void UCAction_RollItem::UndoAction(AActor* Instigator)
 	Super::UndoAction(Instigator);
 }
 
+void UCAction_RollItem::OnRep_RepData()
+{
+	if (!RepData.bIsRunning)
+ 	{
+ 		StopAction(RepData.Instigator);
+ 	}
+}
+
 void UCAction_RollItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
