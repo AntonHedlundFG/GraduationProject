@@ -3,8 +3,8 @@
 #include "Actions/Visualizer/CActionVisualizerSystem.h"
 #include "AI/CConsideration.h"
 #include "AI/CHighlightTileAction.h"
-#include "Attributes/CAttributeComponent.h"
 #include "Grid/CGridTile.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "UI/Debug/CAiDebugWindow.h"
 #include "Utility/CRandomComponent.h"
 #include "Utility/Logging/CLogManager.h"
@@ -137,7 +137,9 @@ FActionPath ACAIController::DecideBestActions()
 
 	// Remove paths too far from the best path
 	float BestScore = BestPaths[0].GetScore();
-	float Threshold = 0.1f;
+	float WorstScore = BestPaths.Last().GetScore();
+	float ScoreDelta = BestScore - WorstScore;
+	float Threshold = ScoreDelta * .2f;
 	for (int i = BestPaths.Num() - 1; i >= 0; --i)
 	{
 		if(BestPaths[i].GetScore() < BestScore - Threshold)
@@ -148,8 +150,24 @@ FActionPath ACAIController::DecideBestActions()
 	
 	UCRandomComponent* Random = GameState->Random;
 	const int32 RandomIndex = Random->GetRandRange(0, BestPaths.Num() - 1, false);
+
+#if !UE_BUILD_SHIPPING
+	// Debug over the best paths
+	// for (int i = 0; i < BestPaths.Num(); ++i)
+	// {
+	// 	FActionPath& Path = BestPaths[i];
+	// 	UKismetSystemLibrary::DrawDebugString(
+	// 		GetWorld(),
+	// 		Path.GetPath()[0].Value->GetActorLocation(),
+	// 		FString::Printf(TEXT("Score: %f"),
+	// 			Path.GetScore()),
+	// 			nullptr,
+	// 			FColor::Red,
+	// 			5.0f);
+	// }
+#endif
 	
-	return BestPaths[RandomIndex];
+ 	return BestPaths[RandomIndex];
 }
 
 void ACAIController::EvalAbilitiesFromTile(ACGridTile* CurrentTile, TArray<FAbility> Abilities, TArray<FActionPath>& inBestPaths, FActionPath& CurrentPath)
@@ -264,12 +282,12 @@ void ACAIController::ExecuteTurn()
 
 	// Send Paths and their Score to editor UI for Debugging
 #if UE_EDITOR
-	FAiDebugInfo Package;
-	Package.Instigator = Unit->GetUnitName();
-	Package.TotalPathsEvaluated = EvaluatedPaths;
-	Package.ActionPaths = BestPaths;
-	
-	UCAiDebugWindow::GetInstance()->AddPackage(Package);
+	// FAiDebugInfo Package;
+	// Package.Instigator = Unit->GetUnitName();
+	// Package.TotalPathsEvaluated = EvaluatedPaths;
+	// Package.ActionPaths = BestPaths;
+	//
+	// UCAiDebugWindow::GetInstance()->AddPackage(Package);
 #endif
 
 	// Execute the actions
