@@ -32,12 +32,16 @@ public:
 	UFUNCTION(BlueprintPure)
 	int GetPlayerCount() const { return PlayerCount; }
 
+	UFUNCTION(BlueprintCallable)
+	TArray<FString> GetAllPlayerNames();
+	
 	UFUNCTION(BlueprintPure)
 	ACCharacterSelectGameState* GetStateRef() { return StateRef;}
 	
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	virtual void OnPostLogin(AController* NewPlayer) override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Random")
 	TObjectPtr<UCRandomComponent> Random;

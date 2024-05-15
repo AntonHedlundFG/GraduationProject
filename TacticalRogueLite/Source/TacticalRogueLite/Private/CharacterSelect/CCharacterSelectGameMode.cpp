@@ -19,6 +19,8 @@ ACCharacterSelectGameMode::ACCharacterSelectGameMode()
 	Random = CreateDefaultSubobject<UCRandomComponent>(TEXT("Random"));
 }
 
+
+
 void ACCharacterSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
@@ -34,6 +36,7 @@ void ACCharacterSelectGameMode::BeginPlay()
 	StateRef = GetGameState<ACCharacterSelectGameState>();
 	if(StateRef)
 	{
+		StateRef->PlayerNames = GetAllPlayerNames();
 		StateRef->SetPlayerCountAndLocks(PlayerCount);
 		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::CreateSaveGameAndStart);
 		StateRef->BP_SetupUI();
@@ -45,6 +48,34 @@ void ACCharacterSelectGameMode::BeginPlay()
 void ACCharacterSelectGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	UnregisterFromSaveManager();
+}
+
+void ACCharacterSelectGameMode::OnPostLogin(AController* NewPlayer)
+{
+	Super::OnPostLogin(NewPlayer);
+
+	if (StateRef)
+	{
+		const TArray<FString> Names = GetAllPlayerNames();
+		StateRef->PlayerNames = Names;
+		PlayerCount = Names.Num();
+		StateRef->SetPlayerCountAndLocks(PlayerCount);
+	}
+}
+
+TArray<FString> ACCharacterSelectGameMode::GetAllPlayerNames()
+{
+	const int NumPlayerStates = UGameplayStatics::GetNumPlayerStates(this);
+	TArray<FString> Names = TArray<FString>();
+	
+	for (int i = 0; i < NumPlayerStates; i++)
+	{
+		const AOnlinePlayerState* PS = Cast<AOnlinePlayerState>(UGameplayStatics::GetPlayerState(this, i));
+
+		Names.Add(PS->GetPlayerName());
+	}
+
+	return Names;
 }
 
 void ACCharacterSelectGameMode::CreateSaveGameAndStart()
@@ -124,6 +155,9 @@ void ACCharacterSelectGameMode::OnSave()
 		{
 			SaveGame->UnitDetails.Add(Data);
 		}
+
+		//Save Names and Items
+		SaveGame->PlayerCount = PlayerCount;
 		
 		//Save controlling player indexes
 		SaveGame->ControllingPlayers.Empty();

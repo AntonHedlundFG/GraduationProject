@@ -27,7 +27,12 @@ void UCCharacterSelectMenuWidget::UpdateControllingPlayers(TArray<int> inArray)
 	for (int i = 0; i < PlayerSettersArray.Num(); i ++)
 	{
 		if (UCSetControllingPlayerWidget* Widget = Cast<UCSetControllingPlayerWidget>(PlayerSettersArray[i]))
-			Widget->UpdateControllingPlayerVisuals(inArray[i]);
+		{
+			const int Index = inArray[i] - 1;
+			
+			if (Index < StateRef->PlayerNames.Num())
+				Widget->UpdateControllingPlayerVisuals(StateRef->PlayerNames[Index]);
+		}
 	}
 }
 
