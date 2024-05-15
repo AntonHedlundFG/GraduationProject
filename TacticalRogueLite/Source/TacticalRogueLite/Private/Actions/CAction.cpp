@@ -55,7 +55,7 @@ UCActionComponent* UCAction::GetOwningComponent() const
 
 void UCAction::StartAction(AActor* Instigator)
 {
-	if (GetWorld()->GetNetMode() == ENetMode::NM_Client)
+	if (Instigator && Instigator->GetNetMode() == ENetMode::NM_Client)
 		LOG_WARNING("This should not execute on a client");
 
 	RepData.bIsRunning = true;
