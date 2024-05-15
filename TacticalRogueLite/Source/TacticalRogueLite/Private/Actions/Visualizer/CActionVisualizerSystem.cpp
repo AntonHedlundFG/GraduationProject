@@ -55,6 +55,8 @@ void UCActionVisualizerSystem::OnActionListUpdate()
 		{
 			for (TSoftObjectPtr<UCAction> Action : Undo->UndoneActions)
 			{
+				if (!ActionToVisualMap.Contains(Action.Get())) continue;
+
 				TObjectPtr<UCActionVisualization> Visual = ActionToVisualMap[Action.Get()];
 				if (IsValid(Visual))
 					UndoQueue.Enqueue(Visual);

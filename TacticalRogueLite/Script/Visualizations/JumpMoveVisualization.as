@@ -17,6 +17,8 @@
     FVector EndLocation;
     AActor Actor;
 
+    bool bFailedVisualization = false;
+
     UFUNCTION(BlueprintOverride)
     void Enter()
     {
@@ -25,6 +27,7 @@
 
         if(!IsValid(JumpAction))
         {
+            bFailedVisualization = true;
             return;
         }
 
@@ -32,6 +35,12 @@
 
         if(!IsValid(Actor))
         {
+            bFailedVisualization = true;
+            return;
+        }
+        if (!IsValid(JumpAction.FromTile) || !IsValid(JumpAction.TargetTile))
+        {
+            bFailedVisualization = true;
             return;
         }
         StartLocation = JumpAction.FromTile.GetActorLocation();
@@ -42,6 +51,11 @@
     UFUNCTION(BlueprintOverride)
     bool Tick(float DeltaTime)
     {
+        if (bFailedVisualization)
+        {
+            return true;
+        }
+
         TimePassed = Math::Clamp(TimePassed + DeltaTime, 0, Duration);
 
         if(!IsValid(JumpAction) || !IsValid(Actor))

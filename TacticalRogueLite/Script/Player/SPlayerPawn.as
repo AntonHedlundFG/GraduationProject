@@ -36,7 +36,7 @@ class ASPlayerPawn : APawn
 
     //If we haven't manually moved the camera, our TargetLocation will always equal this targets location
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input|Camera")
-    AActor FollowTarget;
+    ACUnit FollowTarget;
 
     // If we should be dragging the camera around
     UPROPERTY(BlueprintReadWrite)
@@ -325,9 +325,9 @@ class ASPlayerPawn : APawn
     UFUNCTION(BlueprintCallable)
     void FollowCameraTarget(float DeltaSeconds)
     {      
-        if (FollowTarget != nullptr)
+        if (FollowTarget != nullptr && FollowTarget.ActorLocation != (FVector::OneVector * 10000))
         {
-            TargetCameraLocation = FollowTarget.ActorLocation;
+            TargetCameraLocation = FollowTarget.ActorLocation;   
         }
         FVector NewLocation = LocationIntegrator.Update(DeltaSeconds, TargetCameraLocation, FVector(0));
         SetActorLocation(NewLocation);
@@ -341,3 +341,4 @@ class ASPlayerPawn : APawn
         TargetCameraLocation.Z = Math::Clamp(TargetCameraLocation.Z, CameraVerticalLimits.X - CameraBoundsMargin, CameraVerticalLimits.Y + CameraBoundsMargin);
     }
 }
+

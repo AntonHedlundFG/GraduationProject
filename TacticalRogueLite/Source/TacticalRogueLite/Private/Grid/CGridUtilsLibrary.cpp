@@ -29,6 +29,9 @@ TArray<FVector2D> UCGridUtilsLibrary::DiagonalDirections()
 
 TArray<ACGridTile*> UCGridUtilsLibrary::BFS_Pathfinding(ACGridTile* inStart, const ACGridTile* inTarget, const FGameplayTagContainer& MovementTags,	const FGameplayTagContainer& BlockingTags /*= FGameplayTagContainer()*/)
 {
+	if (!IsValid(inStart) || !IsValid(inTarget))
+		return TArray<ACGridTile*>();
+
 	TArray<ACGridTile*> OpenSet;
 	TSet<ACGridTile*> ClosedSet;
 	TMap<ACGridTile*, ACGridTile*> Parents;
