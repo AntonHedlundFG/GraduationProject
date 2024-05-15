@@ -110,6 +110,13 @@ void ACPlayerController::InitiateAbilityUse(FGameplayTag inTag)
 	}
 
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
+
+	if (ActionComp->ActiveGameplayTags.HasTag(FGameplayTag::RequestGameplayTag("Unit.Killed")))
+	{
+		LOG_WARNING("Unit is dead, cancelling ability use.");
+		return;
+	}
+
 	FAbility Ability;
 	if (!ActionComp->TryGetAbility(inTag, Ability))
 	{
@@ -198,6 +205,14 @@ void ACPlayerController::FinalizeAbilityUse(ACGridTile* inTargetTile)
 	}
 
 	UCActionComponent* ActionComp = UnitCurrentlyUsingAbility->GetActionComp();
+
+	if (ActionComp->ActiveGameplayTags.HasTag(FGameplayTag::RequestGameplayTag("Unit.Killed")))
+	{
+		LOG_WARNING("Unit is dead, cancelling ability use.");
+		CancelAbilityUse();
+		return;
+	}
+
 	if (!ActionComp->IsValidTargetTile(TagCurrentlyUsed, inTargetTile))
 	{
 		LOG_WARNING("Item target not valid, cancelling ability use.");
