@@ -58,9 +58,11 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 		LOG_WARNING("GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
 		return TArray<ACGridTile*>();	
 	}
+
+	bool bIncludeDiagonals = AttackDirectionMovementTags.HasTag(FGameplayTag::RequestGameplayTag("Movement.Diagonal"));
 	
 	TArray<ACGridTile*> ReturnTiles;
-	TArray<ACGridTile*> Neighbours = inTile->GetNeighbours(false);
+	TArray<ACGridTile*> Neighbours = inTile->GetNeighbours(bIncludeDiagonals);
 	for (int i = 0; i < Neighbours.Num(); ++i)
 	{
 		ACGridTile* Tile = Neighbours[i];

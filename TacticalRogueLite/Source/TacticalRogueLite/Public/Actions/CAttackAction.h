@@ -26,5 +26,10 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	FAttributeModifications ReturnModifications;
+
+	//These tags describe the Movement.Directions used for the attack targeting.
+	//For example, if the attack can hit diagonally, add Movement.Diagonal
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
+	FGameplayTagContainer AttackDirectionMovementTags;
 	
 };
