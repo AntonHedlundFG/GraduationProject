@@ -25,6 +25,14 @@ void UCLogManager::ShutDown()
 
 void UCLogManager::Log(const ELogCategory Category, const FString& Message)
 {
+	
+#if UE_BUILD_SHIPPING
+	// Only log gameplay messages in shipping build.
+	if(Category != ELogCategory::LC_Gameplay)
+		return;
+	
+#endif
+	
 	// Convert the enum to string and prepend to the message
 	const FString LogMessage = FString::Printf(TEXT("%s %s"), *ToString(Category), *Message);
 
