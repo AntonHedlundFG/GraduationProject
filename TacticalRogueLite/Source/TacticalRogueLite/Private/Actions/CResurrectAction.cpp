@@ -43,6 +43,9 @@ void UCResurrectAction::StartAction(AActor* Instigator)
 	TArray<ACUnit*> CurrentTurnOrder = GameState->GetCurrentTurnOrder();
 	if (!CurrentTurnOrder.Contains(AffectedUnit))
 	{
+		FGameplayTag Killed = FGameplayTag::RequestGameplayTag("Unit.Killed");
+		AffectedUnit->GetActionComp()->RemoveTag(Killed);
+
 		const int RandomTurnOrderIndex = FMath::RandRange(0, CurrentTurnOrder.Num() - 1);
 		GameState->AddUnitToOrder(AffectedUnit, RandomTurnOrderIndex);
 		LOG_GAMEPLAY("%s returns from the dead.", *AffectedUnit->GetUnitName());

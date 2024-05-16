@@ -98,8 +98,11 @@ void AOnlineGameMode::Logout(AController* Exiting)
 	if (auto* CastState = Cast<AOnlinePlayerState>(Exiting->PlayerState))
 	{
 		AOnlinePlayerState* NewPS = GetWorld()->SpawnActor<AOnlinePlayerState>(AOnlinePlayerState::StaticClass());
-		CastState->DispatchCopyProperties(NewPS);
-		InactiveStates.Add(NewPS);
+		if (IsValid(NewPS))
+		{
+			CastState->DispatchCopyProperties(NewPS);
+			InactiveStates.Add(NewPS);
+		}
 	}
 	Super::Logout(Exiting);
 }
