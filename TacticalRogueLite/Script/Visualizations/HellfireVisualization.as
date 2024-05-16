@@ -27,15 +27,7 @@ class USHellFireVisualization : UCActionVisualization
             return;
         }
 
-        auto OwningComp = Action.GetOwningComponent();
-        if (IsValid(OwningComp))
-        {
-            auto OwningUnit = Cast<ACUnit>(OwningComp.GetOwner());
-            if (IsValid(OwningUnit))
-            {
-                TargetTile = OwningUnit.GetTile();
-            }
-        }
+        TargetTile = Action.StartTile;
 
         if(!IsValid(TargetTile))
         {
