@@ -13,6 +13,8 @@ void AOnlinePlayerState::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >&
 
 void AOnlinePlayerState::CopyProperties(APlayerState* PlayerState)
 {
+	if (!IsValid(PlayerState)) return;
+
 	Super::CopyProperties(PlayerState);
 
 	if (AOnlinePlayerState* CastState = Cast<AOnlinePlayerState>(PlayerState))

@@ -55,19 +55,19 @@ FString UCAbilityContainer::KeyButtonFromSlot(FGameplayTag ItemSlot)
 	FString Return = FString();
 	if (ItemSlot.ToString().Contains("Boots"))
 	{
-		Return = FString(" (Q)");
+		Return = FString(" (1)");
 	}
 	else if (ItemSlot.ToString().Contains("Weapon"))
 	{
-		Return = FString(" (W)");
+		Return = FString(" (2)");
 	}
 	else if (ItemSlot.ToString().Contains("Armor"))
 	{
-		Return = FString(" (E)");
+		Return = FString(" (3)");
 	}
 	else if (ItemSlot.ToString().Contains("Trinket"))
 	{
-		Return = FString(" (R)");
+		Return = FString(" (4)");
 	}
 	return Return;
 }
