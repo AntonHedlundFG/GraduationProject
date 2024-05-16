@@ -129,7 +129,7 @@ public:
         return TagCountMap.FindRef(Tag); 
     }
 
-    UPROPERTY()
+    UPROPERTY(BlueprintAssignable)
     FOnStackChanged OnStackChanged;
 
 	TMap<FGameplayTag, int32> GetTagCountMap() const { return TagCountMap; }

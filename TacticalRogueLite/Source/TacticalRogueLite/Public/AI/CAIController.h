@@ -124,6 +124,6 @@ private:
 	bool bTurnStarted = false;
 	
 	UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess = "true"))
-	int32 PathsToKeepCount = 5;
+	int32 PathsToKeepCount = 50;
 
 };

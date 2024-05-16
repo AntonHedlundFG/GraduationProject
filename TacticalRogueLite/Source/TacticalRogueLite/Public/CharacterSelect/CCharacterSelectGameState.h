@@ -27,6 +27,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Replicated, Category = "UI|Update")
 	FUpdateUI OnUpdateUI;
 
+	UPROPERTY(BlueprintReadWrite, Replicated)
+	TArray<FString> PlayerNames;
+	
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_ControllingPlayerIndex)
 	TArray<int> ControllingPlayerIndex;
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = OnRep_CharacterIndexes)

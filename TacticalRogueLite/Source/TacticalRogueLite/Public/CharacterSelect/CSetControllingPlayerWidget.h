@@ -35,7 +35,7 @@ public:
 	void UpdateLockVisuals(bool inIsLocked);
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateControllingPlayerVisuals(int inPlayerIndex);
+	void UpdateControllingPlayerVisuals(const FString& inPlayerIndex);
 	
 	
 protected:

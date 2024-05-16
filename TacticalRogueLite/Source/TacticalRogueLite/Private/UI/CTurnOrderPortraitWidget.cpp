@@ -8,7 +8,8 @@
 
 void UCTurnOrderPortraitWidget::SetText(FString text)
 {
-	TextBlock->SetText(FText::FromString(text));
+	if (IsValid(TextBlock))
+		TextBlock->SetText(FText::FromString(text));
 }
 
 void UCTurnOrderPortraitWidget::SetPortrait(FSlateBrush Brush)
@@ -18,7 +19,8 @@ void UCTurnOrderPortraitWidget::SetPortrait(FSlateBrush Brush)
 void UCTurnOrderPortraitWidget::SetPosition(FVector2D ViewportPosition)
 {
 	 UCanvasPanelSlot* PanelSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(this);
-	 PanelSlot->SetPosition(ViewportPosition);
+	 if (IsValid(PanelSlot))
+		PanelSlot->SetPosition(ViewportPosition);
 }
 
 void UCTurnOrderPortraitWidget::SetBackground(FSlateBrush Brush)

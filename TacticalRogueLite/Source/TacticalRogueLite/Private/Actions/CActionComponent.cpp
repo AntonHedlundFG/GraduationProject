@@ -154,6 +154,23 @@ void UCActionComponent::BroadcastAttributeChanged(FGameplayTag InAttributeTag, U
 	}
 }
 
+void UCActionComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	ActiveGameplayTags.OnStackChanged.AddDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
+}
+
+void UCActionComponent::EndPlay(EEndPlayReason::Type EndReason)
+{
+	Super::EndPlay(EndReason);
+	ActiveGameplayTags.OnStackChanged.RemoveDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
+}
+
+void UCActionComponent::TriggerOnGameplayTagsChanged()
+{
+	OnGameplayTagsChanged.Broadcast();
+}
+
 UCActionComponent* UCActionComponent::GetActionComp(AActor* FromActor)
 {
 	if (FromActor)

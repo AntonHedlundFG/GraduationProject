@@ -2,6 +2,7 @@
 #include "CGameState.h"
 #include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
+#include "Actions/CActionComponent.h"
 #include "Utility/Logging/CLogManager.h"
 
 void UCDeathAction::StartAction(AActor* Instigator)
@@ -32,6 +33,7 @@ void UCDeathAction::StartAction(AActor* Instigator)
 	DeathTile = AffectedUnit->GetTile();
 
 	AffectedUnit->SetTile(nullptr);
+	AffectedUnit->GetActionComp()->ActiveGameplayTags.AppendTag(FGameplayTag::RequestGameplayTag("Unit.Killed"));
 	
 	LOG_GAMEPLAY("%s died.", *AffectedUnit->GetUnitName());
 
@@ -52,7 +54,7 @@ void UCDeathAction::UndoAction(AActor* Instigator)
 		LOG_WARNING("Lacking gamestate reference for undoing death");
 		return;
 	}
-
+	AffectedUnit->GetActionComp()->ActiveGameplayTags.RemoveTag(FGameplayTag::RequestGameplayTag("Unit.Killed"));
 	AffectedUnit->SetTile(DeathTile);
 	if (DeathTurnOrderIndex > -2)
 		GameState->AddUnitToOrder(AffectedUnit, DeathTurnOrderIndex);
