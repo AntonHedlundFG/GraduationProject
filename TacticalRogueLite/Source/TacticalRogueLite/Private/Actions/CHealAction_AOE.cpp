@@ -19,17 +19,30 @@ void UCHealAction_AOE::StartAction(AActor* Instigator)
 
 
     TSet<ACGridTile*> TilesInRange = GetActionInfluencedTiles(AttackingUnit->GetTile());
+    
+    ACUnit* Owner = Cast<ACUnit>(GetOwningComponent()->GetOwner());
+    if (!IsValid(Owner))
+    {
+        LOG_ERROR("GetTargetsInRange found no Owner, cannot reach AttributeComponent");
+        return;
+    }
+
+    FGameplayTag PlayerTag = FGameplayTag::RequestGameplayTag("Unit.IsPlayer");
+    FGameplayTag EnemyTag = FGameplayTag::RequestGameplayTag("Unit.IsEnemy");
+    FGameplayTag TeamTag = Owner->GetGameplayTags().HasTag(PlayerTag) ? (PlayerTag) : (EnemyTag);
 
     for (ACGridTile* Tile : TilesInRange)
     {
+        if (!IsValid(Tile))
+            continue;
+        
         ACGridContent* Content = Tile->GetContent();
         if (!IsValid(Content))
             continue;
 
         ACUnit* TargetUnit = Cast<ACUnit>(Content);
 
-        FGameplayTag Tag = TargetUnit->GetTeam();
-        if (IsValid(TargetUnit) && Tag.MatchesTag(FGameplayTag::RequestGameplayTag("Unit.IsPlayer")))
+        if (IsValid(TargetUnit) && TargetUnit->GetGameplayTags().HasTag(TeamTag))
         {
             if (TargetUnit == AttackingUnit && !bCanHealSelf)
                 continue;
@@ -83,7 +96,7 @@ void UCHealAction_AOE::UndoAction(AActor* Instigator)
 
 TSet<ACGridTile*> UCHealAction_AOE::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)
 {
-    return UCGridUtilsLibrary::FloodFill(fromTile, Range, ActionTags, FGameplayTagContainer());
+    return UCGridUtilsLibrary::FloodFillWithCoordinatesForTiles(fromTile->GetParentGrid(), fromTile->GetGridCoords(), Range, ActionTags, FGameplayTagContainer());
 }
 
 void UCHealAction_AOE::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
