@@ -247,6 +247,20 @@ public:
 	{
 		return true;
 	}
+
+	//Utility to 'cast' to expected type(helpful for Blueprint that may expect explicit type rather than UObject base).
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	TSoftObjectPtr<UMaterialInterface> GetIconAsMaterial() const
+	{
+		return TSoftObjectPtr<UMaterialInterface>(Icon.ToSoftObjectPath());
+	}
+
+	//Utility to 'cast' to expected type(helpful for Blueprint that may expect explicit type rather than Uobject base)
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	TSoftObjectPtr<UTexture2D> GetIconAsTexture() const
+	{
+		return TSoftObjectPtr<UTexture2D>(Icon.ToSoftObjectPath());
+	}
 };
 
 
