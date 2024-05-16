@@ -2,6 +2,7 @@
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Kismet/GameplayStatics.h"
 #include "Utility/Logging/CLogManager.h"
+#include "Utility/SaveGame/CSaveGame_Settings.h"
 
 UCSaveGameManager* UCSaveGameManager::Instance = nullptr;
 
@@ -11,68 +12,115 @@ UCSaveGameManager* UCSaveGameManager::Get()
 	{
 		Instance = NewObject<UCSaveGameManager>();
 		Instance->AddToRoot(); // Prevent Garbage Collection
+		Instance->SaveSlots.Add(ESaveGameType::ESGT_Game, "GameSaveSlot");
+		Instance->SaveSlots.Add(ESaveGameType::ESGT_Settings, "SettingsSaveSlot");
 	}
 	return Instance;
 }
 
-UCSaveGame* UCSaveGameManager::CreateNewSave()
+void UCSaveGameManager::RegisterSavable(ESaveGameType SaveGameType, ICSavable* Savable)
 {
-	SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame::StaticClass()));
-	
-	LOG_INFO("New SaveGame Instance Created");
-
-	return SaveGameInstance;
-}
-
-void UCSaveGameManager::SaveGame()
-{
-	if(SaveGameInstance == nullptr) // Create a new Save Game Instance if it doesn't exist
-		SaveGameInstance = CreateNewSave();
-
-	TriggerSaveEvent(); // Trigger Save Event on all Savable Objects
-	
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveSlot, UserIndex); // Save Game
-	LOG_INFO("SaveGame Saved");
-}
-
-void UCSaveGameManager::LoadGame()
-{
-	if (UGameplayStatics::DoesSaveGameExist(SaveSlot, UserIndex)) // Load Save Game if it exists
+	if (!Savables.Contains(SaveGameType))
 	{
-		SaveGameInstance = Cast<UCSaveGame>(UGameplayStatics::LoadGameFromSlot(SaveSlot, UserIndex));
-		LOG_INFO("SaveGame Loaded");
-		TriggerLoadEvent(); // Trigger Load Event on all Savable Objects
+		Savables.Add(SaveGameType, TArray<ICSavable*>());
+	}
+	Savables[SaveGameType].AddUnique(Savable);
+}
+
+void UCSaveGameManager::UnRegisterSavable(ESaveGameType SaveGameType, ICSavable* Savable)
+{
+	if (Savables.Contains(SaveGameType))
+	{
+		Savables[SaveGameType].RemoveSingle(Savable);
+	}
+}
+
+USaveGame* UCSaveGameManager::CreateNewSave(ESaveGameType SaveGameType)
+{
+	USaveGame* NewSaveGame = nullptr;
+	switch (SaveGameType)
+	{
+	case ESaveGameType::ESGT_Game:
+		NewSaveGame = Cast<USaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame::StaticClass()));
+		break;
+	case ESaveGameType::ESGT_Settings:
+		NewSaveGame = Cast<USaveGame>(UGameplayStatics::CreateSaveGameObject(UCSaveGame_Settings::StaticClass()));
+		break;
+	default:
+		break;
+	}
+
+	if (NewSaveGame)
+	{
+		SaveGameInstances.Add(SaveGameType, NewSaveGame);
+		LOG_INFO("New SaveGame Instance Created");
+	}
+	return NewSaveGame;
+}
+
+void UCSaveGameManager::SaveGame(ESaveGameType SaveGameType)
+{
+	if (!SaveGameInstances.Contains(SaveGameType))
+	{
+		CreateNewSave(SaveGameType);
+	}
+
+	USaveGame* SaveGameInstance = SaveGameInstances[SaveGameType];
+	if (SaveGameInstance)
+	{
+		TriggerSaveEvent(SaveGameType);
+		UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveSlots[SaveGameType], UserIndex);
+		LOG_INFO("SaveGame Saved");
+	}
+}
+
+void UCSaveGameManager::LoadGame(ESaveGameType SaveGameType)
+{
+	if (UGameplayStatics::DoesSaveGameExist(SaveSlots[SaveGameType], UserIndex))
+	{
+		USaveGame* LoadedGame = Cast<USaveGame>(UGameplayStatics::LoadGameFromSlot(SaveSlots[SaveGameType], UserIndex));
+		if (LoadedGame)
+		{
+			SaveGameInstances.Add(SaveGameType, LoadedGame);
+			LOG_INFO("SaveGame Loaded");
+			TriggerLoadEvent(SaveGameType);
+		}
 	}
 	else
 	{
-		LOG_INFO("No SaveGame Found When Loading");	
+		LOG_INFO("No SaveGame Found When Loading");
 	}
 }
 
-
-bool UCSaveGameManager::TryGetSaveGame(UCSaveGame*& inSaveGame)
+bool UCSaveGameManager::TryGetSaveGame(ESaveGameType SaveGameType, USaveGame*& inSaveGame)
 {
-	if(SaveGameInstance == nullptr)
+	if (SaveGameInstances.Contains(SaveGameType) && SaveGameInstances[SaveGameType])
 	{
-		return false;
+		inSaveGame = SaveGameInstances[SaveGameType];
+		return true;
 	}
-	inSaveGame = SaveGameInstance;
-	return true; // Return the active Save Game Instance
+	return false;
 }
 
-void UCSaveGameManager::TriggerSaveEvent()
+void UCSaveGameManager::TriggerSaveEvent(ESaveGameType SaveGameType)
 {
-	for (ICSavable* Savable : Savables)
+	if (Savables.Contains(SaveGameType))
 	{
-		Savable->OnSave();
+		for (ICSavable* Savable : Savables[SaveGameType])
+		{
+			Savable->OnSave();
+		}
 	}
 }
 
-void UCSaveGameManager::TriggerLoadEvent()
+void UCSaveGameManager::TriggerLoadEvent(ESaveGameType SaveGameType)
 {
-	for (ICSavable* Savable : Savables)
+	if (Savables.Contains(SaveGameType))
 	{
-		Savable->OnLoad();
+		for (ICSavable* Savable : Savables[SaveGameType])
+		{
+			Savable->OnLoad();
+		}
 	}
 }
 

@@ -11,10 +11,12 @@ class UCRandomComponent : public UActorComponent, public ICSavable
 	GENERATED_BODY()
 public:
 	UCRandomComponent();
+	virtual void RegisterToSaveManager() override;
 	
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	virtual void UnregisterFromSaveManager() override;
 	
 public:
 	// Initializes the random stream with a specific seed.

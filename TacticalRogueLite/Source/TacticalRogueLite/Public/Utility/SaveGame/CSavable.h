@@ -19,6 +19,6 @@ public:
 	virtual void OnSave() { LOG_WARNING("Reached default UCSavable->OnSave() implementation, should not happen."); }
 	virtual void OnLoad() { LOG_WARNING("Reached default UCSavable->OnLoad() implementation, should not happen."); }
 	
-	virtual void RegisterToSaveManager();
-	virtual void UnregisterFromSaveManager();
+	virtual void RegisterToSaveManager() { LOG_WARNING("Savable object needs to implement RegisterToSaveManager for proper functionality"); }
+	virtual void UnregisterFromSaveManager() { LOG_ERROR("Savable object needs to implement UnregisterFromSaveManager for proper functionality"); }
 };

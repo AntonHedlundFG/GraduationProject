@@ -21,6 +21,16 @@ ACGridSpawner::ACGridSpawner()
 	ControllingPlayers = TArray<int>();
 }
 
+void ACGridSpawner::RegisterToSaveManager()
+{
+	UCSaveGameManager::Get()->RegisterSavable(ESaveGameType::ESGT_Game, this);
+}
+
+void ACGridSpawner::UnregisterFromSaveManager()
+{
+	UCSaveGameManager::Get()->UnRegisterSavable(ESaveGameType::ESGT_Game, this);
+}
+
 void ACGridSpawner::BeginPlay()
 {
 	Super::BeginPlay();
@@ -250,19 +260,22 @@ void ACGridSpawner::SpawnRoomWithEnemies(ACGrid* inGrid, int inRoomLevel, int in
 
 void ACGridSpawner::OnSave()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		SaveGame->UnitDetails.Empty();
-		for (auto Data : SpawnData)
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
 		{
-			SaveGame->UnitDetails.Add(Data);
-		}
+			SaveGame->UnitDetails.Empty();
+			for (auto Data : SpawnData)
+			{
+				SaveGame->UnitDetails.Add(Data);
+			}
 		
-		SaveGame->ControllingPlayers.Empty();
-		for (auto Data : ControllingPlayers)
-		{
-			SaveGame->ControllingPlayers.Add(Data);
+			SaveGame->ControllingPlayers.Empty();
+			for (auto Data : ControllingPlayers)
+			{
+				SaveGame->ControllingPlayers.Add(Data);
+			}
 		}
 	}
 	else
@@ -273,19 +286,22 @@ void ACGridSpawner::OnSave()
 
 void ACGridSpawner::OnLoad()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		SpawnData.Empty();
-		for (auto Data : SaveGame->UnitDetails)
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
 		{
-			SpawnData.Add(Data);
-		}
+			SpawnData.Empty();
+			for (auto Data : SaveGame->UnitDetails)
+			{
+				SpawnData.Add(Data);
+			}
 		
-		ControllingPlayers.Empty();
-		for (auto Data : SaveGame->ControllingPlayers)
-		{
-			ControllingPlayers.Add(Data);
+			ControllingPlayers.Empty();
+			for (auto Data : SaveGame->ControllingPlayers)
+			{
+				ControllingPlayers.Add(Data);
+			}
 		}
 	}
 	else

@@ -43,7 +43,7 @@ void ACGameMode::BeginPlay()
 	}
 	Spawner = CreateSpawner();
 	
-	UCSaveGameManager::Get()->LoadGame();
+	UCSaveGameManager::Get()->LoadGame(ESaveGameType::ESGT_Game);
 
 
 	if (Spawner)
@@ -450,8 +450,8 @@ void ACGameMode::InitializeHeroUnits(ACGrid* InGrid)
 {
 	const int HeroUnitsNum = 4;
 	
-	UCSaveGame* SaveGame = nullptr;
-	if(!UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGame = nullptr;
+	if(!UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGame))
 	{
 		LOG_WARNING("Couldn't Find SaveGame When Initializing Units in GameMode");
 		SpawnDefaultHeroUnits(InGrid);
