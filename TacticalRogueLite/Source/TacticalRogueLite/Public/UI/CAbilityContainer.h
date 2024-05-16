@@ -34,4 +34,9 @@ class TACTICALROGUELITE_API UCAbilityContainer : public UUserWidget
 	UFUNCTION(BlueprintCallable)
 	void ClearInfoTarget();
 	virtual void NativeConstruct() override;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateInfoTargetWithCustomText(UWidget* HoveredWidget, FText Title, FText Description);
+
+	FString KeyButtonFromSlot(FGameplayTag ItemSlot);
 };
