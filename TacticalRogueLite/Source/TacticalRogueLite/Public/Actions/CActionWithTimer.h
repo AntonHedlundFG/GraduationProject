@@ -18,11 +18,12 @@ public:
 	virtual void StartAction(AActor* Instigator) override;
 	virtual void UndoAction(AActor* Instigator) override;
 
-	
+
+	virtual void OnTimerFinishes(ACUnit* inAffectedUnit);
 	//OnTimerFinishes_Implementation can be overridden to change the outcome
 	//of the timer finishing.
-	UFUNCTION(BlueprintNativeEvent, Category = "Action")
-	void OnTimerFinishes(ACUnit* inAffectedUnit);
+	UFUNCTION(BlueprintNativeEvent, Category = "Action", meta = (DisplayName = "OnTimerFinishes"))
+	void ReceiveOnTimerFinishes(ACUnit* inAffectedUnit);
 
 	//FOR ANGELSCRIPT: Call this from your StartAction implementation to start 
 	//the timer. Make sure you set AffectedUnit first, since this is done in

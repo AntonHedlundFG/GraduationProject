@@ -16,8 +16,6 @@ class USDurationAction_Thorns : UCActionWithTimer
         
         AffectedUnit = Cast<ACUnit>(Instigator);
         
-        //Enable thorns
-        //AffectedUnit.AttributeComp.OnHealthChanged.AddUFunction(this, n"OnHealthChanged");
         
         Signature.BindUFunction(this, n"OnHealthChanged");
         
@@ -72,8 +70,8 @@ class USDurationAction_Thorns : UCActionWithTimer
     void OnTimerFinishes(ACUnit inAffectedUnit)
     {
         AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
-        GetOwningComponent().OnActionStopped.Broadcast(GetOwningComponent(), this);
-	    GetOwningComponent().RemoveTags(ActionTags);
+        // GetOwningComponent().OnActionStopped.Broadcast(GetOwningComponent(), this);
+	    // GetOwningComponent().RemoveTags(ActionTags);
 
         CLogManager::Log(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
     }

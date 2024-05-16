@@ -34,6 +34,7 @@ void UCActionWithTimer::UndoAction(AActor* Instigator)
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
+
 void UCActionWithTimer::BindTimer()
 {
 	TimerDelegate.BindUFunction(this, FName("OnTimerFinishes"));
@@ -43,9 +44,18 @@ void UCActionWithTimer::BindTimer()
 	LOG_INFO("Setting a timer");
 }
 
-void UCActionWithTimer::OnTimerFinishes_Implementation(ACUnit* inAffectedUnit)
+void UCActionWithTimer::OnTimerFinishes(ACUnit* inAffectedUnit)
 {
 	LOG_WARNING("A timer has finished");
 	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
+
+	ReceiveOnTimerFinishes(inAffectedUnit);
 }
+
+void UCActionWithTimer::ReceiveOnTimerFinishes_Implementation(ACUnit* inAffectedUnit)
+{
+	
+}
+
+
