@@ -44,7 +44,6 @@ bool URollItemActionVisualization::Tick(float DeltaTime)
 		if (ItemSelectionWindow)
 		{
 			ItemSelectionWindow->Close();
-			ItemSelectionWindow->RemoveFromParent();
 		}
 		return true;
 	}

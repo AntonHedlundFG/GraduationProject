@@ -40,4 +40,8 @@ public:
 	void SkipItem();
 	void Open();
 	void Close();
+
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+	bool bClosing = false;
+	float closingTime = 0.0f;
 };

@@ -72,5 +72,23 @@ void UCItemSelectionWindow::Open()
 
 void UCItemSelectionWindow::Close()
 {
-	SetVisibility(ESlateVisibility::Hidden);
+	bClosing = true;
+}
+
+void UCItemSelectionWindow::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
+{
+	Super::NativeTick(MyGeometry, InDeltaTime);
+
+	if (bClosing)
+	{
+		closingTime += InDeltaTime;
+		float Alpha = FMath::Clamp(1.0f - closingTime, 0.0f, 1.0f);
+		SetRenderOpacity(Alpha);
+		if (Alpha == 0.0f)
+		{
+			bClosing = false;
+			SetVisibility(ESlateVisibility::Hidden);
+			RemoveFromParent();
+		}
+	}
 }
