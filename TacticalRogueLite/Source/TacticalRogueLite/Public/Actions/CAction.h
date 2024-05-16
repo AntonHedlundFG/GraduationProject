@@ -97,7 +97,7 @@ public:
 
 	FActionRepData()
 	{
-		bIsRunning = true; //TODO: originally false but is set to not mess up any previously impl actions.
+		bIsRunning = false; //TODO: IMPORTANT? false will mess up alr impl actions..?
 	}
 };
 
@@ -138,7 +138,7 @@ protected:
 	FActionRepData RepData;
 
 	UFUNCTION()
-	virtual void OnRep_RepData() {}
+	virtual void OnRep_RepData(const FActionRepData& OldData) {}
 
 	// Highlight that will show on the tiles affected by the action.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

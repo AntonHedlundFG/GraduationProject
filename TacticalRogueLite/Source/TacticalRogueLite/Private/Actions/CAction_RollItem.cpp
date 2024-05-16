@@ -52,7 +52,7 @@ void UCAction_RollItem::UndoAction(AActor* Instigator)
 	Super::UndoAction(Instigator);
 }
 
-void UCAction_RollItem::OnRep_RepData()
+void UCAction_RollItem::OnRep_RepData(const FActionRepData& OldData)
 {
 	if (!RepData.bIsRunning)
  	{

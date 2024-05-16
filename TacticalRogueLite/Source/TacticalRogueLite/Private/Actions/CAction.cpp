@@ -35,7 +35,7 @@ bool UCAction::CanStart(AActor* Instigator)
 
 void UCAction::OnRep_bIsUndone()
 {
-	LOG_INFO("Action undone");
+	GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
 void UCAction::Initialize(UCActionComponent* NewActionComp)
@@ -52,6 +52,7 @@ UCActionComponent* UCAction::GetOwningComponent() const
 {
 	return ActionComp;
 }
+
 
 void UCAction::StartAction(AActor* Instigator)
 {
@@ -75,6 +76,7 @@ void UCAction::StopAction(AActor* Instigator)
 {
 
 	RepData.bIsRunning = false;
+	RepData.Instigator = Instigator;
 	
 	ReceiveStopAction(Instigator);
 }
@@ -89,11 +91,14 @@ void UCAction::UndoAction(AActor* Instigator)
 	{
 		FAttributeModification Mod = ModifiersAppliedToOwner[i];
 		Mod.bIsUndo = true;
+		
 		Mod.Magnitude = -ModifiersActualDeltas[i];
 		GetOwningComponent()->ApplyAttributeChange(Mod, 0);
 	}
 
 	bIsUndone = true;
+	RepData.Instigator = Instigator;
+	RepData.bIsRunning = false;
 	
 	if (IsValid(Comp))
 	{

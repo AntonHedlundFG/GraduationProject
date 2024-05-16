@@ -30,7 +30,7 @@ void UCActionWithTimer::UndoAction(AActor* Instigator)
 
 	Super::UndoAction(Instigator);
 
-	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+	//GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this); 
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
@@ -44,12 +44,25 @@ void UCActionWithTimer::BindTimer()
 	LOG_INFO("Setting a timer");
 }
 
+void UCActionWithTimer::OnRep_RepData(const FActionRepData& OldData)
+{
+	if (RepData.bIsRunning && !OldData.bIsRunning)
+	{
+		GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
+	}
+	if (OldData.bIsRunning && !RepData.bIsRunning) //Has been active but after last rep call isn't.
+	{
+		GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+	}
+}
+
 void UCActionWithTimer::OnTimerFinishes(ACUnit* inAffectedUnit)
 {
 	LOG_WARNING("A timer has finished");
 	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 
+	RepData.bIsRunning = false; //To replicate OnActionStopped to clients.
 	ReceiveOnTimerFinishes(inAffectedUnit);
 }
 

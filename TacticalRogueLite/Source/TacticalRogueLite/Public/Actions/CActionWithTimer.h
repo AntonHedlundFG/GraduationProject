@@ -49,6 +49,9 @@ public:
 
 protected:
 
+	virtual void OnRep_RepData(const FActionRepData& OldData) override;
+
+
 	int32 Level = 1; //?
 
 	FOnTurnTimerExecute TimerDelegate;
