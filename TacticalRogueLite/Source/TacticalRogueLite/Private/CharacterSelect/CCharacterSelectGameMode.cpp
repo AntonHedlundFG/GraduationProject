@@ -36,7 +36,9 @@ void ACCharacterSelectGameMode::BeginPlay()
 	StateRef = GetGameState<ACCharacterSelectGameState>();
 	if(StateRef)
 	{
-		StateRef->PlayerNames = GetAllPlayerNames();
+		if (GetNetMode() > NM_Standalone)
+			StateRef->PlayerNames = GetAllPlayerNames();
+		
 		StateRef->SetPlayerCountAndLocks(PlayerCount);
 		StateRef->OnReadyToStart.AddDynamic(this, &ACCharacterSelectGameMode::CreateSaveGameAndStart);
 		StateRef->BP_SetupUI();
@@ -65,16 +67,32 @@ void ACCharacterSelectGameMode::OnPostLogin(AController* NewPlayer)
 
 TArray<FString> ACCharacterSelectGameMode::GetAllPlayerNames()
 {
-	const int NumPlayerStates = UGameplayStatics::GetNumPlayerStates(this);
-	TArray<FString> Names = TArray<FString>();
-	
-	for (int i = 0; i < NumPlayerStates; i++)
+	TArray<FString> Names = TArray
 	{
-		const AOnlinePlayerState* PS = Cast<AOnlinePlayerState>(UGameplayStatics::GetPlayerState(this, i));
+		FString("Player 1"),
+		FString("Player 2"),
+		FString("Player 3"),
+		FString("Player 4")
+	};
 
-		Names.Add(PS->GetPlayerName());
+	if (!StateRef)
+		return Names;
+	
+	auto PlayerArray = StateRef->PlayerArray;
+
+	for (auto Player : PlayerArray)
+	{
+		if (const AOnlinePlayerState* PS = Cast<AOnlinePlayerState>(Player))
+		{
+			int i = PS->PlayerIndex - 1;
+			FString PlayerName = Player->GetPlayerName();
+			if (i < Names.Num())
+			{
+				Names[i] = PlayerName;
+			}
+		}
 	}
-
+		
 	return Names;
 }
 
