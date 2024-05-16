@@ -72,6 +72,8 @@ class USDurationAction_Thorns : UCActionWithTimer
     void OnTimerFinishes(ACUnit inAffectedUnit)
     {
         AffectedUnit.ActionComp.RemoveAttributeChangedListener(GameplayTags::Attribute_Health, Signature);
+        GetOwningComponent().OnActionStopped.Broadcast(GetOwningComponent(), this);
+	    GetOwningComponent().RemoveTags(ActionTags);
 
         CLogManager::Log(ELogCategory::LC_Gameplay, f"{AffectedUnit.UnitName} no longer has thorns.");
     }
