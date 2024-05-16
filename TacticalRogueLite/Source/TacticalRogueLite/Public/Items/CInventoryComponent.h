@@ -129,12 +129,13 @@ protected:
 #pragma region CharmItem Charges
 
 	//Check if a charm is already equipped. 
-	bool DoesItemExist(const UCItemData* Item, FSlot& OutSlot);
+	bool GetSlotFromItem(const UCItemData* Item, FSlot& OutSlot);
 
 	//Check if we have any blocking tags that makes us unable to carry the charm. 
 	UFUNCTION(BlueprintPure, Category = "Inventory")
 	bool CanCarryCharm(const UCItemData_Charm* Charm, const int32 Quantity) const;
 
+	void SetSlot(const UCItemData* Item,FSlot Slot);
 	//Probably not neccessary since we equip/unequip the same way as the other items?
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool RemoveCharm(UCItemData_Charm* Charm, int32 Quantity, int32& RemovedQuantity);

@@ -190,7 +190,7 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	
 	NewAction->Initialize(this);
 	
-	if (NewAction->IsAutoStart() && ensure(NewAction->CanStart(Instigator))) //Eventuellt till charms.. 
+	if (NewAction->IsAutoStart() && NewAction->CanStart(Instigator)) //Eventuellt till charms.. 
 	 {
 	 	NewAction->StartAction(Instigator);
 		return;

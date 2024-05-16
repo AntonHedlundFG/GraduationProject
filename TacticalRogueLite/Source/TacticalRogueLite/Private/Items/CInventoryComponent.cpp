@@ -6,6 +6,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Actions/CActionComponent.h"
 #include "GamePlayTags/SharedGameplayTags.h"
+#include "Iris/Core/IrisDebugging.h"
 #include "ItemData/CItemData.h"
 
 UCInventoryComponent::UCInventoryComponent()
@@ -71,7 +72,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 	{
 		//Do we already own the item?
 		FSlot FoundSlot;
-		if (DoesItemExist(inItem, FoundSlot))
+		if (GetSlotFromItem(inItem, FoundSlot))
 		{
 			if (inItem->bCanBeStacked)
 			{
@@ -87,6 +88,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 						//Rules to not be able to equip items? Blocked tags..?
 							
 						FoundSlot.UpdateQuantity();
+						SetSlot(inItem,FoundSlot);
 						AddItem(inItem); //? TODO: how will actions behave when stacked?
 						//NotifyInventoryItemAdded(Item, AddedQuantity); //Add new instance??? 
 						//NotifyInventoryUpdated();
@@ -99,7 +101,7 @@ bool UCInventoryComponent::TryEquipItem(UCItemData* inItem) //Charm is not added
 		else
 		{
 			//Create new slot for item.
-			FSlot NewSlot = FSlot(inItem, inItem->MaxStackSize, this);
+			FSlot NewSlot = FSlot(inItem, 1, this);
 			CharmSlots.Add(NewSlot);
 			AddItem(inItem);
 		}
@@ -195,7 +197,7 @@ bool UCInventoryComponent::CheckValidEquipmentTag(FGameplayTag inTag)
 
 #pragma region CharmItem Charges
 
-bool UCInventoryComponent::DoesItemExist(const UCItemData* Item, FSlot& OutSlot)
+bool UCInventoryComponent::GetSlotFromItem(const UCItemData* Item, FSlot& OutSlot)
 {
 	for (FSlot& Slot : CharmSlots)
 	{
@@ -213,6 +215,17 @@ bool UCInventoryComponent::CanCarryCharm(const UCItemData_Charm* Item, const int
 {
 	//if blocked tags?
 	return false;
+}
+
+void UCInventoryComponent::SetSlot(const UCItemData* Item,FSlot Slot)
+{
+	for (FSlot& _Slot : CharmSlots)
+	{
+		if (_Slot.ItemInstance == Item)
+		{
+			_Slot = Slot;
+		}
+	}
 }
 
 
