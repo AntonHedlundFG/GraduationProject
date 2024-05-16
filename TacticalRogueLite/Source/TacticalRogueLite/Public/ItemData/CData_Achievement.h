@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Assets/AssetManager/CAssetManager.h"
 #include "ItemData/CData.h"
 #include "CData_Achievement.generated.h"
 
