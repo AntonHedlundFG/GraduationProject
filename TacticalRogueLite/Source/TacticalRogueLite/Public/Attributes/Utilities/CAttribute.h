@@ -144,7 +144,7 @@ public:
 	int Magnitude;
 
 	//Any tags that can provide context(blocked, crit..).
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite,EditDefaultsOnly)
 	FGameplayTagContainer AddedTags;
 
 	//Optional curve, sampled on X-axis at the "Level" of the effect owning this mod. Then multiplied by magnitude.
