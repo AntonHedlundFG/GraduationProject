@@ -1,9 +1,9 @@
 
 
 #include "Items/CDefaultUnitEquipment.h"
-
 #include "GridContent/CUnit.h"
 #include "Items/CInventoryComponent.h"
+#include "Utility/Logging/CLogManager.h"
 
 void UCDefaultUnitEquipment::EquipUnit(ACUnit* unit)
 {
