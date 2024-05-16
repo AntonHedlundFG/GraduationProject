@@ -81,6 +81,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	TArray<FAbility> GetEquippedAbilities() const;
+
+	UFUNCTION(BlueprintPure)
+	bool IsAlive() const;
 	
 	UFUNCTION(BlueprintCallable)
 	UCAttributeComponent* GetAttributeComp() const { return AttributeComp; }

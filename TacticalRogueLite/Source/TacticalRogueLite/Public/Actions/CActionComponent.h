@@ -19,7 +19,7 @@ DECLARE_DYNAMIC_DELEGATE_SevenParams(FAttributeChangedSignature, UCActionCompone
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityChanged, UCActionComponent*, OwningComp, FAbility, Ability);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameplayTagsChanged);
 UENUM(BlueprintType)
 enum class EGameplayEventScope : uint8
 {
@@ -40,6 +40,11 @@ class TACTICALROGUELITE_API UCActionComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type EndReason) override;
+	
+	UFUNCTION()
+	void TriggerOnGameplayTagsChanged();
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	static UCActionComponent* GetActionComp(AActor* FromActor);
@@ -47,6 +52,9 @@ public:
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Tags")
 	FGameplayTagStackContainer ActiveGameplayTags;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnGameplayTagsChanged OnGameplayTagsChanged;
 
 	/* 
 	* Returns true if we have a one or more of the tag in the stack.

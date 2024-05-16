@@ -58,6 +58,8 @@ TArray<ACGridTile*> UCAttackAction::GetValidTargetTiles_Implementation(ACGridTil
 		LOG_WARNING("GetValidTargetTiles found no OwningComponent, cannot reach AttributeComponent");
 		return TArray<ACGridTile*>();	
 	}
+	if (!IsValid(inTile))
+		return TArray<ACGridTile*>();
 
 	bool bIncludeDiagonals = AttackDirectionMovementTags.HasTag(FGameplayTag::RequestGameplayTag("Movement.Diagonal"));
 	

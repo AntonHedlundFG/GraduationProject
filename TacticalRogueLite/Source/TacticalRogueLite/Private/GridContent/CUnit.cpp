@@ -105,6 +105,13 @@ TArray<FAbility> ACUnit::GetEquippedAbilities() const
 	return Abilities;
 }
 
+bool ACUnit::IsAlive() const
+{
+	if (!ActionComp) return false;
+
+	return !ActionComp->HasTag(FGameplayTag::RequestGameplayTag("Unit.Killed"));
+}
+
 void ACUnit::SetSprite(UPaperSprite* inSprite)
 {
 	Sprite = inSprite;

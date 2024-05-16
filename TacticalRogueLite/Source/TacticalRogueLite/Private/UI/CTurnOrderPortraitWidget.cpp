@@ -8,7 +8,8 @@
 
 void UCTurnOrderPortraitWidget::SetText(FString text)
 {
-	TextBlock->SetText(FText::FromString(text));
+	if (IsValid(TextBlock))
+		TextBlock->SetText(FText::FromString(text));
 }
 
 void UCTurnOrderPortraitWidget::SetPortrait(FSlateBrush Brush)
