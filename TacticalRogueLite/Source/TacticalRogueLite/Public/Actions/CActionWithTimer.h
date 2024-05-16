@@ -18,7 +18,7 @@ public:
 	virtual void StartAction(AActor* Instigator) override;
 	virtual void UndoAction(AActor* Instigator) override;
 
-
+	UFUNCTION()
 	virtual void OnTimerFinishes(ACUnit* inAffectedUnit);
 	//OnTimerFinishes_Implementation can be overridden to change the outcome
 	//of the timer finishing.
