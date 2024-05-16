@@ -80,7 +80,8 @@ class USAction_AoEDamage : UCAction
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill( fromTile, Range, ActionTags, BlockingTags);
+        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFillWithCoordinatesForTiles( fromTile.GetParentGrid(), fromTile.GetGridCoords(), Range, ActionTags, BlockingTags);
+
         if(!bCanDamageSelf)
             TilesInRange.Remove(fromTile);
 

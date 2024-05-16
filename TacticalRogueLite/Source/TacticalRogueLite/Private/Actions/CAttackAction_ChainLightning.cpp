@@ -23,7 +23,6 @@ TArray<ACGridTile*> UCAttackAction_ChainLightning::GetValidTargetTiles_Implement
     GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.AttackRange"), RangeAttribute);
     
     return GetTargetsInRange(inTile, RangeAttribute.GetValue());
-    return TArray<ACGridTile*>();
 }
 
 void UCAttackAction_ChainLightning::StartAction(AActor* Instigator)
@@ -86,7 +85,7 @@ void UCAttackAction_ChainLightning::UndoAction(AActor* Instigator)
 
 TArray<ACGridTile*> UCAttackAction_ChainLightning::GetTargetsInRange(ACGridTile* inTile, int Range)
 {
-    TSet<FVector2D> TilesInRange = UCGridUtilsLibrary::FloodFillWithCoordinates(inTile->GetGridCoords(), Range, ActionTags);
+    TSet<ACGridTile*> TilesInRange = UCGridUtilsLibrary::FloodFillWithCoordinatesForTiles(inTile->GetParentGrid(), inTile->GetGridCoords(), Range, ActionTags, BlockingTags);
 
     ACUnit* Owner = Cast<ACUnit>(GetOwningComponent()->GetOwner());
     if (!IsValid(Owner))
@@ -97,13 +96,12 @@ TArray<ACGridTile*> UCAttackAction_ChainLightning::GetTargetsInRange(ACGridTile*
 
     FGameplayTag PlayerTag = FGameplayTag::RequestGameplayTag("Unit.IsPlayer");
     FGameplayTag EnemyTag = FGameplayTag::RequestGameplayTag("Unit.IsEnemy");
+    FGameplayTag OpponentTag = Owner->GetGameplayTags().HasTag(PlayerTag) ? (EnemyTag) : (PlayerTag);
 
     // Filter invalid tiles
-    FGameplayTag OpponentTag = Owner->GetGameplayTags().HasTag(PlayerTag) ? (EnemyTag) : (PlayerTag);
     TArray<ACGridTile*> ReturnTiles;
-    for (FVector2D TileCoords : TilesInRange)
+    for (ACGridTile* Tile : TilesInRange)
     {
-        ACGridTile* Tile = inTile->GetParentGrid()->GetTileFromCoords(TileCoords);
         if (!IsValid(Tile))
             continue;
 

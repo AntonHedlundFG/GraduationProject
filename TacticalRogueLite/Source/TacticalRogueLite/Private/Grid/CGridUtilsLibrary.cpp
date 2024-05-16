@@ -306,6 +306,31 @@ TSet<FVector2D> UCGridUtilsLibrary::FloodFillWithCoordinates(const FVector2D sta
 	return ClosedSet;
 }
 
+TSet<ACGridTile*> UCGridUtilsLibrary::FloodFillWithCoordinatesForTiles(ACGrid* Grid, FVector2D startCoord, int Depth,
+	const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/, const FGameplayTagContainer& BlockingTags /*= FGameplayTagContainer()*/)
+{
+	TSet<ACGridTile*> TilesInRange;
+	
+	if ( !Grid ) return TilesInRange;
+	
+	TSet<FVector2D> TileCoordinates = FloodFillWithCoordinates(startCoord, Depth, MovementTags);
+
+	for ( FVector2D TileCoordinate : TileCoordinates )
+	{
+		ACGridTile* Tile = Grid->GetTileFromCoords(TileCoordinate);
+		if(!Tile) continue;
+
+		ACGridContent* Content = Tile->GetContent();
+		if( Content && Content->GetGameplayTags().HasAny(BlockingTags) )
+		{
+			continue;
+		}
+		TilesInRange.Add(Tile);
+	}
+
+	return TilesInRange;
+}
+
 TSet<FVector2D> UCGridUtilsLibrary::GetReachableCoordinates(FVector2D TileCoords, const FGameplayTagContainer& MovementTags /*= FGameplayTagContainer()*/) {
 	TSet<FVector2D> NeighboursCoords;
 

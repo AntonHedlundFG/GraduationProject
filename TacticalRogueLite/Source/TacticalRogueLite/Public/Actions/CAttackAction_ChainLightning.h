@@ -20,6 +20,8 @@ public:
 	int BounceRange = 1;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int BounceCount = 1;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	FGameplayTagContainer BlockingTags;
 
 	UPROPERTY(Replicated, BlueprintReadWrite)
 	ACUnit* AttackingUnit;

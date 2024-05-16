@@ -3,6 +3,9 @@ class USAttackAction_Ranged : UCAttackAction
     UPROPERTY()
     int AttackRange = 1;
 
+    UPROPERTY()
+    FGameplayTagContainer BlockingTags;
+
 
     UFUNCTION(BlueprintOverride)
     TArray<ACGridTile> GetValidTargetTiles(ACGridTile inTile)
@@ -20,13 +23,16 @@ class USAttackAction_Ranged : UCAttackAction
         int Multi = 0;
         GetOwningComponent().GetAttribute(FGameplayTag::RequestGameplayTag(n"Attribute.AttackRange"), Current, Base, Add, Multi);
 
-        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFill(inTile, Current, AttackDirectionMovementTags, FGameplayTagContainer());
+        TSet<ACGridTile> TilesInRange = CGridUtils::FloodFillWithCoordinatesForTiles( inTile.GetParentGrid(), inTile.GetGridCoords(), Current, AttackDirectionMovementTags, BlockingTags);
 
 
 
         TArray<ACGridTile> ReturnTiles;
         for (ACGridTile Tile : TilesInRange)
         {
+            if(Tile == nullptr)
+                continue;
+
             ACGridContent Content = Tile.GetContent();
             if(Content == nullptr)
                 continue;

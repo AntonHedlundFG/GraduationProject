@@ -49,6 +49,11 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static TSet<FVector2D> FloodFillWithCoordinates(FVector2D startCoord, int Depth, const FGameplayTagContainer& MovementTags = FGameplayTagContainer());
+
+	UFUNCTION(BlueprintCallable)
+	static TSet<ACGridTile*> FloodFillWithCoordinatesForTiles(ACGrid* Grid, FVector2D startCoord, int Depth,
+	const FGameplayTagContainer& MovementTags = FGameplayTagContainer(), const FGameplayTagContainer& BlockingTags = FGameplayTagContainer());
+
 	
 	// Returns a set of coordinates that are reachable from the input tile.
 	// No filters are applied, so this will return all reachable coordinates even if the tiles are blocked or if there are no tiles at the coordinates.

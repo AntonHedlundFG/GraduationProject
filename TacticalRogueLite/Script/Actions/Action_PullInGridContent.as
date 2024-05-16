@@ -7,12 +7,13 @@
 
     UPROPERTY(Replicated)
     TArray<ACGridContent> ContentInRange;
-
     UPROPERTY(Replicated)
     TArray<ACGridTile> ContentStartTiles;
-    
     UPROPERTY(Replicated)
     ACGridTile TargetTile;
+
+    UPROPERTY()
+    FGameplayTagContainer BlockingTags;
 
     UFUNCTION(BlueprintOverride)
     void StartAction(AActor Instigator)
@@ -87,6 +88,6 @@
     UFUNCTION(BlueprintOverride)
     TSet<ACGridTile> GetActionInfluencedTiles(ACGridTile fromTile)
     {
-        return CGridUtils::FloodFill( fromTile, Range, ActionTags, ActionBlockingTags);
+        return CGridUtils::FloodFillWithCoordinatesForTiles( fromTile.GetParentGrid(), fromTile.GetGridCoords(), Range, ActionTags, BlockingTags);
     }
 }
