@@ -31,9 +31,17 @@ class USCombatLogWidget: UCResizableWindow
     void Initialize()
     {
         UCLogManager::Get().OnNewLogEntry.AddUFunction(this,n"RecieveMessage");
-        FilterMenu.OnFilterUpdated.AddUFunction(this,n"UpdateFilter");
-        //Since the log is initialized before the filter, We have to set the filter here, before it can be updated;
         LogFilter |= UCGameplayLogDropDownMenu::GetFilterFlag(ELogCategory::LC_Gameplay);
+        if(ACPlayerController::IsWithEditor())
+        {
+            FilterMenu.OnFilterUpdated.AddUFunction(this,n"UpdateFilter");
+        }
+        else
+        {
+            FilterMenu.RemoveFromParent();
+            FilterMenu = nullptr;
+        }
+        //Since the log is initialized before the filter, We have to set the filter here, before it can be updated;
         ClearLog();
         bIsOpen = true;
        // AddMessage(UCCombatLogger::Format(ECombatLogCategory::COMBAT,"Combat Logger Initialized."));

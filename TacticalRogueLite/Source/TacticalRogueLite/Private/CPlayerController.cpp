@@ -43,7 +43,7 @@ bool ACPlayerController::TryLineCastForGridTile(FVector inStart, FVector Directi
 	return false;
 }
 
-bool ACPlayerController::IsWithEditor() const
+bool ACPlayerController::IsWithEditor()
 {
 #if WITH_EDITOR
 	return true;

@@ -77,7 +77,7 @@ void UCMovableWindow::Open()
 	{
 		UGameplayStatics::PlaySound2D(GetWorld(),OpenSound);
 	}
-	MainCanvas->SetVisibility(ESlateVisibility::Visible);
+	MainCanvas->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 	OnWindowOpen.Broadcast();
 }
 

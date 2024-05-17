@@ -31,7 +31,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid")
 	bool TryLineCastForGridTile(FVector inStart, FVector Direction, float Distance, ACGridTile*& outTile);
 	UFUNCTION(BlueprintCallable)
-	bool IsWithEditor() const;
+	static bool IsWithEditor();
 	
 private:
 
