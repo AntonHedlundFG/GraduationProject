@@ -18,7 +18,6 @@ void UCVictoryConditionWidget::SetUp()
 	// RestartButton->OnPressed.AddUniqueDynamic(this,&UCVictoryConditionWidget::Restart);
 	MainMenuButton->OnPressed.AddUniqueDynamic(this, &UCVictoryConditionWidget::GoToMainMenu);
 	QuitButton->OnPressed.AddUniqueDynamic(this,&UCVictoryConditionWidget::QuitGame);
-	bIsOpen = false;
 	SetVisibility(ESlateVisibility::Hidden);
 
 	if (ACGameState* StateRef = Cast<ACGameState>(GetWorld()->GetGameState()))
