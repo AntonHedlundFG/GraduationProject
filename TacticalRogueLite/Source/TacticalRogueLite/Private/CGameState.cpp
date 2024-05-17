@@ -181,4 +181,18 @@ void ACGameState::ClearTurnOrder()
 	OnRep_TurnOrder();
 }
 
+void ACGameState::OnRep_TurnOrder()
+{
+	if (!IsValid(CurrentUnit)) 
+		return;
+
+	for (ACUnit* Unit : TurnOrder)
+	{
+		if (!IsValid(Unit))
+			return;
+	}
+
+	OnTurnOrderUpdate.Broadcast();
+}
+
 #pragma endregion

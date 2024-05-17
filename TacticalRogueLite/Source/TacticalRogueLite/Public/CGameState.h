@@ -158,7 +158,7 @@ protected:
 	bool bDoNotAddCurrentBackIntoQueue = false;
 
 	UFUNCTION()
-	void OnRep_TurnOrder() { OnTurnOrderUpdate.Broadcast(); }
+	void OnRep_TurnOrder();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Turn Order")
 	TSubclassOf<ACTurnIndicator> TurnIndicator;

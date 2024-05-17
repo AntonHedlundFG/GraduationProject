@@ -52,6 +52,7 @@ USaveGame* UCSaveGameManager::CreateNewSave(ESaveGameType SaveGameType)
 
 	if (NewSaveGame)
 	{
+		SaveGameInstances.Remove(SaveGameType);
 		SaveGameInstances.Add(SaveGameType, NewSaveGame);
 		LOG_INFO("New SaveGame Instance Created");
 	}
