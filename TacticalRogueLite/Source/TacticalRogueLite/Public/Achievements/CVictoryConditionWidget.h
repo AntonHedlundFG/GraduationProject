@@ -17,8 +17,8 @@ class TACTICALROGUELITE_API UCVictoryConditionWidget : public UUserWidget
 protected:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> MainMenuButton;
-	// UPROPERTY(meta = (BindWidget))
-	// TObjectPtr<UButton> RestartButton;
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<UButton> RestartButton;
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> QuitButton;
 	UPROPERTY(EditDefaultsOnly)

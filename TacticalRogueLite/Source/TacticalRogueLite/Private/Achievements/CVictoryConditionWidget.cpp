@@ -15,7 +15,7 @@
 
 void UCVictoryConditionWidget::SetUp()
 {
-	// RestartButton->OnPressed.AddUniqueDynamic(this,&UCVictoryConditionWidget::Restart);
+	RestartButton->OnPressed.AddUniqueDynamic(this,&UCVictoryConditionWidget::Restart);
 	MainMenuButton->OnPressed.AddUniqueDynamic(this, &UCVictoryConditionWidget::GoToMainMenu);
 	QuitButton->OnPressed.AddUniqueDynamic(this,&UCVictoryConditionWidget::QuitGame);
 	SetVisibility(ESlateVisibility::Hidden);
@@ -32,7 +32,7 @@ void UCVictoryConditionWidget::OpenWindow()
 	
 	if (!GetWorld()->GetAuthGameMode())
 	{
-		// RestartButton->SetVisibility(ESlateVisibility::Hidden);
+		RestartButton->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 
