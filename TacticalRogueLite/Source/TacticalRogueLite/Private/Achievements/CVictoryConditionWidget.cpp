@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "TacticalRogueLite/OnlineSystem/Public/EpicOnlineSubsystem.h"
+#include "TacticalRogueLite/OnlineSystem/Public/OnlinePlayerController.h"
 #include "Utility/SaveGame/CSaveGame.h"
 #include "Utility/SaveGame/CSaveGameManager.h"
 
@@ -76,6 +77,9 @@ void UCVictoryConditionWidget::GoToMainMenu()
 	}
 	else if (MainMenuRef)
 	{
+		auto* PC = Cast<AOnlinePlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+		if (PC)
+			PC->Server_ManualDisconnect();
 		UGameplayStatics::OpenLevelBySoftObjectPtr(this, MainMenuRef);
 	}
 }
