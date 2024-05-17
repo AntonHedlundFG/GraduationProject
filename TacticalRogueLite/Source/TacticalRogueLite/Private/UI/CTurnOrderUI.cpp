@@ -17,16 +17,19 @@ UCTurnOrderPortraitWidget* UCTurnOrderUI::CreatePortraitWidget()
 
 UCTurnOrderPortraitWidget* UCTurnOrderUI::DeQueuePortraitWidget()
 {
+	//TODO:Ensure that the widget queue doesnt contain nullptrs
+	
 	if(WidgetPool.IsEmpty())
 	{
 		WidgetPool.Enqueue(CreatePortraitWidget());
 	}
 	UCTurnOrderPortraitWidget* Widget;
-	//TODO:Ensure that the widget queue doesnt contain nullptrs
-	do
+	WidgetPool.Dequeue(Widget);
+
+	if(Widget == nullptr)
 	{
-		WidgetPool.Dequeue(Widget);
-	}while(Widget == nullptr);
+		Widget = CreatePortraitWidget();
+	}
 	
 	HandleDequeue(Widget);
 	return Widget;
@@ -101,7 +104,8 @@ void UCTurnOrderUI::UpdateTurnList()
 			UCTurnOrderPortraitWidget* Widget = DeQueuePortraitWidget();
 			if (!IsValid(Widget)) continue;
 			FString UnitName = Unit->GetUnitName();
-			Widget->SetText(UnitName.IsEmpty() ? FString("Unknown") : UnitName);
+			FString Text = UnitName.IsEmpty() ? FString("Unknown") : UnitName;
+			Widget->SetText(Text);
 			ActivePortraits.Add(Unit,Widget);
 			PortraitsToAnimateIn.Add(Widget);
 			//Save the index in which it was added??
@@ -158,6 +162,10 @@ void UCTurnOrderUI::NativeConstruct()
 
 void UCTurnOrderUI::EnQueuePortraitWidget(UCTurnOrderPortraitWidget* widget)
 {
+	if(widget == nullptr) 
+	{
+		return;
+	}
 	HandleEnqueue(widget);
 	WidgetPool.Enqueue(widget);
 }
