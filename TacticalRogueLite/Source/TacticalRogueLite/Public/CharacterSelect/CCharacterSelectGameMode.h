@@ -42,6 +42,8 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void OnPostLogin(AController* NewPlayer) override;
+	virtual void RegisterToSaveManager() override;
+	virtual void UnregisterFromSaveManager() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Random")
 	TObjectPtr<UCRandomComponent> Random;

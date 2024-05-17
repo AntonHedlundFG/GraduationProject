@@ -150,22 +150,6 @@ FActionPath ACAIController::DecideBestActions()
 	
 	UCRandomComponent* Random = GameState->Random;
 	const int32 RandomIndex = Random->GetRandRange(0, BestPaths.Num() - 1, false);
-
-#if !UE_BUILD_SHIPPING
-	// Debug over the best paths
-	// for (int i = 0; i < BestPaths.Num(); ++i)
-	// {
-	// 	FActionPath& Path = BestPaths[i];
-	// 	UKismetSystemLibrary::DrawDebugString(
-	// 		GetWorld(),
-	// 		Path.GetPath()[0].Value->GetActorLocation(),
-	// 		FString::Printf(TEXT("Score: %f"),
-	// 			Path.GetScore()),
-	// 			nullptr,
-	// 			FColor::Red,
-	// 			5.0f);
-	// }
-#endif
 	
  	return BestPaths[RandomIndex];
 }

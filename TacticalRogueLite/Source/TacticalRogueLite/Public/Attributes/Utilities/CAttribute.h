@@ -170,10 +170,6 @@ public:
 
 
 
-
-
-
-
 UCLASS()
 class TACTICALROGUELITE_API UCAttribute : public UObject
 {

@@ -210,13 +210,13 @@ void UCGridUtilsLibrary::GetProximityScore( ACGridTile* inStart, const TArray<AC
 		// If the target is not in the map, add it with a max possible distance
 		if (!outScores.Contains(Target))
 		{
-			outScores.Add(Target, INT32_MAX);
+			outScores.Add(Target, FLT_MAX);
 			continue;
 		}
 		// Ensure no division by zero
 		if(outScores[Target] == 0)
 		{
-			outScores[Target] = INT32_MAX;
+			outScores[Target] = FLT_MAX;
 		}
 	}
 

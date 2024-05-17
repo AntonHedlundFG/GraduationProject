@@ -28,6 +28,8 @@ class TACTICALROGUELITE_API ACGridSpawner : public AActor, public ICSavable
 	
 public:	
 	ACGridSpawner();
+	virtual void RegisterToSaveManager() override;
+	virtual void UnregisterFromSaveManager() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner Settings|Units")
 	TArray<TSubclassOf<ACUnit>> HeroUnits;

@@ -27,7 +27,7 @@ void ACCharacterSelectGameMode::BeginPlay()
 	
 	RegisterToSaveManager();
 
-	UCSaveGameManager::Get()->LoadGame();
+	UCSaveGameManager::Get()->LoadGame(ESaveGameType::ESGT_Game);
 	
 	//Create a random seed
 	const int Seed = FMath::RandRange(0000,9999);
@@ -63,6 +63,16 @@ void ACCharacterSelectGameMode::OnPostLogin(AController* NewPlayer)
 		PlayerCount = Names.Num();
 		StateRef->SetPlayerCountAndLocks(PlayerCount);
 	}
+}
+
+void ACCharacterSelectGameMode::RegisterToSaveManager()
+{
+	UCSaveGameManager::Get()->RegisterSavable(ESaveGameType::ESGT_Game, this);
+}
+
+void ACCharacterSelectGameMode::UnregisterFromSaveManager()
+{
+	UCSaveGameManager::Get()->UnRegisterSavable(ESaveGameType::ESGT_Game, this);
 }
 
 TArray<FString> ACCharacterSelectGameMode::GetAllPlayerNames()
@@ -144,7 +154,7 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 	/*
 	*/
 	UCSaveGameManager* SaveManager = UCSaveGameManager::Get();
-	SaveManager->SaveGame();
+	SaveManager->SaveGame(ESaveGameType::ESGT_Game);
 	
 	LOG_INFO("Ready To Start");
 
@@ -164,24 +174,27 @@ void ACCharacterSelectGameMode::CreateSaveGameAndStart()
 
 void ACCharacterSelectGameMode::OnSave()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		//Save Names and Items	
-		SaveGame->UnitDetails.Empty();
-		for (auto Data : SpawnUnitData)
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
 		{
-			SaveGame->UnitDetails.Add(Data);
-		}
+			//Save Names and Items	
+			SaveGame->UnitDetails.Empty();
+			for (auto Data : SpawnUnitData)
+			{
+				SaveGame->UnitDetails.Add(Data);
+			}
 
-		//Save Names and Items
-		SaveGame->PlayerCount = PlayerCount;
+			//Save Names and Items
+			SaveGame->PlayerCount = PlayerCount;
 		
-		//Save controlling player indexes
-		SaveGame->ControllingPlayers.Empty();
-		for (auto Data : ControllingPlayers)
-		{
-			SaveGame->ControllingPlayers.Add(Data);
+			//Save controlling player indexes
+			SaveGame->ControllingPlayers.Empty();
+			for (auto Data : ControllingPlayers)
+			{
+				SaveGame->ControllingPlayers.Add(Data);
+			}
 		}
 	}
 	else
@@ -192,10 +205,13 @@ void ACCharacterSelectGameMode::OnSave()
 
 void ACCharacterSelectGameMode::OnLoad()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		PlayerCount = SaveGame->PlayerCount;
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
+		{
+			PlayerCount = SaveGame->PlayerCount;
+		}
 	}
 	else
 	{

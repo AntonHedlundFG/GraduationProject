@@ -26,7 +26,7 @@ bool UCHighlightTilesVisualization::Tick(float DeltaTime)
 	{
 		// Remove the highlight from the tiles
 		ToggleHighlightTilesInRange(false);
-		
+		HighLightAction->TargetTile->GetHighlightComponent()->RemoveHighlightMode(ETileHighlightModes::ETHM_Hovered);
 		return true;
 	}
 	
@@ -43,8 +43,12 @@ bool UCHighlightTilesVisualization::RevertTick(float DeltaTime)
 void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(bool bHighlightOn)
 {
 	if(!HighLightAction) return;
+	
 	TArray<ACGridTile*>& Tiles = HighLightAction->GetAffectedTiles();
+	if(Tiles.IsEmpty()) return;
+	
 	TArray<ETileHighlightModes>& HighlightModes = HighLightAction->GetHighlightModes();
+	
 	for (int i = 0; i < Tiles.Num(); ++i)
 	{
 		const ETileHighlightModes HighlightMode = HighlightModes[i];
@@ -55,7 +59,6 @@ void UCHighlightTilesVisualization::ToggleHighlightTilesInRange(bool bHighlightO
 		}
 		else{
 			Tile->GetHighlightComponent()->RemoveHighlightMode(HighlightMode);
-			HighLightAction->TargetTile->GetHighlightComponent()->RemoveHighlightMode(ETileHighlightModes::ETHM_Hovered);
 		}
 	}
 }

@@ -22,6 +22,16 @@ void UCRandomComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	UnregisterFromSaveManager();
 }
 
+void UCRandomComponent::RegisterToSaveManager()
+{
+	UCSaveGameManager::Get()->RegisterSavable(ESaveGameType::ESGT_Game, this);
+}
+
+void UCRandomComponent::UnregisterFromSaveManager()
+{
+	UCSaveGameManager::Get()->UnRegisterSavable(ESaveGameType::ESGT_Game, this);
+}
+
 void UCRandomComponent::InitializeFromStart(int32 inStartSeed)
 {
 	StartSeed = ValidateSeed(inStartSeed); 
@@ -75,16 +85,19 @@ int32 UCRandomComponent::GetRandRange(bool bKeepState)
 
 void UCRandomComponent::SaveSeedValuesToSaveGame()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		SaveGame->SavedRandomStream = RandomStream;
-		SaveGame->SavedStartSeed = StartSeed;
-		SaveGame->SavedCurrentStateSeed = CurrentStateSeed;
-		SaveGame->SavedTicks = Ticks;
-		SaveGame->SavedTicksSinceSave = TicksSinceSave;
-		SaveGame->SavedTicksAtSave = TicksAtSave;
-		LOG_INFO("Seed Values Saved to Save Game Instance with Start Seed: %d", StartSeed);
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
+		{
+			SaveGame->SavedRandomStream = RandomStream;
+			SaveGame->SavedStartSeed = StartSeed;
+			SaveGame->SavedCurrentStateSeed = CurrentStateSeed;
+			SaveGame->SavedTicks = Ticks;
+			SaveGame->SavedTicksSinceSave = TicksSinceSave;
+			SaveGame->SavedTicksAtSave = TicksAtSave;
+			LOG_INFO("Seed Values Saved to Save Game Instance with Start Seed: %d", StartSeed);
+		}
 	}
 	else
 	{
@@ -209,16 +222,19 @@ void UCRandomComponent::OnSave()
 
 void UCRandomComponent::OnLoad()
 {
-	UCSaveGame* SaveGame = nullptr;
-	if (UCSaveGameManager::Get()->TryGetSaveGame(SaveGame))
+	USaveGame* SaveGameBase = nullptr;
+	if (UCSaveGameManager::Get()->TryGetSaveGame(ESaveGameType::ESGT_Game, SaveGameBase))
 	{
-		RandomStream = SaveGame->SavedRandomStream;
-		StartSeed = ValidateSeed(SaveGame->SavedStartSeed);
-		CurrentStateSeed = ValidateSeed(SaveGame->SavedCurrentStateSeed);
-		Ticks = SaveGame->SavedTicks;
-		TicksSinceSave = SaveGame->SavedTicksSinceSave;
-		TicksAtSave = SaveGame->SavedTicksAtSave;
-		LOG_INFO("Seed Values Loaded from Save Game Instance with Start Seed: %d", StartSeed);
+		if (UCSaveGame* SaveGame = Cast<UCSaveGame>(SaveGameBase))
+		{
+			RandomStream = SaveGame->SavedRandomStream;
+			StartSeed = ValidateSeed(SaveGame->SavedStartSeed);
+			CurrentStateSeed = ValidateSeed(SaveGame->SavedCurrentStateSeed);
+			Ticks = SaveGame->SavedTicks;
+			TicksSinceSave = SaveGame->SavedTicksSinceSave;
+			TicksAtSave = SaveGame->SavedTicksAtSave;
+			LOG_INFO("Seed Values Loaded from Save Game Instance with Start Seed: %d", StartSeed);
+		}
 	}
 	else
 	{
