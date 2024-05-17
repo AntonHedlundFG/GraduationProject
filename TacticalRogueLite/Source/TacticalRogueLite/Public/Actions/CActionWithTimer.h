@@ -50,6 +50,7 @@ public:
 protected:
 
 	virtual void OnRep_RepData(const FActionRepData& OldData) override;
+	virtual void OnRep_bIsUndone() override;
 
 
 	int32 Level = 1; //?
