@@ -17,9 +17,9 @@ bool UCResurrectVisualization::Tick(float DeltaTime)
 	// Updates the current time frame of the animation
 	TimePassed = FMath::Clamp(TimePassed + DeltaTime, 0.0f, Duration);
 
-	if (ResurrectAction)
+	if (IsValid(ResurrectAction))
 	{
-		if(ResurrectAction->AffectedUnit)
+		if(IsValid(ResurrectAction->AffectedUnit))
 		{
 			float AlphaValue = 2.0f * TimePassed / Duration;
 				if (AlphaValue > 1.0f)
@@ -30,12 +30,13 @@ bool UCResurrectVisualization::Tick(float DeltaTime)
 
 				if (TimePassed < Duration / 2.0f)
 				{
-					if (ResurrectAction->PreviousTile)
+					if (IsValid(ResurrectAction->PreviousTile))
 						ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->PreviousTile->GetActorLocation());
 				}
 				else
 				{
-					ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation());
+					if (IsValid(ResurrectAction->ResurrectOnTile))
+						ResurrectAction->AffectedUnit->SetActorLocation(ResurrectAction->ResurrectOnTile->GetActorLocation());
 				}
 
 				return DeltaTime >= 0.0f ? TimePassed >= Duration : TimePassed <= 0.0f;

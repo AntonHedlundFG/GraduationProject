@@ -111,6 +111,7 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 	{
 		if (!CurrentVisualization->bHasBeenEntered)
 		{
+			LOG_INFO("Now entering visualiation: %s", *CurrentVisualization->GetName());
 			CurrentVisualization->Enter();
 			CurrentVisualization->bHasBeenEntered = true;
 		}
@@ -118,12 +119,18 @@ void UCActionVisualizerSystem::TickComponent(float DeltaTime, ELevelTick TickTyp
 		if (bCurrentVisualForward && !CurrentVisualization->VisualizedAction->bIsUndone)
 		{
 			if (CurrentVisualization->Tick(DeltaTime * GameState->GetGameSpeed()))
+			{
+				LOG_INFO("Now exiting visualiation: %s", *CurrentVisualization->GetName());
 				CurrentVisualization = nullptr;
+			}
 		}
 		else
 		{
 			if (CurrentVisualization->RevertTick(DeltaTime * GameState->GetGameSpeed()))
+			{
+				LOG_INFO("Now exiting undo visualiation: %s", *CurrentVisualization->GetName());
 				CurrentVisualization = nullptr;
+			}
 		}
 	}
 

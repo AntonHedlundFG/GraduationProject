@@ -83,10 +83,13 @@ void UCTurnOrderUI::UpdateTurnList()
 			IndiciesToRemove.Add(i);
 		}
 	}
-	for(int index : IndiciesToRemove)
+
+	//Reverse loop to avoid ordering issues.
+	for (int i = IndiciesToRemove.Num() - 1; i >= 0; i--)
 	{
-		LastTurnOrder.RemoveAt(index);
+		LastTurnOrder.RemoveAt(IndiciesToRemove[i]);
 	}
+	
 	for (int i = 0; i < NewTurnOrder.Num(); i++)
 	{
 		ACUnit* Unit = NewTurnOrder[i];
@@ -103,7 +106,8 @@ void UCTurnOrderUI::UpdateTurnList()
 			PortraitsToAnimateIn.Add(Widget);
 			//Save the index in which it was added??
 			int indexItWasAddedTo = TurnOrderBox->AddWidget(Widget);
-			TurnOrder[indexItWasAddedTo] = i;
+			if (indexItWasAddedTo < TurnOrder.Num() && indexItWasAddedTo >= 0)
+				TurnOrder[indexItWasAddedTo] = i;
 			if(Unit->GetActionComp()->HasTag(TAG_Unit_IsPlayer))
 			{
 				Widget->SetBackground(PlayerBackgroundBrush);
