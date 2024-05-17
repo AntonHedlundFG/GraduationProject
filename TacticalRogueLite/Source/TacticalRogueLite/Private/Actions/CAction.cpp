@@ -35,7 +35,7 @@ bool UCAction::CanStart(AActor* Instigator)
 
 void UCAction::OnRep_bIsUndone()
 {
-	GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
+	
 }
 
 void UCAction::Initialize(UCActionComponent* NewActionComp)
@@ -99,11 +99,7 @@ void UCAction::UndoAction(AActor* Instigator)
 	bIsUndone = true;
 	RepData.Instigator = Instigator;
 	RepData.bIsRunning = false;
-	
-	if (IsValid(Comp))
-	{
-		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
-	}
+
 }
 
 TSet<ACGridTile*> UCAction::GetActionInfluencedTiles_Implementation(ACGridTile* fromTile)

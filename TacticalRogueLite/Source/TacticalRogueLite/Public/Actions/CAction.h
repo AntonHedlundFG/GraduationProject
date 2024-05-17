@@ -166,7 +166,7 @@ public:
 	bool IsRunning() const;
 
 	UFUNCTION()
-	void OnRep_bIsUndone();
+	virtual void OnRep_bIsUndone();
 
 	void Initialize(UCActionComponent* NewActionComp);
 	

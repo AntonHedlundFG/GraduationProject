@@ -15,7 +15,8 @@ void UCActionWithTimer::StartAction(AActor* Instigator)
 	AffectedUnit = Cast<ACUnit>(GetOwningComponent()->GetOwner());
 	
 	GetOwningComponent()->ActiveGameplayTags.AppendTags(ActionTags);
-	GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
+	if (GetOwningComponent()->OnActionStarted.IsBound())
+		GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
 
 	BindTimer();	
 }
@@ -30,7 +31,9 @@ void UCActionWithTimer::UndoAction(AActor* Instigator)
 
 	Super::UndoAction(Instigator);
 
-	//GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this); 
+
+	if (GetOwningComponent()->OnActionUndo.IsBound())
+		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this); 
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 }
 
@@ -48,18 +51,27 @@ void UCActionWithTimer::OnRep_RepData(const FActionRepData& OldData)
 {
 	if (RepData.bIsRunning && !OldData.bIsRunning)
 	{
-		GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
+		if (GetOwningComponent()->OnActionStarted.IsBound())
+			GetOwningComponent()->OnActionStarted.Broadcast(GetOwningComponent(), this);
 	}
 	if (OldData.bIsRunning && !RepData.bIsRunning) //Has been active but after last rep call isn't.
 	{
-		GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+		if (GetOwningComponent()->OnActionStopped.IsBound())
+			GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 	}
+}
+
+void UCActionWithTimer::OnRep_bIsUndone()
+{
+	if (GetOwningComponent()->OnActionUndo.IsBound())
+		GetOwningComponent()->OnActionUndo.Broadcast(GetOwningComponent(), this);
 }
 
 void UCActionWithTimer::OnTimerFinishes(ACUnit* inAffectedUnit)
 {
 	LOG_WARNING("A timer has finished");
-	GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
+	if (GetOwningComponent()->OnActionStopped.IsBound())
+		GetOwningComponent()->OnActionStopped.Broadcast(GetOwningComponent(), this);
 	GetOwningComponent()->ActiveGameplayTags.RemoveTags(ActionTags);
 
 	RepData.bIsRunning = false; //To replicate OnActionStopped to clients.
