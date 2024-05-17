@@ -1,7 +1,10 @@
 
 #include "GridContent/CPickUp.h"
+
+#include "CGameMode.h"
 #include "PaperSpriteComponent.h"
 #include "Actions/CActionComponent.h"
+#include "Actions/CAction_PickUp.h"
 #include "Grid/CGridTile.h"
 #include "GridContent/CUnit.h"
 #include "Net/UnrealNetwork.h"
@@ -24,6 +27,7 @@ ACPickUp::ACPickUp()
 	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSpriteComponent"));
 	SpriteComp->SetupAttachment(RootComponent);
 	Sprite = SpriteComp->GetSprite();
+	SavedSprite = Sprite;
 	OnRep_Sprite();
 }
 
@@ -35,9 +39,16 @@ void ACPickUp::HandleOnTileEnter(ACGridContent* inEnterContent)
 	{
 		if (inUnit->GetActionComp()->ActiveGameplayTags.HasTag(FGameplayTag::RequestGameplayTag(FName("Unit.IsEnemy"))))
 			return;
+
+		if (ACGameMode* Mode = Cast<ACGameMode>(GetWorld()->GetAuthGameMode()))
+		{
+			UCAction_PickUp* PickUpAction = NewObject<UCAction_PickUp>(this, UCAction_PickUp::StaticClass());
+			PickUpAction->PickUp = this;
+			PickUpAction->PickingUnit = inUnit;
 			
-		GrantPickUpToUnit(inUnit);
-		RemoveFromBoard();
+			Mode->RegisterAction(PickUpAction);
+		}
+
 	}
 
 }
@@ -63,6 +74,22 @@ void ACPickUp::RemoveFromBoard()
 		
 	Sprite = nullptr;
 	Location = FVector(0,0,-9999);
+	OnRep_Sprite();
+	OnRep_Location();
+}
+
+void ACPickUp::ReturnToBoard(ACGridTile* inTile)
+{
+	if (!inTile)
+		return;
+	
+	Tile = inTile;
+	Tile->SetContent(this);
+	bIsPickedUp = false;
+
+	Sprite = SavedSprite;
+	Location = Tile->GetActorLocation();
+
 	OnRep_Sprite();
 	OnRep_Location();
 }

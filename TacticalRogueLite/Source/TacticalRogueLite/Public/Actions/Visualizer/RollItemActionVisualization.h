@@ -27,4 +27,8 @@ protected:
 	class UCAction_RollItem* ActionClass;
 	
 	void OnItemSelectedCallback(UCItemData* SelectedItem);	
+	void TryOpenWindow();
+	bool bWindowOpened = false;
+	float TimeOutAfterSeconds = 10.0f;
+	float TimeOutCurrent = 0.0f;
 };

@@ -18,8 +18,15 @@ public:
 	
 	UFUNCTION()
 	bool IsPickedUp() const { return bIsPickedUp; }
+	
 	UFUNCTION()
 	virtual void RemoveFromBoard();
+	UFUNCTION()
+	virtual void ReturnToBoard(ACGridTile* inTile);
+	UFUNCTION()
+	virtual void GrantPickUpToUnit(ACUnit* inUnit) {}
+	UFUNCTION()
+	virtual void UndoGrantPickUpToUnit(ACUnit* inUnit) {}
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "SpriteMesh")
@@ -30,6 +37,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_Sprite, Category = "PickUp|SpriteMesh")
 	TObjectPtr<UPaperSprite> Sprite;
+	UPROPERTY()
+	TObjectPtr<UPaperSprite> SavedSprite;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_Location, Category = "PickUp|WorldLocation")
 	FVector Location;
@@ -40,8 +49,8 @@ protected:
 	virtual void HandleOnTileEnter(ACGridContent* inEnterContent) override;
 	virtual void HandleOnTileExit(ACGridContent* inExitContent) override;
 
-	UFUNCTION()
-	virtual void GrantPickUpToUnit(ACUnit* inUnit) {}
+
+
 	
 	UFUNCTION()
 	void OnRep_Sprite();

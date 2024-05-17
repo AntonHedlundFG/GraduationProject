@@ -77,19 +77,18 @@ void ACCharacterSelectGameMode::UnregisterFromSaveManager()
 
 TArray<FString> ACCharacterSelectGameMode::GetAllPlayerNames()
 {
-	TArray<FString> Names = TArray
-	{
-		FString("Player 1"),
-		FString("Player 2"),
-		FString("Player 3"),
-		FString("Player 4")
-	};
-
+	TArray<FString> Names = TArray<FString>();
 	if (!StateRef)
 		return Names;
 	
 	auto PlayerArray = StateRef->PlayerArray;
 
+	for (int i = 0; i < PlayerArray.Num(); i++)
+	{
+		FString Name = "Player " + FString::FromInt(i + 1);
+		Names.Add(Name);
+	}
+	
 	for (auto Player : PlayerArray)
 	{
 		if (const AOnlinePlayerState* PS = Cast<AOnlinePlayerState>(Player))
