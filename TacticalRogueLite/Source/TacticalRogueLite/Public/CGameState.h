@@ -84,6 +84,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsGameOver() { return bGameIsOver; }
 
+	UPROPERTY(BlueprintAssignable, Category = "Victory Condition")
+	FOnGameIsOver OnGameIsOver;
+	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Victory Condition")
 	TObjectPtr<UCWinConWidget> WinConWidget;
@@ -100,8 +103,6 @@ protected:
 	UFUNCTION()
 	void OnRep_bGameIsOver() { OnGameIsOver.Broadcast(); }
 
-	UPROPERTY(BlueprintAssignable, Category = "Victory Condition")
-	FOnGameIsOver OnGameIsOver;
 
 #pragma endregion
 
