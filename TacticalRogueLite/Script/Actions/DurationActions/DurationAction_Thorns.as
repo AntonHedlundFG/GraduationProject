@@ -41,7 +41,7 @@ class USDurationAction_Thorns : UCActionWithTimer
             return;
     
         //If we can only thorns in melee, make sure we are in melee range of attacker.
-        auto NeighbourTiles = Defender.GetTile().GetNeighbours(false);
+        auto NeighbourTiles = Defender.GetTile().GetNeighbours(true);
         auto AttackerTile = Attacker.GetTile();
         if (!bCanThornsAtRange && !NeighbourTiles.Contains(AttackerTile)) return;
 
