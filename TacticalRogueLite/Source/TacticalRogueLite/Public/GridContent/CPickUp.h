@@ -49,6 +49,7 @@ protected:
 	virtual void HandleOnTileEnter(ACGridContent* inEnterContent) override;
 	virtual void HandleOnTileExit(ACGridContent* inExitContent) override;
 
+	virtual void BeginPlay() override;
 
 
 	

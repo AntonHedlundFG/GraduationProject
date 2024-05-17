@@ -26,10 +26,9 @@ ACPickUp::ACPickUp()
 	RootComponent = SceneComp;
 	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSpriteComponent"));
 	SpriteComp->SetupAttachment(RootComponent);
-	Sprite = SpriteComp->GetSprite();
-	SavedSprite = Sprite;
-	OnRep_Sprite();
+	
 }
+
 
 void ACPickUp::HandleOnTileEnter(ACGridContent* inEnterContent)
 {
@@ -65,6 +64,15 @@ void ACPickUp::HandleOnTileExit(ACGridContent* inExitContent)
 			Tile->SetContent(this);
 		}
 	}
+}
+
+void ACPickUp::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Sprite = SpriteComp->GetSprite();
+	SavedSprite = Sprite;
+	OnRep_Sprite();
 }
 
 void ACPickUp::RemoveFromBoard()
