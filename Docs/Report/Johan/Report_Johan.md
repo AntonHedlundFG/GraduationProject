@@ -6,7 +6,10 @@ Through this report, I will detail the process, challenges, and learning outcome
 
 The project was made as a team effort with five programming students; [Me](https://www.johanbrandt.com/), [Anton Hedlund](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), , [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/).
 
-### Project Goals
+### Project scope and Significance
+For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
+
+### Individual Project Goals
 My primary goals for the project were as follows:
 
 - **Enhance proficieny with Unreal Engine:** To practice and advance my familiarity with Unreal Engine.
@@ -15,10 +18,7 @@ My primary goals for the project were as follows:
 - **Networking in Games:** To develop more hands-on experience working with  networking in games. 
 - **AI System Development:** To build and develop a robust base for the game's AI that would support all the possible behaviors needed for the game, both now and in future iterations of the project.
 
-### Project scope and Significance
-For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
-
-### Individual and Team Goals
+### Team Project Goals
 Our goal was to create a tactical, almost board game-like experience, influenced by games like Descent, Gloomhaven and Warhammer: Quest. We also aimed to incorporate elements from procedurally generated roguelite games such as The Binding of Isaac, FTL: Faster Than Light, and Hades.
 
 The key pillars for the game that we agreed upon were:
@@ -30,6 +30,8 @@ The key pillars for the game that we agreed upon were:
 - Networked multiplayer support for up to four players.
 - Server authorative control with MVC pattern for visuals where the clients handle their own visual information.
 - Gameplay that is agnostic to the player count; fewer players would simply mean that each player controls more units.
+
+
 
 ### Early design
 The game was designed to operate on a square grid where players take turns with AI to control character units. Players shared control over four characters, with each player able to manage multiple characters if there were fewer than four players. All units' stats and abilities were to be granted by items, leaving no innate abilities for the units except for the ability to use items. Items could be slot-specific, granting abilities, or slot-less, providing passive effects. For example, boots might grant a movement ability, a weapon might grant an attack ability, and armor could increase health value. Slot-less items could instead grant passive increases to, for example movement range or attack.
@@ -76,8 +78,35 @@ Mentor 2 had been available to the class during our introductory C++ course.
 Besides being an excellent mentor in that course, he also had significant experience working with Unreal Engine. We felt that his experience with Unreal Engine, and general game development would prove valuable for us.
 
 ## Goal Achievement
+I am happy to report that all of the broader team goals were achieved for the project, as well as all of my individual ones. A few things from the original plan chaned along the way, with some features being left quite barebone, with some new ones taking their place instead.
 
-## Time Management
+#### Team Goals Achieved
+Overall, the teams goals we mostly fulfilled. We managed base implementations for eveything we set out to do. Some aspect of the plans weren't fully realized though, while some other features which did recieve more development time, instead ended up more advanced and feature rich than we had planned.
+
+- **Procedural Generation:** Only the basics were implemented, and it could have been more interesting if we had spend more development time expanding upon the item rolling and dungeon creation.
+
+- **Seeded Random:** The system is functional and in use. But since we are not exposing the user to it in any way yet, it is like it wasnt even there.
+
+- **Unit Functionality:** Fully realized as planned. both the player and the AI have the same control over the units, using the same functions to interact with them in the end.
+
+- **Item-Based Abilities:** All of the units' abilities come from the items as planned, as well as some of the stats. Units do have some inherent stats at in the 1.0 build though, but this would be easily changed if prioritized.
+
+- **Networking Support:** Fully implemented with consistent gameplay whather there is one or four playes.
+
+- **Server Authority and MVC:** The server controls everything in the game, with all the clients requesting actions from the server and handling theit own visuals through the Visualization system. 
+
+#### Individual Goals Achieved
+Although I had to spend a substantial amount of time searching for an internship, which impacted my ability to achieve all my goals, I was fortunate to realize most of them.
+
+- **Unreal Engine Proficiency:** I now feel so much more comfortable using the Engine than I was going in to the project. Previously, I had mainly worked with and kept to the C++ and had limited interaction with the editor. Without designers and artists on this project, I have spent more time with the engine and it has made me much more proficient and confident using it.
+
+- **Team Collaboration:** Collaboration within the team has been great. I also feel more confident working in a code base where I haven't had a hand in every part of it, and don't know the in and out of everything.
+
+- **Networking:** The networking aspect of the project has both been fun and very challenging. The networking has been the cause of most major issues during the project, but we managed to work though most of them in the end.
+
+- **Game AI Development:** I personally took sole responsibility for developing the AI for the game. I succeded in creating a solid base system and some basic behaviours for it. I am happy with how it turned out, while at the same time wishing that I had more time to work on the system and extending it with more advanced behaviours.
+
+- **C++ and Angelscript Proficiency:** My grasp of C++ and it's quirks, has grown significantly through this project. Focusing on, and spending time working with parts of C++ I didn't fully grasp before, has made me a much better programmer. Additionally, I really appreciate how I managed to use Angelscript for high-level AI behaviours, unit actions and their visualizations.
 
 ## Skills and Knowledge Gained
 
