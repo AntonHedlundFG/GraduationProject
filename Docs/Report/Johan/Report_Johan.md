@@ -48,6 +48,33 @@ For example, while following the default Unreal naming conventions, we also agre
 
 ## Work Process
 
+### Initial Week-by-week Plan
+In the initial planning of the project we laid out a flexible plan with milestone for each week. The plan served as a guide rather than a fixed schedule, allowing us to adapt as needed throughout the project.
+
+1. Planning and project setup
+2. First playable
+3. Pre-Alpha
+4. Alpha
+5. Pre-Beta
+6. Beta
+7. Content development
+8. Release Candidate
+9. Polishing
+10. Wrap-up, presentation
+
+### Project Management and Communication
+The team will use Discord for online communication, GitHub for version control and Jira for task management. We will have a stand-up meeting, daily,at 10 AM. We won't have weekly reviews of the project, but we will make sure to have a weekly build from week 2 and onwards. Review meetings for the whole team will be planned and scheduled for when there is a need.
+
+### Mentorship and Guidance
+The school provided us with a budget of 1 hour or mentoring per week, per student. Since we were five student collaborating, we had a combined budget of 5 hours a week. We decided as a group to reach out to two mentors and divided our time between them.
+
+#### Mentor 1
+Mentor 1 was the teacher in our Design pattern course. We reached out to him as we were planning a very system heavy project that required a robust core architecture. Knowing his extensive knowledge in this subject, we believed he would be an excellent mentor for us.
+
+#### Mentor 2
+Mentor 2 had been available to the class during our introductory C++ course.
+Besides being an excellent mentor in that course, he also had significant experience working with Unreal Engine. We felt that his experience with Unreal Engine, and general game development would prove valuable for us.
+
 ## Goal Achievement
 
 ## Time Management
