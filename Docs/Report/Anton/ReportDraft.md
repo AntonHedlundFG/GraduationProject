@@ -217,24 +217,25 @@ Here is a sequence diagram showcasing the flow of information in the ActionVisua
 sequenceDiagram
 
 participant AS as Action [Server]
-participant GSS as Gamestate [Server]
-participant GSC as GameState [Client]
 participant AC as Action [Client]
 participant AVS as ActionVisualizerSystem [Client ONLY]
 participant AV as ActionVisualization [Client ONLY]
 
 note over AS: Create Action
-AS->>AC: Action replicates to client
+AS->>AC: Initial replication
 note over AS: Perform Action on Server
-AS->>GSS: Add the action to ActionList
-GSS->>GSC: ActionList replicates
-GSC->>AVS: OnActionListUpdate delegate broadcasts
-AVS-->>AV: for each ActionVisualization
+note over AS: Register Action in GameState
+AS->>AC: Replicate properties with relevant state information
+AC->>AVS: OnActionListUpdate delegate broadcasts
+note over AVS: Add receive Action to visualization queue
+note over AVS: Pop an Action from the queue
+AVS-->>AV: for each ActionVisualization class type
 AV-->>AVS: if (ActionVisualization->CanVisualizeAction(Action))
 note over AVS: An ActionVisualization has been selected
+AVS->>AV: ActionVisualization->Enter()
 AVS->>AV: ActionVisualization->Tick(DeltaTime) each frame
 AV-->>AVS: Return true when visualization is complete
-note over AVS: Move on to next Action in ActionList
+note over AVS: Move on to next Action in queue
 ```
 
 The header file for UActionVisualization in its cleaned up form:
