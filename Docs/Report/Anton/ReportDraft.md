@@ -302,7 +302,7 @@ The last week of development, in which we were playtesting and fixing bugs every
 
 For the sake of easy playability, we packaged a variant build, which only allowed for local solo play. This was required since we have not published our game on the Epic Store, which means only Epic accounts which have been manually added to our development team can log in. Some improvements were made to the character selection UI to make solo play more cohesive, such as not requiring every unit to be "Ready" to start the game.
 
-One major issue we had this week was related to AngelScript. UObjects defined in C++ and extended in AngelScript were not replicating the properties declared in AngelScript - even with the appropriate UPROPERTY(Replicated) tag. Luckily, we were able to get support in the official Discord channel from a developer at Envar Studio who had previously had the same issue. The lifetime replication list needed to be extended to include the script properties:
+One major issue we had this week was related to AngelScript. UObjects defined in C++ and extended in AngelScript were not replicating the properties declared in AngelScript - even with the appropriate UPROPERTY(Replicated) tag. Luckily, we were able to get support in the official Discord channel from another developer who had previously had the same issue. The lifetime replication list needed to be extended to include the script properties:
 ```c++
 void UCAction::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
