@@ -97,7 +97,6 @@ void UCAction::UndoAction(AActor* Instigator)
 	}
 
 	bIsUndone = true;
-	RepData.Instigator = Instigator;
 	RepData.bIsRunning = false;
 
 }
