@@ -349,3 +349,12 @@ This was a major time sink in the project, and source of confusion. The input we
 Trying to fix bugs in multiplayer games is always hard, as the standard IDE debug mode does not work for Standalone mode, which is required to play the game online properly. Our main solution to this problem was the extensive [Logging System](https://github.com/AntonHedlundFG/GraduationProject/blob/main/TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h) we used to support both debug logging and the ingame combat log. It was not a perfect solution, but I am not aware of any other more easily accessible ways to debug online functionality. In a larger project, I would allocate far more time early on to establish a proper way to debug multiplayer functionality.
 
 ### Learnings
+
+#### UObjects and replication
+Having never worked with replicating UObjects within Unreal Engine before, it was not exactly a straightforward learning process. I'm glad to have gone through the work of learning how to do it, and the various problems that can occur. 
+
+For example, when a replicated UObject is created and added to a replicated TArray, the change in array size causes a client-side RepNotify function call first, but the new UObject pointer is invalid. Once the UObject replicates fully, another RepNotify call for the array is made, now with the valid pointer. This caused several problems in our client-side visualizations before I figured out the workflow.
+
+#### AngelScript support for C++ classes
+There are limitations to how AngelScript scripts can access native functionality, which is important to know when making base classes in C++. As mentioned in [Week 1](#week-1-starting-up), AngelScript implementations of virtual functions cannot call Super:: implementations, which you can do if only using C++ and Blueprints. This impacts how you write your C++ classes, and if you don't get it right the first time a lot of time is wasted on refactoring your old code later on, when you start implementing gameplay in AngelScript.
+
