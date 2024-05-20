@@ -155,7 +155,36 @@ I was surprised to see that when creating a new replicated UObject and adding it
 
 Finally, implementing the new UAction system was very difficult, and I had a hard time communicating the workflow to the rest of the team. Our mentor Marc suggested I write a sequence diagram using mermaid to describe the information flow. I had never made one before, but this is my implementation:
 
-![Command Pattern Sequence Diagram](https://github.com/AntonHedlundFG/GraduationProject/blob/2e2ace216abbdb67012a704ce95e1fccaf7cdae9/Docs/SequenceDiagrams/ActionSequenceDiagram.md)
+```mermaid 
+sequenceDiagram
+participant GM as AGameMode
+participant PC as APlayerController
+participant ID as UItemData
+participant Ability as FAbility
+participant Action as UAction
+
+Note over PC: CLIENT
+Note over PC: Player Input (Using an ability button)
+PC->>ID: GetValidTargetTiles()
+ID->>Ability: GetValidTargetTiles()
+Ability->>Action: GetValidTargetTiles()
+Action-->>PC: Valid Target Tiles
+Note over PC: Highlight Valid Tiles
+
+Note over PC: Player Input (Choosing a tile to target)
+Note over PC: CLIENT->SERVER RPC
+PC->>GM: TryAbilityUse(ChosenTile)
+GM->>ID: GetAbility()
+GM->>Ability: GetValidTargetTiles()
+Ability->>Action: GetValidTargetTiles()
+Action-->>GM: Valid Target Tiles
+Note over GM: Validate user input
+
+GM->>Ability: GetActions()
+Note over GM: Create new Action object instances
+Note over GM: Add new Actions to ActionStack
+Note over GM: Start executing actions from stack
+```
 
 ### Week 4, General Gameplay
 
@@ -184,7 +213,29 @@ The system is entirely local, and uses a strategy pattern to create visual inter
 
 Here is a sequence diagram showcasing the flow of information in the ActionVisualizer: 
 
-![ActionVisualizer Sequence Diagram](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Docs/SequenceDiagrams/ActionVisualizer.md)
+```mermaid
+sequenceDiagram
+
+participant AS as Action [Server]
+participant GSS as Gamestate [Server]
+participant GSC as GameState [Client]
+participant AC as Action [Client]
+participant AVS as ActionVisualizerSystem [Client ONLY]
+participant AV as ActionVisualization [Client ONLY]
+
+note over AS: Create Action
+AS->>AC: Action replicates to client
+note over AS: Perform Action on Server
+AS->>GSS: Add the action to ActionList
+GSS->>GSC: ActionList replicates
+GSC->>AVS: OnActionListUpdate delegate broadcasts
+AVS-->>AV: for each ActionVisualization
+AV-->>AVS: if (ActionVisualization->CanVisualizeAction(Action))
+note over AVS: An ActionVisualization has been selected
+AVS->>AV: ActionVisualization->Tick(DeltaTime) each frame
+AV-->>AVS: Return true when visualization is complete
+note over AVS: Move on to next Action in ActionList
+```
 
 The header file for UActionVisualization in its cleaned up form:
 ```c++
@@ -268,7 +319,8 @@ void UCAction::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 The last week of the project was spent entirely on writing this report as well as other relevant administrative work - adding the project to my portfolio, writing a README for GitHub as well as uploading the build to itch.io.
 
 ## Outcome
-### Plans vs. Reality
+
+### Initial Planning vs. Final Outcome
 
 With a project like this, you have to expect that your plans will change, and that some goals will be scrapped and others added along the way. I was, however, surprised to see how closely our final outcome aligned with our initial projections. 
 
@@ -280,4 +332,10 @@ As for the [Individual Goals](#introduction) I set at the start of the project, 
 
 All our [Team Goals](#goals-team-and-individual) were also fulfilled, although some of the features were very rudimentary - like the procedurally generated game board.
 
-We were able to follow our [Week-By-Week plan](#early-week-by-week-plans) for the first half of the project or so, but we were lagging behind somewhat towards the end. The main reason for this was that we had to rework our Action- and Attribute-systems from our rudimentary first versions to more advanced variants that resemble the Unreal Engine Gameplay Ability System's implementation. These changes required us to redo a lot of work, which was very frustrating at times. Had we implemented the more advanced versions right away, the initial work would have been delayed, but in the long run we might have saved time. However, considering none of us had extensive experience with the advanced version at the start of the project, I am fairly content with our approach.
+We were able to follow our [Week-By-Week plan](#early-week-by-week-plans) for the first half of the project, but we were lagging behind somewhat towards the end. The main reason for this was that we had to rework our Action- and Attribute-systems from our rudimentary first versions to more advanced variants that resemble the Unreal Engine Gameplay Ability System's implementation. These changes required us to redo a lot of work, which was very frustrating at times. Had we implemented the more advanced versions right away, the initial work would have been delayed, but in the long run we might have saved time. However, considering none of us had extensive experience with the advanced version at the start of the project, I am fairly content with our approach.
+
+### Challenges
+
+
+
+### Learnings
