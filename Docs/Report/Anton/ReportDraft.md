@@ -7,6 +7,12 @@ Teamwork: GitHub, Jira.
 \
 Details: 10 weeks, 5 programmers.
 
+## Table of contents
+- [Introduction](#introduction)
+- [Project Startup](#project-startup)
+- [Weekly Summary](#weekly-summary)
+- [Outcome](#outcome)
+
 ## Introduction
 This is a report regarding a ten week long graduation project at FutureGames Stockholm. The project took place from April 18th to May 24th, 2024.
 
@@ -68,7 +74,7 @@ Marc was our teacher in the Programming Design Patterns course. Since our game w
 #### Ian Bradley
 Ian had mentored our class in a much earlier course on C++, and has plenty of experience working within Unreal Engine. We hoped that as a mentor he could help us with general questions about Unreal, as well as general game development and team issues.
 
-## Weekly Summary [TODO: Add links to other team members' reports?]
+## Weekly Summary
 
 This is a weekly summary of my work on the project. I will not go into details about the work other team members did, that information can be found in their respective reports.
 
@@ -274,5 +280,4 @@ As for the [Individual Goals](#introduction) I set at the start of the project, 
 
 All our [Team Goals](#goals-team-and-individual) were also fulfilled, although some of the features were very rudimentary - like the procedurally generated game board.
 
-### Learnings
-
+We were able to follow our [Week-By-Week plan](#early-week-by-week-plans) for the first half of the project or so, but we were lagging behind somewhat towards the end. The main reason for this was that we had to rework our Action- and Attribute-systems from our rudimentary first versions to more advanced variants that resemble the Unreal Engine Gameplay Ability System's implementation. These changes required us to redo a lot of work, which was very frustrating at times. Had we implemented the more advanced versions right away, the initial work would have been delayed, but in the long run we might have saved time. However, considering none of us had extensive experience with the advanced version at the start of the project, I am fairly content with our approach.
