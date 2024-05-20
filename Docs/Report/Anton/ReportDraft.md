@@ -226,16 +226,18 @@ AS->>AC: Initial replication
 note over AS: Perform Action on Server
 note over AS: Register Action in GameState
 AS->>AC: Replicate properties with relevant state information
-AC->>AVS: OnActionListUpdate delegate broadcasts
-note over AVS: Add receive Action to visualization queue
+AC->>AVS: GameState->OnActionListUpdate delegate broadcasts
+note over AVS: Add received Action to visualization queue
+loop while visualization queue is not empty
 note over AVS: Pop an Action from the queue
 AVS-->>AV: for each ActionVisualization class type
 AV-->>AVS: if (ActionVisualization->CanVisualizeAction(Action))
 note over AVS: An ActionVisualization has been selected
-AVS->>AV: ActionVisualization->Enter()
-AVS->>AV: ActionVisualization->Tick(DeltaTime) each frame
+AVS->>AV: void ActionVisualization->Enter()
+AVS->>AV: bool ActionVisualization->Tick(DeltaTime) each frame
 AV-->>AVS: Return true when visualization is complete
 note over AVS: Move on to next Action in queue
+end
 ```
 
 The header file for UActionVisualization in its cleaned up form:
