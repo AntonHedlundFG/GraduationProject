@@ -17,9 +17,11 @@
 1. [Introduction](#introduction)
    - [Project Overview](#project-overview)
    - [Team Members](#team-members)
+
 2. [Project Scope and Significance](#project-scope-and-significance)
    - [Project Description](#project-description)
    - [Tools and Technologies Used](#tools-and-technologies-used)
+
 3. [Individual Project Goals](#individual-project-goals)
 
 4. [Team Project Goals](#team-project-goals)
@@ -28,31 +30,39 @@
    - [Game Mechanics and Grid System](#game-mechanics-and-grid-system)
    - [Minimalistic Art Approach](#minimalistic-art-approach)
    - [System Architecture](#system-architecture)
+
 6. [Anticipated Challenges](#anticipated-challenges)
    - [Team Collaboration](#team-collaboration-1)
    - [System Scalability and Extendability](#system-scalability-and-extendability)
+
 7. [Style Guide](#style-guide)
    - [Naming Conventions](#naming-conventions)
+
 8. [Work Process](#work-process)
    - [Initial Week-by-Week Plan](#initial-week-by-week-plan)
    - [Project Milestones](#project-milestones)
+
 9. [Project Management and Communication](#project-management-and-communication)
    - [Tools and Platforms](#tools-and-platforms)
    - [Meeting Schedules](#meeting-schedules)
+
 10. [Mentorship and Guidance](#mentorship-and-guidance)
-    - [Mentor Contributions](#mentor-contributions)
+
 11. [Goal Achievement](#goal-achievement)
     - [Team Goals Achieved](#team-goals-achieved)
     - [Individual Goals Achieved](#individual-goals-achieved)
+
 12. [Skills and Knowledge Gained](#skills-and-knowledge-gained)
     - [Game AI Development](#game-ai-development)
     - [System Design Architecture](#system-design-architecture)
+
 13. [Challenges and Solutions](#challenges-and-solutions)
     - [Network Development](#network-development)
     - [Debugging Multiplayer](#debugging-multiplayer)
     - [Reworks and System Overhauls](#reworks-and-system-overhauls)
-14. [Project Analysis](#project-analysis)
-15. [Conclusion](#conclusion)
+
+14. [Project Analysis and Conclusion](#project-analysis-and-Conclusion)
+
 16. [References](#references)
 
 ## Introduction
@@ -213,9 +223,13 @@ We had learned from the previous rework and the process was made less obstructin
 The whole process of reworking existing systems in a short project like this one is something that I believe we could have avoided completely. We tried to minimize this through planning and documentation early in the project, but since we made two substantial reworks through a nine-week project, it's clear that we still could have done better job.\
 Experience is key here though. The core structures of projects like these are complicated. With more experience, I believe that some of the issues we faced could have been planned for and avoided. I have learned a lot from the project, and while I don't believe that the next project will be perfect either, I believe that I will be able to avoid some of the pitfalls we faced during this project.
  
-## Project Analysis
+## Project Analysis and Conclusion
+I am very happy to have teamed up with the other four people during this project. We aimed to develop a turn-based tactival rogue-lite game with quite a few complex features during this graduation project. Refliecting on the journey, I believe that the project has been a significant success for both me and the team. Despite the challenged we encountered, we achieved most of our primary goals. The knowledge and skills that I have gained, especially in system design and AI development, will be invaluable for future projects.
 
-## Conclusion
+The one area that I wish I could have devoted more time to was the AI system. Unfortunately, my search for an  internship, which would follow this project, consumed nearly half of my available working hours, limiting the time I could dedicate to it.  During the later parts of this project, I spent my time more as support for the others instead of expanding upon my own work, as I had to dedicate more and more time to the search. Given more time, I would have loved to expand and enhance the AI beyond the foundational work that I managed to complete. Nevertheless, the experience has been incredibly rewarding and fun!
 
 ## References
-
+**Utility AI:** https://www.gameaipro.com/GameAIPro/GameAIPro_Chapter09_An_Introduction_to_Utility_Theory.pdf \
+https://shaggydev.com/2023/04/19/utility-ai/ \
+https://www.gdcvault.com/play/1012410/Improving-AI-Decision-Modeling-Through \
+https://www.gdcvault.com/play/1021848/Building-a-Better-Centaur-AI 
