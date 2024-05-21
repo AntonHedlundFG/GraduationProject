@@ -2,7 +2,7 @@
 ## FutureGames - Game Programmer '22
 
 ### Participants
-- [Anton Hedlund](https://www.antonhedlund.com/)
+- Anton Hedlund - [Portfolio](https://www.antonhedlund.com/) - [Project Report](Docs/Report/Anton/Report.md)
 - [Erik Lund](https://lunderik.wixsite.com/portfolio)
 - [Johan Brandt](https://www.johanbrandt.com/)
 - [Alice Kamil](https://alicekamil.com/)
