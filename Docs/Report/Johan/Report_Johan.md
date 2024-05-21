@@ -70,9 +70,9 @@ The team will use Discord for online communication, GitHub for version control a
 
 ### Mentorship and Guidance
 The school provided us with a budget of 1 hour or mentoring per week, per student. Since we were five student collaborating, we had a combined budget of 5 hours a week. We decided as a group to reach out to two mentors and divided our time between them.
-#### Mentor 1
+#### Marc Zaku
 Mentor 1 was the teacher in our Design pattern course. We reached out to him as we were planning a very system heavy project that required a robust core architecture. Knowing his extensive knowledge in this subject, we believed he would be an excellent mentor for us.
-#### Mentor 2
+#### Ian Bradley
 Mentor 2 had been available to the class during our introductory C++ course.
 Besides being an excellent mentor in that course, he also had significant experience working with Unreal Engine. We felt that his experience with Unreal Engine, and general game development would prove valuable for us.
 
@@ -107,10 +107,24 @@ Although I had to spend a substantial amount of time searching for an internship
 
 - **C++ and Angelscript Proficiency:** My grasp of C++ and it's quirks, has grown significantly through this project. Focusing on, and spending time working with parts of C++ I didn't fully grasp before, has made me a much better programmer. Additionally, I really appreciate how I managed to use Angelscript for high-level AI behaviours, unit actions and their visualizations.
 
-## Skills and Knowledge Gained
-
 ## Challenges and Solutions
 
+### Network Development
+
+### Debugging Multiplayer
+
+### Reworks upon Reworks
+
+## Skills and Knowledge Gained
+
+- **Unreal Engine Proficiency:**
+
+- **Angelscript Integration:** 
+
+- **Game AI Development:** 
+
+- **System Design Architecture:** 
+ 
 ## Project Analysis
 
 ## Conclusion
