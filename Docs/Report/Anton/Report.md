@@ -23,7 +23,7 @@ Details: 10 weeks, 5 programmers.
   	- [Learnings](#learnings)
 
 ## Introduction
-This is a report regarding a ten week long graduation project at FutureGames Stockholm. The project took place from April 18th to May 24th, 2024.
+This is a report regarding a ten week long graduation project at FutureGames Stockholm. The project took place from March 18th to May 24th, 2024.
 
 The personal goals I set for my project were:
 
