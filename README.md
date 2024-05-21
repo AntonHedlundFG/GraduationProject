@@ -1,5 +1,5 @@
 # Graduation Project, FutureGames - Game Programmer '22
-[<img src="https://static-00.iconduck.com/assets.00/itch-io-icon-2048x2048-i6hzclad.png" width="48">](https://mevorra.itch.io/skyward-tactics)
+[<img src="/Images/itch-logo.png" width="50">](https://mevorra.itch.io/skyward-tactics)
 
 ## Participants
 - Anton Hedlund - [Portfolio](https://www.antonhedlund.com/) - [Project Report](Docs/Report/Anton/Report.md)
