@@ -357,6 +357,9 @@ Our game's core system for handling player abilities, the Action system, was ver
 
 This was a major time sink in the project, and source of confusion. The input we received from our mentor Marc was key for solidifying this system's design, especially the separation of Actions and Visualizations using a client-based strategy pattern. He also suggested that I develop sequence diagrams ([Actions](#week-3-uobject-replication) & [Visualizations](#week-6-action-visualization)) for the system's flow of information, which turned out to be very useful.
 
+#### Developing for multiplayer
+Many team members had limited previous experience working with networking and replication, which led to some issues during development. We would often find a system that worked perfectly in the developers editor, but that failed to work in a packaged build, or even crash the game entirely. It seems in general that developing for multiplayer virtually doubles or even triples the time it takes to develop some systems, including testing. It was clear that some of the systems that we were hoping to be able to implement at the start of the project would have to be scrapped, for example Saving/Loading, because of this increased development time.
+
 #### Debugging in multiplayer
 Trying to fix bugs in multiplayer games is always hard, as the standard IDE debug mode does not work for Standalone mode, which is required to play the game online properly. Our main solution to this problem was the extensive [Logging System](https://github.com/AntonHedlundFG/GraduationProject/blob/main/TacticalRogueLite/Source/TacticalRogueLite/Public/Utility/Logging/CLogManager.h) we used to support both debug logging and the ingame combat log. It was not a perfect solution, but I am not aware of any other more easily accessible ways to debug online functionality. In a larger project, I would allocate far more time early on to establish a proper way to debug multiplayer functionality.
 
@@ -367,6 +370,9 @@ Having never worked with replicating UObjects within Unreal Engine before, it wa
 
 For example, when a replicated UObject is created and added to a replicated TArray, the change in array size causes a client-side RepNotify function call first, but the new UObject pointer is invalid. Once the UObject replicates fully, another RepNotify call for the array is made, now with the valid pointer. This caused several problems in our client-side visualizations before I figured out the workflow.
 
+
 #### AngelScript support for C++ classes
 There are limitations to how AngelScript scripts can access native functionality, which is important to know when making base classes in C++. As mentioned in [Week 1](#week-1-starting-up), AngelScript implementations of virtual functions cannot call Super:: implementations, which you can do if only using C++ and Blueprints. This impacts how you write your C++ classes, and if you don't get it right the first time a lot of time is wasted on refactoring your old code later on, when you start implementing gameplay in AngelScript.
 
+#### Scoping for multiplayer
+Even though we felt like we set very reasonable goals at the start of the project, we still had to scope down several features over the weeks. If you have more experience developing for singleplayer than multiplayer, it is likely correct to assume that you are overscoping significantly.
