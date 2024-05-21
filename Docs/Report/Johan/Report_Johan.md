@@ -4,7 +4,8 @@
 This is the report for my graduation project at Futuregames in Stockholm, undertaken from April 18 to May 24. This graduation project provided an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
 Through this report, I will detail the process, challenges, and learning outcomes of my graduation project.
 
-The project was made as a team effort with five programming students; [Me](https://www.johanbrandt.com/), [Anton Hedlund](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), , [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/).
+The project was made as a team effort with five programming students; 
+[Me](https://www.johanbrandt.com/), [Anton Hedlund](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), , [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/).
 
 ### Project scope and Significance
 For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
@@ -110,6 +111,8 @@ Although I had to spend a substantial amount of time searching for an internship
 ## Challenges and Solutions
 
 ### Network Development
+Developing a game with network replication is challenging, especially when you have limited experience with it. The difficulty is multiplied when you're working as part of a team where everyone is learning and experimenting with new techniques.\
+Through development we faced many issues and bugs related to networking and replication to clients. Often, these problems came because we primarily tested in a single-player environment, as it was easier and quicker. However, our inexperience also played a significant role, leading us to occasionally forget to replicate the correct properties, or even replicate them at all.
 
 ### Debugging Multiplayer
 
