@@ -81,8 +81,9 @@ This is a weekly summary of my work on the project. I will not go into details a
 ### Week 1, Starting Up
 Much of the first week was spent on various planning meetings including the whole team. The output of these meetings was mostly to align the team members' understanding of the project as a whole, but also a couple of images of whiteboard writings outlining our planned work. Most of the information detailed in [Project Startup](#project-startup) was generated during these meetings.
 
-![DayOneWhiteBoard1](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_1.jpg)
-![DayOneWhiteBoard2](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_2.jpg)
+Day 1 Whiteboard 1 | Day 1 Whiteboard 2
+:----:|:----:
+![DayOneWhiteBoard1](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_1.jpg) | ![DayOneWhiteBoard2](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/DayOneWhiteBoard_2.jpg)
 
 This week we set up the actual development environment, generating the Unreal project, setting up our GitHub repository, and making sure the entire team had downloaded the AngelScript version of Unreal as developed by Hazelight.
 
@@ -207,6 +208,8 @@ Finally, towards the end of the week I focused on making a playable build, with 
 This week I was sick for the first half, and away from work for a surgery for the second half. I was not able to do any work. Thankfully, there were no major features or bugs that relied on my presence, and the rest of the team were able to continue working without issue.
 
 ### Week 6, Action Visualization
+
+![Gif showing a player using all their abilities, then changing their mind and undoing everything](/Gifs/UndoEntireTurn.gif)
 
 So far, all item abilities were entirely logical, and when used the state would instantly update accordingly. There were no movement animations or visual effects for attacks. This week I spent on implementing a UActionVisualizationSystem subsystem.
 
