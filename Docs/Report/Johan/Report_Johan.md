@@ -110,6 +110,27 @@ Although I had to spend a substantial amount of time searching for an internship
 
 - **C++ and Angelscript Proficiency:** My grasp of C++ and it's quirks, has grown significantly through this project. Focusing on, and spending time working with parts of C++ I didn't fully grasp before, has made me a much better programmer. Additionally, I really appreciate how I managed to use Angelscript for high-level AI behaviours, unit actions and their visualizations.
 
+## Skills and Knowledge Gained
+Outside of and on top of the goals I set out for the project I also learned quite a bit about a few other subjects.
+
+### Game AI Development  
+I took responsibility for the AI in the game and I ended up as the sole programmer and implementer of the system for the game. Given that we were developing a game with a wide variety of actions and items, I aimed to develop and implement a robust AI system capable of handling all this complexity. After researching for a few days, I ended up deciding in on implementing Utility AI. 
+
+Utility AI, or Utility-based AI, is a system designed to assign utility scores to varioud potential actions for the AI can take. The scores represent the usefulness of each action in the current context which the AI is in. The AI then selects the action with the highest utility score. My system also tries to recursively to this and plan out each round of actions before actually starting the process of executing them. 
+
+In addition to Utility AI, I also explored Goal-Oriented Action Planning (GOAP). I set up a plan for how to integrate GOAP in to the AI system to manage overall team behaviours through updating of the contexts, time contraints during the project prevented me from fully implementing it. Nonetheless, I am quite happy with the foundational framework I made for the AI as it barely took any work to make it functional with all the new items and abilities that we threw at it towards the end of the project.
+
+### System Design Architecture 
+Going into the project we all knew it would be a systems-heavy endeavor, and we tried planning for it accordingly. Although learning and practicing specific design pattens wasn't a primary goal for me going in to this project, I still feel much more confident in a few major ones that we implemented.
+
+We introduced and implemented three major pattens in to the core design of the project: the **Command Pattern**, the **Model-View-Controller Pattern (MCV)**, and the **Strategy Pattern**.
+
+- **Command-Pattern:** We implemented the command pattern as the underlying structure for all the Actions in the game. This design choice was to ensure that all actions were encapsulated as object, making them more easily managable and undoable. The encapsulation also allowed for easier replication to clients, for client side visualization.
+- **Model-View-Controller (MVC):** We used the MVC pattern to visualize actions on all clients in our game. The process works as follows: the client requests an action to be performed on the server; the server then processes the action before notifying the all the clients of the result; finally each client updates their visuals through the visualization system based on the server's notification, ensuring that all players see the same result of the action.
+- **Strategy Pattern:** The visualisation system implements the strategy pattern. Each visualization includes both a visualization to be played on the client and a list of all actions that would use this particular visualization. After an action is performed on the server it is then queued into the visualization system, and replicated to all clients. As long as there are actions queued, the visualizer loops through them and performs the appropriate visualization for each action.
+
+While neither of these patterns were completely new to me, I had never used them extensively in any of my previous project. Although I wasn't directly involved in the actual implementation of these patterns in this project, I still learned a lot from studying and understanding their implementation, and using them throughout this project.  
+
 ## Challenges and Solutions
 
 ### Network Development
@@ -135,16 +156,6 @@ We had learned from the previous rework and the process was made less obstructin
 
 The whole process of reworking existing systems in a short project like this one is something that I believe we could have avoided completely. We tried to minimize this through planning and documentation early in the project, but since we made two substantial reworks through a nine-week project, it's clear that we still could have done better job.\
 Experience is key here though. The core structures of projects like these are complicated. With more experience, I believe that some of the issues we faced could have been planned for and avoided. I have learned a lot from the project, and while I don't believe that the next project will be perfect either, I believe that I will be able to avoid some of the pitfalls we faced during this project.
-
-## Skills and Knowledge Gained
-
-- **Unreal Engine Proficiency:**
-
-- **Angelscript Integration:** 
-
-- **Game AI Development:** 
-
-- **System Design Architecture:** 
  
 ## Project Analysis
 
