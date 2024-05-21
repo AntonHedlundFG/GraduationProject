@@ -2,10 +2,10 @@
 
 ## Participants
 - Anton Hedlund - [Portfolio](https://www.antonhedlund.com/) - [Project Report](Docs/Report/Anton/Report.md)
-- [Erik Lund](https://lunderik.wixsite.com/portfolio)
-- [Johan Brandt](https://www.johanbrandt.com/)
-- [Alice Kamil](https://alicekamil.com/)
-- [Theo Sandén](https://www.theosanden.com/)
+- Erik Lund - [Portfolio](https://lunderik.wixsite.com/portfolio)
+- Johan Brandt - [Portfolio](https://www.johanbrandt.com/)- [Project Report](Docs/Report/Johan/Report_Johan.md)
+- Alice Kamil - [Portfolio](https://alicekamil.com/) - [Project Report](Docs/Report/Alice/Report_Alice.md)
+- Theo Sandén - [Portfolio](https://www.theosanden.com/)
 
 ## Project Goals
 This project was intended to serve as a graduation project for a 2 year education at FutureGames Stockholm, for a team of 5 programmers. With no artists or designers involved in the project, the team's goal was not to make a fully completed game, but rather a stable prototype with robust systems, ready for designers and artists to add actual content.
