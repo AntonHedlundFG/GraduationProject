@@ -121,6 +121,9 @@ While we didn't just magically "solve" networking, as there is no single solutio
 One persistent issue that we never managed to solve completely involved the replication of a collection of pointers. The problem arose from when the collection was replicated before the object themselves had time to properly replicate. For example, when replicating a `TArray<UObjects*>` and using an `OnRep` function that relies on the values in the array, we often encountered `nullptr` instead of the objects. We believe that this issue stems from the `TArray` replicating properly before the objects within the array has had the time to properly replicate, resulting in an array of null pointers on the client side when the `OnRep` function gets called. A workaround that we used to skirt around the issue was to perform null checks through the array on the client, but this solution feels clunky. I believe that there is a better solution, but we have not yet found it.  
 
 ### Debugging Multiplayer
+Debugging a finding solutions for issues that arose when testing the game in a multiplayer session presented another set of challenges. The standard IDE debugger could not attach to the game instances when we were testing it in Standalone mode, which unfortunately is also required to test networking features properly.
+
+To help solve this problem, we relied on the Logging System i develope early in the project. We used it identify difference in replication and pinpoint the crash or issue arose. While this is far from a perfect solution, it was definitely helpful. I imagine that there are better and more accessible solutions for debugging the online mode, but we were not aware of them at the time. In a larger and more extensive project, I would definitely spend more time on reseach and ensure that we establish a more comprehensive method of debugging the online features.
 
 ### Reworks upon Reworks
 
