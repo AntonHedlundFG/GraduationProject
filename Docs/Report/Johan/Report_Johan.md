@@ -1,5 +1,7 @@
 # Graduation Project Report, Johan Brandt
 
+## Keywords
+## Table of contents
 ## Introduction
 This is the report for my graduation project at Futuregames in Stockholm, undertaken from April 18 to May 24. This graduation project provided an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
 Through this report, I will detail the process, challenges, and learning outcomes of my graduation project.
@@ -111,8 +113,12 @@ Although I had to spend a substantial amount of time searching for an internship
 ## Challenges and Solutions
 
 ### Network Development
-Developing a game with network replication is challenging, especially when you have limited experience with it. The difficulty is multiplied when you're working as part of a team where everyone is learning and experimenting with new techniques.\
-Through development we faced many issues and bugs related to networking and replication to clients. Often, these problems came because we primarily tested in a single-player environment, as it was easier and quicker. However, our inexperience also played a significant role, leading us to occasionally forget to replicate the correct properties, or even replicate them at all.
+Developing a game with network replication is challenging, especially when you have limited experience with it. The difficulty multiplies when you're working as part of a team where everyone is learning and experimenting with new techniques.\
+All throughout development we faced many issues and bugs related to networking and server-to-client replication. Often, these problems arose because we primarily tested in a single-player environment, as it was easier and quicker. However, our inexperience also played a significant role, leading us to occasionally forget to replicate the correct properties, or even replicate them at all. 
+
+While we didn't just magically "solve" networking, as there is no single solution to all networking issues, I believe that we managed to adress most of the specific problems that arose during the project. Many of our issues were simply remedied by just making sure to replicate the correct properties and testing for as many scenarios as we could think of.
+
+One persistent issue that we never managed to solve completely involved the replication of a collection of pointers. The problem arose from when the collection was replicated before the object themselves had time to properly replicate. For example, when replicating a `TArray<UObjects*>` and using an `OnRep` function that relies on the values in the array, we often encountered `nullptr` instead of the objects. We believe that this issue stems from the `TArray` replicating properly before the objects within the array has had the time to properly replicate, resulting in an array of null pointers on the client side when the `OnRep` function gets called. A workaround that we used to skirt around the issue was to perform null checks through the array on the client, but this solution feels clunky. I believe that there is a better solution, but we have not yet found it.  
 
 ### Debugging Multiplayer
 
