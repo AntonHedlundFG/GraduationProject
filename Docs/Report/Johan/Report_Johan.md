@@ -126,6 +126,15 @@ Debugging a finding solutions for issues that arose when testing the game in a m
 To help solve this problem, we relied on the Logging System i develope early in the project. We used it identify difference in replication and pinpoint the crash or issue arose. While this is far from a perfect solution, it was definitely helpful. I imagine that there are better and more accessible solutions for debugging the online mode, but we were not aware of them at the time. In a larger and more extensive project, I would definitely spend more time on reseach and ensure that we establish a more comprehensive method of debugging the online features.
 
 ### Reworks upon Reworks
+We started this project by gathering around a whiteboard to plan out the construction of all the underlying systems for the game. From there we created the first iteration of the underlying command system within a week from writing the first line of code. Although it was not final in any way, it provided a foundation to start working with, and we quickly spread out and to start working on different parts of the project. 
+
+No more than one week later, a part of the team began reworking the core command system into a more extensive system for actions and abilities. By this point, I had started working on the AI, so I was not part of this group. However, as a core system was being changed, I had to pause my work temporarily until the rework was done. This was of course frustrating, even though the changes to the system were beneficial to the project in the end.
+
+Seven weeks into the project, we had yet another overhaul and rework of core systems. This time introducing attributes into the previously reworked ability system. This once again temporarily hampered progress on other parts of the game while it was being implemented. Additionally, existing content had to  be updated to support the new attribute system.\
+We had learned from the previous rework and the process was made less obstructing through branching of the project. While not a perfect solution or execution, it helped making the impact on other parts less of an issue. I believe that it could have been done even more effective. With proper testing and feature implementation in the branch before merging it into the main branch we could have avoided even more of the obstruction in the end.
+
+The whole process of reworking existing systems in a short project like this one is something that I believe we could have avoided completely. We tried to minimize this through planning and documentation early in the project, but since we made two substantial reworks through a nine-week project, it's clear that we still could have done better job.\
+Experience is key here though. The core structures of projects like these are complicated. With more experience, I believe that some of the issues we faced could have been planned for and avoided. I have learned a lot from the project, and while I don't believe that the next project will be perfect either, I believe that I will be able to avoid some of the pitfalls we faced during this project.
 
 ## Skills and Knowledge Gained
 
