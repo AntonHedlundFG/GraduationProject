@@ -22,14 +22,15 @@ My primary goals for the project were as follows:
 Our goal was to create a tactical, almost board game-like experience, influenced by games like Descent, Gloomhaven and Warhammer: Quest. We also aimed to incorporate elements from procedurally generated roguelite games such as The Binding of Isaac, FTL: Faster Than Light, and Hades.
 
 The key pillars for the game that we agreed upon were:
-- Procedural generation for loot and game grid. 
-- A seeded approach to the randomness in the game.
-- Command-pattern for game actions, with the ability to redo all actions made by the players.
-- Units that function identically for both the player and for the AI. The AI should interact with the game in the exact same way that the player and have access to all the same information as the player.
-- Units have no inherent abilities and stats;  all abilities and stats were to come from the items.
-- Networked multiplayer support for up to four players.
-- Server authorative control with MVC pattern for visuals where the clients handle their own visual information.
-- Gameplay that is agnostic to the player count; fewer players would simply mean that each player controls more units.
+- **Procedural generation:** To implement procedural generation major systems in the game such as loot and the game grid. 
+- **Seeded Random:** A seeded approach to the randomness in the game ensuring repeatable and consistent outcomes.
+- **Command-pattern:** To use the command-pattern for game actions, allowing players to redo all the actions that they have made..
+- **Functionally Identical Units:** Ensuring that the units function identically for both players and AI. The AI should interact with the game exactly as the player does, with access to nor more or less information than the player has.
+- **No Inherent Abilities:** Units have no inherent abilities and stats; All abilities and stats come from the items.
+- **Networked Multiplayer:** Support for up to four players over a network session.
+- **Server Authorative Control:** Server authorative control where all actions and events happens on the server, with clients requesting actions.
+- **Model-view-controller:** Using the MVC pattern for visuals, where clients handle their own visual information.
+- **Gameplay Agnostic to Player Count:** Ensuring gameplay is agnostic to the number of players, with fewer players controlling more units.
 
 
 
@@ -69,10 +70,8 @@ The team will use Discord for online communication, GitHub for version control a
 
 ### Mentorship and Guidance
 The school provided us with a budget of 1 hour or mentoring per week, per student. Since we were five student collaborating, we had a combined budget of 5 hours a week. We decided as a group to reach out to two mentors and divided our time between them.
-
 #### Mentor 1
 Mentor 1 was the teacher in our Design pattern course. We reached out to him as we were planning a very system heavy project that required a robust core architecture. Knowing his extensive knowledge in this subject, we believed he would be an excellent mentor for us.
-
 #### Mentor 2
 Mentor 2 had been available to the class during our introductory C++ course.
 Besides being an excellent mentor in that course, he also had significant experience working with Unreal Engine. We felt that his experience with Unreal Engine, and general game development would prove valuable for us.
