@@ -10,8 +10,17 @@ Details: 10 weeks, 5 programmers.
 ## Table of contents
 - [Introduction](#introduction)
 - [Project Startup](#project-startup)
+	- [Goals](#goals)
+	- [Style Guide](#style-guide)
+	- [Week-by-week Plans](#week-by-week-plans)
+ 	- [Considerations and Limitations](#considerations-and-limitations)
+	- [Individual Responsibilities](#individual-responsibilities)
+	- [Mentors](#mentors)
 - [Weekly Summary](#weekly-summary)
 - [Outcome](#outcome)
+	- [Initial Planning vs. Final Outcome](#initial-planning-vs-final-outcome)
+ 	- [Challenges](#challenges)
+  	- [Learnings](#learnings)
 
 ## Introduction
 This is a report regarding a ten week long graduation project at FutureGames Stockholm. The project took place from April 18th to May 24th, 2024.
@@ -25,7 +34,7 @@ The personal goals I set for my project were:
 As I wanted to work in a team, I was in touch with a few of my co-students who were also interested in a team project within Unreal Engine. We ended up with a team of 5 students; [Me](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), [Johan Brandt](https://www.johanbrandt.com/), [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/)
 
 ## Project Startup
-### Goals, team and individual
+### Goals
 Very early in our team's discussions, we decided on making a tactical game, something akin to board games like Descent, Gloomhaven or Warhammer: Quest. We decided on a few key features that were core to our game and our respective individual goals for the project:
 
 - Networked multiplayer supporting 1-4 players
@@ -41,7 +50,7 @@ Before work started on any code, we sat down and decided on a few basic principl
 
 For example, since we were going to use C++ and AngelScript side-by-side, we decided to name any class implemented natively in C++ with a C following the default Unreal naming convention (i.e. ACMyActor or UCMyObject.) For classes implemented in AngelScript, we instead used an S (ASMyActor, USMyObject). 
 
-### Early week-by-week plans
+### Week-by-week plans
 As part of the first few days of the project being spent on planning our work and deciding on what game we would be making, we established this as a week-by-week plan. Note that this was *preliminary*, and not written in stone.
 
 1. Planning
@@ -67,7 +76,7 @@ We did not intend to have rigid team roles, but de facto, as the project progres
 - Server-authoritative turn order system and a replicated Command Pattern-style Action system with Undo functionality
 - Client-managed Visualization system for replicated server Actions, using a Strategy Pattern to create visual effects depending on which Action is visualized.
 
-### Mentors [TODO: Ask mentors if they want me to link to their websites or mention anything]
+### Mentors
 As the school provided a budget for one hour of mentoring per student per week, we decided as a group to reach out to two mentors to divide our weekly five hours between.
 #### Marc Zaku
 Marc was our teacher in the Programming Design Patterns course. Since our game was going to be a very logic-heavy game we needed our core game architecture to be solid, and because of this we believed Marc would be able to do an excellent job as a mentor for the team. 
