@@ -1,16 +1,70 @@
 # Graduation Project Report, Johan Brandt
 
 ## Keywords
-## Table of contents
+- Game Development
+- Unreal Engine
+- AngelScript
+- Command Pattern
+- Model-View-Controller (MVC)
+- Strategy Pattern
+- Utility AI
+- Goal-Oriented Action Planning (GOAP)
+- Networking
+- Multiplayer
+- Procedural Generation
+
+## Table of Contents
+1. [Introduction](#introduction)
+   - [Project Overview](#project-overview)
+   - [Team Members](#team-members)
+2. [Project Scope and Significance](#project-scope-and-significance)
+   - [Project Description](#project-description)
+   - [Tools and Technologies Used](#tools-and-technologies-used)
+3. [Individual Project Goals](#individual-project-goals)
+
+4. [Team Project Goals](#team-project-goals)
+
+5. [Early Design](#early-design)
+   - [Game Mechanics and Grid System](#game-mechanics-and-grid-system)
+   - [Minimalistic Art Approach](#minimalistic-art-approach)
+   - [System Architecture](#system-architecture)
+6. [Anticipated Challenges](#anticipated-challenges)
+   - [Team Collaboration](#team-collaboration-1)
+   - [System Scalability and Extendability](#system-scalability-and-extendability)
+7. [Style Guide](#style-guide)
+   - [Naming Conventions](#naming-conventions)
+8. [Work Process](#work-process)
+   - [Initial Week-by-Week Plan](#initial-week-by-week-plan)
+   - [Project Milestones](#project-milestones)
+9. [Project Management and Communication](#project-management-and-communication)
+   - [Tools and Platforms](#tools-and-platforms)
+   - [Meeting Schedules](#meeting-schedules)
+10. [Mentorship and Guidance](#mentorship-and-guidance)
+    - [Mentor Contributions](#mentor-contributions)
+11. [Goal Achievement](#goal-achievement)
+    - [Team Goals Achieved](#team-goals-achieved)
+    - [Individual Goals Achieved](#individual-goals-achieved)
+12. [Skills and Knowledge Gained](#skills-and-knowledge-gained)
+    - [Game AI Development](#game-ai-development)
+    - [System Design Architecture](#system-design-architecture)
+13. [Challenges and Solutions](#challenges-and-solutions)
+    - [Network Development](#network-development)
+    - [Debugging Multiplayer](#debugging-multiplayer)
+    - [Reworks and System Overhauls](#reworks-and-system-overhauls)
+14. [Project Analysis](#project-analysis)
+15. [Conclusion](#conclusion)
+16. [References](#references)
+
 ## Introduction
-This is the report for my graduation project at Futuregames in Stockholm, undertaken from April 18 to May 24. This graduation project provided an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
+<a name="project-overview"></a> This is the report for my graduation project at Futuregames in Stockholm, undertaken from April 18 to May 24. This graduation project provided an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
 Through this report, I will detail the process, challenges, and learning outcomes of my graduation project.
 
-The project was made as a team effort with five programming students;\
+<a name="team-members"></a> The project was made as a team effort with five programming students;\
 [Me](https://www.johanbrandt.com/), [Anton Hedlund](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), , [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/).
 
 ### Project scope and Significance
-For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
+<a name="project-description"></a> For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. \
+<a name="tools-and-technologies-used"></a>Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
 
 ### Individual Project Goals
 My primary goals for the project were as follows:
@@ -38,15 +92,15 @@ The key pillars for the game that we agreed upon were:
 
 
 ### Early design
-The game was designed to operate on a square grid where players take turns with AI to control character units. Players shared control over four characters, with each player able to manage multiple characters if there were fewer than four players. All units' stats and abilities were to be granted by items, leaving no innate abilities for the units except for the ability to use items. Items could be slot-specific, granting abilities, or slot-less, providing passive effects. For example, boots might grant a movement ability, a weapon might grant an attack ability, and armor could increase health value. Slot-less items could instead grant passive increases to, for example movement range or attack.
+<a name="game-mechanics-and-grid-system"></a>The game was designed to operate on a square grid where players take turns with AI to control character units. Players shared control over four characters, with each player able to manage multiple characters if there were fewer than four players. All units' stats and abilities were to be granted by items, leaving no innate abilities for the units except for the ability to use items. Items could be slot-specific, granting abilities, or slot-less, providing passive effects. For example, boots might grant a movement ability, a weapon might grant an attack ability, and armor could increase health value. Slot-less items could instead grant passive increases to, for example movement range or attack.
 
 Enemy units were designed to be identical to player-controlled units, differing only in the controlling entity, which simplified integration and interaction within the game environment. It would also give a sense of fairness to the game and inherently show the player how the AI controlled units would be able to act.
 
-Given the absence of dedicated artists, we adopted a minimalistic art approach using basic geometric shapes and billboards for the game actors. Additionally, we tried to emphasize the use of scalable and extendable system architecture. The plan was to use this approach to content generation as much as possible, given the lack of dedicated designers. The goal was to create a lot of content using systems instead of creating it by hand.
+<a name="minimalistic-art-approach"></a>Given the absence of dedicated artists, we adopted a minimalistic art approach using basic geometric shapes and billboards for the game actors. <a name="system-architecture"></a>Additionally, we tried to emphasize the use of scalable and extendable system architecture. The plan was to use this approach to content generation as much as possible, given the lack of dedicated designers. The goal was to create a lot of content using systems instead of creating it by hand.
 
 ### Anticipated Challenges
-One of the largest challenges I anticipated was to come from working in a team of five programmers without the support of dedicated artists or designers. Previously, I had worked with a maximum of three other programmers, and even in that smaller group, task allocation and collaboration often presented difficulties. Organizing our team to avoid these issues as much as possible would be crucial.\
-Additionally, the absence of designers meant that we needed to architect our systems to be scalable and easily extendable. The systems had to be robust from the start, allowing for efficient content addition throughout the project and potential expansion later on. This required careful planning and systematic content generation, which would be a key focus as the project unfolded.
+<a name="team-collaboration-1"></a>One of the largest challenges I anticipated was to come from working in a team of five programmers without the support of dedicated artists or designers. Previously, I had worked with a maximum of three other programmers, and even in that smaller group, task allocation and collaboration often presented difficulties. Organizing our team to avoid these issues as much as possible would be crucial.\
+<a name="system-scalability-and-extendability"></a>Additionally, the absence of designers meant that we needed to architect our systems to be scalable and easily extendable. The systems had to be robust from the start, allowing for efficient content addition throughout the project and potential expansion later on. This required careful planning and systematic content generation, which would be a key focus as the project unfolded.
 
 ### [Style guide](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Docs/Naming%20Conventions/README.md)
 During the planning phase of the project, we established specific naming conventions. Some of these conventions are standard, while others are unique to our project.
@@ -57,6 +111,7 @@ For example, while following the default Unreal naming conventions, we also agre
 ### Initial Week-by-week Plan
 In the initial planning of the project we laid out a flexible plan with milestone for each week. The plan served as a guide rather than a fixed schedule, allowing us to adapt as needed throughout the project.
 
+<a name="project-milestones"></a>
 1. Planning and project setup
 2. First playable
 3. Pre-Alpha
@@ -69,7 +124,8 @@ In the initial planning of the project we laid out a flexible plan with mileston
 10. Wrap-up, presentation
 
 ### Project Management and Communication
-The team will use Discord for online communication, GitHub for version control and Jira for task management. We will have a stand-up meeting, daily,at 10 AM. We won't have weekly reviews of the project, but we will make sure to have a weekly build from week 2 and onwards. Review meetings for the whole team will be planned and scheduled for when there is a need.
+<a name="tools-and-platforms"></a>The team will use Discord for online communication, GitHub for version control and Jira for task management.\
+<a name="meeting-schedules"></a>We will have a stand-up meeting, daily,at 10 AM. We won't have weekly reviews of the project, but we will make sure to have a weekly build from week 2 and onwards. Review meetings for the whole team will be planned and scheduled for when there is a need.
 
 ### Mentorship and Guidance
 The school provided us with a budget of 1 hour or mentoring per week, per student. Since we were five student collaborating, we had a combined budget of 5 hours a week. We decided as a group to reach out to two mentors and divided our time between them.
