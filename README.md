@@ -24,3 +24,10 @@ The prototype was pitched as a co-op turn-based tactical rogue-lite with online 
 - Enemy and hero units functionally identical, AI uses same functions as player input
 
 ![Player takes several actions, changes their mind and undoes the entire turn](Gifs/UndoEntireTurn.gif)
+
+Asset credits
+
+[Unit Sprites](https://ddant1100.itch.io/ttrpg-legacy-characters-4) \
+[Ability Icons](https://game-icons.net/) \
+[UI](https://www.unrealengine.com/marketplace/en-US/product/classic-rpg-ui) \
+[Skybox & 3D Models](https://www.unrealengine.com/marketplace/en-US/product/isometric-world-sky-temple)
