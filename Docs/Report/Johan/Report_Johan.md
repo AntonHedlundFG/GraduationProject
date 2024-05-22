@@ -29,7 +29,7 @@
 
 4. [Skills and Knowledge Gained](#skills-and-knowledge-gained)
    - [Game AI Development](#game-ai-development)
-   - [System Design Atchitecture](#system-design-architecture)
+   - [System Design Architecture](#system-design-architecture)
 
 5. [Challenges and Solutions](#challenges-and-solutions)
    - [Network Development](#network-development)
@@ -37,7 +37,7 @@
    - [Reworks upon Reworks](#reworks-upon-reworks)
 
 6. [Project Analysis and Conclusion](#project-analysis-and-Conclusion)
-   
+
 7. [References](#references)
 
 
@@ -49,17 +49,17 @@ The project was made as a team effort with five programming students:\
 [Me](https://www.johanbrandt.com/), [Anton Hedlund](https://www.antonhedlund.com/), [Erik Lund](https://lunderik.wixsite.com/portfolio), , [Alice Kamil](https://alicekamil.com/), [Theo Sandén](https://www.theosanden.com/).
 
 ### Project scope and Significance
-For this project, I have worked in a team of five programmers to develop a turn-based tectical rogue-lite game with optional cooperative multiplayer features over a network session. \
-Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelights' AngelScript, to build the game.
+For this project, I have worked in a team of five programmers to develop a turn-based tactical rogue-lite game with optional cooperative multiplayer features over a network session. \
+Online session management was handles using Epic Online Services for Unreal Engine. We utilized a modified version of Unreal Engine 5.3.0, which included support for Hazelight's AngelScript, to build the game.
 
 ### Individual Project Goals
 My primary goals for the project were as follows:
 
-- **Enhance proficieny with Unreal Engine:** To practice and advance my familiarity with Unreal Engine.
+- **Enhance proficiency with Unreal Engine:** To practice and advance my familiarity with Unreal Engine.
 - **C++ and Scripting Integration:** To practice and advance my skills in C++ along with a scripting language, Angelscript in this case. 
-- **Team Collaboration:** To gain experience working with a larger programmer team of five memeber, compared to my previous experience with a maximum of three. 
+- **Team Collaboration:** To gain experience working with a larger programmer team of five members, compared to my previous experience with a maximum of three. 
 - **Networking in Games:** To develop more hands-on experience working with  networking in games. 
-- **AI System Development:** To build and develop a robust base for the game's AI that would support all the possible behaviors needed for the game, both now and in future iterations of the project.
+- **AI System Development:** To build and develop a robust base for the game's AI that would support all the possible behaviours needed for the game, both now and in future iterations of the project.
 
 ### Team Project Goals
 Our goal was to create a tactical, almost board game-like experience, influenced by games like Descent, Gloomhaven and Warhammer: Quest. We also aimed to incorporate elements from procedurally generated roguelite games such as The Binding of Isaac, FTL: Faster Than Light, and Hades.
@@ -71,7 +71,7 @@ The key pillars for the game that we agreed upon were:
 - **Functionally Identical Units:** Ensuring that the units function identically for both players and AI. The AI should interact with the game exactly as the player does, with access to nor more or less information than the player has.
 - **No Inherent Abilities:** Units have no inherent abilities and stats; All abilities and stats come from the items.
 - **Networked Multiplayer:** Support for up to four players over a network session.
-- **Server Authorative Control:** Server authorative control where all actions and events happens on the server, with clients requesting actions.
+- **Server Authoritative Control:** Server authoritative control where all actions and events happens on the server, with clients requesting actions.
 - **Model-view-controller:** Using the MVC pattern for visuals, where clients handle their own visual information.
 - **Gameplay Agnostic to Player Count:** Ensuring gameplay is agnostic to the number of players, with fewer players controlling more units.
 
@@ -95,7 +95,7 @@ For example, while following the default Unreal naming conventions, we also agre
 ## Work Process
 
 ### Initial Week-by-week Plan
-In the initial planning of the project we laid out a flexible plan with milestone for each week. The plan served as a guide rather than a fixed schedule, allowing us to adapt as needed throughout the project.
+In the initial planning of the project, we laid out a flexible plan with milestone for each week. The plan served as a guide rather than a fixed schedule, allowing us to adapt as needed throughout the project.
 
 1. Planning and project setup
 2. First playable
@@ -110,7 +110,7 @@ In the initial planning of the project we laid out a flexible plan with mileston
 
 ### Project Management and Communication
 The team will use Discord for online communication, GitHub for version control and Jira for task management.\
-We will have a stand-up meeting, daily,at 10 AM. We won't have weekly reviews of the project, but we will make sure to have a weekly build from week 2 and onwards. Review meetings for the whole team will be planned and scheduled for when there is a need.
+We will have a stand-up meeting, daily, at 10 AM. We won't have weekly reviews of the project, but we will make sure to have a weekly build from week 2 and onwards. Review meetings for the whole team will be planned and scheduled for when there is a need.
 
 ### Mentorship and Guidance
 The school provided us with a budget of 1 hour or mentoring per week, per student. Since we were five student collaborating, we had a combined budget of 5 hours a week. We decided as a group to reach out to two mentors and divided our time between them.
@@ -121,33 +121,33 @@ Mentor 2 had been available to the class during our introductory C++ course.
 Besides being an excellent mentor in that course, he also had significant experience working with Unreal Engine. We felt that his experience with Unreal Engine, and general game development would prove valuable for us.
 
 ## Goal Achievement
-I am happy to report that all of the broader team goals were achieved for the project, as well as all of my individual ones. A few things from the original plan chaned along the way, with some features being left quite barebone, with some new ones taking their place instead.
+I am happy to report that all the broader team goals were achieved for the project, as well as all my individual ones. A few things from the original plan changed along the way, with some features being left quite barebone, with some new ones taking their place instead.
 
 ### Team Goals Achieved
-Overall, the teams goals we mostly fulfilled. We managed base implementations for eveything we set out to do. Some aspect of the plans weren't fully realized though, while some other features which did recieve more development time, instead ended up more advanced and feature rich than we had planned.
+Overall, the teams’ goals we mostly fulfilled. We managed base implementations for everything we set out to do. Some aspects of the plans weren't fully realized though, while some other features which did receive more development time, instead ended up more advanced and feature rich than we had planned.
 
 - **Procedural Generation:** Only the basics were implemented, and it could have been more interesting if we had spend more development time expanding upon the item rolling and dungeon creation.
 
-- **Seeded Random:** The system is functional and in use. But since we are not exposing the user to it in any way yet, it is like it wasnt even there.
+- **Seeded Random:** The system is functional and in use. But since we are not exposing the user to the seed in any way yet, it is like it wasn't even there.
 
 - **Unit Functionality:** Fully realized as planned. both the player and the AI have the same control over the units, using the same functions to interact with them in the end.
 
 - **Item-Based Abilities:** All of the units' abilities come from the items as planned, as well as some of the stats. Units do have some inherent stats at in the 1.0 build though, but this would be easily changed if prioritized.
 
-- **Networking Support:** Fully implemented with consistent gameplay whather there is one or four playes.
+- **Networking Support:** Fully implemented with consistent gameplay whether there is one or four players.
 
-- **Server Authority and MVC:** The server controls everything in the game, with all the clients requesting actions from the server and handling theit own visuals through the Visualization system. 
+- **Server Authority and MVC:** The server controls everything in the game, with all the clients requesting actions from the server and handling their own visuals through the Visualization system. 
 
 ### Individual Goals Achieved
 Although I had to spend a substantial amount of time searching for an internship, which impacted my ability to achieve all my goals, I was fortunate to realize most of them.
 
-- **Unreal Engine Proficiency:** I now feel so much more comfortable using the Engine than I was going in to the project. Previously, I had mainly worked with and kept to the C++ and had limited interaction with the editor. Without designers and artists on this project, I have spent more time with the engine and it has made me much more proficient and confident using it.
+- **Unreal Engine Proficiency:** I now feel so much more comfortable using the Engine than I was going in to the project. Previously, I had mainly worked with and kept to the C++ and had limited interaction with the editor. Without designers and artists on this project, I have spent more time with the engine, and it has made me much more proficient and confident using it.
 
 - **Team Collaboration:** Collaboration within the team has been great. I also feel more confident working in a code base where I haven't had a hand in every part of it, and don't know the in and out of everything.
 
 - **Networking:** The networking aspect of the project has both been fun and very challenging. The networking has been the cause of most major issues during the project, but we managed to work though most of them in the end.
 
-- **Game AI Development:** I personally took sole responsibility for developing the AI for the game. I succeded in creating a solid base system and some basic behaviours for it. I am happy with how it turned out, while at the same time wishing that I had more time to work on the system and extending it with more advanced behaviours.
+- **Game AI Development:** I personally took sole responsibility for developing the AI for the game. I succeeded in creating a solid base system and some basic behaviours for it. I am happy with how it turned out, while at the same time wishing that I had more time to work on the system and extending it with more advanced behaviours.
 
 - **C++ and Angelscript Proficiency:** My grasp of C++ and it's quirks, has grown significantly through this project. Focusing on, and spending time working with parts of C++ I didn't fully grasp before, has made me a much better programmer. Additionally, I really appreciate how I managed to use Angelscript for high-level AI behaviours, unit actions and their visualizations.
 
@@ -155,22 +155,22 @@ Although I had to spend a substantial amount of time searching for an internship
 Outside of and on top of the goals I set out for the project I also learned quite a bit about a few other subjects.
 
 ### Game AI Development  
-I took responsibility for the AI in the game and I ended up as the sole programmer and implementer of the system for the game. Given that we were developing a game with a wide variety of actions and items, I aimed to develop and implement a robust AI system capable of handling all this complexity. After researching for a few days, I ended up deciding in on implementing Utility AI. 
+I took responsibility for the AI in the game, and I ended up as the sole programmer and implementer of the system for the game. Given that we were developing a game with a wide variety of actions and items, I aimed to develop and implement a robust AI system capable of handling all this complexity. After researching for a few days, I ended up deciding in on implementing Utility AI. 
 
-Utility AI, or Utility-based AI, is a system designed to assign utility scores to varioud potential actions for the AI can take. The scores represent the usefulness of each action in the current context which the AI is in. The AI then selects the action with the highest utility score. My system also tries to recursively to this and plan out each round of actions before actually starting the process of executing them. 
+Utility AI, or Utility-based AI, is a system designed to assign utility scores to various potential actions for the AI can take. The scores represent the usefulness of each action in the current context which the AI is in. The AI then selects the action with the highest utility score. My system also tries to recursively to this and plan out each round of actions before starting the process of executing them. 
 
-In addition to Utility AI, I also explored Goal-Oriented Action Planning (GOAP). I set up a plan for how to integrate GOAP in to the AI system to manage overall team behaviours through updating of the contexts, time contraints during the project prevented me from fully implementing it. Nonetheless, I am quite happy with the foundational framework I made for the AI as it barely took any work to make it functional with all the new items and abilities that we threw at it towards the end of the project.
+In addition to Utility AI, I also explored Goal-Oriented Action Planning (GOAP). I set up a plan for how to integrate GOAP into the AI system to manage overall team behaviours through updating of the contexts, time constraints during the project prevented me from fully implementing it. Nonetheless, I am quite happy with the foundational framework I made for the AI as it barely took any work to make it functional with all the new items and abilities that we threw at it towards the end of the project.
 
 ### System Design Architecture 
-Going into the project we all knew it would be a systems-heavy endeavor, and we tried planning for it accordingly. Although learning and practicing specific design pattens wasn't a primary goal for me going in to this project, I still feel much more confident in a few major ones that we implemented.
+Going into the project we all knew it would be a systems-heavy endeavour, and we tried planning for it accordingly. Although learning and practicing specific design pattens wasn't a primary goal for me going into this project, I still feel much more confident in a few major ones that we implemented.
 
-We introduced and implemented three major pattens in to the core design of the project: the **Command Pattern**, the **Model-View-Controller Pattern (MCV)**, and the **Strategy Pattern**.
+We introduced and implemented three major pattens into the core design of the project: the **Command Pattern**, the **Model-View-Controller Pattern (MCV)**, and the **Strategy Pattern**.
 
-- **Command-Pattern:** We implemented the command pattern as the underlying structure for all the Actions in the game. This design choice was to ensure that all actions were encapsulated as object, making them more easily managable and undoable. The encapsulation also allowed for easier replication to clients, for client side visualization.
-- **Model-View-Controller (MVC):** We used the MVC pattern to visualize actions on all clients in our game. The process works as follows: the client requests an action to be performed on the server; the server then processes the action before notifying the all the clients of the result; finally each client updates their visuals through the visualization system based on the server's notification, ensuring that all players see the same result of the action.
-- **Strategy Pattern:** The visualisation system implements the strategy pattern. Each visualization includes both a visualization to be played on the client and a list of all actions that would use this particular visualization. After an action is performed on the server it is then queued into the visualization system, and replicated to all clients. As long as there are actions queued, the visualizer loops through them and performs the appropriate visualization for each action.
+- **Command-Pattern:** We implemented the command pattern as the underlying structure for all the Actions in the game. This design choice was to ensure that all actions were encapsulated as object, making them more easily manageable and undoable. The encapsulation also allowed for easier replication to clients, for client-side visualization.
+- **Model-View-Controller (MVC):** We used the MVC pattern to visualize actions on all clients in our game. The process works as follows: the client requests an action to be performed on the server; the server then processes the action before notifying the all the clients of the result; finally, each client updates their visuals through the visualization system based on the server's notification, ensuring that all players see the same result of the action.
+- **Strategy Pattern:** The visualisation system implements the strategy pattern. Each visualization includes both a visualization to be played on the client and a list of all actions that would use this specific visualization. After an action is performed on the server it is then queued into the visualization system and replicated to all clients. As long as there are actions queued, the visualizer loops through them and performs the appropriate visualization for each action.
 
-While neither of these patterns were completely new to me, I had never used them extensively in any of my previous project. Although I wasn't directly involved in the actual implementation of these patterns in this project, I still learned a lot from studying and understanding their implementation, and using them throughout this project.  
+While neither of these patterns were completely new to me, I had never used them extensively in any of my previous project. Although I wasn't directly involved in the actual implementation of these patterns in this project, I still learned a lot from studying and understanding their implementation and using them throughout this project.  
 
 ## Challenges and Solutions
 
@@ -178,33 +178,34 @@ While neither of these patterns were completely new to me, I had never used them
 Developing a game with network replication is challenging, especially when you have limited experience with it. The difficulty multiplies when you're working as part of a team where everyone is learning and experimenting with new techniques.\
 All throughout development we faced many issues and bugs related to networking and server-to-client replication. Often, these problems arose because we primarily tested in a single-player environment, as it was easier and quicker. However, our inexperience also played a significant role, leading us to occasionally forget to replicate the correct properties, or even replicate them at all. 
 
-While we didn't just magically "solve" networking, as there is no single solution to all networking issues, I believe that we managed to adress most of the specific problems that arose during the project. Many of our issues were simply remedied by just making sure to replicate the correct properties and testing for as many scenarios as we could think of.
+While we didn't just magically "solve" networking, as there is no single solution to all networking issues, I believe that we managed to address most of the specific problems that arose during the project. Many of our issues were simply remedied by just making sure to replicate the correct properties and testing for as many scenarios as we could think of.
 
 One persistent issue that we never managed to solve completely involved the replication of a collection of pointers. The problem arose from when the collection was replicated before the object themselves had time to properly replicate. For example, when replicating a `TArray<UObjects*>` and using an `OnRep` function that relies on the values in the array, we often encountered `nullptr` instead of the objects. We believe that this issue stems from the `TArray` replicating properly before the objects within the array has had the time to properly replicate, resulting in an array of null pointers on the client side when the `OnRep` function gets called. A workaround that we used to skirt around the issue was to perform null checks through the array on the client, but this solution feels clunky. I believe that there is a better solution, but we have not yet found it.  
 
 ### Debugging Multiplayer
 Debugging a finding solutions for issues that arose when testing the game in a multiplayer session presented another set of challenges. The standard IDE debugger could not attach to the game instances when we were testing it in Standalone mode, which unfortunately is also required to test networking features properly.
 
-To help solve this problem, we relied on the Logging System i develope early in the project. We used it identify difference in replication and pinpoint the crash or issue arose. While this is far from a perfect solution, it was definitely helpful. I imagine that there are better and more accessible solutions for debugging the online mode, but we were not aware of them at the time. In a larger and more extensive project, I would definitely spend more time on reseach and ensure that we establish a more comprehensive method of debugging the online features.
+To help solve this problem, we relied on the Logging System I developed early in the project. We used it identify difference in replication and pinpoint the crash or issue arose. While this is far from a perfect solution, it was helpful. I imagine that there are better and more accessible solutions for debugging the online mode, but we were not aware of them at the time. In a larger and more extensive project, I would spend more time on research and ensure that we establish a more comprehensive method of debugging the online features.
 
 ### Reworks upon Reworks
 We started this project by gathering around a whiteboard to plan out the construction of all the underlying systems for the game. From there we created the first iteration of the underlying command system within a week from writing the first line of code. Although it was not final in any way, it provided a foundation to start working with, and we quickly spread out and to start working on different parts of the project. 
 
 No more than one week later, a part of the team began reworking the core command system into a more extensive system for actions and abilities. By this point, I had started working on the AI, so I was not part of this group. However, as a core system was being changed, I had to pause my work temporarily until the rework was done. This was of course frustrating, even though the changes to the system were beneficial to the project in the end.
 
-Seven weeks into the project, we had yet another overhaul and rework of core systems. This time introducing attributes into the previously reworked ability system. This once again temporarily hampered progress on other parts of the game while it was being implemented. Additionally, existing content had to  be updated to support the new attribute system.\
+Seven weeks into the project, we had yet another overhaul and rework of core systems. This time introducing attributes into the previously reworked ability system. This once again temporarily hampered progress on other parts of the game while it was being implemented. Additionally, existing content had to be updated to support the new attribute system.\
 We had learned from the previous rework and the process was made less obstructing through branching of the project. While not a perfect solution or execution, it helped making the impact on other parts less of an issue. I believe that it could have been done even more effective. With proper testing and feature implementation in the branch before merging it into the main branch we could have avoided even more of the obstruction in the end.
 
 The whole process of reworking existing systems in a short project like this one is something that I believe we could have avoided completely. We tried to minimize this through planning and documentation early in the project, but since we made two substantial reworks through a nine-week project, it's clear that we still could have done better job.\
 Experience is key here though. The core structures of projects like these are complicated. With more experience, I believe that some of the issues we faced could have been planned for and avoided. I have learned a lot from the project, and while I don't believe that the next project will be perfect either, I believe that I will be able to avoid some of the pitfalls we faced during this project.
  
 ## Project Analysis and Conclusion
-I am very happy to have teamed up with the other four people during this project. We aimed to develop a turn-based tactival rogue-lite game with quite a few complex features during this graduation project. Refliecting on the journey, I believe that the project has been a significant success for both me and the team. Despite the challenged we encountered, we achieved most of our primary goals. The knowledge and skills that I have gained, especially in system design and AI development, will be invaluable for future projects.
+I am very happy to have teamed up with the other four people during this project. We aimed to develop a turn-based tactical rogue-lite game with quite a few complex features during this graduation project. Reflecting on the journey, I believe that the project has been a significant success for both me and the team. Despite the challenged we encountered, we achieved most of our primary goals. The knowledge and skills that I have gained, especially in system design and AI development, will be invaluable for future projects.
 
-The one area that I wish I could have devoted more time to was the AI system. Unfortunately, my search for an  internship, which would follow this project, consumed nearly half of my available working hours, limiting the time I could dedicate to it.  During the later parts of this project, I spent my time more as support for the others instead of expanding upon my own work, as I had to dedicate more and more time to the search. Given more time, I would have loved to expand and enhance the AI beyond the foundational work that I managed to complete. Nevertheless, the experience has been incredibly rewarding and fun!
+The one area that I wish I could have devoted more time to is the AI system. Unfortunately, my search for an internship, which would follow this project, consumed nearly half of my available working hours, limiting the time I could dedicate to it.  During the later parts of this project, I spent my time more as support for the others instead of expanding upon my own work, as I had to dedicate more and more time to the search. Given more time, I would have loved to expand and enhance the AI beyond the foundational work that I managed to complete. Nevertheless, the experience has been incredibly rewarding and fun!
 
 ## References
-**Utility AI:** https://www.gameaipro.com/GameAIPro/GameAIPro_Chapter09_An_Introduction_to_Utility_Theory.pdf \
+**Utility AI:** \
+https://www.gameaipro.com/GameAIPro/GameAIPro_Chapter09_An_Introduction_to_Utility_Theory.pdf \
 https://shaggydev.com/2023/04/19/utility-ai/ \
 https://www.gdcvault.com/play/1012410/Improving-AI-Decision-Modeling-Through \
 https://www.gdcvault.com/play/1021848/Building-a-Better-Centaur-AI 
