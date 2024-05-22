@@ -75,12 +75,14 @@ The key pillars for the game that we agreed upon were:
 - **Model-view-controller:** Using the MVC pattern for visuals, where clients handle their own visual information.
 - **Gameplay Agnostic to Player Count:** Ensuring gameplay is agnostic to the number of players, with fewer players controlling more units.
 
-
-
 ### Early design
 The game was designed to operate on a square grid where players take turns with AI to control character units. Players shared control over four characters, with each player able to manage multiple characters if there were fewer than four players. All units' stats and abilities were to be granted by items, leaving no innate abilities for the units except for the ability to use items. Items could be slot-specific, granting abilities, or slot-less, providing passive effects. For example, boots might grant a movement ability, a weapon might grant an attack ability, and armor could increase health value. Slot-less items could instead grant passive increases to, for example movement range or attack.
 
 Enemy units were designed to be identical to player-controlled units, differing only in the controlling entity, which simplified integration and interaction within the game environment. It would also give a sense of fairness to the game and inherently show the player how the AI controlled units would be able to act.
+
+Planning Whiteboard 1 | Planning Whiteboard 2 | Planning Whiteboard 3
+:----:|:----:|:----:
+![PlanningWhiteboard1](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/Planning_Whiteboard_cropped.png) | ![PlanningWhiteboard2](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/Planning_Whiteboard2_cropped.png) | ![PlanningWhiteboard3](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Images/Planning_Whiteboard3_cropped.png)
 
 Given the absence of dedicated artists, we adopted a minimalistic art approach using basic geometric shapes and billboards for the game actors. Additionally, we tried to emphasize the use of scalable and extendable system architecture. The plan was to use this approach to content generation as much as possible, given the lack of dedicated designers. The goal was to create a lot of content using systems instead of creating it by hand.
 
