@@ -174,6 +174,10 @@ We introduced and implemented three major pattens into the core design of the pr
 
 While neither of these patterns were completely new to me, I had never used them extensively in any of my previous project. Although I wasn't directly involved in the actual implementation of these patterns in this project, I still learned a lot from studying and understanding their implementation and using them throughout this project.  
 
+State Updated Without Visualization | State Updated With Visualization
+:----:|:----:
+![StateUpdatedWithoutVisualization](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Gifs/UndoRedoWithoutVisualShort.gif) | ![StateUpdatedWithVisualization](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Gifs/UndoRedoWithVisualShort.gif)
+
 ## Challenges and Solutions
 
 ### Network Development
