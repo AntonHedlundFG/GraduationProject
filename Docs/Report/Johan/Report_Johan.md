@@ -42,7 +42,7 @@
 
 
 ## Introduction
-This is the report for my graduation project at Futuregames in Stockholm, undertaken from April 18 to May 24. This graduation project provided an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
+This is the report covers my graduation project at Futuregames in Stockholm, undertaken from March 18 to May 24. This project offered an opportunity to explore and practice with the capabilities of Unreal Engine while integrating it with Hazelight's AngelScript. 
 Through this report, I will detail the process, challenges, and learning outcomes of my graduation project.
 
 The project was made as a team effort with five programming students:\
@@ -88,9 +88,9 @@ Given the absence of dedicated artists, we adopted a minimalistic art approach u
 One of the largest challenges I anticipated was to come from working in a team of five programmers without the support of dedicated artists or designers. Previously, I had worked with a maximum of three other programmers, and even in that smaller group, task allocation and collaboration often presented difficulties. Organizing our team to avoid these issues as much as possible would be crucial.\
 Additionally, the absence of designers meant that we needed to architect our systems to be scalable and easily extendable. The systems had to be robust from the start, allowing for efficient content addition throughout the project and potential expansion later on. This required careful planning and systematic content generation, which would be a key focus as the project unfolded.
 
-### [Style guide](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Docs/Naming%20Conventions/README.md)
-During the planning phase of the project, we established specific naming conventions. Some of these conventions are standard, while others are unique to our project.
-For example, while following the default Unreal naming conventions, we also agreed on additional rules: all native C++ classes would start with a "C" (e.g. CMyActor), and all AngelScript classes would start with an "S" (e.g. SMyActor).
+### Style guide
+During the planning phase of the project, we established specific [Naming Conventions](https://github.com/AntonHedlundFG/GraduationProject/blob/main/Docs/Naming%20Conventions/README.md). Some of these conventions are standard, while others are unique to our project.
+For example, while following the default Unreal naming conventions, we also agreed on additional rules: all native C++ classes would start with a "C" (e.g. CMyActor), and all AngelScript classes would start with an "S" (e.g. SMyActor). 
 
 ## Work Process
 
