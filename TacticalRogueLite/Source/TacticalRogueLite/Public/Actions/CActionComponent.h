@@ -9,16 +9,14 @@
 #include "Attributes/Utilities/CAttributeUtilities.h"
 #include "CActionComponent.generated.h"
 
-
 class UCAttributeSet;
 
 //Triggers on an attribute change inside Attributeset. Difference in value, Contexttags= Whatever you need- Specify who triggered this? Damage.Block? Damage.Crithit? Gives _context_.
 DECLARE_DYNAMIC_DELEGATE_SevenParams(FAttributeChangedSignature, UCActionComponent*, ActionComp, UCActionComponent*, InstigatorComp, FGameplayTag, AttributeTag, int, NewValue, int, Delta, const FGameplayTagContainer&, ContextTags, EAttributeModifierOperation, ModType);
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActionStateChanged, UCActionComponent*, OwningComp, UCAction*, Action);
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityChanged, UCActionComponent*, OwningComp, FAbility, Ability);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameplayTagsChanged);
+
 UENUM(BlueprintType)
 enum class EGameplayEventScope : uint8
 {
@@ -39,6 +37,7 @@ class TACTICALROGUELITE_API UCActionComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	
 	virtual void BeginPlay() override;
 	virtual void EndPlay(EEndPlayReason::Type EndReason) override;
 	
@@ -48,6 +47,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	static UCActionComponent* GetActionComp(AActor* FromActor);
 
+	
+	// -- GameplayTags -- //
+	
 	//Array of gameplaytags. Contains useful utility function on it like "HasTag", "HasAnyOfTheseTags".
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Tags")
 	FGameplayTagStackContainer ActiveGameplayTags;
@@ -55,25 +57,26 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnGameplayTagsChanged OnGameplayTagsChanged;
 
-	/* 
-	* Returns true if we have a one or more of the tag in the stack.
-	*/
+	// Returns true if the ActionComp have one or more of the tag in the stack.
 	UFUNCTION(BlueprintCallable)
 	bool HasTag(FGameplayTag Tag) const
 	{
 		return ActiveGameplayTags.HasTag(Tag);
 	}
 
+	// Returns true if the ActionComponent has any of the tags passed in.
 	UFUNCTION(BlueprintCallable)
 	bool HasAny(FGameplayTagContainer Tags)
 	{
 		return ActiveGameplayTags.HasAny(Tags);
 	}
+	// Add a tag to the stack.
 	UFUNCTION(BlueprintCallable)
 	void AppendTag(FGameplayTag Tag)
 	{
 		ActiveGameplayTags.AppendTag(Tag);
 	}
+	// Add several tags to the stack.
 	UFUNCTION(BlueprintCallable)
 	void AppendTags(FGameplayTagContainer Tags)
 	{
@@ -89,6 +92,8 @@ public:
 	{
 		ActiveGameplayTags.RemoveTags(Tags);
 	}
+
+	// --- Actions --- //
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass);
@@ -108,6 +113,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	bool StopActionByName(AActor* Instigator, FGameplayTag ActionName);
+	
+	// --- Abilities --- //
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void AddAbility(FAbility Ability);
@@ -118,6 +125,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbility);
 
+	// --- Tile Utilities --- //
+
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	TArray<ACGridTile*> GetValidTargetTiles(FGameplayTag itemSlot);
 
@@ -127,6 +136,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool IsValidTargetTile(FGameplayTag ItemSlot, class ACGridTile* TargetTile);
 
+
+	// --- Core --- //
+	
 	UCActionComponent();
 
 	UPROPERTY(BlueprintAssignable)
@@ -154,13 +166,12 @@ public:
 	
 	// -- Attributes -- //
 	
-	//Attribute set for things like Health, HealthMax...
+	//Attribute set for things like Health, HealthMax.
 	UPROPERTY(VisibleAnywhere, Replicated)
 	TObjectPtr<UCAttributeSet> AttributeSet;
 
 	bool GetAttribute(FGameplayTag InTag, FAttribute& InAttribute);
 	
-	//1
 	//Static blueprint accessor for all data contained inside all FAttribute, so never have to deal with structs.
 	UFUNCTION(BlueprintPure, Category = "Attributes", meta =(DisplayName = "Get Attribute"))
 	bool K2_GetAttribute(FGameplayTag AttributeTag, int& CurrentValue, int& BaseValue, int &Additive, int& Multiplier);
@@ -180,7 +191,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game|Attributes", meta = (AutoCreateRefTerm = "Event", DisplayName = "Remove Attribute Listener"))
 	void RemoveAttributeChangedListener(FGameplayTag AttributeTag, const FAttributeChangedSignature& Event);
 
-	//Mapping for attribute change listeners. List of changed triggers. Whenever we make a change to our attributeset, we call "ApplyAttributeChange" on AttributeSet, which will broadcast to anyone whos interested, and also call "BroadcastAttributeChanged" here. 
+	//Mapping for attribute change listeners. List of changed triggers. Whenever we make a change to our attributeset, we call "ApplyAttributeChange" on AttributeSet, which will broadcast to anyone who's interested, and also call "BroadcastAttributeChanged" here. 
 	TArray<TPair<FGameplayTag, FAttributeChangedSignature>> AttributeChangeTriggers;
 	
 	void BroadcastAttributeChanged(FGameplayTag InAttributeTag, UCActionComponent* InstigatorComp, int InNewValue, int InDelta, FGameplayTagContainer InContextTags, EAttributeModifierOperation ModOperation);

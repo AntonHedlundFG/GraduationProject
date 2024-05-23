@@ -118,7 +118,7 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	UCActionComponent* GetOwningComponent() const;
 
-	// Tags that are granted to the ability when it is instantiated.
+	//Tags that are granted to the ability when it is instantiated.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionTags;
 
@@ -126,7 +126,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionBlockingTags;
 
-	//Action nickname to start/stop without a reference to the object.
+	//Action "nickname" to start/stop without a reference to the object. Eg. "Action_Stunning".
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 

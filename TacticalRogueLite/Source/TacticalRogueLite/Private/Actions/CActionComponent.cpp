@@ -29,11 +29,40 @@ void UCActionComponent::InitializeComponent()
 			AttributeSet = NewObject<UCAttributeSet>(this, AttributeClass);
 			check(AttributeSet);
 			AttributeSet->Initialize(this);
-			//LOG_WARNING("Setup Attributeset!");
 		}
-		//LOG_WARNING("No Attributeset!");
 	}
 }
+
+UCActionComponent* UCActionComponent::GetActionComp(AActor* FromActor)
+{
+	if (FromActor)
+	{
+		return FromActor->FindComponentByClass<UCActionComponent>();
+	}
+
+	return nullptr;
+}
+
+void UCActionComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	ActiveGameplayTags.OnStackChanged.AddDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
+}
+
+void UCActionComponent::EndPlay(EEndPlayReason::Type EndReason)
+{
+	Super::EndPlay(EndReason);
+	ActiveGameplayTags.OnStackChanged.RemoveDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
+}
+
+void UCActionComponent::TriggerOnGameplayTagsChanged()
+{
+	OnGameplayTagsChanged.Broadcast();
+}
+
+
+// --- Attributes --- //
+
 bool UCActionComponent::GetAttribute(FGameplayTag InTag, FAttribute& InAttribute)
 {
 	if (!AttributeSet)
@@ -41,7 +70,6 @@ bool UCActionComponent::GetAttribute(FGameplayTag InTag, FAttribute& InAttribute
 		LOG_WARNING("AttributeSet is not valid.");
 		return false;
 	}
-	
 	return AttributeSet->GetAttribute(InTag, InAttribute);
 }
 
@@ -69,11 +97,12 @@ bool UCActionComponent::K2_GetAttribute(FGameplayTag AttributeTag, int& CurrentV
 int UCActionComponent::ApplyAttributeChange(const FAttributeModification& InAttributeMod, int32 Level)
 {
 	//Applies the attribute, triggers events and allows other attributes to react to the change.
-	//eg. +3 Strength might change the HealthMax too in RPG style.
+	//eg. +3 Strength might change the HealthMax too.
 	if (AttributeSet)
+	{
 		return AttributeSet->ApplyAttributeChange(InAttributeMod, Level);
-	else
-		return 0;
+	}
+	return 0;
 }
 
 
@@ -99,7 +128,7 @@ bool UCActionComponent::CanApplyAttributeModifiers(UCActionWithTimer* Effect)
 			}
 		}
 	}
-	// If all modifiers can be applied without causing negative attribute values, return true
+	// If all modifiers can be applied without causing negative attribute values, return true.
 	return true;
 }
 
@@ -154,32 +183,7 @@ void UCActionComponent::BroadcastAttributeChanged(FGameplayTag InAttributeTag, U
 	}
 }
 
-void UCActionComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	ActiveGameplayTags.OnStackChanged.AddDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
-}
-
-void UCActionComponent::EndPlay(EEndPlayReason::Type EndReason)
-{
-	Super::EndPlay(EndReason);
-	ActiveGameplayTags.OnStackChanged.RemoveDynamic(this, &UCActionComponent::TriggerOnGameplayTagsChanged);
-}
-
-void UCActionComponent::TriggerOnGameplayTagsChanged()
-{
-	OnGameplayTagsChanged.Broadcast();
-}
-
-UCActionComponent* UCActionComponent::GetActionComp(AActor* FromActor)
-{
-	if (FromActor)
-	{
-		return FromActor->FindComponentByClass<UCActionComponent>();
-	}
-
-	return nullptr;
-}
+// --- Actions --- //
 
 void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> ActionClass)
 {
@@ -194,9 +198,8 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 		LOG_WARNING("Client attempting to AddAction");
 		return;
 	}
-
-	//UCAction* NewAction = NewObject<UCAction>(GetOwner(), ActionClass);
-	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>(); //TODO:?
+	
+	ACGameMode* GameMode = GetWorld()->GetAuthGameMode<ACGameMode>(); 
 	if (!ensure(GameMode))
 	{
 		return;
@@ -207,7 +210,7 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 	
 	NewAction->Initialize(this);
 	
-	if (NewAction->IsAutoStart() && NewAction->CanStart(Instigator)) //Eventuellt till charms.. 
+	if (NewAction->IsAutoStart() && NewAction->CanStart(Instigator))
 	 {
 	 	NewAction->StartAction(Instigator);
 		return;
@@ -219,12 +222,12 @@ void UCActionComponent::AddAction(AActor* Instigator, TSubclassOf<UCAction> Acti
 void UCActionComponent::RegisterAction(UCAction* NewAction)
 {
 	if (!NewAction) return;
-	Actions.Add(NewAction); //Remove? TODO:
+	Actions.Add(NewAction);
 }
 
-void UCActionComponent::RemoveAction(UCAction* ActionToRemove) //TODO: Maybe impl remove action. 
+void UCActionComponent::RemoveAction(UCAction* ActionToRemove) 
 {
-	if (!ensure(ActionToRemove)) //&& !ActionToRemove->IsRunning()). == Checking if theres active timer.
+	if (!ensure(ActionToRemove))
 	{
 		return;
 	}
@@ -259,6 +262,8 @@ bool UCActionComponent::StopActionByName(AActor* Instigator, FGameplayTag Action
 
 	return false;
 }
+
+// --- Abilities --- //
 
 void UCActionComponent::AddAbility(FAbility Ability)
 {
@@ -310,6 +315,9 @@ bool UCActionComponent::TryGetAbility(FGameplayTag ItemSlot, FAbility& outAbilit
 	return false;
 }
 
+// --- Grid utility --- //
+
+
 TArray<ACGridTile*> UCActionComponent::GetValidTargetTiles(FGameplayTag itemSlot)
 {
 	ACUnit* Owner = Cast<ACUnit>(GetOwner());
@@ -335,6 +343,10 @@ bool UCActionComponent::IsValidTargetTile(FGameplayTag ItemSlot, ACGridTile* Tar
 	return GetValidTargetTiles(ItemSlot).Contains(TargetTile);
 }
 
+
+// --- Replication --- //
+
+
 bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags)
 {
 	bool WroteSomething = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
@@ -359,7 +371,6 @@ bool UCActionComponent::ReplicateSubobjects(class UActorChannel* Channel, class 
 
 	return WroteSomething;
 }
-
 
 void UCActionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

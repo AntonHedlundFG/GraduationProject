@@ -13,10 +13,7 @@
 void UCAttackAction::StartAction(AActor* Instigator)
 {
 	Super::StartAction(Instigator);
-
-	// UCAttributeComponent* Attributes = UCAttributeComponent::GetAttributes(TargetTile->GetContent());
-	// OldHealth = Attributes->GetHealth();
-
+	
 	FAttribute Attribute;
 	GetOwningComponent()->GetAttribute(FGameplayTag::RequestGameplayTag("Attribute.AttackDamage"), Attribute);
 	ReturnModifications = UCGameplayFunctionLibrary::ApplyDamage(Instigator, TargetTile->GetContent(), Attribute.BaseValue, ActionTags); 
