@@ -9,7 +9,6 @@
 #include "Attributes/Utilities/CAttributeUtilities.h"
 #include "CActionComponent.generated.h"
 
-//class UCAction;
 
 class UCAttributeSet;
 

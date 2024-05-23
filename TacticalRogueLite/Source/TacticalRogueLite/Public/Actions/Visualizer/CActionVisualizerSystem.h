@@ -98,7 +98,7 @@ protected:
 
 	//We use this just to make sure we don't start visualizing anything before
 	//everything is initialized properly.
-	float StartAfterSafetyDelay = 5.0f;
+	float StartAfterSafetyDelay = 3.0f;
 	float SafetyDelay = 0.0f;
 
 		
