@@ -1,7 +1,7 @@
 # Graduation Project Report, Anton Hedlund
 
 ## Keywords
-**Engine:** Unreal Engine 5, C++, AngelScript by HazeLight, Epic Online Services.
+**Engine:** Unreal Engine 5, C++, [AngelScript by HazeLight](https://angelscript.hazelight.se/getting-started/installation/), [Epic Online Services](https://dev.epicgames.com/en-US/services).
 \
 **Teamwork:** GitHub, Jira.
 \
