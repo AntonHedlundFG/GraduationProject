@@ -3,7 +3,7 @@
 
 ## Participants
 - Anton Hedlund - [Portfolio](https://www.antonhedlund.com/) - [Project Report](Docs/Report/Anton/Report.md)
-- Erik Lund - [Portfolio](https://lunderik.wixsite.com/portfolio)
+- Erik Lund - [Portfolio](https://lunderik.wixsite.com/portfolio) - [Project Report](Docs/Report/Erik/Report_Erik.md)
 - Johan Brandt - [Portfolio](https://www.johanbrandt.com/)- [Project Report](Docs/Report/Johan/Report_Johan.md)
 - Alice Kamil - [Portfolio](https://alicekamil.com/) - [Project Report](Docs/Report/Alice/Report_Alice.md)
 - Theo Sandén - [Portfolio](https://www.theosanden.com/)
