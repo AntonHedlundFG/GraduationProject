@@ -126,7 +126,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tags")
 	FGameplayTagContainer ActionBlockingTags;
 
-	//Action "nickname" to start/stop without a reference to the object. Eg. "Action_Stunning".
+	//Eg. "Action_Rooting".
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Action")
 	FGameplayTag ActivationTag;
 

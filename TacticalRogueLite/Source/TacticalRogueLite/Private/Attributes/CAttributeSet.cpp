@@ -62,7 +62,6 @@ bool UCAttributeSet::GetAttribute(FGameplayTag InTag, FAttribute& OutAttribute)
 	}
 
 	//Failed to find attribute based on gameplaytag.
-	//LOG_WARNING("Attributeset failed to find attribute", PropertyName, "in", OwningComp->GetOwner());
 	return false;
 }
 
