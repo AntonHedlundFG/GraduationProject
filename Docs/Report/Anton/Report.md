@@ -1,11 +1,13 @@
 # Graduation Project Report, Anton Hedlund
 
 ## Keywords
-Engine: Unreal Engine 5, C++, AngelScript by HazeLight, Epic Online Services.
+**Engine:** Unreal Engine 5, C++, AngelScript by HazeLight, Epic Online Services.
 \
-Teamwork: GitHub, Jira.
+**Teamwork:** GitHub, Jira.
 \
-Details: 10 weeks, 5 programmers.
+**Details:** 10 weeks, 5 programmers.
+\
+**Concepts:** Command Pattern, Model-View-Controller (MVC), Strategy Pattern, Networking, Multiplayer
 
 ## Table of contents
 - [Introduction](#introduction)
