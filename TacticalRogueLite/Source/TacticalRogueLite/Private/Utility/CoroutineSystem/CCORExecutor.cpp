@@ -1,205 +1,142 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Utility/CoroutineSystem/CCORExecutor.h"
 
-#pragma region Executables
+size_t UExecutable::NextId = 0;
 
-unsigned long long FExecutable::_nextId = 0;
-
-FExecutable::FExecutable(): _id(_nextId++)
+void FExecutableContainer::Tick( float DeltaTime )
 {
-}
+	if(Executables.Num() == 0 || IsPaused())	return;
 
-FExecutable::~FExecutable()
-{
-}
-
-FExecutableHandle FExecutable::GenerateHandle()
-{
-	FExecutableHandle NewHandle; 
-	NewHandle.ID = _id;
-	return NewHandle;
-}
-
-unsigned long long FExecutable::GetID()
-{
-	return _id;
-}
-
-bool FExecutable::operator==(const FExecutable& obj) const
-{
-	return _id == obj._id;
-}
-#pragma endregion
-
-#pragma region ExecutableOwner
-void FExecutableContainer::Tick(float DeltaTime)
-{
-	if(Executables.Num() == 0 || bIsPaused)
+	UExecutable* Executable = Executables[0];
+	if(!Executable->HasStarted())
 	{
-		return;
+		Executable->Start();
 	}
 
-	if(!Executables[0]->bHasStarted)
+	if(Executable->Execute(DeltaTime))
 	{
-		Executables[0]->OnStart();
-		Executables[0]->bHasStarted = true;
-	}
-	bool bDoneExecuting = Executables[0]->Execute(DeltaTime);
-
-	if(bDoneExecuting)
-	{
-		Executables[0]->OnEnd();
-		delete Executables[0];
+		Executable->End();
 		Executables.RemoveAt(0);
 	}
 }
 
-FExecutableContainer::FExecutableContainer()
-{
-	
-}
-
-FExecutableContainer::~FExecutableContainer()
-{
-	for (const auto Executable : Executables)
-	{
-		delete Executable;
-	}
-}
-#pragma endregion 
-
-FExecutableContainer* UCCORExecutor::GetExecutableContainer(UObject* Owner)
+FExecutableContainer& UCCORExecutor::GetExecutableContainer(UObject* Owner)
 {
 	if(!ExecutableContainers.Contains(Owner))
 	{
-		FExecutableContainer* ExecutableContainer =  new FExecutableContainer();
-		ExecutableContainers.Add(Owner,ExecutableContainer);
-		return  ExecutableContainer;
+		ExecutableContainers.Add(Owner, FExecutableContainer());
 	}
 	return ExecutableContainers[Owner];
 }
 
 void UCCORExecutor::TickGlobal(float DeltaTime)
 {
-	if(GlobalExecutables.Num() == 0)
+	if (GlobalExecutables.Num() == 0) return;
+
+	for (auto& Element : GlobalExecutables)
 	{
-		return;
-	}
-	for (auto Element : GlobalExecutables)
-	{
-		FExecutable* Executable = Element.Value;
-		if(!Executable->bPaused)
+		UExecutable* Executable = Element.Value;
+		if (!Executable->IsPaused())
 		{
-			bool bDoneExecuting = Executable->Execute(DeltaTime);
-			if(bDoneExecuting)
+			if (Executable->Execute(DeltaTime))
 			{
-				Executable->OnEnd();
+				Executable->End();
 				QueuedForDeletion.Add(Element.Key);
 			}
 		}
 	}
-	for (auto Key : QueuedForDeletion)
+
+	for (const auto& Key : QueuedForDeletion)
 	{
-		FExecutable* Executable = GlobalExecutables[Key];
-		delete Executable;
-		GlobalExecutables.Remove(Key);
+		if (TObjectPtr<UExecutable>* ExecutablePtr = GlobalExecutables.Find(Key))
+		{
+			GlobalExecutables.Remove(Key);
+		}
 	}
 	QueuedForDeletion.Empty();
 }
 
-void UCCORExecutor::RemoveGlobalExecutable(FExecutableHandle Handle)
+void UCCORExecutor::RemoveGlobalExecutable(const FExecutableHandle& Handle)
 {
-	FExecutable* Executable = GlobalExecutables[Handle.ID];
-	GlobalExecutables.Remove(Handle.ID);
-	if(Executable != nullptr)
+	if (TObjectPtr<UExecutable>* ExecutablePtr = GlobalExecutables.Find(Handle.ID))
 	{
-		delete Executable;
+		GlobalExecutables.Remove(Handle.ID); 
 	}
 }
 
-FExecutableHandle UCCORExecutor::RunGlobalExecutable(FExecutable* Executable)
+FExecutableHandle UCCORExecutor::RunGlobalExecutable(UExecutable* Executable)
 {
-	Executable->OnStart();
+	if (!Executable) return FExecutableHandle{};
+	
+	Executable->Start();
 	const FExecutableHandle Handle = Executable->GenerateHandle();
-	GlobalExecutables.Add(Handle.ID,Executable);
+	GlobalExecutables.Add(Handle.ID, Executable);
 	return Handle;
 }
 
-void UCCORExecutor::StartGlobalExecutable(FExecutableHandle Handle)
+void UCCORExecutor::StartGlobalExecutable(const FExecutableHandle& Handle)
 {
-	if(GlobalExecutables.Contains(Handle.ID))
+	if (TObjectPtr<UExecutable>* ExecutablePtr = GlobalExecutables.Find(Handle.ID))
 	{
-		GlobalExecutables[Handle.ID]->bPaused = false;
+		(*ExecutablePtr)->Unpause();
 	}
 }
 
-void UCCORExecutor::PauseGlobalExecutable(FExecutableHandle Handle)
+void UCCORExecutor::PauseGlobalExecutable(const FExecutableHandle& Handle)
 {
-	if(GlobalExecutables.Contains(Handle.ID))
+	if (TObjectPtr<UExecutable>* ExecutablePtr = GlobalExecutables.Find(Handle.ID))
 	{
-		GlobalExecutables[Handle.ID]->bPaused = true;
+		(*ExecutablePtr)->Pause();
 	}
 }
 
-FExecutableHandle UCCORExecutor::AddExecutable(UObject* Owner, FExecutable* Executable)
+FExecutableHandle UCCORExecutor::AddExecutable(UObject* Owner, UExecutable* Executable)
 {
-	FExecutableContainer* Container = GetExecutableContainer(Owner);
-	Container->Executables.Add(Executable);
+	if (!Executable) return FExecutableHandle{};
+	
+	FExecutableContainer& Container = GetExecutableContainer(Owner);
+	Container.GetExecutables().Add(Executable);
 	return Executable->GenerateHandle();
 }
 
-void UCCORExecutor::RemoveExecutable(UObject* Owner, FExecutableHandle Handle)
+void UCCORExecutor::RemoveExecutable( const UObject* Owner, const FExecutableHandle& Handle)
 {
 	if(ExecutableContainers.Contains(Owner))
 	{
-		FExecutableContainer* Container = ExecutableContainers[Owner];
-		for (auto Element : Container->Executables)
+		FExecutableContainer& Container = ExecutableContainers[Owner];
+		for (auto It = Container.GetExecutables().CreateIterator(); It; ++It)
 		{
-			if(Element->GetID() == Handle.ID)
+			if((*It)->GetID() == Handle.ID)
 			{
-				Container->Executables.Remove(Element);
-				delete Element;
+				It.RemoveCurrent();
 				return;
 			}
 		}
 	}
 }
 
-void UCCORExecutor::Pause(UObject* Owner)
+void UCCORExecutor::Pause( const UObject* Owner )
 {
-	if(ExecutableContainers.Contains(Owner))
+	if( ExecutableContainers.Contains(Owner) )
 	{
-		ExecutableContainers[Owner]->bIsPaused = true;
-	}
-}
-void UCCORExecutor::Start(UObject* Owner)
-{
-	if(ExecutableContainers.Contains(Owner))
-	{
-		ExecutableContainers[Owner]->bIsPaused = false;
+		ExecutableContainers[Owner].Pause();
 	}
 }
 
-void UCCORExecutor::Tick(float DeltaTime)
+void UCCORExecutor::Start( const UObject* Owner )
+{
+	if(ExecutableContainers.Contains(Owner))
+	{
+		ExecutableContainers[Owner].Unpause();
+	}
+}
+
+void UCCORExecutor::Tick( float DeltaTime )
 {
 	Super::Tick(DeltaTime);
 	TickGlobal(DeltaTime);
-	for (auto Element : ExecutableContainers)
+	
+	for (auto& Element : ExecutableContainers)
 	{
-		Element.Value->Tick(DeltaTime);
-	}
-}
-
-UCCORExecutor::~UCCORExecutor()
-{
-	for (auto Element : ExecutableContainers)
-	{
-		delete Element.Value;
-	}
-	for (auto Element : GlobalExecutables)
-	{
-		delete Element.Value;
+		Element.Value.Tick(DeltaTime);
 	}
 }

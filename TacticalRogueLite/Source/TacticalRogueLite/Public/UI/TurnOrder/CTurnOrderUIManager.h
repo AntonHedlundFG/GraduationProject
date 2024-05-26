@@ -1,6 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "CGameState.h"
@@ -8,54 +6,83 @@
 #include "Utility/CoroutineSystem/CCORExecutor.h"
 #include "CTurnOrderUIManager.generated.h"
 
-/**
- * 
- */
 #pragma region AnimationTasks
 
-USTRUCT()
-struct FTurnOrderAnimationTask : public FExecutable
+UCLASS()
+class UTurnOrderAnimationTask : public UExecutable
 {
 	GENERATED_BODY()
+protected:
 	float WaitTimeAfterCompletion = 0;
 	float WaitTimeBetweenAnimations = 0;
-	TArray<UCTurnOrderPortraitWidget*> Portraits;
+	UPROPERTY()
+	TArray<TObjectPtr<UCTurnOrderPortraitWidget>> Portraits;
 };
-struct FTurnOrderAnimationTask_Remove : FTurnOrderAnimationTask
+
+UCLASS()
+class UTurnOrderAnimationTask_Remove : public UTurnOrderAnimationTask
 {
+	GENERATED_BODY()
 public:
-	FTurnOrderAnimationTask_Remove(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits,float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations);
-	//virtual~FTurnOrderAnimationTask_Remove()override;
-	virtual bool Execute(float DeltaTime) override;
-};
-struct FTurnOrderAnimationTask_Add : FTurnOrderAnimationTask
-{
-	TArray<FVector2D> Positions;
-public:
-	FTurnOrderAnimationTask_Add(TArray<UCTurnOrderPortraitWidget*>AffectedPortraits,TArray<FVector2D>Positions, float WaitTimeAfterCompletion,float WaitTimeBetweenAnimations);
-	//virtual~FTurnOrderAnimationTask_Add()override;
+	UTurnOrderAnimationTask_Remove() = default;
+
+	void Initialize(const TArray<UCTurnOrderPortraitWidget*>& inAffectedPortraits, const float inWaitTimeAfterCompletion, const float inWaitTimeBetweenAnimations);
 	virtual bool Execute(float DeltaTime) override;
 };
 
-struct FTurnOrderAnimationTask_MoveTo : FTurnOrderAnimationTask
+UCLASS()
+class UTurnOrderAnimationTask_Add : public UTurnOrderAnimationTask
 {
+	GENERATED_BODY()
+public:
+	UTurnOrderAnimationTask_Add() = default;
+	
+	void Initialize( const TArray<UCTurnOrderPortraitWidget*>& inAffectedPortraits,
+			const TArray<FVector2D>& inPositions, const float inWaitTimeAfterCompletion, const float inWaitTimeBetweenAnimations);
+	virtual bool Execute(float DeltaTime) override;
+
+protected:
 	TArray<FVector2D> Positions;
-	UCurveFloat* AnimationEasing;
+};
+
+UCLASS()
+class UTurnOrderAnimationTask_MoveTo : public UTurnOrderAnimationTask
+{
+	GENERATED_BODY()
+public:
+	UTurnOrderAnimationTask_MoveTo() = default;
+	
+	void Initialize( const TArray<UCTurnOrderPortraitWidget*>& inAffectedPortraits, const TArray<FVector2D>& inPositions, const float inWaitTimeAfterCompletion, const float inWaitTimeBetweenAnimations, UCurveFloat* inAnimationEasing);
+	virtual bool Execute(float DeltaTime) override;
+
+protected:
+	UPROPERTY()
+	TArray<FVector2D> Positions;
+	UPROPERTY()
+	TObjectPtr<UCurveFloat> AnimationEasing;
+	UPROPERTY()
 	TArray<FVector2D> StartPositions;
-	public:
-	FTurnOrderAnimationTask_MoveTo(TArray<UCTurnOrderPortraitWidget*> AffectedPortraits, TArray<FVector2D> Positions, float WaitTimeAfterCompletion, float WaitTimeBetweenAnimations,UCurveFloat* AnimationEasing);
-	//virtual~FTurnOrderAnimationTask_MoveTo()override;
-	virtual bool Execute(float DeltaTime) override;
 };
 
-struct FTurnOrderAnimationTask_EnqueueWidgets : FTurnOrderAnimationTask
+UCLASS()
+class UTurnOrderAnimationTask_EnqueueWidgets : public UTurnOrderAnimationTask
 {
-	ACTurnOrderUIManager* TurnManager;
-	TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue;
-	FTurnOrderAnimationTask_EnqueueWidgets(TArray<UCTurnOrderPortraitWidget*> WidgetsToEnqueue,ACTurnOrderUIManager* TurnManager);
+	GENERATED_BODY()
+public:
+	UTurnOrderAnimationTask_EnqueueWidgets() = default;
+
+	void Initialize(const TArray<UCTurnOrderPortraitWidget*>& inWidgetsToEnqueue, ACTurnOrderUIManager* inTurnManager);
 	virtual bool Execute(float DeltaTime) override;
+
+protected:
+	UPROPERTY()
+	TObjectPtr<ACTurnOrderUIManager> TurnManager;
+	UPROPERTY()
+	TArray<TObjectPtr<UCTurnOrderPortraitWidget>> WidgetsToEnqueue;
 };
-#pragma endregion 
+
+#pragma endregion
+
 UCLASS()
 class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 {
@@ -67,15 +94,12 @@ class TACTICALROGUELITE_API ACTurnOrderUIManager : public AActor
 	virtual void BeginPlay() override;
 	UPROPERTY()
 	UCCORExecutor* Executor;
-	//virtual void Tick(float DeltaSeconds) override;
 	UFUNCTION()
 	void UpdateTurnList();
 	UPROPERTY()
 	TArray<ACUnit*> LastTurnOrder;
 	UPROPERTY()
 	TMap<ACUnit*,UCTurnOrderPortraitWidget*> ActivePortraits;
-	//TArray<FTurnOrderAnimationTask*> Tasks;
-	//PoolingSystem will be refactored later on
 	UCTurnOrderPortraitWidget* CreatePortraitWidget();
 	UCTurnOrderPortraitWidget* DeQueuePortraitWidget();
 	void HandleEnqueue(UCTurnOrderPortraitWidget* widget);

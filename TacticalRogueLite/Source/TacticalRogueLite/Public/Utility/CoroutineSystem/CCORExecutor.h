@@ -1,109 +1,112 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
+#include "Utility/Logging/CLogManager.h"
 #include "CCORExecutor.generated.h"
 
-/**
- * 
- */
-struct FExecutableHandle
+UENUM(BlueprintType)
+enum class EExecutableState : uint8
 {
-	unsigned long long ID;
+	NotStarted UMETA(DisplayName = "Not Started"),
+	Running UMETA(DisplayName = "Running"),
+	Paused UMETA(DisplayName = "Paused"),
+	Completed UMETA(DisplayName = "Completed")
 };
-USTRUCT()
-struct FExecutable
+
+struct FExecutableHandle 
 {
-private:
-	unsigned long long _id;
-	static unsigned long long _nextId;
+	size_t ID;
+};
+
+UCLASS()
+class TACTICALROGUELITE_API UExecutable : public UObject
+{
+	GENERATED_BODY()
 
 public:
-	GENERATED_BODY()
+	UExecutable() : ID(NextId++) {}
+	virtual ~UExecutable() override = default;
+
+	virtual void Start() { State = EExecutableState::Running; }
+	virtual void End() { State = EExecutableState::Completed; }
+	void Initialize()
+	{
+		LOG_WARNING("Default implementation, should be overriden in derived class.");
+	}
+	virtual bool Execute(float DeltaTime)
+	{
+		LOG_WARNING("Default implementation, should be overriden in derived class.");
+		return true;
+	}
+
+	void Pause() { State = EExecutableState::Paused; }
+	void Unpause() { State = EExecutableState::Running; }
+
+	bool HasStarted() const { return State != EExecutableState::NotStarted; }
+	bool IsRunning() const { return State == EExecutableState::Running; }
+	bool IsPaused() const { return State == EExecutableState::Paused; }
+	
+	FExecutableHandle GenerateHandle() const { return { ID }; }
+	size_t GetID() const { return ID; }
+	bool operator==(const UExecutable* obj) const { return ID == obj->ID; }
+
+protected:
 	float Timer = 0;
-	int State = 0;
-	bool bHasStarted = false;
-	bool bPaused = false;
-	FExecutable();
-	/*!
-	 *Called once before the Execute function is run 
-	 */
-	virtual void OnStart(){}
-	/*!
-	 *Called after the Executable is done.
-	 */
-	virtual void OnEnd(){}
-	/*!
-	 *Called as long as Execute is returning false.
-	 *@return Return false as long as you want to run the executable, return true for when the executable is done.
-	 */
-	virtual bool Execute(float DeltaTime){return true;}
-	virtual ~FExecutable();
-	FExecutableHandle GenerateHandle();
-	unsigned long long GetID();
-	bool operator==(const FExecutable& obj) const;
+	EExecutableState State = EExecutableState::NotStarted;
+	
+private:
+	size_t ID;
+	static size_t NextId;
+	
 };
+
+USTRUCT()
 struct FExecutableContainer
 {
-	bool bIsPaused = false;
-	TArray<FExecutable*> Executables;
+	GENERATED_BODY()
+	
+	FExecutableContainer() {}
+	~FExecutableContainer() {}
+	
 	void Tick(float DeltaTime);
-	FExecutableContainer();
-	~FExecutableContainer();
+	TArray<TObjectPtr<UExecutable>>& GetExecutables() { return Executables; }
+	void Pause() { State = EExecutableState::Paused; }
+	void Unpause() { State = EExecutableState::Running; }
+	bool IsPaused() const { return State == EExecutableState::Paused; }
+	
+private:
+	EExecutableState State = EExecutableState::Running;
+	UPROPERTY()
+	TArray<TObjectPtr<UExecutable>> Executables;
 };
 
 UCLASS()
 class TACTICALROGUELITE_API UCCORExecutor : public UTickableWorldSubsystem
 {
 	GENERATED_BODY()
-	TMap<UObject*,FExecutableContainer*> ExecutableContainers;
-	TMap<unsigned long long,FExecutable*> GlobalExecutables;
-	TArray<unsigned long long> QueuedForDeletion; 
-private:
-	FExecutableContainer* GetExecutableContainer(UObject* Owner);
-	void TickGlobal(float DeltaTime);
+
 public:
 	
-	/*
-	 *Removes an Executable running in the global executable list, will also call OnEnd() and delete ít
-	 */
-	void RemoveGlobalExecutable(FExecutableHandle Handle);
-	/*!
-	 * Runs the Executable until finished.
-	 */
-	FExecutableHandle RunGlobalExecutable(FExecutable* Executable);
-	/*!
-	 * Resumes an Executable running in the global executable list
-	 */
+	void RemoveGlobalExecutable( const FExecutableHandle& Handle);
+	FExecutableHandle RunGlobalExecutable(UExecutable* Executable);
+	void StartGlobalExecutable( const FExecutableHandle& Handle);
+	void PauseGlobalExecutable( const FExecutableHandle& Handle);
+	FExecutableHandle AddExecutable(UObject* Owner, UExecutable* Executable);
+	void RemoveExecutable(const UObject* Owner, const FExecutableHandle& Handle);
+	void Pause(const UObject* Owner);
+	void Start(const UObject* Owner);
 
-	void StartGlobalExecutable(FExecutableHandle Handle);
-	/*!
-	* Pauses an Executable running in the global executable list 
-	*/
-	void PauseGlobalExecutable(FExecutableHandle Handle);
-	/*!
-	 * Adds an Executable to the back of the executable queue.
-	 */
-	FExecutableHandle AddExecutable(UObject* Owner,FExecutable* Executable);
-	/*!
-	 * Removes Executable from queue. If it is running it will call the OnEnd Function in the executable and be deleted.
-	 */
-	void RemoveExecutable(UObject* Owner,FExecutableHandle Handle);
-	/*!
-	 *	Pauses the current running Executable on owner.
-	 */
-	void Pause(UObject* Owner);
-	/*!
-	 *	Starts the current running executable on owner.
-	 */
-	void Start(UObject* Owner);
+protected:
 	virtual void Tick(float DeltaTime) override;
-	virtual TStatId GetStatId() const override
-	{
-		return GetStatID();
-	}
-	virtual ~UCCORExecutor();
-	
+	virtual TStatId GetStatId() const override { return GetStatID(); }
+	void TickGlobal(float DeltaTime);
+		
+private:
+
+	UPROPERTY()
+	TMap<UObject*, FExecutableContainer> ExecutableContainers;
+	TMap<size_t, TObjectPtr<UExecutable>> GlobalExecutables;
+	TArray<size_t> QueuedForDeletion; 
+	FExecutableContainer& GetExecutableContainer(UObject* Owner);
 };

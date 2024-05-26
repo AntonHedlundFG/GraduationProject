@@ -1,8 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "UI/CTurnOrderPortraitWidget.h"
-
+﻿#include "UI/TurnOrder/CTurnOrderPortraitWidget.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Components/CanvasPanelSlot.h"
 

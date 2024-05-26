@@ -9,8 +9,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(IndividualHandleTest, "TacticalRogueLite.Tactic
 
 bool IndividualHandleTest::RunTest(const FString& Parameters)
 {
-	FExecutable A{};
-	FExecutable B{};
+	UExecutable A{};
+	UExecutable B{};
 	FExecutableHandle HandleA = A.GenerateHandle();
 	FExecutableHandle HandleB = B.GenerateHandle();
 	TestNotEqual("Handles for individual executables should be unique." + FString::Printf(TEXT("Value 1: %llu   Value 2: %llu "),HandleB.ID,HandleA.ID),HandleB.ID,HandleA.ID);
@@ -23,7 +23,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(DeterministicHandleTest, "TacticalRogueLite.Tac
 
 bool DeterministicHandleTest::RunTest(const FString& Parameters)
 {
-	FExecutable A{};
+	UExecutable A{};
 	FExecutableHandle HandleA = A.GenerateHandle();
 	FExecutableHandle HandleB = A.GenerateHandle();
 	TestEqual("Handles for the same executable should be equal." + FString::Printf(TEXT("Value 1: %llu   Value 2: %llu "),HandleB.ID,HandleA.ID),HandleB.ID,HandleA.ID);
@@ -36,9 +36,9 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(StatelessDeterministicHandleTest, "TacticalRogu
 
 bool StatelessDeterministicHandleTest::RunTest(const FString& Parameters)
 {
-	FExecutable A{};
+	UExecutable A{};
 	FExecutableHandle HandleA = A.GenerateHandle();
-	A.bPaused = true;
+	A.Pause();
 	FExecutableHandle HandleB = A.GenerateHandle();
 	TestEqual("Handles for the same executable should be equal." + FString::Printf(TEXT("Value 1: %llu  Value 2: %llu "),HandleB.ID,HandleA.ID),HandleB.ID,HandleA.ID);
 
